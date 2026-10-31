@@ -223,9 +223,14 @@ def preflight(root, identity):
 def command(root, run, session, seconds, selected=None):
 	# Legacy callers select live CSI; the CLI always supplies a validated choice.
 	selected = selected or dict(input_source='live_csi')
+	display = optional_json(root/'identity.json')
+	profile = display.get('hardware_profile', 'probe-free-drain-filter-v1')
+	renderer = display.get('renderer_backend', 'ps')
+	if renderer not in ('ps','pl') or (renderer=='pl' and profile!='probe-free-drain-overlay-v1'):
+		raise ValueError('Renderer/profile mismatch')
 	return [str(root/'pose180_demo'), '--package', str(root), '--output', str(run/'run'),
 			'--bind', '0.0.0.0', '--session', str(session), '--seconds', str(seconds),
-			'--hardware-profile', 'probe-free-drain-filter-v1', '--filter-backend', 'cpu',
+			'--hardware-profile', profile, '--filter-backend', 'cpu', '--renderer-backend', renderer,
 			'--min-cutoff', '0.5', '--beta', '0.3', '--d-cutoff', '1',
 			'--hdmi', '1',
 			'--result-port', '39383', '--status-port', '39384', '--view-port', '39385'] + selection_arguments(selected) + input_arguments(root, selected)
@@ -378,7 +383,7 @@ def main(stopping):
 			run = root/'runs'/name
 			(run/'metadata').mkdir(parents=True)
 			atomic(run/'request.json', dict(boot_id=current, seconds=args.seconds, input=selected,
-										   functional_startup_once=identity.get('hardware_profile') == 'probe-free-drain-filter-v1'))
+										   functional_startup_once=identity.get('hardware_profile') in ('probe-free-drain-filter-v1','probe-free-drain-overlay-v1')))
 			atomic(root/'latest.json', dict(run=name))
 			atomic(ACTIVE, dict(boot_id=current,run=str(run.resolve())))
 			if stopping.requested:

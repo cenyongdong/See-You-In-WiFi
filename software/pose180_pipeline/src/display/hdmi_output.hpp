@@ -30,6 +30,7 @@ public:
 	// poll performs one snapshot and never reissues the frame command.
 	void begin_show(const std::vector<uint8_t>& rgb565, uint32_t frameId);
 	bool poll_show();
+	void show_overlay(const std::vector<uint32_t>& commands, uint32_t frameId, double prepare_ms);
 	bool pending() const;
 	void show(const std::vector<uint8_t>& rgb565, uint32_t frameId);
 	Snapshot observe();

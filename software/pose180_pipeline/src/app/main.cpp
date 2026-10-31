@@ -129,6 +129,12 @@ int main(int argc, char** argv) {
 		const auto max_age = integer("--max-input-age-ms", "500", 60000) * 1000000ull;
 		const auto hdmi_arg = take("--hdmi", "0");
 		const bool hdmi = hdmi_arg == "1";
+		const auto renderer_backend = take("--renderer-backend", "ps");
+		need(renderer_backend=="ps" || renderer_backend=="pl", "Unknown renderer backend");
+		const bool pl_renderer = renderer_backend=="pl";
+#ifndef POSE180_DEMO_PL_OVERLAY
+		need(!pl_renderer, "PL renderer requires the overlay hardware build");
+#endif
 #ifdef POSE180_DEMO_SDK
 		constexpr bool mock = false;
 #else
@@ -144,7 +150,10 @@ int main(int argc, char** argv) {
 #ifdef POSE180_DEMO_PROBE_FREE
 #ifdef POSE180_DEMO_PROBE_FREE_DRAIN
 #ifdef POSE180_DEMO_PL_FILTER
-#ifdef POSE180_DEMO_PL_POST
+#ifdef POSE180_DEMO_PL_OVERLAY
+		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-v1");
+		need(hardware_profile == "probe-free-drain-overlay-v1", "Build/profile mismatch");
+#elif defined(POSE180_DEMO_PL_POST)
 		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-post-v2");
 		need(hardware_profile == "probe-free-drain-post-v2", "Build/profile mismatch");
 #else
@@ -407,10 +416,20 @@ int main(int argc, char** argv) {
 		pose::hdmi::Rendered last_picture;
 		std::uint64_t last_picture_id = 0, last_picture_at = 0;
 		pd::DisplayState presentation;
+		bool overlay_background_ready = false;
 		if (hdmi)
 			canvas.rgb565.resize(pose::hdmi::frameBytes);
 		auto show = [&](pose::hdmi::Rendered& rendered) {
+			if(rendered.hardware_overlay && !overlay_background_ready) {
+				auto static_background=pose::hdmi::prepare_background();
+				display->show(static_background.rgb565,presentation.next_tag());
+				overlay_background_ready=true;
+			}
 			const auto tag = presentation.next_tag();
+			if(rendered.hardware_overlay) {
+				display->show_overlay(rendered.commands,tag,rendered.render_ms);
+				return tag;
+			}
 			display->begin_show(rendered.rgb565, tag);
 			canvas.rgb565 = std::move(rendered.rgb565);
 			// Same owner thread and adoption proof for hints and actual poses.
@@ -438,9 +457,9 @@ int main(int argc, char** argv) {
 					pose::hdmi::NoticeKind::WaitingInput, true, shared.stats.resynchronizing, 0};
 			if (!notice)
 				return;
-			pose::hdmi::prepare_background(canvas);
+			if(!pl_renderer) pose::hdmi::prepare_background(canvas);
 			auto rendered = pose::hdmi::render_notice(
-				std::move(canvas), notice->has_result ? &last_picture : nullptr, last_picture_id, *notice);
+				std::move(canvas), notice->has_result ? &last_picture : nullptr, last_picture_id, *notice,pl_renderer);
 			const auto tag = show(rendered);
 			presentation.adopted_hint(*notice, pd::now_ns());
 			shared.stats.display_updates = presentation.updates();
@@ -672,8 +691,8 @@ int main(int argc, char** argv) {
 					++shared.stats.view_dropped;
 #ifdef POSE180_DEMO_SDK
 				if (hdmi) {
-					pose::hdmi::prepare_background(canvas);
-					auto rendered = pose::hdmi::render_presentation(std::move(canvas), view);
+					if(!pl_renderer) pose::hdmi::prepare_background(canvas);
+					auto rendered = pose::hdmi::render_presentation(std::move(canvas), view,pl_renderer);
 					show(rendered); // Prove adoption before another forward call.
 					shared.stats.selected_count = rendered.detection_count;
 					++shared.stats.selection_counts[rendered.detection_count];
