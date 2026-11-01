@@ -2,6 +2,8 @@
 
 当前[r4部署](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)采用原epoch99、TopK=3、严格score>0.2、CPU多人跟踪／滤波；官方输入为30段、8700个不同窗口、1／2／3人各10段，默认有限运行1800秒，来源与结果见[长测](../../../FPGA/csi_preprocess/LONGRUN.md)。实时采集和官方预采CSI共用PS＋PL预处理、NPU推理、PL骨架合成及独立PC双页；官方入口读取CSI执行新推理。10月29日[三片段](DATASET-PLAYLIST.md)及旧Top1仅保留历史记录，旧交付包已清理。
 
+实时四机接线、地址／DHCP、首次安装、开机服务、板端预检和故障定位，见[部署说明的实时CSI章节](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md#实时csi采集部署)。部署包内`router-service/`提供既有四机已验证安装文件；没有新增现场采集或板测。
+
 ## 两项展示
 
 | 项目 | 实时采集 | 官方预采数据 |

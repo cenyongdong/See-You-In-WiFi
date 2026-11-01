@@ -20,7 +20,7 @@
 ## Git 克隆后的文件可用范围
 
 - 目录列的是本工作区可见的实际文件，不承诺普通Git克隆具备本机RAR、厂商依赖、恢复检查点、原始权重和所有历史附件；获取范围见[源码说明](Deliverables/SOURCE-20261031.md)。SDK／EDA安装、许可和匹配的器件环境外置。
-- r4源码RAR为198429558字节，交付身份见[核验](Deliverables/release-20261031-r4-validation.json)。压缩包保持被独立重建验证的冻结身份；11月1日完整重建和本轮工程说明在压缩包旁更新，包内说明仍反映打包日期，不声称本轮重新打包或上传。
+- r4源码RAR为198429558字节，交付身份见[核验](Deliverables/release-20261031-r4-validation.json)。源码RAR保持被独立重建验证的冻结身份；部署RAR在11月1日后续同步了实时采集完整说明与四机安装文件，移除旧版BOOT，仅附最新版替换镜像。未上传设备，最新部署校验以同名.sha256和交付核验为准。
 - 旧交付包、旧采集及副本已按此前授权清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见[记录](.local/project-cleanup-20261029-r1/summary.json)，10月31日交付清理见[记录](.local/delivery-cleanup-20261031-r1/summary.json)。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
 ## 引用与归档
 
