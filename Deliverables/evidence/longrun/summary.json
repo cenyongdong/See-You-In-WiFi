@@ -1,0 +1,434 @@
+{
+  "status": "completed_with_observed_gaps_and_controlled_PC_view_restart",
+  "checks": {
+    "active_runtime_at_least_1800_seconds": true,
+    "native_exit_zero": true,
+    "safe_shutdown": true,
+    "no_device_owners": true,
+    "not_isolated": true,
+    "hdmi_caught_up": true,
+    "raw_PC_matches_board_sent": true,
+    "view_final_result_matches_raw": true,
+    "CSI_no_hardware_fault": true,
+    "CSI_no_backend_degradation": true,
+    "PC_invalid_zero": true,
+    "PC_observers_ended": true
+  },
+  "active_seconds": 1800.00409169,
+  "total_process_seconds": 1827.27893607,
+  "BOOT_sha256": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35",
+  "software_sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3",
+  "boot_id": "737e40ad-de06-4139-b9d0-6fc1ae5ae03d",
+  "operations": {
+    "BOOT_writes": 0,
+    "normal_reboots": 1,
+    "SDK_attempts": 1,
+    "automatic_retry": false
+  },
+  "package_closed": true,
+  "remaining_operations": 0,
+  "input": {
+    "split": "train",
+    "clips": [
+      {
+        "sequence": "S51_10",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_01",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_43",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_03",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_07",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_12",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_04",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_12",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_18",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_05",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_13",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_25",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_11",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_24",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_27",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_12",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_25",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_29",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_16",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_26",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_30",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_17",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_32",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_41",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_20",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_36",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_44",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      },
+      {
+        "sequence": "S11_25",
+        "start": 10,
+        "count": 290,
+        "people": 1
+      },
+      {
+        "sequence": "S22_39",
+        "start": 10,
+        "count": 290,
+        "people": 2
+      },
+      {
+        "sequence": "S23_47",
+        "start": 10,
+        "count": 290,
+        "people": 3
+      }
+    ],
+    "unique_windows": 8700,
+    "playback_hz": 15,
+    "unique_playback_seconds": 580,
+    "repetitions": 4,
+    "maximum_inputs": 34800,
+    "active_run_seconds": 1800,
+    "selection": "30 complete 290-window contiguous runs; 10 per person count; labels only classify provenance",
+    "attribution": "Person-in-WiFi 3D / Wiception3D, official Kaggle v1, CC BY 4.0; converted raw CSI, original authors retain attribution"
+  },
+  "final_status": {
+    "state": "running",
+    "mock": false,
+    "hdmi": true,
+    "input_source": "official_dataset",
+    "dataset_done": false,
+    "score_threshold": 0.2,
+    "top_k": 3,
+    "single_person_stability": false,
+    "release_blocked": false,
+    "single_rejected": 0,
+    "single_relocations": 0,
+    "single_limited": 0,
+    "received": 25400,
+    "replaced": 3,
+    "stale": 0,
+    "malformed": 0,
+    "dataset_passes": 2,
+    "reconnects": 0,
+    "input_epoch": 1773372603538847,
+    "inferred": 25396,
+    "adopted": 25396,
+    "pc_sent": 25394,
+    "pc_dropped": 2,
+    "record_dropped": 39,
+    "resyncs": 0,
+    "view_sent": 25390,
+    "view_dropped": 6,
+    "post_frames": 25396,
+    "post_total_us": 4595232,
+    "post_max_us": 1243,
+    "post_births": 201,
+    "post_duplicates": 239,
+    "post_display_duplicates": 0,
+    "post_resets": 87,
+    "post_history_selections": 66,
+    "post_reacquired": 0,
+    "post_held_handoffs": 0,
+    "post_hidden_frames": 0,
+    "post_shadow_deferred": 0,
+    "filter_lanes": 0,
+    "filter_fallbacks": 0,
+    "cpu_filter_frames": 25186,
+    "cpu_filter_coordinates": 2076774,
+    "cpu_filter_total_ns": 340370440,
+    "cpu_filter_max_ns": 472610,
+    "pl_filter_calls": 0,
+    "pl_filter_coordinates": 0,
+    "pl_geometry_calls": 0,
+    "pl_geometry_input_ns": 0,
+    "pl_geometry_wait_ns": 0,
+    "pl_geometry_output_ns": 0,
+    "pl_geometry_total_ns": 0,
+    "pl_geometry_max_ns": 0,
+    "pl_geometry_cycles": 0,
+    "ps_reference_frames": 0,
+    "ps_reference_ns": 0,
+    "ps_reference_max_ns": 0,
+    "ps_reference_filter_frames": 0,
+    "ps_reference_filter_ns": 0,
+    "ps_reference_filter_max_ns": 0,
+    "ps_reference_filter_coordinates": 0,
+    "reference_mismatch_frames": 0,
+    "reference_max_error_nano": 0,
+    "joint_gate_rejections": 4,
+    "bone_gate_rejections": 12,
+    "pl_input_ns": 0,
+    "pl_wait_ns": 0,
+    "pl_output_ns": 0,
+    "pl_total_ns": 0,
+    "pl_max_ns": 0,
+    "pl_compute_cycles": 0,
+    "pl_max_cycles": 0,
+    "longest_result_gap_ms": 2287,
+    "display_updates": 25514,
+    "display_hints": 118,
+    "selected_count": 1,
+    "selected_0_frames": 183,
+    "selected_1_frames": 8524,
+    "selected_2_frames": 8530,
+    "selected_3_frames": 8159,
+    "alignment_resets": 0,
+    "transport_resets": 0,
+    "diagnostic_dropped": 0,
+    "last_recovery_ms": 0,
+    "longest_recovery_ms": 0,
+    "csi_alignment": "none",
+    "csi_exact_windows": 0,
+    "csi_approximate_windows": 0,
+    "csi_approximate_points": 0,
+    "csi_mapping_switches": 0,
+    "csi_skipped_points": 0,
+    "csi_decoder_resets": 0,
+    "csi_max_skew_us": 0,
+    "csi_max_span_us": 0,
+    "csi_rejected_records": 0,
+    "longest_input_gap_ms": 2286,
+    "last_input_error": "",
+    "input_age_ms": 286,
+    "result_age_ms": 336,
+    "adoption_age_ms": 321,
+    "forward_age_ms": null,
+    "recording": true,
+    "pc_connected": true,
+    "input_connected": false
+  },
+  "csi": {
+    "event": "csi_pl",
+    "calls": 25396,
+    "fallbacks": 0,
+    "faults": 0,
+    "boundary_fallbacks": 196807,
+    "upload_ns": 8490161970,
+    "wait_ns": 3089543670,
+    "download_ns": 50665830640,
+    "finish_ns": 28878754230,
+    "cycles": 6006299644,
+    "streamed_groups": 1523760,
+    "groups_read_while_busy": 1100793,
+    "boundary_window_fallbacks": 20
+  },
+  "pc": {
+    "raw": {
+      "received": 25394,
+      "invalid": 0,
+      "duplicates": 0,
+      "reconnects": 1,
+      "recorded": 25394,
+      "recordDrops": 0,
+      "archiveError": ""
+    },
+    "view": {
+      "received": 14896,
+      "invalid": 0,
+      "duplicates": 0,
+      "reconnects": 1,
+      "recorded": 0,
+      "recordDrops": 0,
+      "archiveError": ""
+    }
+  },
+  "PC_original_exit_records": [
+    {
+      "pid": 10224,
+      "native_exit": 0
+    },
+    {
+      "pid": 29036,
+      "native_exit": 4294967295
+    }
+  ],
+  "PC_intentional_view_restart": true,
+  "PC_view_received_before_restart": 10493,
+  "PC_view_combined_observed_received": 25389,
+  "PC_view_accounting_gap": 1,
+  "PC_view_gap_scope": "Includes intentional local view restart; before count is a pre-stop snapshot, not an exact disconnect count. Raw observation and board SDK stayed uninterrupted.",
+  "retained_full_records": 242,
+  "samples": {
+    "board": 181,
+    "PC": 390
+  },
+  "resources": {
+    "peak_RSS_KiB": 79240,
+    "warm_RSS_KiB": {
+      "min": 32052,
+      "max": 79240,
+      "mean": 55913.988439306355
+    },
+    "warm_first_RSS_KiB": 78712,
+    "warm_last_RSS_KiB": 32056,
+    "fds": {
+      "min": 18,
+      "max": 19,
+      "mean": 18.00558659217877
+    },
+    "threads": {
+      "min": 6,
+      "max": 6,
+      "mean": 6
+    },
+    "minimum_MemAvailable_KiB": 717524
+  },
+  "overlay_underflow_seen": 0,
+  "physical_screen": [
+    {
+      "stage": "early_run",
+      "date_local": "2026-10-31",
+      "boot_id": "737e40ad-de06-4139-b9d0-6fc1ae5ae03d",
+      "question": "30分钟长测已开始产生新推理，PC两通道约14.7次/秒更新；PC与HDMI两路骨架是否正常持续更新？",
+      "answer": "PC、HDMI 均正常持续更新",
+      "source": "user onsite observation"
+    },
+    {
+      "stage": "shared_timing_fix",
+      "date_local": "2026-10-31",
+      "source": "user onsite observation",
+      "answer": "已显示数值并更新",
+      "scope": "Original PC view URL, timing repaired during continuous board test; local view restarted once"
+    },
+    {
+      "stage": "late_run_approximately_29_minutes",
+      "date_local": "2026-10-31",
+      "source": "user onsite observation",
+      "answer": "两路正常更新，PC耗时也在变化"
+    }
+  ],
+  "PC_UI_automation": "Stopped: Windows Computer Use could not determine current browser URL; no automated rendered-screen claim",
+  "scope": "30-minute official train input stability; generated 15Hz timelines, repeated new inference; not live CSI, accuracy or unlimited endurance",
+  "evidence_archive_sha256": "6911237f42d0266b6b5b9f62f5b06c8fb02f9a41a87abc9a3cba2e3b57e534dc",
+  "device_owners": [],
+  "SDK_autostart": false
+}

@@ -1,0 +1,63 @@
+{
+  "scope": "Retained real NPU outputs; paired by unchanged amplitude bytes and original frame/source identity. Not a new accuracy/ground-truth or long-duration test.",
+  "reference_description": "r2 whole-window PL preprocessing baseline",
+  "ps_records": 225,
+  "pl_records": 225,
+  "paired_records": 225,
+  "unpaired_pl_records": 0,
+  "identical_output_pairs": 225,
+  "best_candidate_changed": 0,
+  "input_phase_max_abs_rad": 0,
+  "identical_input_pairs": 225,
+  "changed_output_with_identical_input": 0,
+  "selected_best_pose_max_abs": 0,
+  "selected_best_score_max_abs": 0,
+  "top3_selection_changed": 0,
+  "different_output_pairs": [],
+  "score_max_abs": 0,
+  "all_candidate_pose_max_abs": 0,
+  "ps_metrics": {
+    "process_ms": {
+      "samples": 225,
+      "mean": 18.723407822222224,
+      "p95": 19.14674
+    },
+    "preprocess_ms": {
+      "samples": 225,
+      "mean": 6.73404168888889,
+      "p95": 7.04526
+    },
+    "forward_ms": {
+      "samples": 225,
+      "mean": 1.548942444444445,
+      "p95": 1.86531
+    },
+    "output_ms": {
+      "samples": 225,
+      "mean": 1.1075659999999994,
+      "p95": 1.11559
+    }
+  },
+  "pl_metrics": {
+    "process_ms": {
+      "samples": 225,
+      "mean": 16.140041600000004,
+      "p95": 16.47499
+    },
+    "preprocess_ms": {
+      "samples": 225,
+      "mean": 4.297687022222219,
+      "p95": 4.59593
+    },
+    "forward_ms": {
+      "samples": 225,
+      "mean": 1.4135097777777779,
+      "p95": 1.53206
+    },
+    "output_ms": {
+      "samples": 225,
+      "mean": 1.0978937333333334,
+      "p95": 1.12447
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # FPGA 工程资料入口
 
-更新：2026-10-29。最终演示复用已发布 `probe-free-drain-filter-v1`，保留启动消费与已有 PL 功能；软件默认 CPU 后处理。新增几何／批量滤波 PL 已取消，心率冻结。有限实板运行与物理资格已有记录，但 D45 根因、运行中 PL_KEY1 恢复及全天稳定性未验收。
+更新：2026-11-01。当前硬件为 `probe-free-drain-overlay-csi-v3`：PL执行CSI幅相／90点分组流水及二维骨架／关节点／动态信息绘制合成；PS保留双精度相位收尾、人物后处理与投影，人物滤波默认CPU。有限板测、30分钟官方输入长测及r4源码RAR完整本地重建已完成；后者没有上板。当前分工、资源与证据见[CSI专项](csi_preprocess/README.md)、[骨架专项](hdmi_candidate/skeleton_overlay/README.md)、[完整重建](../Deliverables/FPGA-REBUILD-20261101-r1.md)。历史几何／批量滤波扩展、心率及旧DATA／D45全面调查的独立冻结保持。
 
 | 用途 | 入口 |
 |---|---|

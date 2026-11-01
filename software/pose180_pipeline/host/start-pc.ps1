@@ -2,7 +2,8 @@ param(
 	[string]$Board = "192.168.50.49",
 	[string]$NodePath = "",
 	[string]$LocalAddress = "",
-	[switch]$Check
+	[switch]$Check,
+	[ValidateRange(0, 86400)][int]$Seconds = 0
 )
 
 $ErrorActionPreference = "Stop"
@@ -60,10 +61,47 @@ if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) {
 	throw "PC entry point is missing. Run this launcher from the extracted deployment package."
 }
 Write-Host "Using Node.js $nodeVersion ($nodeExecutable)"
-$arguments = @($entry, "--board", $Board, "--mode", "view", "--http-port", "39380")
-if ($LocalAddress) {
-	$arguments += @("--local-address", $LocalAddress)
+Write-Host "Before filtering: http://127.0.0.1:39381/"
+Write-Host "After filtering:  http://127.0.0.1:39380/"
+Write-Host "Press Ctrl+C to close both PC observers. Board inference and HDMI continue independently."
+$logDirectory = Join-Path $PSScriptRoot "pc-logs"
+New-Item -ItemType Directory -Path $logDirectory -Force | Out-Null
+$runStamp = Get-Date -Format "yyyyMMdd-HHmmss-fff"
+$children = @()
+$exitCode = 0
+try {
+	foreach ($mode in @("raw", "view")) {
+		$httpPort = if ($mode -eq "raw") { "39381" } else { "39380" }
+		$arguments = @($entry, "--board", $Board, "--mode", $mode, "--http-port", $httpPort, "--metrics-port", "0", "--seconds", "$Seconds")
+		if ($LocalAddress) { $arguments += @("--local-address", $LocalAddress) }
+		if ($mode -eq "view") { $arguments += @("--metrics-state-url", "http://127.0.0.1:39381/api/state") }
+		# Start-Process joins arguments on Windows: quote each complete argument.
+		$quoted = ($arguments | ForEach-Object { '"' + $_.Replace('"', '\"') + '"' }) -join ' '
+		$stdout = Join-Path $logDirectory "$runStamp-$mode.stdout.log"
+		$stderr = Join-Path $logDirectory "$runStamp-$mode.stderr.log"
+		$child = Start-Process -FilePath $nodeExecutable -ArgumentList $quoted -WindowStyle Hidden -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+		$children += $child
+	}
+	while ($true) {
+		$alive = 0
+		foreach ($child in $children) {
+			$child.Refresh()
+			if ($child.HasExited) {
+				if ($child.ExitCode -ne 0) { throw "PC observer exited ($($child.ExitCode)); inspect $logDirectory" }
+			} else { $alive += 1 }
+		}
+		if ($alive -eq 0) { break }
+		Start-Sleep -Milliseconds 200
+	}
+} finally {
+	foreach ($child in $children) {
+		$child.Refresh()
+		if (-not $child.HasExited) {
+			# Only this launcher's readonly Node children; never board processes.
+			$child.Kill()
+			$child.WaitForExit()
+		}
+		$child.Dispose()
+	}
 }
-Write-Host "Connecting to board $Board (local address: $(if ($LocalAddress) { $LocalAddress } else { 'automatic' }))"
-& $nodeExecutable @arguments
-exit $LASTEXITCODE
+exit $exitCode

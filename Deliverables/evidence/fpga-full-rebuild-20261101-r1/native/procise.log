@@ -1,0 +1,23 @@
+Procise 2025.1.1 temp
+SVN Version : 32494
+Build  time : 2026/03/20 13:26:17
+Start  time : 2026-11-01 00:37:36
+>>set_device JFMQL30TAI676H
+  set_device elapsed_time 2.85 seconds, cpu_time 2.84 seconds
+  set_device used memory 658MB, procise used peak memory 692MB, current used memory 665MB
+>>increment_bit_cfg_v3 D:/FPGACompetitionProject/.local/frb1101-r1/build/.local/csi-preprocess-20261031-r3/fpai_demo_vivado.runs/impl_pose_filter/ai7030_edif_top.bit D:/FPGACompetitionProject/.local/frb1101-r1/build/.local/csi-preprocess-20261031-r3/fpai_demo_vivado.runs/impl_pose_filter/ai7030_edif_top_disable_icap.bit -disable_icap
+  /*****************************************/
+  Stage 1: Checking the source bitstream!
+  /*****************************************/
+  FPGA Part : 7z030aiffg676-2
+  IP Patch version: 53180205
+  Missing Bit Patch Info
+  Missing Patch Version Info
+  VCCM Absent, Bitstream Patch Inactive
+  /*****************************************/
+  Stage 2: Targeted Bitstream Patch Integration!
+  /*****************************************/
+  increment_bit_cfg_v3 elapsed_time 0.53 seconds, cpu_time 0.53 seconds
+  increment_bit_cfg_v3 used memory 193MB, procise used peak memory 858MB, current used memory 592MB
+
+Thank you for using procise!

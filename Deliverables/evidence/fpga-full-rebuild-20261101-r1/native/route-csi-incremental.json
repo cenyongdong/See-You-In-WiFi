@@ -1,0 +1,18 @@
+{
+  "stage": "route-csi-incremental",
+  "pid": 12780,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\route-csi-incremental.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\route-csi-incremental.tcl"
+  ],
+  "started": 1793463854.7545447,
+  "seconds": 360.4987692832947,
+  "exit_code": 0,
+  "state": "completed"
+}

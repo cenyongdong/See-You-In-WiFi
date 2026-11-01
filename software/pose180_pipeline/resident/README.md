@@ -1,8 +1,10 @@
 # 常驻演示核心与真实CSI→推理→HDMI
 
+**当前入口（2026-11-01）：** [r4部署说明](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)与[30段官方输入长测](../../../FPGA/csi_preprocess/LONGRUN.md)维护现行演示。PL CSI分组预处理与骨架绘制开启，PS负责相位收尾、多人后处理和投影；PC保留滤波前39381／滤波后39380及共享板端耗时。r4源码RAR已[完整本地重建](../../../Deliverables/FPGA-REBUILD-20261101-r1.md)，没有新增上板。下方10月29日三片段、r45、CPU绘图及旧包说明均是历史阶段，实际设备状态见[RESUME](../../../FPGA/hdmi_candidate/RESUME.md)。
+
 源码已按模块移到 [../src/](../src/README.md)，启停与输入准备在 [../control/](../control/README.md)。本目录保留运行说明与历史记录，文中旧源码路径仅描述当时版本。
 
-2026-10-29 最终入口：[三片段演示](DATASET-PLAYLIST.md)、[双输入说明](DEMO-INPUTS.md)、[最终审查](FINAL-REVIEW.md)。当前 r3 默认 Top3／0.2，最近既有实板记录完成 420 帧；[最终进度](../../../PROJECT-PROGRESS.md)与[恢复入口](../../../FPGA/hdmi_candidate/RESUME.md)维护当前结论。
+2026-10-29历史入口：[三片段演示](DATASET-PLAYLIST.md)、[双输入说明](DEMO-INPUTS.md)、[最终审查](FINAL-REVIEW.md)。当前 r3 默认 Top3／0.2，最近既有实板记录完成 420 帧；[最终进度](../../../PROJECT-PROGRESS.md)与[恢复入口](../../../FPGA/hdmi_candidate/RESUME.md)维护当前结论。
 
 ## 历史阶段记录
 
@@ -28,9 +30,9 @@
 
 后续[r7共同窗口诊断与更早软恢复](WINDOW-RECOVERY.md)已完成板测、原BOOT回退及关闭，该批恢复身份见r7记录。无窗恢复长间隔缩短，但仍有窗口拒绝；整屏黑屏／闪屏已按用户确认的[显示规格限制](WINDOW-RECOVERY.md#显示规格限制)移出待定位故障。实际采集覆盖、启动阶段影响及独立日志结果只维护在r7记录，不将有限观察扩展为实屏全天稳定性通过。
 
-## 实现与资源边界
+## 早期常驻实现与资源边界（历史）
 
-最新离线增量：[防闪现后处理、统一HDMI／PC派生帧与精简硬件](../../../FPGA/hdmi_candidate/pose_stabilizer/README.md)。默认r45＋CPU滤波，新增39385独立展示通道；原39383原始协议保留。此增量未部署，不能套用下文历史板测为新后处理验收。
+当时离线增量：[防闪现后处理、统一HDMI／PC派生帧与精简硬件](../../../FPGA/hdmi_candidate/pose_stabilizer/README.md)。默认r45＋CPU滤波，新增39385独立展示通道；原39383原始协议保留。此增量未部署，不能套用下文历史板测为新后处理验收。
 
 最新[r10／r11／r12验证](TOP3-VALIDATION.md)复用r45，板端与PC均先取Top3再筛选置信度>0.2，r12完成2973次推理及PC接收。用户随后关闭板端并要求暂停工作，无本批活动负载；原BOOT文件已恢复，回退启动尚未核验，不自动续跑。[无探针位流r1](../../../FPGA/hdmi_candidate/probe_free/README.md)与[r8／r9](PHASE-TRACKING.md)保留为历史记录。
 

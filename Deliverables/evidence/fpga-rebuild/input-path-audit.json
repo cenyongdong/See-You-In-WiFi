@@ -1,0 +1,11 @@
+{
+  "static_literal_inputs_exist": true,
+  "checked_existing_inputs": 189,
+  "future_stage_outputs": [
+    "pipeline-physopt-csi-incremental.dcp",
+    "pipeline-placed-csi-incremental.dcp",
+    "pipeline-route-csi-incremental-failed.dcp"
+  ],
+  "missing": [],
+  "scope": "Literal paths in active build stages; dynamic JFM hooks separately exercised by native opt/BIT tests"
+}

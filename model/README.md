@@ -1,6 +1,6 @@
 # 模型与部署资产
 
-当前演示采用原始 epoch99 的 180-query 共享关节细化图。板端实际使用的文件位于 [piw24_pose180_shared-20261024-r1/](piw24_pose180_shared-20261024-r1/README.md)，同一模型也包含在 [最终部署包](../Deliverables/pose180-three-clips-20261029-r3-final.tar.gz) 的 `board/models/` 中。
+当前演示采用原始 epoch99 的 180-query 共享关节细化图。板端实际使用的文件位于 [piw24_pose180_shared-20261024-r1/](piw24_pose180_shared-20261024-r1/README.md)，同一模型也包含在 [最终部署包](../Deliverables/pose180-csi-release-20261031-r4.rar) 的 `board/models/` 中。
 
 ## 克隆仓库后可直接取得
 
@@ -12,7 +12,7 @@
 | [piw24_pose180.toml](piw24_pose180_shared-20261024-r1/piw24_pose180.toml) | Icraft 3.39.0 五阶段转换配置，按本目录相对路径运行 |
 | [identities.json](piw24_pose180_shared-20261024-r1/source/identities.json) | 原训练与导出文件的 SHA-256 身份记录 |
 
-部署图与权重须配套使用。格式转换、模型数值与实板运行分别验证，结果见 [部署实测](../tools/pose180/deploy/RESULTS.md)。直接演示不需要重新训练或转换，按 [部署说明](../Deliverables/pose180-three-clips-20261029-r3-DEPLOY.md) 使用完整包即可。
+部署图与权重须配套使用。格式转换、模型数值与实板运行分别验证，结果见 [部署实测](../tools/pose180/deploy/RESULTS.md)。直接演示不需要重新训练或转换，按 [部署说明](../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md) 使用完整包即可。
 
 ## 本机保留的开发产物
 
@@ -31,3 +31,5 @@
 | [早期 no-scatter 图](piw24_noscatter-20261014-r3/README.md) | 早期去 ScatterND 的 Icraft 转换记录；r1／r2 为此前失败取证 |
 
 历史目录只放行说明文档，其正文标注的本机附件和旧权重不作为当前部署入口。
+
+2026-10-31轻量交付：最新源码RAR也包含上述JSON／RAW／ONNX及转换配置；不含原始PyTorch训练检查点。完整原始checkpoint留在工作目录，源码包不代表能够从中恢复优化器续训状态。

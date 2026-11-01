@@ -9,6 +9,8 @@ Git 中提供以下文件：
 - [piw24_pose180.toml](piw24_pose180.toml)：实际 Icraft 3.39.0 转换配置。
 - [source/identities.json](source/identities.json)：训练 checkpoint 和 ONNX 的来源身份。
 
-`source/best_mpjpe_epoch_99.pth`、转换中间产物、参考输出及日志仅保存在本机；文件获取方式及 Git 范围见 [模型索引](../README.md)。直接演示可使用 [完整部署包](../../Deliverables/pose180-three-clips-20261029-r3-final.tar.gz)，无需重新转换。
+`source/best_mpjpe_epoch_99.pth`、转换中间产物、参考输出及日志仅保存在本机；文件获取方式及 Git 范围见 [模型索引](../README.md)。直接演示可使用 [完整部署包](../../Deliverables/pose180-csi-release-20261031-r4.rar)，无需重新转换。
 
 数值检查、实际板测原值、30 分钟 124,518 次模型压测及恢复入口见 [实测结果](../../tools/pose180/deploy/RESULTS.md)。运行稳定性记录不替代数值精度验收；本次文件补齐没有重新执行模型转换或板端验证。
+
+2026-10-31轻量交付：最新源码RAR也包含上述JSON／RAW／ONNX及转换配置；不含原始PyTorch训练检查点。完整原始checkpoint留在工作目录，源码包不代表能够从中恢复优化器续训状态。

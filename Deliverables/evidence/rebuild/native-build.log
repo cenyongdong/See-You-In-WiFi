@@ -1,0 +1,25 @@
+[  7%] Building CXX object CMakeFiles/pose_postprocess.dir/src/pose/postprocess.cpp.o
+[ 15%] Building CXX object CMakeFiles/pose_postprocess.dir/src/pose/single_person.cpp.o
+[ 23%] Linking CXX static library libpose_postprocess.a
+[ 23%] Built target pose_postprocess
+[ 30%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/app/main.cpp.o
+[ 38%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/io/io.cpp.o
+[ 46%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/diagnostics/journal.cpp.o
+[ 53%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/input/csi.cpp.o
+[ 61%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/input/dataset.cpp.o
+[ 69%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/input/nexmon/ingress.cpp.o
+[ 76%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/input/nexmon/adaptive_ingress.cpp.o
+[ 84%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/input/nexmon/pcap_stream.cpp.o
+[ 92%] Building CXX object CMakeFiles/pose180_demo_mock.dir/src/preprocess/preprocess.cpp.o
+[100%] Linking CXX executable pose180_demo_mock
+[100%] Built target pose180_demo_mock
+[ 25%] Building CXX object CMakeFiles/overlay_tests.dir/tests/native/overlay_tests.cpp.o
+[ 50%] Building CXX object CMakeFiles/overlay_tests.dir/src/display/hdmi_renderer.cpp.o
+[ 75%] Building CXX object CMakeFiles/overlay_tests.dir/src/display/projection.cpp.o
+[100%] Linking CXX executable overlay_tests
+[100%] Built target overlay_tests
+[ 25%] Building CXX object CMakeFiles/renderer_tests.dir/tests/native/renderer_tests.cpp.o
+[ 50%] Building CXX object CMakeFiles/renderer_tests.dir/src/display/hdmi_renderer.cpp.o
+[ 75%] Building CXX object CMakeFiles/renderer_tests.dir/src/display/projection.cpp.o
+[100%] Linking CXX executable renderer_tests
+[100%] Built target renderer_tests

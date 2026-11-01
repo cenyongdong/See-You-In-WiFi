@@ -1,0 +1,18 @@
+{
+  "stage": "synthesis-banked",
+  "pid": 29604,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\rebuild-logs\\synthesis-banked.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\.local\\csi-preprocess-20261031-r3\\reports\\synthesis-banked.tcl"
+  ],
+  "started": 1793455346.9073427,
+  "seconds": 312.9951159954071,
+  "exit_code": 0,
+  "state": "completed"
+}

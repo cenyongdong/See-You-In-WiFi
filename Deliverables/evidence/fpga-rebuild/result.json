@@ -1,0 +1,48 @@
+{
+  "status": "scoped_dependency_checks_completed",
+  "target": "JFMQL30TAI676H / adapted xc7z030ffg676-2",
+  "packaged_vendor_files": 710,
+  "packaged_vendor_bytes": 424787497,
+  "synthesis_exit_code": 0,
+  "opt_and_IP_link_exit_code": 0,
+  "incremental_checkpoint_read_exit_code": 0,
+  "native_INBB_checks": [
+    "INBB-1",
+    "INBB-2",
+    "INBB-3"
+  ],
+  "native_INBB_violations": 0,
+  "initial_attribute_assertion_exit_code": 1,
+  "attribute_diagnostic": {
+    "count": 1,
+    "ref_name": "fifo_1_compare_4",
+    "same_cell_in_original_opt_and_routed": true,
+    "cause_not_fully_characterized": true,
+    "original_failure_preserved": true
+  },
+  "bit_generation_exit_code": 0,
+  "procise_exit_code": 0,
+  "bit_generation_input": "Copy of previously qualified CSI v3 routed checkpoint; no fresh place/route",
+  "bit_payload_comparison": {
+    "original_raw_payload_sha256": "f2d147ac9a54b2a9677f3712a1149a77d8f327c524aadbcf319b6ae9f870764f",
+    "regenerated_raw_payload_sha256": "f2d147ac9a54b2a9677f3712a1149a77d8f327c524aadbcf319b6ae9f870764f",
+    "payload_identical": true,
+    "scope": "Reused qualified routed checkpoint; new BIT generation and Procise adaptation, no fresh place/route"
+  },
+  "input_audit": {
+    "static_literal_inputs_exist": true,
+    "checked_existing_inputs": 189,
+    "future_stage_outputs": [
+      "pipeline-physopt-csi-incremental.dcp",
+      "pipeline-placed-csi-incremental.dcp",
+      "pipeline-route-csi-incremental-failed.dcp"
+    ],
+    "missing": [],
+    "scope": "Literal paths in active build stages; dynamic JFM hooks separately exercised by native opt/BIT tests"
+  },
+  "fresh_place_route": false,
+  "new_bit_deployed": false,
+  "board_operations": 0,
+  "tool_installation_external": true,
+  "scope": "Native synthesis and optimization from isolated relocated inputs; vendor IP link and incremental reference read; bit generation and Procise hooks using original qualified route. Not a new full implementation or board acceptance."
+}

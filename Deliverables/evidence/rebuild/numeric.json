@@ -1,0 +1,13 @@
+{
+  "frames": 420,
+  "phase_samples": 2268000,
+  "zero_bins": 390,
+  "boundary_fallback_operations": 1245,
+  "amplitude_max_abs": 0,
+  "phase_max_abs_rad": 2.38418579102e-07,
+  "phase_rmse_rad": 1.73266136965e-08,
+  "phase_errors_above_1e_4": 0,
+  "polar_angle_max_rad": 1.4486920108e-08,
+  "polar_magnitude_max_relative": 5.90663320477e-08,
+  "rtl_vectors": 1836
+}

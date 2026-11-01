@@ -96,6 +96,7 @@ def source_snapshot(work, destination):
                    'software/pose180_pipeline/tools/native', 'software/core/input', 'tools/pose180'):
         files.update(p for p in (ROOT/folder).rglob('*') if p.suffix in ('.h', '.hpp', '.cpp'))
     files.add(ROOT/'software/pose180_pipeline/CMakeLists.txt')
+    files.add(ROOT/'software/pose180_pipeline/CMakePresets.json')
     files.add(ROOT/'software/pose180_pipeline/.clang-format')
     files.add(ROOT/'software/pose180_pipeline/.editorconfig')
     files.add(ROOT/'software/core/README.md')
@@ -203,8 +204,18 @@ def main():
     board = release/'board'
     board.mkdir()
     deployed = json.loads((ROOT/'FPGA/hdmi_candidate/default_boot.json').read_text())
-    if deployed['hardware_profile'] != 'probe-free-drain-filter-v1':
+    if deployed['hardware_profile'] != 'probe-free-drain-overlay-csi-v3':
         raise ValueError('Release launcher requires the currently qualified hardware profile')
+    cache = {}
+    for line in (build/'arm64/CMakeCache.txt').read_text().splitlines():
+        if ':' in line and '=' in line and not line.startswith(('//', '#')):
+            key, value = line.split('=', 1)
+            cache[key.split(':', 1)[0]] = value
+    for key, expected in {'POSE180_BUILD_SDK': 'ON', 'POSE180_DEMO_PROBE_FREE_DRAIN': 'ON',
+                          'POSE180_DEMO_PL_FILTER': 'ON', 'POSE180_DEMO_PL_OVERLAY': 'ON',
+                          'POSE180_DEMO_PL_CSI': 'ON', 'POSE180_DEMO_PL_POST': 'OFF'}.items():
+        if cache.get(key) != expected:
+            raise ValueError('Build does not match CSI v3: '+key+'; configure with csi-v3-arm64')
     copy(build/'arm64/pose180_demo', board/'pose180_demo')
     with (board/'pose180_demo').open('rb') as stream:
         header = stream.read(20)
@@ -228,15 +239,17 @@ def main():
     if sha(boot) != deployed['BOOT_sha256']:
         raise ValueError('Qualified BOOT differs')
     copy(boot, release/'boot/BOOT.BIN')
-    for name in ('qualification.json', 'package-review.json'):
-        copy(ROOT/deployed['hardware_work']/'reports'/name, release/'boot'/name)
+    for source_name, name in (('qualification-closure.json', 'qualification.json'),
+                              ('package-review.json', 'package-review.json')):
+        copy(ROOT/deployed['hardware_work']/'reports'/source_name, release/'boot'/name)
     identity = dict(package=work.name, selection=selection,
                     model=model_name, input_source=args.input_source, csi_alignment='adaptive',
                     input_sources=['live_csi', 'official_dataset'] if dataset else ['live_csi'],
                     dataset_repetitions=args.dataset_repetitions,
                     phase_preprocessing='original', hardware_profile=deployed['hardware_profile'],
+                    preprocess_backend='pl', renderer_backend='pl', csi_ABI='0x43534903', overlay_ABI='0x534b4c01',
                     BOOT_sha256=deployed['BOOT_sha256'], boot_files=boot_files,
-                    verified_boot_ids=[deployed['runtime_boot_id']], libraries=original['SDK_libraries'],
+                    verified_boot_ids=[], libraries=original['SDK_libraries'],
                     SDK_autostart=False, automatic_retry=False,
                     runtime_safety='release-blocked-v1' if safety_verified else 'see-build-record',
                     presentation_filter='single-person-continuity-v1' if args.single_person_stability else 'tracked-one-euro-v5: CPU 0.5/0.3/1',
@@ -282,7 +295,7 @@ def main():
         encoding='utf-8', newline='\n')
     (release/'DEPLOY.md').write_text(
         '# 部署与演示步骤\n\n'
-        '适用：ARM64 Lite、板端既有 Icraft/customop 3.39.0、当前合格 `probe-free-drain-filter-v1` BOOT。'
+        '适用：ARM64 Lite、板端既有 Icraft/customop 3.39.0、当前合格 `probe-free-drain-overlay-csi-v3` BOOT。'
         '板端需要 Python 3；PC 可选，需要 Node.js 20 或以上。原 epoch99 模型，'+selection_text+'。\n\n'
         '## 解压到独立目录\n\n'
         '先将 `'+work.name+'.tar.gz` 复制到开发板 `/tmp/`。以 root 执行以下解压命令；若目标目录已经存在，先选择另一个独立目录，避免覆盖已有运行记录。\n\n'
@@ -346,7 +359,7 @@ def main():
     manifest = dict(package=work.name, selection=identity['selection'], model=identity['model'],
                     runtime_safety=identity['runtime_safety'],
                     input_sources=identity['input_sources'], default_input=identity['input_source'],
-                    input='explicit source selection; original preprocessing', outputs=['HDMI', 'PC:39385'],
+                    input='explicit source selection; PL CSI polar with original PS phase finish', outputs=['HDMI', 'PC raw:39383', 'PC filtered:39385'],
                     runtime_seconds_default=args.default_seconds, SDK_autostart=False, automatic_retry=False,
                     board_tested=False, hardware_rebuilt=False, core_source_files=count,
                     validation='Local C++/mock/PC checks only; no new board or collection run',

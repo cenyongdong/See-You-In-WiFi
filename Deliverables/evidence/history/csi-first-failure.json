@@ -1,0 +1,19 @@
+{
+  "status": "closed_failed_GP_test_restored_overlay",
+  "candidate_boot_id": "c74bd1e0-b31c-478e-a660-aa1e46b01736",
+  "restored_boot_id": "d8556aca-0d25-40a6-86c6-a41c3894471b",
+  "SDK_attempts": 0,
+  "candidate_installs": 1,
+  "candidate_reboots": 1,
+  "fallback_installs": 1,
+  "fallback_reboots": 1,
+  "benchmark_native_exit": 1,
+  "core_completed_before_fault": 6,
+  "completed_windows_numerically_accepted": false,
+  "synthetic_diagnostic_batches": 1,
+  "core_status_after_fault": 4,
+  "root_cause": "Open; scalar fenced writes also failed, inspect BRAM/input path",
+  "device_owners": [],
+  "archive_sha256": "471aeced99f388a501be645e096c90461176d0a11b6372f42edc526a80ba8b70",
+  "remaining_operations": 0
+}

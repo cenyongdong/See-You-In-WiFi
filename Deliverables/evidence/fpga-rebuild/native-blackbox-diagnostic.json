@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "seconds": 331.77881622314453,
+  "command": [
+    "D:/vivado18.3/Vivado/2018.3/bin/vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\rebuild-logs\\native-blackbox-diagnostic.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\native-blackbox-diagnostic.tcl"
+  ],
+  "scope": "Read-only diagnosis, original failed assertion and logs unchanged"
+}

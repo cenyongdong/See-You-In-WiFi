@@ -1,0 +1,18 @@
+{
+  "stage": "inputs-check",
+  "pid": 28992,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\rebuild-logs\\inputs-check.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\.local\\csi-preprocess-20261031-r3\\reports\\inputs-check.tcl"
+  ],
+  "started": 1793456110.1890304,
+  "seconds": 31.825309991836548,
+  "exit_code": 1,
+  "state": "completed"
+}

@@ -1,0 +1,252 @@
+[
+  {
+    "stage": "arm64-configure",
+    "command": [
+      "docker",
+      "exec",
+      "-w",
+      "/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline",
+      "FPAI",
+      "cmake",
+      "--preset",
+      "csi-v3-arm64",
+      "-B",
+      "/tmp/rar-rebuild-20261031-r1/arm64"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 3.690417999998317
+  },
+  {
+    "stage": "arm64-build",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "cmake",
+      "--build",
+      "/tmp/rar-rebuild-20261031-r1/arm64",
+      "--target",
+      "pose180_demo",
+      "--parallel",
+      "2"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 24.613573700000416
+  },
+  {
+    "stage": "native-configure",
+    "command": [
+      "docker",
+      "exec",
+      "-w",
+      "/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline",
+      "FPAI",
+      "cmake",
+      "--preset",
+      "native-offline",
+      "-B",
+      "/tmp/rar-rebuild-20261031-r1/native"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 0.8706299999976181
+  },
+  {
+    "stage": "native-build",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "cmake",
+      "--build",
+      "/tmp/rar-rebuild-20261031-r1/native",
+      "--target",
+      "pose180_demo_mock",
+      "overlay_tests",
+      "renderer_tests",
+      "--parallel",
+      "2"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 22.984935399996175
+  },
+  {
+    "stage": "overlay-software",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "/tmp/rar-rebuild-20261031-r1/native/overlay_tests",
+      "/workspace/.local/rar-rebuild-20261031-r1"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 0.19976740000129212
+  },
+  {
+    "stage": "renderer-software",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "/tmp/rar-rebuild-20261031-r1/native/renderer_tests"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 0.11156549999577692
+  },
+  {
+    "stage": "numeric-build",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "g++",
+      "-O2",
+      "-std=c++17",
+      "-ffp-contract=off",
+      "-I/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/csi_preprocess",
+      "-I/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline/src/preprocess",
+      "/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/csi_preprocess/numeric_test.cpp",
+      "/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/csi_preprocess/polar_model.cpp",
+      "/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline/src/preprocess/polar_finish.cpp",
+      "/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline/src/preprocess/preprocess.cpp",
+      "-o",
+      "/tmp/rar-rebuild-20261031-r1/numeric_test"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 3.7092868000036106
+  },
+  {
+    "stage": "numeric-test",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "/tmp/rar-rebuild-20261031-r1/numeric_test",
+      "/workspace/.local/rar-rebuild-20261031-r1/input-420.piwcsi2",
+      "/workspace/.local/rar-rebuild-20261031-r1/vectors.hex",
+      "/workspace/.local/rar-rebuild-20261031-r1/numeric.json"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 0.7739737000010791
+  },
+  {
+    "stage": "csi-compile",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xvlog.bat",
+      "-sv",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\csi_preprocess",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\csi_preprocess\\polar.sv",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\csi_preprocess\\batch.sv",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\csi_preprocess\\tb_batch.sv"
+    ],
+    "cwd": "D:\\FPGACompetitionProject\\.local\\rar-rebuild-20261031-r1\\csi",
+    "exit_code": 0,
+    "seconds": 7.020717999999761
+  },
+  {
+    "stage": "csi-elaborate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xelab.bat",
+      "tb_batch",
+      "-s",
+      "verify_sim",
+      "-timescale",
+      "1ns/1ps",
+      "-mt",
+      "2"
+    ],
+    "cwd": "D:\\FPGACompetitionProject\\.local\\rar-rebuild-20261031-r1\\csi",
+    "exit_code": 0,
+    "seconds": 10.80074869999953
+  },
+  {
+    "stage": "csi-simulate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+      "verify_sim",
+      "-tclbatch",
+      "run.tcl"
+    ],
+    "cwd": "D:\\FPGACompetitionProject\\.local\\rar-rebuild-20261031-r1\\csi",
+    "exit_code": 0,
+    "seconds": 18.237386900000274
+  },
+  {
+    "stage": "overlay-compile",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xvlog.bat",
+      "-sv",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\hdmi_candidate\\skeleton_overlay",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\hdmi_candidate\\skeleton_overlay\\palette_fifo.sv",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\hdmi_candidate\\skeleton_overlay\\overlay.sv",
+      "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3\\FPGA\\hdmi_candidate\\skeleton_overlay\\tb_overlay.sv"
+    ],
+    "cwd": "D:\\FPGACompetitionProject\\.local\\rar-rebuild-20261031-r1\\overlay",
+    "exit_code": 0,
+    "seconds": 1.1271732000022894
+  },
+  {
+    "stage": "overlay-elaborate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xelab.bat",
+      "tb_overlay",
+      "-s",
+      "verify_sim",
+      "-timescale",
+      "1ns/1ps",
+      "-mt",
+      "2"
+    ],
+    "cwd": "D:\\FPGACompetitionProject\\.local\\rar-rebuild-20261031-r1\\overlay",
+    "exit_code": 0,
+    "seconds": 3.0055097000004025
+  },
+  {
+    "stage": "overlay-simulate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+      "verify_sim",
+      "-tclbatch",
+      "run.tcl"
+    ],
+    "cwd": "D:\\FPGACompetitionProject\\.local\\rar-rebuild-20261031-r1\\overlay",
+    "exit_code": 0,
+    "seconds": 4.583255600002303
+  },
+  {
+    "stage": "toolchain",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "bash",
+      "-lc",
+      "cmake --version; aarch64-linux-gnu-g++ --version; g++ --version"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 0.0923114999968675
+  },
+  {
+    "stage": "arm64-file",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "file",
+      "/tmp/rar-rebuild-20261031-r1/arm64/pose180_demo"
+    ],
+    "cwd": null,
+    "exit_code": 0,
+    "seconds": 0.1203483999997843
+  }
+]

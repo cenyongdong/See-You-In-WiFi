@@ -1,10 +1,17 @@
 # 当前设备、部署与恢复入口
 
-**2026-10-31 专项完成：** 新overlay BOOT已通过物理资格并安装，有限运行完成417次新推理／HDMI采纳，用户确认实屏正常；原生关闭成功、设备占用为空、PC观察器已结束。当前启动消费已使用，再次演示须准备正常重启并预检。新包目录 `/root/pose180-skeleton-overlay-20261031-r2`；原r3及原BOOT保留作回退。实际身份、次数、性能证据和操作以[骨架专项记录](skeleton_overlay/README.md#当前运行与恢复)为准，不复用下方历史次数。
+**2026-11-01仅本地完整重建完成：** 最新r4源码RAR新解压完成综合、链接、放置、物理优化、布线、BIT及Procise；新BIT配置载荷与包内合格BIT相同。新生成文件只作重建证据，未连接开发板、未改默认BOOT；[重建报告](../../Deliverables/FPGA-REBUILD-20261101-r1.md)不替代下方10月31日最后板端观察。当前部署和安全启停仍使用[最新r4部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)，不能将r4本机目录写成已上传。
 
-下方2026-10-29及更早记录仅说明当时结果；当前状态以上方骨架专项为准。
+**r4最新交付（RAR）：** 最新本机[部署包与源码说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)包含更新后的CMake默认值与预设，源码精简并附JSON／RAW／ONNX；旧本机交付包已清理，关键历史记录在 `.local/delivery-cleanup-20261031-r1/`，工作区恢复镜像和检查点仍在。程序与已验证r1一致。本轮未连接设备，最近已部署目录仍为`/root/pose180-csi-release-20261031-r1`，下方BOOT核验是上轮快照。
 
-## 保留的 r3 历史入口（2026-10-29）
+**2026-10-31发布核验：** 默认启动分区BOOT已为合格CSI v3，读回SHA与发布包一致，设备无占用。本次读取boot_id为`9866784b-bf11-419a-ab5f-7797fe3706d3`，已不同于长测时启动；不沿用旧启动消费判断，新包仍须prepare／正常重启／check后手动运行。本次BOOT写入0、代理重启0、SDK启动0；最新包与部署入口见[发布说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。下方长测boot_id与“已消费”仅是该历史轮次状态。
+**2026-10-31 当前30分钟长测已完成关闭：** `/root/pose180-csi-longrun-20261031-r1` 使用同一CSI r3 BOOT，boot_id `737e40ad-de06-4139-b9d0-6fc1ae5ae03d`；一次SDK完成1800.004秒有效运行并安全退出，设备空闲、PC观察器结束。当前启动消费已使用，再次运行须新记录、正常重启与预检。本轮次数用尽，不自动续跑；双路结果、PC计时修复与恢复见[长测专项](../csi_preprocess/LONGRUN.md)。
+
+**2026-10-31 此前CSI分组流水短测完成：** 当前安装r3分组CSI＋骨架绘图BOOT，已完成独立420窗对照和417次新推理／HDMI采纳，用户确认画面正常持续更新；CPU时间与完整延迟均低于PS。SDK正常关闭、设备占用为空、PC观察器结束。当前启动消费已使用，再次演示须在新运行记录中准备正常重启并预检。新包目录 `/root/pose180-csi-preprocess-20261031-r3`；最近恢复基线为r2 CSI BOOT，旧骨架及2026-10-29原r3亦保留。精确身份、次数、对比证据和恢复以[CSI专项](../csi_preprocess/README.md#当前运行与恢复)为准，不复用已关闭包次数。
+
+此前骨架专项已完成实屏确认，证据见[骨架记录](skeleton_overlay/README.md)；下方2026-10-29及更早记录仅说明当时结果，当前状态以上方CSI专项为准。
+
+## r3 历史记录（2026-10-29；旧本机包已清理）
 
 - 使用 [r3 最终演示包](../../Deliverables/pose180-three-clips-20261029-r3-final.tar.gz)和[部署说明](../../Deliverables/pose180-three-clips-20261029-r3-DEPLOY.md)，源码入口为 [pose180_pipeline/src](../../software/pose180_pipeline/src/README.md)。原 epoch99、TopK=3、严格 score >0.2；官方 1／2／3 人在同一 SDK 生命周期顺播，实时接口保留。
 - 板端保留 `/root/pose180-three-clips-20261029-r3`。最后一次清理核验时 boot_id 为 `c289a43e-d6aa-4f3f-835d-d4aeb0848caf`，原生推理进程及设备占用为空。这是观察快照，后续启动仍须读取实际状态，不能复用旧 boot_id。
@@ -23,8 +30,8 @@ PC 仅观察结果，不负责发包或初始化 SDK。当前电脑可使用 `-B
 
 | 项目 | 状态与位置 |
 |---|---|
-| 默认 BOOT | 已发布 `probe-free-drain-filter-v1`，身份以 [default_boot.json](default_boot.json) 为准；保留启动消费和 4 路 PL 滤波，当前软件使用 CPU 滤波 |
-| 合格镜像备份 | [BOOT-pose-filter-r2.bin](../../.local/pose-filter-integration-20261026-r2/boot-package/BOOT-pose-filter-r2.bin) |
+| 默认 BOOT | `probe-free-drain-overlay-csi-v3`，身份以 [default_boot.json](default_boot.json) 为准；CSI分组流水、骨架绘图在PL，相位收尾及展示滤波仍在CPU |
+| 合格镜像备份 | 最近[r2 CSI BOOT](../../.local/csi-preprocess-20261031-r2/boot-package/BOOT-csi-preprocess.bin)；[骨架BOOT](../../.local/skeleton-overlay-20261031-r2/boot-package/BOOT-skeleton-overlay.bin)及更早滤波镜像亦保留 |
 | 原参考恢复备份 | [BOOT-original.bin](../../.local/hdmi-startup-20261027-r1/board-bundle/common/BOOT-original.bin)，仅为恢复备份，不是当前默认 |
 | r45 与派生硬件历史 | [原物理结果](../../tools/pose-v1/evidence/hp2-deferred-consume-20261024-r45/RESULTS.md)、[保留消费候选](probe_free_drain/README.md)、[滤波物理与板测](../../software/pose180_pipeline/resident/PRESENTATION-20261026.md#pl-计算与资源) |
 | 独立精简守卫／新增 PL | [精简守卫](pose_stabilizer/README.md)覆盖不足，不可部署；新增几何／批量滤波整机实现已取消 |

@@ -15,6 +15,7 @@ struct Config {
 	std::function<void(const icraft::xrt::Device&)> on_device_ready;
 	// Best-effort control-plane notification only; must not call SDK or free IO.
 	std::function<void(const char*)> on_release_blocked;
+	std::function<pose_v1::Tokens(const pose_v1::RawCsi&)> preprocess;
 };
 
 // Construct, infer and destroy on one thread. Exactly one Runtime owns the SDK

@@ -1,6 +1,8 @@
 # 三片段顺序演示（2026-10-29）
 
-当前部署包为 `Deliverables/pose180-three-clips-20261029-r3-final.tar.gz`，完整操作见 `Deliverables/pose180-three-clips-20261029-r3-DEPLOY.md`；板端内容保持 r3，最终整理补入 PC 启动与有线连接修正。r3 按用户要求把单人恢复为原 S51_10，并裁剪至约 10 秒；双人、三人片段保持。r2 的预检回显修正继续保留。原 epoch99 模型、原生程序、已发布 BOOT、原预处理和 HDMI／PC 画面保持；配置为 **TopK=3、严格 score >0.2、CPU 多人跟踪与 One Euro 0.5／0.3／1**，关闭仅适用于 Top1 的单人增强滤波。实时输入入口继续保留，旧包不覆盖。
+**历史选材记录：** 本页保留2026-10-29三片段的来源和当时实测，所列旧压缩包已清理，不再是当前部署。最新为[r4部署](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)的30段／8700窗官方输入，实际30分钟结果见[长测](../../../FPGA/csi_preprocess/LONGRUN.md)；模型仍为原epoch99，Top3／严格score>0.2。
+
+当时部署包为 `Deliverables/pose180-three-clips-20261029-r3-final.tar.gz`，完整操作见 `Deliverables/pose180-three-clips-20261029-r3-DEPLOY.md`；板端内容保持 r3，最终整理补入 PC 启动与有线连接修正。r3 按用户要求把单人恢复为原 S51_10，并裁剪至约 10 秒；双人、三人片段保持。r2 的预检回显修正继续保留。原 epoch99 模型、原生程序、已发布 BOOT、原预处理和 HDMI／PC 画面保持；配置为 **TopK=3、严格 score >0.2、CPU 多人跟踪与 One Euro 0.5／0.3／1**，关闭仅适用于 Top1 的单人增强滤波。实时输入入口继续保留，旧包不覆盖。
 
 ## 播放内容
 

@@ -1,5 +1,9 @@
 # 比赛开发资料索引与理解记录
 
+**当前依据（2026-11-01）：** 当前硬件分工、源与接口见[架构说明](ADR/TechDetails.md)；厂商IP／网表／增量基线和外部工具范围见[源码说明](Deliverables/SOURCE-20261031.md)；r4 RAR独立完整实现、原生时序／DRC及配置载荷比对见[重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)。最后设备观察见[RESUME](FPGA/hdmi_candidate/RESUME.md)，历史附件可用范围见[导航](DOCUMENTATION.md#引用与归档)。
+
+## 历史资料阅读与阶段记录
+
 **文档职责（2026-10-29）：** 本页保存资料阅读与历史理解，不用来判断当前交付或批准新任务。最终进度见 [PROJECT-PROGRESS](PROJECT-PROGRESS.md)，全量导航和遗留附件说明见 [DOCUMENTATION](DOCUMENTATION.md#引用与归档)。文中的旧工具选择、预算和计划按日期理解；部分历史本地附件已不在当前工作区。
 
 2026-10-24 HDMI现行入口：[结构/源码](FPGA/hdmi_candidate/INTEGRATION.md)、[最后恢复状态](FPGA/hdmi_candidate/RESUME.md)、[本轮实测及首读原值](tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/RESULTS.md)。官方PSOC GP/HP经验总结及其与当前器件的适用边界见[资料判读](FPGA/hdmi_candidate/diagnostics/PROTOCOL-CHECKER-REVIEW-20261023.md)；以下“当前/尚未”按原日期作为历史资料，不覆盖上述入口。

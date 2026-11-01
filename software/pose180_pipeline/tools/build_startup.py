@@ -21,9 +21,15 @@ def main():
     base = '/workspace/' + relative
     steps = json.loads((work/'build.json').read_text()) if args.resume else []
 
+    resume_reusable = args.resume
+
     def run(name, *command):
-        if args.resume and any(step['stage']==name and step['native_exit']==0 for step in steps):
+        nonlocal resume_reusable
+        if resume_reusable and any(step['stage']==name and step['native_exit']==0
+                                   and step['argv']==list(command) for step in steps):
             return
+        # A changed configure command invalidates all following cached stages.
+        resume_reusable = False
         started = time.monotonic()
         log_path = work / (str(len(steps)).zfill(2)+'-'+name+'.log')
         with log_path.open('xb') as log:
@@ -40,17 +46,13 @@ def main():
     if started_here:
         run('container-start', 'start', 'FPAI')
     try:
-        run('native-configure', 'exec', 'FPAI', 'cmake', '-S', source, '-B', base+'/native', '-DCMAKE_BUILD_TYPE=Release')
+        run('native-configure', 'exec', '-w', source, 'FPAI', 'cmake', '--preset', 'native-offline', '-B', base+'/native')
         targets = ['postprocess_tests', 'single_person_tests', 'renderer_tests', 'display_state_tests', 'buffer_tests', 'journal_tests', 'release_guard_tests', 'hdmi_resource_tests', 'pose180_demo_mock']
         run('native-build', 'exec', 'FPAI', 'cmake', '--build', base+'/native', '--parallel', '2', '--target', *targets)
         for name in targets[:-1]:
             extra = [base+'/journal-test'] if name == 'journal_tests' else []
             run(name, 'exec', 'FPAI', base+'/native/'+name, *extra)
-        run('arm64-configure', 'exec', 'FPAI', 'cmake', '-S', source, '-B', base+'/arm64',
-            '-DCMAKE_SYSTEM_NAME=Linux', '-DCMAKE_SYSTEM_PROCESSOR=aarch64',
-            '-DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++', '-DCMAKE_PREFIX_PATH=/usr/cmake',
-            '-DCMAKE_BUILD_TYPE=Release', '-DPOSE180_BUILD_SDK=ON',
-            '-DPOSE180_DEMO_PROBE_FREE_DRAIN=ON', '-DPOSE180_DEMO_PL_FILTER=ON')
+        run('arm64-configure', 'exec', '-w', source, 'FPAI', 'cmake', '--preset', 'csi-v3-arm64', '-B', base+'/arm64')
         run('arm64-build', 'exec', 'FPAI', 'cmake', '--build', base+'/arm64', '--target', 'pose180_demo', 'pose180_pipeline', '--parallel', '2')
     finally:
         if started_here:

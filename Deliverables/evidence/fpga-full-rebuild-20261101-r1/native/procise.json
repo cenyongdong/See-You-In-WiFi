@@ -1,0 +1,13 @@
+{
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\call_procise_disable_icap.bat"
+  ],
+  "exit_code": 0,
+  "seconds": 3.638892650604248,
+  "device": "JFMQL30TAI676H",
+  "operation": "increment_bit_cfg_v3 -disable_icap",
+  "board_operations": 0
+}

@@ -1,0 +1,18 @@
+{
+  "stage": "place-csi-incremental",
+  "pid": 27316,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\place-csi-incremental.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\place-csi-incremental.tcl"
+  ],
+  "started": 1793463143.2483253,
+  "seconds": 711.392502784729,
+  "exit_code": 0,
+  "state": "completed"
+}

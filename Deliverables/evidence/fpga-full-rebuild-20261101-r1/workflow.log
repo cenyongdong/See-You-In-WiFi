@@ -1,0 +1,16 @@
+START synthesis-banked
+{"stage": "synthesis-banked", "pid": 6728, "command": ["D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat", "-mode", "batch", "-nojournal", "-log", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\synthesis-banked.vivado.log", "-source", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\synthesis-banked.tcl"], "started": 1793462592.506416, "seconds": 216.18036890029907, "exit_code": 0, "state": "completed"}
+COMPLETE synthesis-banked
+START opt-banked
+{"stage": "opt-banked", "pid": 12688, "command": ["D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat", "-mode", "batch", "-nojournal", "-log", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\opt-banked.vivado.log", "-source", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\opt-banked.tcl"], "started": 1793462808.8021371, "seconds": 334.3361783027649, "exit_code": 0, "state": "completed"}
+COMPLETE opt-banked
+START place-csi-incremental
+{"stage": "place-csi-incremental", "pid": 27316, "command": ["D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat", "-mode", "batch", "-nojournal", "-log", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\place-csi-incremental.vivado.log", "-source", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\place-csi-incremental.tcl"], "started": 1793463143.2483253, "seconds": 711.392502784729, "exit_code": 0, "state": "completed"}
+COMPLETE place-csi-incremental
+START route-csi-incremental
+{"stage": "route-csi-incremental", "pid": 12780, "command": ["D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat", "-mode", "batch", "-nojournal", "-log", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\route-csi-incremental.vivado.log", "-source", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\route-csi-incremental.tcl"], "started": 1793463854.7545447, "seconds": 360.4987692832947, "exit_code": 0, "state": "completed"}
+COMPLETE route-csi-incremental
+START report-closure
+{"stage": "report-closure", "pid": 28932, "command": ["D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat", "-mode", "batch", "-nojournal", "-log", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\report-closure.vivado.log", "-source", "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\report-closure.tcl"], "started": 1793464215.3596232, "seconds": 154.45954275131226, "exit_code": 0, "state": "completed"}
+COMPLETE report-closure
+Physical reports ready; inspect full timing/DRC before bit generation

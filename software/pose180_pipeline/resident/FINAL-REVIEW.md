@@ -1,6 +1,6 @@
 # 核心源码最终审查与双输入整理
 
-后续更新：最新 Top3／0.2 及 1／2／3 人顺序播放包见[三片段演示](DATASET-PLAYLIST.md)。下文保留本次审查时的 Top1 基线和原始验证结果。后续 r3 实板与清理状态见[最终进度](../../../PROJECT-PROGRESS.md)，本页的“未上板／未知”不覆盖该后续记录。
+后续更新：现行Top3／0.2、PL CSI与骨架绘图、30段官方输入及PC双页见[r4部署](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)与[长测](../../../FPGA/csi_preprocess/LONGRUN.md)；[三片段](DATASET-PLAYLIST.md)为10月29日历史。下文保留本次审查时的 Top1 基线和原始验证结果。后续 r3 实板与清理状态见[最终进度](../../../PROJECT-PROGRESS.md)，本页的“未上板／未知”不覆盖该后续记录。
 
 日期：2026-10-29。范围为当前 `pose180_demo` 正式软件链、实际链接的 HDMI 驱动／绘制、PC 消费者及启停／打包入口。按项目规则单代理审查，没有恢复新增 PL、训练、心率或旧 DATA／D45 调查。
 

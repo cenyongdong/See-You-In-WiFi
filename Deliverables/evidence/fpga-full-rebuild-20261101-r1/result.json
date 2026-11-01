@@ -1,0 +1,231 @@
+{
+  "input": {
+    "archive": "D:\\FPGACompetitionProject\\Deliverables\\pose180-complete-sources-20261031-r4.rar",
+    "sha256": "e4b1d3243550f34f92e5f4890a4cfb1a509889c6c51f9053ce03369d8d0f2b45",
+    "bytes": 198429558,
+    "extracted_source": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\source",
+    "build_output": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build",
+    "critical_dependency_hashes_checked": 39,
+    "vendor_dependency_files": 710,
+    "prepare_exit_code": 0,
+    "extraction_seconds": 95.42042684555054,
+    "board_operations": 0,
+    "scope": "New independent extraction of delivered r4 RAR; packaged incremental r2 reference permitted; do not reuse prior r3 optimized/placed/routed outputs"
+  },
+  "stages": {
+    "synthesis-banked": {
+      "stage": "synthesis-banked",
+      "pid": 6728,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\synthesis-banked.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\synthesis-banked.tcl"
+      ],
+      "started": 1793462592.506416,
+      "seconds": 216.18036890029907,
+      "exit_code": 0,
+      "state": "completed"
+    },
+    "opt-banked": {
+      "stage": "opt-banked",
+      "pid": 12688,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\opt-banked.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\opt-banked.tcl"
+      ],
+      "started": 1793462808.8021371,
+      "seconds": 334.3361783027649,
+      "exit_code": 0,
+      "state": "completed"
+    },
+    "place-csi-incremental": {
+      "stage": "place-csi-incremental",
+      "pid": 27316,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\place-csi-incremental.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\place-csi-incremental.tcl"
+      ],
+      "started": 1793463143.2483253,
+      "seconds": 711.392502784729,
+      "exit_code": 0,
+      "state": "completed"
+    },
+    "route-csi-incremental": {
+      "stage": "route-csi-incremental",
+      "pid": 12780,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\route-csi-incremental.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\route-csi-incremental.tcl"
+      ],
+      "started": 1793463854.7545447,
+      "seconds": 360.4987692832947,
+      "exit_code": 0,
+      "state": "completed"
+    },
+    "report-closure": {
+      "stage": "report-closure",
+      "pid": 28932,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\report-closure.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\report-closure.tcl"
+      ],
+      "started": 1793464215.3596232,
+      "seconds": 154.45954275131226,
+      "exit_code": 0,
+      "state": "completed"
+    },
+    "bit-closure": {
+      "stage": "bit-closure",
+      "pid": 6728,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\bit-closure.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\bit-closure.tcl"
+      ],
+      "started": 1793464452.7313144,
+      "seconds": 129.6892478466034,
+      "exit_code": 0,
+      "state": "completed"
+    }
+  },
+  "timing": {
+    "WNS_ns": 0.03,
+    "TNS_ns": 0.0,
+    "setup_failing_endpoints": 0.0,
+    "WHS_ns": 0.029,
+    "THS_ns": 0.0,
+    "hold_failing_endpoints": 0.0,
+    "WPWS_ns": -0.409,
+    "TPWS_ns": -0.479,
+    "pulse_failing_endpoints": 2.0
+  },
+  "unconstrained_internal_endpoints": 0,
+  "route": {
+    "routable_nets": 97096,
+    "fully_routed_nets": 97096,
+    "routing_error_nets": 0
+  },
+  "raw_timing_constraints_met": false,
+  "negative_pulse_width_checks": [
+    {
+      "check": "Min Period",
+      "slack_ns": -0.409,
+      "pin": "U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/clkout1_buf/I",
+      "raw": "Min Period        n/a     BUFG/I             n/a            1.409         1.000       -0.409     BUFGCTRL_X0Y20  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/clkout1_buf/I"
+    },
+    {
+      "check": "Min Period",
+      "slack_ns": -0.071,
+      "pin": "U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKOUT0",
+      "raw": "Min Period        n/a     PLLE2_ADV/CLKOUT0  n/a            1.071         1.000       -0.071     PLLE2_ADV_X1Y3  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKOUT0"
+    }
+  ],
+  "only_existing_two_AI_period_exceptions": true,
+  "raw_DRC_errors": {
+    "REQP-52": 1,
+    "REQP-56": 1
+  },
+  "only_existing_GT_adaptation_errors": true,
+  "bus_skew_min_slack_ns": 2.064,
+  "physical_qualification_under_existing_exceptions": true,
+  "fresh_synthesis_opt_place_route": true,
+  "incremental_reference": "Packaged CSI v2 routed DCP",
+  "new_waivers_or_constraint_changes": false,
+  "board_operations": 0,
+  "scope": "Complete native synthesis, IP/PS linking, optimization, incremental placement, physical optimization, routing, qualification, BIT generation and Procise adaptation from a new extraction of the delivered RAR. No board operation; current release unchanged.",
+  "status": "completed",
+  "completed_local": "2026-11-01T00:41:01.318664+08:00",
+  "procise": {
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\call_procise_disable_icap.bat"
+    ],
+    "exit_code": 0,
+    "seconds": 3.638892650604248,
+    "device": "JFMQL30TAI676H",
+    "operation": "increment_bit_cfg_v3 -disable_icap",
+    "board_operations": 0
+  },
+  "bits": {
+    "new_native": {
+      "path": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top.bit",
+      "bytes": 5980025,
+      "sha256": "9193daca82c449bfa43d9d80caecfc2bd2f79dc03eca222134e76ad8494d6d0a",
+      "config_payload_sha256": "f2d147ac9a54b2a9677f3712a1149a77d8f327c524aadbcf319b6ae9f870764f",
+      "config_payload_bytes": 5979916
+    },
+    "new_adapted": {
+      "path": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top_disable_icap.bit",
+      "bytes": 5980609,
+      "sha256": "746e86a6c92399248297dce7141838d415399cf41b89a6a5ba237302ef750607",
+      "config_payload_sha256": "e041e6230443631e93a848eaa888f536053145719c8e1878025e60fbf30e620b",
+      "config_payload_bytes": 5980460
+    },
+    "packaged_adapted": {
+      "path": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\source\\hardware\\current\\pose180-csi-v3.bit",
+      "bytes": 5980609,
+      "sha256": "34eadecee028b434d772003c59919644643933aa2feff9c1114fba56b2d676cf",
+      "config_payload_sha256": "e041e6230443631e93a848eaa888f536053145719c8e1878025e60fbf30e620b",
+      "config_payload_bytes": 5980460
+    },
+    "adapted_config_payload_identical": true,
+    "whole_adapted_file_identical": false,
+    "scope": "New synthesis, opt, place and route from extracted r4 archive, using packaged r2 incremental reference; payload and all BIT header fields compared separately",
+    "changed_header_fields": [
+      "c",
+      "d"
+    ],
+    "only_date_time_header_fields_differ": true
+  },
+  "resources": {
+    "LUT": 42986,
+    "FF": 56026,
+    "Slice": 17396,
+    "BRAM36": 258,
+    "DSP": 34
+  },
+  "submodule_timing_ns": {
+    "filter_setup": 0.951,
+    "filter_hold": 0.103,
+    "CSI_setup": 0.485,
+    "CSI_hold": 0.109
+  },
+  "native_stage_seconds": 1910.1955025196075,
+  "input_archive_unchanged": true
+}

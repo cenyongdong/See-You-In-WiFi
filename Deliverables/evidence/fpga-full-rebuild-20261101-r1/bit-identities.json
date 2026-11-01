@@ -1,0 +1,31 @@
+{
+  "new_native": {
+    "path": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top.bit",
+    "bytes": 5980025,
+    "sha256": "9193daca82c449bfa43d9d80caecfc2bd2f79dc03eca222134e76ad8494d6d0a",
+    "config_payload_sha256": "f2d147ac9a54b2a9677f3712a1149a77d8f327c524aadbcf319b6ae9f870764f",
+    "config_payload_bytes": 5979916
+  },
+  "new_adapted": {
+    "path": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top_disable_icap.bit",
+    "bytes": 5980609,
+    "sha256": "746e86a6c92399248297dce7141838d415399cf41b89a6a5ba237302ef750607",
+    "config_payload_sha256": "e041e6230443631e93a848eaa888f536053145719c8e1878025e60fbf30e620b",
+    "config_payload_bytes": 5980460
+  },
+  "packaged_adapted": {
+    "path": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\source\\hardware\\current\\pose180-csi-v3.bit",
+    "bytes": 5980609,
+    "sha256": "34eadecee028b434d772003c59919644643933aa2feff9c1114fba56b2d676cf",
+    "config_payload_sha256": "e041e6230443631e93a848eaa888f536053145719c8e1878025e60fbf30e620b",
+    "config_payload_bytes": 5980460
+  },
+  "adapted_config_payload_identical": true,
+  "whole_adapted_file_identical": false,
+  "scope": "New synthesis, opt, place and route from extracted r4 archive, using packaged r2 incremental reference; payload and all BIT header fields compared separately",
+  "changed_header_fields": [
+    "c",
+    "d"
+  ],
+  "only_date_time_header_fields_differ": true
+}

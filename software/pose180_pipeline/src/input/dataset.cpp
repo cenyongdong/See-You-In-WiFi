@@ -20,9 +20,11 @@ Dataset::Dataset(Shared& shared, const std::filesystem::path& file, std::uint64_
 	}
 	if (total != bytes / pp::input_bytes)
 		throw std::runtime_error("Dataset segment sizes do not match file");
-	if (!repetitions || repetitions > 30 || total * repetitions > 9000 ||
+	// Bounded replay extends runtime, not resident input memory. Each record
+	// is still read into one fixed buffer; the file remains capped at 9000.
+	if (!repetitions || repetitions > 30 || total * repetitions > 36000 ||
 		session > UINT64_MAX - segments.size() * repetitions)
-		throw std::runtime_error("Dataset repetitions require 1..30 passes and at most 9000 total inputs");
+		throw std::runtime_error("Dataset repetitions require 1..30 passes and at most 36000 total inputs");
 
 	// 文件大小、播放次数先验证完成，再创建持有文件流的输入线程。
 	auto input = std::ifstream(file, std::ios::binary);

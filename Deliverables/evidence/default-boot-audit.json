@@ -1,0 +1,46 @@
+{
+  "boot_id": "9866784b-bf11-419a-ab5f-7797fe3706d3",
+  "files": {
+    "AI7030~1.BIT": {
+      "size": 5980604,
+      "sha256": "85fb81d09a0dcb51cb9d5d347c01de43eccec14c6eb9a87e1876105b3efc4b81"
+    },
+    "BL31.ELF": {
+      "size": 610824,
+      "sha256": "fdcf0af48a7f9716f73a477c3cc1b4cd90c914fe0e5ad7acc5ab282660802303"
+    },
+    "BOOT.BIN": {
+      "size": 7023552,
+      "sha256": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35"
+    },
+    "FMQLMP~1.DTB": {
+      "size": 15996,
+      "sha256": "4e690cf065424e28ad7e39e0dc87a72f4c593f5bd4d99c11f7c4e892feee3038"
+    },
+    "IMAGE": {
+      "size": 13158408,
+      "sha256": "ee88eae627df17fdf615b44cb9fc5a7a7a37d2baaa3f21e90d613f48bedf0929"
+    },
+    "U-BOOT": {
+      "size": 6579840,
+      "sha256": "c4570e3e51128211905bdf20c7b7e0ea9cb7ca1492652a070ebdd985bc213e97"
+    },
+    "UENV.TXT": {
+      "size": 1499,
+      "sha256": "a13c985eb5031d75ec7069333897cae38944ba5fbadd509828b63e6a48408560"
+    },
+    "AI7030~2.BIT": {
+      "size": 5980020,
+      "sha256": "1405d7f1cb992d8f9c78e7b4bbe756faa96eeecb2ff4bdd0d253e92b191e2575"
+    },
+    "FSBL25~1.OUT": {
+      "size": 1385156,
+      "sha256": "5501c470e07537a8fb369ae40641c20c16ab403fad558e65e0a4bbf380f2396f"
+    }
+  },
+  "device_owners": [],
+  "scope": "Read-only FAT BOOT audit and idle owner check; no new SDK run",
+  "BOOT_writes": 0,
+  "reboots": 0,
+  "SDK_attempts": 0
+}

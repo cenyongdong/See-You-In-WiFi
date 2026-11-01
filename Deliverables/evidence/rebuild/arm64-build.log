@@ -1,0 +1,28 @@
+[  5%] Building CXX object CMakeFiles/pose_postprocess.dir/src/pose/single_person.cpp.o
+[ 10%] Building CXX object CMakeFiles/pose_postprocess.dir/src/pose/postprocess.cpp.o
+[ 15%] Linking CXX static library libpose_postprocess.a
+[ 15%] Built target pose_postprocess
+[ 21%] Building CXX object CMakeFiles/pose180_demo.dir/src/app/main.cpp.o
+[ 26%] Building CXX object CMakeFiles/pose180_demo.dir/src/io/io.cpp.o
+[ 31%] Building CXX object CMakeFiles/pose180_demo.dir/src/diagnostics/journal.cpp.o
+[ 36%] Building CXX object CMakeFiles/pose180_demo.dir/src/input/csi.cpp.o
+[ 42%] Building CXX object CMakeFiles/pose180_demo.dir/src/input/dataset.cpp.o
+[ 47%] Building CXX object CMakeFiles/pose180_demo.dir/src/input/nexmon/ingress.cpp.o
+[ 52%] Building CXX object CMakeFiles/pose180_demo.dir/src/input/nexmon/adaptive_ingress.cpp.o
+[ 57%] Building CXX object CMakeFiles/pose180_demo.dir/src/input/nexmon/pcap_stream.cpp.o
+[ 63%] Building CXX object CMakeFiles/pose180_demo.dir/src/preprocess/preprocess.cpp.o
+[ 68%] Building CXX object CMakeFiles/pose180_demo.dir/src/inference/runtime.cpp.o
+[ 73%] Building CXX object CMakeFiles/pose180_demo.dir/src/display/hdmi_renderer.cpp.o
+[ 78%] Building CXX object CMakeFiles/pose180_demo.dir/src/display/projection.cpp.o
+[ 84%] Building CXX object CMakeFiles/pose180_demo.dir/src/display/hdmi_output.cpp.o
+[ 89%] Building CXX object CMakeFiles/pose180_demo.dir/src/preprocess/pl_preprocess.cpp.o
+[ 94%] Building CXX object CMakeFiles/pose180_demo.dir/src/preprocess/polar_finish.cpp.o
+/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline/src/preprocess/polar_finish.cpp: In function 'pose_v1::Tokens pose_v1::finish_polar(const RawCsi&, const PolarWindow&, unsigned int*)':
+/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline/src/preprocess/polar_finish.cpp:88:4: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+   88 |    if(fallbacks)*fallbacks=count;return preprocess(raw);
+      |    ^~
+/workspace/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/software/pose180_pipeline/src/preprocess/polar_finish.cpp:88:34: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+   88 |    if(fallbacks)*fallbacks=count;return preprocess(raw);
+      |                                  ^~~~~~
+[100%] Linking CXX executable pose180_demo
+[100%] Built target pose180_demo

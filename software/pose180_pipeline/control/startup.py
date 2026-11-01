@@ -226,14 +226,18 @@ def command(root, run, session, seconds, selected=None):
 	display = optional_json(root/'identity.json')
 	profile = display.get('hardware_profile', 'probe-free-drain-filter-v1')
 	renderer = display.get('renderer_backend', 'ps')
-	if renderer not in ('ps','pl') or (renderer=='pl' and profile!='probe-free-drain-overlay-v1'):
+	if renderer not in ('ps','pl') or (renderer=='pl' and profile not in ('probe-free-drain-overlay-v1','probe-free-drain-overlay-csi-v2','probe-free-drain-overlay-csi-v3')):
 		raise ValueError('Renderer/profile mismatch')
+	preprocess = display.get('preprocess_backend', 'ps')
+	if preprocess not in ('ps','pl') or (preprocess=='pl' and profile not in ('probe-free-drain-overlay-csi-v2','probe-free-drain-overlay-csi-v3')):
+		raise ValueError('CSI backend/profile mismatch')
+	preprocess_args = ['--preprocess-backend', preprocess] if profile in ('probe-free-drain-overlay-csi-v2','probe-free-drain-overlay-csi-v3') else []
 	return [str(root/'pose180_demo'), '--package', str(root), '--output', str(run/'run'),
 			'--bind', '0.0.0.0', '--session', str(session), '--seconds', str(seconds),
 			'--hardware-profile', profile, '--filter-backend', 'cpu', '--renderer-backend', renderer,
 			'--min-cutoff', '0.5', '--beta', '0.3', '--d-cutoff', '1',
 			'--hdmi', '1',
-			'--result-port', '39383', '--status-port', '39384', '--view-port', '39385'] + selection_arguments(selected) + input_arguments(root, selected)
+			'--result-port', '39383', '--status-port', '39384', '--view-port', '39385'] + preprocess_args + selection_arguments(selected) + input_arguments(root, selected)
 
 
 def serve_run(root, run, stopping):
@@ -383,7 +387,7 @@ def main(stopping):
 			run = root/'runs'/name
 			(run/'metadata').mkdir(parents=True)
 			atomic(run/'request.json', dict(boot_id=current, seconds=args.seconds, input=selected,
-										   functional_startup_once=identity.get('hardware_profile') in ('probe-free-drain-filter-v1','probe-free-drain-overlay-v1')))
+										   functional_startup_once=identity.get('hardware_profile') in ('probe-free-drain-filter-v1','probe-free-drain-overlay-v1','probe-free-drain-overlay-csi-v2','probe-free-drain-overlay-csi-v3')))
 			atomic(root/'latest.json', dict(run=name))
 			atomic(ACTIVE, dict(boot_id=current,run=str(run.resolve())))
 			if stopping.requested:

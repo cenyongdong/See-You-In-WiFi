@@ -8,6 +8,9 @@
 #include "lean_admission.hpp"
 #include "exception_message.hpp"
 #include "release_guard.hpp"
+#ifdef POSE180_DEMO_PL_CSI
+#include "pl_preprocess.hpp"
+#endif
 #ifdef POSE180_DEMO_PL_FILTER
 #include "pl_filter.hpp"
 #endif
@@ -132,6 +135,11 @@ int main(int argc, char** argv) {
 		const auto renderer_backend = take("--renderer-backend", "ps");
 		need(renderer_backend=="ps" || renderer_backend=="pl", "Unknown renderer backend");
 		const bool pl_renderer = renderer_backend=="pl";
+		const auto preprocess_backend = take("--preprocess-backend", "ps");
+		need(preprocess_backend=="ps" || preprocess_backend=="pl", "Unknown CSI preprocessing backend");
+#ifndef POSE180_DEMO_PL_CSI
+		need(preprocess_backend=="ps", "PL CSI requires matching hardware build");
+#endif
 #ifndef POSE180_DEMO_PL_OVERLAY
 		need(!pl_renderer, "PL renderer requires the overlay hardware build");
 #endif
@@ -150,7 +158,10 @@ int main(int argc, char** argv) {
 #ifdef POSE180_DEMO_PROBE_FREE
 #ifdef POSE180_DEMO_PROBE_FREE_DRAIN
 #ifdef POSE180_DEMO_PL_FILTER
-#ifdef POSE180_DEMO_PL_OVERLAY
+#ifdef POSE180_DEMO_PL_CSI
+		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-csi-v3");
+		need(hardware_profile == "probe-free-drain-overlay-csi-v2" || hardware_profile == "probe-free-drain-overlay-csi-v3", "Build/profile mismatch");
+#elif defined(POSE180_DEMO_PL_OVERLAY)
 		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-v1");
 		need(hardware_profile == "probe-free-drain-overlay-v1", "Build/profile mismatch");
 #elif defined(POSE180_DEMO_PL_POST)
@@ -287,6 +298,11 @@ int main(int argc, char** argv) {
 		std::cout << "RESIDENT_READY mock=" << mock << " recorder_pid=" << journal.child_pid() << std::endl;
 #ifdef POSE180_DEMO_SDK
 		std::unique_ptr<pp::Runtime> runtime;
+		// Declared after Runtime: the callback is used only during infer(), and
+		// this GP-only object owns no in-flight external memory.
+#ifdef POSE180_DEMO_PL_CSI
+		std::unique_ptr<pose_v1::PlPreprocess> pl_preprocess;
+#endif
 		std::unique_ptr<pose::hdmi::Output> display;
 #ifndef POSE180_DEMO_PROBE_FREE
 		std::unique_ptr<Mapping> mapping;
@@ -300,6 +316,23 @@ int main(int argc, char** argv) {
 			config.graph = package / "models/piw24_pose180_ZG.json";
 			config.raw = package / "models/piw24_pose180_ZG.raw";
 			config.evidence = output / "engine";
+#ifdef POSE180_DEMO_PL_CSI
+			if(preprocess_backend=="pl") config.preprocess = [&](const pose_v1::RawCsi& raw) {
+				if(!pl_preprocess)pl_preprocess=std::make_unique<pose_v1::PlPreprocess>(hardware_profile);
+				auto tokens=pl_preprocess->process(raw);
+				const auto& m=pl_preprocess->metrics();
+				journal.status("{\"event\":\"csi_pl\",\"calls\":"+std::to_string(m.calls)+
+					",\"fallbacks\":"+std::to_string(m.software_fallbacks)+",\"faults\":"+std::to_string(m.hardware_faults)+
+					",\"boundary_fallbacks\":"+std::to_string(m.boundary_fallbacks)+
+					",\"upload_ns\":"+std::to_string(m.upload_ns)+",\"wait_ns\":"+std::to_string(m.wait_ns)+
+					",\"download_ns\":"+std::to_string(m.download_ns)+",\"finish_ns\":"+std::to_string(m.finish_ns)+
+					",\"cycles\":"+std::to_string(m.compute_cycles)+
+					",\"streamed_groups\":"+std::to_string(m.streamed_groups)+
+					",\"groups_read_while_busy\":"+std::to_string(m.groups_read_while_busy)+
+					",\"boundary_window_fallbacks\":"+std::to_string(m.boundary_window_fallbacks)+"}\n");
+				return tokens;
+			};
+#endif
 			config.on_release_blocked = [&](const char*) {
 				shared.stats.release_blocked = true;
 				shared.stats.isolated = true;
@@ -710,6 +743,7 @@ int main(int argc, char** argv) {
 				isolate(pp::current_exception_message());
 			}
 		}
+		const auto active_elapsed_ns = pd::now_ns() - started;
 		// Preserve status listeners/lease as well as SDK handles if hardware
 		// release remains unproved. No completion receipt may follow this case.
 #ifdef POSE180_DEMO_SDK
@@ -745,7 +779,8 @@ int main(int argc, char** argv) {
 		// 进程消失或状态轮询结束本身不能证明硬件资源可以释放。
 		{
 			std::ofstream done(output / "completion.json");
-			done << "{\"native_shutdown_complete\":true,\"status\":" << shared.stats.json(mock, hdmi)
+			done << "{\"native_shutdown_complete\":true,\"active_elapsed_ns\":" << active_elapsed_ns
+				 << ",\"requested_seconds\":" << seconds << ",\"status\":" << shared.stats.json(mock, hdmi)
 				 << "}\n";
 		}
 		std::cout << shared.stats.json(mock, hdmi);

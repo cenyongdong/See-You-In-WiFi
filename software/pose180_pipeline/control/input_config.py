@@ -34,8 +34,10 @@ def select_input(root, identity, source=None, repetitions=None):
 		from dataset_input import validate_dataset
 		manifest = validate_dataset(root)
 		passes = repetitions if repetitions is not None else identity.get('dataset_repetitions', 1)
-		if type(passes) is not int or not 1 <= passes <= 30 or manifest['count'] * passes > 9000:
-			raise ValueError('Dataset requires 1..30 passes and at most 9000 total inputs')
+		# Keep the per-file bound (9000), but permit a bounded 30-minute run
+		# at 15 Hz without restarting the SDK between playlist passes.
+		if type(passes) is not int or not 1 <= passes <= 30 or manifest['count'] * passes > 36000:
+			raise ValueError('Dataset requires 1..30 passes and at most 36000 total inputs')
 		selected.update(dataset_repetitions=passes, dataset_sha256=manifest['sha256'],
 						split=manifest['split'], sequence=manifest['sequence'], count=manifest['count'])
 		if manifest['schema'] == 'PIWPLAYLIST1':

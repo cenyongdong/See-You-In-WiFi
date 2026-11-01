@@ -1,0 +1,18 @@
+{
+  "stage": "bit-closure",
+  "pid": 12648,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\rebuild-logs\\bit-closure.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\fpga-package-r4-check\\.local\\csi-preprocess-20261031-r3\\reports\\bit-closure.tcl"
+  ],
+  "started": 1793456151.5848126,
+  "seconds": 197.12551307678223,
+  "exit_code": 0,
+  "state": "completed"
+}

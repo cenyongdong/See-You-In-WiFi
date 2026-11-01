@@ -1,0 +1,66 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 24,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "csi-v3-common",
+      "hidden": true,
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "POSE180_DEMO_PROBE_FREE": "OFF",
+        "POSE180_DEMO_PROBE_FREE_DRAIN": "ON",
+        "POSE180_DEMO_PL_FILTER": "ON",
+        "POSE180_DEMO_PL_OVERLAY": "ON",
+        "POSE180_DEMO_PL_CSI": "ON",
+        "POSE180_DEMO_PL_POST": "OFF"
+      }
+    },
+    {
+      "name": "csi-v3-arm64",
+      "inherits": "csi-v3-common",
+      "displayName": "Qualified CSI v3 and skeleton overlay (ARM64 SDK)",
+      "binaryDir": "${sourceDir}/../../.local/build/pose180-csi-v3-arm64",
+      "cacheVariables": {
+        "POSE180_BUILD_SDK": "ON",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "aarch64",
+        "CMAKE_CXX_COMPILER": "aarch64-linux-gnu-g++",
+        "CMAKE_PREFIX_PATH": "/usr/cmake"
+      }
+    },
+    {
+      "name": "native-offline",
+      "inherits": "csi-v3-common",
+      "displayName": "Native offline checks (no SDK or hardware access)",
+      "binaryDir": "${sourceDir}/../../.local/build/pose180-native-offline",
+      "cacheVariables": {
+        "POSE180_BUILD_SDK": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "csi-v3-arm64",
+      "configurePreset": "csi-v3-arm64",
+      "targets": [
+        "pose180_demo"
+      ],
+      "jobs": 2
+    },
+    {
+      "name": "native-offline",
+      "configurePreset": "native-offline",
+      "targets": [
+        "pose180_demo_mock",
+        "overlay_tests",
+        "renderer_tests"
+      ],
+      "jobs": 2
+    }
+  ]
+}

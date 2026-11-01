@@ -1,6 +1,6 @@
 # HDMI结构、接入过程与验证边界
 
-**现行范围（2026-10-29）：** 默认硬件已发布为 `probe-free-drain-filter-v1`，当前 180-query 主链及双输入已有限实板运行；接口与源码以[现行技术说明](../../ADR/TechDetails.md)、[核心目录](../../software/pose180_pipeline/src/README.md)为准。本页保留 r53 及更早诊断链，图中的完整归档／数值门不是现行演示阻塞条件。设备、备份与未验收边界见 [RESUME](RESUME.md)。
+**现行范围（2026-11-01）：** 当前为 `probe-free-drain-overlay-csi-v3`，CSI／overlay分别使用 `0x400b3000 / 0x43534903`、`0x400b2000 / 0x534b4c01`。现行接口与分工见[架构说明](../../ADR/TechDetails.md)、[CSI](../csi_preprocess/README.md)、[overlay](skeleton_overlay/README.md)；部署与BOOT见[RESUME](RESUME.md)。本页后续r53及更早诊断链保留历史范围，严格归档／数值门不套作现行演示阻塞条件。
 
 历史更新：2026-10-24。r45合格硬件已复用于有限启动消费、r47直接RGB565及r53单SDK线程流水调度。r53健康启动短样本29.521Hz、187次采纳后因首次索引内容混合停止；原BOOT已恢复，联合长期和持续实屏未通过。[r53 当时实测/恢复](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/RESULTS.md)。
 

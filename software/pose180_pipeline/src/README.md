@@ -1,6 +1,9 @@
 # 当前核心源码
 
-正式运行目标是 `pose180_demo`。相关头文件与实现按模块放在一起；从 [app/main.cpp](app/main.cpp) 进入，再沿下表阅读。目录调整不改变模型、数值处理、设备完成契约或帧协议。
+**验证入口（2026-11-01）：** 当前工程默认PL CSI／PL骨架绘制开启、人物滤波CPU；[源码与依赖说明](../../../Deliverables/SOURCE-20261031.md)及[独立完整重建](../../../Deliverables/FPGA-REBUILD-20261101-r1.md)记录软件／核心RTL和完整实现的不同验证范围。现场状态以项目恢复入口的最后观察为准。
+
+2026-10-31发布：保留当前模块划分，新增CSI后端与PL绘图已接入正式目标；[完整源码说明](../../../Deliverables/SOURCE-20261031.md)列出实际硬件源、厂商复用与重建边界。
+默认构建配置现已启用PL CSI和骨架绘图；ARM64预设为`csi-v3-arm64`，离线预设为`native-offline`，人物滤波保持CPU。正式运行目标是 `pose180_demo`。相关头文件与实现按模块放在一起；从 [app/main.cpp](app/main.cpp) 进入，再沿下表阅读。目录调整不改变模型、数值处理、设备完成契约或帧协议。
 
 | 目录 | 主要文件 | 职责与边界 |
 |---|---|---|
@@ -8,10 +11,10 @@
 | `common/` | [core.hpp](common/core.hpp)、`types.hpp`、`wire.hpp` | 拥有值、最新窗口、固定缓冲及协议；不持有设备资源 |
 | `input/` | [csi.cpp](input/csi.cpp)、[dataset.cpp](input/dataset.cpp) | 实时采集和官方预采 CSI 两个互斥入口，都发布同一种拥有值 `Input` |
 | `input/nexmon/` | `pcap_stream.*`、`adaptive_ingress.*`、`ingress.*` | 实时 CSI 解码、三 RX 组窗与重连；工具程序也链接这里 |
-| `preprocess/` | [preprocess.cpp](preprocess/preprocess.cpp) | 原复数 CSI → `[1,180,60]` FP32 数学；保持原计算顺序 |
+| `preprocess/` | [preprocess.cpp](preprocess/preprocess.cpp)、[pl_preprocess.cpp](preprocess/pl_preprocess.cpp)、[polar_finish.cpp](preprocess/polar_finish.cpp) | 原PS参考；PL幅相／90点分组流水传输；PS双精度相位收尾及边界回退 |
 | `inference/` | [runtime.cpp](inference/runtime.cpp)、[release_guard.hpp](inference/release_guard.hpp) | 唯一 SDK 所有者、原 epoch99 推理、首次输出读取、在途释放保护 |
 | `pose/` | [postprocess.cpp](pose/postprocess.cpp)、[single_person.cpp](pose/single_person.cpp) | 候选筛选、人物关联和 CPU 单人连续性滤波；原始结果与展示结果分开 |
-| `display/` | [hdmi_renderer.cpp](display/hdmi_renderer.cpp)、[hdmi_output.cpp](display/hdmi_output.cpp) | 几何投影、RGB565、HDMI 采纳／STOP／资源释放与待机画面 |
+| `display/` | [hdmi_renderer.cpp](display/hdmi_renderer.cpp)、[hdmi_output.cpp](display/hdmi_output.cpp) | PS坐标投影、PL二维骨架／关节点／动态信息提交，HDMI采纳／STOP／安全释放与待机 |
 | `io/` | [io.cpp](io/io.cpp) | TCP 输入、独立结果／状态／PC 消费者；PC 断开不控制推理生命周期 |
 | `diagnostics/` | [journal.cpp](diagnostics/journal.cpp) | 有界异步日志与状态输出 |
 | `compat/` | `network.hpp`、`r9_startup_observer.hpp` 等 | 严格链及旧硬件配置的兼容声明；当前合格配置不启用旧诊断 MMIO |

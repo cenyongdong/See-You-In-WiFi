@@ -1,6 +1,6 @@
 # 架构决策与难点归档
 
-入口整理：2026-10-29。当前架构采用 [ADR_49](ADR_49.md) 的 PS／NPU、PL HDMI 与独立 PC 分工，以及 [ADR_50](ADR_50.md) 的有界常驻、记录解耦和局部恢复；当前源码及接口见 [TechDetails](TechDetails.md)。最终交付与范围见[项目进度](../PROJECT-PROGRESS.md)，全部文档见[目录](../DOCUMENTATION.md)。以下 ADR 保留建立时的决策与后续证据，不能仅凭编号或旧状态推断最新部署。
+入口更新：2026-11-01。当前PS／NPU／PL分工已扩展为PL CSI分组预处理与二维骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC独立观察；具体接口见[TechDetails](TechDetails.md)。[ADR_49](ADR_49.md)和[ADR_50](ADR_50.md)保留原决策与有界常驻原则，后续实现与实测以[项目进度](../PROJECT-PROGRESS.md)、[完整重建](../Deliverables/FPGA-REBUILD-20261101-r1.md)为准。下列ADR的历史正文不追写成后续结果。
 
 编号表示决策建立顺序，不代表每项已通过。以对应ADR的证据、状态及限制判断结论；历史方案或阶段许可不构成现行执行授权。无关新决策使用下一个未使用编号，同一决策后续验证更新对应文件。
 

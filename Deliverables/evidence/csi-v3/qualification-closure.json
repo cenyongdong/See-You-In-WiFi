@@ -1,0 +1,96 @@
+{
+  "bit_generation_prerequisite_pass": true,
+  "raw_timing_pass": false,
+  "WNS_ns": 0.03,
+  "WHS_ns": 0.029,
+  "TNS_ns": 0.0,
+  "THS_ns": 0.0,
+  "approved_AI_period_exceptions": [
+    "Min Period        n/a     BUFG/I             n/a            1.409         1.000       -0.409     BUFGCTRL_X0Y20  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/clkout1_buf/I",
+    "Min Period        n/a     PLLE2_ADV/CLKOUT0  n/a            1.071         1.000       -0.071     PLLE2_ADV_X1Y3  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKOUT0"
+  ],
+  "new_timing_waivers": false,
+  "new_DRC_waivers": false,
+  "unconstrained_internal_endpoints": 0,
+  "routable_nets": 97096,
+  "fully_routed_nets": 97096,
+  "removed_diagnostic_hierarchies": [
+    "ai_path_monitor",
+    "ai_read_path_monitor",
+    "hp2_cycle_recorder",
+    "hp2_protocol_recorder",
+    "hp2_protocol_observer"
+  ],
+  "retained_active_hierarchies": [
+    "deferred_control",
+    "startup_drain"
+  ],
+  "checkpoint": "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\pipeline-routed-csi-incremental.dcp",
+  "reused_factory_inputs": "r45 synthesis/opt input list; original PS export and OOC IP checkpoints",
+  "source_sha256": {
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\consumer_paths_validate.tcl": "c1b6895da37d3fc746692f4813298d3c00e6d140bcc35e272f584d3436e61766",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\deferred_control_cdc.tcl": "92645c6c29b874e797b77e0be4ad39f1e137d360175acfbb11d3bcc34f51d168",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\deferred_control_validate.tcl": "fa36895a27e1f24ef87f2a8da462d56dd48a3970ab3bc690cd6763a8f4e96b7c",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\hp2_deferred_control.sv": "e2a3ec018d65ad902b6fb278a54a16481792426186b72998aa31fcf6f6677f36",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\hp2_startup_drain.sv": "cd431a1060b37f53d41653b4e6d1480e6f2c430845f4fc6cdb4207a952542fea",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\ps_ai.v": "d656148cc3f540761dd27e1573278b90755d54c0acdafa9225c954b27ec7ee4c",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\ps_ai_wrapper.sv": "7a8e1319db3d3719b415fc432e713dd4df88be09529d163d9a90d07aa218c2a8",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\startup_drain_bounds.tcl": "51532ab1e61ea743066924245f22825bb3d2cf91b8157ff778fe17c13e19c556",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\atan_table.vh": "dd9cb9441a491c18e849ea934d2777f8aa852f3363f21703264756ae60c131b7",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\batch_banked.sv": "0606dbaefc302a39a1c2a909cf71ebb1c9de4e65402198d8c0e163ef2e7ffbbf",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\consumer_capture_scope.tcl": "4f305d298d7a26ebe55d31d5f000939bf8cc2fd83ec081ada2ab1d4a5d6d4065",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\font_rom.vh": "a179799de62cf7e771e83fbabbfc7eddc543c650dd11666115bdd5be273425a8",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\hdmi_board.sv": "9b8ac4b18a31e2be873685b40cd19ad0119b6d5c0bb97da4d4f79f34e933d7c7",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\hdmi_cdc.tcl": "180107ee794319cc5662a33af0caa0560fa137d6b413118964b44bdaf3810138",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\overlay.sv": "bbfb7fe0a6783740ff085bea99c6997fe8209916c31a834803dad823e53ba398",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\palette_fifo.sv": "49166672e92e7f20f103f5ca3259db767eafce46204a10893d31a1d9a30b4b51",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\polar.sv": "8c02be24c0476e6fabfb53a26a10b6b3c34b416163ea3be9eccf6b2822c54a1d",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\pose_filter.sv": "3c13586f630c83c15ae9ffbe76e43445cb6bb752bfea7573974044584a9b04f7",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\pose_filter_csr.sv": "1ef87cfa802f7b047a177bd1e02b971bbe8a17460dc271f01d9cf5ff0c9d6fa8",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\pose_filter_lane.sv": "b6ae205a785f231b595383d04923cdff589e496f8f4bd72eebc23a1138466049",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\ps_ai_peripheral.sv": "0e3963d6afec7308248155fd456c83655c82c3685b3eb7d456558b8dd1d61bae",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\sources\\ps_release_factory_clocks.tcl": "1620cd6a7da0816842f80122426d2fc0fe139471190e110ed04288d5f0454c14",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\skeleton_overlay\\overlay_cdc.tcl": "1d9301e267c4e3a2fdd1f29f24e985fbf740c68cf02750db27cbebf620db7cea",
+    "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\strip_probe_attributes.tcl": "cf2eec8ebc22b4346a67d3dca56ef9d705ef101bb0ceb82cabb13052183f8729",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\reports\\synthesis-banked.tcl": "a5f3538590f61f95e391b8fcd46b5f29b80f4bf243c0baeb31e1306c8689bfe3",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\reports\\opt-banked.tcl": "90a52bbd0edfb60bec81357eb59660d25296562119e876cfc1eefb4ae3329455",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\reports\\place-csi-incremental.tcl": "ccad2d7f931b8a42986301ebb3f855a80a7502ec567c15a2f883175d0eb95d7d",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\reports\\route-csi-incremental.tcl": "6e69c9b81010c852536b67a27eacc656878923ec584971d0f6cf5af3a1671001",
+    "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\reports\\report-closure.tcl": "a4b8bae7d0e1c8c6bede824d3e4f72ec68bb5251e23736a7511cb0564528719a"
+  },
+  "source_snapshot_note": "Retained CSI and overlay source snapshot used by synthesis; GP clock unchanged.",
+  "board_tested": false,
+  "hardware_profile": "probe-free-drain-overlay-csi-v3",
+  "lanes": 4,
+  "filter_resources": {
+    "LUT": 3396.0,
+    "FF": 1935.0,
+    "DSP": 16.0,
+    "BRAM36": 8.0,
+    "Slice": 1092.0
+  },
+  "total_resources": {
+    "LUT": 42986.0,
+    "FF": 56026.0,
+    "DSP": 34.0,
+    "BRAM36": 258.0,
+    "Slice": 17396.0
+  },
+  "filter_budget_pass": true,
+  "overlay_resources": {
+    "LUT": 1128.0,
+    "FF": 939.0,
+    "DSP": 4.0,
+    "BRAM36": 128.5,
+    "Slice": 522.0
+  },
+  "csi_resources": {
+    "LUT": 1584.0,
+    "FF": 698.0,
+    "DSP": 6.0,
+    "BRAM36": 24.0,
+    "Slice": 550.0
+  },
+  "new_CDC_max_delay_bounds": true,
+  "new_false_paths": false
+}

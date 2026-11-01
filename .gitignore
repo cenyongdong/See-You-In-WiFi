@@ -565,3 +565,14 @@ node_modules/
 !/tools/pose-v1/evidence/hp2-startup-protocol-20261023-r37/RESULTS.md
 !/tools/pose-v1/evidence/hp2-startup-protocol-20261023-r37/waveforms/README.md
 !/tools/pose-v1/evidence/hp2-startup-protocol-20261023-r37/waveforms/cycletrace/README.md
+
+# Current local delivery documentation and selected evidence; RAR binaries remain local.
+!/Deliverables/SOURCE-20261031.md
+!/Deliverables/PERFORMANCE.md
+!/Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md
+!/Deliverables/release-20261031-r4-validation.json
+!/Deliverables/pose180-csi-release-20261031-r4.rar.sha256
+!/Deliverables/pose180-complete-sources-20261031-r4.rar.sha256
+!/Deliverables/evidence/
+!/Deliverables/evidence/**
+!/Deliverables/FPGA-REBUILD-20261101-r1.md

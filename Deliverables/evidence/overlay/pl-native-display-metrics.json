@@ -1,0 +1,83 @@
+{
+  "run": "D:\\FPGACompetitionProject\\.local\\skeleton-overlay-20261031-r2\\reports\\pl-candidate-board\\board\\runs\\20260313T032904-1773372544457247000\\run",
+  "native_shutdown_complete": true,
+  "counters": {
+    "received": 420,
+    "inferred": 417,
+    "adopted": 417,
+    "display_updates": 418,
+    "pc_sent": 417,
+    "pc_dropped": 0,
+    "view_sent": 417,
+    "view_dropped": 0,
+    "replaced": 3,
+    "release_blocked": false
+  },
+  "malformed_log_lines": [],
+  "timing_scope": "Retained bounded-ring events only; not necessarily every inference.",
+  "renderer": "pl",
+  "overlay": {
+    "command_bytes": {
+      "samples": 226,
+      "p95_method": "nearest rank: ceil(0.95*N)",
+      "mean": 666.3716814159292,
+      "median": 760.0,
+      "p95": 768,
+      "min": 112,
+      "max": 768
+    },
+    "prepare_ms": {
+      "samples": 226,
+      "p95_method": "nearest rank: ceil(0.95*N)",
+      "mean": 0.026056681415929202,
+      "median": 0.026955,
+      "p95": 0.0295,
+      "min": 0.00967,
+      "max": 0.04383
+    },
+    "submit_ms": {
+      "samples": 226,
+      "p95_method": "nearest rank: ceil(0.95*N)",
+      "mean": 0.07190893805309735,
+      "median": 0.080655,
+      "p95": 0.08194,
+      "min": 0.01393,
+      "max": 0.09919
+    },
+    "submit_and_adopt_ms": {
+      "samples": 226,
+      "p95_method": "nearest rank: ceil(0.95*N)",
+      "mean": 14.13963128318584,
+      "median": 15.9688,
+      "p95": 22.3331,
+      "min": 6.4213,
+      "max": 22.4066
+    },
+    "draw_cycles": {
+      "samples": 226,
+      "p95_method": "nearest rank: ceil(0.95*N)",
+      "mean": 524310.8451327434,
+      "median": 524621.5,
+      "p95": 524724,
+      "min": 522437,
+      "max": 524750
+    },
+    "draw_ms_at_100MHz": {
+      "samples": 226,
+      "p95_method": "nearest rank: ceil(0.95*N)",
+      "mean": 5.2431084513274335,
+      "median": 5.246214999999999,
+      "p95": 5.24724,
+      "min": 5.22437,
+      "max": 5.2475
+    },
+    "underflow_seen_events": 0,
+    "tag_mismatch_events": 0,
+    "hardware_completion_range": [
+      192,
+      417
+    ],
+    "unique_hardware_completions": 226
+  },
+  "scope": "PL submit_and_adopt includes register submission, rasterization and vblank confirmation; prepare_ms is separate. Initial background upload is excluded."
+}

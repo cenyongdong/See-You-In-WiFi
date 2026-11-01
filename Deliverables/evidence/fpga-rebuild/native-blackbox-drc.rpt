@@ -1,0 +1,36 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Sat Oct 31 22:22:51 2026
+| Host         : DESKTOP-RDG8FOI running 64-bit major release  (build 9200)
+| Command      : report_drc -checks {INBB-1 INBB-2 INBB-3} -file D:/FPGACompetitionProject/.local/fpga-package-r4-check/rebuild-logs/native-blackbox-drc.rpt
+| Design       : ai7030_edif_top
+| Device       : xc7z030ffg676-2
+| Speed File   : -2
+| Design State : Synthesized
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: checkpoint_pipeline-opt-banked
+      Design limits: <entire design considered>
+
+            Checks: INBB-1 INBB-2 INBB-3
+             Max violations: <unlimited>
+             Violations found: 0
++------+----------+-------------+------------+
+| Rule | Severity | Description | Violations |
++------+----------+-------------+------------+
++------+----------+-------------+------------+
+
+2. REPORT DETAILS
+-----------------
+

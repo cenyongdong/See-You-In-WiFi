@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGACompetitionProject/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/csi_preprocess/polar.sv" into library work
+INFO: [VRFC 10-311] analyzing module csi_polar
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGACompetitionProject/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/csi_preprocess/batch.sv" into library work
+INFO: [VRFC 10-311] analyzing module csi_batch
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGACompetitionProject/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/csi_preprocess/tb_batch.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_batch

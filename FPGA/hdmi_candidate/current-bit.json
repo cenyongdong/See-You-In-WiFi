@@ -1,0 +1,12 @@
+{
+  "hardware_profile": "probe-free-drain-overlay-csi-v3",
+  "archive_path": "hardware/current/pose180-csi-v3.bit",
+  "original_path": ".local\\csi-preprocess-20261031-r3\\boot-package\\ai7030_top_disable_icap.bit",
+  "bytes": 5980609,
+  "sha256": "34eadecee028b434d772003c59919644643933aa2feff9c1114fba56b2d676cf",
+  "BOOT_sha256": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35",
+  "adaptation": "Procise disable ICAP, same adapted bit referenced by qualified BOOT candidate.bif",
+  "qualification": "Deliverables/evidence/csi-v3/qualification-closure.json",
+  "board_evidence": "Deliverables/evidence/longrun/summary.json",
+  "scope": "Existing qualified and board-tested design; packaging adds no new hardware test; BIT is not a complete BOOT image"
+}

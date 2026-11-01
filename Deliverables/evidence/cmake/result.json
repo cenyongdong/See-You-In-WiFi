@@ -1,0 +1,20 @@
+{
+  "fresh_defaults_enabled": true,
+  "old_cache_upgraded": true,
+  "ARM64_build_pass": true,
+  "PL_sources_linked": true,
+  "software_sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3",
+  "published_binary_sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3",
+  "byte_identical_to_published": true,
+  "SDK_runs": 0,
+  "board_operations": 0,
+  "native_offline_build_pass": true,
+  "overlay_software_test_pass": true,
+  "python_syntax_pass": true,
+  "runtime_command_verified": {
+    "preprocess": "pl",
+    "renderer": "pl",
+    "person_filter": "cpu",
+    "scope": "Actual command factory only; Windows fcntl import shim; no resource operations"
+  }
+}

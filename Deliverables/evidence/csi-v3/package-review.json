@@ -1,0 +1,14 @@
+{
+  "BOOT_sha256": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35",
+  "baseline_BOOT_sha256": "08ebfb0cf7c23f063baba4cced36b2832adc6243b1b8cd4c3ea7e218b755184b",
+  "raw_bit_sha256": "47d212a0b3b438ab1d34867fca4d3a8bad13b27d8787346f1d36802ea3e75876",
+  "adapted_bit_sha256": "34eadecee028b434d772003c59919644643933aa2feff9c1114fba56b2d676cf",
+  "physical_qualified": true,
+  "board_tested": false,
+  "checkpoint": "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\pipeline-routed-csi-incremental.dcp",
+  "bit_native_stage": "bit-closure",
+  "new_SDK_budget": 1,
+  "finite_seconds": 120,
+  "archive": "D:\\FPGACompetitionProject\\.local\\csi-preprocess-20261031-r3\\pose180-csi-preprocess-20261031-r3.tar.gz",
+  "archive_sha256": "d227f8249097a47b69a9e2376cede61bd44d32bcbd8e407896419095cf745bb5"
+}

@@ -1,0 +1,36 @@
+{
+  "run": "D:\\FPGACompetitionProject\\.local\\skeleton-overlay-20261031-r2\\reports\\ps-reference-board\\board\\runs\\20260313T032847-1773372527441999790\\run",
+  "native_shutdown_complete": true,
+  "counters": {
+    "received": 420,
+    "inferred": 420,
+    "adopted": 420,
+    "display_updates": 421,
+    "pc_sent": 420,
+    "pc_dropped": 0,
+    "view_sent": 420,
+    "view_dropped": 0,
+    "replaced": 0,
+    "release_blocked": false
+  },
+  "malformed_log_lines": [],
+  "timing_scope": "Retained bounded-ring events only; not necessarily every inference.",
+  "renderer": "ps",
+  "write_and_adopt_ms": {
+    "samples": 229,
+    "mean": 12.39650558951965,
+    "median": 13.2188,
+    "p95": 19.5416,
+    "min": 2.99039,
+    "max": 20.1685
+  },
+  "frame_upload_and_flip_issue_ms": {
+    "samples": 229,
+    "mean": 2.8348019650655023,
+    "median": 2.77702,
+    "p95": 3.28697,
+    "min": 2.64719,
+    "max": 3.51109
+  },
+  "scope": "PS write_and_adopt includes full framebuffer upload and display confirmation; excludes CPU drawing. Upload_and_flip_issue excludes vblank wait."
+}

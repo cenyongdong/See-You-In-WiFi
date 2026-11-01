@@ -1,0 +1,23 @@
+[
+  {
+    "stage": "early_run",
+    "date_local": "2026-10-31",
+    "boot_id": "737e40ad-de06-4139-b9d0-6fc1ae5ae03d",
+    "question": "30分钟长测已开始产生新推理，PC两通道约14.7次/秒更新；PC与HDMI两路骨架是否正常持续更新？",
+    "answer": "PC、HDMI 均正常持续更新",
+    "source": "user onsite observation"
+  },
+  {
+    "stage": "shared_timing_fix",
+    "date_local": "2026-10-31",
+    "source": "user onsite observation",
+    "answer": "已显示数值并更新",
+    "scope": "Original PC view URL, timing repaired during continuous board test; local view restarted once"
+  },
+  {
+    "stage": "late_run_approximately_29_minutes",
+    "date_local": "2026-10-31",
+    "source": "user onsite observation",
+    "answer": "两路正常更新，PC耗时也在变化"
+  }
+]

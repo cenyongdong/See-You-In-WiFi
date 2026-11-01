@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "source_root": "D:\\FPGACompetitionProject\\.local\\rar-build-input-20261031\\pose180-complete-sources-20261031-r3",
+  "build_directory": "/tmp/rar-rebuild-20261031-r1",
+  "ARM64_build_pass": true,
+  "native_build_pass": true,
+  "overlay_software_pass": true,
+  "renderer_software_pass": true,
+  "CSI_numeric_pass": true,
+  "CSI_streaming_RTL_pass": true,
+  "overlay_RTL_pass": true,
+  "qualified_source_hashes_match": true,
+  "qualified_BIT_hash_match": true,
+  "software_sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3",
+  "published_binary_sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3",
+  "byte_identical_to_published": true,
+  "external_dependencies": [
+    "existing ARM64 Icraft/customop 3.39 SDK and GNU toolchain in FPAI",
+    "Vivado 2018.3 simulator",
+    "paired deployment official CSI input"
+  ],
+  "full_FPGA_rebuild": false,
+  "full_FPGA_rebuild_reason": "Vendor PS/AI netlists, DCP and boot firmware deliberately excluded; complete placed/routed bitstream was not regenerated",
+  "board_operations": 0,
+  "SDK_runs": 0
+}

@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGACompetitionProject/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/hdmi_candidate/skeleton_overlay/palette_fifo.sv" into library work
+INFO: [VRFC 10-311] analyzing module palette_fifo
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGACompetitionProject/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/hdmi_candidate/skeleton_overlay/overlay.sv" into library work
+INFO: [VRFC 10-311] analyzing module skeleton_overlay
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/FPGACompetitionProject/.local/rar-build-input-20261031/pose180-complete-sources-20261031-r3/FPGA/hdmi_candidate/skeleton_overlay/tb_overlay.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_overlay

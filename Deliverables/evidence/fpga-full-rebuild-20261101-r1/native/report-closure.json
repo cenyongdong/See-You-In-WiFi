@@ -1,0 +1,18 @@
+{
+  "stage": "report-closure",
+  "pid": 28932,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\rebuild-logs\\report-closure.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build\\.local\\csi-preprocess-20261031-r3\\reports\\report-closure.tcl"
+  ],
+  "started": 1793464215.3596232,
+  "seconds": 154.45954275131226,
+  "exit_code": 0,
+  "state": "completed"
+}

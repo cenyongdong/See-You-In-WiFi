@@ -1,0 +1,93 @@
+{
+  "scope": "Retained bounded-ring records only; original decoder validates finite inputs and all 180 candidate outputs. Pairs are matched by input payload hash and checked byte-for-byte because dropped inputs shift publication sequence numbers. Timing/session metadata are excluded from output comparison.",
+  "ps_records": 228,
+  "pl_records": 225,
+  "paired_records": 225,
+  "sequence_ranges": {
+    "ps": [
+      "193",
+      "420"
+    ],
+    "pl": [
+      "193",
+      "417"
+    ]
+  },
+  "identical_input_pairs": 225,
+  "identical_output_pairs": 225,
+  "maximum_output_absolute_error": 0,
+  "ps_metrics": {
+    "process_ms": {
+      "samples": 228,
+      "mean": 17.645991666666657,
+      "p95": 17.93928,
+      "max": 18.3765,
+      "p95_method": "nearest rank"
+    },
+    "preprocess_ms": {
+      "samples": 228,
+      "mean": 5.774656535087719,
+      "p95": 5.87634,
+      "max": 6.19829,
+      "p95_method": "nearest rank"
+    },
+    "forward_ms": {
+      "samples": 228,
+      "mean": 1.4514896929824546,
+      "p95": 1.5489,
+      "max": 2.07992,
+      "p95_method": "nearest rank"
+    },
+    "output_ms": {
+      "samples": 228,
+      "mean": 1.0892290789473686,
+      "p95": 1.13944,
+      "max": 1.8667,
+      "p95_method": "nearest rank"
+    },
+    "queue_ms": {
+      "samples": 228,
+      "mean": 2.56828701754386,
+      "p95": 4.87862,
+      "max": 5.09011,
+      "p95_method": "nearest rank"
+    }
+  },
+  "pl_metrics": {
+    "process_ms": {
+      "samples": 225,
+      "mean": 17.739931200000004,
+      "p95": 18.16234,
+      "max": 18.49838,
+      "p95_method": "nearest rank"
+    },
+    "preprocess_ms": {
+      "samples": 225,
+      "mean": 5.797405422222224,
+      "p95": 5.87212,
+      "max": 6.04232,
+      "p95_method": "nearest rank"
+    },
+    "forward_ms": {
+      "samples": 225,
+      "mean": 1.5074154666666661,
+      "p95": 1.61361,
+      "max": 2.05447,
+      "p95_method": "nearest rank"
+    },
+    "output_ms": {
+      "samples": 225,
+      "mean": 1.1024612888888887,
+      "p95": 1.40202,
+      "max": 1.71906,
+      "p95_method": "nearest rank"
+    },
+    "queue_ms": {
+      "samples": 225,
+      "mean": 2.4509847111111105,
+      "p95": 4.8459,
+      "max": 5.08632,
+      "p95_method": "nearest rank"
+    }
+  }
+}

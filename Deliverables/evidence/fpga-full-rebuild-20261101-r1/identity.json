@@ -1,0 +1,13 @@
+{
+  "archive": "D:\\FPGACompetitionProject\\Deliverables\\pose180-complete-sources-20261031-r4.rar",
+  "sha256": "e4b1d3243550f34f92e5f4890a4cfb1a509889c6c51f9053ce03369d8d0f2b45",
+  "bytes": 198429558,
+  "extracted_source": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\source",
+  "build_output": "D:\\FPGACompetitionProject\\.local\\frb1101-r1\\build",
+  "critical_dependency_hashes_checked": 39,
+  "vendor_dependency_files": 710,
+  "prepare_exit_code": 0,
+  "extraction_seconds": 95.42042684555054,
+  "board_operations": 0,
+  "scope": "New independent extraction of delivered r4 RAR; packaged incremental r2 reference permitted; do not reuse prior r3 optimized/placed/routed outputs"
+}

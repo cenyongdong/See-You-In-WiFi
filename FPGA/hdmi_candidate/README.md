@@ -1,6 +1,6 @@
 # HDMI模块资料入口
 
-**最终入口（2026-10-29）：** 当前默认镜像、现存恢复资产和最后设备状态见 [RESUME](RESUME.md)，硬件文档导航见 [FPGA 索引](../README.md)。本页后续早期接入状态和命令保留历史范围，不代替最终部署流程。
+**当前入口（2026-11-01）：** 合格默认CSI v3硬件包含PL CSI分组预处理与骨架图层合成，实际部署、BOOT与最后设备观察见[RESUME](RESUME.md)。r4源码RAR已独立完成本地完整实现与位流生成，见[重建报告](../../Deliverables/FPGA-REBUILD-20261101-r1.md)。下方早期接入命令和结果属于对应历史版本，不作为当前启动入口。
 
 当前结构与源码见[INTEGRATION](INTEGRATION.md)，恢复身份/次数见[RESUME](RESUME.md)。r45硬件合格，r52曾在真实异常消费后完成有限新推理/HDMI采纳；r53单SDK线程流水短样本29.521Hz、187采纳后发生首读内容混合。已回原BOOT，联合长期、持续实屏、D45/D47仍未解决；[当前实测](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/RESULTS.md)。
 

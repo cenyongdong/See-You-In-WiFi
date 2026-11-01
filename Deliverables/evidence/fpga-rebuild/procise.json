@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "seconds": 5.606716632843018,
+  "device": "JFMQL30TAI676H",
+  "operation": "increment_bit_cfg_v3 -disable_icap; files only",
+  "board_operations": 0
+}

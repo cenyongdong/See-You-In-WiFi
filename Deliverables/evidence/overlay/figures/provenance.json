@@ -1,0 +1,10 @@
+{
+  "source": "synthetic three-person fixture; not model accuracy or fresh inference",
+  "rtl_pixel_file": "D:\\FPGACompetitionProject\\.local\\skeleton-overlay-20261031-r2\\reports\\frame-121119\\overlay.hex",
+  "command_file": "D:\\FPGACompetitionProject\\.local\\skeleton-overlay-20261031-r2\\software\\fixture-3.hex",
+  "command_bytes": 816,
+  "draw_cycles": 524866,
+  "GP_clock_Hz": 100000000,
+  "estimated_draw_ms_from_simulation": 5.24866,
+  "board_tested": false
+}
