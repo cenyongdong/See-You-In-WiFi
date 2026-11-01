@@ -2,7 +2,7 @@
 
 ## 工程内容总结
 
-用户批准首版阻断项更新方案，随后单独批准一次FPGA版本寄存器的最小只读探测。
+首版阻断项更新方案，随后单独批准一次FPGA版本寄存器的最小只读探测。
 本阶段没有修改原预处理算法、模型、启动文件或ARM数值程序，没有执行SDK Open/reset/check、推理或视频输出。
 
 ### 真实回放数值验证
@@ -45,9 +45,9 @@ ARM程序SHA256 `65d44aa2aff5ffe2975300b27b1325dc7b25d5cb71cd6f85ee5076b4aa4a59b
 ### 启动及运行身份
 
 只读解析SD FAT16，没有挂载或写入。板上BOOT SHA256为
-`ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`，与用户指定Lite 25122301包相同；
+`ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`，与指定Lite 25122301包相同；
 其他8个启动分区文件与旧审计一致，原镜像内核/设备树未随参考BOOT全部替换。
-用户日志`Logs/Log1.txt`第56行记录FSBL下载PL成功，Linux随后正常启动。
+日志`Logs/Log1.txt`第56行记录FSBL下载PL成功，Linux随后正常启动。
 uEnv的loadbit是`fatload mmc 0:2 ... download.bit`，日志在导入uEnv后出现文件系统错误；
 这与p2为ext4相符，但没有逐命令日志，记录为二次加载未确认，不修复启动配置。
 
@@ -56,13 +56,13 @@ uEnv的loadbit是`fatload mmc 0:2 ... download.bit`，日志在导入uEnv后出�
 不能把原始文件字节序差异误报为不同配置。文件头Version=2018.3、Patched=DISABLE_ICAP,VCCM、PatchID=32494
 仅作为此文件的元数据记录，不改变本项目Vivado2019.1辅助/Procise实现基线。
 
-用户另行明确批准只读访问后，仅O_RDONLY/PROT_READ取得0x4000001C的4字节`01 23 12 25`，
+另行明确批准只读访问后，仅O_RDONLY/PROT_READ取得0x4000001C的4字节`01 23 12 25`，
 little-endian值为`0x25122301`。运行FPGA版本与所选AI Mate包声明一致。
 该读取未调用SDK初始化/复位/自检，也没有授权或证明后续模型/显示功能通过。
 
 板端包实测icraft:arm64=3.39.0、customop:arm64=3.39.0、icraftmdzthirdparty=0.1.1；
 Linux5.4.52/aarch64、udmabuf128MiB、video0驱动amvx_dev。设备树只读索引未发现独立命名的HDMI/AI节点，
-这不能否定用户逻辑存在；它也没有单独证明参考映射和720p时序。
+这不能否定逻辑存在；它也没有单独证明参考映射和720p时序。
 
 证据：[运行环境审计](evidence/board-runtime-audit-25122301.json)、[BOOT/PL解码对应](evidence/boot-25122301-comparison-resolved.json)、
 [只读版本回读](evidence/fpga-version-read-25122301.json)。初步直接对照见boot-25122301-comparison.json，旧审计保留不覆盖。
@@ -72,7 +72,7 @@ Linux5.4.52/aarch64、udmabuf128MiB、video0驱动amvx_dev。设备树只读索�
 
 真实回放门检已经解除预处理阻断，不能扩大为任意输入、跨平台数学普遍等价或新采集设备已验证。
 模型以相位标量为输入，因此相位周期等价不能自动替代模型输入/推理输出的一致性检查。
-遇到真实样本的标量大差仍须停下讨论，人工边界降级是用户明确的首版范围取舍。
+遇到真实样本的标量大差仍须停下讨论，人工边界降级是明确的首版范围取舍。
 
 BOOT哈希、载荷对应、启动日志及运行版本可共同建立位流身份；单凭文件名、文件存在或FPGA operating状态不足。
 仍需SDK混合推理实测确认3.39.0与25122301兼容，不能由版本相符跳过六个Host算子及NPU执行的核验。

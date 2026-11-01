@@ -1,6 +1,6 @@
 # r3三样本停止：不同输入得到相同输出
 
-用户一次执行mixed-three并完整回传，代理只审阅本机数据及SDK资料，未重跑或接入设备。
+一次执行mixed-three并完整回传，代理只审阅本机数据及SDK资料，未重跑或接入设备。
 退出1、stderr/failure均为All outputs identical for distinct CSI; review needed，阶段failed_stop_no_retry。
 四次前向308/309/310/308均完成后触发不同输入响应门禁；无成功summary，不生成mixed-three.acceptance.json。
 61回传/291包/12参考哈希、程序/SDK/设备、12注册和原1173融合绑定核验通过。

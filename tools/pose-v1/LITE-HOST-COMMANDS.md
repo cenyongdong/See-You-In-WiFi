@@ -1,8 +1,8 @@
-# Lite Host三样本数值参考：用户执行说明（2026-10-05）
+# Lite Host三样本数值参考：人工操作说明（2026-10-05）
 
 **旧链入口（2026-10-29）：** 本页属于早期 pose-v1 诊断／验证，当前部署从[最终进度](../../PROJECT-PROGRESS.md)进入；旧主机路径、板端目录、算子计数与阶段授权不能套用最新演示。
 
-状态：用户Host参考退出码1，日志已定位Session::Create<HostBackend>绑定op_id=1 MatmulNode失败，尚未执行样本前向；根因仍待库/注册审查。见HOST-BINDING-REVIEW-20261005.md。暂停重跑及数值比较/mixed，下面执行命令保留为历史记录，不再次运行。
+状态：Host参考退出码1，日志已定位Session::Create<HostBackend>绑定op_id=1 MatmulNode失败，尚未执行样本前向；根因仍待库/注册审查。见HOST-BINDING-REVIEW-20261005.md。暂停重跑及数值比较/mixed，下面执行命令保留为历史记录，不再次运行。
 
 后续独立注册探针已确认Matmul及ZG图六个Host节点中的五个无注册，Gather有注册；
 具体HOST-REGISTRY-RESULTS-20261005.md。CPU参考与混合图PS部分均存在注册阻断，不能跳过参考或直接运行mixed。
@@ -11,10 +11,10 @@
 不改源码/构建/模型，不重编译/重传二进制，不安装依赖，不调用NPU Device::Open。
 Host只作数值参考，正式PS/NPU及双路验收要求保持。
 
-## 1. 资源与结果路径查询（用户已执行、截图已复核）
+## 1. 资源与结果路径查询（已执行、截图已复核）
 
 2026-10-05截图：总内存993 MiB、available 744 MiB、Swap 0；/tmp位于根文件系统，剩余47G。
-可见进程未见明显其他推理/视频用户应用，host-reference-20261005前缀查询无输出。
+可见进程未见明显其他推理/视频应用，host-reference-20261005前缀查询无输出。
 证据：evidence/lite-host-resource-query-20261005-1.png及-2.png。
 可进入已批准的第2步一次受限试跑；模型峰值内存、ARM算子支持和耗时仍未知，不把资源前检当成模型通过。
 下列命令保留为已完成的查询记录，不必重跑。
@@ -82,7 +82,7 @@ cat host-reference-20261005.stderr.log
 backend-bindings及operator-execution必须只显示Host运行；observed_zg_callbacks=0，不把没有NPU执行误认为本参考失败。
 profile原始单位尚未确认；参考CPU耗时不代表正式混合推理性能。
 
-第2步成功及日志复核后，由用户在Lite生成清单：
+第2步成功及日志复核后，人工在Lite生成清单：
 
 ```bash
 cd /tmp/pose-v1-inference-20261005
@@ -119,7 +119,7 @@ if ($poseHostSeen.Count -eq 0 -or $poseHostSeen.Count -ne $poseHostFiles.Count) 
 Write-Host ('Host回传哈希匹配：' + $poseHostSeen.Count + '份；数值验收仍待复核。')
 ```
 
-回传/校验仍由用户执行，代理随后审查输入逐位一致、完整输出/后端/帧号/哈希。
+回传/校验仍人工执行，代理随后审查输入逐位一致、完整输出/后端/帧号/哈希。
 原inference_gate.py verify-return明确只接受mixed前缀，本次不调用或修改它。
 上述Host专用读取只接受host-reference-20261005的简单文件名、拒绝重复/非法路径、逐文件SHA256并核对完整列表。
 该目录保持原G比较命令使用的host-20261005路径，但来源明确为Lite ARM，不是Windows Host。

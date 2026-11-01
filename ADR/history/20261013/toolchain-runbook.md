@@ -1,6 +1,6 @@
 # 本机工具路径与调用方法（历史资料）
 
-迁出日期：2026-10-13。下列原文来自整理前Agents.md第345行起，路径/工具状态以原核对日期为准，使用前依现行规范重新核验；命令示例不是执行授权。现行资料入口见[REFERENCES](../../../REFERENCES.md)。
+迁出日期：2026-10-13。下列原文来自整理前AGENTS.md第345行起，路径/工具状态以原核对日期为准，使用前依现行规范重新核验；命令示例不是执行授权。现行资料入口见[REFERENCES](../../../REFERENCES.md)。
 
 ## 本机工具路径与调用方法
 
@@ -15,7 +15,7 @@
 | Shell 启动器 | `C:\FudanMicro\Procise\procise_sh_launch.exe` |
 | Tcl 执行程序 | `C:\FudanMicro\Procise\bin\procise.exe` |
 | 编程下载工具程序 | `C:\FudanMicro\Procise\bin\procise_jtag.exe` |
-| 用户/约束/IP 等手册 | `C:\FudanMicro\Procise\documents` |
+| /约束/IP 等手册 | `C:\FudanMicro\Procise\documents` |
 | Tcl 命令查找线索 | `C:\FudanMicro\Procise\conf\commands_*.xml` |
 
 按需要选择一个启动器：
@@ -120,6 +120,6 @@ try {
 - 悟净 Lite/30TAI 查 ZHUGE/ZG330 文档；本机 `parse --help` 的默认 target 是 `Buyi`，因此必须显式核对配置中的 `target = "zhuge"` 及后续适配/生成参数。不得将图像示例的形状、预处理或量化参数直接用于 Wi-Fi CSI。
 - `run` 的 Host 验证与 ZG330 实板运行需分别配置；板端运行时、位流、服务、设备地址及输入未确定时，只记录命令形式，不自行填入。帮助输出成功不代表模型编译或板端部署已验证。
 - Icraft 警告诊断（2026-10-01）：CLI 与直接调用 `icraft-run.exe --help` 均出现 `nvfuser_codegen_ic.dll` 加载警告，帮助正常输出且退出码均为 0。被点名的 DLL 实际存在；PE 导入依赖链中 `torch_cuda_ic.dll` 需要 `cufft64_10.dll`、`cublas64_11.dll`，`cusolver64_11.dll` 还需要 `cublasLt64_11.dll`，这三者在 Icraft bin 与当前搜索路径中缺失；直接加载相关现有库返回错误 126。
-- 经用户明确同意的临时验证（2026-10-01）：仅在独立子进程中将 Icraft 3.39.0 bin 和 `C:\Users\cenyongdong\miniconda3\envs\koala\Lib\site-packages\torch\lib` 依次放到 PATH 首部，再执行 `icraft run --help`。该 Conda 环境的 PyTorch 为 `2.1.2+cu118`，包含上述缺失库；加入路径后警告消失、stderr 为 0 字节、退出码为 0，帮助正文与原环境逐字节一致。由此确认当前警告与 CUDA 依赖库的可发现性有关；本次只验证帮助命令级加载，未验证模型、Host/CUDA 推理或实板兼容性，未实施长期修复。后续复制 DLL、永久修改 PATH、安装 CUDA、更换 Icraft/PyTorch 或采用长期启动配置，均须先讨论并获得用户明确同意；不得将此次临时验证的同意扩展为这些操作的授权。
+- 的临时验证（2026-10-01）：仅在独立子进程中将 Icraft 3.39.0 bin 和 `C:\Users\cenyongdong\miniconda3\envs\koala\Lib\site-packages\torch\lib` 依次放到 PATH 首部，再执行 `icraft run --help`。该 Conda 环境的 PyTorch 为 `2.1.2+cu118`，包含上述缺失库；加入路径后警告消失、stderr 为 0 字节、退出码为 0，帮助正文与原环境逐字节一致。由此确认当前警告与 CUDA 依赖库的可发现性有关；本次只验证帮助命令级加载，未验证模型、Host/CUDA 推理或实板兼容性，未实施长期修复。后续复制 DLL、永久修改 PATH、安装 CUDA、更换 Icraft/PyTorch 或采用长期启动配置，均须先讨论并获得；不得将此次临时验证的同意扩展为这些操作的授权。
 
-命令依据：[Procise 用户使用手册](C:/FudanMicro/Procise/documents/Procise用户使用手册.pdf) 第四节；Icraft 本地 [CLI](<C:/Icraft/CLI v3.39.0/docs/cli/index.html>)、[编译](<C:/Icraft/CLI v3.39.0/docs/start/compilation.html>)、[命令行参数](<C:/Icraft/CLI v3.39.0/docs/interface/cli_arguments.html>)；以及版本/帮助查询和实测记录。Icraft 独立组件与启动器第一阶段验证见 `REFERENCES.md` I5；Procise 原 LED1→2→3→4 流水灯构建及 JTAG 下载见第 13 节和 `Done.md`。模型编译/推理与 AI 系统部署仍未验证；MCP 独立客户端、长期配置及当前聊天新灯序仿真→Procise 位流复核的状态见第 14 节、14.1、14.2。当前源码为 LED1→3→2→4，新位流随后经用户明确授权下载并通过实板观察，见 14.3。
+命令依据：[Procise 用户使用手册](C:/FudanMicro/Procise/documents/Procise用户使用手册.pdf) 第四节；Icraft 本地 [CLI](<C:/Icraft/CLI v3.39.0/docs/cli/index.html>)、[编译](<C:/Icraft/CLI v3.39.0/docs/start/compilation.html>)、[命令行参数](<C:/Icraft/CLI v3.39.0/docs/interface/cli_arguments.html>)；以及版本/帮助查询和实测记录。Icraft 独立组件与启动器第一阶段验证见 `REFERENCES.md` I5；Procise 原 LED1→2→3→4 流水灯构建及 JTAG 下载见第 13 节和 `Done.md`。模型编译/推理与 AI 系统部署仍未验证；MCP 独立客户端、长期配置及当前工具会话新灯序仿真→Procise 位流复核的状态见第 14 节、14.1、14.2。当前源码为 LED1→3→2→4，新位流随后下载并通过实板观察，见 14.3。

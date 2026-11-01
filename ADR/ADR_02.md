@@ -42,11 +42,11 @@ r8最初Host300秒超时95例全部符合预期，原失败保存；新外部420
 
 ### 2026-10-08后续启动边界实测
 
-后续用户明确批准一次规整恢复验证，覆盖前轮禁止规整的对应限制。159.69498ms单次操作、普通高阶折算512KiB单位5→91，之后新保存优先目标两个独立进程启动及32前向/984编码/864网络通过，未第二次规整、清缓存、重启或改CMA。支持本次恢复有效，不推翻两缓冲不保证任意碎片状态的限制；安全CMA路径另按ADR_13。[结果](../tools/pose-v1/PRESAVED-RESULTS-20261008.md)。
+后续一次规整恢复验证，覆盖前轮禁止规整的对应限制。159.69498ms单次操作、普通高阶折算512KiB单位5→91，之后新保存优先目标两个独立进程启动及32前向/984编码/864网络通过，未第二次规整、清缓存、重启或改CMA。支持本次恢复有效，不推翻两缓冲不保证任意碎片状态的限制；安全CMA路径另按ADR_13。[结果](../tools/pose-v1/PRESAVED-RESULTS-20261008.md)。
 
 TCP输出失配诊断新目标在首次VPU启动处再次失败，尚未创建Engine/执行模型。85项完整回传和内核新增order7/0x10dc0，amvx固件路径为`mvx_mmu_alloc_contiguous_pages → map_protocol_v2 → mvx_fw_factory`。失败当时约130,604KiB CMA空闲，512KiB及以上空闲块均CMA；两缓冲降低资源要求，仍不能保证任意普通高阶页碎片状态启动。
 
-失败后STREAMOFF均返回0、端口和进程释放。随后只读pagetype快照出现5个Unmovable order7块，这是清理后的不同状态，不回写为故障现场，不当自动重跑门禁。原三次启动通过保持其范围。未规整、清缓存、重启或改CMA；新取证因资源条件停止，用户选择恢复方式后用新目录继续。证据`tools/pose-v1/evidence/tcp-evidence-20261008-r1/live-three`及`memory-failure-snapshot`，详见[TCP结果](../tools/pose-v1/TCP-INTEGRATION-RESULTS-20261008.md)。
+失败后STREAMOFF均返回0、端口和进程释放。随后只读pagetype快照出现5个Unmovable order7块，这是清理后的不同状态，不回写为故障现场，不当自动重跑门禁。原三次启动通过保持其范围。未规整、清缓存、重启或改CMA；新取证因资源条件停止，恢复方式后用新目录继续。证据`tools/pose-v1/evidence/tcp-evidence-20261008-r1/live-three`及`memory-failure-snapshot`，详见[TCP结果](../tools/pose-v1/TCP-INTEGRATION-RESULTS-20261008.md)。
 
 - [r6完成及失败核验](../tools/pose-v1/evidence/pipeline-20261008-r6/completion-review.json)
 - [Linux5.4 GFP定义](https://raw.githubusercontent.com/torvalds/linux/v5.4/include/linux/gfp.h)：mobility与NORETRY行为；上游机制不代替板端定制驱动证明。

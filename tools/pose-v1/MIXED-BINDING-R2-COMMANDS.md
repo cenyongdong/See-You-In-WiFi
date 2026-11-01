@@ -114,7 +114,7 @@ if ($LASTEXITCODE -ne 0) { throw '阶段证据未通过，停止。' }
 ```
 
 该review-stage仅用于host-check/offline-check/memory-check。apply取证仍保留原失败门检，代理先审阅快照，不直接生成apply验收或启动mixed。
-前三阶段核验后用户传入新验收文件：
+前三阶段核验后传入新验收文件：
 
 ```powershell
 scp -o StrictHostKeyChecking=yes $poseAcceptance ('root@192.168.126.49:/tmp/pose-v1-mixed-validation/20261006-binding-r2/gates/' + $poseStage + '.acceptance.json')

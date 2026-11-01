@@ -2,7 +2,7 @@
 
 **最新结果：2026-10-04 12:00:59完成10轮并停止，13:06独立核验通过。最佳第6轮344.787403mm，第10轮377.942667mm。分化参数没有归零，但第7–10轮所有抽检的分化/细化注意力梯度为零，细化学习仍存在退化；不能将训练完成等同于算法有效。** 完整结果见[RESULTS.md](D:/FPGACompetitionProject/tools/pose26-diff-nodecay/20261004/RESULTS.md)。
 
-用户批准的是上一轮建议的“仅关闭 Differentiation Branch 衰减”对照，不是关闭整条细化路径。当前已按10轮授权停止，禁止自动延长、重启或变更参数。用户此前暂不启用监测的选择保持；没有为本实验启用定时任务，ID26仍暂停。下述10:20–10:25启动/运行状态和待验收文字是历史记录，已由上述完成核验更新；最终证据见`evidence/completion-20261004-1306`和`evidence/completion-verification.json`。
+是上一轮建议的“仅关闭 Differentiation Branch 衰减”对照，不是关闭整条细化路径。当前已按10轮授权停止，禁止自动延长、重启或变更参数。此前暂不启用监测的选择保持；没有为本实验启用定时任务，ID26仍暂停。下述10:20–10:25启动/运行状态和待验收文字是历史记录，已由上述完成核验更新；最终证据见`evidence/completion-20261004-1306`和`evidence/completion-verification.json`。
 
 交付前最新只读查询（10:25:28）：stage=training，第1轮第1701个训练步，分化L2=1.719859849，分化/注意力梯度及查询残差非零；日志未记录异常，仍无完整评估。初期分支未塌缩，不代表已越过原第6轮退化点或精度改善。证据 `evidence/progress-latest.json`；下方10:21启动核验为较早独立快照。
 
@@ -39,7 +39,7 @@ PYTHONPATH=/public/cyd/Person-in-WiFi-3D-repo \
 tools/train.py configs/wifi/petr_wifi_tpami2026_diff_nodecay.py --launcher pytorch --seed 0
 ```
 
-优先查 `pipeline-status.json`、`train.stdout.log`、`branch_diagnostics.jsonl`、`epoch_parameter_checks.jsonl`、`evaluations.jsonl`。每轮全7824帧评估人数分组、逐关节及固定匹配粗/细化误差；非有限值、索引错误、DDP不一致及连续两轮分化/细化注意力L2<1e-10仍会停止。最终保存epoch10和最佳权重，生成 `final-report.json`、`metrics.csv`、曲线及与旧实验前5轮的同轮对照；这些目前均待验证。生成报告仍需独立验收，不等于自动通知用户。
+优先查 `pipeline-status.json`、`train.stdout.log`、`branch_diagnostics.jsonl`、`epoch_parameter_checks.jsonl`、`evaluations.jsonl`。每轮全7824帧评估人数分组、逐关节及固定匹配粗/细化误差；非有限值、索引错误、DDP不一致及连续两轮分化/细化注意力L2<1e-10仍会停止。最终保存epoch10和最佳权重，生成 `final-report.json`、`metrics.csv`、曲线及与旧实验前5轮的同轮对照；这些目前均待验证。生成报告仍需独立验收，不等于自动通知。
 
 ## 对后续开发的参考
 

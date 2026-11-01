@@ -31,7 +31,7 @@ SDK目录/usr/cmake，15ARM头文件/Host及ZG库/版本核验不依赖容器Pyt
 
 ## 后续顺序（按对应已验收阶段推进）
 
-新板端路径固定为/tmp/pose-v1-mixed-validation/20261006-fusion-r3，当前由用户按下方B创建/传输。
+新板端路径固定为/tmp/pose-v1-mixed-validation/20261006-fusion-r3，当前人工按下方B创建/传输。
 构建核验后代理提供新目录创建/传输和仅Host命令，每阶段完整回传且新身份验收文件传入后才继续：
 
 | 阶段 | 限时 | 范围与通过要求 |

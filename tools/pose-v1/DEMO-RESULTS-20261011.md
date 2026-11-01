@@ -1,6 +1,6 @@
 # 2026-10-11 端到端演示结果
 
-用户要求暂停现阶段坏读定位、优先形成software/demo全链演示，本工作包已完成。真实数据源为指定wifipose/test_data/csi目录；主机仅读MAT csi_out并PIWCSI1回放，Lite执行PS预处理/既有PS-NPU Engine/骨架渲染/VPU H264，主机通过RTSP/TCP实际解码和GUI显示。HDMI未接入。
+暂停现阶段坏读定位、优先形成software/demo全链演示，本工作包已完成。真实数据源为指定wifipose/test_data/csi目录；主机仅读MAT csi_out并PIWCSI1回放，Lite执行PS预处理/既有PS-NPU Engine/骨架渲染/VPU H264，主机通过RTSP/TCP实际解码和GUI显示。HDMI未接入。
 
 ## 程序与数据身份
 
@@ -37,7 +37,7 @@
 
 1. r1构建调用旧TCP selftest缺参数，Native停止；补--self-test后协议通过。
 2. 首短测试VPU DQBUF EIO、普通512KiB单位1；一次规整39.27594ms后仍1，Engine/前向/PC解码均0。完整异常和内核回传，没有重跑失败Session。
-3. 用户额外批准一次可控重启；实际只一次systemctl reboot。前后BOOT/SDK同、新boot-id/FPGA operating，普通单位980。/tmp被系统清空，旧失败已在本机保存；新只读目录补重启审计，无第二次重启、清缓存或CMA变化。
+3. 额外批准一次可控重启；实际只一次systemctl reboot。前后BOOT/SDK同、新boot-id/FPGA operating，普通单位980。/tmp被系统清空，旧失败已在本机保存；新只读目录补重启审计，无第二次重启、清缓存或CMA变化。
 4. r2新运行首次capture过，Engine证据目录缺失导致构造失败；main修正目录创建。播放器open/read预算调整到10/5秒、总90/175保持。
 5. r3运行Engine初始化过、255 NoInput解码，首次CSI Producer Recorder未配置拒绝。新增独立demo_engine集中原模块初始化/保存，没有更改NPU或数学。r5程序在新r4目录通过两阶段。
 6. 本机编排修正取消播放器并始终取归档，修订分别新目录新包，失败数据不覆盖。详情见[ADR_45](../../ADR/ADR_45.md)。
@@ -54,4 +54,4 @@
 
 ## 限制与后续
 
-原高负载DATA96/800/192/582首次坏读根因没有修复，按用户要求保持暂停，原首次文件/晚源读不删。永久VPU首启动、严格整机5Hz、30分钟、真实采集、零拷贝及HDMI未通过。当前处于有界可展示系统完成、性能与长期可靠性待收敛阶段，管理83/100保持（非验收通过率或工期）。本批无继续排查或后台运行；若用户恢复旧排查，先核对身份和ADR_44检查点，不能续用已失败Session或重启前/tmp句柄。
+原高负载DATA96/800/192/582首次坏读根因没有修复，保持暂停，原首次文件/晚源读不删。永久VPU首启动、严格整机5Hz、30分钟、真实采集、零拷贝及HDMI未通过。当前处于有界可展示系统完成、性能与长期可靠性待收敛阶段，管理83/100保持（非验收通过率或工期）。本批无继续排查或后台运行；若阶段恢复后旧排查，先核对身份和ADR_44检查点，不能续用已失败Session或重启前/tmp句柄。

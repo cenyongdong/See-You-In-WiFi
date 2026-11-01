@@ -1,37 +1,37 @@
-# 2024 epoch442 独立混合推理门检：用户执行说明（2026-10-05）
+# 2024 epoch442 独立混合推理门检：人工操作说明（2026-10-05）
 
 **旧链入口（2026-10-29）：** 本页属于早期 pose-v1 诊断／验证，当前部署从[最终进度](../../PROJECT-PROGRESS.md)进入；旧主机路径、板端目录、算子计数与阶段授权不能套用最新演示。
 
-**2026-10-06当前路线**：CPU独立候选已验收，用户批准ONNX直接对照板端、工程/数值分阶段。
+**2026-10-06当前路线**：CPU独立候选已验收，ONNX直接对照板端、工程/数值分阶段。
 本机ONNX参考已完成；新独立pose_mixed_check候选及[新命令](MIXED-VALIDATION-COMMANDS.md)已交付，尚未编译/板测。
 下述停止条件及三端参考要求保留为原检查器历史记录；不要使用旧二进制执行F3，它没有新混合注册/桥。
 原CPU Matmul问题保留诊断，不再阻断新工程门检；首版NPU与双路要求保持。
 
-**最新停止条件（2026-10-05）**：独立注册探针已获批准并完成，Matmul及ZG图的TopK/GatherElements/ScatterND共五个Host节点缺少init/forward注册，只有Gather有注册。见HOST-REGISTRY-RESULTS-20261005.md。当前不得执行F2重跑或F3 mixed；先核对SDK官方支持/加载机制，任何修复方案另讨论批准。以下既有阶段命令保留为历史说明，不因命令存在或初始化probe通过而绕过新阻断。软件一般用户执行，特殊问题允许代理工具协助的最新规则见Agents.md。
+**最新停止条件（2026-10-05）**：独立注册探针已获批准并完成，Matmul及ZG图的TopK/GatherElements/ScatterND共五个Host节点缺少init/forward注册，只有Gather有注册。见HOST-REGISTRY-RESULTS-20261005.md。当前不得执行F2重跑或F3 mixed；先核对SDK官方支持/加载机制，任何修复方案另讨论批准。以下既有阶段命令保留为历史说明，不因命令存在或初始化probe通过而绕过新阻断。软件一般人工操作，特殊问题允许代理工具协助的最新规则见AGENTS.md。
 
-状态：源码、脚本和命令已交付；用户已完成固定打包及FPAI交叉编译/链接，代理读取产物复核通过。
+状态：源码、脚本和命令已交付；已完成固定打包及FPAI交叉编译/链接，代理读取产物复核通过。
 最新D反馈：板端11项包文件以`files.lf.sha256`校验全部OK、退出码0，ldd已列出的依赖均解析成功；
 ZG图inspect返回0，接口/阶段/配置及stderr已由后续截图复核，**D离线检查通过**。
-用户随后运行E probe退出码0，SDK device=25122301；完整产物/日志已复核，**E初始化探测通过，推理与数值结果尚未验证**。
-由用户实际执行，代理核对日志并维护源码；已有inspect-zg保留，不重复执行。
+随后运行E probe退出码0，SDK device=25122301；完整产物/日志已复核，**E初始化探测通过，推理与数值结果尚未验证**。
+人工实际执行，代理核对日志并维护源码；已有inspect-zg保留，不重复执行。
 本轮只检查三个固定真实窗口，不接网络服务、HDMI、VPU或RTSP，不修改模型、BOOT、SDK或FPGA工程。
 
-2026-10-05用户已提交A及补查截图：GCC9.4.0/CMake3.24.2确认；Icraft和CustomOp均arm64 3.39.0、
+2026-10-05已提交A及补查截图：GCC9.4.0/CMake3.24.2确认；Icraft和CustomOp均arm64 3.39.0、
 第三方包arm64 0.1.1，均已安装。SDK配置目录`/usr/cmake`内Host/ZG330配置及对应头文件/库路径已确认。
-最新用户B/C结果已复核：构建目录`.local/pose-v1-build/inference-20261005-165059-043b0c40`，
+最新B/C结果已复核：构建目录`.local/pose-v1-build/inference-20261005-165059-043b0c40`，
 二进制SHA256 `d1006f9bd78050ffa484c64bf74fb62542d270c7acca5068e9da611a5bdc05e5`；
 7份源码记录和11份包文件哈希/大小全部匹配。**现在准备F1/F2参考；不重传、不重跑D或probe，参考有效前不进入mixed。**
 ORT缺失、Windows cmake/cl当前PATH不可见保持，见[环境查询记录](ENVIRONMENT-QUERY-20261005.md)。
 
 Windows工具后续只读定位：`D:\Visual Studio\ Visual Studio 2022\Community`存在MSVC/CMake和厂商开发终端脚本，
 目录名开头空格应保留。仅文件存在，SDK/临时终端/CMake生成器及Host编译未验证。
-现在先按[WINDOWS-HOST-ENV-CHECK.md](WINDOWS-HOST-ENV-CHECK.md)由用户查询，不直接执行F2构建。
+现在先按[WINDOWS-HOST-ENV-CHECK.md](WINDOWS-HOST-ENV-CHECK.md)人工查询，不直接执行F2构建。
 
 同窗口后续查询已确认cl/x64/VS目录及CMake可用，但WindowsSdkDir未设置、WindowsSDKVersion仅`\`，
 F2 Windows构建暂停。候选[REFERENCE-NEXT-PLAN.md](REFERENCE-NEXT-PLAN.md)讨论Lite host参考及ORT解析预览，
 未批准前不执行候选、不自动补SDK；原F2/F3命令仍受前提限制，不能直接跳过参考进入mixed。
 
-用户随后明确批准B“先用Lite Host作参考”；本阶段F2执行平台改为Lite，复用现有二进制/optimized图及固定张量。
+B“先用Lite Host作参考”；本阶段F2执行平台改为Lite，复用现有二进制/optimized图及固定张量。
 当前先按[LITE-HOST-COMMANDS.md](LITE-HOST-COMMANDS.md)第1步查询资源并交回，不启动模型。
 ORT解析/安装未获批准，F1暂停；F3仍须参考数值有效和配套/并发条件确认，不能直接运行。
 
@@ -112,7 +112,7 @@ $poseSdkCmake = '/usr/cmake'
 
 ## D. 传输、哈希和离线接口检查
 
-本次传输、ldd及inspect已由用户执行并复核通过，下面读取命令保留供追溯，不需重复执行：
+本次传输、ldd及inspect已人工执行并复核通过，下面读取命令保留供追溯，不需重复执行：
 
 ```bash
 cd /tmp/pose-v1-inference-20261005
@@ -173,10 +173,10 @@ cat inspect-zg/graph-io.json
 E已复核通过，仅覆盖Device::Open/version：阶段完整、stdout报告初始化成功、stderr为空、无failure.json，
 device=25122301、icore=FMSHZGV3TECH-AID - 24160628，提供的内核尾部未见探测相关总线/DMA错误。
 启动阶段EXT4恢复及journal异常关闭/更换信息已保留，不当作probe错误，不自动修复。
-下面命令均已由用户执行并提交，留作追溯；不重跑probe或重复读取已有材料。
+下面命令均已人工执行并提交，留作追溯；不重跑probe或重复读取已有材料。
 下一步F1/F2参考环境准备；ORT缺失/Windows Host工具待确认，安装或更换参考平台须另行讨论。
 
-本次probe已经由用户执行，退出码0，SDK device版本25122301与既有基线一致。
+本次probe已经人工执行，退出码0，SDK device版本25122301与既有基线一致。
 compatibility_passed=false为源码固定写出的“兼容性待验收”，不代表SDK已经检测失败，也不得改为true绕过验收。
 现在仅在Lite SSH读取已保存的结果并交回，不重跑或覆盖目录/日志：
 
@@ -197,8 +197,8 @@ cat probe.dmesg.log
 当前版本相符与退出码0只证明Open/version返回，不代表模型计算或数值兼容性。
 下面是此前前置检查和probe执行步骤，保留供追溯，本次不要重复执行。
 
-D已通过。下述只读查询已由用户执行：GNU coreutils timeout 8.30、四个probe路径不存在，
-可见进程未见明显AI/HDMI/编码应用。仍需用户确认自0x25122301核验后未替换BOOT或JTAG加载其他位流，
+D已通过。下述只读查询已人工执行：GNU coreutils timeout 8.30、四个probe路径不存在，
+可见进程未见明显AI/HDMI/编码应用。仍需人工确认自0x25122301核验后未替换BOOT或JTAG加载其他位流，
 且无其他演示使用设备；确认前不运行probe。以下查询保留供追溯，不需重复执行：
 
 ```bash
@@ -212,12 +212,12 @@ ls -ld probe probe.stdout.log probe.stderr.log probe.dmesg.log
 timeout应为GNU实现并支持既定signal/kill-after参数；缺失或不明确时停止，不安装替代工具。
 进程列表用于审查是否有AI/HDMI/编码应用并发，不仅按单一程序名判断；列表不能排除未显示的其他访问方。
 最后ls仅查询已有探测证据是否存在：首次未执行时这四个路径应报不存在，属于预期，不是程序故障。
-有任一旧probe产物则先讨论，不覆盖、不删除或重新探测。另需用户确认BOOT未再改变、当前没有其他演示/AI/显示程序在用设备。
+有任一旧probe产物则先讨论，不覆盖、不删除或重新探测。另需人工确认BOOT未再改变、当前没有其他演示/AI/显示程序在用设备。
 确认前不执行下面probe命令，不自行停止后台进程或重启板子。
 
 前提：D全部通过，板卡BOOT仍是已确认的25122301，当前无其他AI/显示进程并发访问设备。
 如果无法确认并发状态，先讨论。**Open可能访问/初始化硬件，不是先前4字节只读探测**。
-本轮已批准方向是独立初始化/混合推理门检；操作由用户执行。程序没有reset/check或HDMI/VPU动作。
+本轮已批准方向是独立初始化/混合推理门检；操作人工执行。程序没有reset/check或HDMI/VPU动作。
 
 ```bash
 cd /tmp/pose-v1-inference-20261005

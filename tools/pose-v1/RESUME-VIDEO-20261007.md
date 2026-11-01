@@ -1,19 +1,19 @@
 # 视频任务暂停与恢复入口（2026-10-07）
 
-> 2026-10-08当前：两缓冲启动三次回归及有限主线程Engine＋后台VPU三/27窗口通过，987原始编码帧全解码核验。[启动](VPU-STARTUP-RESULTS-20261008.md)、[常驻/预览](RESIDENT-RESULTS-20261008.md)、[恢复点](evidence/resident-20261008-r6/next-checkpoint.json)。下一在线owned AU/live555，保留原模型/数学/SDK/BOOT、主线程模式/两缓冲候选；旧后台Engine/六缓冲失败勿重跑。任务未被用户暂停，测试与SSH/SFTP已关闭，无后台。不是daemon/RTSP/整机5Hz/长期验收，预览名义10fps不当真实PTS；旧入口为历史。
+> 2026-10-08当前：两缓冲启动三次回归及有限主线程Engine＋后台VPU三/27窗口通过，987原始编码帧全解码核验。[启动](VPU-STARTUP-RESULTS-20261008.md)、[常驻/预览](RESIDENT-RESULTS-20261008.md)、[恢复点](evidence/resident-20261008-r6/next-checkpoint.json)。下一在线owned AU/live555，保留原模型/数学/SDK/BOOT、主线程模式/两缓冲候选；旧后台Engine/六缓冲失败勿重跑。任务未被暂停，测试与SSH/SFTP已关闭，无后台。不是daemon/RTSP/整机5Hz/长期验收，预览名义10fps不当真实PTS；旧入口为历史。
 
-**2026-10-08恢复入口已更新，任务未被用户暂停。** 先读[有限合并结果](PIPELINE-RESULTS-20261008.md)、[检查点](evidence/pipeline-20261008-r6/next-checkpoint.json)、[下一门检](PIPELINE-NEXT-20261008.md)。Host107与两有限合并成功，r6无规整新进程重复失败；不要重跑旧失败或自动compact。下一新修订只读取证分配时序，保留6队列/prime2/cookie/math，再有依据最小修正。测试与会话已关闭，无后台。以下入口均为历史阶段。
+**2026-10-08恢复入口已更新，任务未被暂停。** 先读[有限合并结果](PIPELINE-RESULTS-20261008.md)、[检查点](evidence/pipeline-20261008-r6/next-checkpoint.json)、[下一门检](PIPELINE-NEXT-20261008.md)。Host107与两有限合并成功，r6无规整新进程重复失败；不要重跑旧失败或自动compact。下一新修订只读取证分配时序，保留6队列/prime2/cookie/math，再有依据最小修正。测试与会话已关闭，无后台。以下入口均为历史阶段。
 
-**当前入口：独立RTSP首批已完成，用户已审查动态样片并要求继续。**
+**当前入口：独立RTSP首批已完成，已审查动态样片。**
 
 先读[RTSP结果](RTSP-RESULTS-20261007.md)、[新检查点](evidence/rtsp-20261007-r3/next-checkpoint.json)、[F0接入门检](F0-INTEGRATION-PREP-20261007.md)。r3两会话200帧＋r4标准播放器100帧逐位原视频，服务/会话均关闭；不要重跑已通过的独立文件/传输阶段。下一有限真实Engine结果→渲染→VPU/owned AU接入；模型/SDK/BOOT与帧协议保持。HDMI配套仍缺，色彩SPS标记另列。原暂停、失败和r5入口均按历史保留。
 
-**当前入口已更新：用户已唤醒，整体暂停撤销，V2-A故障修正与完整视频核验完成。**
+**当前入口已更新：阶段恢复后，整体暂停撤销，V2-A故障修正与完整视频核验完成。**
 
 先读[VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md](VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)、[completion](evidence/video-descriptor-20261007-r5/completion-review.json)、[新检查点](evidence/video-descriptor-20261007-r5/next-checkpoint.json)。r5两独立上下文各54帧完整/相同码流，主机54ID/27来源/关节通过；无需重跑已通过文件编码。源码当前r5，冻结包/build及原失败均保留。
 下一为动态样片人工审查及RTSP准备：实际SPS/PPS/NAL/PTS、有界owned AU/归还顺序、加入与重连；当前无后台服务或会话。HDMI配套未建立不写；原SDK/BOOT/模型及NPU帧协议保持。以下是原r1暂停与故障历史，不能作为当前执行状态。
 
-用户明确要求中断、等待唤醒；当前不执行构建、连接、编码、HDMI或自动化。HDMI测试授权与已批准下一视频计划保留，待用户明确恢复再继续。
+中断、等待唤醒；当前不执行构建、连接、编码、HDMI或自动化。HDMI测试授权与已批准下一视频计划保留，待阶段恢复后再继续。
 
 ## 先读
 
@@ -34,10 +34,10 @@
 
 ## 安全暂停边界
 
-VPU程序已退出，异常路径执行队列停止/解映射/关闭；失败后无测试进程。原SSH/SFTP会话关闭。发现发布包uEnv含download.bit路径后准备补查文件，但用户暂停时新SSH仍在认证前，已取消，**没有执行该远程命令**。没有后台任务或自动唤醒。
+VPU程序已退出，异常路径执行队列停止/解映射/关闭；失败后无测试进程。原SSH/SFTP会话关闭。发现发布包uEnv含download.bit路径后准备补查文件，但暂停期间新SSH仍在认证前，已取消，**没有执行该远程命令**。没有后台任务或自动唤醒。
 
 ## 唤醒后顺序
 
 先本机校验源码副本/包与失败目录哈希，再准备最小日志候选：记录QUERYBUF mem_offset/data_offset、每次QBUF/DQBUF索引/planes/flags/PTS、缓冲区所有权和poll revents。比较本机官方客户端约定、固定固件版本；日志修订不能默默改变原格式/码率/复制或把Host读回当DMA同步证明。
 明确新诊断范围与错误后设备状态，再新包/新构建/新目录有界取证；不重跑r1、不自动复位。当前没有已经应用/构建的r2诊断候选。
-HDMI可继续已授权只读来源核查：发布包BOOT/DTB字节对应但实际位流与可写接口仍不明，uEnv的download.bit路径查询尚未执行；时钟/scanout/安全停止证据确认后才1080p60独立测试。离线色条已准备，用户现场观察依旧必要。
+HDMI可继续已授权只读来源核查：发布包BOOT/DTB字节对应但实际位流与可写接口仍不明，uEnv的download.bit路径查询尚未执行；时钟/scanout/安全停止证据确认后才1080p60独立测试。离线色条已准备，现场观察依旧必要。

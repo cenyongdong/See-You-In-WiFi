@@ -11,7 +11,7 @@
 | Engine初始化29秒超过编码文件deadline、首次启动资源失败 | producer/codec时间分开而总硬件180s保持；6→2缓冲保存普通order7+块，首次capture先于Engine；同进程上下文减少重复分配 | 详细选择和三次首次启动见[ADR_02](ADR_02.md)。CMA256MiB未扩大，无自动规整/清缓存/重启；有限上下文不是已部署daemon |
 | live555编译头/SSL配套和会话回收 | 使用本机厂商2024.11.28及同包静态库/头；r1缺include保留。客户端88帧因无保活停止，补3秒GET_PARAMETER，新目录测试 | [RTSP结果](../tools/pose-v1/RTSP-RESULTS-20261007.md)：两会话200帧＋直接FFmpeg100，NAL/像素逐位，IDR加入/重连/TEARDOWN和端口归还；厂商RTCP诊断stderr保留 |
 | 旧文件10fps和真实采样PTS混淆，SPS色彩未声明 | 文件回放90kHz9000ticks独立核验；常驻保存真实steady_clock采样PTS，MP4预览明确名义重建；实际SPS/PPS从码流取得 | SPS video_signal_type_present_flag=0，未猜primaries/transfer。跨播放器色彩标定待验；单slice索引合同非通用AU解析器 |
-| 显示器报告时序不支持 | 用户目标1920×1080@60Hz，后恢复HDMI测试许可；只读DT/clock/BOOT/参考审计和离线色条 | 当前clock/scanout/换帧/安全停止配套未知，未写板端时序。PC截图不作板端证明；在线RTSP先推进，HDMI另待实际配套 |
+| 显示器报告时序不支持 | 目标1920×1080@60Hz，后恢复HDMI测试许可；只读DT/clock/BOOT/参考审计和离线色条 | 当前clock/scanout/换帧/安全停止配套未知，未写板端时序。PC截图不作板端证明；在线RTSP先推进，HDMI另待实际配套 |
 
 ## 下一方案
 

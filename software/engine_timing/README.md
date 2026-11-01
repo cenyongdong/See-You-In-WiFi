@@ -39,13 +39,13 @@
 
 上述开发交付阶段没有SSH、部署、NPU前向或板测；历史开发清单保持。
 
-随后按用户要求实际完成Lite有限计时：baseline/wall各3个固定窗口完整输出逐位通过；wall均值Engine195.098ms、forward187.617ms、桥等待162.294ms、已观测CPU核14.121ms、搬运API0.771ms。SDK模式第1帧输出正确，但硬件745项中215项负值，立即保存停止、未重试，不能计算有效NPU总耗时。公开tuple单位/累积及层序映射仍未知。初始化约30.5–31.2秒另计，不包含VPU/TCP，不外推长期并发或整机5Hz。[实测表与完整证据](../../tools/pose-v1/evidence/engine-timing-board-20261013-r2/README.md)。
+随后实际完成Lite有限计时：baseline/wall各3个固定窗口完整输出逐位通过；wall均值Engine195.098ms、forward187.617ms、桥等待162.294ms、已观测CPU核14.121ms、搬运API0.771ms。SDK模式第1帧输出正确，但硬件745项中215项负值，立即保存停止、未重试，不能计算有效NPU总耗时。公开tuple单位/累积及层序映射仍未知。初始化约30.5–31.2秒另计，不包含VPU/TCP，不外推长期并发或整机5Hz。[实测表与完整证据](../../tools/pose-v1/evidence/engine-timing-board-20261013-r2/README.md)。
 
 预检原来将dmesg历史版本与proc/version比较，r1在前向前停止；同源dmesg核验一致后仅修正包装器，新包r3和新板端目录r2执行。原源码/构建/交付封存清单不回写，正式核心/模型/SDK/BOOT保持。后续构建使用已修订board_run.py。
 
 ## 可复现执行入口
 
-这些命令记录执行位置、输入与边界，供后续明确的有限计时阶段使用；不得复用本次已执行或失败的目录及Session。代理执行职责以当前Agents及用户任务范围为准。
+这些命令记录执行位置、输入与边界，供后续明确的有限计时阶段使用；不得复用本次已执行或失败的目录及Session。代理执行职责以当前Agents及任务范围为准。
 
 本机构建/打包位置为Windows PowerShell，工作目录`D:\FPGACompetitionProject`。前置为既有Python、Docker/FPAI运行、Icraft ARM3.39.0、当前demo锁及已验收归档齐全。无需安装。下例使用新的r3源码/r4构建标签，目录若存在必须另取唯一标签，不能删除失败目录后重用。
 

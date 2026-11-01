@@ -1,6 +1,6 @@
 # r40：AI→HDMI 90帧有界联动与换帧计时诊断
 
-2026-10-24。**90次新推理、90份完整输出保存、90次HDMI帧采纳全部通过，原生程序exit 0。用户确认两幅图案和骨架均正常，无花屏或异常黑屏。** 本轮已恢复原BOOT运行，批次关闭、余额0。AI四路连接保持不变。
+2026-10-24。**90次新推理、90份完整输出保存、90次HDMI帧采纳全部通过，原生程序exit 0。人工确认两幅图案和骨架均正常，无花屏或异常黑屏。** 本轮已恢复原BOOT运行，批次关闭、余额0。AI四路连接保持不变。
 
 ## 配置及本次改动
 
@@ -21,7 +21,7 @@ AI侧使用主分支`0a5e5987`的demo_v1、原共享FP16模型、SDK3.39及CPU/N
 | AI四路 | HC0/1各AR=27,342、R=218,736；HC2/3各AR=27,341、R=218,728。各路RLAST=AR、R等于预期拍数、non-OKAY=0，均有实际活动。 |
 | 共享HP2 | HDMI S01的AR=36,184,233、R=578,947,728；PS HP2的AR=36,211,574、R=579,166,456。PS计数恰等于HDMI加HC2，各自RLAST与请求数吻合、non-OKAY=0。证明本轮两支路可以共同工作。 |
 | 协议检查 | 功能前后未发布强制协议规则错误；启动仍保留READY复位建议项92/93/95。建议项与强制错误分开认定，不能简写为“完全无指示”。 |
-| 停止及现场画面 | 固定图案与联合阶段均证明STOP后释放双帧；Engine销毁、设备无占用。用户反馈见`screen-observation.json`；原生控制器的`physical_screen_verified:false`保留，现场反馈另记，不改写原值。 |
+| 停止及现场画面 | 固定图案与联合阶段均证明STOP后释放双帧；Engine销毁、设备无占用。现场反馈见`screen-observation.json`；原生控制器的`physical_screen_verified:false`保留，现场反馈另记，不改写原值。 |
 
 ## 计时结果与尚未解决的问题
 
@@ -42,7 +42,7 @@ AI侧使用主分支`0a5e5987`的demo_v1、原共享FP16模型、SDK3.39及CPU/N
 - `board-candidate/software/run-joint/results/hdmi.jsonl`：961条带时间戳的命令及90帧采纳、STOP记录；`hdmi-frames.jsonl`含逐帧绘制/采纳耗时，同目录保存oracle及总线快照。
 - `board-candidate/run-1/`：启动连续波形、原生协议状态、图案帧及原始板测判定。
 - `host/actual.full`：90份完整实际输出，共5,470,560字节，SHA256 `a86aae7b6b9bdc528a8f6ce1eae37a06e1f01f296615fa0e5eba71a61e13be67`；`host/analysis.json`为保存后的独立数值复核。
-- `timing-analysis.json`、`joint-analysis.json`：本轮计时及联合结果分析；`screen-observation.json`为用户观察，没有采集卡录像。
+- `timing-analysis.json`、`joint-analysis.json`：本轮计时及联合结果分析；`screen-observation.json`为观察，没有采集卡录像。
 - `recovery-metadata.tar.gz`：最终恢复审计，SHA256 `370c86500e0a61998f68223643eedbb9cee8bec5fe9464bd1422e90894fc9b54`；`state.json`为唯一批次恢复入口。
 
 主机原PC页面的静态`HDMI:false`字段保留，不代表此次硬件链未接入。主工作区已有未提交改动保持；本轮结果在隔离分支归档提交。

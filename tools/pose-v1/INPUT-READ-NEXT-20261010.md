@@ -1,6 +1,6 @@
 # 下一接续：公开 read 适配层的组合回归
 
-当前 input-read-r1 单次真实画面107／完整数值／编码均通过，原故障在本轮未复现，底层瞬时源／复制责任仍未证明。用户整体暂停已撤销；本批测试与会话结束，没有常驻后台。
+当前 input-read-r1 单次真实画面107／完整数值／编码均通过，原故障在本轮未复现，底层瞬时源／复制责任仍未证明。整体暂停已撤销；本批测试与会话结束，没有常驻后台。
 
 1. 恢复先读 INPUT-READ-RESULTS、ADR_30 和 evidence/input-read-20261010-r1/next-checkpoint.json，复核新旧源码及完整报告哈希。旧picture-r1失败／暂停文件不可覆盖，不从已销毁Engine继续计数。
 2. 独立新目标组合已验收显示子进程、TCP窗口输入和owned AU／guarded网络模块，只替换设备输入搬运适配；模块资源和所有权明确，禁止.cpp包含、私有状态接入或重复算法。保留单主线程Engine、VPU实际capture优先、两缓冲／cookie、frame reset(1)／745与关闭profiling。

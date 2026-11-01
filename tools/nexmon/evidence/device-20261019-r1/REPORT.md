@@ -11,7 +11,7 @@
 
 完整身份见 [01](01-preflight.json)、[02](02-driver-identity.json)、[模块检查](04-module-inspection-v2.json)。原驱动备份 [dhd-original-device.ko](dhd-original-device.ko) 为 1,658,168 字节，本地与路由器 OpenSSL SHA256 一致：`67faa220d9add7faa3b3a52f5ed7e82899548e2e66aed9a3a25506b6aa1ab323`。模块检查v2修正了BSS无文件字节时不计算字段哈希，模块／固件区身份结论不变，原检查文件保留。
 
-SSH 由用户在管理页开启为仅 LAN。直接有线邻居 MAC 与机身标签一致，首次观测 ED25519 指纹为 `SHA256:dGim8cOG0mswATT6pOWM9Cb9THxeTyQTEaIgLJ795P8`，之后严格固定该公钥；这是本次直连的首次信任记录，不是外部证书证明。密码经本机窗口进入进程内存，通过本地命名管道供 SSH 使用，未写入参数、环境变量或文件。通道结束记录见 [28](28-close-credential-channel.json)。
+SSH 人工在管理页开启为仅 LAN。直接有线邻居 MAC 与机身标签一致，首次观测 ED25519 指纹为 `SHA256:dGim8cOG0mswATT6pOWM9Cb9THxeTyQTEaIgLJ795P8`，之后严格固定该公钥；这是本次直连的首次信任记录，不是外部证书证明。密码经本机窗口进入进程内存，通过本地命名管道供 SSH 使用，未写入参数、环境变量或文件。通道结束记录见 [28](28-close-credential-channel.json)。
 
 ## 部署与通过标准
 
@@ -59,7 +59,7 @@ SSH 由用户在管理页开启为仅 LAN。直接有线邻居 MAC 与机身标�
 
 修正后对**同一份** 291 包 PCAP 离线复核通过 97 组三链，无重录或改写原始值。新增实际头部／真实 PCAP 回归，现有与新增共 **17 项测试通过**，见 [parser-tests-v2.log](parser-tests-v2.log)。此后才开展 20 秒采集，未将原判失败覆盖成通过。代码见 [csi_verify.py](../../host/csi_verify.py) 与 [测试](../../host/test_csi_verify.py)，原来源身份与失败留存不回写。
 
-本机通道的空 IPC 连接处理问题通过无网络本地试验复现、修正，前后日志保留；用户随后明确确认前两个实际认证窗口是其输入后手动关闭，故不能把那两次退出归因于路由器或空连接。第三次保留窗口后，SSH 身份检查、传输及部署实际通过。BusyBox 缺少部分命令，使用现有 OpenSSL 做远端 SHA；普通 CLI 选项错误的原退出码保留。模块初始化和未关联状态出现的 `-4`／`-17` 在随包 Broadcom 头中分别为 NOTUP／NOTASSOCIATED；随后启动、参数回读和实采通过。未发现 Oops、Unknown symbol 或内核 panic，不能把所有非零日志抹去或宣称长期无故障。
+本机通道的空 IPC 连接处理问题通过无网络本地试验复现、修正，前后日志保留；人工确认前两个实际认证窗口是其输入后手动关闭，故不能把那两次退出归因于路由器或空连接。第三次保留窗口后，SSH 身份检查、传输及部署实际通过。BusyBox 缺少部分命令，使用现有 OpenSSL 做远端 SHA；普通 CLI 选项错误的原退出码保留。模块初始化和未关联状态出现的 `-4`／`-17` 在随包 Broadcom 头中分别为 NOTUP／NOTASSOCIATED；随后启动、参数回读和实采通过。未发现 Oops、Unknown symbol 或内核 panic，不能把所有非零日志抹去或宣称长期无故障。
 
 ## 结束状态与后续边界
 

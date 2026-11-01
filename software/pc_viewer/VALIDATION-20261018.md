@@ -1,6 +1,6 @@
 # 60份真实历史结果的连续动作回放
 
-2026-10-18，在 `C:/Users/cenyongdong/.codex/worktrees/ce99/FPGACompetitionProject` 本地实施。按用户要求只扩展PC分支，不实时推理、不上板，未改HDMI或正式核心。详细使用入口见[README](README.md)。
+2026-10-18，在 `C:/Users/cenyongdong/.codex/worktrees/ce99/FPGACompetitionProject` 本地实施。只扩展PC分支，不实时推理、不上板，未改HDMI或正式核心。详细使用入口见[README](README.md)。
 
 ## 来源与实际结果
 
@@ -21,6 +21,6 @@
 
 ## 运行与剩余范围
 
-本机服务只监听127.0.0.1:39380／39381，启动后30分钟自动退出。一次C++子进程已退出0；依赖复制与11项验证均已正常完成，仅保留供用户观看的有界本地预览。旧DATA调查未恢复，没有任何Lite／SDK／DMA／BOOT／HDMI START操作。
+本机服务只监听127.0.0.1:39380／39381，启动后30分钟自动退出。一次C++子进程已退出0；依赖复制与11项验证均已正常完成，仅保留供观看的有界本地预览。旧DATA调查未恢复，没有任何Lite／SDK／DMA／BOOT／HDMI START操作。
 
 仍待：实时推理结果适配、输出工作队列、实板网络、双路联合和长期验收。此次60个历史结果不能替代上述验收。

@@ -1,6 +1,6 @@
 # r3 308单样本混合计算工程验收
 
-用户完成一次180秒受限mixed-one并完整回传；代理仅本机分析，无板端接入或重跑。
+完成一次180秒受限mixed-one并完整回传；代理仅本机分析，无板端接入或重跑。
 退出0、stderr空，阶段完成forward_started→case_completed→mixed_completed_not_numerically_accepted。
 51回传/291包、SDK/两库/15ARM头文件、程序e8d66113…e6c696a8及设备25122301/icore24160628身份匹配。
 真实参数/三PS前检输入保持，正式1173原节点融合追溯通过。

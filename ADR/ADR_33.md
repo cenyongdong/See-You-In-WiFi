@@ -31,7 +31,7 @@
 
 ## 2026-10-10 最终门检取证实施
 
-按用户批准新增独立Recorder/SDK适配/无oracle保存模块及final_evidence目标，旧数学/SDK/模型/combined-read保持。四源67200字节、三CPU输出17600字节；主线程逐帧清除，晚read两轮134400字节，物理复用可能保留。每返回先原始保存后严格比较，结束完整序列化不再比较。r1 Native通过但SDK测试Werror缩进警告构建停止、未板测，日志保留；r2只新测试/SDK适配增加晚存储dtype/region/chunk/offset/kind/address核对，Native7拒绝/部分read/线程/拥有值通过，有限失配及NaN原异常保持。138来源r2编译中，Host/三窗/QPC5.05一次诊断待验。本轮句柄保留与写文件可能改变时序，不作性能或根因修复结论。具体计划FINAL-EVIDENCE-PLAN，当前证据final-evidence-20261010-r2。
+新增独立Recorder/SDK适配/无oracle保存模块及final_evidence目标，旧数学/SDK/模型/combined-read保持。四源67200字节、三CPU输出17600字节；主线程逐帧清除，晚read两轮134400字节，物理复用可能保留。每返回先原始保存后严格比较，结束完整序列化不再比较。r1 Native通过但SDK测试Werror缩进警告构建停止、未板测，日志保留；r2只新测试/SDK适配增加晚存储dtype/region/chunk/offset/kind/address核对，Native7拒绝/部分read/线程/拥有值通过，有限失配及NaN原异常保持。138来源r2编译中，Host/三窗/QPC5.05一次诊断待验。本轮句柄保留与写文件可能改变时序，不作性能或根因修复结论。具体计划FINAL-EVIDENCE-PLAN，当前证据final-evidence-20261010-r2。
 
 
 ## 解决与验证结果：2026-10-10 final-evidence-r2

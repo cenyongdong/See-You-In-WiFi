@@ -2,11 +2,11 @@
 
 **最终交付与状态边界（2026-10-29）：** 当前演示选择迁移原始 epoch99，见[最终进度](../../PROJECT-PROGRESS.md)。本页 50 轮学习率对照的本机记录最后停在 10 月 27 日 13:25 左右的启动快照，未找到结束回执；不能写成现在仍在训练，也不能写成已经完成。本次未连接训练服务器或恢复训练，以下 PID／GPU／进度仅为历史观察。
 
-历史启动核验：2026-10-27 13:25，Asia/Shanghai。用户已明确批准50轮学习率对照，按第130轮最佳权重及对应AdamW恢复；启动验证通过后已在GPU1、6开训，实际warmup已完成。当时活动任务见下，本次未连接Lite、路由器或恢复已暂停的板端工作；没有新增定时检查或自动重试。
+历史启动核验：2026-10-27 13:25，Asia/Shanghai。50轮学习率对照，按第130轮最佳权重及对应AdamW恢复；启动验证通过后已在GPU1、6开训，实际warmup已完成。当时活动任务见下，本次未连接Lite、路由器或恢复已暂停的板端工作；没有新增定时检查或自动重试。
 
 **前300轮实际训练均已完成；10 月 27 日启动快照记录了新批准的 50 轮学习率对照。** 前300轮包括先训练至200，再从130分支训练100轮，检查点编号131～230，未刷新从零分支最佳epoch130的141.9761mm。全部180-query实验中原口径最好仍是迁移epoch99的120.9958mm。迁移方案见[PLAN.md](PLAN.md)，当时训练快照及已完成结果见下。
 
-2026-10-27已完成[平台期分析与下一轮改进方案](TRAINING-ANALYSIS-20261027.md)，包含原epoch442实际batch128的日志核对、学习率／优化器／数据／损失检查。用户随后将A学习率对照批准为50轮；B／C及其它配方改动未启动。
+2026-10-27已完成[平台期分析与下一轮改进方案](TRAINING-ANALYSIS-20261027.md)，包含原epoch442实际batch128的日志核对、学习率／优化器／数据／损失检查。随后将A学习率对照批准为50轮；B／C及其它配方改动未启动。
 
 ## 50轮学习率对照的历史启动快照
 
@@ -44,11 +44,11 @@ CPU两线程、低优先级启动验证native exit0：真实两微批完成一�
 
 论文目标按原CVPR2024模型核对；[作者项目页](https://aiotgroup.github.io/Person-in-WiFi-3D/)报告1／2／3人误差91.7／108.1／125.3mm，本次从零最佳为120.4112／144.3091／165.5102mm，均未达到。论文报告值与本地7824帧复现实验的划分及评估细节仍有可比性限制；不把原epoch442的123.0853mm称为论文原值。
 
-用户本轮批准后，新建`/public/cyd/Person-in-WiFi-3D-repo/result/piw24_pose180_scratch_best130_next100_20261026_r1`，从上述epoch130／iter730860恢复完整权重、218项AdamW状态及step365430，原始checkpoint不修改。先以CPU两线程、真实样本验证两微批／一次优化更新，step365430→365431，query及joint参数发生更新，loss／梯度／参数／优化器状态有限；探测模型丢弃。正式进程11:48启动，GPU1、6启动前均空闲，其它GPU任务保持。两rank恢复身份一致；有效batch32、主lr2e-6、参数组及损失不变，继续使用修复后的累积钩子。保存快照为epoch131、190/5622微批，loss5.360727、query梯度0.113662、joint梯度0.098511，均有限。监督PID1496/start_ticks604521，torchrun PID1499/start_ticks604561，rank0 PID1506。每轮全量评估，保留历史最佳、最终及周期权重，不自动追加下一轮。[CPU实际更新验证](results/scratch-best130-next100-20261026-r1/validation.json)、[新运行状态](results/scratch-best130-next100-20261026-r1/state.json)、[源权重与预算](results/scratch-best130-next100-20261026-r1/resume_manifest.json)、[两rank恢复证明](results/scratch-best130-next100-20261026-r1/resumption.json)、[启动后真实梯度](results/scratch-best130-next100-20261026-r1/progress.json)。
+本轮批准后，新建`/public/cyd/Person-in-WiFi-3D-repo/result/piw24_pose180_scratch_best130_next100_20261026_r1`，从上述epoch130／iter730860恢复完整权重、218项AdamW状态及step365430，原始checkpoint不修改。先以CPU两线程、真实样本验证两微批／一次优化更新，step365430→365431，query及joint参数发生更新，loss／梯度／参数／优化器状态有限；探测模型丢弃。正式进程11:48启动，GPU1、6启动前均空闲，其它GPU任务保持。两rank恢复身份一致；有效batch32、主lr2e-6、参数组及损失不变，继续使用修复后的累积钩子。保存快照为epoch131、190/5622微批，loss5.360727、query梯度0.113662、joint梯度0.098511，均有限。监督PID1496/start_ticks604521，torchrun PID1499/start_ticks604561，rank0 PID1506。每轮全量评估，保留历史最佳、最终及周期权重，不自动追加下一轮。[CPU实际更新验证](results/scratch-best130-next100-20261026-r1/validation.json)、[新运行状态](results/scratch-best130-next100-20261026-r1/state.json)、[源权重与预算](results/scratch-best130-next100-20261026-r1/resume_manifest.json)、[两rank恢复证明](results/scratch-best130-next100-20261026-r1/resumption.json)、[启动后真实梯度](results/scratch-best130-next100-20261026-r1/progress.json)。
 
 上述新一轮于2026-10-27 11:47正常结束，native exit0、epoch230／iter1293060，100轮新增评估均为7,824帧且指标有限；两rank最终query一致，原监督与torchrun均已退出。11,346条进度记录未见非有限值，完整日志未发现非有限梯度／OOM／异常退出。新增评估最优为epoch156（本轮第26轮）144.9636mm，比起始最佳高2.9875mm，未刷新最佳门槛；历史最佳权重`best_mpjpe_epoch_130.pth`和最终`epoch_230.pth`均实际存在。最后五轮226～230为152.0900、147.9370、153.6303、152.9915、150.1592mm。[原生结束状态](results/scratch-best130-next100-20261026-r1/completed/state.json)、[结束进度](results/scratch-best130-next100-20261026-r1/completed/progress.json)、[DDP完成](results/scratch-best130-next100-20261026-r1/completed/ddp_completion.json)、[最终最佳选择](results/scratch-best130-next100-20261026-r1/completed/completion.json)、[100轮完整新增评估](results/scratch-best130-next100-20261026-r1/completed/evaluations.jsonl)。本轮仅核验已有评估，不重新推理或导出。
 
-历史只读查询入口：算法根目录执行`/home/ubuntu/miniconda3/envs/PersonInWIFI/bin/python -B tools/pose180/continue_best.py status`，PID仅作已退出历史身份，不能直接用于控制进程。不得重复`start`／`finish-preparation`或新增定时监督；后续继续训练需用户新的明确指令。`extra100_r1`是已关闭失败目录，其余上述训练均正常完成，不重跑旧负载或对照评估。后续部署实测仍统一见[部署实测](deploy/RESULTS.md)，本轮训练未部署模型或改变外部帧协议。
+历史只读查询入口：算法根目录执行`/home/ubuntu/miniconda3/envs/PersonInWIFI/bin/python -B tools/pose180/continue_best.py status`，PID仅作已退出历史身份，不能直接用于控制进程。不得重复`start`／`finish-preparation`或新增定时监督；后续继续训练需新的明确指令。`extra100_r1`是已关闭失败目录，其余上述训练均正常完成，不重跑旧负载或对照评估。后续部署实测仍统一见[部署实测](deploy/RESULTS.md)，本轮训练未部署模型或改变外部帧协议。
 
 ## 迁移阶段的历史记录
 
@@ -59,7 +59,7 @@ CPU两线程、低优先级启动验证native exit0：真实两微批完成一�
 - encoder的180份提案按原token顺序进入180-query pose decoder；入口、出口TopK及候选Gather移除，180份分数和姿态不排序、不截断。
 - joint decoder仍使用14关节query，每个输入计算一份共享特征，再对该输入的180份独立参考姿态广播偏移；训练和推理都走共享路径。`[14,B,256]`的B是输入batch，正式训练每卡B=8；180候选维保留在`[B,180,14,3]`参考姿态中。
 - 从epoch442加载554份兼容状态，唯一重新初始化对象为全部`[180,512]`人体query embedding；未恢复旧优化器或训练计数。新模块通过配置注册，旧head／transformer／基线配置身份核对保持。
-- 使用用户指定的物理GPU **1、6**；两rank×每卡batch8×累积2步，有效全局batch32。GPU1原有负载保留，每rank CUDA分配器上限为单卡显存40%；未结束／重启其他任务。
+- 使用指定的物理GPU **1、6**；两rank×每卡batch8×累积2步，有效全局batch32。GPU1原有负载保留，每rank CUDA分配器上限为单卡显存40%；未结束／重启其他任务。
 - AdamW、主学习率2e-5、weight_decay1e-4、100epoch、第80轮后学习率乘0.1、FP32、seed0、clip0.1。原参数学习率分组与损失权重保留。
 
 ## 迁移阶段的实际验证（历史）

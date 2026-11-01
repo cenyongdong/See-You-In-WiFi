@@ -2,7 +2,7 @@
 
 ## 工程内容总结
 
-用户保留上次缺gate预检目录后完成正式offline-check并完整回传；代理读取日志、运行文件核验并独立复查参数/输入。
+保留上次缺gate预检目录后完成正式offline-check并完整回传；代理读取日志、运行文件核验并独立复查参数/输入。
 Lite ARM Icraft/CustomOp3.39.0，程序SHA2567cf761f1dd7d1ca1bf8a1db1826e4d9b34574b1a8dc0ac662c987eed52722a17保持。
 原ZG图/RAW包290项、回传32项哈希、15SDK头文件/Host＋ZG库/程序/上一Host验收身份匹配，ldd完整。
 
@@ -33,5 +33,5 @@ mode=offline-check/device_init_allowed=false，没有Device::Open、完整Sessio
 已证明真实RAW中四个CPU参数可物化、当前三份原始输入经PS处理与部署参考一致，并通过图/注册门禁。
 仍未证明设备区域、ADDR/BOTH搬运、NPU生产者到CPU消费者的同步、Session绑定或混合精度。
 下一步按批准方案，仅SDK两16KiB缓冲区往返（30秒、显式设备初始化），核验后再Session部署。
-执行前用户确认BOOT/JTAG保持且无其他AI/显示访问；未知则暂停。失败保存完整日志，不自动重试/复位/改配置。
+执行前人工确认BOOT/JTAG保持且无其他AI/显示访问；未知则暂停。失败保存完整日志，不自动重试/复位/改配置。
 SDK内存往返即使通过，也不是NPU写入/CPU读取同步或推理数值通过。

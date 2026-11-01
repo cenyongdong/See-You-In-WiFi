@@ -1,6 +1,6 @@
 # 绑定快照r2 apply取证与停止原因
 
-用户完成一次300秒受限apply-check并完整回传；代理只分析本机文件，无板端重跑。
+完成一次300秒受限apply-check并完整回传；代理只分析本机文件，无板端重跑。
 退出1、stderr仅Original op lacks traceable backend binding (including any fusion): 8622。
 阶段已到session_applied，创建后/部署后各五份快照齐全；未forward、bridge空，没有模型输出。
 45回传/290包哈希、程序94a03a90…bd061248、15ARM头文件/两库/3.39.0及设备25122301/icore24160628身份一致。
@@ -39,7 +39,7 @@ apply后绑定15项：七个ZG执行组与上述八项Host。
 离线审计工具mixed_binding_snapshot_audit.py通过真实快照及九项篡改拒绝检查：缺成员、重复成员、混入Host、
 丢执行组绑定、错误后端、组ID不符、同步表不符、Gather后端改变和创建时HardOp误放Host。
 审计初版对所有条目要求layer_count>0导致停止；读取实际428个原条目为0后，仅要求已绑定执行组正数，
-原条目允许0并要求两表一致。该本机审计规则调整未修改任何板端程序、SDK或模型。
+原条目允许0并两表一致。该本机审计规则调整未修改任何板端程序、SDK或模型。
 
 **apply正式门检仍未通过，不生成apply验收文件。** 快照证明元数据追溯完整，不证明NPU执行、PS/NPU同步或模型精度。
 具体修正候选范围见[MIXED-FUSION-BINDING-FIX-PLAN.md](MIXED-FUSION-BINDING-FIX-PLAN.md)，待讨论批准后才应用。

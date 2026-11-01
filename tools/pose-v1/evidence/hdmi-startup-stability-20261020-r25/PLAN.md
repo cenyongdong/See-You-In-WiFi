@@ -4,7 +4,7 @@ r24已完成一次健康启动、正确SW6实际HP2复位和按键后Open，已�
 
 本包复用已实测r24的同一BOOT，不重编HDL、bit或模型，不改SDK／数学／协议。BOOT SHA256仍为`a0ed66d07ba05d80c3d0188d93afda1036a9c7df212ce9badb74b229c61e3e49`；资格与唯一产物身份复用[r24门检](../hdmi-hp2-ready-20261020-r24/qualification.json)、[封装](../hdmi-hp2-ready-20261020-r24/package-review.json)。
 
-用户已明确批准：最多3次候选安装／启动，每次最多1次库加载／Open；全包最多1次原BOOT回退。不含任何SW6／SW7按键、DMA、推理、HDMI START或长期验证。
+最多3次候选安装／启动，每次最多1次库加载／Open；全包最多1次原BOOT回退。不含任何SW6／SW7按键、DMA、推理、HDMI START或长期验证。
 
 1. 每次SSH恢复后先恢复原BOOT文件并完整读回，再无SDK采0→2及同一冻结的启动历史。前置五寄存器不满足初态或遇其它异常时保存原值、停止，不重试。
 2. 仅纯CSR健康、启动历史中有实际HP2复位断言和正脉宽、计数无相关溢出、没有未解释的ready路径先返回后请求，才直接执行一次库加载／Open／空闲／Close与卸载；不先按键，不追加额外CSR清零。
@@ -13,7 +13,7 @@ r24已完成一次健康启动、正确SW6实际HP2复位和按键后Open，已�
 
 执行程序最初以inactive放置板端`/root/hdmi-startup-stability-20261020-r25`。共享观察代码沿用r24默认流程，新增明确的无按键入口；3次顺序由独立控制器负责，复用原BOOT写入／读回实现、原观测器及原SDK子进程。启动命令前有独占持久化记录，工具超时不得重发。每次结果分别位于run-1／2／3，前次通过是下一启动的硬前提。
 
-[配置](deploy/config.json)、[已关闭授权](deploy/authorization.json)、[控制器](deploy/startup_stability_board.py)、[共享观测](deploy/reset_key_board.py)。入口由代理执行：`startup_stability_board.py prepare/install/candidate-reboot/restore/probe/software/fallback-reboot/close --cycle N`。本包后来已获用户明确批准并执行，当前已关闭；准备和语法检查不算实际启动通过。
+[配置](deploy/config.json)、[已关闭授权](deploy/authorization.json)、[控制器](deploy/startup_stability_board.py)、[共享观测](deploy/reset_key_board.py)。入口由代理执行：`startup_stability_board.py prepare/install/candidate-reboot/restore/probe/software/fallback-reboot/close --cycle N`。本包后来已确定并执行，当前已关闭；准备和语法检查不算实际启动通过。
 
 [板端未启用校验](inactive-guard-and-transfer-check.log)已确认：同一原BOOT运行身份、无owner、候选SHA匹配；未批准执行被阻断、样本0／4被拒绝、缺少前次通过记录时不能继续。没有访问CSR、加载SDK、写启动分区或重启。当前状态与余额仅见[state.json](state.json)。旧DATA仍独立暂停，FAT不修；本任务不接入Vivado MCP。
 

@@ -1,6 +1,6 @@
 # 原复制快照与582完成检查：本批执行契约
 
-用户已批准，代理执行。读取[ADR_19](../../ADR/ADR_19.md)、[旧103失败](BOUNDED-LOAD-RESULTS-20261009.md)，保留旧现场。本批目标是检查和取证候选，不预先认定定点误差、过早读取或缓存根因。
+，代理执行。读取[ADR_19](../../ADR/ADR_19.md)、[旧103失败](BOUNDED-LOAD-RESULTS-20261009.md)，保留旧现场。本批目标是检查和取证候选，不预先认定定点误差、过早读取或缓存根因。
 
 新包 `.local/pose-v1-stage-guard/package-20261009-r1`；构建 `.local/pose-v1-build/mixed-20261009-stage-guard-r1`；板端 `/tmp/pose-stage-guard-20261009-r1`；证据 `evidence/stage-guard-20261009-r1`。程序27b9ff09…2769e086，manifest de32738d…96ed48d，403载荷71构建来源。
 

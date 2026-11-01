@@ -2,18 +2,18 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-16，用户明确授权解除两处原厂AI时钟模型Min Period所致HELD，并要求新位流接入项目、进行实时实板验证。本次发布状态为 **RELEASED_FOR_CONTROLLED_BOARD_TEST**；原始报告仍为时序失败，整机签核尚未完成。当前未下载。下载器重连后扫链已恢复；新发现该发布参考位流的配置载荷与当前所选BOOT相同，重复加载不会引入HDMI修复。
+2026-10-16，解除两处原厂AI时钟模型Min Period所致HELD，并新位流接入项目、进行实时实板验证。本次发布状态为 **RELEASED_FOR_CONTROLLED_BOARD_TEST**；原始报告仍为时序失败，整机签核尚未完成。当前未下载。下载器重连后扫链已恢复；新发现该发布参考位流的配置载荷与当前所选BOOT相同，重复加载不会引入HDMI修复。
 
 ## 特批范围
 
-用户指定标签“已知原厂安全占位时钟”作为工程例外标签记录；“原厂bug”“安全”“与核心功能无关”及占位语义尚未独立证实。已经证实的是：原厂AI_Mate网表包含该时钟模型，路由检查点可见叶负载为ai_core_clk_locked_reg/C。用户接受这一已知例外后，可以继续受控板测，无需再次批准这两个检查。
+例外标签“已知原厂安全占位时钟”作为工程例外标签记录；“原厂bug”“安全”“与核心功能无关”及占位语义尚未独立证实。已经证实的是：原厂AI_Mate网表包含该时钟模型，路由检查点可见叶负载为ai_core_clk_locked_reg/C。在该既定例外范围内，可以继续受控板测，无需再次批准这两个检查。
 
 共同路径前缀为`U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/`，共同为`clk_out1_AI_CORE_CLK_ST`、报告周期1.000ns。
 
 | 定点对象（前缀后） | 检查 | 要求 | 原裕量 | 放行方式 |
 |---|---|---|---|---|
-| clkout1_buf/I | Min Period | 1.409ns | −0.409ns | 用户定点豁免 |
-| plle2_adv_inst/CLKOUT0 | Min Period | 1.071ns | −0.071ns | 用户定点豁免 |
+| clkout1_buf/I | Min Period | 1.409ns | −0.409ns | 定点例外 |
+| plle2_adv_inst/CLKOUT0 | Min Period | 1.071ns | −0.071ns | 定点例外 |
 
 WPWS−0.409ns、TPWS−0.479ns和两个失败端点按原报告保存；不改库、频率、约束或AI_Mate，不通过设置全域false_path包装通过。没有新增其它时序/DRC豁免。CDC及外部时序未完整签核须在实测结果中继续披露。
 
@@ -36,7 +36,7 @@ WPWS−0.409ns、TPWS−0.479ns和两个失败端点按原报告保存；不改�
 
 [回退位流](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/rollback/ai7030_top_disable_icap.bit) SHA `6818b7f8dea8e0f9dbda1b0d11127255ee1ba8876326bc7708a633641784f72e`。重新核验当前选择BOOT偏移186816、PL分区5980464字节；32位字节交换后全部回退载荷一致，余4字节填充。该核验不证明热重配或回退已实测。
 
-首次两次扫链均0 cable/无FTDI；随后用户接通下载器，Windows实际枚举USB VID0403/PID6014、210512180081。依据这一外部变化建立r3新目录，Procise实际扫链4.029秒exit0：jfmql30、IDCODE0x9372c093、part 0，ps_dap part 1、IDCODE0x6ba00477。未执行program_bit；以后下载前仍需新扫链，不永久假设编号。
+首次两次扫链均0 cable/无FTDI；随后接通下载器，Windows实际枚举USB VID0403/PID6014、210512180081。依据这一外部变化建立r3新目录，Procise实际扫链4.029秒exit0：jfmql30、IDCODE0x9372c093、part 0，ps_dap part 1、IDCODE0x6ba00477。未执行program_bit；以后下载前仍需新扫链，不永久假设编号。
 
 当前Linux仅暴露FMSH FMQL FPGA Manager，未暴露fpga_bridge/fpga_region；本轮没有验证在线隔离/停止接口。无FD owner不证明PL在途AXI请求已排空，不写猜测的SLCR寄存器、不用FPGA Manager强行绕过条件。
 

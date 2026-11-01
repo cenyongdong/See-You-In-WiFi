@@ -1,11 +1,11 @@
 # 当前恢复入口与最小取证方案
 
-先读 COMBINED-READ-RESULTS、ADR_31/32/33 和 evidence/combined-read-20261010-r1/next-checkpoint.json。用户整体暂停已撤销；本批全部测试、传输、Native和客户端审查结束，无后台。2Hz与名义5Hz内容通过；严格≥5及QPC5.05完整能力未通过。
+先读 COMBINED-READ-RESULTS、ADR_31/32/33 和 evidence/combined-read-20261010-r1/next-checkpoint.json。整体暂停已撤销；本批全部测试、传输、Native和客户端审查结束，无后台。2Hz与名义5Hz内容通过；严格≥5及QPC5.05完整能力未通过。
 
 1. 保留四批目录、二进制和原bad Host/完整presaved；复核所有来源/报告/归档哈希。禁止从销毁的Engine继续inv34、重跑fps505或继续调频率。
 2. 本机公开接口审查后，新增独立有限Source/CPU-output recorder：当前帧582/649公开Tensor句柄和CPU437/582写回前拥有值，明确主线程所有权、节点/字节上限、每帧清除和设备归属。最终输出比较失配时在Engine存活且无再次forward/reset的条件下做两轮公开read，保存Host原值、CPU值、晚设备源和时间；不直接解引用ADDR/BOTH。晚时刻可能有静态物理缓冲复用，明确证据限制。
 3. 新save-only模块遍历所有拥有返回值，包括未验收第34帧，写完整数值/输入/时钟/索引，不再次执行数学比较；数学门检在保存后独立。保留原严格参考与非有限/索引拒绝，不将序列化失败伪装计算失败或丢弃bad帧。
-4. Native/ARM拥有字节、上限/线程/异常/部分读取和独立保存测试及新Host107后，原三窗正常回归，再新目录一次有界诊断；保持单Engine、子进程、VPU2/cookie、SDK3.39、模型/RAW/BOOT、profiling-off及reset(1)/745。资源按用户自主权限取证准备，异常完整保存停止。
+4. Native/ARM拥有字节、上限/线程/异常/部分读取和独立保存测试及新Host107后，原三窗正常回归，再新目录一次有界诊断；保持单Engine、子进程、VPU2/cookie、SDK3.39、模型/RAW/BOOT、profiling-off及reset(1)/745。资源取证准备，异常完整保存停止。
 5. 先根据新证据区分读后Host、设备生产、CPU输出/写回、原Gather442/入口传输，未证明前不增加猜测等待、cache helper、64对齐、候选重排、零拷贝或图优化。稳定性恢复后再制定更长/三次启动/严格≥5与30分钟；HDMI实际配套仍独立。
 
 上述是待实现的具体接续方案，不把拟定钩子当已经采到两轮晚源。旧可视化最佳槽0正常也不替代全100候选检查。

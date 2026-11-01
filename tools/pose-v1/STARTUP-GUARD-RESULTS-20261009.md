@@ -34,7 +34,7 @@ presaved-results有38套完整值/原CSI/身份；inference只有37行，timing3
 
 失败前缀385捕获图像/355网络、35来源966关节、实际NAL/PTS/像素核验。正确inv35/36未进捕获尾，4采样未捕获，不记完整视频/正常LAST。部分参考仅由冻结Native重建正确37次；ARM稀疏参考未保存，缺失明确保留。
 
-第2次预决策普通512KiB单位为2且均Movable；实际规整写前为0。按自主权限执行一次compact_memory，14.59069ms，普通高阶单位0→4（一个2MiB块），随后成功启动但数值失败。规整不等同数值修复或未经规整的启动可靠性；未清缓存、重启或改CMA/BOOT/SDK。
+第2次预决策普通512KiB单位为2且均Movable；实际规整写前为0。执行一次compact_memory，14.59069ms，普通高阶单位0→4（一个2MiB块），随后成功启动但数值失败。规整不等同数值修复或未经规整的启动可靠性；未清缓存、重启或改CMA/BOOT/SDK。
 
 身份与内核同，失败两abort STREAMOFF返回0、子回收、network source0、Engine在workers join后销毁、端口释放。最终MemAvailable747384KiB/CmaFree16492KiB仅现场，所有代理测试/客户端/SSH/SCP已结束，无后台。三次回归、稳定5Hz、长期、HDMI及零拷贝仍待。
 

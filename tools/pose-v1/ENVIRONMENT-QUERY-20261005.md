@@ -2,7 +2,7 @@
 
 ## 补查后的最新结论
 
-用户继续提供目录和dpkg文件清单截图，证据为`evidence/sdk-files-query-20261005.png`与
+继续提供目录和dpkg文件清单截图，证据为`evidence/sdk-files-query-20261005.png`与
 `evidence/sdk-packages-query-20261005.png`。已确认：
 
 - SDK配置目录`/usr/cmake`，包含`icraft-hostbackend-config.cmake`、`icraft-zg330backend-config.cmake`及aarch64导出文件。
@@ -11,14 +11,14 @@
 - `icraft arm64 3.39.0`、`customop arm64 3.39.0`、`icraftmdzthirdparty arm64 0.1.1`均为`install ok installed`。
 - 构建脚本的SDK配置文件名称与这些路径一致，当前不需要因先前精确搜索没有输出而安装后端包。
 
-可以继续已批准方案的B固定打包、C用户交叉编译，设置`-SdkCmakeDir '/usr/cmake'`。
+可以继续已批准方案的B固定打包、C交叉编译，设置`-SdkCmakeDir '/usr/cmake'`。
 这只是构建入口和文件配套确认，尚未证明编译/链接、实际头文件API、运行库加载或NPU功能通过。
 ORT缺失、Windows cmake/cl当前PATH不可见的状态仍保留；它们不阻止独立FPAI交叉编译准备。
 此阶段先提交构建日志，不越过编译复核、设备probe和数值验收门检。
 
 下文“ZG330配置未找到/不能进入C”是补查前的历史状态，以本段更新为准。
 
-来源：用户执行Windows PowerShell命令后提供的两张截图，见
+来源：人工操作Windows PowerShell命令后提供的两张截图，见
 `evidence/environment-query-20261005.png`和`evidence/windows-tools-query-20261005.png`。
 代理仅审查截图/本地资料，没有执行Docker、编译、推理或安装。
 
@@ -35,7 +35,7 @@ ORT缺失、Windows cmake/cl当前PATH不可见的状态仍保留；它们不阻
 | Windows CMake/MSVC | 第二张图中正确Get-Command cmake,cl没有输出 | 当前终端PATH不可见；不能证明全机未安装 |
 
 首图最初的Docker变量调用和Python路径调用报错，后续重新设置变量后已分别查询成功；
-不是GCC、Conda或模型故障。首图最后使用Get-Content无法查询命令入口；用户随后正确使用Get-Command，
+不是GCC、Conda或模型故障。首图最后使用Get-Content无法查询命令入口；随后正确使用Get-Command，
 结果仍无输出，以上Windows判断依据第二张图。
 
 ## 下一步：只补充包内容查询
@@ -61,11 +61,11 @@ ORT安装和Windows编译环境的选择均需另行具体讨论，不自动更�
 
 ## 后续Windows编译工具定位（2026-10-05）
 
-用户不确定安装情况，代理只读找到VS 2022 Community目录
+不确定安装情况，代理只读找到VS 2022 Community目录
 `D:\Visual Studio\ Visual Studio 2022\Community`及MSVC14.44.35207 cl/link/nmake、头文件/库、VsDevCmd.bat和CMake。
 目录名` Visual Studio 2022`开头有一个空格。CMake文件元数据3.31.6-msvc6；并未运行查询或编译。
 默认vswhere及常见Windows Kits注册表入口未找到/未返回记录，不能据此确诊SDK缺失或安装完整。
-用户下一步仅临时进入x64开发CMD查工具/SDK，命令见[WINDOWS-HOST-ENV-CHECK.md](WINDOWS-HOST-ENV-CHECK.md)，
+下一步仅临时进入x64开发CMD查工具/SDK，命令见[WINDOWS-HOST-ENV-CHECK.md](WINDOWS-HOST-ENV-CHECK.md)，
 静态证据[evidence/windows-host-tool-discovery-20261005.json](evidence/windows-host-tool-discovery-20261005.json)。
 安装、修复、新生成器、Host构建或模型执行未进行；ORT缺失保持，后续依赖方案另行讨论。
-本文件早期“ZG配置未找到/不能构建”的状态已由后续用户完整SDK清单及实际交叉构建更新，最新见STATUS.md。
+本文件早期“ZG配置未找到/不能构建”的状态已由后续完整SDK清单及实际交叉构建更新，最新见STATUS.md。

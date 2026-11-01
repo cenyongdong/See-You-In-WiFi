@@ -2,7 +2,7 @@
 
 ## 工程内容总结
 
-用户截图在SSH登录shell直接执行set -eu，未包含原命令组外层括号。
+截图在SSH登录shell直接执行set -eu，未包含原命令组外层括号。
 test ! -e run-apply-check失败会触发errexit，结束登录shell并断开SSH；不能据此认定网络或板卡故障。
 代理按特殊问题协助/日志读取授权，通过SSH只读ls确认目录已存在，再SCP取回到新本地目录，未执行检查器、Device::Open、模型或reset，未改板端文件。
 

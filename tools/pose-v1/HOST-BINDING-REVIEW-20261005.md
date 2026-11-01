@@ -2,8 +2,8 @@
 
 ## 工程内容总结：已验证的失败范围
 
-用户在Lite执行现有二进制的host模式，optimized JSON/RAW及原三份输入；退出码1。
-原始日志仍在板上，当前代理依据用户截图及本地源码/模型静态审查，未代执行软件、重跑或修复。
+在Lite执行现有二进制的host模式，optimized JSON/RAW及原三份输入；退出码1。
+原始日志仍在板上，当前代理依据截图及本地源码/模型静态审查，未代执行软件、重跑或修复。
 截图依次为evidence/lite-host-binding-failure-20261005-1.png、-2.png、-3.png。
 
 stderr核心错误：
@@ -23,7 +23,7 @@ run-config为mode=host、device_init_allowed=false，graph/raw指向piw24_optimi
 ZG图的六个Host计算算子为188 TopK、192 GatherElements、437 TopK、442 Gather、582/649 ScatterND；
 不能因全模型Host缺少Matmul绑定就断言ZG混合推理也失败，也不能跳过参考直接将mixed记为通过。
 
-用户截图还出现读取错误路径：stdout.log应在工作目录下，以host-reference-20261005.stdout.log命名；
+截图还出现读取错误路径：stdout.log应在工作目录下，以host-reference-20261005.stdout.log命名；
 stages.jsonl应有完整.jsonl后缀。这些读取路径错误与SDK的Matmul绑定失败是两件事。
 截图显示先查询目标目录不存在，随后再次执行同一命令；本次可审查的产物就是随后展示的失败记录，
 不将其自动视为此前退出码截图的未覆盖原始日志，也不继续重跑。
@@ -43,9 +43,9 @@ EXT4恢复和journal异常关闭消息仍属启动上下文，不据此修复文
 依赖/注册检查。可能涉及板端库构建范围、依赖/注册或版本/文件身份差异，不能直接宣布ARM绝对不支持。
 不要手写Matmul替代、改模型、借其他环境、复制库、调整Swap/线程或重跑原目录。
 
-## 只读库身份与依赖审计（用户已批准、代理已完成）
+## 只读库身份与依赖审计（、代理已完成）
 
-本轮用户授予特殊问题直接工具协助权限，并批准该审计；代理已直接SSH完成只读查询。
+本轮授予特殊问题直接工具协助权限，并批准该审计；代理已直接SSH完成只读查询。
 板端Icraft/CustomOp为arm64 3.39.0、安装状态正常；dpkg -V icraft:arm64无差异输出、退出码0。
 Host实际库SHA256 d0fbf6c81e5b57b4a908f11aad27571b8f2e68a3ede7ba33c9a4f783ba266130，
 与原始onchip安装包一致。CMake依赖声明含CudaDefault，readelf查询成功。
@@ -73,7 +73,7 @@ cat /usr/cmake/icraft-hostbackend-targets-aarch64-release.cmake
 command -v readelf
 ```
 
-- dpkg-query读取包版本/文件列表；目标包名来自此前用户查询。包找不到即提交提示，不改用猜测包名。
+- dpkg-query读取包版本/文件列表；目标包名来自此前查询。包找不到即提交提示，不改用猜测包名。
 - dpkg -V仅读取已登记文件做校验；无输出仅表示未报告其可检查项目的差异，不证明注册或算子支持。
 - readlink/sha256sum记录此前ldd解析到的Host库最终路径和内容身份。
 - 两份CMake文件读取实际导出目标/依赖/库路径，缺失先报告，不复制Windows配置。

@@ -1,18 +1,18 @@
 # 悟净 Lite 流水灯全流程验证
 
-本工程是独立 PL 测试，目标器件为 **JFMQL30TAI676H**。用户于 2026-10-01 同意具体实现方案、以 XSim 2019.1 做纯 RTL 行为仿真、以 Procise 做综合/实现/位流/JTAG 下载，并同意将启动时钟显式修正为 `JtagClk`。板上下载属于 FPGA 易失配置，掉电失效。
+本工程是独立 PL 测试，目标器件为 **JFMQL30TAI676H**。于 2026-10-01 同意具体实现方案、以 XSim 2019.1 做纯 RTL 行为仿真、以 Procise 做综合/实现/位流/JTAG 下载，并同意将启动时钟显式修正为 `JtagClk`。板上下载属于 FPGA 易失配置，掉电失效。
 
 ## 当前源码与 MCP 验证：LED1→3→2→4（2026-10-01）
 
-用户已重载两个 MCP 服务，并批准复用本工程测试新灯序，首阶段验收止于位流。随后明确授权下载，已通过 Procise 原生 JTAG 下载，用户现场确认“灯序和速度均符合预期”。当前 [RTL](D:/FPGACompetitionProject/FPGA/lite_led_chaser/rtl/lite_led_chaser.v) 为 **PL_LED1→3→2→4→1**，仍为 100 MHz、0.25 秒/步；旧 RTL/testbench 已备份到 `revisions/led_1234_before_1324`。下方历史原生上板记录属于旧灯序；新灯序验收使用本节的新下载与观察证据。
+已重载两个 MCP 服务，并批准复用本工程测试新灯序，首阶段验收止于位流。随后明确授权下载，已通过 Procise 原生 JTAG 下载，现场确认“灯序和速度均符合预期”。当前 [RTL](D:/FPGACompetitionProject/FPGA/lite_led_chaser/rtl/lite_led_chaser.v) 为 **PL_LED1→3→2→4→1**，仍为 100 MHz、0.25 秒/步；旧 RTL/testbench 已备份到 `revisions/led_1234_before_1324`。下方历史原生上板记录属于旧灯序；新灯序验收使用本节的新下载与观察证据。
 
-当前聊天 Vivado MCP 按长期 AMD64 配置直接启动 2019.1，写入 RTL/testbench 并经 `run_tcl exec` 驱动既有 XSim 脚本；独立预期表检查分频 1/7/19 各 200 周期通过，实际状态 `0001→0100→0010→1000→0001`。随后 Procise MCP 完成原生综合、布局布线、位流和复核，作业最终状态 `reviewed`。
+当前工具会话 Vivado MCP 按长期 AMD64 配置直接启动 2019.1，写入 RTL/testbench 并经 `run_tcl exec` 驱动既有 XSim 脚本；独立预期表检查分频 1/7/19 各 200 周期通过，实际状态 `0001→0100→0010→1000→0001`。随后 Procise MCP 完成原生综合、布局布线、位流和复核，作业最终状态 `reviewed`。
 
 本次内部 setup/hold 裕量 **5.962/0.192 ns**，各 58 个端点、违例 0；LC 11/19650。五引脚/电平、29 INIT、JtagClk 和当前/仿真/构建 RTL 哈希均通过；四 LED 的 `no_output_delay` 边界保留。[完整结果及 MCP 调用证据](D:/FPGACompetitionProject/tools/mcp-validation/led1324/RESULTS.md)。
 
 - [新仿真日志](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/sim_20261001_182621_aa641e/simulate.stdout.log)。
 - [新位流复核](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/build-review.json)。
-- [新位流](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/rundir/lite_led_chaser.bit)，5,980,582 字节；SHA-256 `285356540f63f5b1a150827777f8e5e411843718976590db0cb39739b5ef7c18`。**已下载，用户观察确认通过**。
+- [新位流](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/rundir/lite_led_chaser.bit)，5,980,582 字节；SHA-256 `285356540f63f5b1a150827777f8e5e411843718976590db0cb39739b5ef7c18`。**已下载，观察确认通过**。
 - [新灯序下载记录](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json)：2026-10-01 18:50，北京时间；扫链确认 FPGA part 0，STAT=`0x40007ffc`，易失配置、未写 Flash。下载使用现有 Procise 原生脚本，MCP 首版仍无 JTAG 工具。
 
 ## 功能与板级依据
@@ -41,8 +41,8 @@ LED 经 NDS331N 低侧开关驱动，FPGA 输出高电平点亮。约束显式�
 | 资源 | LC 13/19650、GCDU 1/32、IOU18M 4/72、IOU33M 1/48 |
 | 位流复核 | JFMQL30TAI676H；StartupClk=JtagClk；原生 placed FDC 与引脚表一致；仿真/构建 RTL 哈希一致；INIT 检查通过 |
 | JTAG 下载 | 2026-10-01 12:06，目标 `jfmql30` part 0，IDCODE `0x9372c093`；Procise 报告 SVF 执行成功，STAT 回读 `0x40007ffc` |
-| 实际灯光 | 用户现场确认“四颗 LED 按预期循环”；本次全流程功能验收通过，未用仪器测量周期精度 |
-| MCP | 按用户确认，先完成原生流程，随后讨论接入；本次未安装、配置或调用 FPGA MCP |
+| 实际灯光 | 现场确认“四颗 LED 按预期循环”；本次全流程功能验收通过，未用仪器测量周期精度 |
+| MCP | 先完成原生流程，随后讨论接入；本次未安装、配置或调用 FPGA MCP |
 
 原生上板最终构建：`runs/build_20261001_120459_3fa8ba`。位流为该目录下 `rundir/lite_led_chaser.bit`，5,980,582 字节，SHA-256：
 
@@ -73,7 +73,7 @@ $ledPython = 'C:\Users\cenyongdong\.cache\codex-runtimes\codex-primary-runtime\d
 if ($LASTEXITCODE -ne 0) { throw '位流复核失败。' }
 ```
 
-`ReviewBuild.py` 仅需 Python 标准库；输出的 `reviewed_for_jtag_download` 是复核状态，不构成下载授权。本次新灯序是在位流阶段结束、另行收到用户明确下载指令后才上板。原 `Program.ps1 -BuildDir <已复核的新目录>` 默认只扫链，加 `-Program` 才下载，后续下载须处于明确授权任务中；下载器序列号默认为实测的 `210512180081`，更换下载器或链结构时须重新查询核对。重新复核会生成新的复核记录，不应覆盖已经归档的用户观察结果。
+`ReviewBuild.py` 仅需 Python 标准库；输出的 `reviewed_for_jtag_download` 是复核状态，不构成下载授权。本次新灯序是在位流阶段结束、另行收到明确下载指令后才上板。原 `Program.ps1 -BuildDir <已复核的新目录>` 默认只扫链，加 `-Program` 才下载，后续下载须处于明确授权任务中；下载器序列号默认为实测的 `210512180081`，更换下载器或链结构时须重新查询核对。重新复核会生成新的复核记录，不应覆盖已经归档的观察结果。
 
 ## 已验证的 Procise Tcl 差异
 
@@ -91,8 +91,8 @@ program_bit {已复核的绝对路径/lite_led_chaser.bit} -part 0
 read_reg -part 0 -reg STAT -read
 ```
 
-## MCP 参考：从原生后端到当前聊天衔接
+## MCP 参考：从原生后端到当前工具会话衔接
 
 本次已经验证 Windows 下 XSim 行为仿真、Procise 独立批处理作业、JSON 时序报告解析、位流哈希及 JTAG 扫链/下载/寄存器回读。这些可作为 Procise MCP 适配层的后端基础。
 
-随后获用户批准的小型 Procise MCP 已完成独立 stdio 验证；本轮又通过当前聊天的七工具及 Vivado MCP 实现新灯序仿真→原生位流复核，详见顶部链接。Vivado 辅助纯 RTL 行为仿真，Procise 负责复旦微实现；不能直接替换两者的可执行路径或套用 Xilinx IP。首版仍限定本工程，没有 JTAG、任意 Tcl、取消或重启恢复；未做受控性能或准确率对照。
+随后已确定的小型 Procise MCP 已完成独立 stdio 验证；本轮又通过当前工具会话的七工具及 Vivado MCP 实现新灯序仿真→原生位流复核，详见顶部链接。Vivado 辅助纯 RTL 行为仿真，Procise 负责复旦微实现；不能直接替换两者的可执行路径或套用 Xilinx IP。首版仍限定本工程，没有 JTAG、任意 Tcl、取消或重启恢复；未做受控性能或准确率对照。

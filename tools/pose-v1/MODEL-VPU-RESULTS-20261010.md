@@ -37,6 +37,6 @@ VPU成功协商原两缓冲／NV12／H264／cookie并排入两个原始输入，
 
 同一程序无视频103完整正确，仅加合成编码的三窗也正确；最后的103组合没有模型计算，不构成VPU导致旧模型坏块的因果证据。旧坏块、前次数据残留、稍后正确设备源和异常两轮读取继续保留。完整并发103、持续5Hz／长期／HDMI／零拷贝仍待；管理粗估83/100保持。
 
-传输恢复由用户明确批准；实际本机bundled Git缺scp.exe，已换本机完整Git SSH/SCP，并校验既有ED25519密钥、远端包哈希。认证秘密仅在传输进程内存中使用；用户另明确要求将连接配置记录到Agents.md。审批超时记录与原失败保留。
+传输恢复由；实际本机bundled Git缺scp.exe，已换本机完整Git SSH/SCP，并校验既有ED25519密钥、远端包哈希。认证秘密仅在传输进程内存中使用；另设计要求将连接配置记录到AGENTS.md。审批超时记录与原失败保留。
 
 证据：[完成审查](evidence/model-vpu-20261010-r2/completion-review.json)、[资源审查](evidence/model-vpu-20261010-r2/resource-review.json)、[启动失败](evidence/model-vpu-20261010-r2/vpu-103.failed-review.json)、[恢复点](evidence/model-vpu-20261010-r2/next-checkpoint.json)、[ADR_27](../../ADR/ADR_27.md)、[ADR_02](../../ADR/ADR_02.md)。下一先按[资源生命周期方案](MODEL-VPU-NEXT-20261010.md)准备，旧失败不重跑。

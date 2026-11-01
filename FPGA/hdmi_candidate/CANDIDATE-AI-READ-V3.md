@@ -2,7 +2,7 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-17。**本页是未获新启动授权的草案。候选BOOT尚未生成，完整候选门检尚未完成；当前不能安装、启动或重复失败负载。** 本轮用户唤醒仅恢复已批准范围内的诊断，不重置r2已使用的候选启动／原BOOT回退额度。以下拟议范围须待真实产物、完整本地审查及用户针对本包明确批准后才生效。旧DATA独立暂停。
+2026-10-17。**本页是未获新启动授权的草案。候选BOOT尚未生成，完整候选门检尚未完成；当前不能安装、启动或重复失败负载。** 本轮阶段恢复后仅恢复已批准范围内的诊断，不重置r2已使用的候选启动／原BOOT回退额度。以下拟议范围须待真实产物、完整本地审查及针对本包明确批准后才生效。旧DATA独立暂停。
 
 ## 实际产物与审查入口
 
@@ -31,7 +31,7 @@ planner逐份实读r6四phase真实execution／phase-review、DIRECTORY为`.`的
 
 后处理／BOOT／最终包目录仍为`read-v3-icap`、`read-v3-boot`、`controlled-startup-read-v3`，源bit只接受`reference/fpai_demo_vivado.runs/route_read_v3r6/ai7030_edif_top.bit`。新packager薄适配固定旧完整算法与13处身份转换；actual／base／AST源均归档，ICAP与BOOT review同`candidate_run`且`managed_run:false`。新planner与全部helper／review／packager源码闭包均在local_review绑定，动态状态另查；本地准备不构成上板许可。
 
-用户因离开板边已专项暂停候选BOOT安装／启动与HDMI现场观察，相关UART／reboot入口同样暂停；离线工作和只读证据继续。每次对应入口必须读取动态`onsite_observation_work.paused`且仅明确恢复为false后放行，不能以旧DATA暂停代替全任务状态；必要的已授权原BOOT安全还原不因此阻塞。该动态状态不纳固定local_review SHA，当前没有新启动许可。
+因离开板边已专项暂停候选BOOT安装／启动与HDMI现场观察，相关UART／reboot入口同样暂停；离线工作和只读证据继续。每次对应入口必须读取动态`onsite_observation_work.paused`且仅明确恢复为false后放行，不能以旧DATA暂停代替全任务状态；必要的已授权原BOOT安全还原不因此阻塞。该动态状态不纳固定local_review SHA，当前没有新启动许可。
 
 ## 拟议的限定操作
 
@@ -43,9 +43,9 @@ planner逐份实读r6四phase真实execution／phase-review、DIRECTORY为`.`的
 
 ## 授权与参数必须失败关闭
 
-最终manifest必须绑定所有实际文件与本地完整门检原值。离线检查器默认`inspect`只读；manifest缺失、候选不存在、SHA／大小／非PL字节不符、任一门检缺失或失败均输出closed，不会联机。`authorized-plan`还要求显式`--approved`和新的用户授权回执，回执必须绑定本次manifest完整SHA、package_id=ai-read-v3、用户批准原文及限定次数；只提供CLI布尔值、旧v2回执或历史暂停前许可均拒绝。脚本不生成授权回执，也不能自行证明人类批准真实，根执行器负责由本次实际用户答复建立可信证据。
+最终manifest必须绑定所有实际文件与本地完整门检原值。离线检查器默认`inspect`只读；manifest缺失、候选不存在、SHA／大小／非PL字节不符、任一门检缺失或失败均输出closed，不会联机。`authorized-plan`还要求显式`--approved`和新的回执，回执必须绑定本次manifest完整SHA、package_id=ai-read-v3、原文及限定次数；只提供CLI布尔值、旧v2回执或历史暂停前许可均拒绝。脚本不生成授权回执，也不能自行证明人类批准真实，根执行器负责由本次实际答复建立可信证据。
 
-后续远程适配器的每个写入、启动、UART打开或负载入口，均须先调用同一授权门、检查当前暂停状态及该动作是否在允许表内，再核对实际前置证据。候选安装／候选重启／可选原BOOT重启分别使用主机与板端新目录的独占记录，先保留一次尝试标记再发命令；不因SSH断开或外层超时重发reboot。标记存在即停止并审查原命令／进程，不自动重置次数。用户再次暂停时禁止续跑。
+后续远程适配器的每个写入、启动、UART打开或负载入口，均须先调用同一授权门、检查当前暂停状态及该动作是否在允许表内，再核对实际前置证据。候选安装／候选重启／可选原BOOT重启分别使用主机与板端新目录的独占记录，先保留一次尝试标记再发命令；不因SSH断开或外层超时重发reboot。标记存在即停止并审查原命令／进程，不自动重置次数。再次暂停时禁止续跑。
 
 ## 批准后拟执行的有界顺序
 
@@ -81,9 +81,9 @@ planner逐份实读r6四phase真实execution／phase-review、DIRECTORY为`.`的
 
 本地门检从本节指定的r3综合／constraints-r3、r4 route／reports／bit、managed-PS-r2证明、r2软件构建／epoch mock读取，不允许manifest改指旧阶段或随意指定某个passed文件。审查器还保存各实际门检JSON的SHA，形成local_review_sha256；完整原报告及原始时序例外仍保留。
 
-当前packager只产离线包，因此根执行器在实际产物和最新只读板端审查完成后、申请新批准前，仍须在manifest追加经过审查的`execution_context`（不能从旧r2文件默取）。其中package_id为ai-read-v3；`board`填写host192.168.126.49／user root、新remote_root、boot_device、uart_port、实际uart_usb_identity、本轮pre_start_boot_id、六SDK和九份startup_files（每份size／sha256）；内核由IMAGE完整字节身份保护，旧kernel_sha256字段实际仅dmesg日志SHA，作为审查证据保留，不用于跨启动内核身份判等。动作前仍须重核。`contract`固定四档、1MiB、probe_epoch[0,1,2]、shared_epoch[2,3,4]、three_windows3、old_DATA paused和filesystem_repair false；`budgets`固定上文20/30、120/140、恢复180秒、UART300秒/4MiB/0 TX。缺execution_context也必须关闭，不将离线包当成可启动计划。追加后保存修订SHA，用户批准绑定最终manifest，不能回写成原packager输出未变。
+当前packager只产离线包，因此根执行器在实际产物和最新只读板端审查完成后、申请新批准前，仍须在manifest追加经过审查的`execution_context`（不能从旧r2文件默取）。其中package_id为ai-read-v3；`board`填写host192.168.126.49／user root、新remote_root、boot_device、uart_port、实际uart_usb_identity、本轮pre_start_boot_id、六SDK和九份startup_files（每份size／sha256）；内核由IMAGE完整字节身份保护，旧kernel_sha256字段实际仅dmesg日志SHA，作为审查证据保留，不用于跨启动内核身份判等。动作前仍须重核。`contract`固定四档、1MiB、probe_epoch[0,1,2]、shared_epoch[2,3,4]、three_windows3、old_DATA paused和filesystem_repair false；`budgets`固定上文20/30、120/140、恢复180秒、UART300秒/4MiB/0 TX。缺execution_context也必须关闭，不将离线包当成可启动计划。追加后保存修订SHA，绑定最终manifest，不能回写成原packager输出未变。
 
-新授权回执必须由根执行器在实际用户明确批准后保存，包含approved与active为true、approved_by=user、原始user_confirmation、准确manifest_sha256与local_review_sha256、相同package_id、允许动作列表和caps（candidate_boot_installations1、candidate_reboot_commands1、original_fallback_reboot_commands1），同时保持old_DATA paused／filesystem_repair false。每次远程动作仍需动态前置状态及一次记录，不能以JSON存在覆盖用户后续暂停或失败停止。
+新授权回执必须由根执行器在实际后保存，包含approved与active为true、approved_by=user、原始user_confirmation、准确manifest_sha256与local_review_sha256、相同package_id、允许动作列表和caps（candidate_boot_installations1、candidate_reboot_commands1、original_fallback_reboot_commands1），同时保持old_DATA paused／filesystem_repair false。每次远程动作仍需动态前置状态及一次记录，不能以JSON存在覆盖后续暂停或失败停止。
 
 最终`execution_context.adapters`还须按`planner`、`generator`、`startup_controller`、`secure_transport`、`executor`五个固定role，填写`{path:实际绝对路径,sha256:实际源码SHA}`，分别指向W3/controlled_read_v3.py、W3/prepare_remote_read_v3.py、FPGA/hdmi_candidate/scripts/control_ai_read_startup.py、W3/secure_transport.py和W3/execute_read_v3.py。审查器逐字节核对五份实际源码并把SHA纳入local_review。源码在形成最终manifest前冻结；源码不包含最终manifest实际SHA，不产生循环。任一适配器改动必须生成新的实际manifest／门检及对应新批准绑定，不能沿用旧批准。
 

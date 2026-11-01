@@ -6,21 +6,21 @@
 
 2026-10-07视频修正决策：有限VPU编码保留QUERYBUF opaque MMAP cookie并用于QBUF，与厂商客户端对应；不转换为物理地址、不换BOOT/固件、不扩大队列或放宽色彩。r5两独立上下文54帧完整、码流逐位一致，原r1/r2 MMU失败及r3/r4拒绝保留。[证据与差异](../tools/pose-v1/VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)。此结论限当前板端/固件组合；RTSP先复制为owned AU再归还VPU，按实际NAL/PTS处理，禁止固定24/8参数集和临时指针跨队列。HDMI1080p60仍需当前BOOT配套，不因编码通过猜写。深度异构优化后置保持。
 
-2026-10-07最新：用户完成独立H264样片审查并允许HDMI测试，解除此前暂停。[下一视频计划](../tools/pose-v1/NEXT-VIDEO-PLAN-20261007.md)分开真实预生成骨架编码、HDMI配套/实屏、RTSP、真实推理合并；代理执行，现场画面由用户核对。时序/内存/停止scanout配套不明时不猜写，模型/SDK/BOOT与深度优化后置保持，当前仅计划未新板测。
+2026-10-07最新：完成独立H264样片审查并允许HDMI测试，解除此前暂停。[下一视频计划](../tools/pose-v1/NEXT-VIDEO-PLAN-20261007.md)分开真实预生成骨架编码、HDMI配套/实屏、RTSP、真实推理合并；代理执行，现场画面人工核对。时序/内存/停止scanout配套不明时不猜写，模型/SDK/BOOT与深度优化后置保持，当前仅计划未新板测。
 
-2026-10-07补充：用户接入DELL E2421HN后报告时序不支持，明确将HDMI目标更新为1920×1080@60Hz并暂停HDMI测试。本轮授权独立H.264有限编码、回传主机解码审查；编码输入720p10fps保持，与1080p60扫描输出解耦。当前不写时序寄存器、不换BOOT/位流，旧“未接屏”按历史理解。
+2026-10-07补充：接入DELL E2421HN后报告时序不支持，明确将HDMI目标更新为1920×1080@60Hz并暂停HDMI测试。本轮授权独立H.264有限编码、回传主机解码审查；编码输入720p10fps保持，与1080p60扫描输出解耦。当前不写时序寄存器、不换BOOT/位流，旧“未接屏”按历史理解。
 
 - 日期：2026-10-07
-- 状态：用户明确确认首版采用当前方案；具体应用/视频接入方案待分阶段实施
+- 状态：人工确认首版采用当前方案；具体应用/视频接入方案待分阶段实施
 - 关联：[ADR_00首版整体架构](ADR_00.md)、[当前项目进度](../PROJECT-PROGRESS.md)
 
 实施补充：E1-C CPU骨架渲染与本帧结果接入已通过，[报告](../tools/pose-v1/RENDER-RESULTS-20261007.md)。原14条索引连线与显示C2翻转可追溯，不声称解剖/单位标定；绘图及三格式诊断开销约12ms/89ms，整机需按已有有界工作者路线测争用。V0实际MVX只枚举MPLANE，单平面参考不能直接采用，HDMI时钟/扫描与接屏仍未完成。首版基线与深度优化后置决策保持。
 
-实施状态：全流程路线随后获用户批准，E1-A/B已实板完成，见[结果](../tools/pose-v1/APPLICATION-RESULTS-20261007.md)。首版继续复用lazy-r4数学与同步，生产/验证接口分离并接入TCP；深度优化后置决策不变，视频仍按配套和门检推进。
+实施状态：全流程路线随后已确定，E1-A/B已实板完成，见[结果](../tools/pose-v1/APPLICATION-RESULTS-20261007.md)。首版继续复用lazy-r4数学与同步，生产/验证接口分离并接入TCP；深度优化后置决策不变，视频仍按配套和门检推进。
 
 ## 背景与决策
 
-当前2024 epoch442模型已在Lite上完成PS/NPU混合执行、跨帧状态修复、九组27样本数值核验及短期性能定位。用户已接受现有样本的部署数值阶段，并明确要求先用当前方案实现项目全流程，再考虑真实指针映射/零拷贝、计算图或自定义算子优化。
+当前2024 epoch442模型已在Lite上完成PS/NPU混合执行、跨帧状态修复、九组27样本数值核验及短期性能定位。已接受现有样本的部署数值阶段，并设计要求先用当前方案实现项目全流程，再考虑真实指针映射/零拷贝、计算图或自定义算子优化。
 
 首版采用已验证lazy-r4运行核心：保留SDK显式复制、Host暂存和受限CPU算子适配；Matmul继续执行于NPU，Gather继续使用原SDK实现。SDK profiling关闭，保留单一steady_clock计量能力及原校验/同步协议。优先推进电脑原始CSI回放→板端接收/预处理→异构推理→骨架绘制→HDMI与H.264 RTSP的闭环。
 
@@ -36,7 +36,7 @@
 | CPU适配 | 三类缺失算子显式注册、不覆盖SDK条目；仅支持已核验FP32规格和全有效分布；Gather原实现保持 |
 | 帧协议 | 同一Engine串行；前帧完成后SDK `reset(1)`清状态并确认0，forward后等待两个输出就绪、确认745才进入下一帧；异常停止 |
 | 正确性 | Host107含拒绝用例通过；lazy-r4四次回归＋3预热/30计量共37次输出与r6逐位一致 |
-| 数值阶段 | 现有27样本按用户决定验收；保留原误差，候选排名交换有线索而跨端query身份未证明；不代表GT/MPJPE、物理标定或未知数据验收 |
+| 数值阶段 | 现有27样本验收；保留原误差，候选排名交换有线索而跨端query身份未证明；不代表GT/MPJPE、物理标定或未知数据验收 |
 | 性能 | 30次计量平均190.60146ms、P95 190.75409ms、最大190.80669ms、5.24655Hz；未计入网络/渲染/编码及长期运行 |
 
 首版候选包为 `.local/pose-v1-perf/package-20261007-lazy-r4`，构建为 `.local/pose-v1-build/mixed-20261007-lazy-r4`。
@@ -102,6 +102,6 @@ lazy-r4平均forward约183.26ms。下列跨度有嵌套关系，不能重复累�
 
 - [P2完整报告](../tools/pose-v1/P2-RESULTS-20261007.md)、[lazy-r4完成核验](../tools/pose-v1/evidence/perf-20261007-lazy-r4/completion-review.json)、[命令与构建位置](../tools/pose-v1/P2-SINGLE-CLOCK-COMMANDS-20261007.md)。
 - [r6帧状态修复](../tools/pose-v1/MIXED-FRAME-STATE-R6-RESULTS.md)、[融合绑定](../tools/pose-v1/MIXED-FUSION-R3-APPLY-RESULTS.md)、[CPU受限适配](../tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md)。
-- [27样本误差](../tools/pose-v1/evidence/runtime-20261007-r2/ONNX27-comparison.json)、[用户验收决定](../tools/pose-v1/evidence/perf-20261007-r3/user-numerical-acceptance.json)、[H0视频与骨架资料](../tools/pose-v1/H0-INTEGRATION-AUDIT-20261007.md)。
+- [27样本误差](../tools/pose-v1/evidence/runtime-20261007-r2/ONNX27-comparison.json)、[验收决定](../tools/pose-v1/evidence/perf-20261007-r3/user-numerical-acceptance.json)、[H0视频与骨架资料](../tools/pose-v1/H0-INTEGRATION-AUDIT-20261007.md)。
 
 原始回传张量、程序及日志保留本机，部分生成物已被.gitignore排除；仓库内JSON/哈希与报告不能替代完整原始证据包。

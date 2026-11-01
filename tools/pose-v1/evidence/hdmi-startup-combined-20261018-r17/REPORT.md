@@ -1,6 +1,6 @@
 # r17 跨启动分段观测结果
 
-2026-10-18，Windows主机 D:/FPGACompetitionProject → SSH Lite，同一r9 BOOT，未重编FPGA。用户批准上限3次候选启动、1次条件PL按键、1次原BOOT回退；实际3／0／1，SDK Open共3次且每启动仅一次。包已关闭，剩余额度0。
+2026-10-18，Windows主机 D:/FPGACompetitionProject → SSH Lite，同一r9 BOOT，未重编FPGA。上限3次候选启动、1次条件PL按键、1次原BOOT回退；实际3／0／1，SDK Open共3次且每启动仅一次。包已关闭，剩余额度0。
 
 三次启动均在SSH恢复后先恢复原BOOT文件并完整读回，再执行无SDK依赖的纯CSR快照；全部健康。随后同一启动各执行独立父进程覆盖的库加载、一次Open、Open后空闲及关闭／卸载，五段全部通过。各段flags=0x19、ARM窗口复位计数0、六路AR/R握手0、六路RVALID计数0。没有DMA、模型推理、HDMI START或长期验证；未触发故障按键条件。
 

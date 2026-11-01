@@ -1,6 +1,6 @@
 # r4逐次输入内容取证源码交付
 
-用户回复“同意”批准输入内容诊断方案。代理已保存r3五份源码/脚本备份、写入隔离诊断并生成最终包；未编译/接入板端/重新执行模型。
+回复“同意”批准输入内容诊断方案。代理已保存r3五份源码/脚本备份、写入隔离诊断并生成最终包；未编译/接入板端/重新执行模型。
 目标是定位连续forward实际内容最早停止更新的边界，不预设SDK缓存或DMA原因，不执行猜测性修复。
 
 ## 已实现
@@ -20,12 +20,12 @@
 ## 验证与尚存限制
 
 仅本机模拟格式测试：Host/单次/四次正例及11类异常或提前停止场景通过，能区分实际caller内容不符与Input0旧内容。
-模拟数据不是C++ SDK read的实测；新Host内容路径必须用户ARM运行验证。
+模拟数据不是C++ SDK read的实测；新Host内容路径必须ARM运行验证。
 Python AST/板端嵌入Python3.8语法/LF、C++捕获名称字面量白名单、来源与包哈希检查通过。
 旧CPU/原推理器/融合检查源码片段及SDK等待/复制调用保持。
 
 最终包.local/pose-v1-mixed-validation/package-20261006-content-r4-final：291项哈希、12构建文件、20来源。
-原r3共享非manifest载荷289份保持，仅runner增加显式捕获参数；中间准备包完整保留，不用于用户构建。
+原r3共享非manifest载荷289份保持，仅runner增加显式捕获参数；中间准备包完整保留，不用于构建。
 [最终交付身份](evidence/mixed-20261006-content-r4/delivery-review.json)、
 [最终模拟检查](evidence/mixed-20261006-content-r4/offline-content-tests-final/review.json)。
 新ARM编译/API调用、Host实际内容读回及板端捕获均待验证；不称根因已定位或三样本已修复。

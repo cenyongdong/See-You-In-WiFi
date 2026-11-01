@@ -38,7 +38,7 @@ inv81计划183259567281900ns，实际开始183259567357650ns，reset开始183261
 
 ## 资源与失败保留
 
-off后普通高阶折算512KiB单位7；代理按自主权限仅一次compact_memory写1，161.29668ms、7→34，全四类前后快照／内核／原因保存。无第二规整、清缓存、重启、CMA／BOOT／SDK变化。实际首capture早于SDK初始化，但单次成功不代表首次启动长期可靠。
+off后普通高阶折算512KiB单位7；代理仅一次compact_memory写1，161.29668ms、7→34，全四类前后快照／内核／原因保存。无第二规整、清缓存、重启、CMA／BOOT／SDK变化。实际首capture早于SDK初始化，但单次成功不代表首次启动长期可靠。
 
 Native r1时隙测试期望多1ns导致失败；r2只改期望、公式不变，r1源码／build.log保留且未板测。只读收尾r1库清单错误KeyError保留；新r2核对Host preflight三库及本程序四库通过，没有硬件重跑。阶段和最终dmesg逐位同，FPGA operating，进程／管理器／端口39001及8554释放，代理SSH／SCP全结束。有VPU阶段结束CmaFree2072KiB，最终只读MemAvailable694568KiB／CmaFree106916KiB；不同时间快照不证明泄漏。
 

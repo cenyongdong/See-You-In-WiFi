@@ -1,10 +1,10 @@
-# CPU候选验证：用户执行命令（2026-10-06修正）
+# CPU候选验证：人工操作命令（2026-10-06修正）
 
 批准范围见[CPU-ADAPTER.md](CPU-ADAPTER.md)。代理本轮未执行下面的准备、编译或测试。
 先执行A、B并回传编译日志；核对通过后再按C运行已批准的CPU测试。任一步失败立即停止，
 保留目录和日志，不自行重试、删目录、更换SDK/链接方式/模型或进入mixed。
 
-**A/B/C/D已由用户完成并经完整复核，独立CPU候选门检通过。** 107例、12条注册记录、
+**A/B/C/D已人工完成并经完整复核，独立CPU候选门检通过。** 107例、12条注册记录、
 22份实际输出/59,600个FP32值逐位一致，包/回传/SDK/程序身份匹配。
 最终[结果](CPU-ADAPTER-RESULTS-20261006.md)及[独立核验](evidence/cpu-adapter-independent-review-20261006.json)。
 以下命令保留为执行历史，不重复准备/编译/板端运行或覆盖已存在的证据；正式推理器接入及完整mixed另讨论。
@@ -116,7 +116,7 @@ sh package/run-cpu-adapter.sh
 echo $?
 ```
 
-`chmod`只增加这个新候选程序的用户执行权限。
+`chmod`只增加这个新候选程序的人工操作权限。
 脚本先核对包清单、Icraft/CustomOp 3.39.0、头文件、Host库、ldd和timeout。
 仅以一次`timeout --signal=TERM --kill-after=5s 300s`执行CPU测试，300秒后TERM、再5秒KILL；
 不会读取模型RAW、调用Device::Open/Session或运行NPU/DMA/HDMI。
@@ -142,7 +142,7 @@ cat cpu-run-20261005/results/summary.json
 ## D．Windows PowerShell：完整回传与独立数值复核
 
 即使C失败，也请完整回传`cpu-run-20261005`；先审查stderr和失败阶段，不执行下面的数值复核。
-本步骤已由用户执行完成。此前截图显示运行退出0、107例完成、stderr空；以下**Windows PowerShell**命令保留，
+本步骤已人工执行完成。此前截图显示运行退出0、107例完成、stderr空；以下**Windows PowerShell**命令保留，
 重新设置变量，无需沿用之前窗口状态：
 
 ```powershell

@@ -1,11 +1,11 @@
 # CPU候选r1编译问题：源码与日志修正（2026-10-06，已批准并应用）
 
-用户明确同意本方案后，已将审阅候选应用到生效检查器和构建脚本，旧文件备份/包/构建目录保持。
+本方案后，已将审阅候选应用到生效检查器和构建脚本，旧文件备份/包/构建目录保持。
 生效PowerShell语法0错误，源码三处已改Array::set；尚未生成r2包、重编译或执行算子测试。
 
 ## 已确认与未知
 
-用户新构建`cpu-adapter-20261006-r1`已完成SDK审计和CMake配置/生成。
+新构建`cpu-adapter-20261006-r1`已完成SDK审计和CMake配置/生成。
 代理只读核对导出的六份头文件、Host so与原包身份、两份3.39.0版本记录，以及五份构建源码副本，全部匹配。
 此前容器Python依赖已移除，本次不是同一阻断。
 
@@ -46,10 +46,10 @@ dims.set(-1, dims[-1] - 1);
 原文件备份在evidence/host_cpu_adapter_check.before-array-set-20261006.cpp和
 evidence/Build-CpuAdapter.before-stderr-log-20261006.ps1。PowerShell语法0错误，尚未实际编译。
 
-## 用户接下来执行
+## 接下来执行
 
 代理已应用审阅补丁、保存备份及记录，并更新[正式执行说明A/B](CPU-ADAPTER-COMMANDS.md)。
-用户在Windows PowerShell项目根目录生成新的身份包并使用新构建目录：
+在Windows PowerShell项目根目录生成新的身份包并使用新构建目录：
 
 ```powershell
 $poseRoot = 'C:\Users\cenyongdong\.codex\worktrees\dea3\FPGACompetitionProject'
@@ -69,5 +69,5 @@ if ($LASTEXITCODE -ne 0) { throw '新身份包准备失败，停止并报告。'
 如CMake/编译再次失败，保存完整日志停止讨论，不自动修正或继续板端测试。
 返回build.log、sdk-audit.json和成功时build-result.json后，代理核对才进入Lite CPU测试。
 
-本次已按Agents.md决策审批规范取得用户明确同意；不扩展为代理代编译、NPU/DMA/HDMI或完整模型操作。
+本次已按AGENTS.md决策审批规范取得；不扩展为代理代编译、NPU/DMA/HDMI或完整模型操作。
 应用身份见evidence/cpu-adapter-compile-fix-applied-r2-20261006.json；应用不等于编译/前向通过。

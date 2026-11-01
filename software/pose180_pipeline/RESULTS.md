@@ -12,7 +12,7 @@
 
 另用生产归档预备函数及有界writer写入52,800条、3,935,923,200字节（约3.94GB）：预写/flush约3.208秒，记录写回调p99为0.9132ms、最大9.461ms，无超过1秒回调，首尾原值一致，临时文件已回收。**这两项均为软件验证，不能替代NPU或HDMI实板稳定性结论。**[生产writer测试结果](evidence/20261025/software/ssd-archive-probe.json)
 
-新HDMI包`pose180-hdmi-20261025-r2`获用户明确批准后复用r45镜像，实际完成1次候选启动。串口接收标记验证后才安装/重启；候选上线后先将磁盘BOOT恢复原版并完整读回，再执行一次同boot启动准入。原生启动历史为PS AR=0、R=6；当前160位状态为`0xb00080002c00000000000000`，置位58/59/61/79/92/93/95。除原已知项外新增bit79 `AXI_AUXM_RCAM_UNDERFLOW`，超出既定有限消费允许范围，准入返回`Unknown native mandatory/capacity status`并停止。首个协议窗口中的容量超限标志为false，不能将报错文案直接解释为容量耗尽；本轮没有扩展豁免、执行消费、打开SDK或发HDMI START。[首次启动原值](evidence/20261025/hdmi/startup-observation.json)、[原生协议窗口](evidence/20261025/hdmi/protocol-before.json)、[准入结果](evidence/20261025/hdmi/before-seed.json)
+新HDMI包`pose180-hdmi-20261025-r2`已确定后复用r45镜像，实际完成1次候选启动。串口接收标记验证后才安装/重启；候选上线后先将磁盘BOOT恢复原版并完整读回，再执行一次同boot启动准入。原生启动历史为PS AR=0、R=6；当前160位状态为`0xb00080002c00000000000000`，置位58/59/61/79/92/93/95。除原已知项外新增bit79 `AXI_AUXM_RCAM_UNDERFLOW`，超出既定有限消费允许范围，准入返回`Unknown native mandatory/capacity status`并停止。首个协议窗口中的容量超限标志为false，不能将报错文案直接解释为容量耗尽；本轮没有扩展豁免、执行消费、打开SDK或发HDMI START。[首次启动原值](evidence/20261025/hdmi/startup-observation.json)、[原生协议窗口](evidence/20261025/hdmi/protocol-before.json)、[准入结果](evidence/20261025/hdmi/before-seed.json)
 
 本新包已按批准执行唯一一次原BOOT回退，实际为1候选/0 SDK/1回退，关闭后所有余额为0；没有重试候选或推理。最终boot_id为`2d5f618a-7891-493e-a519-714c0edcaa3c`，九个启动文件、六SDK库及FPGA operating核验通过，设备占用为空。两个串口捕获已关闭，主机服务器、pacer和SSH反向端口均已回收。[关闭结果](evidence/20261025/hdmi/closed.json)、[最终身份核验](evidence/20261025/hdmi/final-audit.json)
 

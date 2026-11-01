@@ -8,7 +8,7 @@ ADR_23记录的真实模型192输入残留仍未解决；低位、真实类型�
 
 ## 决策与实现
 
-按用户批准的[方案](../tools/pose-v1/PLDDR-POSITION-NEXT-20261010.md)，新增独立`pose_model_only_check`入口，使用冻结`application::Engine`公共API。单主线程创建／前向／销毁；模型／RAW／SDK／六Host计算、原ready／reset(1)／745、192公开计数／对象身份／拥有shadow及异常两晚设备源保持。不执行VPU、显示、TCP／RTSP或HDMI，不抽图／包装绝对地址或猜同步。
+[方案](../tools/pose-v1/PLDDR-POSITION-NEXT-20261010.md)，新增独立`pose_model_only_check`入口，使用冻结`application::Engine`公共API。单主线程创建／前向／销毁；模型／RAW／SDK／六Host计算、原ready／reset(1)／745、192公开计数／对象身份／拥有shadow及异常两晚设备源保持。不执行VPU、显示、TCP／RTSP或HDMI，不抽图／包装绝对地址或猜同步。
 
 SDK无关`model_only_run`封装完整窗口、调用顺序、拥有返回值、停止状态和不突发补帧的目标时刻。三窗＋重复4次500ms目标；103使用旧27源循环和200ms目标，源样本帧号与100000起的调用帧号分离。输出使用冻结保存后比较助手，先保存完整实际数据，再按原完整输出规则比较；保存与CPU/NPU调用均会扰动诊断时序，不当作低日志性能验收。
 

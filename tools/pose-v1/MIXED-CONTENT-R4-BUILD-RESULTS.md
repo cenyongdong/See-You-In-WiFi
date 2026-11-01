@@ -1,6 +1,6 @@
 # r4-final Host内容取证构建验收
 
-用户完成FPAI GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0配置、五CPP编译及链接，代理仅本机审阅。
+完成FPAI GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0配置、五CPP编译及链接，代理仅本机审阅。
 291项包、20份来源身份、12份构建文件/副本、15ARM头文件及Host/ZG库身份匹配。
 content_diagnostic.hpp及caller/Input0/桥捕获源码与最终包一致，SDK read/句柄/Chunk接口已通过ARM编译，实际读回仍待板测。
 

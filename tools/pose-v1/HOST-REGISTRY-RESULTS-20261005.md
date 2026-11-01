@@ -2,7 +2,7 @@
 
 ## 工程内容总结
 
-用户批准HOST-REGISTRY-PROBE-PLAN.md及特殊问题代理工具协助权限后，代理完成独立探针交叉编译、
+HOST-REGISTRY-PROBE-PLAN.md及特殊问题代理工具协助权限后，代理完成独立探针交叉编译、
 传板、一次受限运行及回传复核。平台悟净Lite，FPAI GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0。
 原software/pose_v1源码、原推理二进制、optimized/ZG模型和SDK未修改。
 
@@ -44,7 +44,7 @@ Host库与原始安装包相同的既有证据保留：d0fbf6c81e5b57b4a908f11aa
 
 ### Matmul的参考路径与正式部署路径澄清
 
-用户询问为何ZG支持Matmul却放CPU。静态复核现有模型：optimized图有130个Matmul，
+问题为何ZG支持Matmul却放CPU。静态复核现有模型：optimized图有130个Matmul，
 该图用于全CPU浮点数值参考；quantized图130个Matmul均为@zhuget(330)，包括op1。
 adapted图132个Matmul也均为@zhuget(330)，最终ZG图以HardOp表示硬件指令，
 其@hostt计算节点只有前述六个（另有Input/Output标记），没有CPU Matmul节点。

@@ -1,10 +1,10 @@
 # V0视频配套核对：已确认部分与待确认接口
 
-最新授权：用户已完成编码样片审查，允许HDMI测试，解除下述暂停；[下一视频计划](NEXT-VIDEO-PLAN-20261007.md)与[来源哈希/检查点](evidence/video-next-plan-20261007.json)更新。参考默认1080p仅控制帧缓存大小/提交地址，仍需当前BOOT的clock/scanout/换帧配套核验；没有新硬件时序切换。
+最新授权：已完成编码样片审查，允许HDMI测试，解除下述暂停；[下一视频计划](NEXT-VIDEO-PLAN-20261007.md)与[来源哈希/检查点](evidence/video-next-plan-20261007.json)更新。参考默认1080p仅控制帧缓存大小/提交地址，仍需当前BOOT的clock/scanout/换帧配套核验；没有新硬件时序切换。
 
-最新补充：下文是此前查询阶段记录。现已实测720p NV12两plane、H264单plane、明确stride/容量及30帧独立文件编码/主机解码，[结果](VPU-RESULTS-20261007.md)。HDMI已连接DELL E2421HN但用户报告时序不支持，目标更新1080p60并暂停测试，尚未切换硬件时序；旧无显示器/720p目标按历史理解。
+最新补充：下文是此前查询阶段记录。现已实测720p NV12两plane、H264单plane、明确stride/容量及30帧独立文件编码/主机解码，[结果](VPU-RESULTS-20261007.md)。HDMI已连接DELL E2421HN但现场反馈时序不支持，目标更新1080p60并暂停测试，尚未切换硬件时序；旧无显示器/720p目标按历史理解。
 
-本轮按已批准路线查询sysfs/device-tree/proc及V4L2能力。V4L2只open/close、QUERYCAP、ENUM_FMT、ENUM_FRAMESIZES；没有S_FMT、REQBUFS、QBUF、STREAMON、mmap或SDK Device::Open，也未写候选寄存器、更换BOOT或启动相机示例。用户确认HDMI显示器尚未连接。
+本轮按已批准路线查询sysfs/device-tree/proc及V4L2能力。V4L2只open/close、QUERYCAP、ENUM_FMT、ENUM_FRAMESIZES；没有S_FMT、REQBUFS、QBUF、STREAMON、mmap或SDK Device::Open，也未写候选寄存器、更换BOOT或启动相机示例。人工确认HDMI显示器尚未连接。
 
 ## 已确认的运行事实
 

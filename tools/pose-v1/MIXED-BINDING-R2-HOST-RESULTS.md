@@ -1,6 +1,6 @@
 # 绑定快照r2 Host回归与离线预检复核
 
-用户完成Lite运行及完整回传；代理仅分析本机文件，未接入板端或重跑程序。
+完成Lite运行及完整回传；代理仅分析本机文件，未接入板端或重跑程序。
 
 Host阶段退出0、stderr空，107例（18正常/89拒绝）、12注册记录通过。
 22份输出共59,600个有限FP32值与NumPy固定参考及已验收r1输出逐位一致，最大差0。
@@ -17,6 +17,6 @@ mode=host-check、device_init_allowed=false，无完整Session、设备初始化
 证据：[Host独立核验](evidence/mixed-20261006-binding-r2/host-independent-review.json)、
 [Host验收](evidence/mixed-20261006-binding-r2/host-check.acceptance.json)、
 [离线预检复核](evidence/mixed-20261006-binding-r2/offline-preflight-review.json)。
-下一步用户执行[命令E](MIXED-BINDING-R2-COMMANDS.md)：传入新r2 Host验收、受保护地改名保留板端失败目录，
+下一步人工操作[命令E](MIXED-BINDING-R2-COMMANDS.md)：传入新r2 Host验收、受保护地改名保留板端失败目录，
 再仅执行一次30秒offline-check并完整回传；暂不memory/apply/mixed。
 Host回归通过不能证明快照功能、融合映射、NPU同步、完整模型精度或连续性能。

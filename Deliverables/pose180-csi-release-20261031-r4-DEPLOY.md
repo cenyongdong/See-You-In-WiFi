@@ -217,7 +217,7 @@ Ctrl+C结束启动器管理的两个PC观察进程，板端推理／HDMI独立�
 
 ## 源码与恢复
 
-完整源码包：`pose180-complete-sources-20261031-r4.rar`，包含当前PS／PC／PL及上游模型原始代码、IP配置、约束、实际构建脚本、关键报告，以及JSON／RAW／ONNX模型和当前合格BIT；补齐目标器件所需厂商网表、IP综合结果和增量实现基线，排除无关器件和重复构建缓存。重建外部依赖见 `SOURCE.md`。旧本机部署包与源码包按用户要求清理；工作区原始证据保留，部署包仅附最新版BOOT。关键数据统一见 `PERFORMANCE.md`。
+完整源码包：`pose180-complete-sources-20261031-r4.rar`，包含当前PS／PC／PL及上游模型原始代码、IP配置、约束、实际构建脚本、关键报告，以及JSON／RAW／ONNX模型和当前合格BIT；补齐目标器件所需厂商网表、IP综合结果和增量实现基线，排除无关器件和重复构建缓存。重建外部依赖见 `SOURCE.md`。旧本机部署包与源码包清理；工作区原始证据保留，部署包仅附最新版BOOT。关键数据统一见 `PERFORMANCE.md`。
 
 源码RAR已独立解压完成ARM64、离线构建和核心RTL仿真，ARM64程序与本包逐字节相同；详见 `SOURCE.md` 和 `evidence/current/rebuild/result.json`。10月31日交付整理未重跑完整FPGA布局布线；11月1日随后完成r4源码RAR新解压的完整本地实现与位流生成，详见[重建报告](FPGA-REBUILD-20261101-r1.md)。新位流未上板，默认BOOT和运行程序未更换。
 

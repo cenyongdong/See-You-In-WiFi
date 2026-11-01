@@ -2,17 +2,17 @@
 
 **2026-11-01当前状态：** r4源码RAR已在独立新解压目录完成完整综合／链接／放置／物理优化／布线／BIT及Procise适配，配置载荷与包内合格BIT一致；见[完整重建](../../../Deliverables/FPGA-REBUILD-20261101-r1.md)。最新交付为r4 RAR，30段官方输入长测与PC滤波前／后对照已完成有限验证。最后板端观察、默认BOOT及重新启动要求统一见[恢复入口](../../../FPGA/hdmi_candidate/RESUME.md)；下文短测和早期位流身份仅描述各自轮次。
 
-2026-10-31现行交付为r4 RAR；源码含模型权重、最新BIT及目标器件必需IP／网表／实现基线，旧交付包按要求清理，原始实测证据保留。关键数据统一见 [性能与资源汇总](../../../Deliverables/PERFORMANCE.md)，当前入口见 [部署说明](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。以下专项记录保留当时原值。
+2026-10-31现行交付为r4 RAR；源码含模型权重、最新BIT及目标器件必需IP／网表／实现基线，旧交付包清理，原始实测证据保留。关键数据统一见 [性能与资源汇总](../../../Deliverables/PERFORMANCE.md)，当前入口见 [部署说明](../../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。以下专项记录保留当时原值。
 
-2026-10-31 用户明确恢复本专项：PS 保留投影，PL 绘制二维骨架、关节点和必要动态信息，以完成整机实现为优先。历史几何／滤波扩展、心率和旧 DATA 调查不恢复。
+2026-10-31 阶段恢复后本专项：PS 保留投影，PL 绘制二维骨架、关节点和必要动态信息，以完成整机实现为优先。历史几何／滤波扩展、心率和旧 DATA 调查不恢复。
 
-已完成本专项有限实板验证：算子／像素仿真、ARM64编译、完整物理资格、位流／BOOT封装和真实推理→PL绘图→HDMI均已完成；用户确认骨架及动态信息正常更新。该专项结束时安装overlay BOOT，SDK正常关闭；其后已合并CSI v3，现行BOOT与回退以上方恢复入口为准，旧身份仅作历史。本轮不代表实时CSI复验、长期稳定性或功耗验收。
+已完成本专项有限实板验证：算子／像素仿真、ARM64编译、完整物理资格、位流／BOOT封装和真实推理→PL绘图→HDMI均已完成；人工确认骨架及动态信息正常更新。该专项结束时安装overlay BOOT，SDK正常关闭；其后已合并CSI v3，现行BOOT与回退以上方恢复入口为准，旧身份仅作历史。本轮不代表实时CSI复验、长期稳定性或功耗验收。
 
 采用 GP 指令接口、PL Bresenham 画线／圆点／矩形／字体绘制、片上双缓冲覆盖层、帧边界交换。背景复用原 1080p RGB565 DDR 读取；动态覆盖层 960×540、四位调色板、2×显示。PS 做投影与裁剪，不生成覆盖层像素。该取整近似与性能、资源结果一并报告。
 
 本专项物理实现与板测证据目录 `.local/skeleton-overlay-20261031-r2/reports`；r1 保留初版仿真、软件构建和原始失败。r1 实际布局发现原像素 BUFR 区域时钟无法驱动跨区域的完整覆盖层显存（Place 30-764）。r2 将显存两端口均放在既有全局 GP 100MHz 域，用512×4位分布式异步 FIFO 向原148.5MHz像素域送数据，不改频率。原始失败不覆盖。FIFO 下溢时当帧降级为背景，下帧重新同步，并保留粘滞状态。
 
-增量布局的两条布线尝试在1–2处冲突反复循环，用户明确同意停止；14:23核验专属PID后停止，原生退出值4294967295与日志保留，见 `reports/user-cancelled-incremental-routes.json`。含逐网诊断预布线的首轮非增量实现setup失败：WNS=-1.825ns、TNS=-3311.354ns，原始报告／检查点保留。随后复用非增量布局，跳过诊断预布线，直接进行时序驱动布线，将违例降至原HDMI地址递增路径的24ps；布线后局部物理优化消除了最后违例。最终采用 `pipeline-routed-closure.dcp`，未重做综合、改频率或增加豁免。Procise首次因启动环境缺失而初始化失败，按既有封装器环境修复后成功；原始失败 `icap.log` 保留。
+增量布局的两条布线尝试在1–2处冲突反复循环，停止；14:23核验专属PID后停止，原生退出值4294967295与日志保留，见 `reports/user-cancelled-incremental-routes.json`。含逐网诊断预布线的首轮非增量实现setup失败：WNS=-1.825ns、TNS=-3311.354ns，原始报告／检查点保留。随后复用非增量布局，跳过诊断预布线，直接进行时序驱动布线，将违例降至原HDMI地址递增路径的24ps；布线后局部物理优化消除了最后违例。最终采用 `pipeline-routed-closure.dcp`，未重做综合、改频率或增加豁免。Procise首次因启动环境缺失而初始化失败，按既有封装器环境修复后成功；原始失败 `icap.log` 保留。
 
 证据包括原生命令及日志、仿真结果、实际资源与 setup/hold、最终 bit/BOOT 身份、实板运行及 PS/PL 对照。估算、仿真、综合、布线和实板分别认定；不以日志文案、严格帧率或逐像素外观一致阻断演示。硬件完成、资源释放和时序检查保留。
 
@@ -20,7 +20,7 @@ CSR 基址 `0x400b2000`，ABI `0x534b4c01`。00=ABI，04=busy/error/display_vali
 
 ## 实板结果与性能对照
 
-唯一结果摘要见 [final-summary.json](../../../.local/skeleton-overlay-20261031-r2/reports/final-summary.json)。候选实际使用1次BOOT安装、1次正常重启、1次SDK，53.186秒正常结束：接收420帧、417次新推理、417次HDMI采纳、PC两路各接收417帧。3次输入窗口替换，PC原始记录端415次落盘／2次丢弃，按演示模式保留原值。原生关闭成功、设备占用为空、PC两个180秒观察器均已结束。用户在运行期间确认“画面正常，骨架和信息持续更新”，[确认记录](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-visual-confirmation.json)不冒充实屏照片。
+唯一结果摘要见 [final-summary.json](../../../.local/skeleton-overlay-20261031-r2/reports/final-summary.json)。候选实际使用1次BOOT安装、1次正常重启、1次SDK，53.186秒正常结束：接收420帧、417次新推理、417次HDMI采纳、PC两路各接收417帧。3次输入窗口替换，PC原始记录端415次落盘／2次丢弃，按演示模式保留原值。原生关闭成功、设备占用为空、PC两个180秒观察器均已结束。在运行期间确认“画面正常，骨架和信息持续更新”，[确认记录](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-visual-confirmation.json)不冒充实屏照片。
 
 保留环中226条PL显示记录的硬件完成计数为192–417，tag全部匹配，粘滞下溢位均为0。板端保留225条完整推理输出，与PS对照按输入内容配对后，225组输入及全部180候选输出逐字节一致。配对按实际输入而非发布序号，避免3次窗口替换造成错配；不将末段225组扩写为420组全程逐位验证。原始证据：[板端归档](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-board.tar.gz)、[PL统计](../../../.local/skeleton-overlay-20261031-r2/reports/pl-native-display-metrics.json)、[输出对照](../../../.local/skeleton-overlay-20261031-r2/reports/ps-pl-output-comparison.json)、[PC记录](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-pc)。
 

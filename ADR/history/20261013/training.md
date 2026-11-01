@@ -1,20 +1,20 @@
 # 训练旁支与检查任务的历史
 
-2026-10-13从Agents.md迁出，按主题保存原记录；原文“当前”“已批准”“下一步”和暂停/恢复只表示当时状态，不是现行进度或新的执行授权。最新进度见[PROJECT-PROGRESS](../../../PROJECT-PROGRESS.md)，执行规范以[Agents.md](../../../Agents.md)为准。源行编号与迁移清单用于追溯；不改写原失败、修订或验收边界。
+2026-10-13从AGENTS.md迁出，按主题保存原记录；原文“当前”“已批准”“下一步”和暂停/恢复只表示当时状态，不是现行进度或新的执行授权。最新进度见[PROJECT-PROGRESS](../../../PROJECT-PROGRESS.md)，执行规范以[AGENTS.md](../../../AGENTS.md)为准。源行编号与迁移清单用于追溯；不改写原失败、修订或验收边界。
 
 <a id="a292"></a>
 
 ## A292 · 分化零衰减10轮完成验收（2026-10-04 13:06，更新下述启动快照）
 
-来源：整理前 Agents.md 第292–293行。
+来源：整理前 AGENTS.md 第292–293行。
 
-- 分化零衰减10轮完成验收（2026-10-04 13:06，更新下述启动快照）：`tpami2026_diff_nodecay_20261004`于12:00:59完成10轮/28,110步并停止，监督/torchrun/4rank退出、GPU空闲。10次7824帧评估/四卡检查、563条有限诊断、134份当前源码/快照及配置哈希、最佳/最终权重及优化器有限性/元数据/分组/SHA256通过；最佳epoch6=344.787402826mm，epoch10=377.942666765mm。分化L2保留1.908233679，但第6轮15351步首次抽检分化/细化注意力梯度同时0，第7–10轮全部抽检均0；参数不归零不等于细化学习有效，现有范数门禁没有检测持续零梯度。最佳权重服务器`best_mpjpe_epoch_6.pth`，SHA256 4fb71e4a604cb064ec11a6d7de52a3190cd44ad1dc1d58c3a135bce947276def；最终SHA256 50a5ffa2b7e9e45dd6ac5d1797fe5af91f35203360b3fed772b812a9f9ac975d。前5轮同轮有改善也有退步，不能宣称稳定增益。结果见`tools/pose26-diff-nodecay/20261004/RESULTS.md`和evidence/completion-verification.json。实验已结束，禁止重复启动/自动延长/改门禁；后续排查和新技术方案先讨论批准。用户暂不监测及ID26暂停保持，未开展模型部署。
+- 分化零衰减10轮完成验收（2026-10-04 13:06，更新下述启动快照）：`tpami2026_diff_nodecay_20261004`于12:00:59完成10轮/28,110步并停止，监督/torchrun/4rank退出、GPU空闲。10次7824帧评估/四卡检查、563条有限诊断、134份当前源码/快照及配置哈希、最佳/最终权重及优化器有限性/元数据/分组/SHA256通过；最佳epoch6=344.787402826mm，epoch10=377.942666765mm。分化L2保留1.908233679，但第6轮15351步首次抽检分化/细化注意力梯度同时0，第7–10轮全部抽检均0；参数不归零不等于细化学习有效，现有范数门禁没有检测持续零梯度。最佳权重服务器`best_mpjpe_epoch_6.pth`，SHA256 4fb71e4a604cb064ec11a6d7de52a3190cd44ad1dc1d58c3a135bce947276def；最终SHA256 50a5ffa2b7e9e45dd6ac5d1797fe5af91f35203360b3fed772b812a9f9ac975d。前5轮同轮有改善也有退步，不能宣称稳定增益。结果见`tools/pose26-diff-nodecay/20261004/RESULTS.md`和evidence/completion-verification.json。实验已结束，禁止重复启动/自动延长/改门禁；后续排查和新技术方案先讨论批准。暂不监测及ID26暂停保持，未开展模型部署。
 
 <a id="a294"></a>
 
 ## A294 · 零衰减对照交付前快照（2026-10-04 10:25:28）
 
-来源：整理前 Agents.md 第294–295行。
+来源：整理前 AGENTS.md 第294–295行。
 
 - 零衰减对照交付前快照（2026-10-04 10:25:28）：下述新10轮实验仍stage=training，第1轮1701步，分化L2=1.719859849，分化/细化注意力梯度和残差非零；无已记录错误、无完整评估，不能称为精度改善、10轮完成或已越过原第6轮退化点。最新只读快照`tools/pose26-diff-nodecay/20261004/evidence/progress-latest.json`，10:21:30第251步是此前启动核验。
 
@@ -22,39 +22,39 @@
 
 ## A296 · 分化分支零衰减10轮对照（2026-10-04，当前训练上下文）
 
-来源：整理前 Agents.md 第296–297行。
+来源：整理前 AGENTS.md 第296–297行。
 
-- 分化分支零衰减10轮对照（2026-10-04，当前训练上下文）：用户批准上一轮建议的仅关闭Differentiation Branch衰减对照，已新增独立`opera/models/tpami2026_diff_nodecay.py`、配置`configs/wifi/petr_wifi_tpami2026_diff_nodecay.py`及`tools/pose26_diff_nodecay`；只有`bbox_head.transformer.joint_differentiators.`的56份权重/偏置wd=0，Refine Decoder、坐标回归及其他参数仍wd1e-4。保持全新初始化、Adam lr2e-5/betas(.9,.999)/eps1e-8、GPU1–4/每卡batch8/worker4、FP32 seed0 clip0.1、原模型/初始化/数据/损失和异常门禁；固定10轮后停止讨论。单项零梯度参数逐元素不变/索引/梯度及4卡96样本3步门检通过；旧129份源码未变，新正式134份源码/快照/配置哈希通过。10:20:27正式启动，监督70223、torchrun70234、rank70239–70242，操作前重新核对身份；10:21:30第251步分化L2=1.564861、梯度非零且记录有限，首轮评估尚未完成，不能宣称精度改善或10轮验收。结果`result/tpami2026_diff_nodecay_20261004`，优先查pipeline-status/诊断/评估；禁止重复启动、自动改配置/重试/延长。用户暂不监测及ID26暂停保持。本轮零衰减不覆盖整条细化路径，也不是重新启动旧500轮。入口`tools/pose26-diff-nodecay/20261004/README.md`、Done.md、REFERENCES.md 17.3。
+- 分化分支零衰减10轮对照（2026-10-04，当前训练上下文）：上一轮建议的仅关闭Differentiation Branch衰减对照，已新增独立`opera/models/tpami2026_diff_nodecay.py`、配置`configs/wifi/petr_wifi_tpami2026_diff_nodecay.py`及`tools/pose26_diff_nodecay`；只有`bbox_head.transformer.joint_differentiators.`的56份权重/偏置wd=0，Refine Decoder、坐标回归及其他参数仍wd1e-4。保持全新初始化、Adam lr2e-5/betas(.9,.999)/eps1e-8、GPU1–4/每卡batch8/worker4、FP32 seed0 clip0.1、原模型/初始化/数据/损失和异常门禁；固定10轮后停止讨论。单项零梯度参数逐元素不变/索引/梯度及4卡96样本3步门检通过；旧129份源码未变，新正式134份源码/快照/配置哈希通过。10:20:27正式启动，监督70223、torchrun70234、rank70239–70242，操作前重新核对身份；10:21:30第251步分化L2=1.564861、梯度非零且记录有限，首轮评估尚未完成，不能宣称精度改善或10轮验收。结果`result/tpami2026_diff_nodecay_20261004`，优先查pipeline-status/诊断/评估；禁止重复启动、自动改配置/重试/延长。暂不监测及ID26暂停保持。本轮零衰减不覆盖整条细化路径，也不是重新启动旧500轮。入口`tools/pose26-diff-nodecay/20261004/README.md`、Done.md、REFERENCES.md 17.3。
 
 <a id="a298"></a>
 
 ## A298 · 500轮实验异常停止验收（2026-10-04 09:08检查，更新启动快照）
 
-来源：整理前 Agents.md 第298–299行。
+来源：整理前 AGENTS.md 第298–299行。
 
-- 500轮实验异常停止验收（2026-10-04 09:08检查，更新启动快照）：`tpami2026_scratch_20261004`实际于01:40:51在第6轮末触发`RuntimeError: Persistent branch collapse`自动停止，stage=failed_stopped，监督/torchrun/4个rank均退出，GPU空闲；500轮未完成，仅5轮完整7824帧评估，最佳第4轮420.189946174mm，最新第5轮438.772183994mm。分化L2第5轮7.30e-21，第6轮16851步约7.44e-38，分化/细化注意力梯度及分化残差为0；338条诊断有限，退化非已记录的NaN/Inf。最佳epoch4/iter11244权重有限，SHA256 eaec533377d8098dab8fa35e6104c5330840fc7d0be0658ffdc669a794213361，129份源码/快照及配置哈希通过；无final-report。Z盘本次不可读，已通过SSH取证，不把挂载问题作为失败原因。未重启/改参数/启用监测，用户暂不监测及ID26暂停保持；后续分析形成修复/新实验须先讨论批准。最新证据见`tools/pose26-scratch/20261004/STATUS-20261004-0908.md`及同目录evidence/check-20261004-0906；下述运行快照为历史状态。
+- 500轮实验异常停止验收（2026-10-04 09:08检查，更新启动快照）：`tpami2026_scratch_20261004`实际于01:40:51在第6轮末触发`RuntimeError: Persistent branch collapse`自动停止，stage=failed_stopped，监督/torchrun/4个rank均退出，GPU空闲；500轮未完成，仅5轮完整7824帧评估，最佳第4轮420.189946174mm，最新第5轮438.772183994mm。分化L2第5轮7.30e-21，第6轮16851步约7.44e-38，分化/细化注意力梯度及分化残差为0；338条诊断有限，退化非已记录的NaN/Inf。最佳epoch4/iter11244权重有限，SHA256 eaec533377d8098dab8fa35e6104c5330840fc7d0be0658ffdc669a794213361，129份源码/快照及配置哈希通过；无final-report。Z盘本次不可读，已通过SSH取证，不把挂载问题作为失败原因。未重启/改参数/启用监测，暂不监测及ID26暂停保持；后续分析形成修复/新实验须先讨论批准。最新证据见`tools/pose26-scratch/20261004/STATUS-20261004-0908.md`及同目录evidence/check-20261004-0906；下述运行快照为历史状态。
 
 <a id="a300"></a>
 
 ## A300 · 500轮启动后快照（2026-10-04）
 
-来源：整理前 Agents.md 第300–301行。
+来源：整理前 AGENTS.md 第300–301行。
 
-- 500轮启动后快照（2026-10-04）：新`tpami2026_scratch_20261004`第1轮2811训练步已完成、四卡一致性通过，正在首轮评估，精度尚待核验。首轮末分化L2=0.003813、细化注意力L2=51.173392，有限但从初始化快速下降；未触发既有严重趋零门禁，不静默改参数。用户暂不启用定时监测的选择保持，证据见`tools/pose26-scratch/20261004/evidence/first-epoch-training.json`。
+- 500轮启动后快照（2026-10-04）：新`tpami2026_scratch_20261004`第1轮2811训练步已完成、四卡一致性通过，正在首轮评估，精度尚待核验。首轮末分化L2=0.003813、细化注意力L2=51.173392，有限但从初始化快速下降；未触发既有严重趋零门禁，不静默改参数。暂不启用定时监测的选择保持，证据见`tools/pose26-scratch/20261004/evidence/first-epoch-training.json`。
 
 <a id="a302"></a>
 
 ## A302 · 2026姿态500轮全新训练（2026-10-04，最新运行上下文）
 
-来源：整理前 Agents.md 第302–303行。
+来源：整理前 AGENTS.md 第302–303行。
 
-- 2026姿态500轮全新训练（2026-10-04，最新运行上下文）：用户明确改为从头500epoch并选择论文Adam配方A。新模块`opera/models/tpami2026_scratch.py`绕过迁移，模型/优化器全新初始化，不加载旧权重；保留已核对的STE、14残差分化、3层vanilla refine及近零初始化，只做14关节。单项/索引/梯度/无checkpoint及4卡96样本3步门检通过；129份源码/快照与配置哈希通过。00:41正式启动GPU1–4、每卡batch8/worker4、FP32 seed0 clip0.1，Adam统一lr2e-5/wd1e-4无衰减排除，step450/gamma0.1，固定500轮。结果`result/tpami2026_scratch_20261004`；监督/torchrun PID54209/54220，rank54225–54228，操作前重新核对身份。已超过500步，不代表完成/精度通过；分化L2已由1.357降至0.016，快速缩小但尚未触发既有严重趋零门禁。用户明确暂不启用定时监测，ID26保持暂停，不自行启用。禁止重复启动、自动改参数/重试/延长。此前恢复10轮到100轮建议未执行，旧10轮结果保留。入口及证据见`tools/pose26-scratch/20261004/README.md`、Done.md、REFERENCES.md 17.2。
+- 2026姿态500轮全新训练（2026-10-04，最新运行上下文）：明确改为从头500epoch并选择论文Adam配方A。新模块`opera/models/tpami2026_scratch.py`绕过迁移，模型/优化器全新初始化，不加载旧权重；保留已核对的STE、14残差分化、3层vanilla refine及近零初始化，只做14关节。单项/索引/梯度/无checkpoint及4卡96样本3步门检通过；129份源码/快照与配置哈希通过。00:41正式启动GPU1–4、每卡batch8/worker4、FP32 seed0 clip0.1，Adam统一lr2e-5/wd1e-4无衰减排除，step450/gamma0.1，固定500轮。结果`result/tpami2026_scratch_20261004`；监督/torchrun PID54209/54220，rank54225–54228，操作前重新核对身份。已超过500步，不代表完成/精度通过；分化L2已由1.357降至0.016，快速缩小但尚未触发既有严重趋零门禁。明确暂不启用定时监测，ID26保持暂停，不自行启用。禁止重复启动、自动改参数/重试/延长。此前恢复10轮到100轮建议未执行，旧10轮结果保留。入口及证据见`tools/pose26-scratch/20261004/README.md`、Done.md、REFERENCES.md 17.2。
 
 <a id="a304"></a>
 
 ## A304 · 2026姿态迁移10轮验收（2026-10-03，更新上述启动状态）
 
-来源：整理前 Agents.md 第304–305行。
+来源：整理前 AGENTS.md 第304–305行。
 
 - 2026姿态迁移10轮验收（2026-10-03，更新上述启动状态）：23:42已完成10轮/28,110步并停止，训练进程退出。最佳第9轮122.873803893mm，较24版123.085352129mm降低0.211548236mm；第10轮124.680599441mm。10轮评估、四卡一致性、563条有限诊断、源码/快照/配置及最佳/最终权重哈希通过；最佳权重在`.local/pose26-training/20261003/best_mpjpe_epoch_9.pth`，SHA256 b567aa16e3e46be88cd9187cdc3af7d46085800d0c3df94a8404ae377d8bcca7。单/双人略退步、三人改善；最佳轮细化仍增加约0.0783mm，不能将0.212mm微小改善视为稳定提升或分化贡献。当前训练已结束，禁止重复启动/自动延长；后续实验或部署先讨论批准。完整逐关节表及证据见`tools/pose26-transfer/20261003/RESULTS.md`、Done.md和REFERENCES.md第17节。
 
@@ -62,14 +62,14 @@
 
 ## A306 · 2026姿态迁移训练（2026-10-03，最新算法上下文）
 
-来源：整理前 Agents.md 第306–307行。
+来源：整理前 AGENTS.md 第306–307行。
 
-- 2026姿态迁移训练（2026-10-03，最新算法上下文）：用户明确批准`tools/pose26-transfer/20261003`方案并实施。`ssh gpu-server`、`/public/cyd/Person-in-WiFi-3D-repo`（映射`Z:\Person-in-WiFi-3D-repo`）已实际连接和执行；Python为`/home/ubuntu/miniconda3/envs/PersonInWIFI/bin/python`，与koala及Lite板端SSH不同。新隔离模块迁移24版epoch442的169个张量，新STE、14个残差分化分支、三层vanilla refine及新优化器；分化所有Linear权重/偏置随机近零std0.001，整个细化器正常初始化，坐标末层零初始化；只做14关节，不加mesh/SMPL。单项索引/梯度/迁移门检、4卡短程与恢复通过，24版7824帧复评123.085352129mm。正式GPU1–4、每卡batch8/worker4、FP32、AdamW分组lr2e-6/2e-5、clip0.1、seed0、固定10轮已启动，**启动不等于完成或精度达标**。新结果`result/tpami2026_transfer_20261003`，最新查`pipeline-status.json`、`evaluations.jsonl`、`final-report.json`；禁止重复启动，10轮后停止讨论，不自动延长。旧代码/权重/结果保留；后续方案和超参数变更仍须先讨论批准。见REFERENCES.md第17节、Done.md及上述目录README/PAPER_AUDIT。
+- 2026姿态迁移训练（2026-10-03，最新算法上下文）：`tools/pose26-transfer/20261003`方案并实施。`ssh gpu-server`、`/public/cyd/Person-in-WiFi-3D-repo`（映射`Z:\Person-in-WiFi-3D-repo`）已实际连接和执行；Python为`/home/ubuntu/miniconda3/envs/PersonInWIFI/bin/python`，与koala及Lite板端SSH不同。新隔离模块迁移24版epoch442的169个张量，新STE、14个残差分化分支、三层vanilla refine及新优化器；分化所有Linear权重/偏置随机近零std0.001，整个细化器正常初始化，坐标末层零初始化；只做14关节，不加mesh/SMPL。单项索引/梯度/迁移门检、4卡短程与恢复通过，24版7824帧复评123.085352129mm。正式GPU1–4、每卡batch8/worker4、FP32、AdamW分组lr2e-6/2e-5、clip0.1、seed0、固定10轮已启动，**启动不等于完成或精度达标**。新结果`result/tpami2026_transfer_20261003`，最新查`pipeline-status.json`、`evaluations.jsonl`、`final-report.json`；禁止重复启动，10轮后停止讨论，不自动延长。旧代码/权重/结果保留；后续方案和超参数变更仍须先讨论批准。见REFERENCES.md第17节、Done.md及上述目录README/PAPER_AUDIT。
 
 <a id="a310"></a>
 
 ## A310 · 26版训练定时检查（2026-10-03，已结束）
 
-来源：整理前 Agents.md 第310–310行。
+来源：整理前 AGENTS.md 第310–310行。
 
-- 26版训练定时检查（2026-10-03，已结束）：用户确认每10分钟检查当前10轮实验，仅在完成/失败/异常或需处理时通知。当前聊天heartbeat“检查26版姿态迁移训练结果”ID=26已完成监测；10轮结果、权重/源码哈希、四卡检查和曲线已核验，项目记录已补全并通知。随后通过应用工具停用，配置读回为PAUSED，证据见`tools/pose26-transfer/20261003/evidence/automation-stop.json`、MONITOR.md及monitor-state.json。未延长、重启或改变训练参数，未归档聊天或更改其他自动化；此前ACTIVE及首次22:27检查记录为历史状态。后续训练方案仍须讨论批准。
+- 26版训练定时检查（2026-10-03，已结束）：人工确认每10分钟检查当前10轮实验，仅在完成/失败/异常或需处理时通知。当前工具会话heartbeat“检查26版姿态迁移训练结果”ID=26已完成监测；10轮结果、权重/源码哈希、四卡检查和曲线已核验，项目记录已补全并通知。随后通过应用工具停用，配置读回为PAUSED，证据见`tools/pose26-transfer/20261003/evidence/automation-stop.json`、MONITOR.md及monitor-state.json。未延长、重启或改变训练参数，未归档聊天或更改其他自动化；此前ACTIVE及首次22:27检查记录为历史状态。后续训练方案仍须讨论批准。

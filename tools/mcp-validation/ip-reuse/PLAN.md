@@ -1,6 +1,6 @@
 # 真实 xlconcat IP 流水灯：已批准试验方案
 
-日期：2026-10-01。前提与局限见 [ANALYSIS.md](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/ANALYSIS.md)。用户明确回复“同意 xlconcat 最小验证方案并执行”；按以下范围实施，实际结果另见 RESULTS.md，分析与计划本身不作为验收证据。
+日期：2026-10-01。前提与局限见 [ANALYSIS.md](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/ANALYSIS.md)。明确回复“同意 xlconcat 最小验证方案并执行”；按以下范围实施，实际结果另见 RESULTS.md，分析与计划本身不作为验收证据。
 
 ## 拟实施内容
 
@@ -10,8 +10,8 @@
 4. Vivado MCP 写入 RTL/testbench，通过 XSim 编译**真实 IP 包装器与综合 HDL**。自检包括 IP 组合映射的全部 16 种输入，以及分频 1/7/19 各 200 周期的初始化、步进边界、单灯及回绕。保留实际灯状态轨迹、日志和完整源码哈希。
 5. 原板级约束复用：AC14/LVCMOS33、100 MHz；LED1/2/3/4 为 J1/M6/H7/J8、LVCMOS15；默认 25,000,000 周期/步、0.25 秒步长。新建工程脚本把生成的综合 HDL 作为 Procise 设计输入，执行原生综合/布局布线/时序与位流，设置 StartupClk=JtagClk。
 6. 复核实际源码闭包/模块例化、IP 参数与来源哈希、仿真/构建源文件一致性、无未解析黑盒、五个 placed 引脚/电平、寄存器初始化和原生时序/位流设置。LED 的 no_output_delay 边界保持记录，时序与资源使用本次实际报告，不预设等于旧值。新脚本的新增 IP 检查不会放宽已有门禁。
-7. 通过上述检查后，按用户本次“可行则再次上板验证”的授权，经 Procise 原生 JTAG 易失配置下载这份新位流；重新扫链并核对目标/哈希，不写 Flash/BOOT。请用户现场确认 LED1→3→2→4、约 0.25 秒/步、单灯循环后才记为实板通过。
-8. 保存 IP XCI、生成脚本、完整 HDL、参数/哈希清单、XSim 日志、Procise 原始报告、位流和下载/观察证据，更新 REFERENCES、工程 README 和 Done；Done 使用用户要求的两个模板小节。
+7. 通过上述检查后，经 Procise 原生 JTAG 易失配置下载这份新位流；重新扫链并核对目标/哈希，不写 Flash/BOOT。请现场确认 LED1→3→2→4、约 0.25 秒/步、单灯循环后才记为实板通过。
+8. 保存 IP XCI、生成脚本、完整 HDL、参数/哈希清单、XSim 日志、Procise 原始报告、位流和下载/观察证据，更新 REFERENCES、工程 README 和 Done；Done 使用两个模板小节。
 
 ## 停止条件与未确定项
 
@@ -20,4 +20,4 @@
 - 不加载 JFM 全系统迁移 hook，不修改 EDA 数据库/安装；如需该路线，另行核对 2019.1 和 30TAI 的精确兼容条件并讨论。
 - 成功结论只覆盖这个未加密组合 IP 的源码交接与流水灯实板，Concat 可能被综合优化为连线，不证明任何复杂 IP 已适配。
 
-依据 [Agents.md](D:/FPGACompetitionProject/Agents.md)：“根据分析结论形成的决策，必须在执行前与用户讨论并取得明确同意”。本次需要确认的是上述新 IP/独立工程/验证路线的具体实施方案；不是重复要求用户授权已经提出的上板验证。
+依据 [AGENTS.md](D:/FPGACompetitionProject/AGENTS.md)：“根据分析结论形成的决策，必须在执行前评估并取得明确同意”。本次需要确认的是上述新 IP/独立工程/验证路线的具体实施方案；不是重复要求已经提出的上板验证。

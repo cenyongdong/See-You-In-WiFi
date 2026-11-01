@@ -1,6 +1,6 @@
 # 绑定快照r2离线门检结果
 
-用户执行Lite离线检查并完整回传；代理仅分析本机文件，未接入板端或重跑程序。
+人工操作Lite离线检查并完整回传；代理仅分析本机文件，未接入板端或重跑程序。
 退出0、stdout/stderr空，started→real_parameters_validated→registered_before_session→offline_validation_completed。
 32项回传及290项包校验通过，程序94a03a90…bd061248、15份ARM头文件、两后端库及Icraft/CustomOp3.39.0身份匹配。
 

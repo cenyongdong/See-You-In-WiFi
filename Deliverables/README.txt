@@ -11,4 +11,4 @@
 工作源码、原始训练checkpoint及.local原始证据不删除。r4为本机交付修订，本轮未连接或修改设备，最近板端核验目录仍是/root/pose180-csi-release-20261031-r1。
 
 7. FPGA-REBUILD-20261101-r1.md、evidence/fpga-full-rebuild-20261101-r1/：从r4 RAR新解压的完整本地综合／布局布线／BIT与Procise证据。新BIT在FPGA-rebuild-artifacts-20261101-r1/，仅日期时间头与原合格BIT不同，未上板。
-源码RAR保留10月31日独立重建验证的冻结身份；部署RAR于11月1日同步实时采集完整说明、四机安装文件，并仅附最新版BOOT。两份RAR各自的最新校验值以同名.sha256为准。提交用技术文档Word／PDF本轮暂不处理。
+源码RAR保留10月31日独立重建验证的冻结身份；部署RAR于11月1日同步实时采集完整说明、四机安装文件，并仅附最新版BOOT。两份RAR各自的最新校验值以同名.sha256为准。

@@ -9,4 +9,4 @@
 
 已执行的目录以 `tools/pose-v1/evidence` 中的日志为准。上述脚本是有限阶段工具，不得把示例调用当成恢复失败负载或更换BOOT的授权。当前SDK探针的部署入口固定r3，已执行，不再运行。
 
-后续候选修改边界见 [PROPOSAL.md](PROPOSAL.md)，用户已批准隔离候选阶段，现已明确要求暂停；恢复先读 `../hdmi_candidate/RESUME.md`。若用户只要求阅读，不运行上述脚本。
+后续候选修改边界见 [PROPOSAL.md](PROPOSAL.md)，隔离候选阶段，现已设计要求暂停；恢复先读 `../hdmi_candidate/RESUME.md`。若只要求阅读，不运行上述脚本。

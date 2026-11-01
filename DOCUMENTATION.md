@@ -1,6 +1,6 @@
 # 项目文档导航
 
-核对日期：2026-11-01。本次逐文件读取并检查 **522 份Markdown**；其中 461 份来自当前工程可见清单，61 份为前次目录已引用且仍存在的本机记录。另核对了仓库可见的4份Word与8份PDF的用途和状态，提交用技术文档Word／PDF按用户要求暂不修改。厂商／赛题原文、日期固定的实测／决策和解压快照保留各自范围。
+更新日期：2026-11-01。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
 
 当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。最新本机交付是r4 RAR；11月1日从该RAR新解压完成完整本地实现与位流生成，未上板。
 
@@ -8,7 +8,7 @@
 
 | 目的 | 维护位置 |
 |---|---|
-| 项目现状、未验收和冻结边界 | [PROJECT-PROGRESS](PROJECT-PROGRESS.md)、[DIFFICULTIES](DIFFICULTIES.md#后续验证与冻结范围)、[Agents](Agents.md) |
+| 项目现状、未验收和冻结边界 | [PROJECT-PROGRESS](PROJECT-PROGRESS.md)、[DIFFICULTIES](DIFFICULTIES.md#后续验证与冻结范围)、[Agents](AGENTS.md) |
 | 架构、硬件分工、模块与接口 | [TechDetails](ADR/TechDetails.md)、[ADR索引](ADR/README.md)、[核心目录](software/pose180_pipeline/src/README.md) |
 | 部署、BOOT、最后观察与安全恢复 | [r4部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[RESUME](FPGA/hdmi_candidate/RESUME.md) |
 | CSI幅相与PL骨架自研内容 | [CSI专项](FPGA/csi_preprocess/README.md)、[骨架专项](FPGA/hdmi_candidate/skeleton_overlay/README.md) |
@@ -21,12 +21,11 @@
 
 - 目录列的是本工作区可见的实际文件，不承诺普通Git克隆具备本机RAR、厂商依赖、恢复检查点、原始权重和所有历史附件；获取范围见[源码说明](Deliverables/SOURCE-20261031.md)。SDK／EDA安装、许可和匹配的器件环境外置。
 - r4源码RAR为198429558字节，交付身份见[核验](Deliverables/release-20261031-r4-validation.json)。源码RAR保持被独立重建验证的冻结身份；部署RAR在11月1日后续同步了实时采集完整说明与四机安装文件，移除旧版BOOT，仅附最新版替换镜像。未上传设备，最新部署校验以同名.sha256和交付核验为准。
-- 旧交付包、旧采集及副本已按此前授权清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见[记录](.local/project-cleanup-20261029-r1/summary.json)，10月31日交付清理见[记录](.local/delivery-cleanup-20261031-r1/summary.json)。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
+- 旧交付包、旧采集及副本已清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见[记录](.local/project-cleanup-20261029-r1/summary.json)，10月31日交付清理见[记录](.local/delivery-cleanup-20261031-r1/summary.json)。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
 ## 引用与归档
 
 - 历史报告仍有指向已清理附件、旧相对目录和本机SDK安装的原始引用。检查中将它们记录为历史附件缺口，不补造附件、不把旧结果改写成新版本通过，也不将这些路径当作现行部署入口。
-- 本次检查范围、文件清单和链接结果在 `.local/doc-refresh-20261101-r1/`，上次完整导航保留一份 `before/DOCUMENTATION.md` 供追溯。没有扫描解压副本／构建缓存来充当新文档，也没有重跑硬件、上板、训练或采集。
-- [技术文档排版稿](Docs/commit_docs/技术文档_v1_排版修订.docx)、[用户v1稿](Docs/commit_docs/技术文档_v1.docx)、[原始稿](Docs/commit_docs/技术文档.docx)、[技术稿PDF](Docs/commit_docs/技术文档_v1.pdf)及[海报](Docs/commit_docs/项目海报.pdf)保留原文件，部分内容仍反映较早PS／PL分工与三片段阶段，不替代本页当前工程入口。官方[国赛测试资料](Docs/国赛测试.docx)、赛题和承诺书不改写成项目状态。
+- [技术文档排版稿](Docs/commit_docs/技术文档_v1_排版修订.docx)、[技术文档v1](Docs/commit_docs/技术文档_v1.docx)、[原始稿](Docs/commit_docs/技术文档.docx)、[技术稿PDF](Docs/commit_docs/技术文档_v1.pdf)及[海报](Docs/commit_docs/项目海报.pdf)部分内容反映较早PS／PL分工与三片段阶段，不替代本页当前工程入口。赛题和承诺书保留原始版本。
 
 ## 撤下页面的阅读位置
 
@@ -329,7 +328,7 @@
 | [FPGA/hdmi_candidate/SYSTEM-INTEGRATION-PLAN.md](FPGA/hdmi_candidate/SYSTEM-INTEGRATION-PLAN.md) | 历史决策／记录／模块参考；HDMI修复接入整机与实板验证 |
 | [FPGA/hdmi_candidate/TIME-REPORT-20261018.md](FPGA/hdmi_candidate/TIME-REPORT-20261018.md) | 历史决策／记录／模块参考；上一轮任务耗时复盘 |
 | [FPGA/hdmi_candidate/VIVADO-VERSION-PLAN.md](FPGA/hdmi_candidate/VIVADO-VERSION-PLAN.md) | 历史决策／记录／模块参考；2019.1迁移评估与2018.3备用环境方案 |
-| [FPGA/hdmi_validation/PROPOSAL.md](FPGA/hdmi_validation/PROPOSAL.md) | 历史决策／记录／模块参考；HDMI 候选修正方案（已批准候选阶段，现按用户要求暂停） |
+| [FPGA/hdmi_validation/PROPOSAL.md](FPGA/hdmi_validation/PROPOSAL.md) | 历史决策／记录／模块参考；HDMI 候选修正方案（已批准候选阶段，现暂停） |
 | [FPGA/hdmi_validation/README.md](FPGA/hdmi_validation/README.md) | 历史决策／记录／模块参考；HDMI 独立诊断与行为验证 |
 | [FPGA/lite_led_chaser/README.md](FPGA/lite_led_chaser/README.md) | 历史决策／记录／模块参考；悟净 Lite 流水灯全流程验证 |
 | [FPGA/lite_led_ip_bridge/README.md](FPGA/lite_led_ip_bridge/README.md) | 历史决策／记录／模块参考；悟净 Lite：真实 xlconcat IP 流水灯源码交接 |
@@ -396,9 +395,9 @@
 |---|---|
 | [tools/boot-diagnostics/20261002/MEDIA-TEST-PLAN.md](tools/boot-diagnostics/20261002/MEDIA-TEST-PLAN.md) | 历史决策／记录／模块参考；当前 SD 卡/读卡器全容量检测方案（待批准） |
 | [tools/boot-diagnostics/20261002/new_reader_20261002_191749/RESULTS.md](tools/boot-diagnostics/20261002/new_reader_20261002_191749/RESULTS.md) | 历史决策／记录／模块参考；更换绿联读卡器并重新制作后的只读复核（2026-10-02 19:17） |
-| [tools/boot-diagnostics/20261002/remade_20261002_164505/RESULTS.md](tools/boot-diagnostics/20261002/remade_20261002_164505/RESULTS.md) | 历史决策／记录／模块参考；用户重制 SD 卡后的只读复核（2026-10-02 16:45） |
+| [tools/boot-diagnostics/20261002/remade_20261002_164505/RESULTS.md](tools/boot-diagnostics/20261002/remade_20261002_164505/RESULTS.md) | 历史决策／记录／模块参考；重制 SD 卡后的只读复核（2026-10-02 16:45） |
 | [tools/boot-diagnostics/20261002/RESULTS.md](tools/boot-diagnostics/20261002/RESULTS.md) | 历史决策／记录／模块参考；Lite SD 启动只读排查（2026-10-02） |
-| [tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/RESULTS.md](tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/RESULTS.md) | 历史决策／记录／模块参考；用户提供 H2testw 结果的分析 |
+| [tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/RESULTS.md](tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/RESULTS.md) | 历史决策／记录／模块参考；补充 H2testw 结果的分析 |
 | [tools/csi-planning/ROUTER-CSI-FEASIBILITY-20261014.md](tools/csi-planning/ROUTER-CSI-FEASIBILITY-20261014.md) | 历史决策／记录／模块参考；路由器替代采集节点：可行性与模型影响 |
 | [tools/csi-planning/RT-AC86U-NEXMON-AUDIT-20261017.md](tools/csi-planning/RT-AC86U-NEXMON-AUDIT-20261017.md) | 历史决策／记录／模块参考；RT-AC86U芯片版本与Nexmon部署查证 |
 | [tools/kinect/README.md](tools/kinect/README.md) | 历史决策／记录／模块参考；Kinect v2 采集与微调准备 |
@@ -406,7 +405,7 @@
 | [tools/mcp-validation/ip-reuse/PLAN.md](tools/mcp-validation/ip-reuse/PLAN.md) | 历史决策／记录／模块参考；真实 xlconcat IP 流水灯：已批准试验方案 |
 | [tools/mcp-validation/ip-reuse/RESULTS.md](tools/mcp-validation/ip-reuse/RESULTS.md) | 历史决策／记录／模块参考；真实 xlconcat IP → Procise → Lite 实板验证结果 |
 | [tools/mcp-validation/led1324/PLAN.md](tools/mcp-validation/led1324/PLAN.md) | 历史决策／记录／模块参考；LED1→3→2→4：Vivado / Procise MCP 衔接验证方案 |
-| [tools/mcp-validation/led1324/RESULTS.md](tools/mcp-validation/led1324/RESULTS.md) | 历史决策／记录／模块参考；LED1→3→2→4：当前聊天 Vivado / Procise MCP 验证 |
+| [tools/mcp-validation/led1324/RESULTS.md](tools/mcp-validation/led1324/RESULTS.md) | 历史决策／记录／模块参考；LED1→3→2→4：当前工具会话 Vivado / Procise MCP 验证 |
 | [tools/mcp-validation/PLAN.md](tools/mcp-validation/PLAN.md) | 历史决策／记录／模块参考；Procise / Vivado MCP 验证方案（首版已批准并完成独立验证） |
 | [tools/mcp-validation/RESULTS.md](tools/mcp-validation/RESULTS.md) | 历史决策／记录／模块参考；Procise / Vivado MCP 验证记录 |
 | [tools/nexmon/board/README.md](tools/nexmon/board/README.md) | 历史决策／记录／模块参考；路由器直接进入开发板：软件候选 |
@@ -426,7 +425,7 @@
 | [tools/pose26-transfer/20261003/PAPER_AUDIT.md](tools/pose26-transfer/20261003/PAPER_AUDIT.md) | 历史决策／记录／模块参考；TPAMI 2026 姿态路径核对 |
 | [tools/pose26-transfer/20261003/README.md](tools/pose26-transfer/20261003/README.md) | 历史决策／记录／模块参考；2026姿态模型：epoch442迁移实验 |
 | [tools/pose26-transfer/20261003/RESULTS.md](tools/pose26-transfer/20261003/RESULTS.md) | 历史决策／记录／模块参考；2026姿态迁移：首轮10轮结果 |
-| [tools/pose26-transfer/20261004/PLAN.md](tools/pose26-transfer/20261004/PLAN.md) | 历史决策／记录／模块参考；26版姿态模型后续正式训练方案（待用户确认） |
+| [tools/pose26-transfer/20261004/PLAN.md](tools/pose26-transfer/20261004/PLAN.md) | 历史决策／记录／模块参考；26版姿态模型后续正式训练方案（待人工确认） |
 | [tools/procise_mcp/README.md](tools/procise_mcp/README.md) | 历史决策／记录／模块参考；Procise Lite MCP 首版 |
 | [tools/README.md](tools/README.md) | 历史决策／记录／模块参考；Windows Icraft 独立依赖 |
 | [tools/sd-image-validation/20261003-expand-root-COMMANDS.md](tools/sd-image-validation/20261003-expand-root-COMMANDS.md) | 历史决策／记录／模块参考；Lite 新 SD 卡根分区扩容命令（2026-10-03） |
@@ -517,7 +516,7 @@
 | [tools/pose-v1/COMBINED-READ-NEXT-20261010.md](tools/pose-v1/COMBINED-READ-NEXT-20261010.md) | 历史决策／记录／模块参考；当前恢复入口与最小取证方案 |
 | [tools/pose-v1/COMBINED-READ-RESULTS-20261010.md](tools/pose-v1/COMBINED-READ-RESULTS-20261010.md) | 历史决策／记录／模块参考；公开read、显示子进程、TCP与RTSP组合结果 |
 | [tools/pose-v1/CPU-ADAPTER-BUILD-FIX-20261006.md](tools/pose-v1/CPU-ADAPTER-BUILD-FIX-20261006.md) | 历史决策／记录／模块参考；CPU候选构建：容器Python前提修正（2026-10-06，已批准并应用） |
-| [tools/pose-v1/CPU-ADAPTER-COMMANDS.md](tools/pose-v1/CPU-ADAPTER-COMMANDS.md) | 历史决策／记录／模块参考；CPU候选验证：用户执行命令（2026-10-06修正） |
+| [tools/pose-v1/CPU-ADAPTER-COMMANDS.md](tools/pose-v1/CPU-ADAPTER-COMMANDS.md) | 历史决策／记录／模块参考；CPU候选验证：人工操作命令（2026-10-06修正） |
 | [tools/pose-v1/CPU-ADAPTER-COMPILE-FIX-20261006.md](tools/pose-v1/CPU-ADAPTER-COMPILE-FIX-20261006.md) | 历史决策／记录／模块参考；CPU候选r1编译问题：源码与日志修正（2026-10-06，已批准并应用） |
 | [tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md](tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md) | 历史决策／记录／模块参考；CPU算子注册与最小适配：Lite验收结果（2026-10-06） |
 | [tools/pose-v1/CPU-ADAPTER.md](tools/pose-v1/CPU-ADAPTER.md) | 历史决策／记录／模块参考；CPU算子注册与最小适配：批准范围及源码交付（2026-10-05） |
@@ -540,13 +539,13 @@
 | [tools/pose-v1/HOST-REGISTRY-PROBE-PLAN.md](tools/pose-v1/HOST-REGISTRY-PROBE-PLAN.md) | 历史决策／记录／模块参考；Host注册探针方案（2026-10-05，已批准并执行） |
 | [tools/pose-v1/HOST-REGISTRY-RESULTS-20261005.md](tools/pose-v1/HOST-REGISTRY-RESULTS-20261005.md) | 历史决策／记录／模块参考；Lite Host注册探针结果（2026-10-05） |
 | [tools/pose-v1/HOST-STAGING-FAULT-NEXT-20261009.md](tools/pose-v1/HOST-STAGING-FAULT-NEXT-20261009.md) | 历史决策／记录／模块参考；设备源与Host暂存差异后的最小取证准备 |
-| [tools/pose-v1/INFERENCE-COMMANDS.md](tools/pose-v1/INFERENCE-COMMANDS.md) | 历史决策／记录／模块参考；2024 epoch442 独立混合推理门检：用户执行说明（2026-10-05） |
+| [tools/pose-v1/INFERENCE-COMMANDS.md](tools/pose-v1/INFERENCE-COMMANDS.md) | 历史决策／记录／模块参考；2024 epoch442 独立混合推理门检：人工操作说明（2026-10-05） |
 | [tools/pose-v1/INPUT-READ-NEXT-20261010.md](tools/pose-v1/INPUT-READ-NEXT-20261010.md) | 历史决策／记录／模块参考；下一接续：公开 read 适配层的组合回归 |
 | [tools/pose-v1/INPUT-READ-RESULTS-20261010.md](tools/pose-v1/INPUT-READ-RESULTS-20261010.md) | 历史决策／记录／模块参考；公开 read 输入桥：真实拥有画面有限验证 |
 | [tools/pose-v1/INVOCATION-EVIDENCE-INTEGRATION-NEXT-20261009.md](tools/pose-v1/INVOCATION-EVIDENCE-INTEGRATION-NEXT-20261009.md) | 历史决策／记录／模块参考；有限输出异常的单帧取证与独立落盘接入契约 |
 | [tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md](tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md) | 历史决策／记录／模块参考；下一最小定位：192生产完成与连续搬运残留 |
 | [tools/pose-v1/INVOCATION-GUARD-RESULTS-20261009.md](tools/pose-v1/INVOCATION-GUARD-RESULTS-20261009.md) | 历史决策／记录／模块参考；单帧拥有值与独立落盘接入：本批结果 |
-| [tools/pose-v1/LITE-HOST-COMMANDS.md](tools/pose-v1/LITE-HOST-COMMANDS.md) | 历史决策／记录／模块参考；Lite Host三样本数值参考：用户执行说明（2026-10-05） |
+| [tools/pose-v1/LITE-HOST-COMMANDS.md](tools/pose-v1/LITE-HOST-COMMANDS.md) | 历史决策／记录／模块参考；Lite Host三样本数值参考：人工操作说明（2026-10-05） |
 | [tools/pose-v1/LIVE-RESULTS-20261008.md](tools/pose-v1/LIVE-RESULTS-20261008.md) | 历史决策／记录／模块参考；真实在线串联与网络模块验证结果 |
 | [tools/pose-v1/MIXED-APPLY-FAILURE-20261006.md](tools/pose-v1/MIXED-APPLY-FAILURE-20261006.md) | 历史决策／记录／模块参考；apply-r1失败与SSH退出审查（2026-10-06） |
 | [tools/pose-v1/MIXED-BINDING-R2-APPLY-RESULTS.md](tools/pose-v1/MIXED-BINDING-R2-APPLY-RESULTS.md) | 历史决策／记录／模块参考；绑定快照r2 apply取证与停止原因 |
@@ -583,7 +582,7 @@
 | [tools/pose-v1/MIXED-INPUT-FRESHNESS-DIAGNOSTIC-PLAN.md](tools/pose-v1/MIXED-INPUT-FRESHNESS-DIAGNOSTIC-PLAN.md) | 历史决策／记录／模块参考；连续forward输入内容诊断方案（已批准） |
 | [tools/pose-v1/MIXED-MEMORY-RESULTS-20261006.md](tools/pose-v1/MIXED-MEMORY-RESULTS-20261006.md) | 历史决策／记录／模块参考；mixed-r1 SDK设备内存往返验收（2026-10-06） |
 | [tools/pose-v1/MIXED-OFFLINE-RESULTS-20261006.md](tools/pose-v1/MIXED-OFFLINE-RESULTS-20261006.md) | 历史决策／记录／模块参考；mixed-r1真实参数与PS离线验收（2026-10-06） |
-| [tools/pose-v1/MIXED-VALIDATION-COMMANDS.md](tools/pose-v1/MIXED-VALIDATION-COMMANDS.md) | 历史决策／记录／模块参考；混合验证用户执行命令（2026-10-06） |
+| [tools/pose-v1/MIXED-VALIDATION-COMMANDS.md](tools/pose-v1/MIXED-VALIDATION-COMMANDS.md) | 历史决策／记录／模块参考；混合验证人工操作命令（2026-10-06） |
 | [tools/pose-v1/MIXED-VALIDATION.md](tools/pose-v1/MIXED-VALIDATION.md) | 历史决策／记录／模块参考；ONNX参考与PS/NPU混合工程验证（2026-10-06） |
 | [tools/pose-v1/MODEL-ONLY-NEXT-20261010.md](tools/pose-v1/MODEL-ONLY-NEXT-20261010.md) | 历史决策／记录／模块参考；下一最小变量：同一程序的模型／VPU负载对照 |
 | [tools/pose-v1/MODEL-ONLY-RESULTS-20261010.md](tools/pose-v1/MODEL-ONLY-RESULTS-20261010.md) | 历史决策／记录／模块参考；真实混合模型移除视频负载：本批完成 |
@@ -634,7 +633,7 @@
 | [tools/pose-v1/RESIDENT-SEQUENCE-RESULTS-20261010.md](tools/pose-v1/RESIDENT-SEQUENCE-RESULTS-20261010.md) | 历史决策／记录／模块参考；单次常驻生命周期结果（2026-10-10） |
 | [tools/pose-v1/RESULTS-300.md](tools/pose-v1/RESULTS-300.md) | 历史决策／记录／模块参考；300份真实CSI门检与25122301运行身份核验（2026-10-04） |
 | [tools/pose-v1/RESUME-20261006.md](tools/pose-v1/RESUME-20261006.md) | 历史决策／记录／模块参考；唤醒恢复入口（2026-10-06） |
-| [tools/pose-v1/RESUME-PICTURE-20261010.md](tools/pose-v1/RESUME-PICTURE-20261010.md) | 历史决策／记录／模块参考；真实拥有画面阶段：用户暂停恢复入口 |
+| [tools/pose-v1/RESUME-PICTURE-20261010.md](tools/pose-v1/RESUME-PICTURE-20261010.md) | 历史决策／记录／模块参考；真实拥有画面阶段：暂停恢复入口 |
 | [tools/pose-v1/RESUME-VIDEO-20261007.md](tools/pose-v1/RESUME-VIDEO-20261007.md) | 历史决策／记录／模块参考；视频任务暂停与恢复入口（2026-10-07） |
 | [tools/pose-v1/RTSP-RESULTS-20261007.md](tools/pose-v1/RTSP-RESULTS-20261007.md) | 历史决策／记录／模块参考；独立RTSP传输、重连与直接播放器结果（2026-10-07） |
 | [tools/pose-v1/RUNTIME-COMMANDS-20261007.md](tools/pose-v1/RUNTIME-COMMANDS-20261007.md) | 历史决策／记录／模块参考；E0/N1/P1 r2执行与复现命令（2026-10-07） |

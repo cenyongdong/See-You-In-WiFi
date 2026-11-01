@@ -4,7 +4,7 @@
 
 ## 依据与决策
 
-[ADR_14](ADR_14.md)实测主线程Engine约191.69ms之后串行显示44.31ms，整机4.22311Hz。此前下一方案建议线程，本轮用户明确批准“独立显示工作子进程”；按最新请求实现实际独立可执行文件及PID，不将普通线程称为子进程。
+[ADR_14](ADR_14.md)实测主线程Engine约191.69ms之后串行显示44.31ms，整机4.22311Hz。此前下一方案建议线程，本轮“独立显示工作子进程”；按最新请求实现实际独立可执行文件及PID，不将普通线程称为子进程。
 
 子进程用posix_spawn执行无SDK的pose_display_worker，创建在父进程VPU/NPU与工作线程之前。输入为100分数、4200坐标及frame/invocation/同钟时间；输出为拥有字节的1280×720 NV12。双方使用同一Linux单调时钟，验证阶段顺序及父子PID。子进程不接收Device/Session/Tensor、真实指针或SDK句柄，动态依赖及fd现场独立审查。
 
@@ -21,7 +21,7 @@
 
 ## 本轮启动恢复范围
 
-本轮只读确认order7+仍为0，CmaFree5004KiB。用户明确追加“允许本轮一次规整”，覆盖上一轮授权已经消耗的限制，仅用于本次有限验证。Host通过后新目录保存前后buddyinfo/pagetypeinfo/meminfo/vmstat/cmdline/dmesg，只写一次compact_memory；不清缓存、不重启、不循环规整或重试、不改CMA/BOOT/SDK。不能将一次恢复作为永久连续申请解决方案。
+本轮只读确认order7+仍为0，CmaFree5004KiB。明确追加“允许本轮一次规整”，覆盖上一轮授权已经消耗的限制，仅用于本次有限验证。Host通过后新目录保存前后buddyinfo/pagetypeinfo/meminfo/vmstat/cmdline/dmesg，只写一次compact_memory；不清缓存、不重启、不循环规整或重试、不改CMA/BOOT/SDK。不能将一次恢复作为永久连续申请解决方案。
 
 ## 验证结果
 

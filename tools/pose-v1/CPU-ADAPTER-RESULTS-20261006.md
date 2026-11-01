@@ -1,6 +1,6 @@
 # CPU算子注册与最小适配：Lite验收结果（2026-10-06）
 
-**已批准的独立CPU候选门检通过。** 用户执行交叉编译、传输和Lite测试，
+**已批准的独立CPU候选门检通过。** 人工操作交叉编译、传输和Lite测试，
 代理直接读取回传文件并独立核验；未重跑程序、连接板端或接入正式推理器。
 这不代表完整PS/NPU混合推理、实时CSI、性能或双路显示通过。
 
@@ -36,11 +36,11 @@ Host库SHA256：`d0fbf6c81e5b57b4a908f11aad27571b8f2e68a3ede7ba33c9a4f783ba26613
 证据入口：
 
 - [代理独立核验](evidence/cpu-adapter-independent-review-20261006.json)：哈希、注册、107用例和每份实际输出身份。
-- [用户文件复核](evidence/cpu-adapter-20261005-review.json)：22输出逐位比较及统计。
+- [文件复核](evidence/cpu-adapter-20261005-review.json)：22输出逐位比较及统计。
 - [完整回传目录](evidence/cpu-adapter-20261005-return)：registry/cases/summary、输出、SDK、ldd、包校验、内核及内存日志。
 - [构建复核](evidence/cpu-adapter-r2-build-review-20261006.json)：来源、ELF、SDK及新旧固定包对照。
 
-用户Windows文件复核命令首次因换行被拆开，报`--results`缺参数和独立`--output`解析错误；
+Windows文件复核命令首次因换行被拆开，报`--results`缺参数和独立`--output`解析错误；
 之后完整命令成功，实际review.json已生成并与代理核验一致。这是主机命令输入问题，未导致板端程序重跑，
 无需因前两条命令错误重新执行CPU测试。
 

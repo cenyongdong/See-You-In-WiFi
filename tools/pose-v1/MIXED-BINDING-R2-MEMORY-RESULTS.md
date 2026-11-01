@@ -1,6 +1,6 @@
 # 绑定快照r2 SDK内存往返验收
 
-用户完成一次受限memory-check并完整回传，代理仅本机分析，无板端接入/重跑。
+完成一次受限memory-check并完整回传，代理仅本机分析，无板端接入/重跑。
 程序退出0、stderr空，28回传/290包、15ARM头文件/Host与ZG库/Icraft及CustomOp3.39.0身份匹配。
 新r2程序SHA25694a03a903a4a97f229b1549dcbd1bade193d60dbb23753c1f030431fbd061248。
 SDK Open/version匹配device25122301、icore FMSHZGV3TECH-AID - 24160628，固定AXI URL保持。

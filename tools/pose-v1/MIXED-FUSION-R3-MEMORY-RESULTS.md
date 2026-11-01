@@ -1,6 +1,6 @@
 # 正式融合追溯r3 SDK内存往返验收
 
-用户执行一次受限memory-check并完整回传；代理仅本机核验，无板端接入或重跑。
+人工操作一次受限memory-check并完整回传；代理仅本机核验，无板端接入或重跑。
 退出0、stderr空，28回传/291包项、15ARM头文件/两库/Icraft及CustomOp3.39.0和程序e8d66113…e6c696a8身份匹配。
 设备device25122301/icore FMSHZGV3TECH-AID - 24160628、固定AXI URL保持。
 两个16KiB缓冲区均ADDR、AXIZG330AIPLDDRMemRegionNode，offset0/chunk16384/已分配。

@@ -2,7 +2,7 @@
 
 ## 工程内容总结
 
-用户完成FPAI mixed-20261006-binding-r2，GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0。
+完成FPAI mixed-20261006-binding-r2，GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0。
 配置、五份CPP编译和链接完成；代理读取完整日志、实际源码/SDK导出文件及程序后独立核验。
 包290项、10份构建源码及副本、15ARM头文件、Host/ZG库、实际构建脚本和manifest身份匹配。
 快照源码与批准候选逐字节一致；SDK公开视图/forward_info/merge_from等字段已通过ARM编译，运行内容仍未知。
@@ -20,6 +20,6 @@ AArch64 ELF64 little-endian PIE程序518,712字节，SHA256
 ## 对后续开发的参考
 
 新程序身份已经确定，快照字段可编译不代表能覆盖1173原HardOp或解释8622缺绑定。
-用户按[MIXED-BINDING-R2-COMMANDS.md B/C](MIXED-BINDING-R2-COMMANDS.md)使用新20261006-binding-r2工作目录，
+按[MIXED-BINDING-R2-COMMANDS.md B/C](MIXED-BINDING-R2-COMMANDS.md)使用新20261006-binding-r2工作目录，
 先Host107例完整回传，核验后离线及内存，再一次300秒apply取证，不做forward。
 旧r1门禁文件不能用于新程序。不要绕过已有目录检查、删除旧失败目录、复位或重跑采样。

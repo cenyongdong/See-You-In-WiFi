@@ -2,7 +2,7 @@
 
 执行位置为Windows `D:/FPGACompetitionProject`，解释器沿用本机已核验的Codex Python。`control_ai_read_startup.py`默认`inspect`只做实际包审查及远程源码编译，不联机；真实manifest尚未产生时必须失败关闭。
 
-`capture --kind candidate|fallback --approved --approval-file <实际新用户批准回执>`先核对完整本地门检、manifest、当前任务未暂停及该UART动作授权，再启动本批只收串口进程。子进程在打开前再次核对批准回执SHA、manifest、暂停状态和实际COM7 USB身份；115200/8N1、DTR/RTS关闭、0 TX，300秒／4MiB，读取超时250ms。ready以临时文件原子发布。主机保存初始PID、实际创建时间、进程镜像、完整源码及stdout/stderr；任何启动或ready错误都保存原错、请求自有reader停止并有界观察，不触碰其它端口或进程。
+`capture --kind candidate|fallback --approved --approval-file <实际新回执>`先核对完整本地门检、manifest、当前任务未暂停及该UART动作授权，再启动本批只收串口进程。子进程在打开前再次核对批准回执SHA、manifest、暂停状态和实际COM7 USB身份；115200/8N1、DTR/RTS关闭、0 TX，300秒／4MiB，读取超时250ms。ready以临时文件原子发布。主机保存初始PID、实际创建时间、进程镜像、完整源码及stdout/stderr；任何启动或ready错误都保存原错、请求自有reader停止并有界观察，不触碰其它端口或进程。
 
 `reboot --kind candidate|fallback --approved --approval-file <同一实际回执>`重新核对相应动作授权及仍存活的同一UART PID／创建时间／镜像，然后保留本机独占尝试目录。远程源码复用`prepare_remote_read_v3.py`的受审查guard定义，验证本次实际包、远端暂停状态、完整安装／恢复记录及启动文件／SDK／owner，先保存远端独占尝试和请求文件，再发送唯一一次reboot。不因SSH断开、超时或未知状态重复命令。
 

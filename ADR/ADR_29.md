@@ -1,6 +1,6 @@
 # ADR_29：单次常驻上下文接入真实拥有骨架画面
 
-日期：2026-10-10。状态：Native／ARM及20结果前缀通过，103在192坏值复发而未过；旧暂停已被用户唤醒撤销，后续隔离read候选见ADR_30，原失败保留。
+日期：2026-10-10。状态：Native／ARM及20结果前缀通过，103在192坏值复发而未过；旧暂停已被阶段恢复后撤销，后续隔离read候选见ADR_30，原失败保留。
 
 ## 背景
 
@@ -31,6 +31,6 @@
 
 Native／ARM各13画面＋13阶段＋16计数＋6生命周期＋9 Run拒绝过，旧主／数学／SDK／BOOT保持，Host107身份复用。父主线程Engine全程同实例，Source容量2水位1、发布20／采用20／覆盖0。395输入queued、394归还、393非空packet（1参数集＋392图像），3采样未capture；异常结束无LAST，EncodeResult字段默认0不当真实计数。
 
-本机坏段工具首次误用--review而实际需--gold-review，已只修正工具调用，保留情况；未板测重跑或改数据／阈值。用户此时要求暂停，尚未进行公开read直写Host目标候选修复。
+本机坏段工具首次误用--review而实际需--gold-review，已只修正工具调用，保留情况；未板测重跑或改数据／阈值。此时要求暂停，尚未进行公开read直写Host目标候选修复。
 
 [完整恢复说明](../tools/pose-v1/RESUME-PICTURE-20261010.md)／[已核进度](../tools/pose-v1/evidence/picture-20261010-r1/pause-progress-review.json)／[暂停点](../tools/pose-v1/evidence/picture-20261010-r1/pause-checkpoint.json)。

@@ -2,7 +2,7 @@
 
 ## 工程内容总结
 
-用户批准代理创建、安装并运行独立环境。本机新Conda前缀为
+代理创建、安装并运行独立环境。本机新Conda前缀为
 `.local/pose-v1-onnx-conda`，Python3.10.21、NumPy2.2.5、onnxruntime1.23.2 CPU预编译wheel；
 coloredlogs15.0.1、humanfriendly10.0、flatbuffers25.12.19、protobuf7.36.2、pyreadline3 3.5.6、sympy1.14.0、mpmath1.3.0。
 实际依赖与八wheel的下载哈希锁定；pip check、模块来源及DLL导入通过。原预处理/base/koala/Icraft环境未用于安装。

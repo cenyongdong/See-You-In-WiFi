@@ -28,7 +28,7 @@
 |---|---|
 | [software/pose180_pipeline/](software/pose180_pipeline/) | **当前主工程**：板端核心、输入控制、PC 页面、测试及构建打包入口 |
 | [FPGA/hdmi_candidate/](FPGA/hdmi_candidate/) | HDMI 硬件工程；`rtl/`、`constraints/`、`scripts/`、`sim/` 分别保存逻辑、约束、构建脚本与仿真，发布配置按恢复说明及对应记录核对 |
-| [Deliverables/](Deliverables/) | **唯一最新 RAR 部署包和精简源码＋权重包**；`evidence/` 为关键原始报告，旧交付目录已按要求清理 |
+| [Deliverables/](Deliverables/) | **唯一最新 RAR 部署包和精简源码＋权重包**；`evidence/` 为关键原始报告，旧交付目录已清理 |
 | [model/](model/README.md) | 当前部署 JSON／RAW、源 ONNX、转换配置与模型说明已放行；训练 checkpoint 和中间产物留在本机，获取与使用方式见模型索引 |
 | [tools/](tools/) | 模型训练、转换、采集、验证与故障分析工具；带日期的取证目录按所属历史阶段阅读 |
 | [Docs/commit_docs/](Docs/commit_docs/) | 技术文档、海报等提交材料；`Docs/` 其余部分主要为厂商资料与开发参考 |
@@ -47,7 +47,7 @@
 | [源码说明](Deliverables/SOURCE-20261031.md) | 自研／复用分工、核心入口及重建依赖 |
 | [完整FPGA重建](Deliverables/FPGA-REBUILD-20261101-r1.md) | 2026-11-01从r4 RAR新解压完成实际综合／布局布线／BIT与Procise；包含完整日志与既定例外 |
 | [交付核验](Deliverables/release-20261031-r4-validation.json) | RAR完整性、文件一致性及独立解压构建检查；引用既有BOOT核验，无新增SDK运行 |
-| [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx) | 既有提交稿，本轮按用户要求暂不更新；[技术文档 v1](Docs/commit_docs/技术文档_v1.docx) 保留用户编辑版本 |
+| [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx) | 排版稿；[技术文档 v1](Docs/commit_docs/技术文档_v1.docx) 为前一版本 |
 | [项目海报](Docs/commit_docs/项目海报.pdf) | A1 竖版作品海报 |
 
 部署包解压后的关键位置如下，路径均相对于包根目录：
@@ -94,7 +94,7 @@
 | [DOCUMENTATION.md](DOCUMENTATION.md) | 完整 Markdown 导航与历史文档分类 |
 | [Done.md](Done.md) | 分阶段成果及开发参考 |
 | [REFERENCES.md](REFERENCES.md) | 资料索引与阅读记录 |
-| [Agents.md](Agents.md) | 本地工程执行规则与授权边界 |
+| [AGENTS.md](AGENTS.md) | 本地工程执行规则与授权边界 |
 | [.gitignore](.gitignore) | Git 提交范围，采用指定交付文件放行规则 |
 | [LICENSE](LICENSE)、[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) | 原创部分的 MIT 许可及第三方内容的适用边界 |
 | [SECURITY.md](SECURITY.md) | 本机凭据配置、提交脱敏与安全维护 |

@@ -4,7 +4,7 @@
 
 ## 官方资料带来的修正
 
-来源是用户提供的[PSOC GP HP 问题调试经验总结](D:/FPGACompetitionProject/Docs/PSOC_GPHP问题调试经验总结-V1.0.pdf)，调试日期 2021-08-31，封面加正文共9页；正文页码为1至8。案例器件是 FMQL45T900，与当前 FMQL30TAI 不同。用户同时提供了本轮官方聊天截图。
+来源是既有[PSOC GP HP 问题调试经验总结](D:/FPGACompetitionProject/Docs/PSOC_GPHP问题调试经验总结-V1.0.pdf)，调试日期 2021-08-31，封面加正文共9页；正文页码为1至8。案例器件是 FMQL45T900，与当前 FMQL30TAI 不同。同时提供了本轮官方聊天截图。
 
 - 正文1至5页的案例是 GP 寄存器从机过早返回写响应、ID处理不完整，不能直接认定当前 HP2 读启动异常具有相同根因，也不能照搬其中临时修补代码。实际接受数据仍须按 VALID/READY 握手与协议版本判断。
 - 正文6页明确推荐 System ILA 和 AXI Protocol Checker。正文7至8页给出 HP 调试流程，包括重加载后的 HP re-enable/level shifter、协议检查、时序、PL互联 FIFO 和研发协助。

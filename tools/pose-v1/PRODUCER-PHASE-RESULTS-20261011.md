@@ -1,6 +1,6 @@
 # reset前分段观察与绝对时隙门检结果
 
-2026-10-11。用户批准PRODUCER-VPU-NEXT；本批已结束，下一仅准备。
+2026-10-11。PRODUCER-VPU-NEXT；本批已结束，下一仅准备。
 
 ## 通过内容与限制
 
@@ -39,6 +39,6 @@ off后普通512KiB折算2单位，代理一次规整326.36828ms、2→149，全�
 
 r1打包错用旧管理器名，板端在ARM合同／Device初始化前找不到新文件；原包和日志保留。r2新目录纠正包清单，复用同一已核验ELF和Native成果，无源码或数学更改，重新核对ARM合同后才执行物理阶段；不是失败Session重跑。板端未来mtime警告保留，不改系统时钟。
 
-最终只读BOOT9／三preflight库及四链接库／模型RAW／SDK版本同，FPGA operating、dmesg逐位同，程序／管理器／端口39001和8554及所有代理连接结束，未用户暂停，管理83/100保持。
+最终只读BOOT9／三preflight库及四链接库／模型RAW／SDK版本同，FPGA operating、dmesg逐位同，程序／管理器／端口39001和8554及所有代理连接结束，未追加独立暂停，管理83/100保持。
 
 [off阶段](evidence/producer-phase-20261011-r2/off.phase-review.json)、[on阶段](evidence/producer-phase-20261011-r2/on.phase-review.json)、[完整视频](evidence/producer-phase-20261011-r2/on.video-review.json)、[SDK副本diff](evidence/producer-phase-20261011-r2/sdk-adaptation.diff)、[完成绑定](evidence/producer-phase-20261011-r2/completion-review.json)、[恢复](evidence/producer-phase-20261011-r2/next-checkpoint.json)、[ADR_41](../../ADR/ADR_41.md)、[下一](PRODUCER-PHASE-NEXT-20261011.md)。

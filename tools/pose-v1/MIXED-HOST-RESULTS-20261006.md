@@ -2,8 +2,8 @@
 
 ## 工程内容总结
 
-用户完成Lite host-check并回传，代理直接读取完整目录，运行已批准的文件核验器并独立逐输出复查。
-平台为Lite、ARM Icraft/CustomOp3.39.0；新mixed-r1程序由用户以FPAI GCC9.4/CMake3.24.2构建，
+完成Lite host-check并回传，代理直接读取完整目录，运行已批准的文件核验器并独立逐输出复查。
+平台为Lite、ARM Icraft/CustomOp3.39.0；新mixed-r1程序人工以FPAI GCC9.4/CMake3.24.2构建，
 SHA256 `7cf761f1dd7d1ca1bf8a1db1826e4d9b34574b1a8dc0ac662c987eed52722a17` 与回传一致。
 
 107例=18正常/89异常拒绝，逐条case/op/expected/rejection/passed与原fixture一致；
@@ -27,6 +27,6 @@ ldd无缺依赖，退出0、stderr空，stage started→host_bridge_regression_c
 本阶段使用合成参数与Host CPTR，不证明真实RAW加载、ADDR/BOTH、NPU同步/计算、完整Session或部署数值通过。
 CPU Matmul仍未补齐；Gather保持，正式Matmul NPU分配未改变。
 
-现在用户传入host-check验收文件后可进入既定离线阶段。此前提前运行offline-check的失败目录仍需保留回传，
+现在传入host-check验收文件后可进入既定离线阶段。此前提前运行offline-check的失败目录仍需保留回传，
 确认只停在门禁预检后按[命令补充](MIXED-VALIDATION-COMMANDS.md)保留改名，避免覆盖或因目录存在拦住下一次正式执行。
 不要重跑host-check，不直接进入memory-check/apply/mixed；每阶段仍须完整回传核验。

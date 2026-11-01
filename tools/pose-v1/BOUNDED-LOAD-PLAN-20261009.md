@@ -1,6 +1,6 @@
 # 103次低日志有限门检实施
 
-用户已批准接续。新隔离r2入口保留旧r4源码、模型/RAW/SDK/BOOT、CPU数学、原复制/等待/reset(1)/745和异常Host暂存/两轮SDK读回。父主线程拥有Engine，显示子进程SDK无关，编码/网络线程各自拥有资源，join后再销毁Engine。
+接续。新隔离r2入口保留旧r4源码、模型/RAW/SDK/BOOT、CPU数学、原复制/等待/reset(1)/745和异常Host暂存/两轮SDK读回。父主线程拥有Engine，显示子进程SDK无关，编码/网络线程各自拥有资源，join后再销毁Engine。
 
 当前产物：.local/pose-v1-bounded-load/package-20261009-r2、.local/pose-v1-build/mixed-20261009-bounded-load-r2；程序8510f6e…0f1f3a19/子6d88d03a…e4137d39，403包68来源。r1仅Native命令路径失败，旧目录/日志保留；r2括起PowerShell完整路径，不覆盖失败。
 

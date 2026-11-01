@@ -1,6 +1,6 @@
 # 正式融合追溯r3 apply验收
 
-用户完成一次受限apply-check并完整回传，代理仅本机独立核验，无板端接入或重跑。
+完成一次受限apply-check并完整回传，代理仅本机独立核验，无板端接入或重跑。
 退出0、stderr空，阶段完成original_bindings_validated_before_apply→session_applied→
 original_to_effective_bindings_validated→apply_and_bindings_completed_no_forward。
 45回传/291包项、15ARM头文件/两库/3.39.0及程序e8d66113…e6c696a8身份匹配。

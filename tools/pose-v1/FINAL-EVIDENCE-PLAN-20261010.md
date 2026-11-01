@@ -1,6 +1,6 @@
 # 最终输出门检取证
 
-用户已批准 COMBINED-READ-NEXT。本批新增独立 final_source_recorder（SDK 无关拥有值）、final_source_sdk（公开 Tensor 句柄和 read）、owned_result_save（序列化无数学门检）及两个契约测试；仅隔离 final_evidence_check/bridge 使用。旧 combined-read 和全部原模块不改。
+ COMBINED-READ-NEXT。本批新增独立 final_source_recorder（SDK 无关拥有值）、final_source_sdk（公开 Tensor 句柄和 read）、owned_result_save（序列化无数学门检）及两个契约测试；仅隔离 final_evidence_check/bridge 使用。旧 combined-read 和全部原模块不改。
 
 每帧主线程清除旧句柄，保留582/649四份读后 Host 值共67200字节及公开源句柄，保留437/582三份 CPU 写回前值17600字节。最终输出比较失败时，先通知所有工作线程停止，再于 Engine 存活且无下一次前向/reset 的条件下预分配两轮共134400字节，调用公开 read。读取失败保留已完成轮次、原错误和独立取证错误；不继续未完成读取。晚源可能被后续层复用，不能直接认定为原生产时刻值。
 

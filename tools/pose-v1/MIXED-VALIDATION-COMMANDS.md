@@ -1,12 +1,12 @@
-# 混合验证用户执行命令（2026-10-06）
+# 混合验证人工操作命令（2026-10-06）
 
-用户现已批准并应用仅加绑定快照的r2，当前使用[MIXED-BINDING-R2-COMMANDS.md](MIXED-BINDING-R2-COMMANDS.md)。
+现已批准并应用仅加绑定快照的r2，当前使用[MIXED-BINDING-R2-COMMANDS.md](MIXED-BINDING-R2-COMMANDS.md)。
 新身份包已准备，尚未编译/新阶段执行；先新BuildTag构建并核验，旧r1及下方路径不能重跑或覆盖。
 旧r1失败门检不放宽，r2仅取证，不直接mixed；下面“候选待批准”为当时状态。
 
 **当前apply-r1已失败，停止原执行命令**：目录存在源于已运行一次，session_applied后原HardOp8622缺绑定追溯导致退出1。
 代理已只读取回完整结果，见[失败审查](MIXED-APPLY-FAILURE-20261006.md)。不要删除/改名后重跑apply或进入mixed。
-用户截图省略外层括号，将set -eu用于登录shell，失败test使SSH退出；重连后无需再运行这些检查。
+截图省略外层括号，将set -eu用于登录shell，失败test使SSH退出；重连后无需再运行这些检查。
 新[绑定快照诊断候选](MIXED-BINDING-SNAPSHOT-PLAN.md)待批准；以下原apply执行段保留历史，不作为当前重跑授权。
 
 当前memory-check已独立验收：[SDK内存结果](MIXED-MEMORY-RESULTS-20261006.md)，memory-check.acceptance.json已生成。
@@ -18,13 +18,13 @@ Host/离线不重跑；现在传入离线验收文件，满足下方硬件前置
 下面离线待运行/Host验收待传等文字为此前步骤记录。
 
 最新Host阶段已独立验收通过，[107例/全部输出结果](MIXED-HOST-RESULTS-20261006.md)，host-check.acceptance.json已生成。
-随后用户报告Host验收已传板，失败预检目录已完整回传并审阅，仅三文件/290项校验OK，离线程序未启动。
+随后现场反馈Host验收已传板，失败预检目录已完整回传并审阅，仅三文件/290项校验OK，离线程序未启动。
 现在直接使用下方保留目录及offline-check命令；无需再次回传旧失败目录或重跑Host。
 A/B及host-check不用重跑；现在按C传入Host验收文件，并回传上次提前offline的失败预检目录。
 失败目录审阅后按下方“本次提前运行offline-check的处理”保留改名，再只执行offline-check。
 下面“Host待回传”属于此前截图阶段；硬件阶段仍须离线等门检通过后逐一推进。
 
-方案已批准，代理已完成本机ONNX参考及候选源码/测试包准备；用户mixed-r1构建现已完成并经代理核验。
+方案已批准，代理已完成本机ONNX参考及候选源码/测试包准备；mixed-r1构建现已完成并经代理核验。
 唯一缩进warning已审查，源码/程序保持，[构建结果](MIXED-BUILD-REVIEW-20261006.md)。A不用重跑，build.acceptance.json已生成。
 Lite新阶段未运行；现在执行B传输，再C仅host-check。后续逐阶段由代理审阅后推进。失败立即停止，保留新目录与完整输出。
 不删除/覆盖旧包，不安装板端依赖，不自动重试、reset或改BOOT/模型。
@@ -99,7 +99,7 @@ ls -l package/manifest.json package/files.sha256 package/fixtures/cases.tsv pose
 ## C. 分阶段运行与回传
 
 Lite SSH工作目录始终 `/tmp/pose-v1-mixed-validation/20261006-r1`。
-每次只执行下面表格的一行，随后回传对应目录；代理核验并生成验收文件后，用户传入gates，再进入下一行。
+每次只执行下面表格的一行，随后回传对应目录；代理核验并生成验收文件后，传入gates，再进入下一行。
 硬件阶段开始前确认此次BOOT/JTAG未改变、没有其他AI/显示演示占用。若不确定则先提交现有日志，不启动硬件。
 runner记录进程列表和完整dmesg，不自动终止其他进程；前四个硬件入口均显式传入 `--allow-device-init`。
 
@@ -147,7 +147,7 @@ if ($LASTEXITCODE -ne 0) { throw '阶段未通过，停止；保存诊断，不�
 if ($LASTEXITCODE -ne 0) { throw '三样本证据未通过，停止。' }
 ```
 
-核验通过且代理确认完整日志无异常后，用户传入该阶段的验收文件。文件名由阶段自动生成：
+核验通过且代理确认完整日志无异常后，传入该阶段的验收文件。文件名由阶段自动生成：
 
 ```powershell
 scp -o StrictHostKeyChecking=yes $poseAcceptance ('root@192.168.126.49:/tmp/pose-v1-mixed-validation/20261006-r1/gates/' + $poseStage + '.acceptance.json')
@@ -158,9 +158,9 @@ if ($LASTEXITCODE -ne 0) { throw '阶段验收文件传输失败，停止。' }
 
 ### 本次提前运行offline-check的处理（2026-10-06）
 
-用户截图显示host-check runner退出0，随即offline-check因缺少gates/host-check.acceptance.json而在预检停止。
+截图显示host-check runner退出0，随即offline-check因缺少gates/host-check.acceptance.json而在预检停止。
 当时本机尚无新host-check完整回传/验收文件；现在完整Host回传已经核验通过，验收文件已生成。
-用户先传入 `tools/pose-v1/evidence/mixed-20261006-r1/host-check.acceptance.json`，随后回传下面失败目录；不用再回传或重跑Host。
+先传入 `tools/pose-v1/evidence/mixed-20261006-r1/host-check.acceptance.json`，随后回传下面失败目录；不用再回传或重跑Host。
 不要重跑host-check，不将截图上方旧CPU检查器107例记录当作新混合桥的独立证据。
 
 本次runner在验收文件读取前已创建run-offline-check，留下包/timeout预检记录；直接重跑会被目录存在检查阻止。
@@ -173,7 +173,7 @@ scp -o StrictHostKeyChecking=yes -r 'root@192.168.126.49:/tmp/pose-v1-mixed-vali
 if ($LASTEXITCODE -ne 0) { throw '失败预检回传失败，停止。' }
 ```
 
-代理现已审阅失败目录并确认未进入程序；用户报告host-check验收已传板。以下由用户在Lite SSH保留目录并启动离线阶段，
+代理现已审阅失败目录并确认未进入程序；现场反馈host-check验收已传板。以下人工在Lite SSH保留目录并启动离线阶段，
 使用子shell使检查失败停止本次命令组，同时保留当前SSH窗口：
 
 ```sh
@@ -196,7 +196,7 @@ mv仅对上述明确的新验证子目录改名保留，不删除/覆盖；任�
 
 ### 当前SDK内存往返执行（offline已验收）
 
-前置：用户确认此次BOOT/JTAG未改变、没有其他AI/显示程序占用设备；不确定时暂停。
+前置：人工确认此次BOOT/JTAG未改变、没有其他AI/显示程序占用设备；不确定时暂停。
 本阶段会通过已核验URL初始化AI设备，读取并核对device25122301/icore24160628，
 在SDK默认设备数据区域分配两个16KiB缓冲区，三套FP32模式往返。限时30秒、TERM后5秒KILL。
 区域归属或指针类别不明确即停止；不执行模型Session/前向，不直接解引用ADDR/BOTH或写参考寄存器。
@@ -285,5 +285,5 @@ if ($LASTEXITCODE -ne 0) { throw '数值对照生成失败，停止。' }
 ```
 
 报告全部槽位的分数/坐标最大、平均绝对误差、RMS、P95及逐位一致性；另列最高分槽位切换及最佳姿态差异。
-原始坐标单位不作物理标定、MPJPE或候选身份推断；用户依据实测讨论容限。
+原始坐标单位不作物理标定、MPJPE或候选身份推断；依据实测讨论容限。
 即使工程通过，也不自动宣布精度通过；HDMI/RTSP、5Hz、延迟、30分钟闭环另行验证。

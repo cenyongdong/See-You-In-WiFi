@@ -1,6 +1,6 @@
 # 独立RTSP传输、重连与直接播放器结果（2026-10-07）
 
-用户已审查动态骨架视频，要求继续推进。V2-B首批传输/解码完成：复用已验收VPU输出的owned NAL与实际capture PTS；两RTSP会话各100帧，另一次直接OpenCV/FFmpeg100帧。尚未实际推理/编码并发或在线VPU→RTSP接入。
+已审查动态骨架视频，要求继续推进。V2-B首批传输/解码完成：复用已验收VPU输出的owned NAL与实际capture PTS；两RTSP会话各100帧，另一次直接OpenCV/FFmpeg100帧。尚未实际推理/编码并发或在线VPU→RTSP接入。
 
 ## 工程与身份
 

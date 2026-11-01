@@ -8,7 +8,7 @@
 
 **首要问题D45：同一候选BOOT在不同启动中可健康，也可在SDK加载前出现PS HP2读返回持续有效、HDMI入口持续背压。r24已使PL侧HP2互联发生实际复位，r25仍复现，根因未定。** 已完成的r13三窗新推理到HDMI属于一次健康启动下的有界功能通过，不能作为启动故障修复证据。
 
-执行状态更新（2026-10-21）：r26记录器已完成实际bit／BOOT及1次无SDK故障取证，取消第2候选并安全回原BOOT，包关闭、余额0，无后台工作。PS输出初态已高，PL释放后HDMI保留返回而PS随后空闲；仅等待PS高电平不是充分修正。当前缺匹配PS复位资料，用户将咨询官方。[r26实际结果及限制](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)及[实时状态](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/state.json)优先于本文以下交接时技术快照和过期的“暂停／待实现”表述。[恢复入口](D:/FPGACompetitionProject/FPGA/hdmi_candidate/RESUME.md)。模块不删减，旧DATA独立暂停，FAT不修，HDMI长期验证须单独批准。现行执行规则见[Agents.md](D:/FPGACompetitionProject/Agents.md)。
+执行状态更新（2026-10-21）：r26记录器已完成实际bit／BOOT及1次无SDK故障取证，取消第2候选并安全回原BOOT，包关闭、余额0，无后台工作。PS输出初态已高，PL释放后HDMI保留返回而PS随后空闲；仅等待PS高电平不是充分修正。当前缺匹配PS复位资料，将咨询官方。[r26实际结果及限制](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)及[实时状态](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/state.json)优先于本文以下交接时技术快照和过期的“暂停／待实现”表述。[恢复入口](D:/FPGACompetitionProject/FPGA/hdmi_candidate/RESUME.md)。模块不删减，旧DATA独立暂停，FAT不修，HDMI长期验证须单独批准。现行执行规则见[AGENTS.md](D:/FPGACompetitionProject/AGENTS.md)。
 
 ## 接手时先阅读的结论
 
@@ -83,7 +83,7 @@ flowchart LR
 | D45 | 跨启动偶发HP2返回异常、HDMI返回支路持续背压，可能导致参数上传／4KiB DMA失败 | 首要阻塞；完全无SDK的启动已复现；根因未定 |
 | D44 | 首次动态读帧START出现`faults=2`、未采纳首帧／黑屏 | 后续图案与骨架通过；首次失败根因仍未定 |
 | D29／D41 | 严格实时及推理长尾 | 独立推理历史有长尾；HDMI联合实时性未验收 |
-| HDMI连续长期 | 连续新推理、换帧、内存及视频稳定性 | 未开展；用户要求启动稳定后另行批准 |
+| HDMI连续长期 | 连续新推理、换帧、内存及视频稳定性 | 未开展；启动稳定后另行批准 |
 | D43 | 启动FAT脏标志及2168个未引用簇，来源不明 | 文件身份一致，未修复；不得并入本次排查顺手处理 |
 | D25 | 旧模型DATA首次坏读调查 | 独立暂停，不能与D45直接视为同因 |
 
@@ -97,7 +97,7 @@ flowchart LR
 |---|---|---|
 | 早期参考显示 | 显示器报时序不支持；参考RTL仿真显示200MHz扫描约80.81Hz，并发现仅按RVALID计数及停消费可能卡读 | 原参考源码有风险；不能由此倒推原BOOT每个现场故障的内部因果 |
 | 10月15至16日显示修正 | 独立148.5MHz像素时钟；TMDS字符串改为`10'b1111100000`；AXI握手、4KiB拆分、FIFO、换帧及STOP控制独立实现 | 目标模型TMDS时钟占空比20%到50%；r5整机候选实际显示稳定八色条 |
-| 10月17日动态显示 | 首次图案START fault2；保存失败并STOP。用户要求重测后，核验原故障安全停止状态、确认错误后清错，再用新进程测试 | 两图案颜色与顺序稳定；三份真实历史骨架回放通过。该处理未修复首次失败根因 |
+| 10月17日动态显示 | 首次图案START fault2；保存失败并STOP。重测后，核验原故障安全停止状态、确认错误后清错，再用新进程测试 | 两图案颜色与顺序稳定；三份真实历史骨架回放通过。该处理未修复首次失败根因 |
 | 首次新模型接入 | `Session.apply`参数上传阶段SDK DMA异常 | 当时新推理0；不能用历史骨架回放替代新推理 |
 | r9与同位流诊断 | reader边界谓词等价缩短并通过实际时序；r9首包64B成功、4KiB SDK内部5000ms超时，exit71 | 不继续64KiB／1MiB及推理，已回退；未证明4KiB阈值或拥塞就是根因 |
 | r13 | 同r9位流；Open前纯CSR健康；Open后与64B后分段；四档完整DMA全部一致，再执行新推理 | 三个不同窗口实际前向、数值与三帧采纳通过，现场确认正常；仅该启动通过 |
@@ -328,7 +328,7 @@ r24完整布线WNS +0.030ns、WHS +0.010ns、TNS／THS=0，内部未约束端点
 
 实际r24 Routed资源：Slice18,332／19,650＝93.29%，LUT43,305／78,600＝55.10%，FF64,097／157,200＝40.77%，BRAM36等效97.5／265，DSP8／400；控制集2,052。高Slice占位与LUT百分比不是一回事，STA通过也不能证明协议／CDC／启动时序正确。[完整模块资源](D:/FPGACompetitionProject/FPGA/hdmi_candidate/R24-RESOURCE-AUDIT.md)。
 
-用户明确不删模块。诊断仍有定位价值，旧视频控制还提供soft_rst及寄存器响应。旧读FIFO的计数实际进入读控制器，再影响旧AXI写取数控制，不能按“旧读请求已固定0”直接绑常量。此前目录名r27只代表保守依赖核验，未生成r27候选位流。
+明确不删模块。诊断仍有定位价值，旧视频控制还提供soft_rst及寄存器响应。旧读FIFO的计数实际进入读控制器，再影响旧AXI写取数控制，不能按“旧读请求已固定0”直接绑常量。此前目录名r27只代表保守依赖核验，未生成r27候选位流。
 
 ## 8 当前假设与能区分它们的证据
 
@@ -376,7 +376,7 @@ assert property (@(posedge aclk) disable iff (!aresetn)
 
 ## 10 建议下一轮采用的最小诊断方案
 
-本节为待实施方案，当前没有相应新RTL／bit／BOOT。原[r26定向方案](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)已准备，恢复执行以用户明确唤醒及实际运行身份核验为前提。首轮继续无SDK、无DMA、无推理、无HDMI START，不靠屏幕观察或手动按键。
+本节为待实施方案，当前没有相应新RTL／bit／BOOT。原[r26定向方案](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)已准备，恢复执行以阶段恢复后及实际运行身份核验为前提。首轮继续无SDK、无DMA、无推理、无HDMI START，不靠屏幕观察或手动按键。
 
 ### 10.1 被动观测的最小增量
 
@@ -513,7 +513,7 @@ close_design
 | DMA | 64B／4KiB／64KiB／1MiB完整source／actual保存后比较，检查对应边界状态；首失败停止 | 64B或DMA状态0不能替其它路径／完整内容正确 |
 | 新推理数值 | 固定JSON／RAW／SDK；先完整保存输出，输入与分数逐位、所有候选有限且索引合法；仅score>0.2候选3mm门限 | 不放宽门限、不用晚读取修补首值，不套用于旧DATA |
 | HDMI帧与生命周期 | 新推理结果、实际RGB565、帧ID／地址采纳、换帧和STOP安全释放一一对应；现场确认画面 | 回放／反复扫描不能算新推理率；ready和零计数不替代停止完成 |
-| 连续长期与实时 | 用户单独批准后，记录新推理率、端到端与尾时延、欠载／fault、CPU／内存／句柄及像素映射 | 历史独立推理30分钟不替代HDMI联合长期；渲染刷新率不等于新姿态率 |
+| 连续长期与实时 | 单独批准后，记录新推理率、端到端与尾时延、欠载／fault、CPU／内存／句柄及像素映射 | 历史独立推理30分钟不替代HDMI联合长期；渲染刷新率不等于新姿态率 |
 
 每次功能恢复使用同一Device与明确资源所有者，已发AR不能撤回，STOP要获得新响应、匹配停止ID、safe_idle且在途位清零再释放。SDK内部超时／异常与外层等待超时分别处理；前者保存原错、停止受影响负载，不自动重试，后者先检查原进程是否仍正常推进。
 
@@ -534,6 +534,6 @@ close_design
 
 部分早期独立REPORT.md已不在当前树；早期过程以现存[集成记录](D:/FPGACompetitionProject/FPGA/hdmi_candidate/INTEGRATION.md)、[10月16日工作总结](D:/FPGACompetitionProject/FPGA/FPGA-WORK-SUMMARY-20261016.md)、[阶段成果](D:/FPGACompetitionProject/Done.md)及原始归档为据。旧报告中的当时暂停状态、工具阻塞、按键名称或待测推断不能覆盖第4至5节的新结果；不补造缺失报告。
 
-恢复前不访问CSR、不加载SDK、不执行BOOT／重启、不按键、不恢复被暂停负载、不删模块。用户此前对PS侧诊断BOOT／重启的授权记录保留，但最新暂停仍有效；闭包额度不复活。新增功能范围、模型／SDK／NPU分配、外部接口、时序／DRC例外、FSBL／内核／CMA／FAT均不在本文整理范围。需要用户在场的屏幕／按键／测量另按实际可用条件安排，长期HDMI单独批准。
+恢复前不访问CSR、不加载SDK、不执行BOOT／重启、不按键、不恢复被暂停负载、不删模块。此前对PS侧诊断BOOT／重启的授权记录保留，但最新暂停仍有效；闭包额度不复活。新增功能范围、模型／SDK／NPU分配、外部接口、时序／DRC例外、FSBL／内核／CMA／FAT均不在本文整理范围。需要在场的屏幕／按键／测量另按实际可用条件安排，长期HDMI单独批准。
 
 本次文档交付没有新故障复现、逻辑修正、构建或板端操作。当前D44／D45仍未关闭，r26仅离线准备；最新总览以[PROJECT-PROGRESS.md](D:/FPGACompetitionProject/PROJECT-PROGRESS.md)为准。

@@ -9,7 +9,7 @@
 
 ## 旧共享核心（历史）
 
-2026-10-25主入口更新：用户已批准后续以[180-query主推理链](../pose180_pipeline/README.md)替代旧100-query主图，采用主机模拟输入、有界缓冲及完整回传。本目录预处理／绘制能力继续复用；以下共享Engine、Host桥及VPU／RTSP说明按原100-query历史基线理解。新链仅完成软件验证和编译，未实板。
+2026-10-25主入口更新：后续以[180-query主推理链](../pose180_pipeline/README.md)替代旧100-query主图，采用主机模拟输入、有界缓冲及完整回传。本目录预处理／绘制能力继续复用；以下共享Engine、Host桥及VPU／RTSP说明按原100-query历史基线理解。新链仅完成软件验证和编译，未实板。
 
 状态整理：2026-10-21。`display/hdmi_canvas.*`负责SDK无关的RGB24→RGB565格式适配，`display/hdmi_output.*`在SDK主线程持有双UDMA帧并管理采纳／STOP／释放。r13已在隔离导出副本中完成一次健康启动下三窗新推理到HDMI；早期SDK上传失败仍保留，跨启动及联合长期未通过。结果见[HDMI应用](../hdmi_demo/README.md)和[工程交接](../../FPGA/hdmi_candidate/HDMI-FAULT-HANDOFF.md)。旧演示链接未自动切换，以下模块表及构建契约描述原VPU／RTSP演示分支。
 

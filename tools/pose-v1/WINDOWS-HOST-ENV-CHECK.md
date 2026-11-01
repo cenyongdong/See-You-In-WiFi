@@ -1,6 +1,6 @@
 # Windows Host工具定位与用户环境查询（2026-10-05）
 
-最新同窗口查询：用户where cl已找到Hostx64/x64编译器，目标x64、VSINSTALLDIR正确，CMake实际3.31.6-msvc6。
+最新同窗口查询：where cl已找到Hostx64/x64编译器，目标x64、VSINSTALLDIR正确，CMake实际3.31.6-msvc6。
 WindowsSdkDir未设置，WindowsSDKVersion仅`\`，有效Windows SDK未识别；不是编译器或路径继承问题。
 代理只读检查厂商脚本读取的4个Windows v10.0注册表入口及5个常见Windows Kits目录均未找到，
 不能排除其他自定义未登记目录。SDK未确认前不执行F2构建，不手填INCLUDE/LIB、不安装/修复。
@@ -19,7 +19,7 @@ WindowsSdkDir未设置，WindowsSDKVersion仅`\`，有效Windows SDK未识别；
 | 同目录link.exe | FileVersion 14.44.35213.0 | 文件存在，未链接 |
 | 同目录nmake.exe | 文件存在 | 未执行，不据此更换CMake生成器 |
 | Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe | FileVersion 3.31.6-msvc6 | 未运行版本查询或配置 |
-| Common7/Tools/VsDevCmd.bat | 文件存在，已读源码 | 用户尚未执行初始化 |
+| Common7/Tools/VsDevCmd.bat | 文件存在，已读源码 | 尚未执行初始化 |
 | VC/Tools/MSVC/14.44.35207/include/vector及lib/x64/msvcprt.lib | 文件存在 | 不能据此确认Windows SDK完整 |
 
 普通PowerShell的PATH未找到cl/CMake，不再解释为机器没有这些文件。
@@ -30,19 +30,19 @@ WindowsSdkDir未设置，WindowsSDKVersion仅`\`，有效Windows SDK未识别；
 `Launch-VsDevShell.ps1`的源码依赖vswhere，而默认vswhere位置此次未找到，
 本次查询使用已有VsDevCmd.bat进入独立CMD，避免把未知的实例查找结果当作已验证。
 
-## 由用户执行：仅临时开发终端与查询
+## 人工执行：仅临时开发终端与查询
 
-最新用户反馈：自动定位后已显示VS开发终端横幅；另一截图中where cl未找到，目标架构/SDK变量原样显示。
-用户随后明确查询是在另外打开的CMD中执行，那个进程没有继承开发环境；
+最新现场反馈：自动定位后已显示VS开发终端横幅；另一截图中where cl未找到，目标架构/SDK变量原样显示。
+随后明确查询是在另外打开的CMD中执行，那个进程没有继承开发环境；
 不据此认定原窗口初始化失败或SDK缺失。现在回原初始化窗口查询，原窗口环境及SDK仍待验证。
 代理只读确认start/parse/winsdk/vcvars等厂商初始化脚本存在；横幅v17.0是vswhere缺失时的源码默认值，
-不能作为完整安装版本或初始化失败证据。用户截图见
+不能作为完整安装版本或初始化失败证据。截图见
 [启动横幅](evidence/windows-host-banner-20261005.png)、[环境变量查询](evidence/windows-host-unset-query-20261005.png)。
 
-属于既定环境查询步骤的延续。用户在Windows主机执行，代理不代执行。
+属于既定环境查询步骤的延续。在Windows主机执行，代理不代执行。
 不安装、修复或下载软件，不改永久PATH、不编译、不运行模型，不访问板卡。
 
-用户首次启动截图中的路径漏掉了目录名开头空格，CMD返回“系统找不到指定的路径”。
+首次启动截图中的路径漏掉了目录名开头空格，CMD返回“系统找不到指定的路径”。
 代理只读再次确认实际目录首字符为32（空格）、带空格路径文件存在，不带空格路径不存在。
 这次失败不能作为SDK缺失或编译器损坏的证据；截图[evidence/windows-host-path-error-20261005.png](evidence/windows-host-path-error-20261005.png)。
 下面改为从真实目录项构造路径，Trim只用于匹配名称，FullName原样保留；查询与临时终端范围不变。
