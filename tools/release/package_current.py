@@ -1,4 +1,4 @@
-"""Source-focused current delivery. No device access, no deletion, no model conversion."""
+"""Source-focused current delivery. No device access or model conversion; superseded delivery BOOT removed only by explicit request."""
 from pathlib import Path
 import argparse,hashlib,json,os,shutil,subprocess,importlib.util
 ROOT=Path(__file__).resolve().parents[2]
@@ -28,7 +28,9 @@ def is_source(p):
  return p.suffix.lower() in CODE or p.name in JSON_NAMES or p.name in {'CMakeLists.txt','Makefile','LICENSE','NOTICE','.editorconfig','.clang-format'} or p.suffix.lower()=='.md' or (p.suffix.lower()=='.txt' and (p.name.startswith(('requirements','LICENSE','NOTICE'))))
 def refresh():
  WORK.mkdir(exist_ok=True)
- shutil.copytree(PREVIOUS,RELEASE,ignore=lambda d,ns:[n for n in ns if n in SKIP or n in {'next-boot.json','verified-boot.json'}])
+ if not RELEASE.exists():
+  if not PREVIOUS.exists():raise FileNotFoundError('Provide the current verified deployment payload before refreshing documents')
+  shutil.copytree(PREVIOUS,RELEASE,ignore=lambda d,ns:[n for n in ns if n in SKIP or n in {'next-boot.json','verified-boot.json'}])
  ident=json.loads((RELEASE/'board/identity.json').read_text());ident.update(package=NAME,validation_scope='Same validated runtime; source-only delivery and evidence refresh, no new board run')
  for n,h in ident['files'].items():
   if sha(RELEASE/'board'/n)!=h:raise ValueError('Runtime changed: '+n)
@@ -46,7 +48,38 @@ def refresh():
   shutil.copyfile(ROOT/n,RELEASE/n);files[n]=sha(RELEASE/n)
  for n in files:files[n]=sha(RELEASE/n)
  save(RELEASE/'release-files.json',files)
+ prepare_live_assets()
  print('Prepared current deployment; validated binary/data/model unchanged',flush=True)
+def prepare_live_assets():
+ # Only the current delivery payload is refreshed; historical firmware evidence stays intact.
+ router=RELEASE/'router-service';router.mkdir(exist_ok=True)
+ original=ROOT/'.local/router-autostart-20261025-r1'
+ catalog=original/'package-final.json'
+ if not catalog.exists():catalog=router/'package.json'
+ roles=json.loads(catalog.read_text())
+ for role,meta in roles.items():
+  src=original/meta['archive']
+  if not src.exists():src=router/meta['archive']
+  if sha(src)!=meta['sha256']:raise ValueError('Router package identity differs: '+role)
+  dst=router/meta['archive']
+  if src.resolve()!=dst.resolve():shutil.copyfile(src,dst)
+ save(router/'package.json',roles)
+ shutil.copyfile(ROOT/'software/pose180_pipeline/control/autostart/install.sh',router/'install.sh')
+ shutil.copyfile(ROOT/'tools/release/current_boot_control.py',RELEASE/'boot_control.py')
+ shutil.copyfile(ROOT/'tools/release/current_boot_control.py',RELEASE/'build-config/current_boot_control.py')
+ old=RELEASE/'boot/BOOT-baseline-csi-v2.bin'
+ if old.exists():
+  if old.is_symlink() or old.parent.resolve()!=(RELEASE/'boot').resolve():raise ValueError('Unexpected superseded BOOT path')
+  expected=json.loads((RELEASE/'boot/package-review.json').read_text())['baseline_BOOT_sha256']
+  if sha(old)!=expected:raise ValueError('Preserve unidentified old BOOT instead of removing it')
+  old.unlink()
+ for name in ['README.md','SOURCE.md','PERFORMANCE.md']:
+  p=RELEASE/name
+  p.write_text(p.read_text(encoding='utf-8').replace('(FPGA-REBUILD-20261101-r1.md)','(evidence/current/fpga-full-rebuild-20261101-r1/result.json)'),encoding='utf-8')
+ router.joinpath('README.md').write_text('Router assets for the four previously validated RT-AC86U devices only. Roles and SHA256 are in package.json. First-install, wiring, live capture, status and shutdown instructions are in ../README.md. install.sh preserves original hooks and checks role, firmware platform and package digest. Do not reinstall over an existing /jffs/pose180-csi service. No board SDK or BOOT is started by these assets.\n',encoding='utf-8')
+ files={p.relative_to(RELEASE).as_posix():sha(p) for p in walk(RELEASE) if p.is_file() and p.name!='release-files.json'}
+ save(RELEASE/'release-files.json',files)
+
 def dependency_files():
  spec=importlib.util.spec_from_file_location('pose180_fpga_dependencies',ROOT/'tools/release/fpga_dependencies.py')
  module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)

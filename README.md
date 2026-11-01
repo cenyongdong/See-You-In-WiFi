@@ -41,7 +41,7 @@
 
 | 文件或目录 | 用途 |
 |---|---|
-| [最新部署包](Deliverables/pose180-csi-release-20261031-r4.rar) | CSI分组流水＋骨架绘图、30段官方CSI、最新PC与BOOT |
+| [最新部署包](Deliverables/pose180-csi-release-20261031-r4.rar) | CSI分组流水＋骨架绘图、30段官方CSI、PC双页、实时路由器安装文件与最新版BOOT |
 | [部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md) | 默认位流、手动启动／停止、PC与恢复 |
 | [完整源码包](Deliverables/pose180-complete-sources-20261031-r4.rar) | 当前PS／PC／PL、模型原始代码、IP配置、约束、关键报告与JSON／RAW／ONNX和当前合格BIT；含目标器件所需厂商IP／网表／增量基线，工具链及验证边界见源码说明 |
 | [源码说明](Deliverables/SOURCE-20261031.md) | 自研／复用分工、核心入口及重建依赖 |
