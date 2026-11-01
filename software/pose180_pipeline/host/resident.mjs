@@ -442,7 +442,16 @@ const server = http.createServer((req, res) => {
 		return;
 	}
 	res.setHeader('Content-Type', 'text/javascript');
-	fs.createReadStream(file).on('error', () => res.destroy()).pipe(res);
+	fs.createReadStream(file).on('error', error => {
+		console.error('PC_ASSET_ERROR', JSON.stringify({url : req.url, code : error.code, file}));
+		if (res.headersSent) {
+			res.destroy();
+			return;
+		}
+		res.writeHead(error.code === 'ENOENT' ? 404 : 500,
+			{'Content-Type' : 'text/plain; charset=utf-8'});
+		res.end('PC viewer asset unavailable: ' + req.url + '. Extract the complete PC package.');
+	}).pipe(res);
 });
 server.maxConnections = 8;
 server.requestTimeout = 5000;

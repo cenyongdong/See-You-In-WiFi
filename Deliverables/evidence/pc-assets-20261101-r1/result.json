@@ -1,0 +1,53 @@
+{
+  "status": "completed",
+  "cause": "Deployment source-pruning excluded the required Three.js node_modules assets. Original RAR omitted three JS files and LICENSE.",
+  "original_deployment_sha256": "61efbc0140e86372282330936636fa8aca3fd7fee78001ea843ce451fbae5c33",
+  "deploy": {
+    "path": "pose180-csi-release-20261031-r4.rar",
+    "format": "RAR5",
+    "bytes": 111749109,
+    "sha256": "a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48",
+    "rar_test_pass": true,
+    "members_byte_compared": 223,
+    "files_match_current_sources": true,
+    "extraction_pass": true
+  },
+  "extracted_HTTP_assets": [
+    {
+      "url": "/scene.js",
+      "status": 200,
+      "bytes": 7446,
+      "matches_packaged_asset": true
+    },
+    {
+      "url": "/vendor/three.module.js",
+      "status": 200,
+      "bytes": 662772,
+      "matches_packaged_asset": true
+    },
+    {
+      "url": "/vendor/three.core.js",
+      "status": 200,
+      "bytes": 1458113,
+      "matches_packaged_asset": true
+    },
+    {
+      "url": "/vendor/OrbitControls.js",
+      "status": 200,
+      "bytes": 40755,
+      "matches_packaged_asset": true
+    }
+  ],
+  "missing_asset_HTTP_404": true,
+  "missing_asset_startup_refused": true,
+  "missing_asset_packaging_refused": true,
+  "PC_regression_tests": {
+    "passed": 14,
+    "failed": 0
+  },
+  "runtime_binary_model_data_unchanged": true,
+  "BOOT_router_unchanged": true,
+  "board_operations": 0,
+  "source_RAR_unchanged": true,
+  "visual_confirmation_on_laptop": "pending"
+}

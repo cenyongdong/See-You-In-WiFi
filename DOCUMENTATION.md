@@ -25,7 +25,8 @@
 ## 引用与归档
 
 - 历史报告仍有指向已清理附件、旧相对目录和本机SDK安装的原始引用。检查中将它们记录为历史附件缺口，不补造附件、不把旧结果改写成新版本通过，也不将这些路径当作现行部署入口。
-- [技术文档排版稿](Docs/commit_docs/技术文档_v1_排版修订.docx)、[技术文档v1](Docs/commit_docs/技术文档_v1.docx)、[原始稿](Docs/commit_docs/技术文档.docx)、[技术稿PDF](Docs/commit_docs/技术文档_v1.pdf)及[海报](Docs/commit_docs/项目海报.pdf)部分内容反映较早PS／PL分工与三片段阶段，不替代本页当前工程入口。赛题和承诺书保留原始版本。
+- [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx)覆盖当前PS／NPU／PL分工、CSI分组流水、骨架绘图及30分钟实测，附架构与关键性能图表。
+- [技术文档v1](Docs/commit_docs/技术文档_v1.docx)、[原始稿](Docs/commit_docs/技术文档.docx)、[技术稿PDF](Docs/commit_docs/技术文档_v1.pdf)及[海报](Docs/commit_docs/项目海报.pdf)保留各自版本内容，部分反映较早分工与三片段阶段。赛题和承诺书保留原始版本。
 
 ## 撤下页面的阅读位置
 

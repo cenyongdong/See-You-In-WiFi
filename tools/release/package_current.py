@@ -10,6 +10,17 @@ if not UPSTREAM.exists():UPSTREAM=Path('D:/Person-in-WIFI-3D/Person-in-WiFi-3D-r
 SKIP={'.git','__pycache__','node_modules','.Xil','.cache','.idea','.pnpm-store','build','dist','runs','pc-logs','xsim.dir','obj_dir','.mim'}
 CODE={'.c','.cc','.cpp','.h','.hpp','.cu','.cuh','.sv','.v','.vh','.svh','.vhd','.vhdl','.xdc','.tcl','.xci','.bd','.xpr','.py','.sh','.ps1','.bat','.cmd','.cmake','.toml','.yaml','.yml','.mjs','.js','.ts','.tsx','.jsx','.html','.css','.cfg','.ini','.conf','.coe','.mem','.hex','.sdc','.qsf','.prj','.bif'}
 JSON_NAMES={'CMakePresets.json','package.json','package-lock.json','tsconfig.json','default_boot.json','dependencies.lock.json','current-bit.json','rebuild-inputs.json'}
+PC_ASSETS=('build/three.module.js','build/three.core.js','examples/jsm/controls/OrbitControls.js','LICENSE')
+def deployment_files(release=RELEASE):
+ # Source pruning excludes node_modules/build, but these four offline runtime
+ # assets are required by the browser and must also appear in the manifest.
+ files={p.relative_to(release).as_posix():p for p in walk(release) if p.is_file()}
+ for name in PC_ASSETS:
+  relative='pc/software/pc_viewer/node_modules/three/'+name
+  p=release/relative
+  if not p.is_file():raise FileNotFoundError('Required PC viewer asset: '+str(p))
+  files[relative]=p
+ return files
 def sha(p):
  h=hashlib.sha256()
  with p.open('rb') as f:
@@ -77,7 +88,7 @@ def prepare_live_assets():
   p=RELEASE/name
   p.write_text(p.read_text(encoding='utf-8').replace('(FPGA-REBUILD-20261101-r1.md)','(evidence/current/fpga-full-rebuild-20261101-r1/result.json)'),encoding='utf-8')
  router.joinpath('README.md').write_text('Router assets for the four previously validated RT-AC86U devices only. Roles and SHA256 are in package.json. First-install, wiring, live capture, status and shutdown instructions are in ../README.md. install.sh preserves original hooks and checks role, firmware platform and package digest. Do not reinstall over an existing /jffs/pose180-csi service. No board SDK or BOOT is started by these assets.\n',encoding='utf-8')
- files={p.relative_to(RELEASE).as_posix():sha(p) for p in walk(RELEASE) if p.is_file() and p.name!='release-files.json'}
+ files={name:sha(p) for name,p in deployment_files().items() if name!='release-files.json'}
  save(RELEASE/'release-files.json',files)
 
 def dependency_files():
@@ -172,7 +183,7 @@ def source():
  if result['bytes']>200000000:raise ValueError('Archive exceeds requested 200 MB budget')
  save(WORK/'source-archive.json',result)
 def deploy():
- result=archive(OUT/(NAME+'.rar'),{NAME+'/'+p.relative_to(RELEASE).as_posix():p for p in walk(RELEASE) if p.is_file()})
+ result=archive(OUT/(NAME+'.rar'),{NAME+'/'+name:p for name,p in deployment_files().items()})
  save(WORK/'deploy-archive.json',result)
 if __name__=='__main__':
  parser=argparse.ArgumentParser();parser.add_argument('stage',choices=['refresh','source','deploy','inventory']);a=parser.parse_args()

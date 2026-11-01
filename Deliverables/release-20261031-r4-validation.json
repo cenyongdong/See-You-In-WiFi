@@ -12,10 +12,10 @@
   "deploy": {
     "path": "pose180-csi-release-20261031-r4.rar",
     "format": "RAR5",
-    "bytes": 111404612,
-    "sha256": "61efbc0140e86372282330936636fa8aca3fd7fee78001ea843ce451fbae5c33",
+    "bytes": 111749109,
+    "sha256": "a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48",
     "rar_test_pass": true,
-    "members_byte_compared": 218,
+    "members_byte_compared": 223,
     "files_match_current_sources": true,
     "extraction_pass": true
   },
@@ -53,5 +53,14 @@
     "source_archive_identity_preserved": true
   },
   "source_snapshot_scope": "Original r4 source archive frozen and fully FPGA-rebuilt on 2026-11-01; later deployment documentation/router/bootstrap refresh is distributed in the deployment RAR.",
-  "document_revision": "2026-11-01"
+  "document_revision": "2026-11-01",
+  "pc_assets_fix_20261101": {
+    "validation": "Deliverables/evidence/pc-assets-20261101-r1/result.json",
+    "required_JS_assets": 3,
+    "offline_LICENSE_included": true,
+    "extracted_HTTP_pass": true,
+    "PC_regression_tests_passed": 14,
+    "board_operations": 0,
+    "source_archive_identity_preserved": true
+  }
 }

@@ -4,6 +4,8 @@
 
 当前常驻入口为 `resident.mjs`，渲染资源集中在本目录 `web/scene.js`，PC 检查在 `test/`。网页行为保持，旧严格链 `run.mjs` 及其历史依赖保留。
 
+PC后端 `/api/state` 正常更新但页面停在等待、控制台显示 `/vendor/three.module.js` 或 `/vendor/OrbitControls.js` 的 `ERR_EMPTY_RESPONSE` 时，检查部署包中的Three.js离线资源。2026-11-01修复了发布脚本误用源码排除规则而漏掉`node_modules`资源的问题；当前部署包必须包含`three.module.js`、`three.core.js`、`OrbitControls.js`及许可证，清单与压缩包共用同一选取函数。启动器在运行前检查必要资源，HTTP读取失败返回明确错误。旧解压目录可覆盖解压PC资源修复补丁并刷新网页；不需要安装npm依赖或重启开发板。
+
 部署包根目录的 `start-pc.ps1` 来自本目录同名模板，自动查找 PATH、常用安装位置及本机已有 Codex Node.js；也可用 `-NodePath <node.exe完整路径>` 指定。`-Check` 只核对 Node.js 版本，不连接开发板。普通 PowerShell 不一定继承 Codex 的运行时 PATH，启动器因此不再依赖裸 `node` 命令。
 
 PC 已配置演示有线地址 `192.168.126.100/24` 时，可执行 `./start-pc.ps1 -Board 192.168.126.49 -LocalAddress 192.168.126.100`，通过固定板端地址并指定源网卡。其它电脑须使用自己的有线 IP；`-LocalAddress` 不修改系统网络设置。默认 `192.168.50.49` 是板端演示期间的临时别名，正常结束时可能移除。TCP 建连单独限时 1.5 秒，骨架通道断开后 250 ms 重试，已连接的无数据等待仍保留 30 秒。终端 `PC_BOARD_WAIT` 显示失败原因，`PC_FIRST_RESULT` 记录实际源地址及本次连接收到首帧的耗时；`/api/state` 的 `connection` 字段提供相同诊断。PC 启动后先打开页面，再开始板端演示；PC 不启动或重试板端 SDK。

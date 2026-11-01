@@ -60,6 +60,17 @@ $entry = Join-Path $PSScriptRoot "pc/software/pose180_pipeline/host/resident.mjs
 if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) {
 	throw "PC entry point is missing. Run this launcher from the extracted deployment package."
 }
+$assets = @(
+	"pc/software/pose180_pipeline/host/web/scene.js",
+	"pc/software/pc_viewer/node_modules/three/build/three.module.js",
+	"pc/software/pc_viewer/node_modules/three/build/three.core.js",
+	"pc/software/pc_viewer/node_modules/three/examples/jsm/controls/OrbitControls.js"
+)
+foreach ($asset in $assets) {
+	if (-not (Test-Path -LiteralPath (Join-Path $PSScriptRoot $asset) -PathType Leaf)) {
+		throw "PC viewer asset is missing: $asset. Extract the complete deployment package or the PC asset repair patch into this folder."
+	}
+}
 Write-Host "Using Node.js $nodeVersion ($nodeExecutable)"
 Write-Host "Before filtering: http://127.0.0.1:39381/"
 Write-Host "After filtering:  http://127.0.0.1:39380/"

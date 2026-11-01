@@ -215,6 +215,8 @@ PC解压同一个包，在包根目录执行：
 
 Ctrl+C结束启动器管理的两个PC观察进程，板端推理／HDMI独立继续。日志在包根`pc-logs/`；已占用端口导致启动失败时不会结束其它进程。可用`-Seconds 120`有限观察。不要另外启动第三个raw消费者；已有观察器请先正常关闭再使用本入口。
 
+如果`/api/state`显示`connected: true`且`received`持续增加，但网页仍停在等待，检查浏览器控制台。`/vendor/three.module.js`或`/vendor/OrbitControls.js`的`ERR_EMPTY_RESPONSE`表示原部署包可能缺少Three.js离线资源。2026-11-01已补齐当前部署RAR并修正打包规则；旧目录可将`pose180-pc-assets-fix-20261101-r1.rar`解压到含`start-pc.ps1`的部署包根目录，合并`pc/`后按Ctrl+F5刷新。无需重新安装Node.js、执行npm或重启板端。
+
 ## 源码与恢复
 
 完整源码包：`pose180-complete-sources-20261031-r4.rar`，包含当前PS／PC／PL及上游模型原始代码、IP配置、约束、实际构建脚本、关键报告，以及JSON／RAW／ONNX模型和当前合格BIT；补齐目标器件所需厂商网表、IP综合结果和增量实现基线，排除无关器件和重复构建缓存。重建外部依赖见 `SOURCE.md`。旧本机部署包与源码包清理；工作区原始证据保留，部署包仅附最新版BOOT。关键数据统一见 `PERFORMANCE.md`。

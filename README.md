@@ -47,7 +47,7 @@
 | [源码说明](Deliverables/SOURCE-20261031.md) | 自研／复用分工、核心入口及重建依赖 |
 | [完整FPGA重建](Deliverables/FPGA-REBUILD-20261101-r1.md) | 2026-11-01从r4 RAR新解压完成实际综合／布局布线／BIT与Procise；包含完整日志与既定例外 |
 | [交付核验](Deliverables/release-20261031-r4-validation.json) | RAR完整性、文件一致性及独立解压构建检查；引用既有BOOT核验，无新增SDK运行 |
-| [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx) | 排版稿；[技术文档 v1](Docs/commit_docs/技术文档_v1.docx) 为前一版本 |
+| [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx) | 当前技术报告；[技术文档 v1](Docs/commit_docs/技术文档_v1.docx) 为前一版本 |
 | [项目海报](Docs/commit_docs/项目海报.pdf) | A1 竖版作品海报 |
 
 部署包解压后的关键位置如下，路径均相对于包根目录：
