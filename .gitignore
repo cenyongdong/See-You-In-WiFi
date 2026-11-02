@@ -8,6 +8,9 @@ DifficultyRecord.txt
 日志
 Logs
 
+视频
+video
+
 #相关资料
 /Docs/*
 /CompetitionDescription/*
@@ -367,8 +370,8 @@ node_modules/
 # 只开放指定提交稿；厂商资料、承诺书、原模板和其它草稿保持本地。
 !/Docs/commit_docs/
 /Docs/commit_docs/*
-!/Docs/commit_docs/技术文档_v1.docx
-!/Docs/commit_docs/技术文档_v1_排版修订.docx
+!/Docs/commit_docs/技术文档_v13.pdf
+!/Docs/llm_usage.md
 !/Docs/commit_docs/项目海报.pdf
 
 # Word / WPS / Office 锁文件不随提交稿上传。

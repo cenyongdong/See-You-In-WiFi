@@ -16,6 +16,7 @@
 | 数据来源、30分钟实测及关键性能 | [长测](FPGA/csi_preprocess/LONGRUN.md)、[性能汇总](Deliverables/PERFORMANCE.md) |
 | 源码RAR、厂商依赖及完整硬件复现 | [源码说明](Deliverables/SOURCE-20261031.md)、[完整重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
 | 模型与第三方许可 | [模型索引](model/README.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[安全维护](SECURITY.md) |
+| AI辅助开发环节、使用记录、人工审核与贡献边界 | [AI辅助开发说明](Docs/AI辅助开发流程与使用记录.md) |
 
 ## Git 克隆后的文件可用范围
 
