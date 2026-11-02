@@ -1,6 +1,6 @@
 # 下一定位：真实模型张量与连续复制对象身份
 
-当前已安全结束，无后台。先读 [结果](SCRATCH-COPY-RESULTS-20261010.md)、[ADR_22](../../ADR/ADR_22.md)及 [检查点](evidence/scratch-copy-20261010-r3/next-checkpoint.json)。本批两个独立100对scratch均通过，没有证明模型故障修复；不重跑旧失败。
+当前已安全结束，无后台。先读 [结果](SCRATCH-COPY-RESULTS-20261010.md)、[ADR_22](../../ADR/ADR_22.md)及 检查点（历史附件，当前仓库未附：`evidence/scratch-copy-20261010-r3/next-checkpoint.json`）。本批两个独立100对scratch均通过，没有证明模型故障修复；不重跑旧失败。
 
 ## 已知差别和应补证据
 

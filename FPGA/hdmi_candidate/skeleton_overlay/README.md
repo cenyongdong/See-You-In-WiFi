@@ -20,9 +20,9 @@ CSR 基址 `0x400b2000`，ABI `0x534b4c01`。00=ABI，04=busy/error/display_vali
 
 ## 实板结果与性能对照
 
-唯一结果摘要见 [final-summary.json](../../../.local/skeleton-overlay-20261031-r2/reports/final-summary.json)。候选实际使用1次BOOT安装、1次正常重启、1次SDK，53.186秒正常结束：接收420帧、417次新推理、417次HDMI采纳、PC两路各接收417帧。3次输入窗口替换，PC原始记录端415次落盘／2次丢弃，按演示模式保留原值。原生关闭成功、设备占用为空、PC两个180秒观察器均已结束。在运行期间确认“画面正常，骨架和信息持续更新”，[确认记录](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-visual-confirmation.json)不冒充实屏照片。
+唯一结果摘要见 final-summary.json（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/final-summary.json`）。候选实际使用1次BOOT安装、1次正常重启、1次SDK，53.186秒正常结束：接收420帧、417次新推理、417次HDMI采纳、PC两路各接收417帧。3次输入窗口替换，PC原始记录端415次落盘／2次丢弃，按演示模式保留原值。原生关闭成功、设备占用为空、PC两个180秒观察器均已结束。在运行期间确认“画面正常，骨架和信息持续更新”，确认记录（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-visual-confirmation.json`）不冒充实屏照片。
 
-保留环中226条PL显示记录的硬件完成计数为192–417，tag全部匹配，粘滞下溢位均为0。板端保留225条完整推理输出，与PS对照按输入内容配对后，225组输入及全部180候选输出逐字节一致。配对按实际输入而非发布序号，避免3次窗口替换造成错配；不将末段225组扩写为420组全程逐位验证。原始证据：[板端归档](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-board.tar.gz)、[PL统计](../../../.local/skeleton-overlay-20261031-r2/reports/pl-native-display-metrics.json)、[输出对照](../../../.local/skeleton-overlay-20261031-r2/reports/ps-pl-output-comparison.json)、[PC记录](../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-pc)。
+保留环中226条PL显示记录的硬件完成计数为192–417，tag全部匹配，粘滞下溢位均为0。板端保留225条完整推理输出，与PS对照按输入内容配对后，225组输入及全部180候选输出逐字节一致。配对按实际输入而非发布序号，避免3次窗口替换造成错配；不将末段225组扩写为420组全程逐位验证。原始证据：板端归档（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-board.tar.gz`）、[PL统计](../../../Deliverables/evidence/overlay/pl-native-display-metrics.json)、[输出对照](../../../Deliverables/evidence/overlay/ps-pl-output-comparison.json)、PC记录（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/pl-candidate-pc`）。
 
 | 对比项 | PS绘图 | PL绘图 | 统计口径 |
 |---|---:|---:|---|
@@ -34,15 +34,15 @@ CSR 基址 `0x400b2000`，ABI `0x534b4c01`。00=ABI，04=busy/error/display_vali
 
 本版的实证收益为CPU绘图卸载、提交调用和动态传输量降低；显示确认延迟未降低，未实测功耗，不能宣称NPU或整机端到端加速。背景DDR扫描读取仍存在，不能把指令负载缩小比例当作系统DDR总带宽节省比例。CPU合成基准与实际运行统计也不能相加冒充同一组端到端测量。
 
-![可直接用于文档的板端性能对照图](../../../.local/skeleton-overlay-20261031-r2/reports/figures/board-performance-comparison.png)
+![可直接用于文档的板端性能对照图](../../../Deliverables/evidence/overlay/figures/board-performance-comparison.png)
 
-最终物理资格：setup WNS=+0.017ns，hold WHS=+0.029ns，TNS/THS=0，94233条可布线网络全部连通，内部未约束端点0；仅保留原批准的两项AI最小周期例外，无新增时序／DRC豁免。新增覆盖层模块1145 LUT、939 FF、4 DSP、128.5 BRAM36等效；整机41297 LUT、55362 FF、28 DSP、234 BRAM36。片上双缓冲占用较多BRAM，这是本实现的主要资源代价。见[资格与源码身份](../../../.local/skeleton-overlay-20261031-r2/reports/qualification-closure.json)及[最终原生报告](../../../.local/skeleton-overlay-20261031-r2/reports/physical-final-closure)。
+最终物理资格：setup WNS=+0.017ns，hold WHS=+0.029ns，TNS/THS=0，94233条可布线网络全部连通，内部未约束端点0；仅保留原批准的两项AI最小周期例外，无新增时序／DRC豁免。新增覆盖层模块1145 LUT、939 FF、4 DSP、128.5 BRAM36等效；整机41297 LUT、55362 FF、28 DSP、234 BRAM36。片上双缓冲占用较多BRAM，这是本实现的主要资源代价。见资格与源码身份（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/qualification-closure.json`）及最终原生报告（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/physical-final-closure`）。
 
 赛题展示可以说明：自主实现GP指令接口、线／点／矩形／字体硬件算子、双缓冲与跨时钟数据通道、帧边界切换和图层合成，并与PS投影、厂商NPU推理和HDMI发送链路集成；提供了功能仿真、真实上板、接口、资源、时序和软件对照证据。该结果支持“至少完成一项FPGA开发”的要求，最终评审认定仍以赛题完整规则为准。
 
 ## 骨架专项当时运行与恢复（历史）
 
-本机包：[pose180-skeleton-overlay-20261031-r2.tar.gz](../../../.local/skeleton-overlay-20261031-r2/pose180-skeleton-overlay-20261031-r2.tar.gz)。已核验上传并部署到 `/root/pose180-skeleton-overlay-20261031-r2`。当前BOOT为 `eae27ceb4ee81440caa1ee9a1d294eb8efd5c72463d228e9f1ee4d70a41c4c22`，boot_id为 `95fb79ae-ba7b-489e-98e2-cd721b0f00cd`；位流、适配位流和压缩包身份见[封装记录](../../../.local/skeleton-overlay-20261031-r2/reports/package-review.json)。包内 `board_tested=false` 是构建时状态，最终实测状态以上述独立结果摘要为准，未为修改标签重打已经实测的包。
+本机包：pose180-skeleton-overlay-20261031-r2.tar.gz（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/pose180-skeleton-overlay-20261031-r2.tar.gz`）。已核验上传并部署到 `/root/pose180-skeleton-overlay-20261031-r2`。当前BOOT为 `eae27ceb4ee81440caa1ee9a1d294eb8efd5c72463d228e9f1ee4d70a41c4c22`，boot_id为 `95fb79ae-ba7b-489e-98e2-cd721b0f00cd`；位流、适配位流和压缩包身份见封装记录（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/package-review.json`）。包内 `board_tested=false` 是构建时状态，最终实测状态以上述独立结果摘要为准，未为修改标签重打已经实测的包。
 
 本次启动消费已使用，当前无运行负载。再次演示应先在新包目录执行 `sh prepare-boot.sh`，正常重启后 `sh check.sh`，再 `sh start.sh`（默认官方片段、最长120秒、EOF正常结束）。不能在同一FPGA配置下直接重试SDK。PC复用既有 `software/pose180_pipeline/host/resident.mjs`，协议未变。没有新增SDK／推理自启动。
 
@@ -52,21 +52,21 @@ CSR 基址 `0x400b2000`，ABI `0x534b4c01`。00=ABI，04=busy/error/display_vali
 
 先完成独立PS实板对照：包 `pose180-overlay-ps-reference-20261031`，复用原r3软件／模型／420帧官方训练输入，1次正常重启、1次SDK、0次BOOT写入。当时原合格BOOT的boot_id=`6efb69ac-85c0-460a-885f-a4ea698fd695`；420次新推理、420次HDMI采纳、PC两路各接收420帧，native_exit=0，正常关闭、设备占用为空。PS对照本身不代表新PL验证，当前状态见上方。
 
-证据见 [PS基准摘要](../../../.local/skeleton-overlay-20261031-r2/reports/ps-reference-summary.json)、[板端原始归档](../../../.local/skeleton-overlay-20261031-r2/reports/ps-reference-board.tar.gz)、[PC记录](../../../.local/skeleton-overlay-20261031-r2/reports/ps-reference-pc)。保留的229条显示采纳记录平均12.3965ms、P95为19.5416ms（nearest-rank，序号ceil(0.95×N)），口径为整帧上传＋显示采纳等待，不含CPU绘图；原始数据采用有界环，末段228条完整180候选输出经原解码器核验，不能写成完整保留420条原始记录。PC接收420帧的事实由独立计数证明。
+证据见 PS基准摘要（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/ps-reference-summary.json`）、板端原始归档（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/ps-reference-board.tar.gz`）、PC记录（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/ps-reference-pc`）。保留的229条显示采纳记录平均12.3965ms、P95为19.5416ms（nearest-rank，序号ceil(0.95×N)），口径为整帧上传＋显示采纳等待，不含CPU绘图；原始数据采用有界环，末段228条完整180候选输出经原解码器核验，不能写成完整保留420条原始记录。PC接收420帧的事实由独立计数证明。
 
 | 事实 | 原始证据 | 限制 |
 |---|---|---|
-| 算子、覆盖顺序、忙时保护、坐标边界、帧切换、缩放与背景合成通过 | [像素仿真日志](../../../.local/skeleton-overlay-20261031-r2/reports/sim-120956/simulate.log) | 缩小光栅的确定性仿真，不是实板 |
-| 三人指令在完整960×540覆盖层绘制，524866周期 | [完整帧仿真日志](../../../.local/skeleton-overlay-20261031-r2/reports/frame-121119/simulate.log) | 合成姿态；100MHz换算5.24866ms，包括清屏，未计GP提交和帧等待 |
-| 初版模块997 LUT、707 FF、6 DSP、128.5 BRAM36等效 | [模块资源报告](../../../.local/skeleton-overlay-20261031-r1/reports/ooc-114340/utilization.rpt) | OOC综合，不能替代整机布线资源与时序 |
-| PS投影／原始姿态保持，0/1/3人指令176/368/816字节 | [软件测试](../../../.local/skeleton-overlay-20261031-r1/software/overlay_tests.log) | 合成样例；日志中的CPU时间来自本机容器，不能当作板端基准 |
-| 同一板端三人样例：PS整帧准备2.97777ms，PL指令准备0.0249792ms（816字节） | [板端CPU基准原始日志](../../../.local/skeleton-overlay-20261031-r2/reports/board/ps-benchmark-121333.log) | 合成姿态、各100次；未启SDK，不含GP提交、PL绘制和帧等待，不是端到端加速比 |
-| ARM64主程序与原显示／资源释放回归通过 | [编译日志](../../../.local/skeleton-overlay-20261031-r1/software/arm-build.log)、[释放测试](../../../.local/skeleton-overlay-20261031-r1/software/hdmi_resource_tests.log) | 资源测试为SDK替身，不冒充硬件停止证明 |
-| 独立包复用原模型与420帧官方输入，启动参数核验通过 | [包检查](../../../.local/skeleton-overlay-20261031-r2/reports/software-package-check.json) | BOOT资格完成前不可启动，未新启SDK |
+| 算子、覆盖顺序、忙时保护、坐标边界、帧切换、缩放与背景合成通过 | 像素仿真日志（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/sim-120956/simulate.log`） | 缩小光栅的确定性仿真，不是实板 |
+| 三人指令在完整960×540覆盖层绘制，524866周期 | 完整帧仿真日志（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/frame-121119/simulate.log`） | 合成姿态；100MHz换算5.24866ms，包括清屏，未计GP提交和帧等待 |
+| 初版模块997 LUT、707 FF、6 DSP、128.5 BRAM36等效 | 模块资源报告（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r1/reports/ooc-114340/utilization.rpt`） | OOC综合，不能替代整机布线资源与时序 |
+| PS投影／原始姿态保持，0/1/3人指令176/368/816字节 | 软件测试（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r1/software/overlay_tests.log`） | 合成样例；日志中的CPU时间来自本机容器，不能当作板端基准 |
+| 同一板端三人样例：PS整帧准备2.97777ms，PL指令准备0.0249792ms（816字节） | [板端CPU基准原始日志](../../../Deliverables/evidence/overlay/board/ps-benchmark-121333.log) | 合成姿态、各100次；未启SDK，不含GP提交、PL绘制和帧等待，不是端到端加速比 |
+| ARM64主程序与原显示／资源释放回归通过 | 编译日志（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r1/software/arm-build.log`）、释放测试（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r1/software/hdmi_resource_tests.log`） | 资源测试为SDK替身，不冒充硬件停止证明 |
+| 独立包复用原模型与420帧官方输入，启动参数核验通过 | 包检查（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/software-package-check.json`） | BOOT资格完成前不可启动，未新启SDK |
 
-![PS与实际RTL仿真像素，合成测试而非实屏](../../../.local/skeleton-overlay-20261031-r2/reports/figures/ps-vs-rtl-synthetic.png)
+![PS与实际RTL仿真像素，合成测试而非实屏](../../../Deliverables/evidence/overlay/figures/ps-vs-rtl-synthetic.png)
 
-原图和来源见 [图像目录](../../../.local/skeleton-overlay-20261031-r2/reports/figures)。命令字节数不包括CSR地址／协议开销；首次背景仍提交完整4.1472MB，HDMI持续读取背景的带宽也仍存在。当前不宣称板端端到端加速或功耗下降。
+原图和来源见 图像目录（本机留存，仓库未附：`../../../.local/skeleton-overlay-20261031-r2/reports/figures`）。命令字节数不包括CSR地址／协议开销；首次背景仍提交完整4.1472MB，HDMI持续读取背景的带宽也仍存在。当前不宣称板端端到端加速或功耗下降。
 
 ## 分工与复用
 

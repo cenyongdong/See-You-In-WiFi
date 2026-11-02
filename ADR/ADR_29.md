@@ -33,4 +33,4 @@ Native／ARM各13画面＋13阶段＋16计数＋6生命周期＋9 Run拒绝过�
 
 本机坏段工具首次误用--review而实际需--gold-review，已只修正工具调用，保留情况；未板测重跑或改数据／阈值。此时要求暂停，尚未进行公开read直写Host目标候选修复。
 
-[完整恢复说明](../tools/pose-v1/RESUME-PICTURE-20261010.md)／[已核进度](../tools/pose-v1/evidence/picture-20261010-r1/pause-progress-review.json)／[暂停点](../tools/pose-v1/evidence/picture-20261010-r1/pause-checkpoint.json)。
+[完整恢复说明](../tools/pose-v1/RESUME-PICTURE-20261010.md)／已核进度（历史附件，当前仓库未附：`../tools/pose-v1/evidence/picture-20261010-r1/pause-progress-review.json`）／暂停点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/picture-20261010-r1/pause-checkpoint.json`）。

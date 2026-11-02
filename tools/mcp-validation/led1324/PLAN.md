@@ -1,6 +1,6 @@
 # LED1→3→2→4：Vivado / Procise MCP 衔接验证方案
 
-日期：2026-10-01。明确回复“同意该方案并执行”，已按以下范围实施并通过验收；结果见 [RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/led1324/RESULTS.md)。
+日期：2026-10-01。明确回复“同意该方案并执行”，已按以下范围实施并通过验收；结果见 [RESULTS.md](RESULTS.md)。
 
 ## 已检查的服务
 

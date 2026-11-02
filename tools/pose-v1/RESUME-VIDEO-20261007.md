@@ -1,16 +1,16 @@
 # 视频任务暂停与恢复入口（2026-10-07）
 
-> 2026-10-08当前：两缓冲启动三次回归及有限主线程Engine＋后台VPU三/27窗口通过，987原始编码帧全解码核验。[启动](VPU-STARTUP-RESULTS-20261008.md)、[常驻/预览](RESIDENT-RESULTS-20261008.md)、[恢复点](evidence/resident-20261008-r6/next-checkpoint.json)。下一在线owned AU/live555，保留原模型/数学/SDK/BOOT、主线程模式/两缓冲候选；旧后台Engine/六缓冲失败勿重跑。任务未被暂停，测试与SSH/SFTP已关闭，无后台。不是daemon/RTSP/整机5Hz/长期验收，预览名义10fps不当真实PTS；旧入口为历史。
+> 2026-10-08当前：两缓冲启动三次回归及有限主线程Engine＋后台VPU三/27窗口通过，987原始编码帧全解码核验。[启动](VPU-STARTUP-RESULTS-20261008.md)、[常驻/预览](RESIDENT-RESULTS-20261008.md)、恢复点（历史附件，当前仓库未附：`evidence/resident-20261008-r6/next-checkpoint.json`）。下一在线owned AU/live555，保留原模型/数学/SDK/BOOT、主线程模式/两缓冲候选；旧后台Engine/六缓冲失败勿重跑。任务未被暂停，测试与SSH/SFTP已关闭，无后台。不是daemon/RTSP/整机5Hz/长期验收，预览名义10fps不当真实PTS；旧入口为历史。
 
-**2026-10-08恢复入口已更新，任务未被暂停。** 先读[有限合并结果](PIPELINE-RESULTS-20261008.md)、[检查点](evidence/pipeline-20261008-r6/next-checkpoint.json)、[下一门检](PIPELINE-NEXT-20261008.md)。Host107与两有限合并成功，r6无规整新进程重复失败；不要重跑旧失败或自动compact。下一新修订只读取证分配时序，保留6队列/prime2/cookie/math，再有依据最小修正。测试与会话已关闭，无后台。以下入口均为历史阶段。
+**2026-10-08恢复入口已更新，任务未被暂停。** 先读[有限合并结果](PIPELINE-RESULTS-20261008.md)、检查点（历史附件，当前仓库未附：`evidence/pipeline-20261008-r6/next-checkpoint.json`）、[下一门检](PIPELINE-NEXT-20261008.md)。Host107与两有限合并成功，r6无规整新进程重复失败；不要重跑旧失败或自动compact。下一新修订只读取证分配时序，保留6队列/prime2/cookie/math，再有依据最小修正。测试与会话已关闭，无后台。以下入口均为历史阶段。
 
 **当前入口：独立RTSP首批已完成，已审查动态样片。**
 
-先读[RTSP结果](RTSP-RESULTS-20261007.md)、[新检查点](evidence/rtsp-20261007-r3/next-checkpoint.json)、[F0接入门检](F0-INTEGRATION-PREP-20261007.md)。r3两会话200帧＋r4标准播放器100帧逐位原视频，服务/会话均关闭；不要重跑已通过的独立文件/传输阶段。下一有限真实Engine结果→渲染→VPU/owned AU接入；模型/SDK/BOOT与帧协议保持。HDMI配套仍缺，色彩SPS标记另列。原暂停、失败和r5入口均按历史保留。
+先读[RTSP结果](RTSP-RESULTS-20261007.md)、新检查点（历史附件，当前仓库未附：`evidence/rtsp-20261007-r3/next-checkpoint.json`）、[F0接入门检](F0-INTEGRATION-PREP-20261007.md)。r3两会话200帧＋r4标准播放器100帧逐位原视频，服务/会话均关闭；不要重跑已通过的独立文件/传输阶段。下一有限真实Engine结果→渲染→VPU/owned AU接入；模型/SDK/BOOT与帧协议保持。HDMI配套仍缺，色彩SPS标记另列。原暂停、失败和r5入口均按历史保留。
 
 **当前入口已更新：阶段恢复后，整体暂停撤销，V2-A故障修正与完整视频核验完成。**
 
-先读[VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md](VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)、[completion](evidence/video-descriptor-20261007-r5/completion-review.json)、[新检查点](evidence/video-descriptor-20261007-r5/next-checkpoint.json)。r5两独立上下文各54帧完整/相同码流，主机54ID/27来源/关节通过；无需重跑已通过文件编码。源码当前r5，冻结包/build及原失败均保留。
+先读[VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md](VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)、completion（历史附件，当前仓库未附：`evidence/video-descriptor-20261007-r5/completion-review.json`）、新检查点（历史附件，当前仓库未附：`evidence/video-descriptor-20261007-r5/next-checkpoint.json`）。r5两独立上下文各54帧完整/相同码流，主机54ID/27来源/关节通过；无需重跑已通过文件编码。源码当前r5，冻结包/build及原失败均保留。
 下一为动态样片人工审查及RTSP准备：实际SPS/PPS/NAL/PTS、有界owned AU/归还顺序、加入与重连；当前无后台服务或会话。HDMI配套未建立不写；原SDK/BOOT/模型及NPU帧协议保持。以下是原r1暂停与故障历史，不能作为当前执行状态。
 
 中断、等待唤醒；当前不执行构建、连接、编码、HDMI或自动化。HDMI测试授权与已批准下一视频计划保留，待阶段恢复后再继续。

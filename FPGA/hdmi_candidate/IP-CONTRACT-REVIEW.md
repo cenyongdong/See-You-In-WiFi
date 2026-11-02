@@ -2,7 +2,7 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-15，已获白名单修订升级与严格门检授权。原始字面CONFIG门检和首次参数传播后的门检均真实拒绝，报告不回写。提出有限规则时尚未运行正式generate_target；后新r3已生成并通过参数/端口后检及AXI3有界路由/原生互联综合，完整系统当前受PS7→PCPU7扩展端口不匹配阻塞。升级工具自动产生的例化模板与后续正式生成分开记录。[实际报告](../../tools/pose-v1/evidence/hdmi-ip-generation-20261015-r3/REPORT.md)。
+2026-10-15，已获白名单修订升级与严格门检授权。原始字面CONFIG门检和首次参数传播后的门检均真实拒绝，报告不回写。提出有限规则时尚未运行正式generate_target；后新r3已生成并通过参数/端口后检及AXI3有界路由/原生互联综合，完整系统当前受PS7→PCPU7扩展端口不匹配阻塞。升级工具自动产生的例化模板与后续正式生成分开记录。实际报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-ip-generation-20261015-r3/REPORT.md`）。
 
 随后明确回复“批准有限例外并继续生成验证”；以下有限规则已获批准。原严格拒绝继续保留，生成前另建独立契约门检。
 
@@ -32,4 +32,4 @@
 
 若不接受这些有限差异，则保持严格拒绝和停止，等待原修订可用配套；不自动更换工具版本、修改全局数据库或减少系统模块绕过。
 
-证据：[原始严格门检](../../tools/pose-v1/evidence/hdmi-ip-revision-20261015-r1/strict-config-gate.json)、[传播后门检](../../tools/pose-v1/evidence/hdmi-bd-validation-20261015-r1/post-validation-config-gate.json)、[HDL与总线逐项比较](../../tools/pose-v1/evidence/hdmi-bd-validation-20261015-r1/HDL-and-bus-contract-review.json)、[只读属性恢复失败](../../tools/pose-v1/evidence/hdmi-bd-metadata-20261015-r1/stderr.txt)。
+证据：原始严格门检（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-ip-revision-20261015-r1/strict-config-gate.json`）、传播后门检（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-bd-validation-20261015-r1/post-validation-config-gate.json`）、HDL与总线逐项比较（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-bd-validation-20261015-r1/HDL-and-bus-contract-review.json`）、只读属性恢复失败（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-bd-metadata-20261015-r1/stderr.txt`）。

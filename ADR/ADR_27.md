@@ -8,7 +8,7 @@
 
 传输由阶段恢复后授权，认证成功；bundled Git缺scp.exe，以本机完整Git SSH/SCP修正，保持ED25519主机密钥与包哈希。原审批超时和工具失败留档。旧“板测未执行／全部待传输”为历史，不再当前。
 
-[实际结果](../tools/pose-v1/MODEL-VPU-RESULTS-20261010.md)／[完成审查](../tools/pose-v1/evidence/model-vpu-20261010-r2/completion-review.json)／[下一资源生命周期](../tools/pose-v1/MODEL-VPU-NEXT-20261010.md)。下一先处理首次启动条件与常驻上下文，不直接增加并发因素或扩大CMA。
+[实际结果](../tools/pose-v1/MODEL-VPU-RESULTS-20261010.md)／完成审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/model-vpu-20261010-r2/completion-review.json`）／[下一资源生命周期](../tools/pose-v1/MODEL-VPU-NEXT-20261010.md)。下一先处理首次启动条件与常驻上下文，不直接增加并发因素或扩大CMA。
 
 日期：2026-10-10。状态：本批已结束；前三阶段通过，第四阶段VPU首次启动失败，Engine未创建，根因与长序列组合仍待。
 
@@ -34,7 +34,7 @@ r2程序4bab1a1d…49aab2a／manifest28d76b02…cde6da0，403包102来源通过�
 
 传输认证审批延迟导致交互式连接关闭，SCP退出1；只读确认远端transfer不存在。复用环境已有Git SSH与已知ED25519密钥，以连接前stdin＋一次性内存IPC供密码，未安装依赖或把密码写到文件／环境／argv；该方式的只读连接已成功。上传进程创建随后被自动审批连续超时阻断，工具允许的一次重试也未创建进程。没有硬件重跑或隐藏重试，全部会话结束。
 
-该难点属于工具／传输阻断，不归因于模型／VPU，也不是安全风险判定。[恢复说明](../tools/pose-v1/MODEL-VPU-RESUME-20261010.md)／[检查点](../tools/pose-v1/evidence/model-vpu-20261010-r2/active-checkpoint.json)。后续取得指导且审批恢复后，继续现有包；只有完整数值与清理均过才生成阶段门禁，NoInput不计姿态吞吐。
+该难点属于工具／传输阻断，不归因于模型／VPU，也不是安全风险判定。[恢复说明](../tools/pose-v1/MODEL-VPU-RESUME-20261010.md)／检查点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/model-vpu-20261010-r2/active-checkpoint.json`）。后续取得指导且审批恢复后，继续现有包；只有完整数值与清理均过才生成阶段门禁，NoInput不计姿态吞吐。
 
 ## 限制
 

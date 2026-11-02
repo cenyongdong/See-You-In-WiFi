@@ -1,6 +1,6 @@
 # 下一步：先恢复VPU首次启动条件，再完成长序列对照
 
-本批在异常后安全结束；以下仅准备方案，不是新板测验收。先读[结果](MODEL-VPU-RESULTS-20261010.md)、[ADR_27](../../ADR/ADR_27.md)／[ADR_02](../../ADR/ADR_02.md)和[恢复点](evidence/model-vpu-20261010-r2/next-checkpoint.json)。不重跑旧vpu-103，不循环规整／清缓存／重启。
+本批在异常后安全结束；以下仅准备方案，不是新板测验收。先读[结果](MODEL-VPU-RESULTS-20261010.md)、[ADR_27](../../ADR/ADR_27.md)／[ADR_02](../../ADR/ADR_02.md)和恢复点（历史附件，当前仓库未附：`evidence/model-vpu-20261010-r2/next-checkpoint.json`）。不重跑旧vpu-103，不循环规整／清缓存／重启。
 
 ## 当前判断
 

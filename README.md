@@ -18,7 +18,7 @@
 
 两种输入互斥，共用同一套预处理和推理链。官方数据模式在板端读取转换后的原始 CSI 并逐帧推理；当前演示包采用 **30段连续官方训练片段、8700个不同窗口，1／2／3人各10段**，默认有限运行30分钟。模型采用原 epoch99 的 180-query 部署图，输出最多三人、每人 14 个关节，使用 TopK=3 和严格 `score > 0.2` 筛选。
 
-本仓库保存当前软件核心、FPGA 工程、模型适配工具、部署交付及开发记录。阅读源码从 `software/pose180_pipeline/` 开始；直接部署从 `Deliverables/` 开始。项目已完成有限实板演示、30分钟官方输入长测、交付整理及源码RAR独立完整FPGA重建，具体实测范围见 [PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)。
+本仓库保存当前软件核心、FPGA 工程、模型适配工具、交付说明和精选证据。阅读源码从 `software/pose180_pipeline/` 开始；部署方法从 `Deliverables/` 的说明开始，部署RAR通过GitHub Release下载，完整源码RAR由本机交付。项目已完成有限实板演示、30分钟官方输入长测、交付整理及源码RAR独立完整FPGA重建，具体实测范围见 [PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)。
 
 ## 二、目录与文件职责
 
@@ -28,7 +28,7 @@
 |---|---|
 | [software/pose180_pipeline/](software/pose180_pipeline/) | **当前主工程**：板端核心、输入控制、PC 页面、测试及构建打包入口 |
 | [FPGA/hdmi_candidate/](FPGA/hdmi_candidate/) | HDMI 硬件工程；`rtl/`、`constraints/`、`scripts/`、`sim/` 分别保存逻辑、约束、构建脚本与仿真，发布配置按恢复说明及对应记录核对 |
-| [Deliverables/](Deliverables/) | **唯一最新 RAR 部署包和精简源码＋权重包**；`evidence/` 为关键原始报告，旧交付目录已清理 |
+| [Deliverables/](Deliverables/) | 公开部署／源码范围说明、校验与精选证据；部署RAR见Release，完整源码RAR本机交付 |
 | [model/](model/README.md) | 当前部署 JSON／RAW、源 ONNX、转换配置与模型说明已放行；训练 checkpoint 和中间产物留在本机，获取与使用方式见模型索引 |
 | [tools/](tools/) | 模型训练、转换、采集、验证与故障分析工具；带日期的取证目录按所属历史阶段阅读 |
 | [Docs/commit_docs/](Docs/commit_docs/) | 技术文档、海报等提交材料；`Docs/` 其余部分主要为厂商资料与开发参考 |
@@ -41,14 +41,18 @@
 
 | 文件或目录 | 用途 |
 |---|---|
-| [最新部署包](Deliverables/pose180-csi-release-20261031-r4.rar) | CSI分组流水＋骨架绘图、30段官方CSI、PC双页、实时路由器安装文件与最新版BOOT |
+| [下载部署RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) | `pose180-csi-release-20261031-r4.rar`；含CSI分组流水、骨架绘图、30段官方CSI、PC双页、路由器安装文件及最新版BOOT |
 | [部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md) | 默认位流、手动启动／停止、PC与恢复 |
-| [完整源码包](Deliverables/pose180-complete-sources-20261031-r4.rar) | 当前PS／PC／PL、模型原始代码、IP配置、约束、关键报告与JSON／RAW／ONNX和当前合格BIT；含目标器件所需厂商IP／网表／增量基线，工具链及验证边界见源码说明 |
+| 源码RAR（本机交付，仓库未附） | `pose180-complete-sources-20261031-r4.rar`；含当前PS／PC／PL、模型代码与部署资产、IP配置、约束、报告及合格BIT，工具依赖和复现边界见源码说明 |
 | [源码说明](Deliverables/SOURCE-20261031.md) | 自研／复用分工、核心入口及重建依赖 |
 | [完整FPGA重建](Deliverables/FPGA-REBUILD-20261101-r1.md) | 2026-11-01从r4 RAR新解压完成实际综合／布局布线／BIT与Procise；包含完整日志与既定例外 |
 | [交付核验](Deliverables/release-20261031-r4-validation.json) | RAR完整性、文件一致性及独立解压构建检查；引用既有BOOT核验，无新增SDK运行 |
-| [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx) | 当前技术报告；[技术文档 v1](Docs/commit_docs/技术文档_v1.docx) 为前一版本 |
+| [当前技术报告（v13 PDF）](Docs/commit_docs/技术文档_v13.pdf) | 当前参赛技术文档 |
+| 历史技术报告 | [v1排版修订Word](Docs/commit_docs/技术文档_v1_排版修订.docx)、[v1 Word](Docs/commit_docs/技术文档_v1.docx)，按各自版本阅读 |
+| [AI辅助开发说明](Docs/llm_usage.md) | 可复用流程、人机分工、人工审核与贡献边界 |
 | [项目海报](Docs/commit_docs/项目海报.pdf) | A1 竖版作品海报 |
+
+Git仓库、本机交付物与外部工具的范围统一见[文档导航](DOCUMENTATION.md#git-克隆后的文件可用范围)。部署RAR及其校验文件见[Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)；完整源码RAR保持本机交付。GitHub自动生成的源码ZIP不能替代部署RAR。
 
 部署包解压后的关键位置如下，路径均相对于包根目录：
 

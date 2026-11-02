@@ -71,6 +71,6 @@ SDK Session.forward、ZG前向及Tensor.dump的ARM实际内部实现未取得，
 下一步候选为[完成状态与交接取证方案](MIXED-CONTENT-R5-READINESS-PLAN.md)，尚未批准或执行。
 保留本次失败目录，停止三样本重跑、正常数值验收和后续显示/性能操作。
 
-证据：[内容复核](evidence/mixed-20261006-content-r4/mixed-three-content-review.json)、
-[独立失败复核](evidence/mixed-20261006-content-r4/mixed-three-failure-review.json)、
-[本机审计源码](evidence/mixed-20261006-content-r4/review-three-local.py)。审计脚本第一次使用Python3.11订阅语法，已改为兼容3.10的tuple索引后完成；未更改板端程序。
+证据：内容复核（历史附件，当前仓库未附：`evidence/mixed-20261006-content-r4/mixed-three-content-review.json`）、
+独立失败复核（历史附件，当前仓库未附：`evidence/mixed-20261006-content-r4/mixed-three-failure-review.json`）、
+本机审计源码（历史附件，当前仓库未附：`evidence/mixed-20261006-content-r4/review-three-local.py`）。审计脚本第一次使用Python3.11订阅语法，已改为兼容3.10的tuple索引后完成；未更改板端程序。

@@ -2,7 +2,7 @@
 
 ## 当前恢复点已更新
 
-传输已恢复，前三阶段完成，第四阶段VPU固件分配失败已完整回传并结束。全部连接关闭，无后台；不重跑失败。[结果](MODEL-VPU-RESULTS-20261010.md)／[下一](MODEL-VPU-NEXT-20261010.md)／[检查点](evidence/model-vpu-20261010-r2/next-checkpoint.json)。以下待传输说明为历史。
+传输已恢复，前三阶段完成，第四阶段VPU固件分配失败已完整回传并结束。全部连接关闭，无后台；不重跑失败。[结果](MODEL-VPU-RESULTS-20261010.md)／[下一](MODEL-VPU-NEXT-20261010.md)／检查点（历史附件，当前仓库未附：`evidence/model-vpu-20261010-r2/next-checkpoint.json`）。以下待传输说明为历史。
 
 当前安全结束，无后台模型／视频或代理会话。[方案](MODEL-ONLY-NEXT-20261010.md)，四个板端阶段均尚未执行；上传被自动审批超时阻断，规定的一次重试亦未创建进程，恢复传输的指导问题已提出。此状态不是暂停，不取消原实施授权。
 
@@ -22,7 +22,7 @@
 
 ## 恢复顺序
 
-先读[检查点](evidence/model-vpu-20261010-r2/active-checkpoint.json)／[基线](evidence/model-vpu-20261010-r2/baseline.acceptance.json)／[ADR_27](../../ADR/ADR_27.md)，保持新包与既有失败字节。
+先读检查点（历史附件，当前仓库未附：`evidence/model-vpu-20261010-r2/active-checkpoint.json`）／基线（历史附件，当前仓库未附：`evidence/model-vpu-20261010-r2/baseline.acceptance.json`）／[ADR_27](../../ADR/ADR_27.md)，保持新包与既有失败字节。
 
 1. 核验现有`.local/pose-v1-model-vpu/transfer-20261010-r2.tar`哈希 `9226b6826360721e417bcbdd5db8e4d81fced027e79f7bfc3aa1df81e626f82c`，不重新准备／构建或覆盖本机证据。
 2. 恢复传输后先核验远端文件不存在或哈希完全一致；若出现部分文件，保留并使用新文件名，不覆盖。

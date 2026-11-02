@@ -56,7 +56,7 @@ PIWFUL3/v3固定74,544字节：128字节头＋256字节选中姿态＋43,200字�
 
 主机定向测试入口为`node --test software/pose180_pipeline/host/test/host.test.mjs`；持续localhost模拟见[主机说明](host/README.md)。C++测试覆盖固定池/交接/异常唤醒/完整协议及画布复用；C++实际编码记录与Node解析器另作交叉检查。这些均无实际SDK/NPU或HDMI硬件执行。
 
-本机构建日志、二进制与一次软件包集中在[产物目录](../../.local/pose180-pipeline-20261025-r1)。`tools/package.py`在该目录生成`software-package.tar.gz`和身份清单，校验JSON/RAW与已部署epoch99身份一致。原模型数值误差D48及原失败保持，软件通过不构成精度或整机稳定性通过。
+本机构建日志、二进制与一次软件包集中在产物目录（本机留存，仓库未附：`../../.local/pose180-pipeline-20261025-r1`）。`tools/package.py`在该目录生成`software-package.tar.gz`和身份清单，校验JSON/RAW与已部署epoch99身份一致。原模型数值误差D48及原失败保持，软件通过不构成精度或整机稳定性通过。
 
 最新归档修正后的900帧软件回环、3.94GB生产writer测试及本轮实板失败范围，统一见[本轮实测](RESULTS.md)和[版本归档](evidence/20261025/README.md)。此前900帧结果及修正前日志保留为历史；软件通过不构成NPU、HDMI或严格30Hz实板结论。
 

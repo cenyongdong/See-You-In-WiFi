@@ -2,7 +2,7 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-16最新状态：原厂路径二已实际执行到完整参考位流及Procise ICAP输出：当前2018.3新增32项原厂IP库替换，独立备份/前后SHA通过；与既有030ai九项补丁合计41项预期变化，2019.1及Procise库保持。28项XCI参数、5份DDR配置及父BD后检保持；24项IP OOC和整机综合完成。首批完整链在1800秒监控上限处停止并封存，无ERROR；代理自主建立impl_r2复用综合，实际1173.647281秒exit0，原策略/约束/hook不变，未重跑IP综合。建立/保持裕量0.030/0.021ns，但AI时钟模型1GHz有2处最小周期违例（WPWS−0.409ns），总时序不通过；CDC及外部时序覆盖尚未签核。参考产物列为HELD，未接入HDMI候选、未下载、未改BOOT/SDK/模型/AI_Mate或NPU频率；旧DATA仍暂停。 [本批实际结果](../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/REPORT.md)、[门检与恢复边界](AI-CLOCK-GATE.md)。此前32项库和四项GT处理范围已由自主决策并执行，不再等待重复批准；当前停在真实门检问题，不能按超时例外放行。
+2026-10-16最新状态：原厂路径二已实际执行到完整参考位流及Procise ICAP输出：当前2018.3新增32项原厂IP库替换，独立备份/前后SHA通过；与既有030ai九项补丁合计41项预期变化，2019.1及Procise库保持。28项XCI参数、5份DDR配置及父BD后检保持；24项IP OOC和整机综合完成。首批完整链在1800秒监控上限处停止并封存，无ERROR；代理自主建立impl_r2复用综合，实际1173.647281秒exit0，原策略/约束/hook不变，未重跑IP综合。建立/保持裕量0.030/0.021ns，但AI时钟模型1GHz有2处最小周期违例（WPWS−0.409ns），总时序不通过；CDC及外部时序覆盖尚未签核。参考产物列为HELD，未接入HDMI候选、未下载、未改BOOT/SDK/模型/AI_Mate或NPU频率；旧DATA仍暂停。 本批实际结果（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/REPORT.md`）、[门检与恢复边界](AI-CLOCK-GATE.md)。此前32项库和四项GT处理范围已由自主决策并执行，不再等待重复批准；当前停在真实门检问题，不能按超时例外放行。
 
 ## 此前阶段资料（保留当时结果，当前入口见上）
 
@@ -12,7 +12,7 @@
 
 首次预检采用60秒预算：小锚点RTL展开随后实际完成，synth_design报告elapsed61秒，运行库PS7查询得到3305个位引脚，写出完整引脚文件并打印INSTALLED_PREFLIGHT_COMPLETE。但外层60秒触发TimeoutExpired，taskkill返回Access denied，后续15秒wait再次超时，驱动exit1；工具最终自行退出。内核输出只作为已保存事实，不把整轮改写为通过。启动另有Common17-741本地TclStore路径'C'无写权限、回退安装目录告警；原因待核对，不据此断言RTL或许可证故障。
 
-本轮停止EDA执行，未复制/补丁工具、未重新运行该预检。最终精确EDA进程盘点为空；并行只读目录盘点也已自然结束，得到99661文件、28,560,628,023字节。两项任务并行可能增加I/O耗时，但未完成受控验证，不作为超时原因定论。九项2018.3数据库目标和旧2019.1目标另做SHA复核，原工程/RTL不改。[实际预检与完整日志](../../tools/pose-v1/evidence/hdmi-vivado2018-20261016-r1/REPORT.md)。
+本轮停止EDA执行，未复制/补丁工具、未重新运行该预检。最终精确EDA进程盘点为空；并行只读目录盘点也已自然结束，得到99661文件、28,560,628,023字节。两项任务并行可能增加I/O耗时，但未完成受控验证，不作为超时原因定论。九项2018.3数据库目标和旧2019.1目标另做SHA复核，原工程/RTL不改。实际预检与完整日志（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-vivado2018-20261016-r1/REPORT.md`）。
 
 拟在人工确认的新批次执行以下固定范围：
 
@@ -64,4 +64,4 @@
 
 每一阶段均记录工作目录、版本/参数、完整日志、退出码、实际产物和哈希；失败不覆盖旧目录。安装成功、元数据成功、综合成功、实现成功和实屏通过分开报告。
 
-证据：[本批报告](../../tools/pose-v1/evidence/hdmi-jfm-compatibility-20261015-r1/REPORT.md)、[逐项端口/格式审查](../../tools/pose-v1/evidence/hdmi-jfm-compatibility-20261015-r1/migration-contract-review.json)、[实际2019.1查询](../../tools/pose-v1/evidence/hdmi-vivado2019-library-20261015-r1/execution.json)。
+证据：本批报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-compatibility-20261015-r1/REPORT.md`）、逐项端口/格式审查（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-compatibility-20261015-r1/migration-contract-review.json`）、实际2019.1查询（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-vivado2019-library-20261015-r1/execution.json`）。

@@ -42,16 +42,16 @@ r5下64字节通过、4KiB写失败；一次原BOOT对照后四档DMA及三窗�
 
 ## 证据入口
 
-[本轮报告](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/REPORT.md)、[实际候选与回退清单](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/controlled-startup-monitor-v2/manifest.json)、[BOOT分区比较](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/monitor-v2-boot/review.json)、[路由门检](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/monitor-v2-reports/review.json)、[三窗包身份](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/build-shared-monitor-v2/package-files.json)。
+本轮报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/REPORT.md`）、实际候选与回退清单（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/controlled-startup-monitor-v2/manifest.json`）、BOOT分区比较（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/monitor-v2-boot/review.json`）、路由门检（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/monitor-v2-reports/review.json`）、三窗包身份（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/build-shared-monitor-v2/package-files.json`）。
 
 
 ## 实际批准、执行与停止结果
 
 2026-10-17本轮实际结果：阶段恢复后完成观测候选v2的CDC、布局布线、时序／DRC及BOOT封装；经另行明确批准执行一次候选启动及一次原BOOT回退。候选启动后先还原原BOOT文件，SDK同Device快照有效；独立DMA仅64字节往返通过，4KiB写再次抛SDK异常exit71，后两档、三窗新推理及HDMI START全部未执行。已保存完整原错和24字快照、停止失败负载，使用本包回退恢复原BOOT运行。恢复后BOOT／六SDK符合、FPGA operating、设备owner为空、两段UART均关闭，当前boot_id 9ca535cd-5ea2-4bcc-9b58-1f3699a515e8。本包两次重启额度均已使用；旧DATA独立暂停。全链尚未打通，根因仍待证。
 
-答复原文“批准本包（含最多一次原BOOT回退）”及范围记录于[r2授权](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/startup-authorization.json)。候选BOOT完整读回后启动，SSH 34.750秒恢复，boot_id 726f8e0f-c68b-483e-b046-7f47e9587622；先完整还原原BOOT并核对其它启动文件，再执行独立DMA。4KiB写5.176秒内抛SDK异常71，非外层超时。原BOOT回退27.922秒恢复；回退后的只读身份审查没有Device::Open或负载。[完整结果](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/REPORT.md)。
+答复原文“批准本包（含最多一次原BOOT回退）”及范围记录于r2授权（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/startup-authorization.json`）。候选BOOT完整读回后启动，SSH 34.750秒恢复，boot_id 726f8e0f-c68b-483e-b046-7f47e9587622；先完整还原原BOOT并核对其它启动文件，再执行独立DMA。4KiB写5.176秒内抛SDK异常71，非外层超时。原BOOT回退27.922秒恢复；回退后的只读身份审查没有Device::Open或负载。完整结果（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/REPORT.md`）。
 
 
 ## 本包执行后的暂停
 
-暂停，等待唤醒。本轮已在原BOOT回退核验、失败取证和本地静态审查结束处停止，无后台续作；未启动更多候选构建、部署或板测。恢复须由阶段恢复后；旧DATA继续独立暂停。 当前入口见[r2状态](../../tools/pose-v1/evidence/hdmi-live-20261017-r2/continuation-state.json)；本包启动／回退次数没有因暂停而重置。
+暂停，等待唤醒。本轮已在原BOOT回退核验、失败取证和本地静态审查结束处停止，无后台续作；未启动更多候选构建、部署或板测。恢复须由阶段恢复后；旧DATA继续独立暂停。 当前入口见r2状态（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r2/continuation-state.json`）；本包启动／回退次数没有因暂停而重置。

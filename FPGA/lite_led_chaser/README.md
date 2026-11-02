@@ -4,22 +4,22 @@
 
 ## 当前源码与 MCP 验证：LED1→3→2→4（2026-10-01）
 
-已重载两个 MCP 服务，并批准复用本工程测试新灯序，首阶段验收止于位流。随后明确授权下载，已通过 Procise 原生 JTAG 下载，现场确认“灯序和速度均符合预期”。当前 [RTL](D:/FPGACompetitionProject/FPGA/lite_led_chaser/rtl/lite_led_chaser.v) 为 **PL_LED1→3→2→4→1**，仍为 100 MHz、0.25 秒/步；旧 RTL/testbench 已备份到 `revisions/led_1234_before_1324`。下方历史原生上板记录属于旧灯序；新灯序验收使用本节的新下载与观察证据。
+已重载两个 MCP 服务，并批准复用本工程测试新灯序，首阶段验收止于位流。随后明确授权下载，已通过 Procise 原生 JTAG 下载，现场确认“灯序和速度均符合预期”。当前 [RTL](rtl/lite_led_chaser.v) 为 **PL_LED1→3→2→4→1**，仍为 100 MHz、0.25 秒/步；旧 RTL/testbench 已备份到 `revisions/led_1234_before_1324`。下方历史原生上板记录属于旧灯序；新灯序验收使用本节的新下载与观察证据。
 
 当前工具会话 Vivado MCP 按长期 AMD64 配置直接启动 2019.1，写入 RTL/testbench 并经 `run_tcl exec` 驱动既有 XSim 脚本；独立预期表检查分频 1/7/19 各 200 周期通过，实际状态 `0001→0100→0010→1000→0001`。随后 Procise MCP 完成原生综合、布局布线、位流和复核，作业最终状态 `reviewed`。
 
-本次内部 setup/hold 裕量 **5.962/0.192 ns**，各 58 个端点、违例 0；LC 11/19650。五引脚/电平、29 INIT、JtagClk 和当前/仿真/构建 RTL 哈希均通过；四 LED 的 `no_output_delay` 边界保留。[完整结果及 MCP 调用证据](D:/FPGACompetitionProject/tools/mcp-validation/led1324/RESULTS.md)。
+本次内部 setup/hold 裕量 **5.962/0.192 ns**，各 58 个端点、违例 0；LC 11/19650。五引脚/电平、29 INIT、JtagClk 和当前/仿真/构建 RTL 哈希均通过；四 LED 的 `no_output_delay` 边界保留。[完整结果及 MCP 调用证据](../../tools/mcp-validation/led1324/RESULTS.md)。
 
-- [新仿真日志](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/sim_20261001_182621_aa641e/simulate.stdout.log)。
-- [新位流复核](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/build-review.json)。
-- [新位流](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/rundir/lite_led_chaser.bit)，5,980,582 字节；SHA-256 `285356540f63f5b1a150827777f8e5e411843718976590db0cb39739b5ef7c18`。**已下载，观察确认通过**。
-- [新灯序下载记录](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json)：2026-10-01 18:50，北京时间；扫链确认 FPGA part 0，STAT=`0x40007ffc`，易失配置、未写 Flash。下载使用现有 Procise 原生脚本，MCP 首版仍无 JTAG 工具。
+- [新仿真日志](runs/sim_20261001_182621_aa641e/simulate.stdout.log)。
+- [新位流复核](runs/build_20261001_183334_5f3fc1/build-review.json)。
+- 新位流（历史附件，当前仓库未附：`D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/rundir/lite_led_chaser.bit`），5,980,582 字节；SHA-256 `285356540f63f5b1a150827777f8e5e411843718976590db0cb39739b5ef7c18`。**已下载，观察确认通过**。
+- [新灯序下载记录](runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json)：2026-10-01 18:50，北京时间；扫链确认 FPGA part 0，STAT=`0x40007ffc`，易失配置、未写 Flash。下载使用现有 Procise 原生脚本，MCP 首版仍无 JTAG 工具。
 
 ## 功能与板级依据
 
 输入 100 MHz，每计数 25,000,000 个周期切换一次，单灯亮 0.25 秒，完整一圈 1 秒。当前灯序为 PL_LED1→3→2→4，原上板版本为 PL_LED1→2→3→4。RTL 不含厂商 IP；25 位计数器和四位循环寄存器在配置时初始化。两次 Procise 综合 EDIF 均检查全部 29 个寄存器的 INIT，计数器全 0、灯状态为 `0001`。这项结论针对当前 Procise/器件，不自动适用于其他平台。
 
-原始来源：[JFMQL30TAI_LITE.pdf](D:/FPGACompetitionProject/Docs/开发板手册/JFMQL30TAI_LITE.pdf)，实际 PDF 页码为 9、10、21、22；另见根目录 `REFERENCES.md` B4。
+原始来源：JFMQL30TAI_LITE.pdf（本机留存，仓库未附：`D:/FPGACompetitionProject/Docs/开发板手册/JFMQL30TAI_LITE.pdf`），实际 PDF 页码为 9、10、21、22；另见根目录 `REFERENCES.md` B4。
 
 | 信号 | FPGA 封装引脚 | 电平 | 依据 |
 | --- | --- | --- | --- |

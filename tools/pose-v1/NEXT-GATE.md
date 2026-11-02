@@ -8,7 +8,7 @@
 
 仅以O_RDONLY/PROT_READ读取0x4000001C的4字节，原始字节为`01 23 12 25`，little-endian值为
 `0x25122301`，与所选包声明的AI Mate版本一致。证据见
-[fpga-version-read-25122301.json](evidence/fpga-version-read-25122301.json)。
+fpga-version-read-25122301.json（历史附件，当前仓库未附：`evidence/fpga-version-read-25122301.json`）。
 未调用SDK Open/reset/check，未运行模型或访问DMA/HDMI/VPU，未改启动配置。
 本次授权只覆盖该最小读取；后续SDK初始化与推理的执行范围仍按下文门检讨论，不能把版本相符当作推理通过。
 

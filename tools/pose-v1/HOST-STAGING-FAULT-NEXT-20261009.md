@@ -13,4 +13,4 @@
 
 可审阅的后续选项：直接SDK read到已有Host CPTR以去掉跨区临时/write步骤，或不同对齐的SDK Host目标缓冲独立往返验证；这些属于新的正常搬运适配，须先核对实际函数签名/区域契约与测试数据，再讨论最小验证。不先改驱动、cache/屏障、SDK、CMA/BOOT，不静默替换NaN、加入sleep或重置帧协议。
 
-本文件仅为失败后的本机分析与下一取证设计，未实现shadow、API替换或新设备测试。保留原r1/r3坏块及r2完整源数据；103/100计量、严格5Hz、HDMI/30分钟仍未通过。当前资源与连接已释放。[结果](BOUNDED-LOAD-RESULTS-20261009.md)／[检查点](evidence/bounded-load-20261009-r2/next-checkpoint.json)。
+本文件仅为失败后的本机分析与下一取证设计，未实现shadow、API替换或新设备测试。保留原r1/r3坏块及r2完整源数据；103/100计量、严格5Hz、HDMI/30分钟仍未通过。当前资源与连接已释放。[结果](BOUNDED-LOAD-RESULTS-20261009.md)／检查点（历史附件，当前仓库未附：`evidence/bounded-load-20261009-r2/next-checkpoint.json`）。

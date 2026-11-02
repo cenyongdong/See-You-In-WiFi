@@ -1,6 +1,6 @@
 # 下一最小变量：同一程序的模型／VPU负载对照
 
-当前安全结束。先读[结果](MODEL-ONLY-RESULTS-20261010.md)、[ADR_26](../../ADR/ADR_26.md)及[恢复点](evidence/model-only-20261010-r1/next-checkpoint.json)。无视频真实模型107次正确、来源与旧失败相同，但没有复现不等于VPU根因证明。
+当前安全结束。先读[结果](MODEL-ONLY-RESULTS-20261010.md)、[ADR_26](../../ADR/ADR_26.md)及恢复点（历史附件，当前仓库未附：`evidence/model-only-20261010-r1/next-checkpoint.json`）。无视频真实模型107次正确、来源与旧失败相同，但没有复现不等于VPU根因证明。
 
 ## 独立候选
 

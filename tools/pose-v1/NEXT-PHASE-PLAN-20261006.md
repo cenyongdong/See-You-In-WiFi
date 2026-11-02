@@ -12,8 +12,8 @@ r6在Lite25122301/Icraft3.39.0上完成三样本混合工程及同Session重复�
 
 已交付：
 
-- [已有证据分析](evidence/next-phase-20261006/existing-evidence-analysis.json)：参考/板端完整清单核对、分数排序和同分诊断、时间预算。
-- [27候选样本](evidence/next-phase-20261006/proposed-27-cases.json)及[清单](evidence/next-phase-20261006/proposed-27-cases.tsv)：从已预处理通过的300份固定记录中，九组各取组内第一/中间/最后一份；27份CSI/固定输入/Host输出哈希一致。
+- 已有证据分析（历史附件，当前仓库未附：`evidence/next-phase-20261006/existing-evidence-analysis.json`）：参考/板端完整清单核对、分数排序和同分诊断、时间预算。
+- 27候选样本（历史附件，当前仓库未附：`evidence/next-phase-20261006/proposed-27-cases.json`）及清单（历史附件，当前仓库未附：`evidence/next-phase-20261006/proposed-27-cases.tsv`）：从已预处理通过的300份固定记录中，九组各取组内第一/中间/最后一份；27份CSI/固定输入/Host输出哈希一致。
 - [可重复准备脚本](prepare_next_phase.py)：仅本机读既有证据，拒绝覆盖已有目录，不执行模型或访问板端。
 
 当前四次取证forward中位数207.230065ms，与独立预处理中位数5.781265ms相加约213.01133ms，约4.695Hz。

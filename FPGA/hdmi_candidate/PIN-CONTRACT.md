@@ -22,4 +22,4 @@
 
 第19页显示FPGA IO直接通过电容/保护网络到HDMI，没有专用发送器。该页明确指出1080p60不能保证，建议专用HDMI输出芯片，IO直驱支持720p及以下。现行1080p60仍是候选目标；此处不自动改成720p，也不能把逻辑仿真、100MHz引脚布线探针当1.485Gb/s输出验收。最终仍须实际器件/IO时序、完整布线和显示器确认。
 
-这些球位和电气网络不能提供PS7/PCPU7内部AI_IN/AI_OUT原语端口定义。PS配套问题见[JFM核对结果](JFM-COMPATIBILITY-REVIEW.md)。完整原值和SHA见[本批证据](../../tools/pose-v1/evidence/hdmi-jfm-pin-review-20261015-r1/REPORT.md)及pin-contract.json。当前未接入HPD/DDC/CEC新功能，没有MMIO、EDID读取或硬件测量。
+这些球位和电气网络不能提供PS7/PCPU7内部AI_IN/AI_OUT原语端口定义。PS配套问题见[JFM核对结果](JFM-COMPATIBILITY-REVIEW.md)。完整原值和SHA见本批证据（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-pin-review-20261015-r1/REPORT.md`）及pin-contract.json。当前未接入HPD/DDC/CEC新功能，没有MMIO、EDID读取或硬件测量。

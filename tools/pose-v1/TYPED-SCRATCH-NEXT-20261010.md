@@ -1,6 +1,6 @@
 # 下一独立对照：SDK拥有来源的地址位置
 
-当前安全结束，无后台。先读 [结果](TYPED-SCRATCH-RESULTS-20261010.md)、[ADR_24](../../ADR/ADR_24.md)和 [恢复点](evidence/typed-scratch-20261010-r1/next-checkpoint.json)。真实类型静态／动态／动态＋VPU各100对正确，但全部是SDK源4096／34368；模型192来源为109232128／109285376，约104MiB。位置和NPU生产等差别仍未控制，不重跑旧失败。
+当前安全结束，无后台。先读 [结果](TYPED-SCRATCH-RESULTS-20261010.md)、[ADR_24](../../ADR/ADR_24.md)和 恢复点（历史附件，当前仓库未附：`evidence/typed-scratch-20261010-r1/next-checkpoint.json`）。真实类型静态／动态／动态＋VPU各100对正确，但全部是SDK源4096／34368；模型192来源为109232128／109285376，约104MiB。位置和NPU生产等差别仍未控制，不重跑旧失败。
 
 ## 先核公开分配信息，尚未执行
 

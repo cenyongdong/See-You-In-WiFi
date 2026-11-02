@@ -56,4 +56,4 @@ CSR基址0x400b0100（旧HDMI窗口仍为0x400b0000）：
 
 源域384位保持总线在旧FREEZE源边沿锁存，经旧确认同步后才发布；GP复位统计在发布边沿取样，两个时间切面应分别解释。GP合并复位是`gp_clk_rst`，并非直接测量F8焊盘；HP2复位经两级同步采样。正确按键是PL_KEY1／SW6／F8，按住期间禁止CSR访问。
 
-板端`capture_boot_witness.cpp`只用只读映射读取已完成FREEZE的19字，先保存初始／完整原值，再检验ABI与代数；不加载SDK、不发ARM／FREEZE。主机`capture_boot_witness.py`负责解码。同一FREEZE下，启动累计握手减去104字窗口握手，可得到本次ARM及之前的累计；相关计数溢出时停止该推断。首事件时间只有32位模值，不能在运行超过一个回绕周期后擅自还原绝对发生时刻。构建及板测状态见[r23恢复入口](../../../tools/pose-v1/evidence/hdmi-boot-witness-20261019-r23/state.json)。
+板端`capture_boot_witness.cpp`只用只读映射读取已完成FREEZE的19字，先保存初始／完整原值，再检验ABI与代数；不加载SDK、不发ARM／FREEZE。主机`capture_boot_witness.py`负责解码。同一FREEZE下，启动累计握手减去104字窗口握手，可得到本次ARM及之前的累计；相关计数溢出时停止该推断。首事件时间只有32位模值，不能在运行超过一个回绕周期后擅自还原绝对发生时刻。构建及板测状态见r23恢复入口（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-boot-witness-20261019-r23/state.json`）。

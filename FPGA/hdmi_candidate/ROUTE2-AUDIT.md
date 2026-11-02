@@ -2,7 +2,7 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-16，随后已同意实施并授权自主决策，参考整机链实际结果及门检停止见[AI-CLOCK-GATE.md](AI-CLOCK-GATE.md)。以下保留路径二审查时的结果与边界；32项配套及GT范围已在后续实施，不再等待重复批准。原审查时，审查路径二，并允许代理依据现场自主处理超时。本页区分实际执行、脚本预览与后续构建决策；完整原值见[本批报告](../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/REPORT.md)。
+2026-10-16，随后已同意实施并授权自主决策，参考整机链实际结果及门检停止见[AI-CLOCK-GATE.md](AI-CLOCK-GATE.md)。以下保留路径二审查时的结果与边界；32项配套及GT范围已在后续实施，不再等待重复批准。原审查时，审查路径二，并允许代理依据现场自主处理超时。本页区分实际执行、脚本预览与后续构建决策；完整原值见本批报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/REPORT.md`）。
 
 ## 已确认的实现职责
 
@@ -27,7 +27,7 @@
 | 再次pre_patch_check | 9.815504秒、exit0 | 是原厂前置检查通过，不是完整实现或DDR实板验收 |
 | Procise接口 | 本机存在increment_bit_cfg_v3与BOOT相关命令 | 没有实际处理.bit或生成BOOT |
 
-MIG初始预算180秒，到达门限时日志持续更新、未见ERROR；进程祖先链证明四个Vivado进程均属同一作业。代理将预算延至360秒，继续原进程至成功，没有重启作业。完整判断见[timeout-decisions.json](../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/mig-ooc/timeout-decisions.json)。最初资源快照中的直接路径匹配不能识别相对路径子进程，后续祖先链记录为归属依据。
+MIG初始预算180秒，到达门限时日志持续更新、未见ERROR；进程祖先链证明四个Vivado进程均属同一作业。代理将预算延至360秒，继续原进程至成功，没有重启作业。完整判断见timeout-decisions.json（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/mig-ooc/timeout-decisions.json`）。最初资源快照中的直接路径匹配不能识别相对路径子进程，后续祖先链记录为归属依据。
 
 ## 参数、写入与门检审查
 
@@ -37,7 +37,7 @@ MIG初始预算180秒，到达门限时日志持续更新、未见ERROR；进程
 |---|---|---|
 | HARC.cfg | add_hook在2018.3无条件复制到安装目录 | 原厂源与现安装相同，跳过复制 |
 | -xfft_modify | 缺省TRUE，调用replace_ip_database | 涉及31份RFS HDL和1份xgmac ttcl，共32项全局文件；实际32项源/目标均存在且全部不同。本批FALSE，未写入 |
-| IP库覆盖范围 | FFT、公共算术、counter、Ethernet、JESD等 | 原厂清单含c_counter_binary，但当前未证实本工程实例使用它；不能仅因无FFT就将整套默认库处理视为等价可省略；需确定正式构建的库范围，完整[清单](../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/IP-library-readonly-inventory.json)已备 |
+| IP库覆盖范围 | FFT、公共算术、counter、Ethernet、JESD等 | 原厂清单含c_counter_binary，但当前未证实本工程实例使用它；不能仅因无FFT就将整套默认库处理视为等价可省略；需确定正式构建的库范围，完整清单（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/IP-library-readonly-inventory.json`）已备 |
 | -change_speed | 缺省TRUE；实际xc7z030分支只复制paspd/fmsh/030ai下zynq.lib和zynq.padr（后续已证实均与现安装同SHA） | 本批FALSE；已有030ai九项补丁保持，不新增速度库处理 |
 | REQP-44/46/52/56 | 030ai生成的后续脚本会禁用 | 本批只生成文本，未执行。实际规则均启用、Error级，针对GTHE2/GTXE2的GTGREFCLK保留测试时钟，不是HDMI像素时钟或CDC豁免 |
 | -disable_icap | 缺省TRUE，PS独立分支调用Procise | 本批保留TRUE但拦截exec，只预览命令 |

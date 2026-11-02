@@ -4,6 +4,8 @@
 
 ## 最终交付
 
+2026-11-02公开下载：[r4部署Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)提供原RAR和SHA256校验文件，文件身份保持；完整源码RAR仍本机交付。此次仅更新分发与文档，没有重新打包、构建或新增板测。
+
 2026-11-01部署补充：r4部署说明补齐实时四机接线／首次安装／启停与定位，配套RAR加入已验证路由器安装文件，只附最新版BOOT；升级前保留设备实际BOOT读回保护。主程序、模型、数据与最新版BOOT不变，没有新板测；源码RAR维持完整硬件复现时的身份。
 
 **2026-10-31，r4交付补齐：** 当前实现为 PL CSI 分组预处理＋PL 二维骨架／关节点／动态信息合成，PS 保留双精度相位收尾、后处理、人物滤波及坐标投影，NPU 使用原 epoch99／180-query 模型。TopK=3、严格 score >0.2；PC 保留滤波前／后双页和共享板端计时。
@@ -25,6 +27,6 @@ CMake默认启用PL CSI／骨架绘图及依赖，预设和打包配置已同步
 | 10 月 14～24 日 | HDMI 接入与时序收敛；多轮启动异常隔离、波形与协议取证；采用保留单次主动消费的缓解路径；180-query 原 epoch99 成为主图 | [HDMI 工程](FPGA/hdmi_candidate/INTEGRATION.md)、[模型部署](tools/pose180/deploy/RESULTS.md) |
 | 10 月 25～27 日 | 按 ADR_50 改为有界常驻、PC／记录解耦；打通真实 CSI、局部恢复和独立显示；完成六片段双输出，发布默认 BOOT 与七色条 | [常驻记录](software/pose180_pipeline/resident/README.md)、[数据集阶段](software/pose180_pipeline/resident/DATASET-DEMO.md) |
 | 10 月 28 日 | 加固单人显示及资源生命周期；比较自采模型后恢复原 epoch99；长测启动有证据，但没有长期验收结论 | [模型对比](software/pose180_pipeline/resident/KINECT-BOARD-TEST-20261028.md)、[启动与安全历史](software/pose180_pipeline/resident/STARTUP-PACKAGE.md) |
-| 10 月 29 日 | 核心目录整理、最终审查、FD 竞态修正、双输入与三片段部署、PC 连接修正；完成板端及本地清理 | [最终审查](software/pose180_pipeline/resident/FINAL-REVIEW.md)、[收尾原始记录](.local/project-cleanup-20261029-r1/summary.json) |
+| 10 月 29 日 | 核心目录整理、最终审查、FD 竞态修正、双输入与三片段部署、PC 连接修正；完成板端及本地清理 | [最终审查](software/pose180_pipeline/resident/FINAL-REVIEW.md)、收尾原始记录（本机留存，仓库未附：`.local/project-cleanup-20261029-r1/summary.json`） |
 
 所有 difficulty 的项目跟踪状态统一为“已解决（工程收口）”，逐项处置和仍存在的技术限制见 [DIFFICULTIES.md](DIFFICULTIES.md)。该状态不改变历史失败或未验收结论。后续可选验证和冻结项统一见[后续验证与冻结范围](DIFFICULTIES.md#后续验证与冻结范围)，文档的现行／历史属性及撤下页面的去向见[文档目录](DOCUMENTATION.md)。

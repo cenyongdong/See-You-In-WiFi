@@ -20,9 +20,9 @@ Adam统一lr2e-5、betas(0.9,0.999)、eps1e-8、weight_decay1e-4，无迁移学�
 
 ## 已完成验证及证据
 
-1. [单项门检](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/evidence/gates/unit_gate.json)：6层编码器、3层人体/细化解码器、vanilla8头256维、14分支、15-token、索引/置信度排序、仅细化损失梯度通路；分化权重/偏置std0.000999973/0.000991597；无checkpoint调用，学习率衰减边界通过。
-2. [四卡门检](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/evidence/gates/ddp_gate.json)：4卡×8、96样本、3步，参数范数一致，checkpoint全部有限，优化器为单组Adam/lr2e-5/wd1e-4。短程在独立smoke目录，正式训练重新初始化，不复用短程更新。
-3. [启动审计](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/evidence/prelaunch-audit.json)及[独立启动核验](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/evidence/startup-verification.json)：129份源码/配置/列表当前与source_snapshot哈希一致，解析配置哈希通过，正式GPU1–4有负载、4个训练rank运行；正式日志已超过500步且已记录诊断有限。项目evidence为采集时快照，实时读服务器结果目录。
+1. [单项门检](evidence/gates/unit_gate.json)：6层编码器、3层人体/细化解码器、vanilla8头256维、14分支、15-token、索引/置信度排序、仅细化损失梯度通路；分化权重/偏置std0.000999973/0.000991597；无checkpoint调用，学习率衰减边界通过。
+2. [四卡门检](evidence/gates/ddp_gate.json)：4卡×8、96样本、3步，参数范数一致，checkpoint全部有限，优化器为单组Adam/lr2e-5/wd1e-4。短程在独立smoke目录，正式训练重新初始化，不复用短程更新。
+3. [启动审计](evidence/prelaunch-audit.json)及[独立启动核验](evidence/startup-verification.json)：129份源码/配置/列表当前与source_snapshot哈希一致，解析配置哈希通过，正式GPU1–4有负载、4个训练rank运行；正式日志已超过500步且已记录诊断有限。项目evidence为采集时快照，实时读服务器结果目录。
 4. 启动身份：监督PID54209、torchrun54220、训练rank54225–54228（SSH可见PID）。nvidia-smi显示另一组PID且process_name为Not Found，未证明两组PID的逐项映射；操作进程时以重新核对的SSH/proc命令行身份为准，不能仅凭nvidia-smi PID操作进程。
 
 ## 实际入口与边界

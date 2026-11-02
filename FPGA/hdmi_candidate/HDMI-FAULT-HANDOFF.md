@@ -8,7 +8,7 @@
 
 **首要问题D45：同一候选BOOT在不同启动中可健康，也可在SDK加载前出现PS HP2读返回持续有效、HDMI入口持续背压。r24已使PL侧HP2互联发生实际复位，r25仍复现，根因未定。** 已完成的r13三窗新推理到HDMI属于一次健康启动下的有界功能通过，不能作为启动故障修复证据。
 
-执行状态更新（2026-10-21）：r26记录器已完成实际bit／BOOT及1次无SDK故障取证，取消第2候选并安全回原BOOT，包关闭、余额0，无后台工作。PS输出初态已高，PL释放后HDMI保留返回而PS随后空闲；仅等待PS高电平不是充分修正。当前缺匹配PS复位资料，将咨询官方。[r26实际结果及限制](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)及[实时状态](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/state.json)优先于本文以下交接时技术快照和过期的“暂停／待实现”表述。[恢复入口](D:/FPGACompetitionProject/FPGA/hdmi_candidate/RESUME.md)。模块不删减，旧DATA独立暂停，FAT不修，HDMI长期验证须单独批准。现行执行规则见[AGENTS.md](D:/FPGACompetitionProject/AGENTS.md)。
+执行状态更新（2026-10-21）：r26记录器已完成实际bit／BOOT及1次无SDK故障取证，取消第2候选并安全回原BOOT，包关闭、余额0，无后台工作。PS输出初态已高，PL释放后HDMI保留返回而PS随后空闲；仅等待PS高电平不是充分修正。当前缺匹配PS复位资料，将咨询官方。[r26实际结果及限制](../../tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)及实时状态（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/state.json`）优先于本文以下交接时技术快照和过期的“暂停／待实现”表述。[恢复入口](RESUME.md)。模块不删减，旧DATA独立暂停，FAT不修，HDMI长期验证须单独批准。现行执行规则见[AGENTS.md](../../AGENTS.md)。
 
 ## 接手时先阅读的结论
 
@@ -23,7 +23,7 @@
 
 ## 1 系统范围与实际数据通路
 
-架构按[ADR_49](D:/FPGACompetitionProject/ADR/ADR_49.md)：PS与NPU负责感知，PS绘制本地骨架帧，PL读帧并输出HDMI，PC另负责高质量3D展示。当前HDMI应用不启动VPU／RTSP。NPU计算硬核集成在器件中；`AI_Mate`是PL侧的重要配套，不能整块当作视频冗余删除。
+架构按[ADR_49](../../ADR/ADR_49.md)：PS与NPU负责感知，PS绘制本地骨架帧，PL读帧并输出HDMI，PC另负责高质量3D展示。当前HDMI应用不启动VPU／RTSP。NPU计算硬核集成在器件中；`AI_Mate`是PL侧的重要配套，不能整块当作视频冗余删除。
 
 ```mermaid
 flowchart LR
@@ -56,7 +56,7 @@ flowchart LR
 | S01写侧 | 保留的旧相机搬帧 | `frame_to_ps_inst0`的AW／W／B；未被新HDMI接管 |
 | M00到PS | 两来源合并后的HP2 | `axi_interconnect_4_M00_AXI_AR*`／`R*`，也是读观测通道5 |
 
-实际xbar配置`C_AXI_ID_WIDTH=6`、`C_S_AXI_BASE_ID=64'h0000002000000000`、两路thread ID width均5。S00基ID为0，S01基ID为32。返回流水线必须同时保持来源位和原ID；S01的PS侧RID32被还原为HDMI侧RID0符合该映射。配置可查[实际xbar综合文件](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.srcs/sources_1/bd/ps_ai/ip/ps_ai_xbar_4/synth/ps_ai_xbar_4.v)。
+实际xbar配置`C_AXI_ID_WIDTH=6`、`C_S_AXI_BASE_ID=64'h0000002000000000`、两路thread ID width均5。S00基ID为0，S01基ID为32。返回流水线必须同时保持来源位和原ID；S01的PS侧RID32被还原为HDMI侧RID0符合该映射。配置可查实际xbar综合文件（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.srcs/sources_1/bd/ps_ai/ip/ps_ai_xbar_4/synth/ps_ai_xbar_4.v`）。
 
 有限64笔连续读、并行读及背压仿真和实际网表连线审查未发现直接错线，但未穷尽启动、单侧复位、缓冲满载及所有事务交错。优化后的常量ID位被裁去不自动构成错误；历史所称“最后25个差异门”是比较结果，不是25处已证错误。
 
@@ -74,7 +74,7 @@ flowchart LR
 | 双缓冲 | 每帧4,147,200字节，总8,294,400字节 | SDK实际分配、64字节对齐；地址不硬编码 |
 | 跨域FIFO | 512×64位，4096字节 | 有效像素带宽248,832,000 B/s；满FIFO约13.79µs消费余量，仅为配置计算 |
 
-板上为FPGA IO直接输出HDMI，原厂原理图对1080p60不作保证。已有静态／动态图案实屏成功，但无完整眼图、电气裕量或长期验收。该限制不能解释SDK前的PS HP2异常，需单独管理。[引脚与电气依据](D:/FPGACompetitionProject/FPGA/hdmi_candidate/PIN-CONTRACT.md)。
+板上为FPGA IO直接输出HDMI，原厂原理图对1080p60不作保证。已有静态／动态图案实屏成功，但无完整眼图、电气裕量或长期验收。该限制不能解释SDK前的PS HP2异常，需单独管理。[引脚与电气依据](PIN-CONTRACT.md)。
 
 ## 2 故障定义与已完成能力
 
@@ -109,7 +109,7 @@ flowchart LR
 | r25 | 不重编，复用同r24 BOOT，无按键第1次启动在SDK前故障，取消后续样本并回原BOOT | “PL互联未复位”不是充分解释；r24没有根治跨启动问题 |
 | r26离线 | 核对实际DCP和厂商PS封装，发现FIFO假计数及未观测PS复位输出 | 已准备被动PS／PL时间轴方案；尚无新观测RTL、bit、BOOT或实板结果 |
 
-详细结果优先查[r22](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-library-reset-20261019-r22/PLAN.md)、[r23](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-boot-witness-20261019-r23/PLAN.md)、[r24](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/PLAN.md)、[r25](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/PLAN.md)。健康／故障样本的前置顺序不一致，不能合并计算启动可靠性比例。
+详细结果优先查[r22](../../tools/pose-v1/evidence/hdmi-library-reset-20261019-r22/PLAN.md)、[r23](../../tools/pose-v1/evidence/hdmi-boot-witness-20261019-r23/PLAN.md)、[r24](../../tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/PLAN.md)、[r25](../../tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/PLAN.md)。健康／故障样本的前置顺序不一致，不能合并计算启动可靠性比例。
 
 ### 3.1 r13成功运行的实际方法与证据
 
@@ -125,7 +125,7 @@ flowchart LR
 
 全部分数逐位一致、输出有限，受检候选符合现行score>0.2、最大关节三维欧氏偏差≤3mm门限。绑定记录为1027原算子、1021 HardOp、6个直接Host算子、5个有效ZG组，运行时最终计数612；这些数值仅属该包，不把旧745／736或612强塞给其它图。每帧保持约5秒供观察，重复扫描不算新姿态；本次三帧并不是连续实时采集吞吐测试。
 
-原始[verification.tar](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar)内：`run/metadata/full-dma-review.json`、`run/preopen/trace.jsonl`、`run/full-dma/trace.jsonl`、`run/shared/inference/frames.jsonl`、`run/shared/inference/summary.json`、`run/shared/inference/engine/binding-summary.json`及实际输出。最终summary明确fresh_inferences=3、HDMI_frames_adopted=3、STOP／释放完成、Engine销毁，VPU／RTSP未启动，严格实时／长期未验。
+原始verification.tar（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar`）内：`run/metadata/full-dma-review.json`、`run/preopen/trace.jsonl`、`run/full-dma/trace.jsonl`、`run/shared/inference/frames.jsonl`、`run/shared/inference/summary.json`、`run/shared/inference/engine/binding-summary.json`及实际输出。最终summary明确fresh_inferences=3、HDMI_frames_adopted=3、STOP／释放完成、Engine销毁，VPU／RTSP未启动，严格实时／长期未验。
 
 ## 4 最新故障样本的完整判读基准
 
@@ -170,7 +170,7 @@ PS原始6次R握手包含复位期样本，不可称6笔合法读事务。历史
 
 104字窗口和source启动历史在同一FREEZE源边沿切面保持，GP统计在CSR确认发布时取样，存在域间切点差异。`source_flags=0x19`是快照末态，不代表之前整个启动期一直如此。
 
-原始归档：[evidence-r25-20261020.tar](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/evidence-r25-20261020.tar)。关键成员：`run-1/observe-before/trace.jsonl`、`run-1/capture-before/raw.jsonl`及对应stdout／stderr。已解码结果：[cycle-1-decoded.json](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/cycle-1-decoded.json)。
+原始归档：evidence-r25-20261020.tar（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/evidence-r25-20261020.tar`）。关键成员：`run-1/observe-before/trace.jsonl`、`run-1/capture-before/raw.jsonl`及对应stdout／stderr。已解码结果：cycle-1-decoded.json（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/cycle-1-decoded.json`）。
 
 ## 5 复位关系与原厂适配中的关键限制
 
@@ -212,7 +212,7 @@ r24启动与SW6后均有HP2互联实际复位，按后一次Open健康。随后r
 
 因此计数0不证明FIFO空，原语同名引脚有动态也不能当FIFO占用。当前没有核实到该器件／固件的PS内部FIFO状态／清空寄存器契约。现有A7 BSP的地址定义与本任务AArch64启动环境不能直接混用。FSBL未变及其`ps_init`调用五次`ps_config`只属静态事实，不能证明具体内部复位时序正确。
 
-复核入口：[source-contract.json](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/source-contract.json)、[实际原语连线与时钟结果](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/physical-summary.json)、[FSBL静态调用](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/fsbl-ps-init-calls.json)。
+复核入口：source-contract.json（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/source-contract.json`）、实际原语连线与时钟结果（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/physical-summary.json`）、FSBL静态调用（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/fsbl-ps-init-calls.json`）。
 
 ## 6 现有诊断接口及使用边界
 
@@ -250,11 +250,11 @@ word11解码：bit0 ARVALID、1 ARREADY、2 RVALID、3 RREADY、9:4 ARID、13:10
 
 计数32位，在200MHz下周期计数约21.47s回绕。它没有完整RDATA或逐ID在途队列；AR计数0只能约束已观测范围。元数据和地址单位须遵循各边界实际契约，不能拿不同边界的计数相等或READY为1当DMA完成证明。
 
-完整定义：[六边界观测协议](D:/FPGACompetitionProject/FPGA/hdmi_candidate/diagnostics/ai_read_monitor.README.md)。早期[SDK探针说明](D:/FPGACompetitionProject/FPGA/hdmi_candidate/software/AI-READ-MONITOR.md)描述最初单窗口四档流程，不能覆盖r13后来加入的阶段间ARM／FREEZE；r13实际顺序以归档trace为准。
+完整定义：[六边界观测协议](diagnostics/ai_read_monitor.README.md)。早期[SDK探针说明](software/AI-READ-MONITOR.md)描述最初单窗口四档流程，不能覆盖r13后来加入的阶段间ARM／FREEZE；r13实际顺序以归档trace为准。
 
 ### 6.3 启动历史
 
-扩展ABI为`0x42545201`。19字中的0至10位于窗口`+0x014–+0x03c`，11至18位于`+0x1e0–+0x1fc`，与104字快照共用同一次FREEZE。字3至6为PS AR／PS R／HDMI AR／HDMI R原始累计，字9至10为路径ready且DDR校准后的首次PS RVALID引脚字／周期模值，字13至17为GP与PL互联复位次数及宽度；完整位定义见[启动历史协议](D:/FPGACompetitionProject/FPGA/hdmi_candidate/diagnostics/README.md#r23启动历史与复位见证)。
+扩展ABI为`0x42545201`。19字中的0至10位于窗口`+0x014–+0x03c`，11至18位于`+0x1e0–+0x1fc`，与104字快照共用同一次FREEZE。字3至6为PS AR／PS R／HDMI AR／HDMI R原始累计，字9至10为路径ready且DDR校准后的首次PS RVALID引脚字／周期模值，字13至17为GP与PL互联复位次数及宽度；完整位定义见[启动历史协议](diagnostics/README.md#r23启动历史与复位见证)。
 
 `capture_boot_witness.cpp`只读已完成FREEZE，不负责ARM／FREEZE。它要求新输出绝对路径、明确的已完成偶数代数、匹配当前boot_id，并验证扩展已发布位。先由当前合法观测流程完成FREEZE，才能调用该采集器，不能把它当成“只运行一次就开始新观察”的程序。
 
@@ -281,32 +281,32 @@ word11解码：bit0 ARVALID、1 ARREADY、2 RVALID、3 RREADY、9:4 ARID、13:10
 
 ### 7.2 优先使用r24实际检查点
 
-- [实际r24 Routed DCP](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.runs/impl_hp2ready_r24/ai7030_edif_top_routed.dcp)
-- [实际工程XPR](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.xpr)
-- [r24源码覆盖清单](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/source-overlay.json)
-- [r24物理门检](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/qualification.json)、[原始时序](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/timing-final.rpt)、[布线状态](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/route-status-final.rpt)、[默认DRC](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/drc-final.rpt)
+- 实际r24 Routed DCP（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.runs/impl_hp2ready_r24/ai7030_edif_top_routed.dcp`）
+- 实际工程XPR（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.xpr`）
+- r24源码覆盖清单（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/source-overlay.json`）
+- r24物理门检（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/qualification.json`）、原始时序（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/timing-final.rpt`）、布线状态（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/route-status-final.rpt`）、默认DRC（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/drc-final.rpt`）
 
-实际综合消费的是BD生成的[synth/ps_ai.v](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.srcs/sources_1/bd/ps_ai/synth/ps_ai.v)，对应[r24 ps_ai.v覆盖副本](D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/sources/ps_ai.v)，并使用[r24 ps_ai_wrapper.sv](D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/sources/ps_ai_wrapper.sv)及[r24 ps_ai_peripheral.sv](D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/sources/ps_ai_peripheral.sv)。目录中的独立`ps_ai_read_observed.v`不是这次真正综合输入，不能改它后就宣称修正已进DCP。重新生成BD可能覆盖手工生成HDL改动，应按[prepare_hp2_ready_candidate.py](D:/FPGACompetitionProject/FPGA/hdmi_candidate/scripts/prepare_hp2_ready_candidate.py)与覆盖清单重建关系；旧脚本包含已存在运行／目录假设，不直接在基线上反复执行。
+实际综合消费的是BD生成的synth/ps_ai.v（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/fpai_demo_vivado.srcs/sources_1/bd/ps_ai/synth/ps_ai.v`），对应r24 ps_ai.v覆盖副本（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/sources/ps_ai.v`），并使用r24 ps_ai_wrapper.sv（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/sources/ps_ai_wrapper.sv`）及r24 ps_ai_peripheral.sv（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/sources/ps_ai_peripheral.sv`）。目录中的独立`ps_ai_read_observed.v`不是这次真正综合输入，不能改它后就宣称修正已进DCP。重新生成BD可能覆盖手工生成HDL改动，应按[prepare_hp2_ready_candidate.py](scripts/prepare_hp2_ready_candidate.py)与覆盖清单重建关系；旧脚本包含已存在运行／目录假设，不直接在基线上反复执行。
 
-r9对reader的等价时序优化在隔离发布来源中完成。仓库通用RTL适合阅读模块语义，若要重建r9相同输入，应以[r9候选发布说明](D:/FPGACompetitionProject/FPGA/hdmi_candidate/CANDIDATE-BOARD-READ-R9.md)及原始包为准，不能假定任意当前同名文件与已验收位流逐字节相同。
+r9对reader的等价时序优化在隔离发布来源中完成。仓库通用RTL适合阅读模块语义，若要重建r9相同输入，应以[r9候选发布说明](CANDIDATE-BOARD-READ-R9.md)及原始包为准，不能假定任意当前同名文件与已验收位流逐字节相同。
 
 ### 7.3 关键源码入口
 
 | 排查对象 | 文件 |
 |---|---|
-| HDMI读握手及背压 | [hdmi_axi_read.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/hdmi_axi_read.v)；复位IDLE，ARVALID由ADDRESS状态驱动，RREADY仅DATA状态允许 |
-| 请求／停止与帧边界 | [hdmi_scan_control.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/hdmi_scan_control.v)、[hdmi_scanout.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/hdmi_scanout.v) |
-| 命令跨域与保持总线 | [hdmi_command_mailbox.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/hdmi_command_mailbox.v) |
-| FIFO／扫描 | [hdmi_stream_fifo.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/hdmi_stream_fifo.v)、[hdmi_pixel_scan.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/hdmi_pixel_scan.v) |
-| RID检查／板级接口 | [hdmi_board.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/integration/hdmi_board.sv)；入口RID非0转成reader非OKAY响应 |
-| CSR译码 | [hdmi_cam_router.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/integration/hdmi_cam_router.sv)；高地址先译码，保留SDK低地址语义 |
-| 时钟／物理发送 | [hdmi_clock_jfm.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/integration/hdmi_clock_jfm.v)、[uihdmitx.v](D:/FPGACompetitionProject/FPGA/hdmi_candidate/rtl/display/uihdmitx.v) |
-| 六边界及启动记录 | [ai_read_monitor.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/diagnostics/ai_read_monitor.sv)、[ai_boot_witness.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/diagnostics/ai_boot_witness.sv) |
-| SDK外独立CSR映射／状态机 | [r9_observer_mapping.hpp](D:/FPGACompetitionProject/FPGA/hdmi_candidate/software/r9_observer_mapping.hpp)、[r9_startup_observer.hpp](D:/FPGACompetitionProject/FPGA/hdmi_candidate/software/r9_startup_observer.hpp) |
-| 启动历史采集／解码 | [capture_boot_witness.cpp](D:/FPGACompetitionProject/FPGA/hdmi_candidate/software/capture_boot_witness.cpp)、[capture_boot_witness.py](D:/FPGACompetitionProject/FPGA/hdmi_candidate/software/capture_boot_witness.py) |
-| 库加载及Open隔离 | [library_reset_board.py](D:/FPGACompetitionProject/FPGA/hdmi_candidate/scripts/library_reset_board.py)、[reset_key_board.py](D:/FPGACompetitionProject/FPGA/hdmi_candidate/scripts/reset_key_board.py) |
-| 旧视频与同步复位 | [frame_to_ps_largebuf.v](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/rtl/display/frame_to_ps_largebuf.v)、[frame_read_write_largebuf.v](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/rtl/display/frame_read_write_largebuf.v)、[demo_clkrst_wrapper.v](D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/rtl/utils/demo_clkrst_wrapper.v) |
-| 新推理与帧资源 | [HDMI应用](D:/FPGACompetitionProject/software/hdmi_demo/main.cpp)、[hdmi_output.cpp](D:/FPGACompetitionProject/software/core/display/hdmi_output.cpp)、[hdmi_canvas.cpp](D:/FPGACompetitionProject/software/core/display/hdmi_canvas.cpp) |
+| HDMI读握手及背压 | [hdmi_axi_read.v](rtl/hdmi_axi_read.v)；复位IDLE，ARVALID由ADDRESS状态驱动，RREADY仅DATA状态允许 |
+| 请求／停止与帧边界 | [hdmi_scan_control.v](rtl/hdmi_scan_control.v)、[hdmi_scanout.v](rtl/hdmi_scanout.v) |
+| 命令跨域与保持总线 | [hdmi_command_mailbox.v](rtl/hdmi_command_mailbox.v) |
+| FIFO／扫描 | [hdmi_stream_fifo.v](rtl/hdmi_stream_fifo.v)、[hdmi_pixel_scan.v](rtl/hdmi_pixel_scan.v) |
+| RID检查／板级接口 | [hdmi_board.sv](rtl/integration/hdmi_board.sv)；入口RID非0转成reader非OKAY响应 |
+| CSR译码 | [hdmi_cam_router.sv](rtl/integration/hdmi_cam_router.sv)；高地址先译码，保留SDK低地址语义 |
+| 时钟／物理发送 | [hdmi_clock_jfm.v](rtl/integration/hdmi_clock_jfm.v)、[uihdmitx.v](rtl/display/uihdmitx.v) |
+| 六边界及启动记录 | [ai_read_monitor.sv](diagnostics/ai_read_monitor.sv)、[ai_boot_witness.sv](diagnostics/ai_boot_witness.sv) |
+| SDK外独立CSR映射／状态机 | [r9_observer_mapping.hpp](software/r9_observer_mapping.hpp)、[r9_startup_observer.hpp](software/r9_startup_observer.hpp) |
+| 启动历史采集／解码 | [capture_boot_witness.cpp](software/capture_boot_witness.cpp)、[capture_boot_witness.py](software/capture_boot_witness.py) |
+| 库加载及Open隔离 | [library_reset_board.py](scripts/library_reset_board.py)、[reset_key_board.py](scripts/reset_key_board.py) |
+| 旧视频与同步复位 | frame_to_ps_largebuf.v（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/rtl/display/frame_to_ps_largebuf.v`）、frame_read_write_largebuf.v（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/rtl/display/frame_read_write_largebuf.v`）、demo_clkrst_wrapper.v（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-boot-witness-20261019-r23/reference/rtl/utils/demo_clkrst_wrapper.v`） |
+| 新推理与帧资源 | [HDMI应用](../../software/hdmi_demo/main.cpp)、[hdmi_output.cpp](../../software/core/display/hdmi_output.cpp)、[hdmi_canvas.cpp](../../software/core/display/hdmi_canvas.cpp) |
 
 ### 7.4 BOOT和位流唯一身份
 
@@ -318,15 +318,15 @@ r9对reader的等价时序优化在隔离发布来源中完成。仓库通用RTL
 | r24原始bit | 5,980,025 | `900479d9c6b5c9bbbb9965c37e07eb9d851bed9a0889aa09c7020379e0e76530` |
 | r24 Procise后处理bit | 5,980,609 | `66d025f7cfa7866c24b64d8d43c8d57f0ae8a126e94004013ec16ab5b9de953d` |
 
-实际[r24 BOOT](D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/boot-package/BOOT-hp2-ready-r24.bin)仅PL分区改变；偏移186816，分区5,980,464字节，非PL字节全部与原BOOT相同，载荷32位字交换和填充已核验。原始bit与经Procise处理的bit用途不同，不能任意互换。[封装记录及三份PS固件身份](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/package-review.json)。
+实际r24 BOOT（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-hp2-ready-20261020-r24/boot-package/BOOT-hp2-ready-r24.bin`）仅PL分区改变；偏移186816，分区5,980,464字节，非PL字节全部与原BOOT相同，载荷32位字交换和填充已核验。原始bit与经Procise处理的bit用途不同，不能任意互换。封装记录及三份PS固件身份（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/package-review.json`）。
 
-SDK六库／九启动文件的保护身份集中于[r25最终审计](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/final-audit.json)，不在此复制整份清单。`qualification.json`的board_tested=false以及package-review的deployed=false是离线生成时字段，后续r24／r25确已上板；判读应结合后续实板记录，不回写旧阶段文件来伪装全程状态。
+SDK六库／九启动文件的保护身份集中于r25最终审计（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-startup-stability-20261020-r25/final-audit.json`），不在此复制整份清单。`qualification.json`的board_tested=false以及package-review的deployed=false是离线生成时字段，后续r24／r25确已上板；判读应结合后续实板记录，不回写旧阶段文件来伪装全程状态。
 
 ### 7.5 时序和资源的实际限制
 
 r24完整布线WNS +0.030ns、WHS +0.010ns、TNS／THS=0，内部未约束端点0；新DDR就绪路径要求5ns、裕量+0.585ns，启动保持总线10ns与五个GP首级5ns要求有效，bus skew违例0。仍有原AI两处Min Period −0.409／−0.071ns特批例外，`raw_timing_pass=false`。默认DRC原SDI REQP-52／56仍报错；正式bit仅按原批准REQP-44／46／52／56处理，0 Error、58 Warning、32 Advisory。不得新增豁免、改频率或掩盖约束以取得“通过”。
 
-实际r24 Routed资源：Slice18,332／19,650＝93.29%，LUT43,305／78,600＝55.10%，FF64,097／157,200＝40.77%，BRAM36等效97.5／265，DSP8／400；控制集2,052。高Slice占位与LUT百分比不是一回事，STA通过也不能证明协议／CDC／启动时序正确。[完整模块资源](D:/FPGACompetitionProject/FPGA/hdmi_candidate/R24-RESOURCE-AUDIT.md)。
+实际r24 Routed资源：Slice18,332／19,650＝93.29%，LUT43,305／78,600＝55.10%，FF64,097／157,200＝40.77%，BRAM36等效97.5／265，DSP8／400；控制集2,052。高Slice占位与LUT百分比不是一回事，STA通过也不能证明协议／CDC／启动时序正确。[完整模块资源](R24-RESOURCE-AUDIT.md)。
 
 明确不删模块。诊断仍有定位价值，旧视频控制还提供soft_rst及寄存器响应。旧读FIFO的计数实际进入读控制器，再影响旧AXI写取数控制，不能按“旧读请求已固定0”直接绑常量。此前目录名r27只代表保守依赖核验，未生成r27候选位流。
 
@@ -372,11 +372,11 @@ assert property (@(posedge aclk) disable iff (!aresetn)
 7. 对FIFO检查双方复位、Gray指针及满／空标志在停钟和单侧释放时的初态；状态复位和真正异步同步链分别约束。
 8. 对旧AXI写侧同时检查AW、W、B独立握手及数据保持。不要仅因未加载SDK就假设旧主机绝对无活动。
 
-已有TB入口：[tb_hp2_idle.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/sim/tb_hp2_idle.sv)、[tb_axi_read.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/sim/tb_axi_read.sv)、[tb_ai_read_monitor.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/sim/tb_ai_read_monitor.sv)、[tb_ai_boot_witness.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/sim/tb_ai_boot_witness.sv)、[tb_hp2_reset_clock_stop.sv](D:/FPGACompetitionProject/FPGA/hdmi_candidate/sim/tb_hp2_reset_clock_stop.sv)。PS内部硬核状态并未被这些TB完整建模；模型未复现不能排除实板初始化问题。
+已有TB入口：[tb_hp2_idle.sv](sim/tb_hp2_idle.sv)、[tb_axi_read.sv](sim/tb_axi_read.sv)、[tb_ai_read_monitor.sv](sim/tb_ai_read_monitor.sv)、[tb_ai_boot_witness.sv](sim/tb_ai_boot_witness.sv)、[tb_hp2_reset_clock_stop.sv](sim/tb_hp2_reset_clock_stop.sv)。PS内部硬核状态并未被这些TB完整建模；模型未复现不能排除实板初始化问题。
 
 ## 10 建议下一轮采用的最小诊断方案
 
-本节为待实施方案，当前没有相应新RTL／bit／BOOT。原[r26定向方案](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)已准备，恢复执行以阶段恢复后及实际运行身份核验为前提。首轮继续无SDK、无DMA、无推理、无HDMI START，不靠屏幕观察或手动按键。
+本节为待实施方案，当前没有相应新RTL／bit／BOOT。原[r26定向方案](../../tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)已准备，恢复执行以阶段恢复后及实际运行身份核验为前提。首轮继续无SDK、无DMA、无推理、无HDMI START，不靠屏幕观察或手动按键。
 
 ### 10.1 被动观测的最小增量
 
@@ -499,7 +499,7 @@ puts [all_fanin -flat -startpoints_only -to $ready]
 close_design
 ```
 
-上述首组查询来自已执行的[只读DCP检查](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/inspect-physical.tcl)，后组关系已有[r24综合连接结果](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/synth-ready-connectivity.txt)。本文整理期间未重复启动Vivado查询。长工具调用超时不代表进程失败；先核对所属PID、创建时间、CPU跨窗口变化及日志／检查点进度，不自动销毁或启动重复负载。
+上述首组查询来自已执行的只读DCP检查（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/inspect-physical.tcl`），后组关系已有r24综合连接结果（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-hp2-ready-20261020-r24/synth-ready-connectivity.txt`）。本文整理期间未重复启动Vivado查询。长工具调用超时不代表进程失败；先核对所属PID、创建时间、CPU跨窗口变化及日志／检查点进度，不自动销毁或启动重复负载。
 
 ## 12 功能恢复与验收条件
 
@@ -532,8 +532,8 @@ close_design
 
 优先交付本文件、r25原始归档与解码、r24 Routed DCP及源码覆盖清单／资格报告、r26厂商源契约与定向方案、r13成功归档、原BOOT恢复副本和既有SDK／启动身份清单。`.local`工程及部分证据未纳入普通Git跟踪，只有Git仓库或本文并不足以重建实际候选；转交工程师时必须同时提供这些已列出的本地产物，不复制整套工具安装或重新生成旧证据来代替。
 
-部分早期独立REPORT.md已不在当前树；早期过程以现存[集成记录](D:/FPGACompetitionProject/FPGA/hdmi_candidate/INTEGRATION.md)、[10月16日工作总结](D:/FPGACompetitionProject/FPGA/FPGA-WORK-SUMMARY-20261016.md)、[阶段成果](D:/FPGACompetitionProject/Done.md)及原始归档为据。旧报告中的当时暂停状态、工具阻塞、按键名称或待测推断不能覆盖第4至5节的新结果；不补造缺失报告。
+部分早期独立REPORT.md已不在当前树；早期过程以现存[集成记录](INTEGRATION.md)、[10月16日工作总结](../FPGA-WORK-SUMMARY-20261016.md)、[阶段成果](../../Done.md)及原始归档为据。旧报告中的当时暂停状态、工具阻塞、按键名称或待测推断不能覆盖第4至5节的新结果；不补造缺失报告。
 
 恢复前不访问CSR、不加载SDK、不执行BOOT／重启、不按键、不恢复被暂停负载、不删模块。此前对PS侧诊断BOOT／重启的授权记录保留，但最新暂停仍有效；闭包额度不复活。新增功能范围、模型／SDK／NPU分配、外部接口、时序／DRC例外、FSBL／内核／CMA／FAT均不在本文整理范围。需要在场的屏幕／按键／测量另按实际可用条件安排，长期HDMI单独批准。
 
-本次文档交付没有新故障复现、逻辑修正、构建或板端操作。当前D44／D45仍未关闭，r26仅离线准备；最新总览以[PROJECT-PROGRESS.md](D:/FPGACompetitionProject/PROJECT-PROGRESS.md)为准。
+本次文档交付没有新故障复现、逻辑修正、构建或板端操作。当前D44／D45仍未关闭，r26仅离线准备；最新总览以[PROJECT-PROGRESS.md](../../PROJECT-PROGRESS.md)为准。

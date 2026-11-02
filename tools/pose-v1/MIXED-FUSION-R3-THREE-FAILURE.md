@@ -36,8 +36,8 @@ SDK public Session.forward接收输入列表；私有tmap_/ready状态存在不�
 输入更新、张量生命周期/重用、就绪状态及后端数据复用是候选原因，不能直接认定SDK缓存、DMA或模型故障。
 SDK时间字段单位未确认，部分other负数也不能作为完成同步的证明。
 
-[完整失败核验](evidence/mixed-20261006-fusion-r3/mixed-three-failure-review.json)、
-[SDK只读审查](evidence/mixed-20261006-fusion-r3/mixed-three-SDK-source-review.json)。
+完整失败核验（历史附件，当前仓库未附：`evidence/mixed-20261006-fusion-r3/mixed-three-failure-review.json`）、
+SDK只读审查（历史附件，当前仓库未附：`evidence/mixed-20261006-fusion-r3/mixed-three-SDK-source-review.json`）。
 保留原包、程序和61项结果，停止三样本重跑/正常ONNX数值验收/性能及后续显示推进。
 正常compare要求三样本工程验收，本次不绕过或伪造该门禁；已有单样本差异仅保持初步记录。
 下一步[逐次输入内容诊断方案](MIXED-INPUT-FRESHNESS-DIAGNOSTIC-PLAN.md)待批准，不修改SDK或自动修复。

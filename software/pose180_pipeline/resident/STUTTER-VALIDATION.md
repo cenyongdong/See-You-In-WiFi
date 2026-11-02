@@ -19,7 +19,7 @@
 
 当前原BOOT boot_id=`0fe5f862-4ec8-48f2-88eb-b41f6a55c92c`，FPGA operating、无设备占用；候选运行boot_id=`3bb6f8cd-062a-42e1-ac9d-63e91dd468a9`。原BOOT身份沿用`ff350477…1ef`，最终读回见本包`evidence/boot-control/metadata/final-audit.json`。TX／RX3临时LAN SSH已关闭，板端临时`.50.49`随回退消失，PC临时`.50.102`已移除、保留`.126.100`。PC观察、板端监督／采样、源端守护及UART均结束，UART发送字节0，无本批后台负载；页面保留最后真实姿态时不代表仍在运行。
 
-原值集中于[本机r5目录](../../../.local/pose180-resident-stutter-20261025-r5)：`final-evidence.tar.gz`及`evidence/`、四机`radios/*-evidence.tar.gz`、`physical-observations.jsonl`、`observation-analysis.json`、`final-analysis.json`、`pc-archive/`和UART记录。恢复状态见`run-state.json`，实际身份沿用`prepared.json`、`board/manifest.json`及实测`pipeline/identity.json`。机器`long-test.json`不能确认现场，其物理验证字段原false保留；现场答复与网口／板端样本独立记录。HDMI提示已实际提交，现场确认的是更新和恢复，未单独验收每条提示文案。
+原值集中于本机r5目录（本机留存，仓库未附：`../../../.local/pose180-resident-stutter-20261025-r5`）：`final-evidence.tar.gz`及`evidence/`、四机`radios/*-evidence.tar.gz`、`physical-observations.jsonl`、`observation-analysis.json`、`final-analysis.json`、`pc-archive/`和UART记录。恢复状态见`run-state.json`，实际身份沿用`prepared.json`、`board/manifest.json`及实测`pipeline/identity.json`。机器`long-test.json`不能确认现场，其物理验证字段原false保留；现场答复与网口／板端样本独立记录。HDMI提示已实际提交，现场确认的是更新和恢复，未单独验收每条提示文案。
 
 恢复事件原生环按固定容量轮换；本轮在同一SDK继续运行期间加了只读、有限时长的设备本地采样，恢复观察最多两段×256KiB、去重最多512项，不访问SDK或CSR。保留的事件覆盖物理RX恢复和后续普通段，不能冒充完整30分钟逐包追踪。首次主机编排在磁盘BOOT恢复尚未结束时提前进入准入，被缺少恢复回执拦住；当时没有实际准入采样或SDK。待原恢复完成后保留原错并继续唯一实际准入，结果healthy，无额外启动或SDK重试。
 
@@ -46,7 +46,7 @@
 | 构建 | Linux mock、ARM64实际SDK主程序和路由器静态guard编译通过；SDK库保持3.39.0。ARM保留原栅格绘制的signedness警告，无新增构建失败 |
 | PC观察 | `node --test software/pose180_pipeline/host/test/resident.test.mjs`通过：拆包／重复、过期状态、5.2秒空窗保留连接、断线重连、无ACK、页面资源及退出端口回收。真实浏览器已看到多次新骨架，断网时显示自动重连；现场确认两端同步恢复 |
 
-证据只保留于[本机r5目录](../../../.local/pose180-resident-stutter-20261025-r5)：`build/{native,arm64}.log`、`software-validation.json`、`csi-recovery-test/{result,recovery-events,command}.json`、`test-tx/result.json`、`test-resident/`。Ingress本机测试可执行文件沿用本轮构建位置`.local/pose180-resident-long-20261025/build/ingress-stutter-native.exe`，不是r4原实测程序。软件恢复时长不代表无线、SDK或HDMI实板时长。
+证据只保留于本机r5目录（本机留存，仓库未附：`../../../.local/pose180-resident-stutter-20261025-r5`）：`build/{native,arm64}.log`、`software-validation.json`、`csi-recovery-test/{result,recovery-events,command}.json`、`test-tx/result.json`、`test-resident/`。Ingress本机测试可执行文件沿用本轮构建位置`.local/pose180-resident-long-20261025/build/ingress-stutter-native.exe`，不是r4原实测程序。软件恢复时长不代表无线、SDK或HDMI实板时长。
 
 ## 本包已批准的有限板测范围
 

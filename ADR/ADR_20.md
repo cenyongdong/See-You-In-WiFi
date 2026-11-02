@@ -44,6 +44,6 @@ Host107／12注册／59600值、Native／ARM各12拒绝及真实Host前向后释
 
 本轮取得3输入47760字节、102条元数据、六项保存全部成功，以及11份ARM参考。188和192数据输入正确，192索引18段共496值全部逐位等于紧邻前次数据输入复制相同偏移；目标模256为0、容量与非重叠检查通过。原post-copy、持有Frame及CPU异常后的暂存相同，两个晚源设备读回94080字节均正确。坏值在复制返回后已经存在，但晚源不能证明原复制开始时源正确，残留模式不等于UDMA或缓存根因。当前只582新查638，失败192未到该检查；下一应独立观察192生产组234完成前后及连续搬运暂存／同步路径。
 
-这解决了保存寿命／耦合落盘的工程缺口；真实有限硬件输出异常保存仍未触发，本次CPU异常保存实触发。失败314编码284网络9来源238关节仅前缀，正确inv9/10未捕获、3采样尾缺，非正常LAST。内核同／两abort STREAMOFF0／子回收256／source0／Engine join后销毁／端口与会话关闭；规整0，CMA／BOOT／SDK未改。详见[本轮结果](../tools/pose-v1/INVOCATION-GUARD-RESULTS-20261009.md)、[完成审查](../tools/pose-v1/evidence/invocation-guard-20261009-r1/completion-review.json)及[下一方案](../tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md)。旧有限姿态失败及缺失元数据继续保留，不回填或按候选排序解释当前索引错误。
+这解决了保存寿命／耦合落盘的工程缺口；真实有限硬件输出异常保存仍未触发，本次CPU异常保存实触发。失败314编码284网络9来源238关节仅前缀，正确inv9/10未捕获、3采样尾缺，非正常LAST。内核同／两abort STREAMOFF0／子回收256／source0／Engine join后销毁／端口与会话关闭；规整0，CMA／BOOT／SDK未改。详见[本轮结果](../tools/pose-v1/INVOCATION-GUARD-RESULTS-20261009.md)、完成审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/invocation-guard-20261009-r1/completion-review.json`）及[下一方案](../tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md)。旧有限姿态失败及缺失元数据继续保留，不回填或按候选排序解释当前索引错误。
 
 接续2026-10-09新独立[ADR_21](ADR_21.md)：192失败时原wait／copy前后公开计数234，1728坏索引55段同前次数据复制；不默认增加wait-to234，保存机制继续保持，搬运一致性受控验证另设门检。

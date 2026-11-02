@@ -26,7 +26,7 @@ Python AST/板端嵌入Python3.8语法/LF、C++捕获名称字面量白名单、
 
 最终包.local/pose-v1-mixed-validation/package-20261006-content-r4-final：291项哈希、12构建文件、20来源。
 原r3共享非manifest载荷289份保持，仅runner增加显式捕获参数；中间准备包完整保留，不用于构建。
-[最终交付身份](evidence/mixed-20261006-content-r4/delivery-review.json)、
-[最终模拟检查](evidence/mixed-20261006-content-r4/offline-content-tests-final/review.json)。
+最终交付身份（历史附件，当前仓库未附：`evidence/mixed-20261006-content-r4/delivery-review.json`）、
+最终模拟检查（历史附件，当前仓库未附：`evidence/mixed-20261006-content-r4/offline-content-tests-final/review.json`）。
 新ARM编译/API调用、Host实际内容读回及板端捕获均待验证；不称根因已定位或三样本已修复。
 现在仅[MIXED-CONTENT-R4-COMMANDS.md A](MIXED-CONTENT-R4-COMMANDS.md)最终包交叉编译，构建核验后按新身份逐阶段推进。

@@ -43,4 +43,4 @@ MIG的CLOCK_DEDICATED_ROUTE=FALSE在原2018.3配置生成、尚未执行JFM hook
 
 下一步应首先核对硬核AI时钟的正式适配契约和外部时序/CDC报告中可归类的原厂结构，再确定候选完整实现的门检范围。取得可核验依据前，依赖完整时序验收的上板步骤保持停止；不要求仅为超时重新批准。不把本次时序/CDC诊断当旧DATA根因证据。不要用整体位流可生成、setup/hold为正、旧BOOT曾能推理等事实代替本次最小周期或CDC验收。
 
-[完整本批报告](../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/REPORT.md)、[实际结果与边界](../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/result-review.json)、[只读时钟连接](../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/AI-clock-trace/actual-clock-connectivity.txt)、[完整CDC原值](../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/implementation-only-r2/CDC.rpt)。
+完整本批报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/REPORT.md`）、实际结果与边界（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/result-review.json`）、只读时钟连接（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/AI-clock-trace/actual-clock-connectivity.txt`）、完整CDC原值（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/implementation-only-r2/CDC.rpt`）。

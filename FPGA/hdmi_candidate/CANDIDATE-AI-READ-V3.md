@@ -21,7 +21,7 @@
 
 ## 当前硬件来源修订与严格绑定
 
-最新候选使用managed PS源路径：原完整生成`ps_ai.v`仅在原顶层追加三个被动输出及赋值，模块名保留`ps_ai`；该完整文件已经改变，不能称原generated fullPS逐字节未变。其余12个原模块、原唯一timescale，以及原BD／XCI／11份PS OOC内容保持。[managed-PS-observer-r2/review.json](../../tools/pose-v1/evidence/hdmi-live-20261017-r3/managed-PS-observer-r2/review.json)保存精确逆向复原与前后SHA：新fullPS为b87b798ce01c707027766660c501ed2232aaeaec5f093bc291e095ab1f637cb7，wrapper为502c463544a5cbc4e5af20460af274418e5f6c68661e92ee6a3eca9c8b3c86f2。
+最新候选使用managed PS源路径：原完整生成`ps_ai.v`仅在原顶层追加三个被动输出及赋值，模块名保留`ps_ai`；该完整文件已经改变，不能称原generated fullPS逐字节未变。其余12个原模块、原唯一timescale，以及原BD／XCI／11份PS OOC内容保持。managed-PS-observer-r2/review.json（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r3/managed-PS-observer-r2/review.json`）保存精确逆向复原与前后SHA：新fullPS为b87b798ce01c707027766660c501ed2232aaeaec5f093bc291e095ab1f637cb7，wrapper为502c463544a5cbc4e5af20460af274418e5f6c68661e92ee6a3eca9c8b3c86f2。
 
 原v3改名全局顶层导致managed PS依赖／leaf缺失的综合失败、r2的scripts_only调度失败均保留，不改写通过。综合父运行仍为`synth_read_v3r3`，约束仍取`read-v3r3-constraints-r3`；当前候选只接受`read-v3r6-bootstrap`／`read-v3r6-route`／`read-v3r6-reports`／`read-v3r6-bit`及native `route_read_v3r6`，`managed_run:false`，不读取或伪造managed run状态。完整候选仍待实际门检。旧r3 route在720.625秒因日志only监控被停止，31份native文件冻结于route-monitor-policy-r1，不能记为Vivado逻辑失败或已通过。旧约束阶段113.078秒的clock绑定失败、constraints-r2的查询语义失败与partial CDC报告保留，不代替新约束阶段通过。
 
@@ -89,4 +89,4 @@ planner逐份实读r6四phase真实execution／phase-review、DIRECTORY为`.`的
 
 ## 现有结果与仍未知项
 
-[r3完整报告](../../tools/pose-v1/evidence/hdmi-live-20261017-r3/REPORT.md)、[新观测CSR契约](diagnostics/ai_read_monitor.README.md)、[共享构建与epoch限制](scripts/build_ai_read_shared.README.md)、[r2历史执行包](CANDIDATE-AI-MONITOR-V2.md)。D45根因未证，新被动观测的实现扰动仍在；FAT问题未修。实际候选身份与完整放行结果产生后，根执行器须补足真实产物段、授权问题及复核，不把这份草案当作已批准执行包。
+r3完整报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261017-r3/REPORT.md`）、[新观测CSR契约](diagnostics/ai_read_monitor.README.md)、[共享构建与epoch限制](scripts/build_ai_read_shared.README.md)、[r2历史执行包](CANDIDATE-AI-MONITOR-V2.md)。D45根因未证，新被动观测的实现扰动仍在；FAT问题未修。实际候选身份与完整放行结果产生后，根执行器须补足真实产物段、授权问题及复核，不把这份草案当作已批准执行包。

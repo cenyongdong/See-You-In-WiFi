@@ -1,10 +1,10 @@
 # 官方资料与 AXI 协议检查 IP 的适用性
 
-日期：2026-10-23。结论：建议下一版诊断位流加入原生 AXI Protocol Checker，先旁路监测 HP2 互联与 PS 的连接，配合既有原始波形记录器；保持 AI 四路、S01 源端隔离、频率和功能数据路径。本段保留最初方案分析；后续已完成原生IP及物理实现，r32实际被动采集和原BOOT回退完成，结果与窗口限制统一见[r32实板说明](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-protocol-checker-20261023-r32/RESULTS.md)。
+日期：2026-10-23。结论：建议下一版诊断位流加入原生 AXI Protocol Checker，先旁路监测 HP2 互联与 PS 的连接，配合既有原始波形记录器；保持 AI 四路、S01 源端隔离、频率和功能数据路径。本段保留最初方案分析；后续已完成原生IP及物理实现，r32实际被动采集和原BOOT回退完成，结果与窗口限制统一见[r32实板说明](../../../tools/pose-v1/evidence/hdmi-protocol-checker-20261023-r32/RESULTS.md)。
 
 ## 官方资料带来的修正
 
-来源是既有[PSOC GP HP 问题调试经验总结](D:/FPGACompetitionProject/Docs/PSOC_GPHP问题调试经验总结-V1.0.pdf)，调试日期 2021-08-31，封面加正文共9页；正文页码为1至8。案例器件是 FMQL45T900，与当前 FMQL30TAI 不同。同时提供了本轮官方聊天截图。
+来源是既有PSOC GP HP 问题调试经验总结（本机留存，仓库未附：`D:/FPGACompetitionProject/Docs/PSOC_GPHP问题调试经验总结-V1.0.pdf`），调试日期 2021-08-31，封面加正文共9页；正文页码为1至8。案例器件是 FMQL45T900，与当前 FMQL30TAI 不同。同时提供了本轮官方聊天截图。
 
 - 正文1至5页的案例是 GP 寄存器从机过早返回写响应、ID处理不完整，不能直接认定当前 HP2 读启动异常具有相同根因，也不能照搬其中临时修补代码。实际接受数据仍须按 VALID/READY 握手与协议版本判断。
 - 正文6页明确推荐 System ILA 和 AXI Protocol Checker。正文7至8页给出 HP 调试流程，包括重加载后的 HP re-enable/level shifter、协议检查、时序、PL互联 FIFO 和研发协助。

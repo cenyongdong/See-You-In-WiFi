@@ -28,4 +28,4 @@ r1包把旧管理器名打入，板端新文件名不存在，在运行合同／
 
 不因本轮通过修改正式同步／零拷贝或宣布103／严格整机5Hz／长期／HDMI通过。先用公开SDK审查高地址隔离可行性，再以独立受控地址布局验证；SDK地址范围不明确或达不到控制目标则停止，不猜固定地址。保存I/O优化只在性能需求和有界数据所有权方案明确后单独验证，不与地址变量同时修改。管理83/100保持。
 
-[结果](../tools/pose-v1/PRODUCER-PHASE-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-PHASE-NEXT-20261011.md)／[恢复](../tools/pose-v1/evidence/producer-phase-20261011-r2/next-checkpoint.json)。
+[结果](../tools/pose-v1/PRODUCER-PHASE-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-PHASE-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-phase-20261011-r2/next-checkpoint.json`）。

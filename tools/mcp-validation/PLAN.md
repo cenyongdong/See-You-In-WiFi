@@ -1,6 +1,6 @@
 # Procise / Vivado MCP 验证方案（首版已批准并完成独立验证）
 
-日期：2026-10-01。目标平台为悟净 Lite / JFMQL30TAI676H，Procise 2025.1.1 temp / SVN 32494；Vivado 辅助版本固定为 2019.1。明确答复“同意首版范围并执行”，下述 Procise 首版已实现并通过独立 stdio 验证；随后项目配置写入、日志编码适配/复验和 Vivado 启动日志捕获，均已执行。当前工具会话接入重载仍需验收。结果见 [RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/RESULTS.md)。
+日期：2026-10-01。目标平台为悟净 Lite / JFMQL30TAI676H，Procise 2025.1.1 temp / SVN 32494；Vivado 辅助版本固定为 2019.1。明确答复“同意首版范围并执行”，下述 Procise 首版已实现并通过独立 stdio 验证；随后项目配置写入、日志编码适配/复验和 Vivado 启动日志捕获，均已执行。当前工具会话接入重载仍需验收。结果见 [RESULTS.md](RESULTS.md)。
 
 ## 依据与取舍
 

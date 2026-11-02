@@ -1,6 +1,6 @@
 # 下一定位：真实类型和动态模式 SDK scratch 对照
 
-本批已停止，无后台。先读 [结果](TENSOR-IDENTITY-RESULTS-20261010.md)、[ADR_23](../../ADR/ADR_23.md)和 [检查点](evidence/tensor-identity-20261010-r3/next-checkpoint.json)。本批失败时对象／类型／范围均正确、晚源正确、128个非整数值7段全同前次复制；不重跑inv72或旧失败，不按索引取整／二次复制覆盖／cache或sleep猜修复。
+本批已停止，无后台。先读 [结果](TENSOR-IDENTITY-RESULTS-20261010.md)、[ADR_23](../../ADR/ADR_23.md)和 检查点（历史附件，当前仓库未附：`evidence/tensor-identity-20261010-r3/next-checkpoint.json`）。本批失败时对象／类型／范围均正确、晚源正确、128个非整数值7段全同前次复制；不重跑inv72或旧失败，不按索引取整／二次复制覆盖／cache或sleep猜修复。
 
 ## 最小变量设计，尚未实施
 

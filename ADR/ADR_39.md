@@ -40,4 +40,4 @@
 
 低地址、无VPU的独立生产者四调用未复现正式坏片段，根因仍未修。原异常读取保留。下一准备同身份的固定有／无VPU对照，保留19成员／0→11和实际输入参考；记录视频提交／capture及两SDK读取时间覆盖，不将上下文同时存在或QBUF跨度直接认定为硬件忙／DMA完成。原完整103、严格5Hz、长期、HDMI及零拷贝保持待验。
 
-[结果](../tools/pose-v1/PRODUCER-GROUP-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-GROUP-NEXT-20261011.md)／[独立数值核验](../tools/pose-v1/evidence/producer-group-20261011-r2/data-review.json)。
+[结果](../tools/pose-v1/PRODUCER-GROUP-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-GROUP-NEXT-20261011.md)／独立数值核验（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-group-20261011-r2/data-review.json`）。

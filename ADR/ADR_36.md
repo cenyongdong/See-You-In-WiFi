@@ -32,4 +32,4 @@ ADR_35 的 inv48 首次 Host 快照已出现 592 个变化值，其中 589 个�
 
 本机r1头名错误打包停止；r2命名空间Bytes／实际char*签名／缩进Werror，r3仍有const签名错误；r4显式依赖及实际接口修正，新目录构建，失败保留。Linux归档权限使原解包树在沙箱内不可读，使用原档案创建不导入权限的readable字节副本并复核；未改原数据。板时钟tar未来提示保留，未修改时钟。原部分反汇编窗口已以符号精确大小补齐，短窗口不承担“缺同步”结论。
 
-当前解决的是匹配实现和两个公开应用读法的独立可验证性，未修复正式模型并发坏索引。没有实际异常，原失败捕获晚源机制未在本轮触发。仍不采用第二读修补、delay、cache helper或私有映射；下一先匹配生产／DMA完成契约，准备最小真实NPU生产者对照或正式责任证据交接。[结果](../tools/pose-v1/AXI-READ-RESULTS-20261011.md)／[下一](../tools/pose-v1/AXI-READ-NEXT-20261011.md)／[完成绑定](../tools/pose-v1/evidence/axi-pair-20261011-r4/completion-review.json)。
+当前解决的是匹配实现和两个公开应用读法的独立可验证性，未修复正式模型并发坏索引。没有实际异常，原失败捕获晚源机制未在本轮触发。仍不采用第二读修补、delay、cache helper或私有映射；下一先匹配生产／DMA完成契约，准备最小真实NPU生产者对照或正式责任证据交接。[结果](../tools/pose-v1/AXI-READ-RESULTS-20261011.md)／[下一](../tools/pose-v1/AXI-READ-NEXT-20261011.md)／完成绑定（历史附件，当前仓库未附：`../tools/pose-v1/evidence/axi-pair-20261011-r4/completion-review.json`）。

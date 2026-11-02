@@ -569,7 +569,7 @@ node_modules/
 !/tools/pose-v1/evidence/hp2-startup-protocol-20261023-r37/waveforms/README.md
 !/tools/pose-v1/evidence/hp2-startup-protocol-20261023-r37/waveforms/cycletrace/README.md
 
-# Current local delivery documentation and selected evidence; RAR binaries remain local.
+# Current delivery documentation and selected evidence; RAR binaries remain outside Git.
 !/Deliverables/SOURCE-20261031.md
 !/Deliverables/PERFORMANCE.md
 !/Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md
@@ -579,3 +579,9 @@ node_modules/
 !/Deliverables/evidence/
 !/Deliverables/evidence/**
 !/Deliverables/FPGA-REBUILD-20261101-r1.md
+
+# Exact additional documentation images; delivery binaries remain local.
+!/Deliverables/evidence/overlay/figures/ps-vs-rtl-synthetic.png
+!/Deliverables/evidence/pc/
+!/Deliverables/evidence/pc/pc-performance-preview-20261028.jpg
+!/tools/pose-v1/evidence/hp2-bounded-drain-20261024-r38/r38-startup-discard.svg

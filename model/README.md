@@ -1,6 +1,6 @@
 # 模型与部署资产
 
-当前演示采用原始 epoch99 的 180-query 共享关节细化图。板端实际使用的文件位于 [piw24_pose180_shared-20261024-r1/](piw24_pose180_shared-20261024-r1/README.md)，同一模型也包含在 [最终部署包](../Deliverables/pose180-csi-release-20261031-r4.rar) 的 `board/models/` 中。
+当前演示采用原始 epoch99 的 180-query 共享关节细化图。板端实际使用的文件位于 [piw24_pose180_shared-20261024-r1/](piw24_pose180_shared-20261024-r1/README.md)，同一模型也包含在 [最终部署包](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) 的 `board/models/` 中。
 
 ## 克隆仓库后可直接取得
 
@@ -16,7 +16,7 @@
 
 ## 本机保留的开发产物
 
-训练权重 `piw24_pose180_shared-20261024-r1/source/best_mpjpe_epoch_99.pth` 为 274,727,776 字节，超过 GitHub 普通 Git 的 100 MiB 单文件限制，继续保留在本机；其校验值见上方身份文件。当前未配置 Git LFS，也没有已发布的该 checkpoint 下载链接。需要恢复训练时，应向项目维护者取得这一文件并核对身份；现有 ONNX 和 ZG 文件足以供转换或部署使用。[GitHub 大文件说明](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)
+训练权重 `piw24_pose180_shared-20261024-r1/source/best_mpjpe_epoch_99.pth` 为 274,727,776 字节，超过 GitHub 普通 Git 的 100 MiB 单文件限制，继续保留在本机；其校验值见上方身份文件。当前未通过 Git LFS 分发该 checkpoint，也没有已发布的该 checkpoint 下载链接。需要恢复训练时，应向项目维护者取得这一文件并核对身份；现有 ONNX 和 ZG 文件足以供转换或部署使用。[GitHub 大文件说明](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)
 
 转换中间阶段 JSON／RAW、参考输出、原生日志及历史候选权重不随 Git 克隆提供。旧自采训练数据已清理，历史训练命令不保证可直接重跑。
 

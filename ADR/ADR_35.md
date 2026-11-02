@@ -34,4 +34,4 @@ r3新桥从实际冻结final_evidence_bridge生成，保留其最终源／CPU写
 
 两abort／子回收／network0／join后Engine毁／内核同／端口释放通过，全测试和连接关闭。最后MemAvailable711604KiB／CmaFree5292KiB仅现场。本批准范围r2准备一次规整143.23443ms；r3四窗及诊断普通512单位均20，无规整，无清缓存／重启／CMA／BOOT／SDK变化。r2链接遗漏以新r3修正；本机缺309／310参考以独立r6＋N1适配修正，不改数据或重跑板测。历史失败留存。
 
-下一优先匹配AXI region／共享UDMA暂存的实际读事务与完成机制，保留异常读取，不猜延时、cache helper或用第二read修补继续。原数学未改，根因未修，严格5Hz／长期／HDMI待，管理83/100保持。[完整结果](../tools/pose-v1/READ-PHASE-RESULTS-20261011.md)／[完成绑定](../tools/pose-v1/evidence/read-phase-20261011-r3/completion-review.json)／[下一](../tools/pose-v1/READ-PHASE-NEXT-20261011.md)。
+下一优先匹配AXI region／共享UDMA暂存的实际读事务与完成机制，保留异常读取，不猜延时、cache helper或用第二read修补继续。原数学未改，根因未修，严格5Hz／长期／HDMI待，管理83/100保持。[完整结果](../tools/pose-v1/READ-PHASE-RESULTS-20261011.md)／完成绑定（历史附件，当前仓库未附：`../tools/pose-v1/evidence/read-phase-20261011-r3/completion-review.json`）／[下一](../tools/pose-v1/READ-PHASE-NEXT-20261011.md)。

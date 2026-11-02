@@ -8,7 +8,7 @@
 
 已找到数据集级别的明确许可：[作者项目官网](https://aiotgroup.github.io/Person-in-WiFi-3D/)直接链接到作者 `xjtuqianbo` 发布的 [Wiception3D / Kaggle](https://www.kaggle.com/datasets/xjtuqianbo/wiception3d)。其[公开元数据](https://www.kaggle.com/api/v1/datasets/view/xjtuqianbo/wiception3d)对第 1 版标注 `Attribution 4.0 International (CC BY 4.0)`，不是官网页脚的 CC BY-NC 4.0。该许可允许复制、改编和分享，包括商业用途；应保留作者及来源、许可链接和适用声明，注明修改，不暗示作者背书，也不把第三方数据的权利声明为团队独占。以这个单独标注的数据包为依据，不将其许可延伸至论文插图、作者演示视频等其它材料。[许可正文](https://creativecommons.org/licenses/by/4.0/legalcode.en)
 
-2026-10-27 15:45 核对：Kaggle `wifi_dataset/` 的完整训练／测试清单分别为 89,946／7,824 行，与本地逐字节相同；另取 5 份 CSI 和 2 份姿态标注，包含当前训练／测试演示片段首尾，全部逐字节一致。此为清单与有限样本核对，不是全库逐文件校验。[原始元数据及核对结果](../../../.local/dataset-license-check-20261027/verification.json)保留来源、版本、样本和摘要，同目录保存作者页面与元数据快照及可复现脚本。
+2026-10-27 15:45 核对：Kaggle `wifi_dataset/` 的完整训练／测试清单分别为 89,946／7,824 行，与本地逐字节相同；另取 5 份 CSI 和 2 份姿态标注，包含当前训练／测试演示片段首尾，全部逐字节一致。此为清单与有限样本核对，不是全库逐文件校验。原始元数据及核对结果（本机留存，仓库未附：`../../../.local/dataset-license-check-20261027/verification.json`）保留来源、版本、样本和摘要，同目录保存作者页面与元数据快照及可复现脚本。
 
 据此，已核对的官方 CSI／标注可以按 CC BY 4.0 用于训练、板端推理、比赛现场骨架展示及系统效果视频公开发布；不必为这些用途再请求非商业条款豁免。比赛选题指南第 7 页亦明确允许第三方模型、数据集、代码或 IP，要求明确来源并遵守许可。首轮通知第 6 页涉及组委会与团队共同拥有设计文档／作品视频的发布及出版权，不构成取得第三方原始数据的独占所有权。
 
@@ -18,7 +18,7 @@
 
 **原始 RGB-D 范围补充：** 指出视频位于 `Z:/rawdata/rgbd`。只读核对见各连续片段的 `output.mkv` 和 `time_list.txt`，包括 `S53_24`／`S53_46`；原始数据树中未找到 README／LICENSE／许可／同意说明。尚未建立这批视频与上述 Kaggle CC BY 4.0 数据包的授权范围对应关系，因此前述通过结论仅覆盖已核对的 CSI／姿态标注，不能扩展为 RGB-D 原片已取得公开展示授权。官网仍有项目级 CC BY-NC 4.0 声明，但具体原片范围、非商业用途及参与者肖像／隐私同意应分别核实；CC 许可不自动授予第三方的肖像／隐私权。若采用原片并排对照，应先取得足以覆盖指定片段、有奖比赛及公开视频的明确许可依据，保留来源／剪辑说明，并如实说明 RGB-D 为数据集参考影像、板端推理只输入对应 CSI。打码不替代视频版权许可。
 
-进一步核对[2026 年扩展论文](D:/Person-in-WIFI-3D/Person-in-WiFi-3D-repo/paper/Person-in-WiFi_3D_Unified_Model_for_3D_WiFi_Perception.pdf) PDF 第 7 页 V.A 的 Dataset Statement：作者报告伦理批准号 2024YS258、事先告知志愿者数据用途，并明确说明公开数据由 CSI 信号和标注组成、不含志愿者私人信息。该段未明确授权原始 RGB-D 视频供第三方公开展示；它也不是明确禁止原片展示的条款，不以此补造禁令。2024 论文第 2 页的伦理准予公开表述较概括，不能取代具体素材范围核对。去除人脸是降低可识别性的一种措施，声音、其他外观特征及场景仍可能识别人物，不能仅凭去脸认定已匿名化；是否采用何种脱敏方式尚未实施。
+进一步核对2026 年扩展论文（本机路径，仓库未附：`D:/Person-in-WIFI-3D/Person-in-WiFi-3D-repo/paper/Person-in-WiFi_3D_Unified_Model_for_3D_WiFi_Perception.pdf`） PDF 第 7 页 V.A 的 Dataset Statement：作者报告伦理批准号 2024YS258、事先告知志愿者数据用途，并明确说明公开数据由 CSI 信号和标注组成、不含志愿者私人信息。该段未明确授权原始 RGB-D 视频供第三方公开展示；它也不是明确禁止原片展示的条款，不以此补造禁令。2024 论文第 2 页的伦理准予公开表述较概括，不能取代具体素材范围核对。去除人脸是降低可识别性的一种措施，声音、其他外观特征及场景仍可能识别人物，不能仅凭去脸认定已匿名化；是否采用何种脱敏方式尚未实施。
 
 ## 接口与模式
 
@@ -166,7 +166,7 @@ S12_03 的 3956 ms 间隔保留为未定位运行停顿，不能归因于纯滤�
 
 七次原生运行均 `native_exit=0`、安全 STOP／释放完成、设备占用为空；运行前后内核日志无新增。每包有限消费准入后才启动 SDK，COM7 只接收。最后实际原 BOOT 启动身份 **`73197d05-0e84-422d-9733-c5b0a8205443`**，BOOT SHA256 `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`；不是仅恢复启动文件。所有本批串口、PC 观察及构建容器已退出，无本批 SDK／后台续跑。既有路由器自启动保持，新增 PL 取消状态保持。
 
-唯一汇总：[results.json](../../../.local/pose-demo053-20261027/results.json)；同目录 `selection.json` 记录样本，`clips/` 保留输入映射，`arm64/` 保留二进制，`synthetic053.json` 保留合成评估。包路径为 `.local/pose-demo053-{train|test}-{1|2|3}p-20261027-r1`，单人训练双输出使用独立 `r2`。各包保存原始 `round-1-result-evidence.tar.gz`、`results/long-test.json`／`closed.json`、`pc-observation/actual.full`／`presentation.jsonl`／`analysis.json`／`timing.json` 及 UART 记录；首次观察器错误不删除。
+唯一汇总：results.json（本机留存，仓库未附：`../../../.local/pose-demo053-20261027/results.json`）；同目录 `selection.json` 记录样本，`clips/` 保留输入映射，`arm64/` 保留二进制，`synthetic053.json` 保留合成评估。包路径为 `.local/pose-demo053-{train|test}-{1|2|3}p-20261027-r1`，单人训练双输出使用独立 `r2`。各包保存原始 `round-1-result-evidence.tar.gz`、`results/long-test.json`／`closed.json`、`pc-observation/actual.full`／`presentation.jsonl`／`analysis.json`／`timing.json` 及 UART 记录；首次观察器错误不删除。
 
 离线复现使用 `.local/pose-demo053-20261027/analyze_board.mjs <包目录>` 及 `finish.py`；相同输入参数对照使用现有 `pose_replay --min-cutoff=0.5 --beta=0.3 --d-cutoff=1 <actual.full>`。新板测用 `prepare_presentation.py` 显式指定上述三参数、`--filter-backend cpu`、本地 `--dataset` 和已有合格硬件；其生成的服务参数包含 `--hdmi 1`，PC 观察器另行启动。已关闭包不得重跑。Linux mock 的单轮／三轮源身份、EOF、代次、互斥及截断输入测试已通过，实际原生参数另从归档核对，不以 mock 替代板测。
 

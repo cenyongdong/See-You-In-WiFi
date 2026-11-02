@@ -34,6 +34,6 @@ r1新增adapter有格式告警，严格selftest因单行if告警停止构建；r
 
 两abort STREAMOFF0／子回收256／network source0／Engine join后销毁／内核同／端口释放，代理会话全关闭。规整0、无清缓存／重启／CMA／SDK／模型／BOOT变化；最终MemAvailable749348KiB／CmaFree4228／普通512KiB单位23，仅现场，不作泄漏或永久可靠性证明。
 
-源码格式／取证耦合问题已修正，坏块根因未修。复制前新字符串元数据分配与计时会扰动时序，失败从早前inv3／11移动到72不能当性能提升或稳定性修复。匹配DMA／UDMA定义仍缺证；后续先以真实类型常量scratch控制类型差别，再单独动态模式，保留原始错误和两晚源，不猜寄存器、cache或零拷贝修复。[结果](../tools/pose-v1/TENSOR-IDENTITY-RESULTS-20261010.md)／[下一方案](../tools/pose-v1/TENSOR-IDENTITY-NEXT-20261010.md)／[完成审查](../tools/pose-v1/evidence/tensor-identity-20261010-r3/completion-review.json)／[恢复点](../tools/pose-v1/evidence/tensor-identity-20261010-r3/next-checkpoint.json)。
+源码格式／取证耦合问题已修正，坏块根因未修。复制前新字符串元数据分配与计时会扰动时序，失败从早前inv3／11移动到72不能当性能提升或稳定性修复。匹配DMA／UDMA定义仍缺证；后续先以真实类型常量scratch控制类型差别，再单独动态模式，保留原始错误和两晚源，不猜寄存器、cache或零拷贝修复。[结果](../tools/pose-v1/TENSOR-IDENTITY-RESULTS-20261010.md)／[下一方案](../tools/pose-v1/TENSOR-IDENTITY-NEXT-20261010.md)／完成审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/tensor-identity-20261010-r3/completion-review.json`）／恢复点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/tensor-identity-20261010-r3/next-checkpoint.json`）。
 
-[本批证据](../tools/pose-v1/evidence/tensor-identity-20261010-r3/)；[获批路线](../tools/pose-v1/SCRATCH-COPY-NEXT-20261010.md)。
+本批证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/tensor-identity-20261010-r3/`）；[获批路线](../tools/pose-v1/SCRATCH-COPY-NEXT-20261010.md)。

@@ -8,7 +8,7 @@
 适用范围仍为固定FP32、全有效分布及Host CPTR内存，正式推理器未接入、mixed未验收；
 下面未执行/待回传文字是开发过程历史，勿据此重跑。
 
-2026-10-06最新结果：r2新包/交叉编译已完成并经[evidence复核](evidence/cpu-adapter-r2-build-review-20261006.json)，
+2026-10-06最新结果：r2新包/交叉编译已完成并经evidence复核（历史附件，当前仓库未附：`evidence/cpu-adapter-r2-build-review-20261006.json`），
 源码/SDK/程序/包身份匹配，281项数据参考及辅助文件不变；ARM程序编译链接通过。
 仅构建验收，板端加载及107例CPU数值尚未运行；当前从[命令C](CPU-ADAPTER-COMMANDS.md)开始，
 不重复A/B、不直接进入mixed。以下未编译文字保留为历史状态。

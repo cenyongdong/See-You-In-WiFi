@@ -18,7 +18,7 @@
 
 完整综合、优化、布局、物理优化、布线、报告及bit生成的原生退出码均为0。实际布线84934／84934条可布线网完成、路由错误0；setup WNS `+0.030 ns`、hold WHS `+0.012 ns`，TNS／THS均0，内部未约束端点0。仅保留原AI两项同对象最小周期例外`−0.409／−0.071 ns`，因此原始`raw_timing_pass=false`，不伪写全部原生时序通过。最终DRC仅使用原有目标与GT适配范围，无新增豁免。
 
-实际布线网表中七组诊断层级均为0、调试核0、MARK_DEBUG网0。原厂链接网表继承的1277个MARK_DEBUG属性在布线前清除；HP2就绪路径仍以5ns约束，实际slack `+0.580 ns`，S01 ARVALID／ARADDR／RREADY功能连线保持。详见[qualification.json](../../../tools/pose-v1/evidence/hdmi-probe-free-20261025-r1/qualification.json)及同目录`physical/`原始报告。
+实际布线网表中七组诊断层级均为0、调试核0、MARK_DEBUG网0。原厂链接网表继承的1277个MARK_DEBUG属性在布线前清除；HP2就绪路径仍以5ns约束，实际slack `+0.580 ns`，S01 ARVALID／ARADDR／RREADY功能连线保持。详见qualification.json（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-20261025-r1/qualification.json`）及同目录`physical/`原始报告。
 
 | 产物 | SHA-256 |
 |---|---|
@@ -26,7 +26,7 @@
 | Procise处理后的bit | `3e178f1ce08de686a88e20348faf14d73bc0fe9d23d4aca497631cdefe534768` |
 | 当前恢复的原BOOT | `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef` |
 
-新BOOT路径为`.local/hdmi-probe-free-20261025-r1/boot-package/BOOT-probe-free-r1.bin`，长度7023552字节。PL以外所有字节、padding及原FSBL／bl31／U-Boot均与原BOOT一致，见[package-review.json](../../../tools/pose-v1/evidence/hdmi-probe-free-20261025-r1/package-review.json)。源／约束身份记录于qualification，配套ARM64编译及无旧观察器符号检查通过。
+新BOOT路径为`.local/hdmi-probe-free-20261025-r1/boot-package/BOOT-probe-free-r1.bin`，长度7023552字节。PL以外所有字节、padding及原FSBL／bl31／U-Boot均与原BOOT一致，见package-review.json（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-20261025-r1/package-review.json`）。源／约束身份记录于qualification，配套ARM64编译及无旧观察器符号检查通过。
 
 ## 第1次板测与失败原值
 
@@ -52,7 +52,7 @@ DMA_VERSION: 1000024426
 
 路由器持久自启动继续启用：TX仍为同一generation1，最后样本84次续期、0失败；三RX在板端接收程序退出后正常等待重连。本轮未加载或停止无线驱动／守护，没有遗留本轮测试负载。
 
-- 最终状态：[state.json](../../../tools/pose-v1/evidence/hdmi-probe-free-20261025-r1/state.json)。
+- 最终状态：state.json（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-20261025-r1/state.json`）。
 - 原始板端包：`.local/hdmi-probe-free-20261025-r1/round-1-result-evidence.tar.gz`；提取入口`board-evidence-round-1/`。
 - 原始失败：`board-evidence-round-1/pipeline/run/engine/failure.json`；退出与资源：`pipeline/outcome.json`、`pipeline/run/completion.json`、`pipeline/metadata/`。
 - BOOT安装／恢复／回退／关闭与最终审计：`board-evidence-round-1/boot-control/metadata/`；串口：`uart-candidate-1/`、`uart-fallback/`。

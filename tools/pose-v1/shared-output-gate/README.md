@@ -6,4 +6,4 @@
 
 `selftest.cpp`包含实际执行的21组边界和拒绝检查；`replay.cpp`对原始FP32文件执行同一模块，用于已保存结果复核。全量及受检／排除组误差分别返回；零受检候选须在调用方记录位置门禁不适用。
 
-新独立ARM入口、21自测、三窗C++回放／独立复核和源码归档见[最新证据](../evidence/shared-confidence-gate-20261015-r1/REPORT.md)。受检最大关节差0.9765625mm，保存三窗均符合新规；新ARM已编译但本轮未上板。此前全候选v1第三窗失败及旧源码归档见[历史证据](../evidence/shared-gate-policy-20261015-r1/REPORT.md)，保持原值。
+新独立ARM入口、21自测、三窗C++回放／独立复核和源码归档见最新证据（历史附件，当前仓库未附：`../evidence/shared-confidence-gate-20261015-r1/REPORT.md`）。受检最大关节差0.9765625mm，保存三窗均符合新规；新ARM已编译但本轮未上板。此前全候选v1第三窗失败及旧源码归档见历史证据（历史附件，当前仓库未附：`../evidence/shared-gate-policy-20261015-r1/REPORT.md`），保持原值。

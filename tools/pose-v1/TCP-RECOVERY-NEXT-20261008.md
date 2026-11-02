@@ -1,8 +1,8 @@
 # 首启动恢复与输出失配取证准备
 
-最新本阶段采用一次规整，保存优先新目标完成三/27＋重复32全链验证，见[PRESAVED结果](PRESAVED-RESULTS-20261008.md)及[当前检查点](evidence/tcp-presaved-20261008-r1/next-checkpoint.json)。此次一次授权已使用，无需重复恢复旧包；本文件下方为此前准备/历史停止状态，不作再次规整或重启指令。
+最新本阶段采用一次规整，保存优先新目标完成三/27＋重复32全链验证，见[PRESAVED结果](PRESAVED-RESULTS-20261008.md)及当前检查点（历史附件，当前仓库未附：`evidence/tcp-presaved-20261008-r1/next-checkpoint.json`）。此次一次授权已使用，无需重复恢复旧包；本文件下方为此前准备/历史停止状态，不作再次规整或重启指令。
 
-当前按既定失败策略结束板测，属于失败停止；没有后台任务或自动重试。先读[结果](TCP-INTEGRATION-RESULTS-20261008.md)、[检查点](evidence/tcp-evidence-20261008-r1/next-checkpoint.json)、[ADR_02](../../ADR/ADR_02.md)与[ADR_12](../../ADR/ADR_12.md)。
+当前按既定失败策略结束板测，属于失败停止；没有后台任务或自动重试。先读[结果](TCP-INTEGRATION-RESULTS-20261008.md)、检查点（历史附件，当前仓库未附：`evidence/tcp-evidence-20261008-r1/next-checkpoint.json`）、[ADR_02](../../ADR/ADR_02.md)与[ADR_12](../../ADR/ADR_12.md)。
 
 ## 恢复首启动条件
 

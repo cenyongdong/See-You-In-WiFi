@@ -64,7 +64,7 @@
 
 ## 重新生成的演示部署包
 
-2026-10-29 按整理后的核心源码重新构建并生成 [pose180-demo-deploy-20261029-r2.tar.gz](../../../Deliverables/history/software/pose180-demo-deploy-20261029-r2.tar.gz)，独立操作入口见 [部署步骤](../../../Deliverables/history/software/pose180-demo-deploy-20261029-r2-DEPLOY.md)。包内包含 ARM64 程序、原 epoch99、两种输入启动器、290 帧官方原始 CSI、PC 页面资源、既有合格 BOOT 备份、按新目录组织的源码快照及本地验证记录。BOOT 不自动安装；本包没有部署上板。
+2026-10-29 按整理后的核心源码重新构建并生成 pose180-demo-deploy-20261029-r2.tar.gz（历史附件，当前仓库未附：`../../../Deliverables/history/software/pose180-demo-deploy-20261029-r2.tar.gz`），独立操作入口见 部署步骤（历史附件，当前仓库未附：`../../../Deliverables/history/software/pose180-demo-deploy-20261029-r2-DEPLOY.md`）。包内包含 ARM64 程序、原 epoch99、两种输入启动器、290 帧官方原始 CSI、PC 页面资源、既有合格 BOOT 备份、按新目录组织的源码快照及本地验证记录。BOOT 不自动安装；本包没有部署上板。
 
 新构建的 native 8 类检查、ARM64 常驻／严格目标、10 类 mock 脚本、PC 13 项与官方 290 样本核对通过。强杀隔离 mock 后曾出现端口检查过早失败，原始记录保留；测试现等待被收养的原生子进程实际 `waitpid` 回收，再验证端口，连续 3 次通过。该调整仅作用于本地故障测试，不放宽板端资源释放规则。
 

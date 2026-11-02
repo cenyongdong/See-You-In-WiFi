@@ -6,4 +6,4 @@
 - 应用日志记录所用模型/位流及帧号、阶段耗时、丢帧、错误和输出状态。
 - 原始日志保留，分析结论另写说明；不把只读检查输出标成实际串口或功能验收。
 
-首版证据保留在 `../tools/pose-v1/evidence/`。最终运行与清理状态见[项目进度](../PROJECT-PROGRESS.md)和[收尾记录](../.local/project-cleanup-20261029-r1/summary.json)；冗余日志与旧采集已清理，必要故障记录保留，不再将早期 AI／HDMI 配套核对描述为当前阶段。
+首版证据保留在 `../tools/pose-v1/evidence/`。最终运行与清理状态见[项目进度](../PROJECT-PROGRESS.md)和收尾记录（本机留存，仓库未附：`../.local/project-cleanup-20261029-r1/summary.json`）；冗余日志与旧采集已清理，必要故障记录保留，不再将早期 AI／HDMI 配套核对描述为当前阶段。

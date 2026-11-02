@@ -1,8 +1,8 @@
 # 项目文档导航
 
-更新日期：2026-11-01。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
+更新日期：2026-11-02。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
 
-当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。最新本机交付是r4 RAR；11月1日从该RAR新解压完成完整本地实现与位流生成，未上板。
+当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前部署RAR通过Release提供，完整源码RAR本机交付；11月1日从该RAR新解压完成完整本地实现与位流生成，未上板。
 
 ## 当前阅读入口
 
@@ -16,18 +16,34 @@
 | 数据来源、30分钟实测及关键性能 | [长测](FPGA/csi_preprocess/LONGRUN.md)、[性能汇总](Deliverables/PERFORMANCE.md) |
 | 源码RAR、厂商依赖及完整硬件复现 | [源码说明](Deliverables/SOURCE-20261031.md)、[完整重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
 | 模型与第三方许可 | [模型索引](model/README.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[安全维护](SECURITY.md) |
-| AI辅助开发环节、使用记录、人工审核与贡献边界 | [AI辅助开发说明](Docs/AI辅助开发流程与使用记录.md) |
+| 当前参赛技术报告 | [技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf) |
+| AI辅助开发流程、人工审核与贡献边界 | [AI辅助开发说明](Docs/llm_usage.md) |
 
 ## Git 克隆后的文件可用范围
 
-- 目录列的是本工作区可见的实际文件，不承诺普通Git克隆具备本机RAR、厂商依赖、恢复检查点、原始权重和所有历史附件；获取范围见[源码说明](Deliverables/SOURCE-20261031.md)。SDK／EDA安装、许可和匹配的器件环境外置。
+- GitHub网页与普通Git克隆提供已提交的源码、部署模型文件、精选证据和明确发布的提交材料。r4部署RAR通过[Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)和[部署包直链](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar)下载，Git文件树中不包含RAR本体；完整源码RAR仍为本机交付，未公开下载；包内范围见[源码说明](Deliverables/SOURCE-20261031.md)及[部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。
+- `.local/`恢复记录、原始训练checkpoint、未公开的历史附件及其它本机资料不随Git克隆提供；SDK／EDA安装、许可和匹配的器件环境外置。不能根据说明中的本机路径推断文件已公开。
+- 两份RAR的公开校验入口为[部署包SHA256](Deliverables/pose180-csi-release-20261031-r4.rar.sha256)、[源码包SHA256](Deliverables/pose180-complete-sources-20261031-r4.rar.sha256)和[交付核验](Deliverables/release-20261031-r4-validation.json)。部署RAR及同名校验文件已在Release提供；源码包仅公开校验和范围说明，不能据此认定源码RAR已上传。
 - r4源码RAR为198429558字节，交付身份见[核验](Deliverables/release-20261031-r4-validation.json)。源码RAR保持被独立重建验证的冻结身份；部署RAR在11月1日后续同步了实时采集完整说明与四机安装文件，移除旧版BOOT，仅附最新版替换镜像。未上传设备，最新部署校验以同名.sha256和交付核验为准。
-- 旧交付包、旧采集及副本已清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见[记录](.local/project-cleanup-20261029-r1/summary.json)，10月31日交付清理见[记录](.local/delivery-cleanup-20261031-r1/summary.json)。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
+- 旧交付包、旧采集及副本已清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见记录（本机留存，仓库未附：`.local/project-cleanup-20261029-r1/summary.json`），10月31日交付清理见记录（本机留存，仓库未附：`.local/delivery-cleanup-20261031-r1/summary.json`）。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
+
 ## 引用与归档
 
-- 历史报告仍有指向已清理附件、旧相对目录和本机SDK安装的原始引用。检查中将它们记录为历史附件缺口，不补造附件、不把旧结果改写成新版本通过，也不将这些路径当作现行部署入口。
-- [技术文档排版修订版](Docs/commit_docs/技术文档_v1_排版修订.docx)覆盖当前PS／NPU／PL分工、CSI分组流水、骨架绘图及30分钟实测，附架构与关键性能图表。
-- [技术文档v1](Docs/commit_docs/技术文档_v1.docx)、[原始稿](Docs/commit_docs/技术文档.docx)、[技术稿PDF](Docs/commit_docs/技术文档_v1.pdf)及[海报](Docs/commit_docs/项目海报.pdf)保留各自版本内容，部分反映较早分工与三片段阶段。赛题和承诺书保留原始版本。
+- 原始报告和冻结快照保留原文，其中可能包含已清理附件、旧相对目录和本机SDK的原始引用。这些历史附件缺口不作为现行下载／部署入口，也不因链接缺失而改写原测试结果。当前可公开复核的数据以[性能与证据汇总](Deliverables/PERFORMANCE.md)及其链接为入口。
+- 普通说明中的“本机留存，仓库未附”表示本机文件未发布；“历史附件，当前仓库未附”表示当前未提供可供网页读取的对应附件。两类条目保留原路径供追溯，不提供无效网页跳转。
+- 当前参赛技术报告为[技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf)。
+- 历史稿包括已发布的[v1排版修订Word](Docs/commit_docs/技术文档_v1_排版修订.docx)和[v1 Word](Docs/commit_docs/技术文档_v1.docx)。原始模板`Docs/commit_docs/技术文档.docx`和旧版PDF`Docs/commit_docs/技术文档_v1.pdf`本机留存，仓库未附。各版本及[海报](Docs/commit_docs/项目海报.pdf)保留原内容，部分反映较早分工与三片段阶段。
+
+## 链接检查
+
+仓库提供[只读链接检查脚本](tools/docs/check_links.py)，使用Python 3.9及以上版本和Git，无需设备、SDK或网络访问。
+
+```sh
+python tools/docs/check_links.py --worktree
+python tools/docs/check_links.py --ref HEAD --output-dir .local/doc-link-check
+```
+
+工作区模式只使用已跟踪文件；拟发布的新文件须用可重复的`--include-new 仓库相对路径`显式加入，且不能仍被Git忽略。指定`--ref`时读取该提交的实际文件树和正文，不使用本机未提交内容。Git未在PATH时可用`--git`指定程序。普通文档错误使检查返回非零；受保护历史记录的附件缺口单独报告，新增文档不会因位于历史目录而自动豁免。外部网站不作在线存活检查。
 
 ## 撤下页面的阅读位置
 
@@ -43,85 +59,87 @@
 |---|---:|
 | 本机历史记录与冻结快照 | 61 |
 | 架构说明与决策历史 | 66 |
-| 项目总览与维护规则 | 11 |
+| 项目总览与维护规则 | 12 |
 | 交付与复现说明 | 4 |
 | 共享核心与旧工程 | 18 |
-| 参考资料与提交材料索引 | 1 |
+| 参考资料与提交材料索引 | 2 |
 | FPGA模块与实现历史 | 66 |
 | 模型来源与候选历史 | 7 |
 | 当前主工程与分阶段记录 | 28 |
 | 训练采集及部署工具 | 36 |
-| 原始结果与取证报告 | 60 |
+| 原始结果与取证报告 | 69 |
 | 早期pose-v1开发历史 | 164 |
 
-以下逐份列出现存Markdown；“历史”指正文按所属时间理解，不表示缺陷已修复或任务获得新授权。
+以下目录同时列出已发布Markdown和明确标记的本机资料，分类数量按实际列项统计。“历史”指正文按所属时间理解，不表示缺陷已修复或任务获得新授权。冻结报告中的附件按原记录范围阅读。
 
 <details>
-<summary>本机历史记录与冻结快照（61份）</summary>
+<summary>本机历史记录与冻结快照（61份，不随仓库分发）</summary>
+
+以下文件本机留存，不随仓库分发；纯文本路径仅用于本机追溯，不提供GitHub网页跳转。
 
 | 文档 | 用途与范围 |
 |---|---|
-| [.local/ai-hdmi-drain-joint-20261024-r39/source/diagnostics/README.md](.local/ai-hdmi-drain-joint-20261024-r39/source/diagnostics/README.md) | 历史决策／记录／模块参考；README |
-| [.local/ai-hdmi-joint-20261023-r35/source/diagnostics/README.md](.local/ai-hdmi-joint-20261023-r35/source/diagnostics/README.md) | 历史决策／记录／模块参考；README |
-| [.local/ai-hdmi-joint-20261023-r36/repro-source/diagnostics/README.md](.local/ai-hdmi-joint-20261023-r36/repro-source/diagnostics/README.md) | 历史决策／记录／模块参考；README |
-| [.local/engine-timing-test-fixtures/synthetic-2d7301ac0d82414eb642d72e9cb3d517/analysis/report.md](.local/engine-timing-test-fixtures/synthetic-2d7301ac0d82414eb642d72e9cb3d517/analysis/report.md) | 历史决策／记录／模块参考；Engine计时分析 |
-| [.local/engine-timing-test-fixtures/synthetic-bcb42a333fb749a39320906dd0bf74d7/analysis/report.md](.local/engine-timing-test-fixtures/synthetic-bcb42a333fb749a39320906dd0bf74d7/analysis/report.md) | 历史决策／记录／模块参考；Engine计时分析 |
-| [.local/hdmi-ack-transport-20261024-r50/README.md](.local/hdmi-ack-transport-20261024-r50/README.md) | 历史决策／记录／模块参考；Synthetic ACK transport comparison |
-| [.local/hdmi-complete-verify-r2/README.md](.local/hdmi-complete-verify-r2/README.md) | 历史决策／记录／模块参考；HDMI 完整源码工程（r26 读帧连接基线） |
-| [.local/hdmi-complete-verify/README.md](.local/hdmi-complete-verify/README.md) | 历史决策／记录／模块参考；HDMI 完整源码工程（r26 读帧连接基线） |
-| [.local/hdmi-live-20261017-r3/execute_read_v3.README.md](.local/hdmi-live-20261017-r3/execute_read_v3.README.md) | 历史决策／记录／模块参考；read-v3显式逐步执行入口 |
-| [.local/hdmi-live-20261017-r3/prepare_remote_read_v3.README.md](.local/hdmi-live-20261017-r3/prepare_remote_read_v3.README.md) | 历史决策／记录／模块参考；read-v3逐阶段源码生成器 |
-| [.local/hdmi-main-docs-20261024/Done.md](.local/hdmi-main-docs-20261024/Done.md) | 历史决策／记录／模块参考；已完成工作记录 |
-| [.local/hdmi-main-docs-20261024/PROJECT-PROGRESS.md](.local/hdmi-main-docs-20261024/PROJECT-PROGRESS.md) | 历史决策／记录／模块参考；项目进度总览 |
-| [.local/hdmi-pipeline-20261024-r53/display/README.md](.local/hdmi-pipeline-20261024-r53/display/README.md) | 历史决策／记录／模块参考；r53 single-owner begin/poll HDMI output |
-| [.local/hdmi-render-speed-20261024-r47/native-render/README.md](.local/hdmi-render-speed-20261024-r47/native-render/README.md) | 历史决策／记录／模块参考；Native RGB565 HDMI renderer |
-| [.local/hdmi-render-speed-20261024-r47/renderer/CHANGES.md](.local/hdmi-render-speed-20261024-r47/renderer/CHANGES.md) | 历史决策／记录／模块参考；r47 static background cache |
-| [.local/hdmi-s01-isolation-20261022-r28/HDMI-PS-HP2-OFFICIAL-QUESTIONS-20261022.md](.local/hdmi-s01-isolation-20261022-r28/HDMI-PS-HP2-OFFICIAL-QUESTIONS-20261022.md) | 历史决策／记录／模块参考；FMQL30TAI HDMI启动异常技术问题报告 |
-| [.local/hdmi-s01-soak-20261022-r29/HDMI-PS-HP2-OFFICIAL-QUESTIONS-20261022.md](.local/hdmi-s01-soak-20261022-r29/HDMI-PS-HP2-OFFICIAL-QUESTIONS-20261022.md) | 历史决策／记录／模块参考；FMQL30TAI HDMI启动异常技术问题报告 |
-| [.local/hp2-deferred-consume-20261024-r45/deploy/INTERFACE.md](.local/hp2-deferred-consume-20261024-r45/deploy/INTERFACE.md) | 历史决策／记录／模块参考；r45 board controller interface |
-| [.local/hp2-deferred-consume-20261024-r45/gates/INPUT-CONTRACT.md](.local/hp2-deferred-consume-20261024-r45/gates/INPUT-CONTRACT.md) | 历史决策／记录／模块参考；r45 deferred consumption: collector and pure gate |
-| [.local/hp2-deferred-consume-20261024-r45/source/diagnostics/README.md](.local/hp2-deferred-consume-20261024-r45/source/diagnostics/README.md) | 历史决策／记录／模块参考；README |
-| [.local/hp2-mmio32-20261024-r46/README.md](.local/hp2-mmio32-20261024-r46/README.md) | 历史决策／记录／模块参考；r46 offline MMIO32 correction |
-| [.local/kinect-calibrated-20261028-r1/COMPARISON.md](.local/kinect-calibrated-20261028-r1/COMPARISON.md) | 历史决策／记录／模块参考；现场 Kinect／CSI 两组限时训练结果 |
-| [.local/kinect-csi-direct-20261028-r5/COLLECTION.md](.local/kinect-csi-direct-20261028-r5/COLLECTION.md) | 历史决策／记录／模块参考；Kinect／CSI 长时动作原始数据 |
-| [.local/kinect-csi-direct-20261028-r6/COLLECTION.md](.local/kinect-csi-direct-20261028-r6/COLLECTION.md) | 历史决策／记录／模块参考；含坐姿的新增长时采集 |
-| [.local/kinect-pairing-20261028-r1/PAIRING.md](.local/kinect-pairing-20261028-r1/PAIRING.md) | 历史决策／记录／模块参考；CSI—Kinect 接收时刻配对 |
-| [.local/nexmon-rtac86u-20261017-r1/nexmon_csi/README.md](.local/nexmon-rtac86u-20261017-r1/nexmon_csi/README.md) | 历史决策／记录／模块参考；Nexmon Channel State Information Extractor |
-| [.local/nexmon-rtac86u-20261017-r1/nexmon_csi/utils/makecsiparams/README.md](.local/nexmon-rtac86u-20261017-r1/nexmon_csi/utils/makecsiparams/README.md) | 历史决策／记录／模块参考；README |
-| [.local/nexmon-tx-router-20261022-r1/derivative-source-r2/README.md](.local/nexmon-tx-router-20261022-r1/derivative-source-r2/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/nexmon-tx-router-20261022-r1/derivative-source/README.md](.local/nexmon-tx-router-20261022-r1/derivative-source/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/nexmon-tx-router-20261022-r1/source-archive/nexmon_tx_task-main/README.md](.local/nexmon-tx-router-20261022-r1/source-archive/nexmon_tx_task-main/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/pose-v1-build/demo-core-check-20261014-r1/demo/README.md](.local/pose-v1-build/demo-core-check-20261014-r1/demo/README.md) | 历史决策／记录／模块参考；Wi-Fi 人体三维姿态端到端演示 |
-| [.local/pose-v1-build/demo-refactor-20261013-r1/demo/README.md](.local/pose-v1-build/demo-refactor-20261013-r1/demo/README.md) | 历史决策／记录／模块参考；Wi-Fi 人体三维姿态端到端演示 |
-| [.local/pose180-final-core-20261029-r1/source-unpacked/software/core/README.md](.local/pose180-final-core-20261029-r1/source-unpacked/software/core/README.md) | 历史决策／记录／模块参考；正式运行核心 |
-| [.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/DEMO-INPUTS.md](.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/DEMO-INPUTS.md) | 历史决策／记录／模块参考；双输入演示与源码阅读入口 |
-| [.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/FINAL-REVIEW.md](.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/FINAL-REVIEW.md) | 历史决策／记录／模块参考；核心源码最终审查与双输入归档 |
-| [.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/KINECT-BOARD-TEST-20261028.md](.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/KINECT-BOARD-TEST-20261028.md) | 历史决策／记录／模块参考；两模型 TopK=1 安全核心测试 |
-| [.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md](.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-final-core-20261029-r1/source-unpacked/SOURCE-README.md](.local/pose180-final-core-20261029-r1/source-unpacked/SOURCE-README.md) | 历史决策／记录／模块参考；核心源码归档 |
-| [.local/pose180-hdmi-20261025-r2/README.md](.local/pose180-hdmi-20261025-r2/README.md) | 历史决策／记录／模块参考；pose180 HDMI 新包：已关闭 |
-| [.local/pose180-kinect-board-test-20261028-r1/README.md](.local/pose180-kinect-board-test-20261028-r1/README.md) | 历史决策／记录／模块参考；自采模型有限测试（已结束）及原始模型恢复 |
-| [.local/pose180-original-longrun-20261028-r1/README.md](.local/pose180-original-longrun-20261028-r1/README.md) | 历史决策／记录／模块参考；原始epoch99长时测试：持续运行 |
-| [.local/pose180-resident-continuous-20261025-r6/firmware-test/derivative/README.md](.local/pose180-resident-continuous-20261025-r6/firmware-test/derivative/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/pose180-resident-continuous-20261025-r6/firmware-test/final-down-status/derivative/README.md](.local/pose180-resident-continuous-20261025-r6/firmware-test/final-down-status/derivative/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/pose180-resident-continuous-20261025-r6/firmware-test/final/derivative/README.md](.local/pose180-resident-continuous-20261025-r6/firmware-test/final/derivative/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/pose180-resident-continuous-20261025-r6/firmware/derivative-source/README.md](.local/pose180-resident-continuous-20261025-r6/firmware/derivative-source/README.md) | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
-| [.local/pose180-top1-no-threshold-20261028-r1/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md](.local/pose180-top1-no-threshold-20261028-r1/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r1/unpacked/pose180-top1-no-threshold-20261028-r1/README.md](.local/pose180-top1-no-threshold-20261028-r1/unpacked/pose180-top1-no-threshold-20261028-r1/README.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r2/source-unpacked/software/core/README.md](.local/pose180-top1-no-threshold-20261028-r2/source-unpacked/software/core/README.md) | 历史决策／记录／模块参考；正式运行核心 |
-| [.local/pose180-top1-no-threshold-20261028-r2/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md](.local/pose180-top1-no-threshold-20261028-r2/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r2/unpacked/pose180-top1-no-threshold-20261028-r2/README.md](.local/pose180-top1-no-threshold-20261028-r2/unpacked/pose180-top1-no-threshold-20261028-r2/README.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r3/release-before-pre-hardware-check/README.md](.local/pose180-top1-no-threshold-20261028-r3/release-before-pre-hardware-check/README.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r3/source-unpacked/software/core/README.md](.local/pose180-top1-no-threshold-20261028-r3/source-unpacked/software/core/README.md) | 历史决策／记录／模块参考；正式运行核心 |
-| [.local/pose180-top1-no-threshold-20261028-r3/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md](.local/pose180-top1-no-threshold-20261028-r3/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r3/unpacked/pose180-top1-no-threshold-20261028-r3/README.md](.local/pose180-top1-no-threshold-20261028-r3/unpacked/pose180-top1-no-threshold-20261028-r3/README.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r4/source-unpacked/software/core/README.md](.local/pose180-top1-no-threshold-20261028-r4/source-unpacked/software/core/README.md) | 历史决策／记录／模块参考；正式运行核心 |
-| [.local/pose180-top1-no-threshold-20261028-r4/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md](.local/pose180-top1-no-threshold-20261028-r4/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/pose180-top1-no-threshold-20261028-r4/unpacked/pose180-top1-no-threshold-20261028-r4/README.md](.local/pose180-top1-no-threshold-20261028-r4/unpacked/pose180-top1-no-threshold-20261028-r4/README.md) | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
-| [.local/r30-relocated/README.md](.local/r30-relocated/README.md) | 历史决策／记录／模块参考；r30 实际源码工程（供官方检查，2026-10-26） |
-| [.local/r30-relocated/waveforms/HDMI_HP2_REAL_r30/README.md](.local/r30-relocated/waveforms/HDMI_HP2_REAL_r30/README.md) | 历史决策／记录／模块参考；HDMI／HP2 实板连续波形（2026-10-22，r30） |
-| [.local/router-autostart-20261025-r1/HANDOFF.md](.local/router-autostart-20261025-r1/HANDOFF.md) | 历史决策／记录／模块参考；READY — router autostart verified |
-| [.local/technical-document-20261029-r1/artifact.md](.local/technical-document-20261029-r1/artifact.md) | 历史决策／记录／模块参考；技术文档填充约定 |
+| `.local/ai-hdmi-drain-joint-20261024-r39/source/diagnostics/README.md` | 历史决策／记录／模块参考；README |
+| `.local/ai-hdmi-joint-20261023-r35/source/diagnostics/README.md` | 历史决策／记录／模块参考；README |
+| `.local/ai-hdmi-joint-20261023-r36/repro-source/diagnostics/README.md` | 历史决策／记录／模块参考；README |
+| `.local/engine-timing-test-fixtures/synthetic-2d7301ac0d82414eb642d72e9cb3d517/analysis/report.md` | 历史决策／记录／模块参考；Engine计时分析 |
+| `.local/engine-timing-test-fixtures/synthetic-bcb42a333fb749a39320906dd0bf74d7/analysis/report.md` | 历史决策／记录／模块参考；Engine计时分析 |
+| `.local/hdmi-ack-transport-20261024-r50/README.md` | 历史决策／记录／模块参考；Synthetic ACK transport comparison |
+| `.local/hdmi-complete-verify-r2/README.md` | 历史决策／记录／模块参考；HDMI 完整源码工程（r26 读帧连接基线） |
+| `.local/hdmi-complete-verify/README.md` | 历史决策／记录／模块参考；HDMI 完整源码工程（r26 读帧连接基线） |
+| `.local/hdmi-live-20261017-r3/execute_read_v3.README.md` | 历史决策／记录／模块参考；read-v3显式逐步执行入口 |
+| `.local/hdmi-live-20261017-r3/prepare_remote_read_v3.README.md` | 历史决策／记录／模块参考；read-v3逐阶段源码生成器 |
+| `.local/hdmi-main-docs-20261024/Done.md` | 历史决策／记录／模块参考；已完成工作记录 |
+| `.local/hdmi-main-docs-20261024/PROJECT-PROGRESS.md` | 历史决策／记录／模块参考；项目进度总览 |
+| `.local/hdmi-pipeline-20261024-r53/display/README.md` | 历史决策／记录／模块参考；r53 single-owner begin/poll HDMI output |
+| `.local/hdmi-render-speed-20261024-r47/native-render/README.md` | 历史决策／记录／模块参考；Native RGB565 HDMI renderer |
+| `.local/hdmi-render-speed-20261024-r47/renderer/CHANGES.md` | 历史决策／记录／模块参考；r47 static background cache |
+| `.local/hdmi-s01-isolation-20261022-r28/HDMI-PS-HP2-OFFICIAL-QUESTIONS-20261022.md` | 历史决策／记录／模块参考；FMQL30TAI HDMI启动异常技术问题报告 |
+| `.local/hdmi-s01-soak-20261022-r29/HDMI-PS-HP2-OFFICIAL-QUESTIONS-20261022.md` | 历史决策／记录／模块参考；FMQL30TAI HDMI启动异常技术问题报告 |
+| `.local/hp2-deferred-consume-20261024-r45/deploy/INTERFACE.md` | 历史决策／记录／模块参考；r45 board controller interface |
+| `.local/hp2-deferred-consume-20261024-r45/gates/INPUT-CONTRACT.md` | 历史决策／记录／模块参考；r45 deferred consumption: collector and pure gate |
+| `.local/hp2-deferred-consume-20261024-r45/source/diagnostics/README.md` | 历史决策／记录／模块参考；README |
+| `.local/hp2-mmio32-20261024-r46/README.md` | 历史决策／记录／模块参考；r46 offline MMIO32 correction |
+| `.local/kinect-calibrated-20261028-r1/COMPARISON.md` | 历史决策／记录／模块参考；现场 Kinect／CSI 两组限时训练结果 |
+| `.local/kinect-csi-direct-20261028-r5/COLLECTION.md` | 历史决策／记录／模块参考；Kinect／CSI 长时动作原始数据 |
+| `.local/kinect-csi-direct-20261028-r6/COLLECTION.md` | 历史决策／记录／模块参考；含坐姿的新增长时采集 |
+| `.local/kinect-pairing-20261028-r1/PAIRING.md` | 历史决策／记录／模块参考；CSI—Kinect 接收时刻配对 |
+| `.local/nexmon-rtac86u-20261017-r1/nexmon_csi/README.md` | 历史决策／记录／模块参考；Nexmon Channel State Information Extractor |
+| `.local/nexmon-rtac86u-20261017-r1/nexmon_csi/utils/makecsiparams/README.md` | 历史决策／记录／模块参考；README |
+| `.local/nexmon-tx-router-20261022-r1/derivative-source-r2/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/nexmon-tx-router-20261022-r1/derivative-source/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/nexmon-tx-router-20261022-r1/source-archive/nexmon_tx_task-main/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/pose-v1-build/demo-core-check-20261014-r1/demo/README.md` | 历史决策／记录／模块参考；Wi-Fi 人体三维姿态端到端演示 |
+| `.local/pose-v1-build/demo-refactor-20261013-r1/demo/README.md` | 历史决策／记录／模块参考；Wi-Fi 人体三维姿态端到端演示 |
+| `.local/pose180-final-core-20261029-r1/source-unpacked/software/core/README.md` | 历史决策／记录／模块参考；正式运行核心 |
+| `.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/DEMO-INPUTS.md` | 历史决策／记录／模块参考；双输入演示与源码阅读入口 |
+| `.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/FINAL-REVIEW.md` | 历史决策／记录／模块参考；核心源码最终审查与双输入归档 |
+| `.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/KINECT-BOARD-TEST-20261028.md` | 历史决策／记录／模块参考；两模型 TopK=1 安全核心测试 |
+| `.local/pose180-final-core-20261029-r1/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-final-core-20261029-r1/source-unpacked/SOURCE-README.md` | 历史决策／记录／模块参考；核心源码归档 |
+| `.local/pose180-hdmi-20261025-r2/README.md` | 历史决策／记录／模块参考；pose180 HDMI 新包：已关闭 |
+| `.local/pose180-kinect-board-test-20261028-r1/README.md` | 历史决策／记录／模块参考；自采模型有限测试（已结束）及原始模型恢复 |
+| `.local/pose180-original-longrun-20261028-r1/README.md` | 历史决策／记录／模块参考；原始epoch99长时测试：持续运行 |
+| `.local/pose180-resident-continuous-20261025-r6/firmware-test/derivative/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/pose180-resident-continuous-20261025-r6/firmware-test/final-down-status/derivative/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/pose180-resident-continuous-20261025-r6/firmware-test/final/derivative/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/pose180-resident-continuous-20261025-r6/firmware/derivative-source/README.md` | 历史决策／记录／模块参考；Nexmon Scheduled Transmission |
+| `.local/pose180-top1-no-threshold-20261028-r1/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r1/unpacked/pose180-top1-no-threshold-20261028-r1/README.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r2/source-unpacked/software/core/README.md` | 历史决策／记录／模块参考；正式运行核心 |
+| `.local/pose180-top1-no-threshold-20261028-r2/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r2/unpacked/pose180-top1-no-threshold-20261028-r2/README.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r3/release-before-pre-hardware-check/README.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r3/source-unpacked/software/core/README.md` | 历史决策／记录／模块参考；正式运行核心 |
+| `.local/pose180-top1-no-threshold-20261028-r3/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r3/unpacked/pose180-top1-no-threshold-20261028-r3/README.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r4/source-unpacked/software/core/README.md` | 历史决策／记录／模块参考；正式运行核心 |
+| `.local/pose180-top1-no-threshold-20261028-r4/source-unpacked/software/pose180_pipeline/resident/STARTUP-PACKAGE.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/pose180-top1-no-threshold-20261028-r4/unpacked/pose180-top1-no-threshold-20261028-r4/README.md` | 历史决策／记录／模块参考；TopK=1、无置信度阈值启动包 |
+| `.local/r30-relocated/README.md` | 历史决策／记录／模块参考；r30 实际源码工程（供官方检查，2026-10-26） |
+| `.local/r30-relocated/waveforms/HDMI_HP2_REAL_r30/README.md` | 历史决策／记录／模块参考；HDMI／HP2 实板连续波形（2026-10-22，r30） |
+| `.local/router-autostart-20261025-r1/HANDOFF.md` | 历史决策／记录／模块参考；READY — router autostart verified |
+| `.local/technical-document-20261029-r1/artifact.md` | 历史决策／记录／模块参考；技术文档填充约定 |
 
 </details>
 
@@ -200,21 +218,22 @@
 </details>
 
 <details>
-<summary>项目总览与维护规则（11份）</summary>
+<summary>项目总览与维护规则（12份）</summary>
 
 | 文档 | 用途与范围 |
 |---|---|
 | [AGENTS.md](AGENTS.md) | 历史决策／记录／模块参考；项目执行规范 |
-| [ARCHITECTURE-DISCUSSION-20261015.md](ARCHITECTURE-DISCUSSION-20261015.md) | 历史决策／记录／模块参考；架构讨论记录与 HDMI 后续实施范围 |
+| `ARCHITECTURE-DISCUSSION-20261015.md`（本机留存，仓库未附） | 历史决策／记录／模块参考；架构讨论记录与 HDMI 后续实施范围 |
 | [DIFFICULTIES.md](DIFFICULTIES.md) | 现行入口／含历史章节；项目困难与最终处置 |
 | [DOCUMENTATION.md](DOCUMENTATION.md) | 现行入口／含历史章节；项目文档导航 |
 | [Done.md](Done.md) | 现行入口／含历史章节；已完成工作记录 |
-| [PROJECT-PROGRESS-before-hdmi-20261017.md](PROJECT-PROGRESS-before-hdmi-20261017.md) | 历史决策／记录／模块参考；项目进度总览 |
+| `PROJECT-PROGRESS-before-hdmi-20261017.md`（本机留存，仓库未附） | 历史决策／记录／模块参考；项目进度总览 |
 | [PROJECT-PROGRESS.md](PROJECT-PROGRESS.md) | 现行入口／含历史章节；项目最新进度 |
 | [README.md](README.md) | 现行入口／含历史章节；基于 Wi-Fi CSI 的嵌入式多人三维姿态感知系统 |
 | [REFERENCES.md](REFERENCES.md) | 现行入口／含历史章节；比赛开发资料索引与理解记录 |
 | [SECURITY.md](SECURITY.md) | 现行入口／含历史章节；凭据与安全维护 |
 | [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) | 现行入口／含历史章节；开源许可与第三方内容 |
+| [Logs/README.md](Logs/README.md) | 日志目录说明；日志本体本机留存 |
 
 </details>
 
@@ -257,11 +276,12 @@
 </details>
 
 <details>
-<summary>参考资料与提交材料索引（1份）</summary>
+<summary>参考资料与提交材料索引（2份）</summary>
 
 | 文档 | 用途与范围 |
 |---|---|
 | [Docs/commit_docs/官方数据集演示片段清单.md](Docs/commit_docs/%E5%AE%98%E6%96%B9%E6%95%B0%E6%8D%AE%E9%9B%86%E6%BC%94%E7%A4%BA%E7%89%87%E6%AE%B5%E6%B8%85%E5%8D%95.md) | 参考原文；官方数据集视频演示片段清单 |
+| [Docs/llm_usage.md](Docs/llm_usage.md) | AI辅助开发说明；可复用流程、人机分工与人工审核 |
 
 </details>
 
@@ -435,7 +455,7 @@
 </details>
 
 <details>
-<summary>原始结果与取证报告（60份）</summary>
+<summary>原始结果与取证报告（69份）</summary>
 
 | 文档 | 用途与范围 |
 |---|---|
@@ -499,6 +519,15 @@
 | [tools/pose180/results/comparison-100-vs180-epoch50-epoch59/REPORT.md](tools/pose180/results/comparison-100-vs180-epoch50-epoch59/REPORT.md) | 历史决策／记录／模块参考；第59轮、50轮180-query与原100-query三组对比 |
 | [tools/pose180/results/comparison-100-vs180-epoch50/REPORT.md](tools/pose180/results/comparison-100-vs180-epoch50/REPORT.md) | 历史决策／记录／模块参考；原epoch442的100-query与迁移第50轮180-query对比 |
 | [tools/pose180/results/final-delivery-20261023-r1/comparison/REPORT.md](tools/pose180/results/final-delivery-20261023-r1/comparison/REPORT.md) | 历史决策／记录／模块参考；100轮最终最佳第99轮与epoch442、第59轮对比 |
+| [tools/nexmon/evidence/preparation-20261017-r1/REPORT.md](tools/nexmon/evidence/preparation-20261017-r1/REPORT.md) | 历史准备阶段的原始报告 |
+| [tools/pose-output/evidence/pc-replay-20261018-r1/REPORT.md](tools/pose-output/evidence/pc-replay-20261018-r1/REPORT.md) | 历史PC回放阶段的原始报告 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/REPORT.md](tools/pose-v1/evidence/architecture-output-20261017-r1/REPORT.md) | 历史架构输出整理的原始报告 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ADR/README.md](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ADR/README.md) | 架构调整前的冻结快照，按原阶段阅读 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ARCHITECTURE-DISCUSSION-20261015.md](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ARCHITECTURE-DISCUSSION-20261015.md) | 架构调整前的冻结快照，按原阶段阅读 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/Done.md](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/Done.md) | 架构调整前的冻结快照，按原阶段阅读 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/FPGA/README.md](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/FPGA/README.md) | 架构调整前的冻结快照，按原阶段阅读 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/PROJECT-PROGRESS.md](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/PROJECT-PROGRESS.md) | 架构调整前的冻结快照，按原阶段阅读 |
+| [tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/REFERENCES.md](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/REFERENCES.md) | 架构调整前的冻结快照，按原阶段阅读 |
 
 </details>
 

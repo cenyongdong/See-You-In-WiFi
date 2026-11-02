@@ -32,4 +32,4 @@ inv81从实际开始到reset前有1763.68731ms空档；随后forward460.98μs、
 
 优先补齐reset前SDK与应用阶段单钟观察、绝对时隙二次门检，以及VPU poll／生产／复制阶段观察；诊断日志先在有界拥有内存保存，结束后写出，但证据迁移改变时序，须独立身份／合同和完整数值回归。暂不据此改零拷贝、图、同步或SDK。正式坏值根因仍待，管理83/100不变，完整103／严格整机5Hz／长期／HDMI待；本批无网络／完整Engine或新Host107，旧异常读取保持。
 
-详见[本批结果](../tools/pose-v1/PRODUCER-VPU-RESULTS-20261011.md)、[下一诊断](../tools/pose-v1/PRODUCER-VPU-NEXT-20261011.md)、[恢复点](../tools/pose-v1/evidence/producer-vpu-20261011-r2/next-checkpoint.json)。
+详见[本批结果](../tools/pose-v1/PRODUCER-VPU-RESULTS-20261011.md)、[下一诊断](../tools/pose-v1/PRODUCER-VPU-NEXT-20261011.md)、恢复点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-vpu-20261011-r2/next-checkpoint.json`）。

@@ -102,4 +102,4 @@ RuView的[Observatory](https://ruvnet.github.io/RuView/)及[源页面](https://g
 
 关联：[项目总览](../PROJECT-PROGRESS.md)、[核心接口](../software/core/INTERFACES.md)、[FPGA交接](../FPGA/FPGA-WORK-SUMMARY-20261016.md)、[10月15日讨论历史（冻结快照）](../tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ARCHITECTURE-DISCUSSION-20261015.md)。
 
-原架构证据入口`tools/pose-v1/evidence/architecture-output-20261017-r1`已不在当前树，本次不将它继续列为可读链接；原决定和讨论正文保留。2026-10-18仅将同一决定的后续实施状态同步到本ADR，修订前原文见[文档迁移记录](../tools/pose-v1/evidence/hdmi-documents-20261018-r1/revision.json)及before.tar；不新建无关ADR，不回写旧清单或借文档整理新增验收。
+原架构证据入口`tools/pose-v1/evidence/architecture-output-20261017-r1`已不在当前树，本次不将它继续列为可读链接；原决定和讨论正文保留。2026-10-18仅将同一决定的后续实施状态同步到本ADR，修订前原文见文档迁移记录（本机留存，仓库未附：`../tools/pose-v1/evidence/hdmi-documents-20261018-r1/revision.json`）及before.tar；不新建无关ADR，不回写旧清单或借文档整理新增验收。

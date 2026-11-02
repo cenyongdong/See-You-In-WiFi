@@ -20,7 +20,7 @@ Original op lacks traceable backend binding (including any fusion): 8622
 事实是Session::Create和apply返回，完整部署/绑定门检未通过；不是已证明的NPU计算失败或SDK不兼容。
 不能生成apply验收文件或进入mixed-one，原目录/二进制/包均保持。
 
-证据：[apply-failure-review.json](evidence/mixed-20261006-r1/apply-failure-review.json)，
+证据：apply-failure-review.json（历史附件，当前仓库未附：`evidence/mixed-20261006-r1/apply-failure-review.json`），
 完整回传evidence/mixed-20261006-r1/apply-check，截图apply-directory-errexit-user.png。
 认证口令仅用于SSH认证，未写入项目文件或日志。
 

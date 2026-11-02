@@ -1,6 +1,6 @@
 # 真实拥有画面阶段：暂停恢复入口
 
-当前已唤醒：公开read隔离候选107真实画面有限门检通过，旧暂停和失败内容以下仅作历史。最新读[INPUT-READ-RESULTS](INPUT-READ-RESULTS-20261010.md)及[新检查点](evidence/input-read-20261010-r1/next-checkpoint.json)。
+当前已唤醒：公开read隔离候选107真实画面有限门检通过，旧暂停和失败内容以下仅作历史。最新读[INPUT-READ-RESULTS](INPUT-READ-RESULTS-20261010.md)及新检查点（历史附件，当前仓库未附：`evidence/input-read-20261010-r1/next-checkpoint.json`）。
 
 2026-10-10，记录进度并暂停，等待唤醒。所有板测、回传、Native参考／解码审查已结束，无后台程序或代理连接；暂停期间不构建、连接、板测或自动唤醒。
 
@@ -24,10 +24,10 @@
 
 ## 唤醒后的顺序
 
-1. 读[暂停检查点](evidence/picture-20261010-r1/pause-checkpoint.json)和[进度证据](evidence/picture-20261010-r1/pause-progress-review.json)，核验冻结包／程序和已有失败。旧运行及失败数据不覆盖，不从停止的Engine继续inv21。
+1. 读暂停检查点（历史附件，当前仓库未附：`evidence/picture-20261010-r1/pause-checkpoint.json`）和进度证据（历史附件，当前仓库未附：`evidence/picture-20261010-r1/pause-progress-review.json`），核验冻结包／程序和已有失败。旧运行及失败数据不覆盖，不从停止的Engine继续inv21。
 2. 完成本机公共SDK搬运路径审计：当前输入桥是`dst.copyFrom(0,src,0,bytes)`，晚源路径是`Tensor::read`。它们共享设备区域入口但目标与时刻不同，不能假定改API即修复。下一最小候选可评估公开read直接写入自有Host CPTR，保持dtype／范围／wait／CPU数学与输出写回，先明确actual API签名、所有权和测试边界；不猜ADDR映射、cache helper或寄存器。
 3. 提出新身份／新目录的最小单路径变更与Host／三窗／有界长序列门检，再执行新验证；当前仅记录恢复建议，未写入该修复或新板测。保留异常Host暂存及两晚源，不放宽非整数、有限性或完整候选门禁。
 
 稳定真实画面103、持续5Hz／长期、HDMI／在线RTSP、安全连续申请和零拷贝仍待；管理粗估83/100保持。
 
-证据：[数值失败审查](evidence/picture-20261010-r1/picture.failed-review.json)、[Host对照](evidence/picture-20261010-r1/failure-host-comparison.json)、[坏段](evidence/picture-20261010-r1/failure-block-pattern.json)、[两晚源](evidence/picture-20261010-r1/failure-late-sources.json)、[视频前缀](evidence/picture-20261010-r1/video-prefix-review/review.json)、[样片拼图](evidence/picture-20261010-r1/video-prefix-review/contact-sheet.png)、[ADR_29](../../ADR/ADR_29.md)。
+证据：数值失败审查（历史附件，当前仓库未附：`evidence/picture-20261010-r1/picture.failed-review.json`）、Host对照（历史附件，当前仓库未附：`evidence/picture-20261010-r1/failure-host-comparison.json`）、坏段（历史附件，当前仓库未附：`evidence/picture-20261010-r1/failure-block-pattern.json`）、两晚源（历史附件，当前仓库未附：`evidence/picture-20261010-r1/failure-late-sources.json`）、视频前缀（历史附件，当前仓库未附：`evidence/picture-20261010-r1/video-prefix-review/review.json`）、样片拼图（历史附件，当前仓库未附：`evidence/picture-20261010-r1/video-prefix-review/contact-sheet.png`）、[ADR_29](../../ADR/ADR_29.md)。

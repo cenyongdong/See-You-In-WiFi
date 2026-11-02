@@ -71,7 +71,7 @@ D:\Dowload from Chrome\嵌赛资料\Icraft\参考实现\位流\悟净LITE版_BOO
 
 我读取并解析其PL分区，将32位字节交换后的配置载荷与原厂回退bit核对，保留原BOOT和回退bit。随后在隔离工程复现原厂构建链，生成参考bit并执行原厂Procise后处理；比较证明该参考输出的**完整配置载荷**与所选BOOT的PL载荷相同。文件头、日期和文件SHA不同不代表配置功能不同，因此没有把参考重建作为HDMI修复或重复下载验收。
 
-原BOOT离线重封装曾完整复现。另一次试制BOOT仅有9个映像名称字节改变、PL不变，严格后检失败并停止；原文件和失败记录保留。见[参考载荷比较](../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/reference-payload-review.json)。
+原BOOT离线重封装曾完整复现。另一次试制BOOT仅有9个映像名称字节改变、PL不变，严格后检失败并停止；原文件和失败记录保留。见参考载荷比较（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/reference-payload-review.json`）。
 
 ### 3.2 接入HDMI后重新生成候选
 
@@ -87,12 +87,12 @@ D:\Dowload from Chrome\嵌赛资料\Icraft\参考实现\位流\悟净LITE版_BOO
 | 新HDMI r5经Procise处理的bit | 5,980,609 | `42af16eb4c168f2f6475904a82e8a70230d18eb187bf81af353a3c2dfc46c685` |
 | 新HDMI r5离线候选BOOT | 7,023,552 | `22035d99f2dacdcb1817a0c08ae8b04c3b024e51bf2f1b522f0fcb9baf252135` |
 
-原配置载荷SHA为`657da80bb5eff97c917cf3a6c8c5b40a331b814dd840b5ac6a0bda44fb8a935d`，新后处理载荷SHA为`d03d2e678ce1b692baa40ab973d266063d5436852a55c96af5bff29c166c42eb`，均5,980,460字节，完整比较确认实际配置已改变。[新bit原值](../tools/pose-v1/evidence/hdmi-integration-20261016-r1/candidate-bit-r5/review.json)。
+原配置载荷SHA为`657da80bb5eff97c917cf3a6c8c5b40a331b814dd840b5ac6a0bda44fb8a935d`，新后处理载荷SHA为`d03d2e678ce1b692baa40ab973d266063d5436852a55c96af5bff29c166c42eb`，均5,980,460字节，完整比较确认实际配置已改变。新bit原值（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-integration-20261016-r1/candidate-bit-r5/review.json`）。
 
 ### 3.3 BOOT封装与板端临时启动
 
 1. 使用所选版本的原`FSBL251210_ddr400_demo.out`、`bl31.elf`、`u-boot`和原厂BIF参数，仅换入新PL bit。保持原bit映像文件名，避免无关名称字段改变。
-2. 离线核对BOOT：PL分区起点186,816字节、分区长度5,980,464字节；新旧BOOT仅该分区中2,007,499字节不同，全部非PL字节及填充相同。三份PS启动输入身份保持。[离线封装核验](../tools/pose-v1/evidence/hdmi-integration-20261016-r1/boot-offline-r5/review.json)。
+2. 离线核对BOOT：PL分区起点186,816字节、分区长度5,980,464字节；新旧BOOT仅该分区中2,007,499字节不同，全部非PL字节及填充相同。三份PS启动输入身份保持。离线封装核验（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-integration-20261016-r1/boot-offline-r5/review.json`）。
 3. 重新核验JTAG-HS1及实际器件链，建立回退资料；**JTAG只执行枚举和扫链，没有调用`program_bit`加载本候选。** 实际候选通过临时BOOT和FSBL加载。
 4. 另行明确批准临时启动区替换与一次候选重启。实际备份并回传板端原BOOT，核对候选，临时替换启动分区BOOT、同步卸载；打开UART记录后执行一次受控重启。
 5. 新Linux／SSH恢复后，先还原原BOOT文件，完整读回原SHA，并核对其余启动文件与六份SDK不变，再运行静态探针。未修改uEnv、DTB、内核或模型，没有永久安装候选BOOT。
@@ -143,9 +143,9 @@ D:\Dowload from Chrome\嵌赛资料\Icraft\参考实现\位流\悟净LITE版_BOO
 
 - [FPGA目录索引](README.md)、[项目最新进度](../PROJECT-PROGRESS.md)、[执行规范与暂停约束](../AGENTS.md)。
 - [HDMI当前恢复入口](hdmi_candidate/RESUME.md)、[整机接口与实施记录](hdmi_candidate/SYSTEM-INTEGRATION-PLAN.md)。
-- [隔离实现完整证据](../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md)，该批587文件封存。
-- [实际板测完整证据](../tools/pose-v1/evidence/hdmi-board-candidate-20261016-r1/REPORT.md)，该批178文件封存。
-- [实际新bit与BOOT及回退清单](../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/manifest.json)。
+- 隔离实现完整证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md`），该批587文件封存。
+- 实际板测完整证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-board-candidate-20261016-r1/REPORT.md`），该批178文件封存。
+- 实际新bit与BOOT及回退清单（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/manifest.json`）。
 - [难点D05／D42／D43](../DIFFICULTIES.md)、[此前讨论记录（冻结快照）](../tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ARCHITECTURE-DISCUSSION-20261015.md)。
 
-本次文档修订及暂停记录保存在[交接文档证据目录](../tools/pose-v1/evidence/hdmi-handoff-docs-20261016-r1)。现行文档的新SHA另行记录，既有封存报告、原值、产物和哈希清单不回写。
+本次文档修订及暂停记录保存在交接文档证据目录（历史附件，当前仓库未附：`../tools/pose-v1/evidence/hdmi-handoff-docs-20261016-r1`）。现行文档的新SHA另行记录，既有封存报告、原值、产物和哈希清单不回写。

@@ -24,4 +24,4 @@ ADR_30单VPU／Engine真实画面107有限通过，底层瞬时源／搬运责�
 
 QPC能力批次前33正确、第34姿态128有限值失配，保存8份Host输入115360与完整bad帧60400，582更新输入先观察异常；CPU未抛错所以晚设备源没触发，序列化再次验收中断的缺口保持。失败360编码／330网络仅前缀，正确inv31/32未capture；两abort STREAMOFF／子错误回收／network0／Engine join后毁／原内核同，所有会话关闭，无重跑。三次资源规整均完整取证，无CMA/BOOT/清缓存/重启变化。下一先完善最终门检取证与save-only，不认为整体高并发可靠性已通过。
 
-[结果](../tools/pose-v1/COMBINED-READ-RESULTS-20261010.md)／[当前恢复点](../tools/pose-v1/evidence/combined-read-20261010-r1/next-checkpoint.json)。
+[结果](../tools/pose-v1/COMBINED-READ-RESULTS-20261010.md)／当前恢复点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/combined-read-20261010-r1/next-checkpoint.json`）。

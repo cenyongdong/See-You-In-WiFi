@@ -26,8 +26,8 @@ C++头文件成员与JSON基线一致。Python AST、嵌入板端Python3.8语法
 
 新包.local/pose-v1-mixed-validation/package-20261006-fusion-r3：291项哈希、11构建文件、17源身份记录。
 r2原289份非manifest载荷全部保持，新载荷仅增加融合JSON基线；源码记录中既有文件仅mixed_check.cpp及mixed_validation_gate.py变化。
-[源码/包审查](evidence/mixed-20261006-fusion-r3/source-and-package-review.json)、
-[最终本机回放](evidence/mixed-20261006-fusion-r3/offline-replay-final/review.json)。
+源码/包审查（历史附件，当前仓库未附：`evidence/mixed-20261006-fusion-r3/source-and-package-review.json`）、
+最终本机回放（历史附件，当前仓库未附：`evidence/mixed-20261006-fusion-r3/offline-replay-final/review.json`）。
 这些验证仅证明核验算法及资料一致，C++ ARM编译、API实际调用和新正式apply仍待人工操作。
 
 下一步仅执行[MIXED-FUSION-R3-COMMANDS.md A](MIXED-FUSION-R3-COMMANDS.md)：新标签mixed-20261006-fusion-r3交叉编译，

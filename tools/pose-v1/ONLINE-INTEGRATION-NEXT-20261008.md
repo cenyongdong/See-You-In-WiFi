@@ -1,8 +1,8 @@
 # F0-A3真实在线接入入口
 
-最新入口：[保存优先及一次规整完整TCP三/27通过](PRESAVED-RESULTS-20261008.md)、[检查点](evidence/tcp-presaved-20261008-r1/next-checkpoint.json)。旧失配未复现但根因未证，下一低日志整机计量准备，旧恢复/失败记录保留历史。
+最新入口：[保存优先及一次规整完整TCP三/27通过](PRESAVED-RESULTS-20261008.md)、检查点（历史附件，当前仓库未附：`evidence/tcp-presaved-20261008-r1/next-checkpoint.json`）。旧失配未复现但根因未证，下一低日志整机计量准备，旧恢复/失败记录保留历史。
 
-当前入口已更新：[guarded固化/TCP三窗及未解决项](TCP-INTEGRATION-RESULTS-20261008.md)、[检查点](evidence/tcp-evidence-20261008-r1/next-checkpoint.json)、[恢复方案](TCP-RECOVERY-NEXT-20261008.md)。本文件下面内容为此前批准路线，勿重跑历史门检。
+当前入口已更新：[guarded固化/TCP三窗及未解决项](TCP-INTEGRATION-RESULTS-20261008.md)、检查点（历史附件，当前仓库未附：`evidence/tcp-evidence-20261008-r1/next-checkpoint.json`）、[恢复方案](TCP-RECOVERY-NEXT-20261008.md)。本文件下面内容为此前批准路线，勿重跑历史门检。
 
 2026-10-08门检后更新：本文件三/27真实串联及guarded独立网络正负验证已完成，见[LIVE结果](LIVE-RESULTS-20261008.md)。首轮晚加入失败及修正保留，正式r2尚未含guarded；当前恢复点`evidence/live-20261008-completion/next-checkpoint.json`。下文为获批实施方案/原门检顺序，不重新执行已完成阶段。
 

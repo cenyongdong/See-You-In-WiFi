@@ -72,6 +72,8 @@
     "fpga-rebuild/bit-payload-comparison.json": ".local/fpga-package-r4-check/rebuild-logs/bit-payload-comparison.json",
     "fpga-rebuild/input-path-audit.json": ".local/fpga-package-r4-check/rebuild-logs/input-path-audit.json",
     "fpga-rebuild/native-blackbox-diagnostic.tcl": ".local/fpga-package-r4-check/native-blackbox-diagnostic.tcl",
-    "fpga-rebuild/inspect-blackbox.tcl": ".local/fpga-package-r4-check/inspect-blackbox.tcl"
+    "fpga-rebuild/inspect-blackbox.tcl": ".local/fpga-package-r4-check/inspect-blackbox.tcl",
+    "overlay/figures/ps-vs-rtl-synthetic.png": ".local/skeleton-overlay-20261031-r2/reports/figures/ps-vs-rtl-synthetic.png",
+    "pc/pc-performance-preview-20261028.jpg": ".local/pc-performance-20261028-r1/pc-performance-preview.jpg"
   }
 }

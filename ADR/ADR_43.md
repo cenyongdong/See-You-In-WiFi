@@ -26,4 +26,4 @@ VPU inv49计划200805093543847ns，实际开始200805093627180ns，目录创建9
 
 先移出已定位的逐帧目录创建：新身份在放行前准备空目录，热路径只消费有界拥有目录令牌；实际输入／输出保存及比较仍在原位置，不同时改为全批结束落盘。继续原时隙／有界次数、租约和失败只读；输入／output保存仍可能阻塞，异常照旧停止，不以扩大截止或追帧补通过。物理两轮源读取仍待自然失配实测，不重跑本批失败Session或用晚值修复。
 
-[结果](../tools/pose-v1/PRODUCER-SOURCE-READ-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-SOURCE-READ-NEXT-20261011.md)／[恢复](../tools/pose-v1/evidence/producer-source-read-20261011-r2/next-checkpoint.json)。
+[结果](../tools/pose-v1/PRODUCER-SOURCE-READ-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-SOURCE-READ-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-source-read-20261011-r2/next-checkpoint.json`）。

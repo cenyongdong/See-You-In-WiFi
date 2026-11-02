@@ -1,6 +1,6 @@
 # 下一对照：真实混合引擎运行，移除视频负载
 
-当前已安全结束。先读 [结果](PLDDR-POSITION-RESULTS-20261010.md)、[ADR_25](../../ADR/ADR_25.md)及 [恢复点](evidence/plddr-position-20261010-r1/next-checkpoint.json)。SDK自有真实类型／动态数据／约96MiB位置／VPU并发均正确，但未有NPU生产。模型inv72的192坏块仍未解决。
+当前已安全结束。先读 [结果](PLDDR-POSITION-RESULTS-20261010.md)、[ADR_25](../../ADR/ADR_25.md)及 恢复点（历史附件，当前仓库未附：`evidence/plddr-position-20261010-r1/next-checkpoint.json`）。SDK自有真实类型／动态数据／约96MiB位置／VPU并发均正确，但未有NPU生产。模型inv72的192坏块仍未解决。
 
 ## 选择与可行性
 

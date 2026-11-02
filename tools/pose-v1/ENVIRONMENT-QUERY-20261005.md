@@ -66,6 +66,6 @@ ORT安装和Windows编译环境的选择均需另行具体讨论，不自动更�
 目录名` Visual Studio 2022`开头有一个空格。CMake文件元数据3.31.6-msvc6；并未运行查询或编译。
 默认vswhere及常见Windows Kits注册表入口未找到/未返回记录，不能据此确诊SDK缺失或安装完整。
 下一步仅临时进入x64开发CMD查工具/SDK，命令见[WINDOWS-HOST-ENV-CHECK.md](WINDOWS-HOST-ENV-CHECK.md)，
-静态证据[evidence/windows-host-tool-discovery-20261005.json](evidence/windows-host-tool-discovery-20261005.json)。
+静态证据`evidence/windows-host-tool-discovery-20261005.json`（历史附件，当前仓库未附）。
 安装、修复、新生成器、Host构建或模型执行未进行；ORT缺失保持，后续依赖方案另行讨论。
 本文件早期“ZG配置未找到/不能构建”的状态已由后续完整SDK清单及实际交叉构建更新，最新见STATUS.md。

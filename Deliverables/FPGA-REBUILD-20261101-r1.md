@@ -4,7 +4,7 @@
 
 ## 输入、工具与复现边界
 
-- 输入：[pose180-complete-sources-20261031-r4.rar](pose180-complete-sources-20261031-r4.rar)，198429558字节，SHA256 `e4b1d3243550f34f92e5f4890a4cfb1a509889c6c51f9053ce03369d8d0f2b45`。
+- 输入：`pose180-complete-sources-20261031-r4.rar`（本机交付，仓库未附），198429558字节，SHA256 `e4b1d3243550f34f92e5f4890a4cfb1a509889c6c51f9053ce03369d8d0f2b45`。
 - 新解压源：`.local/frb1101-r1/source`；新构建目录：`.local/frb1101-r1/build`。从本轮新综合结果依次实现，未借用工作区已有r3优化／放置／布线结果。
 - 使用包内710个厂商依赖文件，39个关键网表／检查点身份已核对。包内r2 `pipeline-routed-csi-incremental.dcp` 是原流程声明的增量参考；本轮重新执行了 `place_design`、`phys_opt_design` 和 `route_design`，不是只打开旧r3布线结果生成BIT。
 - 使用随包 `tools/release/rebuild_fpga.py` 准备独立目录，1314项构建文件、76项路径重定位；设计源、目标、频率和时序约束按包内原值执行，未新增豁免。完整命令及PID／退出码见 [result.json](evidence/fpga-full-rebuild-20261101-r1/result.json) 和 [命令目录](evidence/fpga-full-rebuild-20261101-r1/commands)。
@@ -48,7 +48,7 @@
 
 ## 新位流与可恢复产物
 
-- [新Procise适配位流](FPGA-rebuild-artifacts-20261101-r1/pose180-csi-v3-rebuilt.bit)：5980609字节，SHA256 `746e86a6c92399248297dce7141838d415399cf41b89a6a5ba237302ef750607`。
+- 新Procise适配位流（本机留存，仓库未附：`FPGA-rebuild-artifacts-20261101-r1/pose180-csi-v3-rebuilt.bit`）：5980609字节，SHA256 `746e86a6c92399248297dce7141838d415399cf41b89a6a5ba237302ef750607`。
 - 配置载荷SHA256 `e041e6230443631e93a848eaa888f536053145719c8e1878025e60fbf30e620b`，与源码RAR内合格BIT完全一致；完整文件SHA不同是因为c／d日期时间头不同，其余头字段和载荷相同。[比较记录](evidence/fpga-full-rebuild-20261101-r1/bit-identities.json)。
 - 原生BIT、linked／opt／placed／physopt／routed等本轮恢复检查点保留在 `.local/frb1101-r1/build/.local/csi-preprocess-20261031-r3/`；原始输入树及全部工具stdout也保留。本轮生成的文件不替代已发布BIT／BOOT，不构成上板验收。
 - 本次验证对象为身份固定的r4 RAR；新增报告作为压缩包旁的独立验证证据保存，未为补报告而改变被验证压缩包的内容。

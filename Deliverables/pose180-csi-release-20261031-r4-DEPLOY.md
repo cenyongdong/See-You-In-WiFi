@@ -2,6 +2,14 @@
 
 发布日期：2026-10-31，部署说明与实时采集配套更新：2026-11-01，r4（RAR）。正式交付目录为 `pose180-csi-release-20261031-r4`。
 
+## 下载与校验
+
+- [下载部署RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar)（111749109字节，约106.6 MiB）。
+- [下载SHA256文件](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256)，或查看[Release页面](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)。在Windows可用`Get-FileHash -Algorithm SHA256`核对；预期为`a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48`。
+- 此RAR通过GitHub Releases分发，不包含在普通Git克隆中；自动生成的Source code ZIP／tar.gz不能替代部署RAR。完整源码RAR继续本机交付，范围见[源码说明](SOURCE-20261031.md)。
+
+2026-11-02公开下载沿用原已验证包，文件身份保持不变，未重新打包、构建或新增板测。
+
 ## 已发布内容与验证边界
 
 - 原 epoch99／180-query 模型；TopK=3，严格 score >0.2，CPU 多人跟踪与 One Euro 保持。
@@ -12,7 +20,7 @@
 - 本包复用已完成30分钟实测的 ARM64程序、模型、输入与BOOT，补齐最新PC代码和发布说明；新压缩包未另外启动SDK测试。原长测25396次推理／HDMI采纳，存在少量发送丢弃、最长2.29秒结果间隔及一次PC人工重启，完整边界保留于 `evidence/longrun-summary.json`。
 - 420窗独立预处理：PS完整5.647ms→PL混合4.043ms，CPU5.629→3.973ms；幅度特征最大差0，相位最大差2.3842e-7rad，含1次全窗边界回退。并非逐位无损或真值精度验收。
 
-本次r4保留最新CMake默认值、预设与构建／打包配置，并整理源码、权重和性能证据，运行程序、模型、数据和BOOT与r1保持相同字节。新默认配置重新编译结果也与已发布程序一致。r4是本机交付修订，本轮未连接或重新部署开发板；最近已核验的板端目录仍是`/root/pose180-csi-release-20261031-r1`，配套运行能力相同。下方r4路径用于今后的独立解压部署。
+本次r4保留最新CMake默认值、预设与构建／打包配置，并整理源码、权重和性能证据，运行程序、模型、数据和BOOT与r1保持相同字节。新默认配置重新编译结果也与已发布程序一致。r4最初为本机交付修订，后按同一文件身份提供Release下载；交付整理未连接或重新部署开发板；最近已核验的板端目录仍是`/root/pose180-csi-release-20261031-r1`，配套运行能力相同。下方r4路径用于今后的独立解压部署。
 
 ## 文件与环境
 

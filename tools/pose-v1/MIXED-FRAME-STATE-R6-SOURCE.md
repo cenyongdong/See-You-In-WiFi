@@ -12,8 +12,8 @@ SDK等待阈值按原固定七组分别为223/234/477/481/638/720/745，并未�
 
 依据来自匹配的ARM运行库：ZG检查函数调用layerCount再作大于等于比较；Session.forward未见Device::reset调用。
 板端与FPAI XRT so哈希均a29e4eee6106afae0b6aada4a07e85416ac6dfc3e74083033ae5d1411749dc96。
-详见[evidence/mixed-20261006-readiness-r5/r5-r1/count-review.json](evidence/mixed-20261006-readiness-r5/r5-r1/count-review.json)
-和[静态运行库审查](evidence/mixed-20261006-readiness-r5/static-runtime-review.json)。
+详见`evidence/mixed-20261006-readiness-r5/r5-r1/count-review.json`（历史附件，当前仓库未附）
+和静态运行库审查（历史附件，当前仓库未附：`evidence/mixed-20261006-readiness-r5/static-runtime-review.json`）。
 
 ## 最小修正
 

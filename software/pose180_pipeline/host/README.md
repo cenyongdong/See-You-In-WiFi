@@ -36,7 +36,7 @@ node --test software/pose180_pipeline/host/test/resident.test.mjs software/pose1
 
 打开 `http://127.0.0.1:39380/`。HTTP只监听本机，最多8连接，其中SSE最多4个；单客户端发送缓存上限64KiB，慢客户端断开后由浏览器重连。关闭页面释放SSE和绘制资源；观察进程到时或Ctrl+C后关闭全部本批socket／HTTP／worker。默认不归档，仅`--mode raw --output <新目录>`可启用原有独立归档worker。PC退出或物理断线不阻断板端CSI／推理／HDMI。
 
-本地21项定向测试通过，覆盖完整记录兼容、拆包、错配、重复／跨会话、过期、无ACK、SSE及耗时断开隔离、页面合并最新结果和退出释放。真实浏览器在约30Hz本地模拟输入下观察到约22～23次/秒骨架更新；页面明确标记模拟测试，仅证明PC更新不再受100ms轮询限制，不作为板端性能实测。[本地页面预览](D:/FPGACompetitionProject/.local/pc-performance-20261028-r1/pc-performance-preview.jpg)。本次没有改写既有启动包产物；新增实现仅在原有打包已包含的`resident.mjs`和`full_record.mjs`中，无新增运行依赖，后续打包会随这两个文件纳入。
+本地21项定向测试通过，覆盖完整记录兼容、拆包、错配、重复／跨会话、过期、无ACK、SSE及耗时断开隔离、页面合并最新结果和退出释放。真实浏览器在约30Hz本地模拟输入下观察到约22～23次/秒骨架更新；页面明确标记模拟测试，仅证明PC更新不再受100ms轮询限制，不作为板端性能实测。[本地页面预览](../../../Deliverables/evidence/pc/pc-performance-preview-20261028.jpg)。本次没有改写既有启动包产物；新增实现仅在原有打包已包含的`resident.mjs`和`full_record.mjs`中，无新增运行依赖，后续打包会随这两个文件纳入。
 
 ## 严格主机模拟输入与完整归档
 

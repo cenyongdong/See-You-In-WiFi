@@ -33,4 +33,4 @@
 
 旧计数审查器仍硬限824导致本机AssertionError，实际856记录已完整保存；新增独立审查器绑定resident生产者自检856规格，16拒绝／第108次拒绝／856计数源关联／1819组合记录过。没有修改旧源码、数据、阈值或重跑硬件。原异常机制未触发，不能把未复现解释为复制、等待或数学修复。
 
-[完成审查](../tools/pose-v1/evidence/resident-sequence-20261010-r1/completion-review.json)／[结果](../tools/pose-v1/RESIDENT-SEQUENCE-RESULTS-20261010.md)／[恢复点](../tools/pose-v1/evidence/resident-sequence-20261010-r1/next-checkpoint.json)／[下一单因素](../tools/pose-v1/RESIDENT-SEQUENCE-NEXT-20261010.md)。本批获批有限门检结束，不自动启动新增真实绘图／网络负载。
+完成审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/resident-sequence-20261010-r1/completion-review.json`）／[结果](../tools/pose-v1/RESIDENT-SEQUENCE-RESULTS-20261010.md)／恢复点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/resident-sequence-20261010-r1/next-checkpoint.json`）／[下一单因素](../tools/pose-v1/RESIDENT-SEQUENCE-NEXT-20261010.md)。本批获批有限门检结束，不自动启动新增真实绘图／网络负载。

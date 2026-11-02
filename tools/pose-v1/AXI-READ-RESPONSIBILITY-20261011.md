@@ -4,9 +4,9 @@
 
 ## 必须同时保留的条件
 
-- 模型真实负载：[ADR_35](../../ADR/ADR_35.md)／[原失败核验](evidence/read-phase-20261011-r3/failure-review.json)：inv48／frame100049／192索引第一Host快照592变化，其中589非整数；全部变化等于上一DATA输入相同偏移，CPU前不变，两轮晚源正确。坏值从未修补或用于继续前向。
-- SDK已知写入对照：[数据核验](evidence/axi-pair-20261011-r4/data-review.json)：四模式400对首读正确；源100667392／100697664，类型／布局／规模相同但非模型地址，无NPU生产。
-- 匹配实现：[完整符号窗口](evidence/axi-read-audit-20261011-r1/complete/identity.json)和data-review绑定的原AXI／XRT与当前板端UDMA模块。锁／轮询／同步存在；不能用上游master替代厂商版本。
+- 模型真实负载：[ADR_35](../../ADR/ADR_35.md)／原失败核验（历史附件，当前仓库未附：`evidence/read-phase-20261011-r3/failure-review.json`）：inv48／frame100049／192索引第一Host快照592变化，其中589非整数；全部变化等于上一DATA输入相同偏移，CPU前不变，两轮晚源正确。坏值从未修补或用于继续前向。
+- SDK已知写入对照：数据核验（历史附件，当前仓库未附：`evidence/axi-pair-20261011-r4/data-review.json`）：四模式400对首读正确；源100667392／100697664，类型／布局／规模相同但非模型地址，无NPU生产。
+- 匹配实现：完整符号窗口（历史附件，当前仓库未附：`evidence/axi-read-audit-20261011-r1/complete/identity.json`）和data-review绑定的原AXI／XRT与当前板端UDMA模块。锁／轮询／同步存在；不能用上游master替代厂商版本。
 
 ## 尚缺的正式契约
 

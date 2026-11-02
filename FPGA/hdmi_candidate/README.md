@@ -20,4 +20,4 @@ status位0为safe_idle，1运行，2读主机busy，3帧读活动，4有待采�
 
 三种基址完整帧r6 core、完整2073600像素r7 pixel均全阶段exit0，未超90秒；scanout原生综合结果保持。`rtl/display/uihdmitx.v`为保留原厂商头的隔离发送层修正版，两个时钟输入改为10'b1111100000。Lite目标参考序列器模型新/旧各128周期严格检查通过，占空比20%→50%；附加UFAMILY精确边沿诊断仍未通过。该发送层尚未接入原生Procise物理顶层。
 
-原r5外层超时exit1保留，阶段验收接受其内核像素结果；本批新目录正常通过。尚无布局布线、完整CDC/时序签核、PLL实测或实屏验收。[实际结果](RESUME.md)、[集成契约](INTEGRATION.md)、[本批报告](../../tools/pose-v1/evidence/hdmi-split-20261015-r1/REPORT.md)。
+原r5外层超时exit1保留，阶段验收接受其内核像素结果；本批新目录正常通过。尚无布局布线、完整CDC/时序签核、PLL实测或实屏验收。[实际结果](RESUME.md)、[集成契约](INTEGRATION.md)、本批报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-split-20261015-r1/REPORT.md`）。

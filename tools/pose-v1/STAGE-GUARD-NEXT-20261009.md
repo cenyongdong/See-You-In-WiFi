@@ -22,4 +22,4 @@
 
 ## 4. 项目边界
 
-继续以已跑通的异构、TCP、独立显示子进程、常驻VPU和RTSP首版为主线，深度性能优化后置。HDMI1080p60仍须匹配时序/scanout及安全停止证据和实屏核对；实时采集终版、长期5Hz及30分钟继续独立验收。本批所有服务/连接已关闭，恢复先读[检查点](evidence/stage-guard-20261009-r1/next-checkpoint.json)和[ADR_19](../../ADR/ADR_19.md)。
+继续以已跑通的异构、TCP、独立显示子进程、常驻VPU和RTSP首版为主线，深度性能优化后置。HDMI1080p60仍须匹配时序/scanout及安全停止证据和实屏核对；实时采集终版、长期5Hz及30分钟继续独立验收。本批所有服务/连接已关闭，恢复先读检查点（历史附件，当前仓库未附：`evidence/stage-guard-20261009-r1/next-checkpoint.json`）和[ADR_19](../../ADR/ADR_19.md)。

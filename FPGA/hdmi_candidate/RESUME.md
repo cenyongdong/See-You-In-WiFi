@@ -13,10 +13,10 @@
 
 ## r3 历史记录（2026-10-29；旧本机包已清理）
 
-- 使用 [r3 最终演示包](../../Deliverables/pose180-three-clips-20261029-r3-final.tar.gz)和[部署说明](../../Deliverables/pose180-three-clips-20261029-r3-DEPLOY.md)，源码入口为 [pose180_pipeline/src](../../software/pose180_pipeline/src/README.md)。原 epoch99、TopK=3、严格 score >0.2；官方 1／2／3 人在同一 SDK 生命周期顺播，实时接口保留。
+- 使用 r3 最终演示包（历史附件，当前仓库未附：`../../Deliverables/pose180-three-clips-20261029-r3-final.tar.gz`）和部署说明（历史附件，当前仓库未附：`../../Deliverables/pose180-three-clips-20261029-r3-DEPLOY.md`），源码入口为 [pose180_pipeline/src](../../software/pose180_pipeline/src/README.md)。原 epoch99、TopK=3、严格 score >0.2；官方 1／2／3 人在同一 SDK 生命周期顺播，实时接口保留。
 - 板端保留 `/root/pose180-three-clips-20261029-r3`。最后一次清理核验时 boot_id 为 `c289a43e-d6aa-4f3f-835d-d4aeb0848caf`，原生推理进程及设备占用为空。这是观察快照，后续启动仍须读取实际状态，不能复用旧 boot_id。
 - 最近既有 r3 运行记录：420 帧新推理、420 次 HDMI 采纳、420 帧 PC 发送、0 发送丢弃，`native_exit=0`、完整关闭、临时地址撤销。发送计数不等同浏览器逐帧绘制；不据此认定长期或精度通过。
-- 本次最终打包只补入 PC 启动／连接修正，板端内容未变；收尾期间未新启 SDK、重启或写 BOOT。完整清理与最后观察以[唯一原始记录](../../.local/project-cleanup-20261029-r1/summary.json)为准。
+- 本次最终打包只补入 PC 启动／连接修正，板端内容未变；收尾期间未新启 SDK、重启或写 BOOT。完整清理与最后观察以唯一原始记录（本机留存，仓库未附：`../../.local/project-cleanup-20261029-r1/summary.json`）为准。
 
 ## 启动与停止
 
@@ -31,15 +31,15 @@ PC 仅观察结果，不负责发包或初始化 SDK。当前电脑可使用 `-B
 | 项目 | 状态与位置 |
 |---|---|
 | 默认 BOOT | `probe-free-drain-overlay-csi-v3`，身份以 [default_boot.json](default_boot.json) 为准；CSI分组流水、骨架绘图在PL，相位收尾及展示滤波仍在CPU |
-| 合格镜像备份 | 最近[r2 CSI BOOT](../../.local/csi-preprocess-20261031-r2/boot-package/BOOT-csi-preprocess.bin)；[骨架BOOT](../../.local/skeleton-overlay-20261031-r2/boot-package/BOOT-skeleton-overlay.bin)及更早滤波镜像亦保留 |
-| 原参考恢复备份 | [BOOT-original.bin](../../.local/hdmi-startup-20261027-r1/board-bundle/common/BOOT-original.bin)，仅为恢复备份，不是当前默认 |
+| 合格镜像备份 | 最近r2 CSI BOOT（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/boot-package/BOOT-csi-preprocess.bin`）；骨架BOOT（本机留存，仓库未附：`../../.local/skeleton-overlay-20261031-r2/boot-package/BOOT-skeleton-overlay.bin`）及更早滤波镜像亦保留 |
+| 原参考恢复备份 | BOOT-original.bin（本机留存，仓库未附：`../../.local/hdmi-startup-20261027-r1/board-bundle/common/BOOT-original.bin`），仅为恢复备份，不是当前默认 |
 | r45 与派生硬件历史 | [原物理结果](../../tools/pose-v1/evidence/hp2-deferred-consume-20261024-r45/RESULTS.md)、[保留消费候选](probe_free_drain/README.md)、[滤波物理与板测](../../software/pose180_pipeline/resident/PRESENTATION-20261026.md#pl-计算与资源) |
 | 独立精简守卫／新增 PL | [精简守卫](pose_stabilizer/README.md)覆盖不足，不可部署；新增几何／批量滤波整机实现已取消 |
 | 心率 | [开发记录](../../software/vitals/HYBRID-20261026.md)保留，冻结且未接主链 |
 
 ## 清理后的历史路径与保留限制
 
-51 个历史项目上传目录和 `/root/work` 的 3 个 SDK 安装包已删除；安装中的 SDK 和驱动未删除。旧 `/root/demo-v1-20261022-r1/...`、旧长测和旧模型测试目录均不可再作为远端恢复入口。必要原生记录集中在[本机证据归档](../../.local/project-cleanup-20261029-r1/board-evidence.tar.gz)；其完整范围由清理记录说明，不承诺历史每份附件均已补回。
+51 个历史项目上传目录和 `/root/work` 的 3 个 SDK 安装包已删除；安装中的 SDK 和驱动未删除。旧 `/root/demo-v1-20261022-r1/...`、旧长测和旧模型测试目录均不可再作为远端恢复入口。必要原生记录集中在本机证据归档（本机留存，仓库未附：`../../.local/project-cleanup-20261029-r1/board-evidence.tar.gz`）；其完整范围由清理记录说明，不承诺历史每份附件均已补回。
 
 10 月 27 日旧批关闭回执及 TX／RX3 临时 LAN SSH 恢复缺少最终核验；最新清理和临时板端地址撤销不能替代这些旧事实，也不补造旧回执。已有 PC 观察进程未由清理任务停止，不能把“板端无占用”写成所有 PC 进程退出。
 
@@ -64,7 +64,7 @@ PC 仅观察结果，不负责发包或初始化 SDK。当前电脑可使用 `-B
 
 原参考恢复文件保存在本机 `.local/hdmi-startup-20261027-r1/board-bundle/common/BOOT-original.bin` ；当时板端副本路径为 `/root/demo-v1-20261022-r1/hdmi-startup-20261027-r1/common/BOOT-original.bin`（该远端目录已在 10 月 29 日清理，不再可用），SHA256 `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`。历史参考包未改。启动消费仍是同次配置一次性行为，下一次 SDK 验证使用新包和新启动，不在本包重复初始化。
 
-[汇总](../../.local/hdmi-startup-20261027-r1/results/summary.json)、`results/promote.json`／`closed.json`／`final-audit.json` 及 `round-1-result-evidence.tar.gz` 保留实际默认文件、启动、消费、待机和安全结束证据；`pc-observation/` 保留本轮原始／派生输出。`run_release.py` 仅为已关闭本批执行记录，不直接重跑。
+汇总（本机留存，仓库未附：`../../.local/hdmi-startup-20261027-r1/results/summary.json`）、`results/promote.json`／`closed.json`／`final-audit.json` 及 `round-1-result-evidence.tar.gz` 保留实际默认文件、启动、消费、待机和安全结束证据；`pc-observation/` 保留本轮原始／派生输出。`run_release.py` 仅为已关闭本批执行记录，不直接重跑。
 
 后续 `prepare_presentation.py` 默认读取 `default_boot.json` 选择合格硬件及当前已安装 BOOT 作为新包的参考／回退基线，避免普通测试隐式退回旧参考版本；必要时可显式 `--reference-boot` 指定已核对备份。本机新包准备已验证默认哈希／profile 一致，检查包 `.local/hdmi-startup-next-package-check-20261027` 未部署或运行。原参考备份不因更新新包基线而覆盖。
 
@@ -84,7 +84,7 @@ PC 仅观察结果，不负责发包或初始化 SDK。当前电脑可使用 `-B
 
 前一批次：[r6持续TX租约](../../software/pose180_pipeline/resident/TX-LEASE.md)已按1候选／1 SDK／10分钟／1原BOOT回退完成并关闭，全部余额0、无本批负载。该批原BOOT身份、恢复证据及剩余卡顿以r6记录为准；下述r5及更早状态保留历史，不复用旧额度。
 
-上一批次：[r7共同窗口优化](../../software/pose180_pipeline/resident/WINDOW-RECOVERY.md)已执行并关闭，1候选／1 SDK／600秒运行期／1原BOOT回退，全部余额0、无本批负载；该批原BOOT身份及实际结果以r7记录为准。无窗恢复等待已缩短，显示器黑屏／闪屏已[显示规格限制](../../software/pose180_pipeline/resident/WINDOW-RECOVERY.md#显示规格限制)移出待定位故障。必要新验证可按[最新自主板测规范](../../AGENTS.md#自主权限与重大问题)另记新批次直接执行，不复活旧包。
+上一批次：[r7共同窗口优化](../../software/pose180_pipeline/resident/WINDOW-RECOVERY.md)已执行并关闭，1候选／1 SDK／600秒运行期／1原BOOT回退，全部余额0、无本批负载；该批原BOOT身份及实际结果以r7记录为准。无窗恢复等待已缩短，显示器黑屏／闪屏已[显示规格限制](../../software/pose180_pipeline/resident/WINDOW-RECOVERY.md#显示规格限制)移出待定位故障。必要新验证可按[最新自主板测规范](../../AGENTS.md#范围与自主执行)另记新批次直接执行，不复活旧包。
 
 当前最新批次：[r10／r11／r12](../../software/pose180_pipeline/resident/TOP3-VALIDATION.md)。r12有限推理及PC接收验证完成，随后关闭板端并暂停工作。原BOOT文件已恢复，但未执行回退启动核验；本机观察进程已结束，无本批活动负载，不自动恢复。实际次数、身份、未取回证据及恢复边界以该记录为准。
 
@@ -102,7 +102,7 @@ PC 仅观察结果，不负责发包或初始化 SDK。当前电脑可使用 `-B
 |---|---|
 | 当前事实、恢复身份、问题及原始数据位置 | [r53 RESULTS](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/RESULTS.md)、[state.json](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/state.json) |
 | 原BOOT运行、启动文件/SDK及无占用核验 | [final-audit.json](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/final-audit.json)、[closed.json](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/closed.json)；历史boot_id不得直接作为下次会话身份 |
-| r53首读/即时副本/两轮SDK晚读和协议完整原值 | [candidate-evidence.tar.gz](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/candidate-evidence.tar.gz)、[离线字节比较](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/index-read-analysis.json) |
+| r53首读/即时副本/两轮SDK晚读和协议完整原值 | candidate-evidence.tar.gz（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/candidate-evidence.tar.gz`）、[离线字节比较](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/index-read-analysis.json) |
 | 当前源码、硬件与数据流 | [INTEGRATION](INTEGRATION.md)、[r45硬件源码](diagnostics/deferred_consume_r45/sources)、[r53主调度](diagnostics/native_rgb565_r53/joint/main.cpp)、[SDK显示适配](diagnostics/native_rgb565_r53/display/hdmi_output.cpp) |
 | 当前硬件物理资格与BOOT对应关系 | [r45 RESULTS](../../tools/pose-v1/evidence/hp2-deferred-consume-20261024-r45/RESULTS.md)；r46～r53复用，无重新EDA或新增时序例外 |
 | 隔离/逐拍波形/原生协议历史 | [S01隔离](diagnostics/S01-ISOLATION.md)、[r30波形](diagnostics/waveforms-r30-20261022/README.md)、[r37协议结果](../../tools/pose-v1/evidence/hp2-startup-protocol-20261023-r37/RESULTS.md) |

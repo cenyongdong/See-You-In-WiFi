@@ -4,7 +4,7 @@
 
 2026-10-15已获授权：使用现有2019.1在隔离副本核对/重建同配置IP，不改原参考、不安装工具、不改全局数据库；若必须升级IP，另行讨论。
 
-白名单修订升级与严格门检；实际升级38.897797秒exit0，但原字面门检拒绝。进一步审查后的有限例外另获批准，新r3生成/后检及AXI3原生互联综合通过，PS原生端口适配失败停止。旧门检false不回写；[生成报告](../../tools/pose-v1/evidence/hdmi-ip-generation-20261015-r3/REPORT.md)、[当前恢复入口](PS-ADAPTATION-STATUS.md)。以下保留升级前证据和当时提出的操作范围，不作为再次审批请求。
+白名单修订升级与严格门检；实际升级38.897797秒exit0，但原字面门检拒绝。进一步审查后的有限例外另获批准，新r3生成/后检及AXI3原生互联综合通过，PS原生端口适配失败停止。旧门检false不回写；生成报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-ip-generation-20261015-r3/REPORT.md`）、[当前恢复入口](PS-ADAPTATION-STATUS.md)。以下保留升级前证据和当时提出的操作范围，不作为再次审批请求。
 
 ## 实际工具结果
 
@@ -30,4 +30,4 @@
 
 若不同意修订升级，则保留当前工具/原IP，需取得与原修订匹配的已生成可用网表/配套工程后继续；不自动改装2018.3或删掉PS/NPU/DDR路径来绕过。
 
-证据：[实际IP状态报告](../../tools/pose-v1/evidence/hdmi-system-20261015-r1/IP-status.rpt)、[本轮记录](../../tools/pose-v1/evidence/hdmi-bringup-20261015-r1/REPORT.md)。
+证据：实际IP状态报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-system-20261015-r1/IP-status.rpt`）、本轮记录（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-bringup-20261015-r1/REPORT.md`）。

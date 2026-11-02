@@ -6,11 +6,11 @@
 
 **A/B/C/D已人工完成并经完整复核，独立CPU候选门检通过。** 107例、12条注册记录、
 22份实际输出/59,600个FP32值逐位一致，包/回传/SDK/程序身份匹配。
-最终[结果](CPU-ADAPTER-RESULTS-20261006.md)及[独立核验](evidence/cpu-adapter-independent-review-20261006.json)。
+最终[结果](CPU-ADAPTER-RESULTS-20261006.md)及独立核验（历史附件，当前仓库未附：`evidence/cpu-adapter-independent-review-20261006.json`）。
 以下命令保留为执行历史，不重复准备/编译/板端运行或覆盖已存在的证据；正式推理器接入及完整mixed另讨论。
 r2完成配置/编译/链接，
 282项包哈希、5份源码及ARM二进制身份匹配，新旧281项非manifest文件相同；
-SDK六头文件、Host库和两包3.39.0匹配。见[evidence构建复核](evidence/cpu-adapter-r2-build-review-20261006.json)。
+SDK六头文件、Host库和两包3.39.0匹配。见evidence构建复核（历史附件，当前仓库未附：`evidence/cpu-adapter-r2-build-review-20261006.json`）。
 当前包`.local/pose-v1-cpu-adapter/package/20261006-r2`及构建`cpu-adapter-20261006-r2`；
 程序SHA256为`8cf2017cedf6a97f98ce485d979239b659291f3c91d3a3d550382c1c94588622`。
 不要重复A/B或改旧包manifest。两次失败记录保留；仅交叉编译验收，不代表板端加载/算子数值通过。

@@ -49,9 +49,9 @@
 - Linux SDK无关的三连接TCP联合检查通过：任意分包后120个共同窗、三份原流逐字节一致、CSI负载完全一致、648000个幅度特征映射一致；截断流、未知节点和重复节点均拒绝，原部分输入保留。没有执行模型来替代这些检查。
 - ARM64完整采集／预处理／180-query SDK包装已交叉编译链接，路由器静态流式采集工具也已编译。原数学源与6个SDK库身份匹配，未执行SDK。
 
-原生构建命令／完整日志、原首次编译失败和后续增量修复、二进制及结果统一位于[本机产物](../../../.local/nexmon-board-direct-20261025-r1/summary.json)。首次ARM编译遇自定义`quoted`与`std::quoted`的ADL重载冲突，改名为`json_quote`后增量编译通过，未改SDK调用。网络测试复用现有Linux镜像，没有安装工具；临时测试容器已清理，原FPAI容器恢复停止状态。
+原生构建命令／完整日志、原首次编译失败和后续增量修复、二进制及结果统一位于本机产物（本机留存，仓库未附：`../../../.local/nexmon-board-direct-20261025-r1/summary.json`）。首次ARM编译遇自定义`quoted`与`std::quoted`的ADL重载冲突，改名为`json_quote`后增量编译通过，未改SDK调用。网络测试复用现有Linux镜像，没有安装工具；临时测试容器已清理，原FPAI容器恢复停止状态。
 
-候选目录：[package](../../../.local/nexmon-board-direct-20261025-r1/package)。包含板端程序、路由器采集器／发送脚本、未填尺度的示例配置和身份清单；模型参数复用原180-query部署包。目录本身不是部署或实机通过证明。`CMakeLists.txt`可分别构建SDK无关Linux版本和`NEXMON_BUILD_NPU=ON`的既有AArch64工具链版本；本轮没有升级编译器或依赖。
+候选目录：package（本机留存，仓库未附：`../../../.local/nexmon-board-direct-20261025-r1/package`）。包含板端程序、路由器采集器／发送脚本、未填尺度的示例配置和身份清单；模型参数复用原180-query部署包。目录本身不是部署或实机通过证明。`CMakeLists.txt`可分别构建SDK无关Linux版本和`NEXMON_BUILD_NPU=ON`的既有AArch64工具链版本；本轮没有升级编译器或依赖。
 
 ## 接板后仍需完成
 

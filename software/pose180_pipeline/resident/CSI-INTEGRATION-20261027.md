@@ -4,7 +4,7 @@
 
 2026-10-27。配置采用“恢复实时 CSI，进行有限实板验证”。本轮将[自适应组窗](ADAPTIVE-CSI.md)接入最新七色条待机／v5 系统，真实三 RX → 板端 PS／NPU → HDMI，PC 独立订阅。**两轮均已正常结束、包已关闭，无后台推理。**
 
-前两轮后历史现场反馈关闭设备连接，该[历史记录](../../../.local/csi-integration-20261027-r2/results/device-disconnected.json)保留。随后在空旷场地明确恢复连接并双输出测试，又要求提前暂停；最新状态见文末“空旷场地双输出补测与暂停”，此前断开边界不再作为当前状态。
+前两轮后历史现场反馈关闭设备连接，该历史记录（本机留存，仓库未附：`../../../.local/csi-integration-20261027-r2/results/device-disconnected.json`）保留。随后在空旷场地明确恢复连接并双输出测试，又要求提前暂停；最新状态见文末“空旷场地双输出补测与暂停”，此前断开边界不再作为当前状态。
 
 结论：修订后的输入已完成一次 600 秒实时处理复测，8,591 次新推理全部被 HDMI 接纳、PC 全部接收，全局重同步／连接重建为 0，最长新结果间隔 203.710 ms。后台切换没有导致秒级停供或 SDK 重建；这不是零抖动、全天稳定性或姿态准确度验收。
 
@@ -81,7 +81,7 @@
 
 ## 唯一证据入口
 
-- [第一轮汇总](../../../.local/csi-integration-20261027-r1/results/summary.json)、[第二轮汇总](../../../.local/csi-integration-20261027-r2/results/summary.json)：原始头部时序、全部代次边界、资源、PC 与安全关闭结果。
+- 第一轮汇总（本机留存，仓库未附：`../../../.local/csi-integration-20261027-r1/results/summary.json`）、第二轮汇总（本机留存，仓库未附：`../../../.local/csi-integration-20261027-r2/results/summary.json`）：原始头部时序、全部代次边界、资源、PC 与安全关闭结果。
 - 每包 `round-1-result-evidence.tar.gz`：板端原生状态、诊断、受限归档、SDK／BOOT 身份和完整控制回执。`results/closed.json`、`final-audit.json`、`network-cleanup.json` 保留关闭和恢复证明。
 - 第二轮 `native-test.log`、`tcp-bad-record/`、`build.log`：实际软件注入和 ARM64 SDK 构建；`pc-observation/headers.jsonl` 是全 8,591 条实际原始输出头部，`presentation.jsonl` 为派生帧。初轮 observer 的完整归档上限原只在连接间检查，实际保存量已如实记录；复测已按批次执行上限。
 - 第一轮 `routers/*/initial.json`／`final.json`、`fault-stop.json`／`fault-start.json`、`ssh-restored.json`：源身份、故障注入、既有守护和临时管理设置恢复。所有凭据仅通过既有内存认证通道使用。
@@ -96,7 +96,7 @@
 
 暂停后 SDK、PC／串口观察均退出，临时 `.50.49` 撤销，四台 CSI 运行服务正常停止并完成原无线恢复，持久开机开关保留；TX／RX3 临时 LAN SSH 恢复关闭。设备仍通电，最后 boot_id `fc54b3b8-5ee9-4d64-892f-0f22a2314390`，默认 BOOT 不变。随后阈值改为 0.35 并重新验证，该后续授权另建新包，不复活此包。
 
-[本轮汇总](../../../.local/csi-open-space-20261027-r1/results/summary.json)、`results/closed.json`／`final-audit.json`、`round-1-result-evidence.tar.gz` 及 `user-screen-confirmation.json` 保留数值、身份、原错误与实屏确认。
+本轮汇总（本机留存，仓库未附：`../../../.local/csi-open-space-20261027-r1/results/summary.json`）、`results/closed.json`／`final-audit.json`、`round-1-result-evidence.tar.gz` 及 `user-screen-confirmation.json` 保留数值、身份、原错误与实屏确认。
 
 ## 置信度阈值 0.35 与 0.5
 
@@ -112,7 +112,7 @@ PC 轮询留存 8878 帧，全部帧身份与原始头部对应，26,847 个留�
 
 native_exit=0、SDK／HDMI 安全退出、设备无占用、dmesg 无新增；峰值 RSS 80,656 KiB、最低 MemAvailable 714,176 KiB。包已关闭。退出后停止源服务时发生 SSH 断开；后续核验三 RX 已恢复停止，TX boot_id 改变并重新运行开机服务，原因未定，原回执保留，不写成四台均成功停服。立即运行 0.5，新包复用已核验健康 TX 并恢复三 RX；临时管理设置由最后一轮统一恢复。
 
-[0.35 汇总](../../../.local/csi-open-space-035-20261027-r1/results/summary.json)、`results/closed.json`／`final-audit.json`、`routers/*/completed-stop.json`／`verified-after-stop.json` 及原始证据包保留实际结果。
+0.35 汇总（本机留存，仓库未附：`../../../.local/csi-open-space-035-20261027-r1/results/summary.json`）、`results/closed.json`／`final-audit.json`、`routers/*/completed-stop.json`／`verified-after-stop.json` 及原始证据包保留实际结果。
 
 ### 后续阈值切换与单人版本
 
@@ -140,7 +140,7 @@ native_exit=0、SDK／HDMI 安全退出、设备无占用、dmesg 无新增；�
 
 ### 原图复测、Top2 及最终结束
 
-原图恢复 r3 完成完整 600 秒处理期，进程总时长 627.499 s，**8919 次新推理／HDMI 采纳／PC 接收**，原始头部 8919 条；PC 轮询留存 8918 帧，全部身份对应且每帧最多 1 人。结果间隔 P95 72.472 ms、最大 143.078 ms，正常退出、资源释放、dmesg 无新增；[r3 汇总](../../../.local/csi-open-space-top1-020-20261027-r3/results/summary.json)。
+原图恢复 r3 完成完整 600 秒处理期，进程总时长 627.499 s，**8919 次新推理／HDMI 采纳／PC 接收**，原始头部 8919 条；PC 轮询留存 8918 帧，全部身份对应且每帧最多 1 人。结果间隔 P95 72.472 ms、最大 143.078 ms，正常退出、资源释放、dmesg 无新增；r3 汇总（本机留存，仓库未附：`../../../.local/csi-open-space-top1-020-20261027-r3/results/summary.json`）。
 
  TopK=2，独立包 `.local/csi-open-space-top2-020-20261027-r1` 完成 1335 次新推理后又暂停，native_exit=0、完整安全停止，远端取消回执已写入、包关闭；总时长 116.836 s，不作 600 秒通过。现场留存帧已观察到最多两个人体，原计算图及阈值 >0.2 保持。
 
@@ -148,4 +148,4 @@ native_exit=0、SDK／HDMI 安全退出、设备无占用、dmesg 无新增；�
 
 最终原生状态另有 `resyncs=2`、`alignment_resets=1`、`transport_resets=1`，输入错误为“RX byte stream silent for ten seconds”，退出采样时最后结果已过去约 15.160 s。因此上述相邻结果间隔只统计两次实际产出之间，不覆盖末尾停止产出的等待段，本轮不能写成全程无中断；断流的具体物理原因未继续调查。
 
-**收尾过程中以太网断开。** 确认断开后只做本地收尾，未再访问设备：当前包远端取消关闭回执、临时 `.50.49/24` 地址撤销／核验、TX／RX3 临时 LAN SSH 恢复，以及六个已关闭旧包和本包的完整原生归档取回均未完成。路由器断开后的运行态未知，既有开机配置保留；不能写成已全部停服或恢复成功。[最后实测汇总](../../../.local/csi-open-space-top1-020-20261027-r4/results/summary.json)、[原始 SSH 安全停止回执](../../../.local/csi-open-space-top1-020-20261027-r4/results/last-observed-native-outcome.json)与[待收尾清单](../../../.local/csi-open-space-top1-020-20261027-r4/results/pending-cleanup.json)。不自主重连、重启或恢复测试；下次连接仅需先完成收尾，无需为此启动新 SDK。
+**收尾过程中以太网断开。** 确认断开后只做本地收尾，未再访问设备：当前包远端取消关闭回执、临时 `.50.49/24` 地址撤销／核验、TX／RX3 临时 LAN SSH 恢复，以及六个已关闭旧包和本包的完整原生归档取回均未完成。路由器断开后的运行态未知，既有开机配置保留；不能写成已全部停服或恢复成功。最后实测汇总（本机留存，仓库未附：`../../../.local/csi-open-space-top1-020-20261027-r4/results/summary.json`）、原始 SSH 安全停止回执（本机留存，仓库未附：`../../../.local/csi-open-space-top1-020-20261027-r4/results/last-observed-native-outcome.json`）与待收尾清单（本机留存，仓库未附：`../../../.local/csi-open-space-top1-020-20261027-r4/results/pending-cleanup.json`）。不自主重连、重启或恢复测试；下次连接仅需先完成收尾，无需为此启动新 SDK。

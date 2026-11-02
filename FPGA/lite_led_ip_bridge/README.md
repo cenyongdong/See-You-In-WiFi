@@ -1,6 +1,6 @@
 # 悟净 Lite：真实 xlconcat IP 流水灯源码交接
 
-2026-10-01 已完成 Vivado 2019.1 MCP 生成 IP/编写 RTL/XSim → Procise 2025.1.1 temp 原生综合、布局布线、位流 → JTAG 易失下载 → 现场观察。现场确认“灯序、速度和单灯状态均符合预期”。完整过程与限制见 [RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/RESULTS.md)。
+2026-10-01 已完成 Vivado 2019.1 MCP 生成 IP/编写 RTL/XSim → Procise 2025.1.1 temp 原生综合、布局布线、位流 → JTAG 易失下载 → 现场观察。现场确认“灯序、速度和单灯状态均符合预期”。完整过程与限制见 [RESULTS.md](../../tools/mcp-validation/ip-reuse/RESULTS.md)。
 
 ## 功能与硬件
 
@@ -48,7 +48,7 @@ Procise 构建与复核的已执行命令（PowerShell，项目根目录）：
 
 - 仿真：`runs/sim_20261001_193106_688cd5`，16 种 IP 输入及 1/7/19 各 200 周期通过。
 - 构建：`runs/build_20261001_193157_bef06d`，setup/hold=5.962/0.192 ns、违例 0，五引脚/电平、29 INIT、JtagClk 通过。四 LED 保留 no_output_delay。
-- [最终位流](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/rundir/lite_led_chaser.bit)：5,980,582 字节；SHA-256 `00c833bb65fec1573ecf0a8cf59c45c50cff76ab7f0a3398696c43be4f608c56`。
-- [下载与观察记录](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/jtag_20261001_193337/program-result.json)：19:34 经 jfmql30 part 0 下载，STAT=0x40007ffc，人工确认通过。
+- 最终位流（历史附件，当前仓库未附：`D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/rundir/lite_led_chaser.bit`）：5,980,582 字节；SHA-256 `00c833bb65fec1573ecf0a8cf59c45c50cff76ab7f0a3398696c43be4f608c56`。
+- [下载与观察记录](runs/build_20261001_193157_bef06d/jtag_20261001_193337/program-result.json)：19:34 经 jfmql30 part 0 下载，STAT=0x40007ffc，人工确认通过。
 
 本次没有 Vivado 综合：前端两个 run 最终均为 Not started，checkpoint=0。物理实现与验收以 Procise 和当前 Lite 为准。结果只覆盖这个明文组合 IP 的配置/源码交接；Concat 可优化为连线，不能作为加密 IP、存储器、时钟核、DMA 或 HDMI 已兼容的证据。没有 Flash/BOOT、布线后仿真、仪器周期测量或整份配置读回。

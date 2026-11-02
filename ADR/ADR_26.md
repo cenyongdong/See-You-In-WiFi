@@ -20,7 +20,7 @@ SDK无关`model_only_run`封装完整窗口、调用顺序、拥有返回值、�
 
 三窗4次60400 FP32＋103次1555300 FP32合107前向1615700 FP32逐位旧参考，实际CSI及完整输入／分数／姿态保存。模型来源109232128／109285376与旧失败同；1712对象行／856shadow合法稳定，856查询全234，107次582首638／poll1。Host目标mod64覆盖0／16／32／48，不能归结为64对齐修复。
 
-七项flush成功、Engine主线程销毁、exit0／stderr空／内核原始字节同，无VPU／显示／网络。异常设备源读取触发0，规整0，全项目程序／代理会话结束。最终MemAvailable700208KiB／CmaFree9312／普通单位1仅现场，不作泄漏或启动可靠性结论。[结果](../tools/pose-v1/MODEL-ONLY-RESULTS-20261010.md)／[完成证据](../tools/pose-v1/evidence/model-only-20261010-r1/completion-review.json)。
+七项flush成功、Engine主线程销毁、exit0／stderr空／内核原始字节同，无VPU／显示／网络。异常设备源读取触发0，规整0，全项目程序／代理会话结束。最终MemAvailable700208KiB／CmaFree9312／普通单位1仅现场，不作泄漏或启动可靠性结论。[结果](../tools/pose-v1/MODEL-ONLY-RESULTS-20261010.md)／完成证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/model-only-20261010-r1/completion-review.json`）。
 
 ## 限制及后续
 

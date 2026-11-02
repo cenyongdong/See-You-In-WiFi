@@ -22,7 +22,7 @@
 
 程序`3f0ad06c666d40921479cdb0a428783a3f01c0b145e85af02e6f430b419f1e37`、manifest`d362ee965059b8e0b0557d81252cb11b5a4d028b540c847323e53522986adc14`，403载荷／77来源。Native-Werror自检16拒绝、8查询、824条预算、低于目标允许、原查询异常及落盘通过。板端Host和后续结果待本批完成补充。
 
-传输准备初版指向不存在的r1构建，未传输或执行；保留部分目录与脚本，仅修正控制工具路径，在新complete目录重建传输，不改程序／包／门禁。[方案](../tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md)、[本批证据](../tools/pose-v1/evidence/producer-count-20261009-r2/)。
+传输准备初版指向不存在的r1构建，未传输或执行；保留部分目录与脚本，仅修正控制工具路径，在新complete目录重建传输，不改程序／包／门禁。[方案](../tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md)、本批证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-count-20261009-r2/`）。
 
 ### 本批实际结果与下一决策依据
 
@@ -30,4 +30,4 @@ Host107／12注册／59600FP32、ARM16契约及原一帧取证／两轮源读取
 
 这不支持在当前观测点通过等待到234改善数据，不能把原假设当修复结果；公开计数仍非DMA/cache fence。下一设计SDK-own30240／16800 scratch连续搬运，无NPU先验后有限VPU并发，按已有公开defaultMemRegion／mallocOn／copyFrom契约隔离生产者／搬运责任；未执行新scratch或映射。SDK内部状态mask5/A的硬件完成语义须匹配核验，不按反汇编地址直接读写。
 
-合7正确105700值，失败300图像270网络／1来源28关节只前缀，正确inv1/2未捕获、2尾缺，非正常LAST。两abort STREAMOFF0／子回收256／source0／Engine join后销毁／内核同／端口与代理连接关闭；规整0、CMA／BOOT／SDK未改。原复制／数据根因尚未解决，103／性能／长期未通过。[完整结果](../tools/pose-v1/PRODUCER-COUNT-RESULTS-20261009.md)及[完成审查](../tools/pose-v1/evidence/producer-count-20261009-r2/completion-review.json)。本机失败审查初版字段关键字语法错误仅改审查适配器，初版保留，未改门禁或板测重跑。
+合7正确105700值，失败300图像270网络／1来源28关节只前缀，正确inv1/2未捕获、2尾缺，非正常LAST。两abort STREAMOFF0／子回收256／source0／Engine join后销毁／内核同／端口与代理连接关闭；规整0、CMA／BOOT／SDK未改。原复制／数据根因尚未解决，103／性能／长期未通过。[完整结果](../tools/pose-v1/PRODUCER-COUNT-RESULTS-20261009.md)及完成审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-count-20261009-r2/completion-review.json`）。本机失败审查初版字段关键字语法错误仅改审查适配器，初版保留，未改门禁或板测重跑。

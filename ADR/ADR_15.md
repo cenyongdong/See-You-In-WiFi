@@ -33,4 +33,4 @@
 
 新增四窗核验误沿用33画面期望，只以独立适配器修正为expected4，33计量、数值、SHA、阈值保持；冻结核验器与provenance保留，未改包或重跑。最终只读审计连接曾认证等待关闭，只重连读取现场，无硬件重试。所有测试/客户端/SSH/SCP结束，进程/端口释放。
 
-本轮独立方案保留旧r2及诊断入口；HDMI、30分钟、长期首启动和安全CMA申请仍另验。[完整结果](../tools/pose-v1/DISPLAY-PROCESS-RESULTS-20261008.md)、[下一方案](../tools/pose-v1/DISPLAY-PROCESS-NEXT-20261008.md)、[检查点](../tools/pose-v1/evidence/display-process-20261008-r1/next-checkpoint.json)。
+本轮独立方案保留旧r2及诊断入口；HDMI、30分钟、长期首启动和安全CMA申请仍另验。[完整结果](../tools/pose-v1/DISPLAY-PROCESS-RESULTS-20261008.md)、[下一方案](../tools/pose-v1/DISPLAY-PROCESS-NEXT-20261008.md)、检查点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/display-process-20261008-r1/next-checkpoint.json`）。

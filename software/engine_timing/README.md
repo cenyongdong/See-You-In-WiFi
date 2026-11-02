@@ -35,11 +35,11 @@
 
 ## 当前验证状态（2026-10-13）
 
-13项Python分析合同通过；Windows SDK无关C++检查通过；既有FPAI中的Linux线程CPU/rusage、异常、错误线程及容量合同通过；ARM64交叉编译通过。只有原核心既有的未使用私有助手警告。完整日志见[验证证据](../../tools/pose-v1/evidence/engine-timing-20261013-r1/README.md)。
+13项Python分析合同通过；Windows SDK无关C++检查通过；既有FPAI中的Linux线程CPU/rusage、异常、错误线程及容量合同通过；ARM64交叉编译通过。只有原核心既有的未使用私有助手警告。完整日志见验证证据（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/engine-timing-20261013-r1/README.md`）。
 
 上述开发交付阶段没有SSH、部署、NPU前向或板测；历史开发清单保持。
 
-随后实际完成Lite有限计时：baseline/wall各3个固定窗口完整输出逐位通过；wall均值Engine195.098ms、forward187.617ms、桥等待162.294ms、已观测CPU核14.121ms、搬运API0.771ms。SDK模式第1帧输出正确，但硬件745项中215项负值，立即保存停止、未重试，不能计算有效NPU总耗时。公开tuple单位/累积及层序映射仍未知。初始化约30.5–31.2秒另计，不包含VPU/TCP，不外推长期并发或整机5Hz。[实测表与完整证据](../../tools/pose-v1/evidence/engine-timing-board-20261013-r2/README.md)。
+随后实际完成Lite有限计时：baseline/wall各3个固定窗口完整输出逐位通过；wall均值Engine195.098ms、forward187.617ms、桥等待162.294ms、已观测CPU核14.121ms、搬运API0.771ms。SDK模式第1帧输出正确，但硬件745项中215项负值，立即保存停止、未重试，不能计算有效NPU总耗时。公开tuple单位/累积及层序映射仍未知。初始化约30.5–31.2秒另计，不包含VPU/TCP，不外推长期并发或整机5Hz。实测表与完整证据（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/engine-timing-board-20261013-r2/README.md`）。
 
 预检原来将dmesg历史版本与proc/version比较，r1在前向前停止；同源dmesg核验一致后仅修正包装器，新包r3和新板端目录r2执行。原源码/构建/交付封存清单不回写，正式核心/模型/SDK/BOOT保持。后续构建使用已修订board_run.py。
 

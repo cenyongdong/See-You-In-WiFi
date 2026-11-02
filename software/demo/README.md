@@ -6,7 +6,7 @@
 
 当前入口使用[software/core](../core/README.md)六个功能目录，旧pose_v1和历史检查器保留。参数解析独立为demo_options，视频网络/绘图/编码线程入口分别封装；公开接口和原运行行为保持。构建仍导出锁定别名，但当前锁显式引用新核心；原锁和路径/哈希映射见[ADR_47](../../ADR/ADR_47.md)。
 
-实际完成：11组本机、ARM构建、Lite CPU107/22输出/59600 FP32逐位，以及三窗口全部原始输入/预处理/分数/姿态逐位旧参考。354编码/294 GUI解码、全3来源/42关节、drain/LAST和回收通过，规整0，身份与内核同。[完整证据](../../tools/pose-v1/evidence/core-refactor-20261013-r1/README.md)。本轮没有60窗口执行；下方2026-10-11旧命令和结果保留为历史。
+实际完成：11组本机、ARM构建、Lite CPU107/22输出/59600 FP32逐位，以及三窗口全部原始输入/预处理/分数/姿态逐位旧参考。354编码/294 GUI解码、全3来源/42关节、drain/LAST和回收通过，规整0，身份与内核同。完整证据（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/core-refactor-20261013-r1/README.md`）。本轮没有60窗口执行；下方2026-10-11旧命令和结果保留为历史。
 
 当前已验证构建为`.local/pose-v1-build/demo-refactor-20261013-r1`，板端为`/tmp/wifi-pose-demo-refactor-20261013-r1`；已完成的运行目录不得再次使用。默认模型来源重新核验为`D:/Person-in-WIFI-3D/Person-in-WiFi-3D-repo/result/icraft_2024`，配对SHA保持原固定值。
 

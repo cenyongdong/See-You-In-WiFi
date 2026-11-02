@@ -8,7 +8,7 @@
 
 - Vivado2018.3＋既有JFM整机实现1299.938秒exit0；WNS+0.030ns/WHS+0.029ns，TNS/THS均0。原AI两点Min Period −0.409/−0.071ns例外保持；完整原始报告仍标记Failed Timing，不称独立安全签核。
 - 新bit已实际生成127.061秒exit0，Procise ICAP后处理3.711秒exit0。载荷与原BOOT不同；离线封装仅PL分区2007499字节不同，非PL全部相同。
-- 候选BOOT 7023552字节，SHA `22035d99f2dacdcb1817a0c08ae8b04c3b024e51bf2f1b522f0fcb9baf252135`；原BOOT同长度，SHA `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`。具体bit、回退BOOT和静态探针SHA见[完整清单](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/manifest.json)。
+- 候选BOOT 7023552字节，SHA `22035d99f2dacdcb1817a0c08ae8b04c3b024e51bf2f1b522f0fcb9baf252135`；原BOOT同长度，SHA `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`。具体bit、回退BOOT和静态探针SHA见完整清单（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/manifest.json`）。
 - 新扫链4.085秒exit0，JTAG-HS1/210512180081；jfmql30/0x9372c093/part0，PS-DAP/0x6ba00477/part1。以后实际program前仍新扫链，不永久固定part。
 - COM7为CP210x，115200/8N1，主机DTR/RTS关闭、串口发送0字节，完整收到ttyPS0的33字节标记；接收已关闭。已证明PS UART接收链路，未实际验收新启动日志。
 - 最新只读板端BOOT/六SDK同，boot_id仍8974fbf7-cbe9-4fc9-954d-4682c45b045f，FPGA operating，没有相关设备FD owner。但没有公开且已验证的全PL drain/隔离接口，不能据此热重配整机。
@@ -33,7 +33,7 @@
 
 ## 产物与限制
 
-[执行证据](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md)、[布线门检](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/system-route-r5/review.json)、[新位流](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/hdmi-integrated-r5_disable_icap.bit)、[候选BOOT](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/BOOT-hdmi-r5.bin)、[回退BOOT](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/BOOT-original.bin)。
+执行证据（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md`）、布线门检（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/system-route-r5/review.json`）、新位流（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/hdmi-integrated-r5_disable_icap.bit`）、候选BOOT（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/BOOT-hdmi-r5.bin`）、回退BOOT（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/controlled-startup-r5/BOOT-original.bin`）。
 
 REQP-1577、三条新O5布局告警及原MIG/SDI/AI告警全部保留，无新降级/豁免；本批全局CDC报告不是零告警签核，手册对IO直驱1080p60的限制保持。当前未写板端BOOT、未重启、未下载候选，不能称实屏通过。
 
@@ -42,4 +42,4 @@ REQP-1577、三条新O5布局告警及原MIG/SDI/AI告警全部保留，无新�
 
 2026-10-16：HDMI修复已完成整机接入、实际候选启动和静态实屏验证。现场确认“显示稳定的八条色条”；双ABI、PLL/idle/错误门检及约148.5MHz像素计数通过，OSD分辨率/刷新率尚未提供。目标仍为1920×1080@60；r5布线WNS+0.030ns/WHS+0.029ns，原两个AI Min Period例外及其余告警保留。已使用新授权的一次候选重启，SSH约53.6秒恢复；原BOOT随后完整还原并读回原SHA，其余启动文件/六SDK不变。运行中仍为候选静态色条，不是运行中已回退；下一次启动选原BOOT。未进行显示DDR DMA、帧切换/在途STOP、NPU推理或整机实时验收，旧DATA继续暂停。跨重启/tmp清理导致的恢复源丢失已通过主机原始回传及/root持久暂存解决；另查到FAT脏标志与两条合计2168簇的未引用链，来源未知，未修复，启动区停止新增写入。
 
-下方之前的执行顺序和哈希是提出方案时的可审查对象，不回写历史执行为通过。当前真实状态以本段和[板测报告](../../tools/pose-v1/evidence/hdmi-board-candidate-20261016-r1/REPORT.md)为准。
+下方之前的执行顺序和哈希是提出方案时的可审查对象，不回写历史执行为通过。当前真实状态以本段和板测报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-candidate-20261016-r1/REPORT.md`）为准。

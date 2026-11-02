@@ -18,9 +18,9 @@
 
 PC展示计数差1包含停止前快照至实际断开间未计入的可能接收，不能当作精确丢帧数。原展示进程因人工修复结束，退出码4294967295保留；新展示与原始观察进程均正常退出0。累计归档25394帧不等于全部仍在磁盘：有界环实际保留242条完整输出，全时段保留181次板端采样和390次PC采样。
 
-证据：[结构化汇总](../../.local/csi-longrun-20261031-r1/reports/summary.json)、[完整板端原生归档](../../.local/csi-longrun-20261031-r1/reports/board-evidence.tar.gz)、[PC分时段记录](../../.local/csi-longrun-20261031-r1/reports/pc/samples.jsonl)、[现场确认](../../.local/csi-longrun-20261031-r1/reports/visual-confirmations.json)。板端归档SHA256：`6911237f42d0266b6b5b9f62f5b06c8fb02f9a41a87abc9a3cba2e3b57e534dc`。
+证据：[结构化汇总](../../Deliverables/evidence/longrun/summary.json)、完整板端原生归档（本机留存，仓库未附：`../../.local/csi-longrun-20261031-r1/reports/board-evidence.tar.gz`）、PC分时段记录（本机留存，仓库未附：`../../.local/csi-longrun-20261031-r1/reports/pc/samples.jsonl`）、[现场确认](../../Deliverables/evidence/longrun/visual-confirmations.json)。板端归档SHA256：`6911237f42d0266b6b5b9f62f5b06c8fb02f9a41a87abc9a3cba2e3b57e534dc`。
 
-![30分钟计数、资源、更新率与耗时](../../.local/csi-longrun-20261031-r1/reports/stability-30min.png)
+![30分钟计数、资源、更新率与耗时](../../Deliverables/evidence/longrun/stability-30min.png)
 
 曲线耗时取每5秒所见最新帧，不是全部推理帧的均值／P95；PC到达率不是浏览器绘制率。RSS回落原因未另行定位，30分钟未见增长不等于任意时长无泄漏；最长输入／结果间隔接近，也不能直接将原因归给FPGA计算。
 
@@ -28,7 +28,7 @@ PC展示计数差1包含停止前快照至实际断开间未计入的可能接�
 
 复用合格CSI r3 BOOT（`23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35`），PL幅相90点分组流水与骨架绘制保持，PS相位收尾／投影／多人滤波、原epoch99 NPU及Top3／严格0.2保持。软件只将跨轮累计输入上限由9000扩为36000，单文件仍至多9000窗，并在安全完成回执中记录初始化之后的实际运行时间；固定内存输入缓冲和原安全关闭流程保持。
 
-输入为官方train的30个连续290窗片段，单／双／三人各10段，共8700不同窗口，15Hz单轮约580秒，最多4轮34800窗；原生程序初始化后运行1800秒再正常退出，片段或轮次边界重置跟踪，不重启SDK。播放时间线为生成的演示时间，训练集稳定性不等于独立精度、新实时CSI或全天验收。来源、逐窗名称及实际数据身份见[选材记录](../../.local/csi-longrun-20261031-r1/selection.json)和[播放清单](../../.local/csi-longrun-20261031-r1/playlist/dataset.json)。数据归属与许可沿用[官方数据来源记录](../../software/pose180_pipeline/resident/DATASET-DEMO.md)。
+输入为官方train的30个连续290窗片段，单／双／三人各10段，共8700不同窗口，15Hz单轮约580秒，最多4轮34800窗；原生程序初始化后运行1800秒再正常退出，片段或轮次边界重置跟踪，不重启SDK。播放时间线为生成的演示时间，训练集稳定性不等于独立精度、新实时CSI或全天验收。来源、逐窗名称及实际数据身份见选材记录（本机留存，仓库未附：`../../.local/csi-longrun-20261031-r1/selection.json`）和播放清单（本机留存，仓库未附：`../../.local/csi-longrun-20261031-r1/playlist/dataset.json`）。数据归属与许可沿用[官方数据来源记录](../../software/pose180_pipeline/resident/DATASET-DEMO.md)。
 
 板端每10秒保留状态／资源／CSI累计计数，PC每5秒记录原始和展示通道接收、有效性、更新率、延迟与连接状态，完整输出采用有界环。PC界面自动检查工具因无法识别浏览器URL而停止，实际画面依据现场确认，不能以接收数代替。
 
@@ -38,4 +38,4 @@ PC展示计数差1包含停止前快照至实际断开间未计入的可能接�
 
 ## 当前状态与恢复
 
-板端包 `/root/pose180-csi-longrun-20261031-r1`，boot_id `737e40ad-de06-4139-b9d0-6fc1ae5ae03d`。本机[独立部署包](../../.local/csi-longrun-20261031-r1/pose180-csi-longrun-20261031-r1.tar.gz)和[包身份](../../.local/csi-longrun-20261031-r1/reports/package.json)保留；PC修复在主机源码中，后续双观察器由`longrun.py pc`统一带入共享计时。当前设备空闲、本批观察进程结束、无自启动；本轮关闭、剩余次数0，再次启动须新记录、正常重启与预检。当前软件／BOOT身份见[default_boot.json](../hdmi_candidate/default_boot.json)，硬件回退仍用保留的r2 CSI BOOT。
+板端包 `/root/pose180-csi-longrun-20261031-r1`，boot_id `737e40ad-de06-4139-b9d0-6fc1ae5ae03d`。本机独立部署包（本机留存，仓库未附：`../../.local/csi-longrun-20261031-r1/pose180-csi-longrun-20261031-r1.tar.gz`）和包身份（本机留存，仓库未附：`../../.local/csi-longrun-20261031-r1/reports/package.json`）保留；PC修复在主机源码中，后续双观察器由`longrun.py pc`统一带入共享计时。当前设备空闲、本批观察进程结束、无自启动；本轮关闭、剩余次数0，再次启动须新记录、正常重启与预检。当前软件／BOOT身份见[default_boot.json](../hdmi_candidate/default_boot.json)，硬件回退仍用保留的r2 CSI BOOT。

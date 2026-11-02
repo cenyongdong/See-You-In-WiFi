@@ -19,7 +19,7 @@
 
 当前为原BOOT运行，boot_id=`47776dda-0513-4022-823a-6d2d97013deb`，FPGA operating、无设备占用；候选运行boot_id=`f8e4f8ed-48aa-4c58-b59e-8308db0c40f1`。原BOOT身份沿用既有`ff350477…1ef`，详见本包`evidence/boot-control/metadata/final-audit.json`；原始文件身份不重复生成。四台路由器已恢复原厂无线运行时，TX／RX3临时SSH关闭；板端临时`.50.49`随回退消失，PC临时`.50.102`已移除、保留`.126.100`。PC观察端、板端监督／采样、源端守护和UART接收已结束，串口TX字节0，无本批后台负载。
 
-原始证据集中于[本机r4目录](../../../.local/pose180-resident-long-20261025-r4)：`final-evidence.tar.gz`及展开的`evidence/`、`radios/*-evidence.tar.gz`、`physical-observations.jsonl`、`pc-link.jsonl`、`pose-analysis.json`和一次保留的`pose-sample.full`。机器`long-test.json`仅确认原生完成，不能自行确认现场，其物理验证字段原值仍为false；现场答复及采样独立保存，不改写机器回执。SDK／模型／程序身份沿用本包`prepared.json`、`board/manifest.json`、`pipeline/identity.json`及实际原生日志；部署后精简的入口单独收在证据内，不回写原包哈希。
+原始证据集中于本机r4目录（本机留存，仓库未附：`../../../.local/pose180-resident-long-20261025-r4`）：`final-evidence.tar.gz`及展开的`evidence/`、`radios/*-evidence.tar.gz`、`physical-observations.jsonl`、`pc-link.jsonl`、`pose-analysis.json`和一次保留的`pose-sample.full`。机器`long-test.json`仅确认原生完成，不能自行确认现场，其物理验证字段原值仍为false；现场答复及采样独立保存，不改写机器回执。SDK／模型／程序身份沿用本包`prepared.json`、`board/manifest.json`、`pipeline/identity.json`及实际原生日志；部署后精简的入口单独收在证据内，不回写原包哈希。
 
 ## 已实现与实际验证
 
@@ -30,7 +30,7 @@
 - `bounded_log.py`在SDK前启动独立记录进程；native stdout／stderr使用非阻塞管道，四段×512KiB（2MiB），资源状态两段×256KiB（512KiB）。原模型完整结果环继续四段×64条，记录拥塞允许丢弃。管道端未接收的日志字节数未知，不宣称全量日志。模型初始化／失败取证及双帧内存核验是固定数量，不随运行时长增长。
 - 原生程序仅在HDMI STOP／排空及Runtime释放后写一次`completion.json`；监督器同时核对原生退出和设备占用，不能把进程消失、超时或旧画面扫描当成安全停止／新推理。
 
-实际软件验证见[测试目录](../../../.local/pose180-resident-long-20261025)：本机与ARM编译通过；`lifecycle-final/result.json`验证启动会话结束后RX三次新连接、暂停／恢复、本地停止及恢复脚本；模拟TX错误后停止且不重试；记录进程SIGSTOP期间模拟负载继续推进，文件保持上限；`/dev/full`不阻塞记录调用。`mock-service/outcome.json`用实际mock核心完成10次新处理、退出0及完成回执。均为Linux软件／回放层验证，未将其认定为真实无线、SDK长时或实屏通过。
+实际软件验证见测试目录（本机留存，仓库未附：`../../../.local/pose180-resident-long-20261025`）：本机与ARM编译通过；`lifecycle-final/result.json`验证启动会话结束后RX三次新连接、暂停／恢复、本地停止及恢复脚本；模拟TX错误后停止且不重试；记录进程SIGSTOP期间模拟负载继续推进，文件保持上限；`/dev/full`不阻塞记录调用。`mock-service/outcome.json`用实际mock核心完成10次新处理、退出0及完成回执。均为Linux软件／回放层验证，未将其认定为真实无线、SDK长时或实屏通过。
 
 本轮运行发现并修正TX续发的软件错误：原守护仅在循环前调用429配置，第一轮432释放上下文后第二轮430无法启动，停在492次HDMI采纳；源端自行恢复原厂无线，板端原SDK正常等待。对照实际固件ioctl实现明确原因后，每轮改为429配置→430启动→433状态→432释放，并在解析前保留失败状态原文；软件测试加入“释放后必须重新配置”的契约。14:52在独立RAM目录`/tmp/nexmon-resident-long-20261025-r4-tx-rearm`恢复源端，期限缩为1680秒，仍在原源端截止范围内；没有新增BOOT／SDK或延长板端30分钟。原失败证据保留，约205秒无更新计入本次结果，不能宣称完整30分钟持续输入。14:55已确认修正后第三轮TX及新HDMI采纳继续。
 
@@ -72,7 +72,7 @@ RX恢复以接回后建立新代次并重新产生实际新推理／HDMI采纳�
 
 ## 本包执行记录与证据入口
 
-本机包：[r4目录](../../../.local/pose180-resident-long-20261025-r4)，板端目录：`/root/demo-v1-20261022-r1/pose180-resident-long-20261025-r4`。本机`prepared.json`记录原始包传输身份；`board-prepared.json`记录准备时的原BOOT、SDK和无占用状态，不代表当前运行状态。实际见`authorization-approved.json`；最终`closed.json`已关闭包，即使原授权文件保留active值也不可再次启动。精简文件校验：本次运行前复用已完成准备及同次启动恢复结果，保留实时准入、FPGA／SDK状态、单实例和安全停止检查；部署脚本修正原厂缺少sha256sum及配置CRLF兼容问题，没有追加SDK或重启。
+本机包：r4目录（本机留存，仓库未附：`../../../.local/pose180-resident-long-20261025-r4`），板端目录：`/root/demo-v1-20261022-r1/pose180-resident-long-20261025-r4`。本机`prepared.json`记录原始包传输身份；`board-prepared.json`记录准备时的原BOOT、SDK和无占用状态，不代表当前运行状态。实际见`authorization-approved.json`；最终`closed.json`已关闭包，即使原授权文件保留active值也不可再次启动。精简文件校验：本次运行前复用已完成准备及同次启动恢复结果，保留实时准入、FPGA／SDK状态、单实例和安全停止检查；部署脚本修正原厂缺少sha256sum及配置CRLF兼容问题，没有追加SDK或重启。
 
 本轮批准后先核对设备与接线、保留串口接收，按现有控制器执行候选安装／启动、磁盘原BOOT恢复及本次准入。准入通过后建立板端临时采集地址，再按各路由器stage／传输校验／load入口装载同一既有射频配置。板端`controller.py run`只启动独立监督，之后通过`status`／`stop`操作；RX守护先启动，确认三路连接后启动TX。启动和停止命令都是本地执行，不持有远程会话作为运行条件。
 

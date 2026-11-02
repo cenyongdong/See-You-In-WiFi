@@ -19,7 +19,7 @@
 - Host107／12注册／59,600FP32、IPC与9失败持久化拒绝测试通过。真实Host192探针保存47,040字节，NumPy确认仅人为0.5索引非法，原异常保留。
 - 硬件失败120回传完整核验；内核前后同，VPU两STREAMOFF成功，子进程回收、source0、端口释放、workers join后销毁Engine。本轮没有规整、清缓存、重启或修改BOOT/CMA/SDK/模型。
 
-证据：[失败复核](../tools/pose-v1/evidence/forward-trace-20261009-r3/failure-review.json)、[块比较](../tools/pose-v1/evidence/forward-trace-20261009-r3/TopK188-block-comparison.json)、[原始Host值分析](../tools/pose-v1/evidence/forward-trace-20261009-r3/failed-TopK188-input-analysis.json)。
+证据：失败复核（历史附件，当前仓库未附：`../tools/pose-v1/evidence/forward-trace-20261009-r3/failure-review.json`）、块比较（历史附件，当前仓库未附：`../tools/pose-v1/evidence/forward-trace-20261009-r3/TopK188-block-comparison.json`）、原始Host值分析（历史附件，当前仓库未附：`../tools/pose-v1/evidence/forward-trace-20261009-r3/failed-TopK188-input-analysis.json`）。
 
 ## 判断、选项与决策
 

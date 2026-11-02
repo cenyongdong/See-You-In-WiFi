@@ -31,6 +31,6 @@ ADR_35 的正式模型在 GatherElements192 首次 Host 索引中出现前一数
 
 数学参考缺口已经闭合，物理内存映射、实际计数和第一读仍未实测。下一先独立物理apply核对同成员、`0→11`与真实段，再按固定A／B／A／B序列保存完整输出后比较。先无VPU；通过后再设计并发对照。原正式失败与异常数据读取继续保留，不用晚读值修补索引，不把mock通过或未复现当根因修复。
 
-[结果](../tools/pose-v1/PRODUCER-REFERENCE-RESULTS-20261011.md)／[下一门检](../tools/pose-v1/PRODUCER-REFERENCE-NEXT-20261011.md)／[核验](../tools/pose-v1/evidence/producer-reference-20261011-r2/reference-review.json)。
+[结果](../tools/pose-v1/PRODUCER-REFERENCE-RESULTS-20261011.md)／[下一门检](../tools/pose-v1/PRODUCER-REFERENCE-NEXT-20261011.md)／核验（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-reference-20261011-r2/reference-review.json`）。
 
 归档首次从manifest的工具sources字段筛选软件得到空项；发现后保留原completion，用build_files真实清单核对152份冻结软件，全部哈希不变，增加非空断言。仅本机证据门检修正，没有模型或板测重跑。

@@ -2,7 +2,7 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-17最新执行：HDMI接入验证和渲染，解除本项此前暂停。使用既有r5候选，无新EDA／位流／BOOT操作。SDK双缓冲、动态图案与三份历史真实骨架已实屏验证；模型实时联动在参数上传SDK DMA异常前停止，新推理0。当前实现、日志与边界见[本轮报告](../../tools/pose-v1/evidence/hdmi-display-20261017-r1/REPORT.md)。下文为10月16日计划及历史暂停，不代表本轮结果或其它任务恢复。
+2026-10-17最新执行：HDMI接入验证和渲染，解除本项此前暂停。使用既有r5候选，无新EDA／位流／BOOT操作。SDK双缓冲、动态图案与三份历史真实骨架已实屏验证；模型实时联动在参数上传SDK DMA异常前停止，新推理0。当前实现、日志与边界见本轮报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-display-20261017-r1/REPORT.md`）。下文为10月16日计划及历史暂停，不代表本轮结果或其它任务恢复。
 
 **当前执行状态：文档交接后暂停下一阶段，待架构确定及明确恢复指令。** [FPGA工作总结](../FPGA-WORK-SUMMARY-20261016.md)为交接入口；下文保留此前集成范围、计划及实际结果，不能作为自动继续构建或板测的授权。
 
@@ -49,7 +49,7 @@
 
 首版set_max_delay使用Q端点导致路径截断，工具提示改用合法时钟起点；现已改为C起点，保留Gray最大延迟/bus skew及第二级正常时序，等待新版实际约束报告。未通过更改严重级别或新增DRC关闭来解决。
 
-请求暂停后又明确恢复。本次暂停发生在第二版底层综合完成、外层元数据收集期间，原stage没有退出记录；恢复时DCP CRC/17份源SHA及工具Complete/NEEDS_REFRESH=0均已核验，使用新恢复目录读原DCP，不重跑综合。当前新约束、实现、位流和板测仍未完成。[本批实际报告](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md)。
+请求暂停后又明确恢复。本次暂停发生在第二版底层综合完成、外层元数据收集期间，原stage没有退出记录；恢复时DCP CRC/17份源SHA及工具Complete/NEEDS_REFRESH=0均已核验，使用新恢复目录读原DCP，不重跑综合。当前新约束、实现、位流和板测仍未完成。本批实际报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md`）。
 
 架构方法另核对AMD原始UG471/UG472的BUFIO/BUFR配对说明，仅作为2018.3前端拓扑依据，不把Xilinx速率数字当FMSH器件保证：[UG471](https://docs.amd.com/api/khub/documents/IbGcnPFe6eF19RHma_Y~IA/content)、[UG472](https://www.amd.com/content/dam/xilinx/support/documents/user_guides/ug472_7Series_Clocking.pdf)。本地原厂适配及实现检查保持优先。
 
@@ -72,11 +72,11 @@ r4仅替换clk_out1_clk_wiz_0与clk_pll_i两向的原整域cut：新时钟对max
 
 2026-10-16：HDMI整机r5实现和离线候选已完成，待受控启动与实屏验证。FIFO本域同步复位修正后，r8完整2073600像素/欠载/STOP仿真通过；综合259.732秒、约束167.171秒、整机实现1299.938秒均exit0。布线后WNS+0.030ns、WHS+0.029ns，TNS/THS均0；仅保留已批准的两处AI Min Period原失败，不新增豁免。三组Gray偏斜及邮箱5ns/10ns、96条CE路径均通过，完整CDC/剩余告警与实屏限制保留。新位流配置载荷已确认不同于现BOOT；离线BOOT仅PL分区改变，三份PS文件及全部非PL字节相同。COM7/115200 8N1已收到板端ttyPS0标记。没有可验证的在线全PL停止/隔离通道，临时启动切换方案待具体确认；本轮未下载、写板端BOOT、重启、DMA或推理，旧DATA继续暂停。
 
-执行位置Windows，工作目录D:/FPGACompetitionProject/.local/hdmi-integration-20261016-r1，Vivado2018.3＋既有JFM、Procise2025.1.1temp/SVN32494。r4布局已完成但在写检查点时被代理误中断，未留placed DCP；42文件另存，r5保持同源码/约束/策略完成。原始脉宽WPWS−0.409ns/TPWS−0.479ns及两原厂端点保持，非独立安全验证。新HDMI物理报告50条建立/保持最小+0.105/+0.079ns，Gray偏斜裕量3.820/5.731/5.580ns；邮箱数据/响应裕量1.534/8.779ns、96CE最小0.856ns。REQP-1577及O5等告警未降级，默认重开DCP的GT52/56与实现原厂四项处理分开保留。报告解析首试因默认摘要只列一个脉宽最差路径而失败，改为同时核验实际实现十路径报告，两处原值不改。[原值及完整报告](../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md)、[下一受控启动执行包](CANDIDATE-BOARD-TEST-R5.md)。
+执行位置Windows，工作目录D:/FPGACompetitionProject/.local/hdmi-integration-20261016-r1，Vivado2018.3＋既有JFM、Procise2025.1.1temp/SVN32494。r4布局已完成但在写检查点时被代理误中断，未留placed DCP；42文件另存，r5保持同源码/约束/策略完成。原始脉宽WPWS−0.409ns/TPWS−0.479ns及两原厂端点保持，非独立安全验证。新HDMI物理报告50条建立/保持最小+0.105/+0.079ns，Gray偏斜裕量3.820/5.731/5.580ns；邮箱数据/响应裕量1.534/8.779ns、96CE最小0.856ns。REQP-1577及O5等告警未降级，默认重开DCP的GT52/56与实现原厂四项处理分开保留。报告解析首试因默认摘要只列一个脉宽最差路径而失败，改为同时核验实际实现十路径报告，两处原值不改。原值及完整报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md`）、[下一受控启动执行包](CANDIDATE-BOARD-TEST-R5.md)。
 
 
 ## 候选受控启动与静态实屏结果
 
 2026-10-16：HDMI修复已完成整机接入、实际候选启动和静态实屏验证。现场确认“显示稳定的八条色条”；双ABI、PLL/idle/错误门检及约148.5MHz像素计数通过，OSD分辨率/刷新率尚未提供。目标仍为1920×1080@60；r5布线WNS+0.030ns/WHS+0.029ns，原两个AI Min Period例外及其余告警保留。已使用新授权的一次候选重启，SSH约53.6秒恢复；原BOOT随后完整还原并读回原SHA，其余启动文件/六SDK不变。运行中仍为候选静态色条，不是运行中已回退；下一次启动选原BOOT。未进行显示DDR DMA、帧切换/在途STOP、NPU推理或整机实时验收，旧DATA继续暂停。跨重启/tmp清理导致的恢复源丢失已通过主机原始回传及/root持久暂存解决；另查到FAT脏标志与两条合计2168簇的未引用链，来源未知，未修复，启动区停止新增写入。
 
-[完整实际证据及剩余门检](../../tools/pose-v1/evidence/hdmi-board-candidate-20261016-r1/REPORT.md)。
+完整实际证据及剩余门检（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-candidate-20261016-r1/REPORT.md`）。

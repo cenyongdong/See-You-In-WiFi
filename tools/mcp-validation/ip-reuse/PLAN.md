@@ -1,6 +1,6 @@
 # 真实 xlconcat IP 流水灯：已批准试验方案
 
-日期：2026-10-01。前提与局限见 [ANALYSIS.md](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/ANALYSIS.md)。明确回复“同意 xlconcat 最小验证方案并执行”；按以下范围实施，实际结果另见 RESULTS.md，分析与计划本身不作为验收证据。
+日期：2026-10-01。前提与局限见 [ANALYSIS.md](ANALYSIS.md)。明确回复“同意 xlconcat 最小验证方案并执行”；按以下范围实施，实际结果另见 RESULTS.md，分析与计划本身不作为验收证据。
 
 ## 拟实施内容
 
@@ -20,4 +20,4 @@
 - 不加载 JFM 全系统迁移 hook，不修改 EDA 数据库/安装；如需该路线，另行核对 2019.1 和 30TAI 的精确兼容条件并讨论。
 - 成功结论只覆盖这个未加密组合 IP 的源码交接与流水灯实板，Concat 可能被综合优化为连线，不证明任何复杂 IP 已适配。
 
-依据 [AGENTS.md](D:/FPGACompetitionProject/AGENTS.md)：“根据分析结论形成的决策，必须在执行前评估并取得明确同意”。本次需要确认的是上述新 IP/独立工程/验证路线的具体实施方案；不是重复要求已经提出的上板验证。
+依据 [AGENTS.md](../../../AGENTS.md)：“根据分析结论形成的决策，必须在执行前评估并取得明确同意”。本次需要确认的是上述新 IP/独立工程/验证路线的具体实施方案；不是重复要求已经提出的上板验证。

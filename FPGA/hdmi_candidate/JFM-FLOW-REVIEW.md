@@ -8,10 +8,10 @@
 
 2026-10-16，已选定路径二进行审查。最新结果、参数读写清单及正式构建边界统一见[ROUTE2-AUDIT.md](ROUTE2-AUDIT.md)，本页保留此前路径选择的依据。
 
-2018.3已按明确授权就地完成030ai补丁，真实扩展PS展开及综合通过。之后通用EDIF原语名称转换成功，但Procise原生PCPU7导入失败；失败证据、端口原值与未重试状态保留于[上一批报告](../../tools/pose-v1/evidence/hdmi-vivado2018-20261016-r2/REPORT.md)。这不能推导原厂Vivado＋JFM位流链路也必须经过PCPU7导入。
+2018.3已按明确授权就地完成030ai补丁，真实扩展PS展开及综合通过。之后通用EDIF原语名称转换成功，但Procise原生PCPU7导入失败；失败证据、端口原值与未重试状态保留于上一批报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-vivado2018-20261016-r2/REPORT.md`）。这不能推导原厂Vivado＋JFM位流链路也必须经过PCPU7导入。
 
 本轮在隔离原始工程上审查六项hook、真实DRC定义和默认库操作，补齐同配置MIG OOC后原厂前置检查通过。Procise后处理包含30TAI独立ICAP分支，并非仅有K325示例增量配置。已确认调用目标，但没有执行位流处理或完整顶层实现；32项全局IP库替换和四项GT DRC处理仍需确定范围。BOOT及旧DATA暂停保持。
 
 本轮发生的save_project驱动错误与初次MIG前置检查失败均保留，不将独立核验改写成原运行通过。超时处理遵循最新Agents授权，自主取证并有界决策；MIG实际以180→360秒继续原作业，在262.133509秒完成。
 
-[本批完整原值](../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/REPORT.md)。此前本页全文保存在该批before文档快照；历史报告及其清单未回写。
+本批完整原值（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/REPORT.md`）。此前本页全文保存在该批before文档快照；历史报告及其清单未回写。

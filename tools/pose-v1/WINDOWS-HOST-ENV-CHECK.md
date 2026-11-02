@@ -4,7 +4,7 @@
 WindowsSdkDir未设置，WindowsSDKVersion仅`\`，有效Windows SDK未识别；不是编译器或路径继承问题。
 代理只读检查厂商脚本读取的4个Windows v10.0注册表入口及5个常见Windows Kits目录均未找到，
 不能排除其他自定义未登记目录。SDK未确认前不执行F2构建，不手填INCLUDE/LIB、不安装/修复。
-证据[evidence/windows-host-sdk-query-20261005.png](evidence/windows-host-sdk-query-20261005.png)。
+证据`evidence/windows-host-sdk-query-20261005.png`（历史附件，当前仓库未附）。
 后续路线讨论见[REFERENCE-NEXT-PLAN.md](REFERENCE-NEXT-PLAN.md)，未批准，不代表参考已完成。
 
 ## 只读定位结果
@@ -37,14 +37,14 @@ WindowsSdkDir未设置，WindowsSDKVersion仅`\`，有效Windows SDK未识别；
 不据此认定原窗口初始化失败或SDK缺失。现在回原初始化窗口查询，原窗口环境及SDK仍待验证。
 代理只读确认start/parse/winsdk/vcvars等厂商初始化脚本存在；横幅v17.0是vswhere缺失时的源码默认值，
 不能作为完整安装版本或初始化失败证据。截图见
-[启动横幅](evidence/windows-host-banner-20261005.png)、[环境变量查询](evidence/windows-host-unset-query-20261005.png)。
+启动横幅（历史附件，当前仓库未附：`evidence/windows-host-banner-20261005.png`）、环境变量查询（历史附件，当前仓库未附：`evidence/windows-host-unset-query-20261005.png`）。
 
 属于既定环境查询步骤的延续。在Windows主机执行，代理不代执行。
 不安装、修复或下载软件，不改永久PATH、不编译、不运行模型，不访问板卡。
 
 首次启动截图中的路径漏掉了目录名开头空格，CMD返回“系统找不到指定的路径”。
 代理只读再次确认实际目录首字符为32（空格）、带空格路径文件存在，不带空格路径不存在。
-这次失败不能作为SDK缺失或编译器损坏的证据；截图[evidence/windows-host-path-error-20261005.png](evidence/windows-host-path-error-20261005.png)。
+这次失败不能作为SDK缺失或编译器损坏的证据；截图`evidence/windows-host-path-error-20261005.png`（历史附件，当前仓库未附）。
 下面改为从真实目录项构造路径，Trim只用于匹配名称，FullName原样保留；查询与临时终端范围不变。
 
 1. 如果当前提示符为CMD（没有PS标记），先执行`exit`回到原PowerShell。

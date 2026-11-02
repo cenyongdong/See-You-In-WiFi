@@ -49,7 +49,7 @@ r1／r2／r4／r5 原生退出 0、HDMI STOP 完成、无设备所有者，全�
 | 历史 r11 的 205 帧 | 7.293 | 6.419 | 50.190 | 107.153 |
 | 历史 r12 的 221 帧 | 9.768 | 6.388 | 37.280 | 114.680 |
 
-原始每次测量、输入／程序哈希和硬件身份：[PS 原始结果](../../../.local/pose-filter-ps-benchmark-20261026-r1/results.json)。复现源码为 [filter_benchmark.cpp](../tools/native/filter_benchmark.cpp)、[benchmark_ps.py](../control/benchmark_ps.py) 和 [pose_replay.cpp](../tools/native/pose_replay.cpp)。ARM 目标 `filter_benchmark`／`pose_replay` 与实时服务链接相同 `pose_postprocess` 库。`benchmark_ps.py` 的目录布局和有限重复次数写在脚本中；记录是历史结果回放，不作为新推理计数。
+原始每次测量、输入／程序哈希和硬件身份：PS 原始结果（本机留存，仓库未附：`../../../.local/pose-filter-ps-benchmark-20261026-r1/results.json`）。复现源码为 [filter_benchmark.cpp](../tools/native/filter_benchmark.cpp)、[benchmark_ps.py](../control/benchmark_ps.py) 和 [pose_replay.cpp](../tools/native/pose_replay.cpp)。ARM 目标 `filter_benchmark`／`pose_replay` 与实时服务链接相同 `pose_postprocess` 库。`benchmark_ps.py` 的目录布局和有限重复次数写在脚本中；记录是历史结果回放，不作为新推理计数。
 
 在新候选 r5 的真实 CSI／NPU／HDMI／PL 滤波并行运行期间，用同一 CPU 二进制再次测量：42 坐标浮点平均 **6.406 μs**、P95 6.270 μs、最大 527.720 μs；126 坐标浮点平均 **18.501 μs**、P95 18.510 μs、最大 39.930 μs；相应定点平均 3.779／10.798 μs。长尾保留，不删异常值；本轮未绑核，不能据此宣称硬实时上界。原始并发测时位于 `.local/pose-stabilizer-live-20261026-r5/ps-loaded-kernel.json`，没有额外 SDK 调用。
 
@@ -91,7 +91,7 @@ r5 的启动消费器在 SDK 前实际消费 **16 拍**，安全终态后进入�
 
 **本版 PL 不是滤波总耗时上的加速方案。** 同时运行期间 PS 浮点单人平均 6.406 μs，定点单人平均 3.779 μs；PL 虽较浮点实现减少纯计算时间，CSR 读写占主要开销，且未证明比定点 CPU 更快。答辩可展示四路相对单路的周期缩减及异构分工，但不得标成整机帧率提升或端到端滤波加速。当前推荐保持 CPU 默认，PL 作为完成物理／有限实板验证的实验后端；下一步若继续优化，应先减少寄存器搬运，不能仅继续增加算术并行路数。
 
-[实板结果](../../../.local/pose-stabilizer-live-20261026-r5/outcome.json)、[分项汇总](../../../.local/pose-stabilizer-live-20261026-r5/timing-summary.json)、[原始证据包](../../../.local/pose-stabilizer-live-20261026-r5/round-1-result-evidence.tar.gz)。本包已关闭，候选／SDK／原 BOOT 回退各用 1 次、余额全部 0，恢复身份见前文，无后台续跑。
+实板结果（本机留存，仓库未附：`../../../.local/pose-stabilizer-live-20261026-r5/outcome.json`）、分项汇总（本机留存，仓库未附：`../../../.local/pose-stabilizer-live-20261026-r5/timing-summary.json`）、原始证据包（本机留存，仓库未附：`../../../.local/pose-stabilizer-live-20261026-r5/round-1-result-evidence.tar.gz`）。本包已关闭，候选／SDK／原 BOOT 回退各用 1 次、余额全部 0，恢复身份见前文，无后台续跑。
 
 交付位置：
 
@@ -102,7 +102,7 @@ r5 的启动消费器在 SDK 前实际消费 **16 拍**，安全终态后进入�
 
 ## 近期显示问题复盘（离线分析，未修改算法或启动板测）
 
-先分析和讨论。检查 r1 实际展示捕获、同源 v1／v3 回放及 r2／r4／r5 最近原始环；新统计在 [analysis.json](../../../.local/pose-presentation-analysis-20261026/analysis.json)，可用同目录 `analyze.py` 复算。`--prepare` 从旧证据包读取原始环并调用现有原生 `pose_replay.exe`，不访问设备。最新环的 CPU 回放不等于当时完整 HDMI 录像，首帧缺少前序状态，记录丢弃与保留范围也限制推断；r4 有一个序列缺口。离开后的 r4／r5 无人数真值，不把多目标直接认定为误检，不用不同场景的数量比较证明版本优劣。
+先分析和讨论。检查 r1 实际展示捕获、同源 v1／v3 回放及 r2／r4／r5 最近原始环；新统计在 analysis.json（本机留存，仓库未附：`../../../.local/pose-presentation-analysis-20261026/analysis.json`），可用同目录 `analyze.py` 复算。`--prepare` 从旧证据包读取原始环并调用现有原生 `pose_replay.exe`，不访问设备。最新环的 CPU 回放不等于当时完整 HDMI 录像，首帧缺少前序状态，记录丢弃与保留范围也限制推断；r4 有一个序列缺口。离开后的 r4／r5 无人数真值，不把多目标直接认定为误检，不用不同场景的数量比较证明版本优劣。
 
 ### 已见证的问题
 
@@ -158,7 +158,7 @@ r5 的启动消费器在 SDK 前实际消费 **16 拍**，安全终态后进入�
 
 另将 r1 实际展示捕获的 Top3 重建为测试容器，两个版本接收相同 222 帧子序列，近距离配对 3→0，空显示 37→38。未捕获的其它候选填零；这是派生测试夹具，不是原始 180-query 记录，也不等于完整现场流。其身份说明在 `fixture-provenance.json`，不纳入上表合计。
 
-唯一比较结果：[comparison.json](../../../.local/pose-temporal-v4-20261026/comparison.json)。复现入口为同目录 `compare.py`，输入来自原证据；`v3/`、`v4/` 保留同源 NDJSON。600 ms 试验的反例汇总在 `identity600-experiment.json`。不比较不同现场场景的总人数来证明精度。
+唯一比较结果：comparison.json（本机留存，仓库未附：`../../../.local/pose-temporal-v4-20261026/comparison.json`）。复现入口为同目录 `compare.py`，输入来自原证据；`v3/`、`v4/` 保留同源 NDJSON。600 ms 试验的反例汇总在 `identity600-experiment.json`。不比较不同现场场景的总人数来证明精度。
 
 ### 编译、测试与实际 PS 耗时
 
@@ -179,11 +179,11 @@ HDMI 渲染／显示状态测试与 PC 五项通道测试通过。发现显示�
 
 同轮单人浮点纯滤波平均 **6.259 μs**、P95 6.260 μs、最大 38.340 μs；三人平均 **18.494 μs**、P95 18.510 μs、最大 54.590 μs。核基准预热 256、测量 10000 次。新关联逻辑增加约 1～6 μs／帧，未证明端到端帧率提升；以前的 PL CSR 开销结论不变。ARM64 与本机回放的事件计数一致。
 
-[PS 原始测量](../../../.local/pose-temporal-v4-20261026/ps-results.json)、[传输及输入身份](../../../.local/pose-temporal-v4-20261026/ps-manifest.json)、[本批结束状态](../../../.local/pose-temporal-v4-20261026/ps-state.json)。原 BOOT 启动身份未变，测试进程已退出，临时 FPAI 构建容器已停止。
+PS 原始测量（本机留存，仓库未附：`../../../.local/pose-temporal-v4-20261026/ps-results.json`）、传输及输入身份（本机留存，仓库未附：`../../../.local/pose-temporal-v4-20261026/ps-manifest.json`）、本批结束状态（本机留存，仓库未附：`../../../.local/pose-temporal-v4-20261026/ps-state.json`）。原 BOOT 启动身份未变，测试进程已退出，临时 FPAI 构建容器已停止。
 
 ## 2026-10-27：强平滑参数建议的离线评估
 
-补充 `min_cutoff=0.05～0.2`、`beta=0.01～0.05`、`d_cutoff=0.5～1` 的建议，要求先评估再实施。复用当前 C++ `OneEuro`／`Postprocessor`，仅在 `.local` 回放驱动中增加参数入口；生产源码、默认值、两个界面及硬件均未改变，没有连接板端或启动 SDK。结果与复现入口：[results.json](../../../.local/one-euro-review-20261027/results.json)、[run.py](../../../.local/one-euro-review-20261027/run.py)。本机执行时间不能当作 PS／PL 测时。
+补充 `min_cutoff=0.05～0.2`、`beta=0.01～0.05`、`d_cutoff=0.5～1` 的建议，要求先评估再实施。复用当前 C++ `OneEuro`／`Postprocessor`，仅在 `.local` 回放驱动中增加参数入口；生产源码、默认值、两个界面及硬件均未改变，没有连接板端或启动 SDK。结果与复现入口：results.json（本机留存，仓库未附：`../../../.local/one-euro-review-20261027/results.json`）、run.py（本机留存，仓库未附：`../../../.local/one-euro-review-20261027/run.py`）。本机执行时间不能当作 PS／PL 测时。
 
 合成试验为 15 Hz，固定种子零均值高斯噪声 sigma=0.025；匀速输入为每秒 0.2 模型单位，报告稳态位置误差除以速度所得的等效滞后。它不是硬件执行时间，也不含新人物确认时间。另保存振幅 1 模型单位的 0.25／1 Hz 正弦基波增益及相位延迟、每秒 1 模型单位匀速、幅度 0.5 的阶跃 90% 响应；合成结果不代表真实姿态精度。
 

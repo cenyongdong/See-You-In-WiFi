@@ -79,10 +79,10 @@ r24实际布线检查点的全局／层级资源、物理共享Slice和冗余候
 
 执行位置为Windows `D:/FPGACompetitionProject`；当前实际系统构建使用Vivado2018.3＋原厂030ai／JFM适配及Procise2025.1.1 temp/SVN32494后处理，FPAI容器承担ARM64 GCC9.4／CMake3.24.2交叉编译，SDK／Icraft3.39.0。2019.1用于此前辅助仿真，不能据此迁移整机IP。固定模型、RAW、数学、Gather注册、NPU分配和帧协议保持。
 
-- [r9候选与发布规格](CANDIDATE-BOARD-READ-R9.md)保留该包的时序、位流与BOOT身份；其中早期失败结果只代表r9首次执行，不覆盖后续r13通过。实际[离线发布文件](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-execution-r9)仍在位，旧包次数均不恢复。
-- [r13 verification.tar](../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar)：`run/metadata/full-dma-review.json`为四档完整比较，`run/shared/inference/frames.jsonl`为每窗门检，`run/shared/inference/summary.json`为3次新推理、3帧采纳与释放；[closure.tar](../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/closure.tar)保存回退。
+- [r9候选与发布规格](CANDIDATE-BOARD-READ-R9.md)保留该包的时序、位流与BOOT身份；其中早期失败结果只代表r9首次执行，不覆盖后续r13通过。实际离线发布文件（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-execution-r9`）仍在位，旧包次数均不恢复。
+- r13 verification.tar（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar`）：`run/metadata/full-dma-review.json`为四档完整比较，`run/shared/inference/frames.jsonl`为每窗门检，`run/shared/inference/summary.json`为3次新推理、3帧采纳与释放；closure.tar（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/closure.tar`）保存回退。
 - [近期暂停汇报](STARTUP-PAUSE-REPORT-20261018.md)链接r14–r20实际报告、按键原值与最终原BOOT审计。[耗时报告](TIME-REPORT-20261018.md)保留上一轮4小时38分41秒的统计口径。
 
-部分早期独立REPORT.md已不在当前证据目录，不能继续当作可读报告或补造为原文；保留的源码、原始归档及本次整理前文档各自注明范围。[文档修订记录](../../tools/pose-v1/evidence/hdmi-documents-20261018-r1/revision.json)及同目录before.tar保留本次整理前原文。
+部分早期独立REPORT.md已不在当前证据目录，不能继续当作可读报告或补造为原文；保留的源码、原始归档及本次整理前文档各自注明范围。文档修订记录（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-documents-20261018-r1/revision.json`）及同目录before.tar保留本次整理前原文。
 
 当前阻塞为D47首读内容混合、D44/持续实屏、D45启动根因及联合长期。r53已安全回原BOOT并关闭，当前没有新的板测额度；本次只整理文档和合并成果，旧DATA独立暂停。以上为 r53 当时结论，原值与判读边界见[r53](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/RESULTS.md)；现行保留事项统一见[后续验证与冻结范围](../../DIFFICULTIES.md#后续验证与冻结范围)。

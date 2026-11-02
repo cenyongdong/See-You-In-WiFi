@@ -19,7 +19,7 @@ WPWS−0.409ns、TPWS−0.479ns和两个失败端点按原报告保存；不改�
 
 ## 发布身份和功能范围
 
-实体位于[新发布目录](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/released-reference-products)，源为上一批封存的HELD目录，源目录不回写。
+实体位于新发布目录（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/released-reference-products`），源为上一批封存的HELD目录，源目录不回写。
 
 | 产物 | 字节 | SHA-256 |
 |---|---:|---|
@@ -34,7 +34,7 @@ WPWS−0.409ns、TPWS−0.479ns和两个失败端点按原报告保存；不改�
 
 板端192.168.126.49只读核验：BOOT SHA `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`，六份SDK库同基线，FPGA operating，无相关设备FD owner。SSH主机密钥固定，认证只在内存提供，连接已结束。
 
-[回退位流](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/rollback/ai7030_top_disable_icap.bit) SHA `6818b7f8dea8e0f9dbda1b0d11127255ee1ba8876326bc7708a633641784f72e`。重新核验当前选择BOOT偏移186816、PL分区5980464字节；32位字节交换后全部回退载荷一致，余4字节填充。该核验不证明热重配或回退已实测。
+回退位流（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/rollback/ai7030_top_disable_icap.bit`） SHA `6818b7f8dea8e0f9dbda1b0d11127255ee1ba8876326bc7708a633641784f72e`。重新核验当前选择BOOT偏移186816、PL分区5980464字节；32位字节交换后全部回退载荷一致，余4字节填充。该核验不证明热重配或回退已实测。
 
 首次两次扫链均0 cable/无FTDI；随后接通下载器，Windows实际枚举USB VID0403/PID6014、210512180081。依据这一外部变化建立r3新目录，Procise实际扫链4.029秒exit0：jfmql30、IDCODE0x9372c093、part 0，ps_dap part 1、IDCODE0x6ba00477。未执行program_bit；以后下载前仍需新扫链，不永久假设编号。
 
@@ -48,7 +48,7 @@ WPWS−0.409ns、TPWS−0.479ns和两个失败端点按原报告保存；不改�
 4. 成功后先核PS连接、内核、FPGA状态、SDK/显示版本及资源，再进行静态画面和显示器OSD核验。只能向已验证接口写入，不能用尚未映射的候选CSR。
 5. 静态链路成立后，按冻结共享模型和既有数值契约实施分阶段实时测量，分别报告完整帧/欠载、数值、端到端延迟与吞吐；旧DATA调查不恢复。参考链路测试不能代替修复候选的stop/drain、独立148.5MHz/1080p60及并发验收。
 
-本轮证据：[报告](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/REPORT.md)、[授权与身份](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/release-authorization.json)、[实板原值](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/host-permission-r2/board-audit.json)、[扫链复核](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/chain-review.json)、[回退身份](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/rollback-identity.json)。
+本轮证据：报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/REPORT.md`）、授权与身份（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/release-authorization.json`）、实板原值（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/host-permission-r2/board-audit.json`）、扫链复核（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/chain-review.json`）、回退身份（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/rollback-identity.json`）。
 
 
 ## 载荷复核后的执行决定
@@ -61,4 +61,4 @@ WPWS−0.409ns、TPWS−0.479ns和两个失败端点按原报告保存；不改�
 
 因此本轮两处Min Period特批及发布有效，但不重复加载相同参考载荷来宣称完成新的HDMI修复验收。下一有效新配置必须先将已批准HDMI修复接入整机；沿用既有独立时钟、HP2读所有权、明确CSR和stop/drain集成契约。该集成尚未执行，新接口及在线切换条件未明确的依赖步骤保持待讨论。实时整机测量和实屏验证未执行，既有上板授权保持。
 
-[完整载荷比较](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/reference-payload-review.json)、[原BOOT逐字节重建](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/boot-control-utf8-r2/result.json)、[试制BOOT原后检失败](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/boot-candidate/result.json)、[本次实际成功扫链](../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/chain-scan-device-enumerated-r3/stdout.log)。本地30TAI教程第7–9页说明BOOT生成/替换/重启路线；本轮仅做离线封装，不据此扩展启动分区修改或再次重启许可。
+完整载荷比较（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/reference-payload-review.json`）、原BOOT逐字节重建（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/boot-control-utf8-r2/result.json`）、试制BOOT原后检失败（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/boot-candidate/result.json`）、本次实际成功扫链（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/chain-scan-device-enumerated-r3/stdout.log`）。本地30TAI教程第7–9页说明BOOT生成/替换/重启路线；本轮仅做离线封装，不据此扩展启动分区修改或再次重启许可。

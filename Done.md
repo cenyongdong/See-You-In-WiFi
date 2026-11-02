@@ -6,6 +6,8 @@
 
 发布补充（截至2026-11-01）：CMake已同步默认PL开关、预设及构建／打包配置，独立ARM64重编译与发布程序字节一致；当前核心、完整源码RAR已完成独立解压ARM64／离线构建及核心RTL仿真，程序与部署版逐字节相同；源码已精简为小于200 MB目标的RAR，包含JSON／RAW／ONNX与原始代码，补齐当前目标必需的厂商IP／网表／增量基线，排除无关器件与重复缓存；部署包亦采用RAR，性能原值集中见[汇总](Deliverables/PERFORMANCE.md)。旧本机交付包清理、关键历史证据保留，完整源码和部署包已按[发布说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)更新；板端默认BOOT读回与CSI v3一致，交付整理未新增SDK运行；随后从r4 RAR新解压完成完整本地综合／布局布线、BIT及Procise适配，配置载荷与包内合格BIT一致，原生阶段累计约31.8分钟。对后续开发的参考：包内IP与增量基线须随源保留，工具／许可仍外部准备；既定AI周期例外及GT适配不改写为零违例。完整日志与新产物见[独立重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)，旧证据与恢复基线保留。
 
+2026-11-02文档维护补充：统一公开阅读入口、Release部署下载与本机源码交付范围，修复普通说明链接并补齐既有预览图；原始报告、冻结快照及v13、海报、AI说明正文保留。链接检查与发布范围见[文档导航](DOCUMENTATION.md#链接检查)。对后续开发的参考：发布前按Git文件集合核验，新文件须显式纳入拟发布范围，本机存在不代表网页可读。
+
 随后整合长时输入和计时证据，使用30段／8700不同官方窗口完成1800.004秒运行、25396次新推理与HDMI采纳，安全关闭；PC耗时共享修复后持续更新。对后续开发的参考：原始端口单消费者场景应由本机共享计时，输入与结果间隔、人工PC重启和少量发送丢弃须分开记录；[长测证据与恢复](FPGA/csi_preprocess/LONGRUN.md)不扩展为全天、零卡顿或实时CSI验收。
 
 r2阶段工程内容总结：新增CORDIC幅度／原始相位核、GP批接口、独立分块缓存及PS混合后端，完成数值／RTL／ARM64、整机时序和有限板测；420窗对照CPU时间减少28.64%，完整耗时增加13.51%。新BOOT完成417次新推理／HDMI采纳，安全关闭；本轮未现场看屏。原始性能、资源、NPU差异及恢复见[CSI专项](FPGA/csi_preprocess/README.md)。对后续开发的参考：收益应按包含传输的实际CPU时间表述；分块避免BRAM深度取整，输入读回便于定位实板问题。首版失败与回退保留，微小相位误差不代表全候选输出逐位一致，有限官方train测试不代替新实时CSI、功耗或长期验收。
@@ -22,7 +24,7 @@ r2阶段工程内容总结：新增CORDIC幅度／原始相位核、GP批接口�
 
 ## 2026-10-29：核心整理、最终演示包与文件收尾
 
-工程内容总结：完成[核心最终审查与双输入归档](software/pose180_pipeline/resident/FINAL-REVIEW.md)，把实时 CSI／官方预采数据接入同一安全启动器，补齐参数、重复启动和状态日志边界；本地构建与故障验证完成；将核心源码实际归入 `software/pose180_pipeline/src/`，启停与输入准备归入 `control/`，更新统一构建和目录索引。后续确认 FD 计数失败来自测试线程退出时动态库加载竞态，修正采样同步和句柄身份检查，8 轮完整生命周期及异常退出复验通过；随后从整理后的源码重新构建双输入演示部署包，完成包内入口、数据／模型及 PC 资源核验，部署说明随包提供。随后改为 Top3／0.2，重新筛选 1／2／3 人大动作片段各约 9 秒，实现同一 SDK 生命周期内顺序播放并完成[独立部署包](software/pose180_pipeline/resident/DATASET-PLAYLIST.md)的本地构建、输入／退出及解包检查。2026-10-29 收尾已补齐 PC Node.js 查找和有线连接参数，读取确认最近 r3 完整 420 帧双路输出及安全退出；清理历史板端上传、旧采集数据和重复副本，最终交付与保留范围见[收尾记录](.local/project-cleanup-20261029-r1/summary.json)。对后续开发的参考：输入切换须遵守每次配置一次启动，源码验收不代替当前板端状态核验或长时实测。
+工程内容总结：完成[核心最终审查与双输入归档](software/pose180_pipeline/resident/FINAL-REVIEW.md)，把实时 CSI／官方预采数据接入同一安全启动器，补齐参数、重复启动和状态日志边界；本地构建与故障验证完成；将核心源码实际归入 `software/pose180_pipeline/src/`，启停与输入准备归入 `control/`，更新统一构建和目录索引。后续确认 FD 计数失败来自测试线程退出时动态库加载竞态，修正采样同步和句柄身份检查，8 轮完整生命周期及异常退出复验通过；随后从整理后的源码重新构建双输入演示部署包，完成包内入口、数据／模型及 PC 资源核验，部署说明随包提供。随后改为 Top3／0.2，重新筛选 1／2／3 人大动作片段各约 9 秒，实现同一 SDK 生命周期内顺序播放并完成[独立部署包](software/pose180_pipeline/resident/DATASET-PLAYLIST.md)的本地构建、输入／退出及解包检查。2026-10-29 收尾已补齐 PC Node.js 查找和有线连接参数，读取确认最近 r3 完整 420 帧双路输出及安全退出；清理历史板端上传、旧采集数据和重复副本，最终交付与保留范围见收尾记录（本机留存，仓库未附：`.local/project-cleanup-20261029-r1/summary.json`）。对后续开发的参考：输入切换须遵守每次配置一次启动，源码验收不代替当前板端状态核验或长时实测。
 
 ## 2026-10-27：官方数据集验证
 
@@ -124,7 +126,7 @@ r23已完成启动历史／复位见证逻辑、增量实现、实际bit／BOOT�
 
 r26纠正FIFO假计数方向，完成被动PS／PL时间轴、定向仿真及旧CSR回归；复用原厂PS网表并解决CSR译码和既有时钟约束绑定问题，实际bit／BOOT通过既定物理门检。第1次无SDK启动复现异常，取消后续候选并完成原BOOT文件与运行回退，包关闭、无后台工作。初态PS resetn已高，PL释放后HDMI保留返回；未见已观测AR，不能把等待PS高电平当作充分修正。FSBL运行时复制的非零PS初始化表已核对，当前仍缺匹配复位契约，D45未关闭。[实际结果、产物和限制](tools/pose-v1/evidence/hdmi-ps-release-20261020-r26/PLAN.md)。
 
-2026-10-26 将同一正常读帧基线整理为[含真实 top、源码、父 BD 的完整工程](Deliverables/hardware/HDMI_Complete_20261026/README.md)，完整顶层综合及零黑盒链接完成；复用经输入一致性核验的合格 r26 位流，四次软件重启均未复现 HP2 异常，已核验原 BOOT 回退并关闭新包。额外增量路由取消，日志／检查点保留。后续可直接复用该工程及[实板证据](Deliverables/hardware/HDMI_Complete_20261026/board-validation/README.md)，有限健康样本不改写历史故障或构成冷启动／HDMI 功能验收。
+2026-10-26 将同一正常读帧基线整理为含真实 top、源码、父 BD 的完整工程（历史附件，当前仓库未附：`Deliverables/hardware/HDMI_Complete_20261026/README.md`），完整顶层综合及零黑盒链接完成；复用经输入一致性核验的合格 r26 位流，四次软件重启均未复现 HP2 异常，已核验原 BOOT 回退并关闭新包。额外增量路由取消，日志／检查点保留。后续可直接复用该工程及实板证据（历史附件，当前仓库未附：`Deliverables/hardware/HDMI_Complete_20261026/board-validation/README.md`），有限健康样本不改写历史故障或构成冷启动／HDMI 功能验收。
 
 r24资源审计已覆盖实际布线的1,340个保留层级，原生与物理统计交叉一致；区分旧业务链、临时诊断和NPU必要配套，形成独占Slice及裁剪依赖清单。只读检查，无新位流或板端动作。[资源报告](FPGA/hdmi_candidate/R24-RESOURCE-AUDIT.md)。
 
@@ -134,7 +136,7 @@ r24资源审计已覆盖实际布线的1,340个保留层级，原生与物理统
 
 ## 2026-10-18～21：项目状态与HDMI文档整理
 
-工程内容总结：仅在Windows工作区整理现有集成说明、显示应用、难点、进度与ADR索引，合并重复实验段落，标清历史与现行状态；修订前原文和实际检查见[迁移记录](tools/pose-v1/evidence/hdmi-documents-20261018-r1/revision.json)。本次无源码修改、构建、部署或板端操作，开发继续暂停。
+工程内容总结：仅在Windows工作区整理现有集成说明、显示应用、难点、进度与ADR索引，合并重复实验段落，标清历史与现行状态；修订前原文和实际检查见迁移记录（本机留存，仓库未附：`tools/pose-v1/evidence/hdmi-documents-20261018-r1/revision.json`）。本次无源码修改、构建、部署或板端操作，开发继续暂停。
 
 对后续开发的参考：工程结构集中到INTEGRATION，问题按稳定编号维护，实验原值引用现存证据；缺失报告明确标注，不补造、不回写历史完成清单。
 
@@ -150,7 +152,7 @@ r24资源审计已覆盖实际布线的1,340个保留层级，原生与物理统
 
 ### 工程内容总结
 
-仅在Windows工作区读取客户端上一turn元数据、r3／r7原始execution及日志，核算整轮4小时38分41秒；24个实际Vivado阶段累计2小时09分38秒，其中5批物理实现累计1小时32分16秒，最长r4为30分01秒。其余2小时29分03秒是工具外混合活动，不伪造逐项分摊。排除嵌套mock／复制件并核对阶段无重叠，原计时SHA、算法和汇总见[耗时报告](FPGA/hdmi_candidate/TIME-REPORT-20261018.md)及[数据](tools/pose-v1/evidence/task-time-audit-20261018-r1/summary.json)。未运行EDA、仿真、SDK、板测或恢复原开发任务。
+仅在Windows工作区读取客户端上一turn元数据、r3／r7原始execution及日志，核算整轮4小时38分41秒；24个实际Vivado阶段累计2小时09分38秒，其中5批物理实现累计1小时32分16秒，最长r4为30分01秒。其余2小时29分03秒是工具外混合活动，不伪造逐项分摊。排除嵌套mock／复制件并核对阶段无重叠，原计时SHA、算法和汇总见[耗时报告](FPGA/hdmi_candidate/TIME-REPORT-20261018.md)及数据（历史附件，当前仓库未附：`tools/pose-v1/evidence/task-time-audit-20261018-r1/summary.json`）。未运行EDA、仿真、SDK、板测或恢复原开发任务。
 
 ### 对后续开发的参考
 
@@ -197,11 +199,11 @@ r24资源审计已覆盖实际布线的1,340个保留层级，原生与物理统
 
 目标是修复HDMI接入并隔离候选对AI路径的影响。执行于Windows D:/FPGACompetitionProject，使用Vivado2018.3＋原厂030ai／JFM及Procise2025.1.1适配链；前置为固定参考、库及模型／SDK保护。完成独立时钟、AXI读帧、FIFO、帧边界切换与STOP、CSR和TMDS集成；r9在隔离来源中缩短reader边界谓词，1,048,576组合与有限状态机比较后完成综合、约束、布局布线、STA及发布复核。
 
-r9 setup／hold +0.030／+0.023ns，TNS／THS=0；原AI两个Min Period例外保留，raw_timing_pass仍false。bit、ICAP与仅PL分区变化的BOOT已实际生成；规格与身份见[r9候选](FPGA/hdmi_candidate/CANDIDATE-BOARD-READ-R9.md)，仍在位的实际产物见[发布目录](tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-execution-r9)。旧r5／r6／r8时序失败、r7父流程状态断言失败、默认DRC拒绝与原route父exit1均保留，不用后续成功回填。开发过程、源码模块与工具边界集中在[集成说明](FPGA/hdmi_candidate/INTEGRATION.md)。
+r9 setup／hold +0.030／+0.023ns，TNS／THS=0；原AI两个Min Period例外保留，raw_timing_pass仍false。bit、ICAP与仅PL分区变化的BOOT已实际生成；规格与身份见[r9候选](FPGA/hdmi_candidate/CANDIDATE-BOARD-READ-R9.md)，仍在位的实际产物见发布目录（本机留存，仓库未附：`tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-execution-r9`）。旧r5／r6／r8时序失败、r7父流程状态断言失败、默认DRC拒绝与原route父exit1均保留，不用后续成功回填。开发过程、源码模块与工具边界集中在[集成说明](FPGA/hdmi_candidate/INTEGRATION.md)。
 
 ### 对后续开发的参考
 
-先取得实际时序合格且例外范围明确的位流，再推进板端；优先复用已存在检查点，区分工具原生完成、父脚本状态与正式复核。超时先检查原进程和产物，不杀仍正常推进的任务；父状态断言保存当时原值，不能用后续值补证。恢复DCP显式核对原厂会话配置，脚本断言围绕硬件契约，减少大型哈希和无必要代理审查；实际失败、旧来源与参数保留在原证据及[整理前快照](tools/pose-v1/evidence/hdmi-documents-20261018-r1/before.tar)中。
+先取得实际时序合格且例外范围明确的位流，再推进板端；优先复用已存在检查点，区分工具原生完成、父脚本状态与正式复核。超时先检查原进程和产物，不杀仍正常推进的任务；父状态断言保存当时原值，不能用后续值补证。恢复DCP显式核对原厂会话配置，脚本断言围绕硬件契约，减少大型哈希和无必要代理审查；实际失败、旧来源与参数保留在原证据及整理前快照（本机留存，仓库未附：`tools/pose-v1/evidence/hdmi-documents-20261018-r1/before.tar`）中。
 
 ## 2026-10-18：三窗新推理→HDMI有界闭环
 
@@ -209,7 +211,7 @@ r9 setup／hold +0.030／+0.023ns，TNS／THS=0；原AI两个Min Period例外保
 
 同r9位流、FPAI ARM64 GCC9.4／SDK3.39.0与Lite，r13先通过Open前健康门及64B／4KiB／64KiB／1MiB完整DMA往返，再完成3次固定共享模型新推理、PS原骨架绘图／RGB565适配、PL三帧采纳与在途STOP／双缓冲释放，最后销毁Engine。输入／全部分数逐位一致、受检最大关节偏差0.9765625mm；现场确认FRAME 1000000→1000001→1000002切换正常，未启动VPU／RTSP。
 
-原始完整证据为[verification.tar](tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar)内`run/metadata/full-dma-review.json`、`run/shared/inference/frames.jsonl`、`summary.json`与各窗实际输出；回退见[closure.tar](tools/pose-v1/evidence/hdmi-preopen-20261018-r13/closure.tar)。同系列此前4KiB失败与未执行项不改写；r13成功只代表该启动三窗有界闭环，跨启动可靠性、严格实时及长期尚未通过。
+原始完整证据为verification.tar（本机留存，仓库未附：`tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar`）内`run/metadata/full-dma-review.json`、`run/shared/inference/frames.jsonl`、`summary.json`与各窗实际输出；回退见closure.tar（本机留存，仓库未附：`tools/pose-v1/evidence/hdmi-preopen-20261018-r13/closure.tar`）。同系列此前4KiB失败与未执行项不改写；r13成功只代表该启动三窗有界闭环，跨启动可靠性、严格实时及长期尚未通过。
 
 ### 对后续开发的参考
 
@@ -223,7 +225,7 @@ r10–r20始终复用r9，完成返回ID与S00／S01路由静态审查、有限�
 
 实板可在显式Open前复现HP2／HDMI持续返回背压，但这些失败进程已加载SDK，尚不能归因BOOT。健康启动亦存在；r20完全无SDK健康基线后按一次PL_KEY2，仍读status/request/response=0/2/2。探针“先保存五寄存器原值、初始代次非零时零命令退出”已实际验证，复位有效性及D45根因均未证明。完整逐轮结果集中在[暂停汇报](FPGA/hdmi_candidate/STARTUP-PAUSE-REPORT-20261018.md)，不在本页再逐包抄写。
 
-最后已恢复原BOOT运行与启动文件，六SDK／九启动文件符合、FPGA operating、owner为空；已用包关闭，无后台续作。开发、仿真、构建、部署与板测整体暂停；仪器次日可用不自动恢复，长期HDMI须单独批准。机器入口见[pause-state.json](tools/pose-v1/evidence/hdmi-reset-calibration-20261018-r20/pause-state.json)。
+最后已恢复原BOOT运行与启动文件，六SDK／九启动文件符合、FPGA operating、owner为空；已用包关闭，无后台续作。开发、仿真、构建、部署与板测整体暂停；仪器次日可用不自动恢复，长期HDMI须单独批准。机器入口见pause-state.json（本机留存，仓库未附：`tools/pose-v1/evidence/hdmi-reset-calibration-20261018-r20/pause-state.json`）。
 
 ### 对后续开发的参考
 
@@ -261,7 +263,7 @@ PS＋NPU感知、PL本地HDMI实时输出、PC接收骨架数据并独立高质�
 
 新增[FPGA／HDMI工作总结](FPGA/FPGA-WORK-SUMMARY-20261016.md)及[FPGA索引](FPGA/README.md)，梳理代理负责范围、模块和资源所有权、已完成逻辑／物理／实屏验证、原厂工程复现与新bit重生成的区别、Procise后处理、仅换PL的BOOT封装、临时启动及原BOOT还原。明确JTAG只扫链、实际经FSBL加载候选，运行中配置与启动文件分别记录；DDR读帧、STOP和整机实时性仍未验，FAT问题来源未证。
 
-执行位置Windows D:/FPGACompetitionProject，仅本地文件读取、SHA核验及Markdown／暂停记录维护。本轮未运行EDA、SSH／UART／JTAG、下载、重启、DMA、推理或文件系统修复。进度、资料索引、难点、现行恢复入口和Agents暂停约束同步更新；原封存证据与旧哈希清单不回写，文档前后SHA及历史快照另存[交接证据](tools/pose-v1/evidence/hdmi-handoff-docs-20261016-r1)。
+执行位置Windows D:/FPGACompetitionProject，仅本地文件读取、SHA核验及Markdown／暂停记录维护。本轮未运行EDA、SSH／UART／JTAG、下载、重启、DMA、推理或文件系统修复。进度、资料索引、难点、现行恢复入口和Agents暂停约束同步更新；原封存证据与旧哈希清单不回写，文档前后SHA及历史快照另存交接证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-handoff-docs-20261016-r1`）。
 
 ### 对后续开发的参考
 
@@ -273,45 +275,45 @@ PS＋NPU感知、PL本地HDMI实时输出、PC接收骨架数据并独立高质�
 
 2026-10-16：HDMI修复已完成整机接入、实际候选启动和静态实屏验证。现场确认“显示稳定的八条色条”；双ABI、PLL/idle/错误门检及约148.5MHz像素计数通过，OSD分辨率/刷新率尚未提供。目标仍为1920×1080@60；r5布线WNS+0.030ns/WHS+0.029ns，原两个AI Min Period例外及其余告警保留。已使用新授权的一次候选重启，SSH约53.6秒恢复；原BOOT随后完整还原并读回原SHA，其余启动文件/六SDK不变。运行中仍为候选静态色条，不是运行中已回退；下一次启动选原BOOT。未进行显示DDR DMA、帧切换/在途STOP、NPU推理或整机实时验收，旧DATA继续暂停。跨重启/tmp清理导致的恢复源丢失已通过主机原始回传及/root持久暂存解决；另查到FAT脏标志与两条合计2168簇的未引用链，来源未知，未修复，启动区停止新增写入。
 
-工程内容：Windows隔离整机、Vivado2018.3＋既有JFM，HP2读所有权/CSR0x400b0000/独立AC14时钟已接线；原router-r2、真实模型PHY-r3及首版/第二版综合结果保留。整域false-path覆盖邮箱与过程式XDC未加载的问题已分别修正，实际实现子进程5ns/10ns约束断言通过。r2/r3不完整实现和原外层失败均封存，不写成布局布线通过；r3优化DCP的CRC/SHA和原−6.337/−3.367ns报告完整保留。当前仅FIFO复位变动，新r8编译/展开/仿真各5.418/11.401/42.244秒exit0。八份其余功能RTL与原IP/模型/SDK保持。[本轮执行与证据](tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md)。
+工程内容：Windows隔离整机、Vivado2018.3＋既有JFM，HP2读所有权/CSR0x400b0000/独立AC14时钟已接线；原router-r2、真实模型PHY-r3及首版/第二版综合结果保留。整域false-path覆盖邮箱与过程式XDC未加载的问题已分别修正，实际实现子进程5ns/10ns约束断言通过。r2/r3不完整实现和原外层失败均封存，不写成布局布线通过；r3优化DCP的CRC/SHA和原−6.337/−3.367ns报告完整保留。当前仅FIFO复位变动，新r8编译/展开/仿真各5.418/11.401/42.244秒exit0。八份其余功能RTL与原IP/模型/SDK保持。本轮执行与证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-integration-20261016-r1/REPORT.md`）。
 
-本阶段后续实际复核：2026-10-16：特批两处原厂AI时钟模型Min Period例外，解除该项HELD，原始WPWS−0.409ns失败报告保留。参考位流已建立发布实体；重连后Procise扫链4.029秒exit0，确认jfmql30/0x9372c093/part 0、下载器210512180081。板端BOOT/六SDK只读身份同基线，FPGA operating。进一步核验发现新Procise参考位流的完整配置载荷与当前所选BOOT的PL分区逐字节一致；仅文件头等元数据不同，重下不会引入HDMI修复。原BOOT离线重建逐字节复现；试制BOOT只有9个映像名称字节变化、PL分区0字节变化，严格比较失败保留，不部署。未下载、未改启动分区、未重启；HDMI修复候选尚未集成，CDC/外部时序未签核，在线停止/隔离亦未验证，旧DATA继续暂停。 新下载器枚举是外部状态变化后的新批只读扫链，不是无依据重复失败负载。原BOOT控制构建0.618秒exit0且7023552字节/SHA全同；试制BOOT工具0.627秒exit0，但“非PL字节应相同”的后检失败，完整文件/日志保留；复核确认差异只在映像名字段，载荷与已选BOOT相同。最初离线脚本UTF-8默认GBK解码错误发生在工具调用前，原空目录和失败说明保留，修正编码后新目录执行。[载荷原值](tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/reference-payload-review.json)。
+本阶段后续实际复核：2026-10-16：特批两处原厂AI时钟模型Min Period例外，解除该项HELD，原始WPWS−0.409ns失败报告保留。参考位流已建立发布实体；重连后Procise扫链4.029秒exit0，确认jfmql30/0x9372c093/part 0、下载器210512180081。板端BOOT/六SDK只读身份同基线，FPGA operating。进一步核验发现新Procise参考位流的完整配置载荷与当前所选BOOT的PL分区逐字节一致；仅文件头等元数据不同，重下不会引入HDMI修复。原BOOT离线重建逐字节复现；试制BOOT只有9个映像名称字节变化、PL分区0字节变化，严格比较失败保留，不部署。未下载、未改启动分区、未重启；HDMI修复候选尚未集成，CDC/外部时序未签核，在线停止/隔离亦未验证，旧DATA继续暂停。 新下载器枚举是外部状态变化后的新批只读扫链，不是无依据重复失败负载。原BOOT控制构建0.618秒exit0且7023552字节/SHA全同；试制BOOT工具0.627秒exit0，但“非PL字节应相同”的后检失败，完整文件/日志保留；复核确认差异只在映像名字段，载荷与已选BOOT相同。最初离线脚本UTF-8默认GBK解码错误发生在工具调用前，原空目录和失败说明保留，修正编码后新目录执行。载荷原值（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/reference-payload-review.json`）。
 
-2026-10-16本轮初次预检记录（下载器随后已重连，现行结论见上）：2026-10-16：特批两处原厂AI时钟模型最小周期例外，解除其HELD限制，发布为受控板测参考产物；原始WPWS−0.409ns及失败报告保留，不修改库/频率，不把“安全占位时钟”标签当独立验证结论。新参考位流与回退位流SHA已核验，回退载荷与当前BOOT的PL分区相符。实板SSH只读核验BOOT/六份SDK一致、FPGA operating；Procise两次只读扫链（第二次为主机权限）均0 cable/无FTDI，Windows也未枚举对应设备，尚未下载。HDMI修复候选未集成，CDC/外部时序未签核，在线停止/隔离条件待核实；BOOT未改、未重启，旧DATA保持暂停。 执行位置Windows D:/FPGACompetitionProject、只读SSH至Lite；SSH传输预算30秒/外层40秒，实际身份核验3.673秒exit0；原沙箱SSH本机管道错误保留，主机权限新目录成功，非板端故障。Procise2025.1.1temp/SVN32494扫链预算45秒，实际3.876/3.681秒均exit1、0 cable；没有执行program_bit。新发布/回退实体已建立，既有封存目录不改。[证据](tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/REPORT.md)。
+2026-10-16本轮初次预检记录（下载器随后已重连，现行结论见上）：2026-10-16：特批两处原厂AI时钟模型最小周期例外，解除其HELD限制，发布为受控板测参考产物；原始WPWS−0.409ns及失败报告保留，不修改库/频率，不把“安全占位时钟”标签当独立验证结论。新参考位流与回退位流SHA已核验，回退载荷与当前BOOT的PL分区相符。实板SSH只读核验BOOT/六份SDK一致、FPGA operating；Procise两次只读扫链（第二次为主机权限）均0 cable/无FTDI，Windows也未枚举对应设备，尚未下载。HDMI修复候选未集成，CDC/外部时序未签核，在线停止/隔离条件待核实；BOOT未改、未重启，旧DATA保持暂停。 执行位置Windows D:/FPGACompetitionProject、只读SSH至Lite；SSH传输预算30秒/外层40秒，实际身份核验3.673秒exit0；原沙箱SSH本机管道错误保留，主机权限新目录成功，非板端故障。Procise2025.1.1temp/SVN32494扫链预算45秒，实际3.876/3.681秒均exit1、0 cable；没有执行program_bit。新发布/回退实体已建立，既有封存目录不改。证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-board-reference-20261016-r1/REPORT.md`）。
 
-2026-10-16原厂路径二实施：原厂路径二已实际执行到完整参考位流及Procise ICAP输出：当前2018.3新增32项原厂IP库替换，独立备份/前后SHA通过；与既有030ai九项补丁合计41项预期变化，2019.1及Procise库保持。28项XCI参数、5份DDR配置及父BD后检保持；24项IP OOC和整机综合完成。首批完整链在1800秒监控上限处停止并封存，无ERROR；代理自主建立impl_r2复用综合，实际1173.647281秒exit0，原策略/约束/hook不变，未重跑IP综合。建立/保持裕量0.030/0.021ns，但AI时钟模型1GHz有2处最小周期违例（WPWS−0.409ns），总时序不通过；CDC及外部时序覆盖尚未签核。参考产物列为HELD，未接入HDMI候选、未下载、未改BOOT/SDK/模型/AI_Mate或NPU频率；旧DATA仍暂停。 Windows工作目录D:/FPGACompetitionProject/.local/hdmi-jfm-build-20261016-r1；Vivado2018.3、Procise2025.1.1temp/SVN32494。只复制工程及JFM配套，不复制Vivado。实际根IP/父BD生成73.044秒，MIG前置综合261.136秒；XSim2018.3实际互联每阶段90秒内，两个入口各32 ID、64读/64写完整burst及背压通过。 [完整证据](tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/REPORT.md)、[AI时钟门检与恢复边界](FPGA/hdmi_candidate/AI-CLOCK-GATE.md)。 原始嵌套IP生成调用错误、生成注释严格字节断言失败及首批监控中断均保留；独立修正入口/分析，没有回写原失败。GT例外仅四项；原MIG CLK_REF例外在JFM hook前即存在。
+2026-10-16原厂路径二实施：原厂路径二已实际执行到完整参考位流及Procise ICAP输出：当前2018.3新增32项原厂IP库替换，独立备份/前后SHA通过；与既有030ai九项补丁合计41项预期变化，2019.1及Procise库保持。28项XCI参数、5份DDR配置及父BD后检保持；24项IP OOC和整机综合完成。首批完整链在1800秒监控上限处停止并封存，无ERROR；代理自主建立impl_r2复用综合，实际1173.647281秒exit0，原策略/约束/hook不变，未重跑IP综合。建立/保持裕量0.030/0.021ns，但AI时钟模型1GHz有2处最小周期违例（WPWS−0.409ns），总时序不通过；CDC及外部时序覆盖尚未签核。参考产物列为HELD，未接入HDMI候选、未下载、未改BOOT/SDK/模型/AI_Mate或NPU频率；旧DATA仍暂停。 Windows工作目录D:/FPGACompetitionProject/.local/hdmi-jfm-build-20261016-r1；Vivado2018.3、Procise2025.1.1temp/SVN32494。只复制工程及JFM配套，不复制Vivado。实际根IP/父BD生成73.044秒，MIG前置综合261.136秒；XSim2018.3实际互联每阶段90秒内，两个入口各32 ID、64读/64写完整burst及背压通过。 完整证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-jfm-build-20261016-r1/REPORT.md`）、[AI时钟门检与恢复边界](FPGA/hdmi_candidate/AI-CLOCK-GATE.md)。 原始嵌套IP生成调用错误、生成注释严格字节断言失败及首批监控中断均保留；独立修正入口/分析，没有回写原失败。GT例外仅四项；原MIG CLK_REF例外在JFM hook前即存在。
 
 以下保留先前审查及其它批次实际结果：
 
-2026-10-16路径二审查：原厂Vivado＋JFM／Procise路径二审查。隔离原始2018.3工程297份身份通过，28项IP全部未锁定且未升级；HARC与原厂源同SHA，预览时跳过复制。本批未增加安装写入。六项hook配置已独立重开确认；首次配置驱动save_project用法错误exit1保留，未重跑add_hook。原厂门检先检出MIG无OOC；同配置MIG综合262.133509秒exit0，XCI非运行时参数及DDR .prj字节不变，随后原厂pre_patch_check通过。180秒门限时依据日志进展自主将预算延至360秒并等待原进程，没有重启作业。已确认30TAI独立ICAP后处理的Procise目标JFMQL30TAI676H，未执行.bit处理。当前无完整候选位流、实屏或DDR硬件验收；正式构建尚需确定32项全局IP库替换与四项GT专用DRC处理范围。原生PCPU7导入旧失败保留，不再作为路径二前置条件。BOOT/SDK/模型/PS/AI_Mate及原扫描RTL保持，旧DATA继续暂停。 执行位置Windows，工作目录D:/FPGACompetitionProject/.local/hdmi-jfm-route2-20261016-r1；Vivado2018.3、Procise2025.1.1temp/SVN32494。只复制工程及必要JFM文件，不复制工具。 [完整原值和通过标准](tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/REPORT.md)、[参数/后续范围](FPGA/hdmi_candidate/ROUTE2-AUDIT.md)。32项默认IP库覆盖对象逐项只读盘点，源/目标均存在且全部不同；四项DRC定义实际查询，未执行关闭。所有配置预览失败及MIG前置失败保留，无板端连接。
+2026-10-16路径二审查：原厂Vivado＋JFM／Procise路径二审查。隔离原始2018.3工程297份身份通过，28项IP全部未锁定且未升级；HARC与原厂源同SHA，预览时跳过复制。本批未增加安装写入。六项hook配置已独立重开确认；首次配置驱动save_project用法错误exit1保留，未重跑add_hook。原厂门检先检出MIG无OOC；同配置MIG综合262.133509秒exit0，XCI非运行时参数及DDR .prj字节不变，随后原厂pre_patch_check通过。180秒门限时依据日志进展自主将预算延至360秒并等待原进程，没有重启作业。已确认30TAI独立ICAP后处理的Procise目标JFMQL30TAI676H，未执行.bit处理。当前无完整候选位流、实屏或DDR硬件验收；正式构建尚需确定32项全局IP库替换与四项GT专用DRC处理范围。原生PCPU7导入旧失败保留，不再作为路径二前置条件。BOOT/SDK/模型/PS/AI_Mate及原扫描RTL保持，旧DATA继续暂停。 执行位置Windows，工作目录D:/FPGACompetitionProject/.local/hdmi-jfm-route2-20261016-r1；Vivado2018.3、Procise2025.1.1temp/SVN32494。只复制工程及必要JFM文件，不复制工具。 完整原值和通过标准（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-jfm-route2-20261016-r1/REPORT.md`）、[参数/后续范围](FPGA/hdmi_candidate/ROUTE2-AUDIT.md)。32项默认IP库覆盖对象逐项只读盘点，源/目标均存在且全部不同；四项DRC定义实际查询，未执行关闭。所有配置预览失败及MIG前置失败保留，无板端连接。
 
 以下为此前r2及更早阶段实际结果：
 
-2026-10-16新授权r2实际结果：本机安装的D:/vivado18.3/Vivado/2018.3已按新授权就地打原版030ai补丁；未复制完整工具。34文件/63,130,403字节备份SHA通过，九项最终目标匹配厂商源，其余备份文件未变。真实扩展PS的RTL展开29.826517秒、综合22.396529秒，工具均exit0；全部4527个命名连接/3868个AI连接可绑定，实际EDIF/DCP已生成。Liberty总数断言失败保留，独立核对证实运行库/实例7212位引脚一致，仅调试元数据表示差异及未调用DEBUGDATA160。通用转换后Procise导入3.833887秒exit1，PCPU7端口不匹配，已停止未重跑。本地JFM确有Vivado实现hook＋可选Procise位流后处理，尚未采用；其HARC、速度和DRC影响需讨论。 Windows工作目录D:/FPGACompetitionProject，各EDA/转换阶段预算180秒；[完整证据](tools/pose-v1/evidence/hdmi-vivado2018-20261016-r2/REPORT.md)。先读取原厂过程3.580671秒，再就地补丁6.924940秒；转换0.977310秒且3572处差异仅七类原语名称，随后原生导入失败保存停止。只读hook复核2.767676秒，未调用hook或另改HARC。源码/实际端口/原值/失败/备份及文档修订保留，无板端动作。
+2026-10-16新授权r2实际结果：本机安装的D:/vivado18.3/Vivado/2018.3已按新授权就地打原版030ai补丁；未复制完整工具。34文件/63,130,403字节备份SHA通过，九项最终目标匹配厂商源，其余备份文件未变。真实扩展PS的RTL展开29.826517秒、综合22.396529秒，工具均exit0；全部4527个命名连接/3868个AI连接可绑定，实际EDIF/DCP已生成。Liberty总数断言失败保留，独立核对证实运行库/实例7212位引脚一致，仅调试元数据表示差异及未调用DEBUGDATA160。通用转换后Procise导入3.833887秒exit1，PCPU7端口不匹配，已停止未重跑。本地JFM确有Vivado实现hook＋可选Procise位流后处理，尚未采用；其HARC、速度和DRC影响需讨论。 Windows工作目录D:/FPGACompetitionProject，各EDA/转换阶段预算180秒；完整证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-vivado2018-20261016-r2/REPORT.md`）。先读取原厂过程3.580671秒，再就地补丁6.924940秒；转换0.977310秒且3572处差异仅七类原语名称，随后原生导入失败保存停止。只读hook复核2.767676秒，未调用hook或另改HARC。源码/实际端口/原值/失败/备份及文档修订保留，无板端动作。
 
 以下为此前r1首次安装预检及当时的私有副本提案，已被新授权更新：
 
-2026-10-16安装说明与实际继续：已安装Vivado2018.3于D:/vivado18.3/Vivado/2018.3；实际启动确认64-bit、SW Build2405991/IP Build2404404。首次60秒预检外层超时，随后内核完成小锚点展开及PS7/3305位引脚查询；驱动exit1，整轮不验收。taskkill权限拒绝及15秒等待超时保留，工具最终自行退出，未重跑；Common17-741的TclStore路径告警待核对。未复制或修改工具库，九项2018.3和旧2019.1目标SHA同；扩展PS仍待私有副本验证。 工作目录D:/FPGACompetitionProject，元数据预算60秒；[证据](tools/pose-v1/evidence/hdmi-vivado2018-20261016-r1/REPORT.md)。原参考297文件、九份扫描RTL和两版安装九项数据库目标均另行SHA核验同；本轮没有板端连接。驱动异常路径已修正为先记录超时/清理状态再停止，仅静态检查，未再次运行EDA。新批次完整私有复制/补丁/扩展PS方案已准备，待确认后执行。
+2026-10-16安装说明与实际继续：已安装Vivado2018.3于D:/vivado18.3/Vivado/2018.3；实际启动确认64-bit、SW Build2405991/IP Build2404404。首次60秒预检外层超时，随后内核完成小锚点展开及PS7/3305位引脚查询；驱动exit1，整轮不验收。taskkill权限拒绝及15秒等待超时保留，工具最终自行退出，未重跑；Common17-741的TclStore路径告警待核对。未复制或修改工具库，九项2018.3和旧2019.1目标SHA同；扩展PS仍待私有副本验证。 工作目录D:/FPGACompetitionProject，元数据预算60秒；证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-vivado2018-20261016-r1/REPORT.md`）。原参考297文件、九份扫描RTL和两版安装九项数据库目标均另行SHA核验同；本轮没有板端连接。驱动异常路径已修正为先记录超时/清理状态再停止，仅静态检查，未再次运行EDA。新批次完整私有复制/补丁/扩展PS方案已准备，待确认后执行。
 
-最新版本兼容评估：人工确认官方资料已全部本地保存且无2019.1配套，要求先评估迁移、不可行再下载2018.3。实际2019.1运行库PS7的3305个位引脚与安装Liberty一致；030ai配套有7213个位引脚，工程使用的3868个AI_端口在现运行库全部缺失、在配套Liberty全部存在。九项替换源有八项受保护，现有资料不能形成可验证的完整2019.1迁移；普通RTL/IP成果保持。2018.3官方下载入口已打开但网页返回会话未建立，尚未取得安装包；未安装或替换库，原生PCPU7适配仍需独立门检。 [方案](FPGA/hdmi_candidate/VIVADO-VERSION-PLAN.md)、[证据](tools/pose-v1/evidence/hdmi-jfm-compatibility-20261015-r1/REPORT.md)。Windows工作目录D:/FPGACompetitionProject，现有Vivado2019.1，正常库查询28.899712秒/60秒exit0。JFM_Kits原归档1,239,868,855字节/3829条目和关键脚本SHA已核验；公共目录读取与人工确认分别记录。分析脚本的BIDIR/inout规范化和源文件名假设两次失败均保留，仅修正分析器，未重跑失败PS或硬件负载。
+最新版本兼容评估：人工确认官方资料已全部本地保存且无2019.1配套，要求先评估迁移、不可行再下载2018.3。实际2019.1运行库PS7的3305个位引脚与安装Liberty一致；030ai配套有7213个位引脚，工程使用的3868个AI_端口在现运行库全部缺失、在配套Liberty全部存在。九项替换源有八项受保护，现有资料不能形成可验证的完整2019.1迁移；普通RTL/IP成果保持。2018.3官方下载入口已打开但网页返回会话未建立，尚未取得安装包；未安装或替换库，原生PCPU7适配仍需独立门检。 [方案](FPGA/hdmi_candidate/VIVADO-VERSION-PLAN.md)、证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-jfm-compatibility-20261015-r1/REPORT.md`）。Windows工作目录D:/FPGACompetitionProject，现有Vivado2019.1，正常库查询28.899712秒/60秒exit0。JFM_Kits原归档1,239,868,855字节/3829条目和关键脚本SHA已核验；公共目录读取与人工确认分别记录。分析脚本的BIDIR/inout规范化和源文件名假设两次失败均保留，仅修正分析器，未重跑失败PS或硬件负载。
 
-本批资料与隔离元数据核验：进一步核对真实replace_7z030ai_file：严格限2018.3，先恢复多器件库再替换9项Vivado原语/器件文件；当前2019.1工程内只读入单文件仍报AI_IN端口不匹配，未改全局库或绕过版本检查。原理图确认AC14/100MHz、TMDS差分对，以及F8=1.5V/高有效PL_KEY2；IO直驱1080p60不可保证的限制保持。PS构建仍阻塞，未下载候选。 [JFM与引脚补查](tools/pose-v1/evidence/hdmi-jfm-pin-review-20261015-r1/REPORT.md)。正常Vivado受保护Tcl加载器在只读拦截下成功读取过程定义，r2 3.141304秒exit0，未调用替换/恢复/hook。单PS7声明读取22.559951秒exit0但空顶层/端口0，端口契约明确不通过；实际PS包装RTL展开18.938109秒exit1、AI_IN端口不匹配/104 Errors。各60秒预算，失败保存停止。Poppler相关整页和放大图已目视检查，9项安装文件探针前后SHA同、297原参考及9扫描RTL同，无新板端动作。
+本批资料与隔离元数据核验：进一步核对真实replace_7z030ai_file：严格限2018.3，先恢复多器件库再替换9项Vivado原语/器件文件；当前2019.1工程内只读入单文件仍报AI_IN端口不匹配，未改全局库或绕过版本检查。原理图确认AC14/100MHz、TMDS差分对，以及F8=1.5V/高有效PL_KEY2；IO直驱1080p60不可保证的限制保持。PS构建仍阻塞，未下载候选。 JFM与引脚补查（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-jfm-pin-review-20261015-r1/REPORT.md`）。正常Vivado受保护Tcl加载器在只读拦截下成功读取过程定义，r2 3.141304秒exit0，未调用替换/恢复/hook。单PS7声明读取22.559951秒exit0但空顶层/端口0，端口契约明确不通过；实际PS包装RTL展开18.938109秒exit1、AI_IN端口不匹配/104 Errors。各60秒预算，失败保存停止。Poppler相关整页和放大图已目视检查，9项安装文件探针前后SHA同、297原参考及9扫描RTL同，无新板端动作。
 
 以下保留前批结果及其当时范围：
 
-本次实机阶段配套推进：2026-10-15 HDMI已获实板、隔离同配置重建、16根IP修订白名单及有限衍生字段例外授权。实板只读身份/12寄存器核验通过，BOOT/六份SDK/内核同；新r3有限契约门检、97.600秒IP生成及28项原有HDL参数/生成端口后检通过。实际生成AXI3互联两入口全32个ID、64读/64写完整16拍burst及背压通过，Procise原生互联综合16.417秒exit0；纯输出OBUFDS→ODU_DS真实引脚布线兼容探针通过。完整系统当前受阻于自定义PS7扩展端口与Procise PCPU7声明不匹配，PS门检8.418秒exit1，已停止。尚无完整候选位流，未下载、未改BOOT或重启，实屏仍待验；旧DATA继续暂停。 [本批总报告](tools/pose-v1/evidence/hdmi-bringup-20261015-r1/REPORT.md)、[生成/后检](tools/pose-v1/evidence/hdmi-ip-generation-20261015-r3/REPORT.md)、[PS阻塞与恢复入口](FPGA/hdmi_candidate/PS-ADAPTATION-STATUS.md)。 Windows/Vivado2019.1、XSim每阶段90秒；原生Procise2025.1.1temp/SVN32494、JFMQL30TAI676H。IP校验180秒/生成300秒、原生门检180秒。实际生成624文件树已ZIP归档并逐条SHA/CRC核验，297项原参考SHA保持；旧字面门检、驱动阶段误判与所有失败保留。当前无后台构建。
+本次实机阶段配套推进：2026-10-15 HDMI已获实板、隔离同配置重建、16根IP修订白名单及有限衍生字段例外授权。实板只读身份/12寄存器核验通过，BOOT/六份SDK/内核同；新r3有限契约门检、97.600秒IP生成及28项原有HDL参数/生成端口后检通过。实际生成AXI3互联两入口全32个ID、64读/64写完整16拍burst及背压通过，Procise原生互联综合16.417秒exit0；纯输出OBUFDS→ODU_DS真实引脚布线兼容探针通过。完整系统当前受阻于自定义PS7扩展端口与Procise PCPU7声明不匹配，PS门检8.418秒exit1，已停止。尚无完整候选位流，未下载、未改BOOT或重启，实屏仍待验；旧DATA继续暂停。 本批总报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-bringup-20261015-r1/REPORT.md`）、生成/后检（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-ip-generation-20261015-r3/REPORT.md`）、[PS阻塞与恢复入口](FPGA/hdmi_candidate/PS-ADAPTATION-STATUS.md)。 Windows/Vivado2019.1、XSim每阶段90秒；原生Procise2025.1.1temp/SVN32494、JFMQL30TAI676H。IP校验180秒/生成300秒、原生门检180秒。实际生成624文件树已ZIP归档并逐条SHA/CRC核验，297项原参考SHA保持；旧字面门检、驱动阶段误判与所有失败保留。当前无后台构建。
 
 以下为此前离线批次及其当时边界：
 
-新授权批次完成：阶段验收接受r5像素内核结果及4KiB/FIFO成果；新r6 core/r7 pixel全阶段exit0，仿真分别11.540/30.102秒，均未超90秒。隔离uihdmitx.v两处时钟输入已改10'b1111100000，Lite 7FAMILY新旧模型各128周期验证20%→50%占空比通过。原r5超时及非目标UFAMILY精确边沿诊断失败保留。PS/DDR/TMDS原生物理集成、CDC/实现时序及实屏待验，暂不上板、不换BOOT。 Windows/XSim2019.1在D:/FPGACompetitionProject，r6/r7与TMDS各阶段90秒。分组保留完整帧/像素/停止门检，未改9份生产扫描RTL；TMDS目标r4仿真6.419秒、五阶段exit0，真实参考包装与UNISIM/secureip行为模型、VCD保留。两处分支仅修正常量和说明注释，原参考字节不改；100MHz模型验证数字图案，非实板频率测量。所有授权任务均由代理实际执行，进程盘点/完整日志/源码/38项基线与文档修订SHA见[本批报告](tools/pose-v1/evidence/hdmi-split-20261015-r1/REPORT.md)、[候选状态](FPGA/hdmi_candidate/RESUME.md)。
+新授权批次完成：阶段验收接受r5像素内核结果及4KiB/FIFO成果；新r6 core/r7 pixel全阶段exit0，仿真分别11.540/30.102秒，均未超90秒。隔离uihdmitx.v两处时钟输入已改10'b1111100000，Lite 7FAMILY新旧模型各128周期验证20%→50%占空比通过。原r5超时及非目标UFAMILY精确边沿诊断失败保留。PS/DDR/TMDS原生物理集成、CDC/实现时序及实屏待验，暂不上板、不换BOOT。 Windows/XSim2019.1在D:/FPGACompetitionProject，r6/r7与TMDS各阶段90秒。分组保留完整帧/像素/停止门检，未改9份生产扫描RTL；TMDS目标r4仿真6.419秒、五阶段exit0，真实参考包装与UNISIM/secureip行为模型、VCD保留。两处分支仅修正常量和说明注释，原参考字节不改；100MHz模型验证数字图案，非实板频率测量。所有授权任务均由代理实际执行，进程盘点/完整日志/源码/38项基线与文档修订SHA见本批报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-split-20261015-r1/REPORT.md`）、[候选状态](FPGA/hdmi_candidate/RESUME.md)。
 
 以下为此前恢复阶段及当时停止状态：
 
-恢复后实际结果：HDMI候选已由阶段恢复后，4KiB按页拆分修正经r4三基址完整帧验证通过；新增FIFO/连续1080p扫描的Procise原生综合exit0。r5全部断言完成，但外层90秒超时、驱动exit1，整体不验收；已停止且未重跑，新分组入口待确认。PS/DDR/TMDS、CDC及系统实现未完成，暂不上板、不换BOOT。 Windows工作目录D:/FPGACompetitionProject，XSim2019.1每阶段90秒、Procise2025.1.1temp/SVN32494对JFMQL30TAI676H展开/综合预算180秒。新综合10.620秒exit0；r4每基址4147200字节完整地址/数据通过。r5原始日志完成2073600像素逐点比对、欠载排空、停像素时钟后STOP及全部旧用例，外层TimeoutExpired仍保留为失败。脚本已准备分组与失败证据/进程树清理修正，仅静态语法检查，无自动重跑。原参考/BOOT身份复核、本轮源码/日志与文档前后身份见[本轮证据](tools/pose-v1/evidence/hdmi-resume-20261015-r1/REPORT.md)、[继续入口](FPGA/hdmi_candidate/RESUME.md)。本次无板端连接。
+恢复后实际结果：HDMI候选已由阶段恢复后，4KiB按页拆分修正经r4三基址完整帧验证通过；新增FIFO/连续1080p扫描的Procise原生综合exit0。r5全部断言完成，但外层90秒超时、驱动exit1，整体不验收；已停止且未重跑，新分组入口待确认。PS/DDR/TMDS、CDC及系统实现未完成，暂不上板、不换BOOT。 Windows工作目录D:/FPGACompetitionProject，XSim2019.1每阶段90秒、Procise2025.1.1temp/SVN32494对JFMQL30TAI676H展开/综合预算180秒。新综合10.620秒exit0；r4每基址4147200字节完整地址/数据通过。r5原始日志完成2073600像素逐点比对、欠载排空、停像素时钟后STOP及全部旧用例，外层TimeoutExpired仍保留为失败。脚本已准备分组与失败证据/进程树清理修正，仅静态语法检查，无自动重跑。原参考/BOOT身份复核、本轮源码/日志与文档前后身份见本轮证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-resume-20261015-r1/REPORT.md`）、[继续入口](FPGA/hdmi_candidate/RESUME.md)。本次无板端连接。
 
 以下保留暂停时成果与当时状态：
 
-HDMI候选已暂停，等待唤醒。隔离候选AXI10类/控制7类/CSR检查及完整1080p帧4,147,200字节背压验证通过，时钟与控制模块Procise原生展开/综合exit0；尚未原工程集成、布局布线/CDC时序或上板，不称整条HDMI通过。 保持1080p60的独立时钟/AXI/停止换帧候选后，已实现7个独立RTL模块与有限测试/构建入口，原参考源码、BOOT、模型和SDK保持。候选r2行为门检exit0，整帧32,400 burst/518,400字逐地址与数据比较；Procise2025.1.1temp/SVN32494在JFMQL30TAI676H原生时钟/控制展开综合分别6.752/8.677秒exit0，真实EDIF保留。暂停，未再启动构建；所有已发工具返回，工具进程名盘点为空，较早板端/FPAI已回收。[暂停证据](tools/pose-v1/evidence/hdmi-candidate-pause-20261015-r1/CHECKPOINT.md)。
+HDMI候选已暂停，等待唤醒。隔离候选AXI10类/控制7类/CSR检查及完整1080p帧4,147,200字节背压验证通过，时钟与控制模块Procise原生展开/综合exit0；尚未原工程集成、布局布线/CDC时序或上板，不称整条HDMI通过。 保持1080p60的独立时钟/AXI/停止换帧候选后，已实现7个独立RTL模块与有限测试/构建入口，原参考源码、BOOT、模型和SDK保持。候选r2行为门检exit0，整帧32,400 burst/518,400字逐地址与数据比较；Procise2025.1.1temp/SVN32494在JFMQL30TAI676H原生时钟/控制展开综合分别6.752/8.677秒exit0，真实EDIF保留。暂停，未再启动构建；所有已发工具返回，工具进程名盘点为空，较早板端/FPAI已回收。暂停证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-candidate-pause-20261015-r1/CHECKPOINT.md`）。
 
 ### 对后续开发的参考
 
@@ -353,7 +355,7 @@ r2参考：编译器实际原语/连接契约、Liberty元数据和原生目标�
 
 ### 工程内容总结
 
-HDMI新核验：本地Lite BOOT/bit与选用版相同；实板显示控制0x20230218及12寄存器读取过，BOOT/六份SDK库/内核前后一致。参考RTL行为仿真确认200MHz扫描80.81Hz、停消费可卡读帧及AXI在RREADY=0时提前完成缺陷；后者不代表当前BOOT故障已证。显示器已接仍报时序不支持，误点稳定画面作废。隔离候选修正独立时钟/AXI/停止换帧，先仿真和Procise构建，暂不上板。 [完整阶段证据](tools/pose-v1/evidence/hdmi-contract-validation-20261015-r1/REPORT.md)。Windows本机XSim2019.1行为验证r6通过，参考AXI仅仿真副本去10项重复端口声明，逻辑不改；原RTL/BOOT不写。FPAI/ARM探针新r3实际SDK生命周期+12读取exit0、0.083909秒；十秒预算，原值/前后日志完整，未启动DMA/推理/编码。所有进程连接结束，FPAI恢复停止。主机权限失败、链接剔除、仿真语法/timescale/watchdog失败分别保留；不把缺陷复现当DUT正确或实屏通过。
+HDMI新核验：本地Lite BOOT/bit与选用版相同；实板显示控制0x20230218及12寄存器读取过，BOOT/六份SDK库/内核前后一致。参考RTL行为仿真确认200MHz扫描80.81Hz、停消费可卡读帧及AXI在RREADY=0时提前完成缺陷；后者不代表当前BOOT故障已证。显示器已接仍报时序不支持，误点稳定画面作废。隔离候选修正独立时钟/AXI/停止换帧，先仿真和Procise构建，暂不上板。 完整阶段证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-contract-validation-20261015-r1/REPORT.md`）。Windows本机XSim2019.1行为验证r6通过，参考AXI仅仿真副本去10项重复端口声明，逻辑不改；原RTL/BOOT不写。FPAI/ARM探针新r3实际SDK生命周期+12读取exit0、0.083909秒；十秒预算，原值/前后日志完整，未启动DMA/推理/编码。所有进程连接结束，FPAI恢复停止。主机权限失败、链接剔除、仿真语法/timescale/watchdog失败分别保留；不把缺陷复现当DUT正确或实屏通过。
 
 ### 对后续开发的参考
 
@@ -363,7 +365,7 @@ HDMI新核验：本地Lite BOOT/bit与选用版相同；实板显示控制0x2023
 
 ### 工程内容总结
 
-针对追问，只读补查两份原始PDF全文、MIG/XCI与连线、项目log及三份参考ZIP目录。Python/pypdf实际exit0，确认教程已有无SDI的camera.vtc=true灰度图流程；MIG选mig_b.prj的1250ps/4:1与ui_clk连线支持参考fallback200MHz推断，条件下固定1080p约80.81Hz、串行支路理论1000MHz，均非现场测量。修正此前“需补齐资料”的笼统表述；[完整证据](tools/pose-v1/evidence/hdmi-local-recheck-20261015-r1/REPORT.md)。
+针对追问，只读补查两份原始PDF全文、MIG/XCI与连线、项目log及三份参考ZIP目录。Python/pypdf实际exit0，确认教程已有无SDI的camera.vtc=true灰度图流程；MIG选mig_b.prj的1250ps/4:1与ui_clk连线支持参考fallback200MHz推断，条件下固定1080p约80.81Hz、串行支路理论1000MHz，均非现场测量。修正此前“需补齐资料”的笼统表述；完整证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-local-recheck-20261015-r1/REPORT.md`）。
 
 ### 对后续开发的参考
 
@@ -373,7 +375,7 @@ HDMI新核验：本地Lite BOOT/bit与选用版相同；实板显示控制0x2023
 
 ### 工程内容总结
 
-先创建根目录 [架构讨论记录（冻结快照）](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ARCHITECTURE-DISCUSSION-20261015.md)，汇总共享模型、模块所有权、PS/NPU/PL候选、CSI心率及HDMI讨论，区分决策、建议、验证与范围。随后在Windows工作目录D:/FPGACompetitionProject，以既有Python/OpenSSH和固定主机密钥执行一次Lite只读盘点，r2退出0、3.124318秒：BOOT与原记录相同、三份SDK核心库相同、icraft/customop3.39.0、FPGA operating。未见DRM/fb/I²C适配器，Linux时钟树不提供已识别HDMI像素/PLL节点。[完整返回、边界与报告](tools/pose-v1/evidence/hdmi-stage1-20261015-r2/REPORT.md)。r1本机signal pipe权限失败尚未连接板端，完整保留；限制外ssh -V通过后才以新r2执行，无硬件负载失败重试。
+先创建根目录 [架构讨论记录（冻结快照）](tools/pose-v1/evidence/architecture-output-20261017-r1/before-document-edit/ARCHITECTURE-DISCUSSION-20261015.md)，汇总共享模型、模块所有权、PS/NPU/PL候选、CSI心率及HDMI讨论，区分决策、建议、验证与范围。随后在Windows工作目录D:/FPGACompetitionProject，以既有Python/OpenSSH和固定主机密钥执行一次Lite只读盘点，r2退出0、3.124318秒：BOOT与原记录相同、三份SDK核心库相同、icraft/customop3.39.0、FPGA operating。未见DRM/fb/I²C适配器，Linux时钟树不提供已识别HDMI像素/PLL节点。完整返回、边界与报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-stage1-20261015-r2/REPORT.md`）。r1本机signal pipe权限失败尚未连接板端，完整保留；限制外ssh -V通过后才以新r2执行，无硬件负载失败重试。
 
 ### 对后续开发的参考
 
@@ -383,7 +385,7 @@ HDMI新核验：本地Lite BOOT/bit与选用版相同；实板显示控制0x2023
 
 ### 工程内容总结
 
-依据下载区参考实现与Lite25122301 BOOT，完成Windows本机静态源码/身份分析。指定BOOT的SHA与历史板端记录一致；配对.bit完整配置载荷经BOOT分区32位字序转换后相同，额外4字节单列；下载区/项目内三份显示辅助头同SHA。实际Python标准库离线核验exit0，38份来源清单保留。[报告、脚本及身份](tools/pose-v1/evidence/hdmi-resource-audit-20261015-r1/REPORT.md)。本轮未连接板端、未读写寄存器、未构建/下载/修改BOOT、SDK或模型；HDMI仍未验收，旧DATA暂停。
+依据下载区参考实现与Lite25122301 BOOT，完成Windows本机静态源码/身份分析。指定BOOT的SHA与历史板端记录一致；配对.bit完整配置载荷经BOOT分区32位字序转换后相同，额外4字节单列；下载区/项目内三份显示辅助头同SHA。实际Python标准库离线核验exit0，38份来源清单保留。报告、脚本及身份（历史附件，当前仓库未附：`tools/pose-v1/evidence/hdmi-resource-audit-20261015-r1/REPORT.md`）。本轮未连接板端、未读写寄存器、未构建/下载/修改BOOT、SDK或模型；HDMI仍未验收，旧DATA暂停。
 
 ### 对后续开发的参考
 
@@ -393,7 +395,7 @@ HDMI新核验：本地Lite BOOT/bit与选用版相同；实板显示控制0x2023
 
 ### 工程内容总结
 
-2026-10-15共享新包稳定性已完成：原编译包三窗、30秒/1131次及30分钟/62,945次实板串行推理的数值/内存观察通过，完整实际输入/输出回传后SHA及现行门禁独立复核通过。暖机后RSS75204→73628KiB、PSS73887→71779KiB，Private_Dirty/VmData不增，FD13/线程3/映射86保持；Engine均值23.278220ms，含保存/比较速率34.969次/秒。无崩溃/SDK异常/新增内核日志，但11次process超过1秒、最大4.158秒（forward4.151秒/进程CPU20.177ms），时延长尾原因未知，列D41，不称实时性通过。Engine正常销毁、本批进程和连接结束。r1可选/proc接口失败原样保留，r2兼容修复4项本机检查后新Session继续；归档SSH超时只监测/取回原归档，未重跑推理。模型/RAW/数学/CPU注册/NPU分配/SDK/BOOT不改，常规诊断限前三帧，异常证据路径保留。仅三个冻结输入，无视频/网络叠加，不能扩展为整机或任意输入绝对无泄漏保证。[完整报告](tools/pose-v1/evidence/shared-stability-20261015-r2/REPORT.md)。正式演示不换，旧DATA继续暂停。
+2026-10-15共享新包稳定性已完成：原编译包三窗、30秒/1131次及30分钟/62,945次实板串行推理的数值/内存观察通过，完整实际输入/输出回传后SHA及现行门禁独立复核通过。暖机后RSS75204→73628KiB、PSS73887→71779KiB，Private_Dirty/VmData不增，FD13/线程3/映射86保持；Engine均值23.278220ms，含保存/比较速率34.969次/秒。无崩溃/SDK异常/新增内核日志，但11次process超过1秒、最大4.158秒（forward4.151秒/进程CPU20.177ms），时延长尾原因未知，列D41，不称实时性通过。Engine正常销毁、本批进程和连接结束。r1可选/proc接口失败原样保留，r2兼容修复4项本机检查后新Session继续；归档SSH超时只监测/取回原归档，未重跑推理。模型/RAW/数学/CPU注册/NPU分配/SDK/BOOT不改，常规诊断限前三帧，异常证据路径保留。仅三个冻结输入，无视频/网络叠加，不能扩展为整机或任意输入绝对无泄漏保证。完整报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-stability-20261015-r2/REPORT.md`）。正式演示不换，旧DATA继续暂停。
 
 Windows工作目录D:/FPGACompetitionProject，FPAI/GCC9.4复用原核心构建常驻入口，Lite SDK3.39.0/ZG330新目录部署原编译包与常驻包。先3窗，再30秒，审查通过后一次1800秒/最多90000次；未触及次数上限，无自动重试或延长。先保存每次60400字节完整实际输入/输出再比较；有限性、score>0.2的3mm同槽三维门限和输入/全部分数逐位均过，实际612完成计数/5 Host/5 ZG覆盖全检。3.80GB原值/逐帧日志/资源与哈希全部取回，SDK/BOOT/内核同，最终清理审查通过。未规整/清缓存/重启、未改启动配置，未人为触发异常分支。
 
@@ -407,7 +409,7 @@ Windows工作目录D:/FPGACompetitionProject，FPAI/GCC9.4复用原核心构建�
 
 明确低分背景不参与位置硬门限，现行规则改为仅参考FP32 score>0.2f候选逐关节三维欧氏差≤3mm，score==0.2f排除；全部输入/100分数逐位、所有候选/参考有限性及原SDK/索引/身份/超时错误保持。独立门检模块增加受检/排除数量和误差诊断，掩码用参考分数避免实际分数改变绕检，零受检时明确标识不适用。Windows MinGW实际21组边界/拒绝检查通过；C++真实文件回放与NumPy独立复核保存三窗，候选0各唯一score>0.2，最大关节差0.9765625/0.9765625/0.48828125mm，3/3符合。此前5.524271728mm异常槽score0.001296997，排除位置硬拒绝；原值/旧门禁exit1不覆盖。
 
-FPAI GCC9.4新独立ARM入口显式3.0/0.2f配置构建exit0，新源码/部署包留.local/shared-confidence-*并归档清单。当前共享细化阶段本阶段记录阶段性认可，ADR_48现行v2、Agents、进度/难点/索引已同步。**本轮无新板端推理、部署或计时**，原Engine均值27.83871ms仅沿用既有三次测量；模型/RAW/权重/TopK/SDK/正式演示不改，旧DATA仍暂停。21自测、回放原值、配置/ARM日志和文档修订身份见[本轮报告](tools/pose-v1/evidence/shared-confidence-gate-20261015-r1/REPORT.md)。工作区分支切换/快进合并的短暂文件缺失经reflog及源码/文档快照核实恢复，未重置已有提交；FPAI回收为停止。
+FPAI GCC9.4新独立ARM入口显式3.0/0.2f配置构建exit0，新源码/部署包留.local/shared-confidence-*并归档清单。当前共享细化阶段本阶段记录阶段性认可，ADR_48现行v2、Agents、进度/难点/索引已同步。**本轮无新板端推理、部署或计时**，原Engine均值27.83871ms仅沿用既有三次测量；模型/RAW/权重/TopK/SDK/正式演示不改，旧DATA仍暂停。21自测、回放原值、配置/ARM日志和文档修订身份见本轮报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-confidence-gate-20261015-r1/REPORT.md`）。工作区分支切换/快进合并的短暂文件缺失经reflog及源码/文档快照核实恢复，未重置已有提交；FPAI回收为停止。
 
 ### 对后续开发的参考
 
@@ -419,7 +421,7 @@ FPAI GCC9.4新独立ARM入口显式3.0/0.2f配置构建exit0，新源码/部署�
 
 明确“最大误差可以定在3mm以内”，据此新增ADR_48和Agents有效例外，固定共享FP16候选按全部100×14关节同槽三维欧氏差≤3mm验收，输入/100分数逐位、有限性/索引/SDK/身份/超时及超限停止保持。独立shared_output_gate模块不改输出/参考/排序或SDK同步；Windows MinGW实际12组边界/拒绝检查通过，FPAI GCC9.4新独立ARM构建exit0，旧源码及失败清单不覆盖。物理偏置仅记录为既有未验证假设，未写成根因结论。
 
-Lite新/tmp目录、新包/Session沿原三窗/120秒预算实际执行3次，308/309最大关节差均1.953125mm通过；310最大单坐标3.90625mm、最大关节5.524271728mm，候选24/关节4（0起）唯一超限，exit1停止、无重试/进一步提高门限。输入/300分数逐位、12900输出有限，三窗MPJPE均值变化−0.005315145mm；平均改善不豁免最大误差。Engine32.90414/27.31461/23.29739ms，描述均值27.83871ms含拒绝样本。实际1021HardOp完整五组/612，三次完成612，原图/RAW/SDK/BOOT不改。完整实际输出/失败/时间线/源码归档已回传，前后BOOT/SDK核验同、内核日志同，设备/进程/连接回收、FPAI停止，旧DATA仍暂停。[ADR_48](ADR/ADR_48.md)、[本轮报告](tools/pose-v1/evidence/shared-gate-policy-20261015-r1/REPORT.md)、[原值复核](tools/pose-v1/evidence/shared-gate-policy-20261015-r1/analysis.json)。
+Lite新/tmp目录、新包/Session沿原三窗/120秒预算实际执行3次，308/309最大关节差均1.953125mm通过；310最大单坐标3.90625mm、最大关节5.524271728mm，候选24/关节4（0起）唯一超限，exit1停止、无重试/进一步提高门限。输入/300分数逐位、12900输出有限，三窗MPJPE均值变化−0.005315145mm；平均改善不豁免最大误差。Engine32.90414/27.31461/23.29739ms，描述均值27.83871ms含拒绝样本。实际1021HardOp完整五组/612，三次完成612，原图/RAW/SDK/BOOT不改。完整实际输出/失败/时间线/源码归档已回传，前后BOOT/SDK核验同、内核日志同，设备/进程/连接回收、FPAI停止，旧DATA仍暂停。[ADR_48](ADR/ADR_48.md)、本轮报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-gate-policy-20261015-r1/REPORT.md`）、原值复核（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-gate-policy-20261015-r1/analysis.json`）。
 
 ### 对后续开发的参考
 
@@ -431,7 +433,7 @@ Lite新/tmp目录、新包/Session沿原三窗/120秒预算实际执行3次，30
 
 导出此前已批准的共享细化计算，固定epoch442、两TopK/100候选/14关节、ScatterND0，不改变学习权重或重新训练。训练服务器原PersonInWIFI环境CPU单线程完成完整ONNX及29真实样本核验exit0：包装器与原生共享Python逐位，ORT新旧分数逐位、最大坐标差2.384185791e-7模型单位。完整归档/脚本/输入输出/日志拉回原算法仓库exportONNX/shared-refine-20261015-r1。Windows Icraft3.39.0按保留的FP16/ZG330/NOP配置五阶段exit0、37.987秒，TOML/五对JSON-RAW位于model/piw24_shared-20261015-r1，最终1021 HardOp、RAW35,481,378字节（少33.31%），实际矩阵形状确认细化特征batch100→1。
 
-FPAI GCC9.4新独立ARM目标构建通过，Lite新/tmp目录以SDK公开metadata唯一完整追溯1021成员到五ZG组、连续计数0→612，首帧实际612。计划308/309/310三窗，实际首帧Engine24.19628ms、forward16.33242ms、末端等待0.64366ms；输入/100分数逐位，4200姿态中78坐标不同，最大关节差1.953125mm，单帧GT MPJPE131.374832153→131.379043579mm（+0.004211426mm）。完整实际输出先保存再原严格比较，exit1立即停止，验收0帧、余2帧未执行，无重试或容差放宽。日志/原值/源码135份/模型身份及失败完整回传，板端无本批进程、FPGA operating，FPAI恢复停止。无VPU/TCP/规整/重启，正式演示和旧DATA暂停状态保持。[完整报告](tools/pose-v1/evidence/shared-graph-board-20261015-r1/REPORT.md)、[离线结果](tools/pose-v1/evidence/shared-graph-board-20261015-r1/stopped-analysis.json)、[交付核验](tools/pose-v1/evidence/shared-graph-board-20261015-r1/delivery-audit.json)。
+FPAI GCC9.4新独立ARM目标构建通过，Lite新/tmp目录以SDK公开metadata唯一完整追溯1021成员到五ZG组、连续计数0→612，首帧实际612。计划308/309/310三窗，实际首帧Engine24.19628ms、forward16.33242ms、末端等待0.64366ms；输入/100分数逐位，4200姿态中78坐标不同，最大关节差1.953125mm，单帧GT MPJPE131.374832153→131.379043579mm（+0.004211426mm）。完整实际输出先保存再原严格比较，exit1立即停止，验收0帧、余2帧未执行，无重试或容差放宽。日志/原值/源码135份/模型身份及失败完整回传，板端无本批进程、FPGA operating，FPAI恢复停止。无VPU/TCP/规整/重启，正式演示和旧DATA暂停状态保持。完整报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-graph-board-20261015-r1/REPORT.md`）、离线结果（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-graph-board-20261015-r1/stopped-analysis.json`）、交付核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-graph-board-20261015-r1/delivery-audit.json`）。
 
 ### 对后续开发的参考
 
@@ -443,7 +445,7 @@ FP32共享计算等价门检不能代替FP16编译板图的数值门检；此次
 
 核对固定2024 epoch442推理结构、实际PETR前向、两处TopK、Hungarian监督及MPJPE评估。确认Pose decoder为3层/100整人query，Joint decoder为2层/14关节query，旧细化路径的100是候选batch；共享细化源码已验证、对应板图仍应按实际完成证据区分。没有修改算法源码、权重、配置或部署，也没有恢复暂停调查。
 
-Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对归档7824帧进行一次只读统计，120秒预算、实际80.791秒/exit0；两个输出与原清单SHA一致、7824份GT与逐帧哈希一致。NumPy float64重算全100 MPJPE123.085352080mm，逐帧与原FP32记录最大差0.000121051mm。按最终分数保留Top3/5/10/20/50时，全测试误差分别140.360/132.039/129.151/126.381/124.232mm；这是完整100模型输出的后截取分析，不是减少decoder query的新模型实验。完整条件、脚本、身份与结果见[分析报告](tools/pose-v1/evidence/query-audit-20261015-r1/REPORT.md)及同目录results.json。
+Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对归档7824帧进行一次只读统计，120秒预算、实际80.791秒/exit0；两个输出与原清单SHA一致、7824份GT与逐帧哈希一致。NumPy float64重算全100 MPJPE123.085352080mm，逐帧与原FP32记录最大差0.000121051mm。按最终分数保留Top3/5/10/20/50时，全测试误差分别140.360/132.039/129.151/126.381/124.232mm；这是完整100模型输出的后截取分析，不是减少decoder query的新模型实验。完整条件、脚本、身份与结果见分析报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/query-audit-20261015-r1/REPORT.md`）及同目录results.json。
 
 ### 对后续开发的参考
 
@@ -455,7 +457,7 @@ Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对�
 
 将去ScatterND JSON/RAW推送Lite、重排引擎并去掉其专用桥/回调，返回分段计时。使用model/piw24_noscatter-20261014-r3最终产物（尚无共享细化），Windows/FPAI GCC9.4构建独立ARM候选，沿用3.39.0数学核和原预处理；删除Scatter注册/参数与核分支/Host暂存/582计数轮询，保留TopK188/437、GatherElements192和原生Gather442。新Session公开merge_from/idx_map完整唯一追溯1158 HardOp到9052–9056五组，连续0→736；不套旧1173/七组/745，也不只看静态层数。源码/二进制符号确认无ScatterND路径，正式核心和演示锁不改。
 
-实际部署/tmp/wifi-pose-noscatter-20261015-r1，120秒预算、一次Session、308/309/310三窗无预热/VPU/TCP。三次实际完成736、5 Host/5 ZG回调；输入32400 FP32和输出12900 FP32完整保存后逐位原板端参考，误差0。原GT辅助greedy MPJPE三帧平均129.627911886mm前后相同，仅三单人窗口非全量验收。独立核对完整返回哈希、参数/身份/覆盖/嵌套时间线。Engine184.163ms（历史同三窗195.098ms，观察少5.61%）；forward16.010ms后输出ready仍等157.975ms，实际forward起至ready173.990ms。自定义CPU核3.064ms、桥搬运API0.376ms、四次48160B，原8次115360B；初始化29.206秒不计帧时。原始日志、GT、指标、源码归档和详细分解见[报告](tools/pose-v1/evidence/noscatter-board-20261015-r1/REPORT.md)。
+实际部署/tmp/wifi-pose-noscatter-20261015-r1，120秒预算、一次Session、308/309/310三窗无预热/VPU/TCP。三次实际完成736、5 Host/5 ZG回调；输入32400 FP32和输出12900 FP32完整保存后逐位原板端参考，误差0。原GT辅助greedy MPJPE三帧平均129.627911886mm前后相同，仅三单人窗口非全量验收。独立核对完整返回哈希、参数/身份/覆盖/嵌套时间线。Engine184.163ms（历史同三窗195.098ms，观察少5.61%）；forward16.010ms后输出ready仍等157.975ms，实际forward起至ready173.990ms。自定义CPU核3.064ms、桥搬运API0.376ms、四次48160B，原8次115360B；初始化29.206秒不计帧时。原始日志、GT、指标、源码归档和详细分解见报告（历史附件，当前仓库未附：`tools/pose-v1/evidence/noscatter-board-20261015-r1/REPORT.md`）。
 
 编译shim签名、安装前Python语法、本机未采样CPU字段及本地完整metric文件身份差异分别保存并核实；前三类修正不涉及失败推理重跑，metric取固定SHA服务器快照且calc_mpjpe AST一致、GT哈希沿用全7824评估来源。实际唯一新Session退出0，无放宽逐位门禁、异常SDK计时重试、规整/重启/内核或SDK变更。所有本批推理/传输进程结束、FPGA operating、内核日志不变，旧DATA调查保持暂停。
 
@@ -471,7 +473,7 @@ Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对�
 
 服务器PersonInWIFI/PyTorch1.13.1+cu117/MMCV1.5.3、RTX A5500 GPU0，FP32/batch1/worker2，固定1800秒上限。同一预处理输入、交替配对顺序，完整7824帧/100候选实际比较102494400 FP32，wrapper452.797秒exit0。总MPJPE123.0853521290001→123.08535222675658mm，差+9.77564838e-8mm；一/两/三人分组差均在舍入量级。分数逐位一致，姿态不是逐位一致：最大坐标差4.768371582e-7模型单位、最大关节差0.00053312015mm、单帧MPJPE最大变化0.0001220703125mm。训练细化损失及2424838梯度逐位、多图像/额外参数回退逐位、完整state_dict同通过。
 
-服务器含诊断探针计时，排除前10帧后整模型均值12.211762→11.081056ms（少9.259%），decoder CUDA区间2.958172→1.818552ms（少38.524%），嵌套不相加、不外推板端。完整输入、两版boxes/poses/references及逐帧指标约1.17GB回传.local/shared-refine-20261014-r1；归档SHA、30成员和独立数组/指标核验通过。测试进程组、wrapper及worker退出，传输结束。[完整工程与证据](tools/pose-v1/evidence/shared-refine-20261014-r1/README.md)。
+服务器含诊断探针计时，排除前10帧后整模型均值12.211762→11.081056ms（少9.259%），decoder CUDA区间2.958172→1.818552ms（少38.524%），嵌套不相加、不外推板端。完整输入、两版boxes/poses/references及逐帧指标约1.17GB回传.local/shared-refine-20261014-r1；归档SHA、30成员和独立数组/指标核验通过。测试进程组、wrapper及worker退出，传输结束。完整工程与证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/shared-refine-20261014-r1/README.md`）。
 
 ### 对后续开发的参考
 
@@ -481,7 +483,7 @@ Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对�
 
 ### 工程内容总结
 
-主机Icraft转换新ONNX并保存model，后明确保留TOML。在Windows D:/FPGACompetitionProject/model/piw24_noscatter-20261014-r3复用Icraft3.39.0及三已验独立DLL，实际TOML传入parse→optimize→quantize→adapt→generate，各exit0，总68.688秒。五对JSON/RAW的大小/MD5/SHA、FP32端口/**C布局和62原文件独立复核通过。最终1158 HardOp/四计算Host188/192/437/442/ScatterND0，静态layer_count合736。实际TOML、完整源ONNX、五阶段与厂商完整日志、SDK配置留model。[完整交付](tools/pose-v1/evidence/icraft-no-scatter-20261014-r1/README.md)。
+主机Icraft转换新ONNX并保存model，后明确保留TOML。在Windows D:/FPGACompetitionProject/model/piw24_noscatter-20261014-r3复用Icraft3.39.0及三已验独立DLL，实际TOML传入parse→optimize→quantize→adapt→generate，各exit0，总68.688秒。五对JSON/RAW的大小/MD5/SHA、FP32端口/**C布局和62原文件独立复核通过。最终1158 HardOp/四计算Host188/192/437/442/ScatterND0，静态layer_count合736。实际TOML、完整源ONNX、五阶段与厂商完整日志、SDK配置留model。完整交付（历史附件，当前仓库未附：`tools/pose-v1/evidence/icraft-no-scatter-20261014-r1/README.md`）。
 
 原量化TOML未留存，明确qdtypeFP16，依据原130个FP16 Matmul，不宣称恢复旧全部设置。r1缺NOP占位、r2误把XIR **C当CLI布局，均网络加载前参数校验exit1停止；依文档NOP和实际CLI FD修正为新r3，原失败不覆盖。控制台SetAnsiMode信息保留。没有改全局PATH/版本、旧部署/Engine/SDK/BOOT，没有新图数值或板测，旧DATA继续暂停。
 
@@ -495,11 +497,11 @@ Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对�
 
 目标为复查重构核心的编译/运行问题，并在全部检查通过后落实后续开发基准。D:/FPGACompetitionProject复用既有FPAI/GCC9.4/SDK3.39.0与原Python环境，在新构建与证据目录执行：126旧锁/926冻结文件保持、52 C++逐token等价、11组本机回归、固定三输入及20份像素字节对照、Python语法及主机prepare-only入口、56步ARM完整构建通过；14程序与原已验证重构版本同SHA。保留一个已复现于旧源码的unused助手警告。补充software/core/INTERFACES.md，明确各接口职责、输入输出、线程、所有权、错误和4个无当前目标定义的历史兼容声明；不改核心实现或历史测试。
 
-本轮SSH到192.168.126.49:22首次只读连接超时exit255，尚未部署或开启CPU107/三窗口负载，未重试。配置采用稍后恢复板端连接再完成检查；AGENTS.md规范仅准备候选、尚未落实，不能宣称本轮板测通过。[全部已执行结果和剩余步骤](tools/pose-v1/evidence/core-check-20261014-r1/README.md)。旧DATA排查保持暂停，无60窗口、重启或模型/SDK/BOOT变更。
+本轮SSH到192.168.126.49:22首次只读连接超时exit255，尚未部署或开启CPU107/三窗口负载，未重试。配置采用稍后恢复板端连接再完成检查；AGENTS.md规范仅准备候选、尚未落实，不能宣称本轮板测通过。全部已执行结果和剩余步骤（历史附件，当前仓库未附：`tools/pose-v1/evidence/core-check-20261014-r1/README.md`）。旧DATA排查保持暂停，无60窗口、重启或模型/SDK/BOOT变更。
 
 ### 对后续开发的参考
 
-[接口手册](software/core/INTERFACES.md)以真实CMake来源和ARM符号为准，推荐Engine/Video适配层及encodeResident/serveGuardedAccessUnits；仅包含旧头文件不能证明历史声明可链接。连接恢复后新目录继续原CPU300秒/short180秒门检；通过后补全同条记录并落实[规范候选](tools/pose-v1/evidence/core-check-20261014-r1/agents-rule.proposed.md)。修订前后身份单独保存，不回写原重构完成清单。
+[接口手册](software/core/INTERFACES.md)以真实CMake来源和ARM符号为准，推荐Engine/Video适配层及encodeResident/serveGuardedAccessUnits；仅包含旧头文件不能证明历史声明可链接。连接恢复后新目录继续原CPU300秒/short180秒门检；通过后补全同条记录并落实规范候选（历史附件，当前仓库未附：`tools/pose-v1/evidence/core-check-20261014-r1/agents-rule.proposed.md`）。修订前后身份单独保存，不回写原重构完成清单。
 
 ## 2026-10-13：Engine有限板端计时与实测表
 
@@ -507,7 +509,7 @@ Windows工作目录D:/FPGACompetitionProject，已有Python3.14.6/NumPy2.5.2对�
 
 目标为计算当前工具可取得的Engine分段时间。Windows工作目录D:\FPGACompetitionProject，经既有FPAI ARM64二进制、专用OpenSSH内存认证连接Lite；新交付包.local/engine-timing-delivery-20261013-r3，板端/tmp/wifi-pose-engine-timing-20261013-r2。固定308/309/310，baseline→wall→sdk各计划3次、每模式120秒及5秒退出宽限；无VPU/TCP、无预热/压力、无规整/重启或模型/SDK/BOOT变更。前置独占NPU及完整身份审计，先保存实际输入/分数/姿态再逐位比较，异常保存停止、不重试。
 
-baseline/wall各3次完整通过；wall均值Engine195.098ms、forward187.617ms、桥ready等待162.294ms、已观测CPU核14.121ms、设备→Host API0.771ms。SDK模式第1次输出正确，但745个层时间中215项负值，停止未执行剩余2次；整体批次为失败停止，不能称SDK计时通过或纯NPU时间已取得。初始化baseline30.493s/wall31.235s另计，输出落盘/比较在process外。回收完成，无pose进程，FPGA operating。[实测表与结果证据](tools/pose-v1/evidence/engine-timing-board-20261013-r2/README.md)。
+baseline/wall各3次完整通过；wall均值Engine195.098ms、forward187.617ms、桥ready等待162.294ms、已观测CPU核14.121ms、设备→Host API0.771ms。SDK模式第1次输出正确，但745个层时间中215项负值，停止未执行剩余2次；整体批次为失败停止，不能称SDK计时通过或纯NPU时间已取得。初始化baseline30.493s/wall31.235s另计，输出落盘/比较在process外。回收完成，无pose进程，FPGA operating。实测表与结果证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/engine-timing-board-20261013-r2/README.md`）。
 
 原r1预检将历史dmesg与proc/version比较，前向0次停止；同源核验历史/当前dmesg完全相同后修正包装器，新包新目录执行，旧失败/清单保持。通用认证管道被自动审批拒绝，未建立；改用专门OpenSSH askpass子进程获准执行，密码未写命令、环境或日志。本机引号/GBK脚本错误单独保留，未重跑失败推理。完整原值、身份、资源前后快照、退出与文档前后副本/哈希在新证据目录；旧DATA调查保持暂停。
 
@@ -521,7 +523,7 @@ baseline/wall各3次完整通过；wall均值Engine195.098ms、forward187.617ms�
 
 针对后续架构分析，新增software/engine_timing独立测试程序、锁定源码导出、ARM构建、旧三窗口打包、有限板端包装与时间线分析器。正式核心/CPU数学/Gather注册/JSONRAW/SDK/BOOT/reset(1)/745保持；诊断副本观测初始化、Engine阶段、原7Host/7ZG回调、桥等待/计数等待/分配/搬入/CPU/写回、线程CPU/缺页/切换和逻辑字节。公开SDK四项原值及getLayerTime在process外采样，SDK单位/累计及硬件层序未证，纯NPU算术/DDR-stall/精确SDK调度明确未知；区间并集避免重复相加。
 
-实际完成13项Python分析合同、Windows三种SDK无关采样合同、FPAI Linux线程CPU/rusage及异常/线程/容量合同、ARM64交叉编译和固定三窗口原归档/参考/模型打包。初始临时目录权限和Docker命名管道拒绝保留，新目录修订后通过；原unused私有助手警告保持。没有SSH、上传、Device/Session、模型前向、VPU/TCP或板测，不称各项模型耗时已测得，不恢复旧DATA定位。最终源码r2、构建r3、交付r2及全部身份见[开发证据](tools/pose-v1/evidence/engine-timing-20261013-r1/README.md)。
+实际完成13项Python分析合同、Windows三种SDK无关采样合同、FPAI Linux线程CPU/rusage及异常/线程/容量合同、ARM64交叉编译和固定三窗口原归档/参考/模型打包。初始临时目录权限和Docker命名管道拒绝保留，新目录修订后通过；原unused私有助手警告保持。没有SSH、上传、Device/Session、模型前向、VPU/TCP或板测，不称各项模型耗时已测得，不恢复旧DATA定位。最终源码r2、构建r3、交付r2及全部身份见开发证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/engine-timing-20261013-r1/README.md`）。
 
 ### 对后续开发的参考
 
@@ -535,7 +537,7 @@ baseline/wall各3次完整通过；wall均值Engine195.098ms、forward187.617ms�
 
 ### 对后续开发的参考
 
-后续依据最新目标和已批准阶段由代理直接执行，无需再次确认执行方；执行分工不代替具体技术与阶段决策。命令准备和实际执行分别报告，证据由代理维护。[修订前副本与前后哈希](tools/pose-v1/evidence/execution-policy-20261013-r1/revision.json)单独保存，不回写此前重构或文档整理的完成清单。
+后续依据最新目标和已批准阶段由代理直接执行，无需再次确认执行方；执行分工不代替具体技术与阶段决策。命令准备和实际执行分别报告，证据由代理维护。修订前副本与前后哈希（历史附件，当前仓库未附：`tools/pose-v1/evidence/execution-policy-20261013-r1/revision.json`）单独保存，不回写此前重构或文档整理的完成清单。
 
 ## 2026-10-13：正式核心可读性重构及回归完成
 
@@ -547,7 +549,7 @@ baseline/wall各3次完整通过；wall均值Engine195.098ms、forward187.617ms�
 
 ### 对后续开发的参考
 
-[核心导读](software/core/README.md)给出数据流、最小接口、线程/所有权与阅读顺序；新构建标签demo-refactor-20261013-r1。旧工作区原环境和参考经身份核对恢复，仅复制需要的数据，旧目录不写入。维护当前源码从software/core进入；历史文件供旧包追溯，单目标不能混编。[ADR_47](ADR/ADR_47.md)／[验证与完整证据](tools/pose-v1/evidence/core-refactor-20261013-r1/README.md)。本轮不运行60窗口，旧DATA排查继续暂停；严格5Hz、长期、永久首启动及HDMI仍未验收，83/100保持。
+[核心导读](software/core/README.md)给出数据流、最小接口、线程/所有权与阅读顺序；新构建标签demo-refactor-20261013-r1。旧工作区原环境和参考经身份核对恢复，仅复制需要的数据，旧目录不写入。维护当前源码从software/core进入；历史文件供旧包追溯，单目标不能混编。[ADR_47](ADR/ADR_47.md)／验证与完整证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/core-refactor-20261013-r1/README.md`）。本轮不运行60窗口，旧DATA排查继续暂停；严格5Hz、长期、永久首启动及HDMI仍未验收，83/100保持。
 
 ## 2026-10-13：执行规范与项目过程文档分离整理
 
@@ -593,7 +595,7 @@ VPU第50个计划时隙inv49，目录创建915.85662ms／CPU0.29944ms／自愿�
 
 ### 对后续开发的参考
 
-目录API内等待已定位，FS／存储／调度责任未证；下一仅预先准备唯一空call目录，以有界内存令牌热路径领取，数据保存和比较仍在原位置，不同时改批尾落盘或增加截止。继续保留原错和失败只读，不强行制造失配。原152软件／模型／RAW／SDK／BOOT／745／正式异常读取保持，管理83/100及103／严格5Hz／长期／HDMI待。r1缺Network头和衍生审计错误保留，r2新目录补头、依赖操作分开，无硬件重跑。资源只读196单位、规整0／无清缓存重启／CMA变更，最终733520／27876KiB仅快照。所有本批程序／管理器／端口和代理连接结束，内核身份同。[结果](tools/pose-v1/PRODUCER-SOURCE-READ-RESULTS-20261011.md)／[ADR_43](ADR/ADR_43.md)／[下一](tools/pose-v1/PRODUCER-SOURCE-READ-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-source-read-20261011-r2/next-checkpoint.json)。以下当前为历史。
+目录API内等待已定位，FS／存储／调度责任未证；下一仅预先准备唯一空call目录，以有界内存令牌热路径领取，数据保存和比较仍在原位置，不同时改批尾落盘或增加截止。继续保留原错和失败只读，不强行制造失配。原152软件／模型／RAW／SDK／BOOT／745／正式异常读取保持，管理83/100及103／严格5Hz／长期／HDMI待。r1缺Network头和衍生审计错误保留，r2新目录补头、依赖操作分开，无硬件重跑。资源只读196单位、规整0／无清缓存重启／CMA变更，最终733520／27876KiB仅快照。所有本批程序／管理器／端口和代理连接结束，内核身份同。[结果](tools/pose-v1/PRODUCER-SOURCE-READ-RESULTS-20261011.md)／[ADR_43](ADR/ADR_43.md)／[下一](tools/pose-v1/PRODUCER-SOURCE-READ-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-source-read-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：高地址独立组缩小到有限前帧数据复用失配
 
@@ -605,7 +607,7 @@ VPU第50个计划时隙inv49，目录创建915.85662ms／CPU0.29944ms／自愿�
 
 ### 对后续开发的参考
 
-下一新身份采用单调用公开输出证据租约，只在原比较失败后、源和Session有效时两轮Tensor::read，完整保存首次和晚值、重抛原错；不猜缓存修正，不读晚值填回，不重跑本批失败Session。r1只编译未上传，r2加强异常释放顺序；本机事件数审查修正4896保留，程序／数据不改。资源只读普通512单位254，本批规整0／无清缓存重启或CMA改变；BOOTSDK模型内核同、全部本批程序／管理器／端口及代理连接结束，最终694740／2024KiB仅快照。原正式异常读取／745保留，管理83/100，完整103／严格整机5Hz／长期／HDMI待。[结果](tools/pose-v1/PRODUCER-ADDRESS-RESULTS-20261011.md)／[ADR_42](ADR/ADR_42.md)／[下一](tools/pose-v1/PRODUCER-ADDRESS-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-address-20261011-r2/next-checkpoint.json)。以下当前为历史。
+下一新身份采用单调用公开输出证据租约，只在原比较失败后、源和Session有效时两轮Tensor::read，完整保存首次和晚值、重抛原错；不猜缓存修正，不读晚值填回，不重跑本批失败Session。r1只编译未上传，r2加强异常释放顺序；本机事件数审查修正4896保留，程序／数据不改。资源只读普通512单位254，本批规整0／无清缓存重启或CMA改变；BOOTSDK模型内核同、全部本批程序／管理器／端口及代理连接结束，最终694740／2024KiB仅快照。原正式异常读取／745保留，管理83/100，完整103／严格整机5Hz／长期／HDMI待。[结果](tools/pose-v1/PRODUCER-ADDRESS-RESULTS-20261011.md)／[ADR_42](ADR/ADR_42.md)／[下一](tools/pose-v1/PRODUCER-ADDRESS-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-address-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：reset前分段观察及无／有VPU各100调用通过
 
@@ -617,7 +619,7 @@ VPU第50个计划时隙inv49，目录创建915.85662ms／CPU0.29944ms／自愿�
 
 ### 对后续开发的参考
 
-正式高并发坏读根因未修，本批低地址19成员不是完整Engine／103／整机5Hz或长期通过，管理83/100保持。下一先公开SDK高地址前缀所有权／容量／释放可行性，不能猜物理地址，不与保存I/O优化同时改变变量。r1管理器文件名打包错误在Device前停止保留，r2复用同ELF的新包／新目录修正。自主规整一次326.36828ms、普通512单位2→149，无清缓存／重启／CMA变更；最终694424／1864KiB仅快照。BOOT／SDK／模型／内核同、全部程序／管理器／端口及代理连接结束。[结果](tools/pose-v1/PRODUCER-PHASE-RESULTS-20261011.md)／[ADR_41](ADR/ADR_41.md)／[下一](tools/pose-v1/PRODUCER-PHASE-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-phase-20261011-r2/next-checkpoint.json)。以下当前为历史。
+正式高并发坏读根因未修，本批低地址19成员不是完整Engine／103／整机5Hz或长期通过，管理83/100保持。下一先公开SDK高地址前缀所有权／容量／释放可行性，不能猜物理地址，不与保存I/O优化同时改变变量。r1管理器文件名打包错误在Device前停止保留，r2复用同ELF的新包／新目录修正。自主规整一次326.36828ms、普通512单位2→149，无清缓存／重启／CMA变更；最终694424／1864KiB仅快照。BOOT／SDK／模型／内核同、全部程序／管理器／端口及代理连接结束。[结果](tools/pose-v1/PRODUCER-PHASE-RESULTS-20261011.md)／[ADR_41](ADR/ADR_41.md)／[下一](tools/pose-v1/PRODUCER-PHASE-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-phase-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：独立生产者无视频100通过，有视频82正确后时隙失败
 
@@ -629,7 +631,7 @@ inv81 reset前1763.68731ms未拆分空档，随后forward460.98μs及两copy91.1
 
 ### 对后续开发的参考
 
-新身份下一先拆分reset前应用保存及SDK校验／分配／写入，补准备后按原绝对截止时间检查，不调频／追帧／延时猜修复。同期VPU调用外空档、阶段pgmajfault17未定位，不能认定文件I/O／NPU／DMA原因；正式192坏读未复现未修，原异常读取保留，83/100保持。自主规整一次161.29668ms、普通512KiB单位7→34，无清缓存／重启／CMABOOT变化。Native r1期望1ns错误及只读收尾Host清单错误保留，新修订修正未硬件重跑。BOOT／SDK／内核同，全部程序／管理器／测试端口和代理连接结束，最终MemAvailable694568／CmaFree106916KiB仅快照。[结果](tools/pose-v1/PRODUCER-VPU-RESULTS-20261011.md)／[ADR_40](ADR/ADR_40.md)／[下一](tools/pose-v1/PRODUCER-VPU-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-vpu-20261011-r2/next-checkpoint.json)。以下当前为历史。
+新身份下一先拆分reset前应用保存及SDK校验／分配／写入，补准备后按原绝对截止时间检查，不调频／追帧／延时猜修复。同期VPU调用外空档、阶段pgmajfault17未定位，不能认定文件I/O／NPU／DMA原因；正式192坏读未复现未修，原异常读取保留，83/100保持。自主规整一次161.29668ms、普通512KiB单位7→34，无清缓存／重启／CMABOOT变化。Native r1期望1ns错误及只读收尾Host清单错误保留，新修订修正未硬件重跑。BOOT／SDK／内核同，全部程序／管理器／测试端口和代理连接结束，最终MemAvailable694568／CmaFree106916KiB仅快照。[结果](tools/pose-v1/PRODUCER-VPU-RESULTS-20261011.md)／[ADR_40](ADR/ADR_40.md)／[下一](tools/pose-v1/PRODUCER-VPU-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-vpu-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：独立真实19成员部署、内存与四调用通过
 
@@ -641,7 +643,7 @@ inv81 reset前1763.68731ms未拆分空档，随后forward460.98μs及两copy91.1
 
 ### 对后续开发的参考
 
-低地址无VPU的独立生产者可正确运行，尚未复现正式并发坏片段。下一准备同身份有／无VPU固定100次诊断，保留源、同步、整数／有限门禁与原异常读取，不晚读修补。原745和CPU分工保持；本批无完整模型／新Host107／视频／HDMI／RTSP或规整，管理83/100保持。只读收尾初次旧启动©的locale转义差异保留，新UTF8采集逐位同；BOOT／SDK／内核同、FPGA operating、所有本批程序／管理器及代理连接结束，最终750384／26472KiB仅快照。[结果](tools/pose-v1/PRODUCER-GROUP-RESULTS-20261011.md)／[ADR_39](ADR/ADR_39.md)／[下一](tools/pose-v1/PRODUCER-GROUP-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-group-20261011-r2/next-checkpoint.json)。以下当前为历史。
+低地址无VPU的独立生产者可正确运行，尚未复现正式并发坏片段。下一准备同身份有／无VPU固定100次诊断，保留源、同步、整数／有限门禁与原异常读取，不晚读修补。原745和CPU分工保持；本批无完整模型／新Host107／视频／HDMI／RTSP或规整，管理83/100保持。只读收尾初次旧启动©的locale转义差异保留，新UTF8采集逐位同；BOOT／SDK／内核同、FPGA operating、所有本批程序／管理器及代理连接结束，最终750384／26472KiB仅快照。[结果](tools/pose-v1/PRODUCER-GROUP-RESULTS-20261011.md)／[ADR_39](ADR/ADR_39.md)／[下一](tools/pose-v1/PRODUCER-GROUP-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-group-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：原19成员真实参数、受限参考与模拟部署闭合
 
@@ -653,7 +655,7 @@ inv81 reset前1763.68731ms未拆分空档，随后forward460.98μs及两copy91.1
 
 ### 对后续开发的参考
 
-数学参考缺口已闭合，物理MMU／首次读完成仍待。正式模型223→234／最终745、原CPU／Gather／桥／模型／RAW／SDK／BOOT保持。下一独立物理apply核对真实范围，再固定A/B/A/B四调用、先保存后比较，不晚读修补或用首物理输出作金标准。r1句柄转bool编译失败由新r2 defined()修正，旧失败保留；无新Host107／NPU数值／VPU／并发验收。两阶段exit0／stderr空／内核跨阶段同、规整0／无配置变化／所有会话结束，最终751576／21992KiB仅现场。根因未修，83/100保持。[结果](tools/pose-v1/PRODUCER-REFERENCE-RESULTS-20261011.md)／[ADR_38](ADR/ADR_38.md)／[下一](tools/pose-v1/PRODUCER-REFERENCE-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-reference-20261011-r2/next-checkpoint.json)。以下当前为历史。
+数学参考缺口已闭合，物理MMU／首次读完成仍待。正式模型223→234／最终745、原CPU／Gather／桥／模型／RAW／SDK／BOOT保持。下一独立物理apply核对真实范围，再固定A/B/A/B四调用、先保存后比较，不晚读修补或用首物理输出作金标准。r1句柄转bool编译失败由新r2 defined()修正，旧失败保留；无新Host107／NPU数值／VPU／并发验收。两阶段exit0／stderr空／内核跨阶段同、规整0／无配置变化／所有会话结束，最终751576／21992KiB仅现场。根因未修，83/100保持。[结果](tools/pose-v1/PRODUCER-REFERENCE-RESULTS-20261011.md)／[ADR_38](ADR/ADR_38.md)／[下一](tools/pose-v1/PRODUCER-REFERENCE-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-reference-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：生产者检查路径、零指令Cast及官方部署映射核验
 
@@ -667,7 +669,7 @@ inv81 reset前1763.68731ms未拆分空档，随后forward460.98μs及两copy91.1
 
 ### 对后续开发的参考
 
-软件检查路径存在条件搬运；逻辑Cast不等于真实计算生产者，官方映射也不等于失败瞬间私有输入映射。下一先通过公开SDK仅读原RAW，闭合19成员真实参数／FP16布局／NumPy参考；不闭合则不执行独立组。必要时准备只透传公开UDMA同步属性写调用的有界观察，板端无strace，本轮未安装。原异常读取／门禁保持，根因未修；全连接／程序关闭，规整0／内核同，最终MemAvailable751964／CmaFree37600KiB仅现场，83/100／103／严格5Hz／长期／HDMI待。[结果](tools/pose-v1/PRODUCER-CONTRACT-RESULTS-20261011.md)／[ADR_37](ADR/ADR_37.md)／[下一](tools/pose-v1/PRODUCER-CONTRACT-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/producer-contract-20261011-r2/next-checkpoint.json)。以下当前为历史。
+软件检查路径存在条件搬运；逻辑Cast不等于真实计算生产者，官方映射也不等于失败瞬间私有输入映射。下一先通过公开SDK仅读原RAW，闭合19成员真实参数／FP16布局／NumPy参考；不闭合则不执行独立组。必要时准备只透传公开UDMA同步属性写调用的有界观察，板端无strace，本轮未安装。原异常读取／门禁保持，根因未修；全连接／程序关闭，规整0／内核同，最终MemAvailable751964／CmaFree37600KiB仅现场，83/100／103／严格5Hz／长期／HDMI待。[结果](tools/pose-v1/PRODUCER-CONTRACT-RESULTS-20261011.md)／[ADR_37](ADR/ADR_37.md)／[下一](tools/pose-v1/PRODUCER-CONTRACT-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-contract-20261011-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：AXI／UDMA匹配实现核验，双模式动态内存与VPU对照完成
 
@@ -681,7 +683,7 @@ Host两方法／四代／两实际类型376320字节、8拒绝过；copy/read及
 
 ### 对后续开发的参考
 
-本轮未复现模型坏索引，不认定VPU无责、cache／DMA根因已修或read包装器可替代完整修复。仍缺NPU输出可见性、DMA状态退出保证及共享锁所有实例覆盖三项匹配契约。下一据正式依据准备真实NPU生产者对照，不猜寄存器／delay或用晚源修补。原异常读取及整数门检保持，103完整／严格5Hz／长期／HDMI待，管理83/100不变。[结果](tools/pose-v1/AXI-READ-RESULTS-20261011.md)／[ADR_36](ADR/ADR_36.md)／[下一](tools/pose-v1/AXI-READ-NEXT-20261011.md)／[恢复](tools/pose-v1/evidence/axi-pair-20261011-r4/next-checkpoint.json)。以下当前为历史。
+本轮未复现模型坏索引，不认定VPU无责、cache／DMA根因已修或read包装器可替代完整修复。仍缺NPU输出可见性、DMA状态退出保证及共享锁所有实例覆盖三项匹配契约。下一据正式依据准备真实NPU生产者对照，不猜寄存器／delay或用晚源修补。原异常读取及整数门检保持，103完整／严格5Hz／长期／HDMI待，管理83/100不变。[结果](tools/pose-v1/AXI-READ-RESULTS-20261011.md)／[ADR_36](ADR/ADR_36.md)／[下一](tools/pose-v1/AXI-READ-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`tools/pose-v1/evidence/axi-pair-20261011-r4/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-11：首次复制返回快照已定位坏值出现边界，共享读取暂存责任待证
 
@@ -697,7 +699,7 @@ r1缩进编译、r2冻结ELF执行位126、r2独立测试过但桥未链接使�
 
 异常已在最初复制返回后的观察点存在，两快照之间没有写入变化；共享暂存残留／读取完成／cache路径有具体同偏移旧数据线索，底层责任尚未证实。21段64/128字节是模式线索；目标64对齐不足以保证正确，包装器时间非纯DMA、快照非原子。下一先匹配AXI region／UDMA实际实现与正式完成／互斥政策，再设计独立有界对照，不用后读值修补生产或猜delay/cache/零拷贝。异常取证保持，严格5Hz／103完整／长期／HDMI／永久首启动待，管理83/100保持。
 
-[结果](tools/pose-v1/READ-PHASE-RESULTS-20261011.md)／[ADR_35](ADR/ADR_35.md)／[完成绑定](tools/pose-v1/evidence/read-phase-20261011-r3/completion-review.json)／[下一](tools/pose-v1/READ-PHASE-NEXT-20261011.md)。以下当前／实施中为历史。
+[结果](tools/pose-v1/READ-PHASE-RESULTS-20261011.md)／[ADR_35](ADR/ADR_35.md)／完成绑定（历史附件，当前仓库未附：`tools/pose-v1/evidence/read-phase-20261011-r3/completion-review.json`）／[下一](tools/pose-v1/READ-PHASE-NEXT-20261011.md)。以下当前／实施中为历史。
 
 ## 2026-10-11：原Gather与ZG公开边界完成，192首次Host快照瞬态异常保留
 
@@ -713,7 +715,7 @@ r1节点所属网络错误、r2裸原Gather139及两Host定位探针、r3误选�
 
 晚read正确进一步支持首次read／Host暂存或生产完成边界瞬态问题，尚未证明DMA、cache或具体写入者责任；ready／计数234和元数据稳定不能充当完成证明。本帧失败早于442，不认定Gather有错。保留producer句柄不是Session内部实际输入映射；组9189还包含未观察的量化FP16 Value1860。下一先匹配SDK读完成契约，再隔离read返回后立即拥有快照及CPU使用前边界，不猜delay／cache／对齐或自动用晚值修补继续。额外取证改变时序，根因、103高负载、严格5Hz／长期／HDMI／零拷贝仍待，管理83/100保持。
 
-[结果](tools/pose-v1/UPSTREAM-BOUNDARY-RESULTS-20261011.md)／[ADR_34](ADR/ADR_34.md)／[完成绑定](tools/pose-v1/evidence/upstream-boundary-20261011-r4/completion-review.json)／[下一](tools/pose-v1/UPSTREAM-BOUNDARY-NEXT-20261011.md)。以下“当前”与实施中条目为历史。
+[结果](tools/pose-v1/UPSTREAM-BOUNDARY-RESULTS-20261011.md)／[ADR_34](ADR/ADR_34.md)／完成绑定（历史附件，当前仓库未附：`tools/pose-v1/evidence/upstream-boundary-20261011-r4/completion-review.json`）／[下一](tools/pose-v1/UPSTREAM-BOUNDARY-NEXT-20261011.md)。以下“当前”与实施中条目为历史。
 
 ## 2026-10-10：最终门检完整保存通过，晚源取证缩小582上游异常范围
 
@@ -731,7 +733,7 @@ r1节点所属网络错误、r2裸原Gather139及两Host定位探针、r3误选�
 
 晚read稳定错误削弱“首次Host复制瞬时错、之后来源已恢复”解释，但共享SDK/UDMA路径及物理复用仍限制责任判定。TopK正确不证明Gather442或ZG9189/Hard8131正确；下一通过公共Session pre/post观察原442输入/即时输出与对应ZG边界，不覆盖Gather注册、猜cache/延时或改数学。本批额外句柄/Host副本/保存I/O改变时序，不作严格5Hz、稳定性、长期或HDMI验收；管理83/100保持。原验收/失败/暂停记录保留。
 
-[结果](tools/pose-v1/FINAL-EVIDENCE-RESULTS-20261010.md)／[ADR_33](ADR/ADR_33.md)／[完成核验](tools/pose-v1/evidence/final-evidence-20261010-r2/completion-review.json)／[下一](tools/pose-v1/FINAL-EVIDENCE-NEXT-20261010.md)。
+[结果](tools/pose-v1/FINAL-EVIDENCE-RESULTS-20261010.md)／[ADR_33](ADR/ADR_33.md)／完成核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/final-evidence-20261010-r2/completion-review.json`）／[下一](tools/pose-v1/FINAL-EVIDENCE-NEXT-20261010.md)。
 
 以下“当前”与实施中条目为历史。
 
@@ -749,7 +751,7 @@ r1节点所属网络错误、r2裸原Gather139及两Host定位探针、r3误选�
 
 有限可视化/网络正常不能替代全部候选数值；最高分槽0未受128变化影响。read候选并未根治较高负载有限数据异常，下一新增最终输出门检的设备源及CPU写回前拥有取证，拆分save-only和数值验收，不调频率继续尝试通过。严格5Hz、长期、HDMI、永久首次启动、零拷贝仍待；工程估算83/100保持。
 
-[组合报告](tools/pose-v1/COMBINED-READ-RESULTS-20261010.md)／[ADR_31](ADR/ADR_31.md)／[时钟ADR_32](ADR/ADR_32.md)／[有限数据ADR_33](ADR/ADR_33.md)／[完成及失败证据](tools/pose-v1/evidence/combined-read-20261010-r1/completion-review.json)／[下一](tools/pose-v1/COMBINED-READ-NEXT-20261010.md)。以下当前为历史。
+[组合报告](tools/pose-v1/COMBINED-READ-RESULTS-20261010.md)／[ADR_31](ADR/ADR_31.md)／[时钟ADR_32](ADR/ADR_32.md)／[有限数据ADR_33](ADR/ADR_33.md)／完成及失败证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/combined-read-20261010-r1/completion-review.json`）／[下一](tools/pose-v1/COMBINED-READ-NEXT-20261010.md)。以下当前为历史。
 
 ## 2026-10-10：公开read输入桥与真实拥有画面107有限验证完成
 
@@ -765,7 +767,7 @@ Native新read8拒绝／16守护字节，ARM read11拒绝／47040真实规格Host
 
 公开read候选本轮未复现坏块，仍共享SDK源区域路径，不能断言底层根因或长期可靠性已修复。当前2Hz／10fps文件门检不能回填旧显示／TCP／RTSP程序；下一独立组合这些模块，按Host→三窗→2Hz103→有界5Hz推进。HDMI、30分钟、安全连续页和零拷贝分别验收，管理估算83/100保持。
 
-[结果](tools/pose-v1/INPUT-READ-RESULTS-20261010.md)／[ADR_30](ADR/ADR_30.md)／[后续](tools/pose-v1/INPUT-READ-NEXT-20261010.md)／[完成核验](tools/pose-v1/evidence/input-read-20261010-r1/completion-review.json)／[恢复点](tools/pose-v1/evidence/input-read-20261010-r1/next-checkpoint.json)。以下准备及暂停记录为历史。
+[结果](tools/pose-v1/INPUT-READ-RESULTS-20261010.md)／[ADR_30](ADR/ADR_30.md)／[后续](tools/pose-v1/INPUT-READ-NEXT-20261010.md)／完成核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/input-read-20261010-r1/completion-review.json`）／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/input-read-20261010-r1/next-checkpoint.json`）。以下准备及暂停记录为历史。
 
 
 - 真实画面故障任务恢复（2026-10-10）：阶段恢复后，撤销整体暂停。旧picture-r1失败及暂停证据保留，不重跑。已核验公开Tensor::read签名和Host起点/容量契约，新增隔离input-read-r1候选，仅设备输入read直写自有Host CPTR；Host输入、输出写回、数学、模型、SDK、BOOT及异常快照保持。ADR_30记录决策；目前126来源/403载荷已冻结，尚未编译或板测，不认定已修复。
@@ -778,7 +780,7 @@ Native新read8拒绝／16守护字节，ARM read11拒绝／47040真实规格Host
 
 ### 对后续开发的参考
 
-暂停，等待唤醒；只归档既有证据，不继续构建／连接／测试。2Hz真实画面条件也复现192残留，不能归因只在5Hz发生、单纯候选颠倒或首次VPU分配失败。后续先审计公开copyFrom与read路径及Host目标所有权，保留旧失败，不自动继续停止的Engine或重跑目录。[恢复入口](tools/pose-v1/RESUME-PICTURE-20261010.md)／[ADR_29](ADR/ADR_29.md)／[暂停点](tools/pose-v1/evidence/picture-20261010-r1/pause-checkpoint.json)。以下当前为历史。
+暂停，等待唤醒；只归档既有证据，不继续构建／连接／测试。2Hz真实画面条件也复现192残留，不能归因只在5Hz发生、单纯候选颠倒或首次VPU分配失败。后续先审计公开copyFrom与read路径及Host目标所有权，保留旧失败，不自动继续停止的Engine或重跑目录。[恢复入口](tools/pose-v1/RESUME-PICTURE-20261010.md)／[ADR_29](ADR/ADR_29.md)／暂停点（历史附件，当前仓库未附：`tools/pose-v1/evidence/picture-20261010-r1/pause-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-10：单次常驻上下文三窗→103完成
 
@@ -788,7 +790,7 @@ Native新read8拒绝／16守护字节，ARM read11拒绝／47040真实规格Host
 
 ### 对后续开发的参考
 
-常驻减少阶段间重新申请机会，本次首次启动资源条件改善后成功，不能单独归因于常驻或规整。旧诊断824行与107总调用不兼容，以隔离856行实现和第108次拒绝契约解决，旧程序／审查器保留。计数审查初次仍用旧上限失败，新独立审查器修正，无板测重跑或数值阈值放宽。下一只准备真实拥有骨架画面的单因素接入，保留源读取。[结果](tools/pose-v1/RESIDENT-SEQUENCE-RESULTS-20261010.md)／[ADR_28](ADR/ADR_28.md)／[下一](tools/pose-v1/RESIDENT-SEQUENCE-NEXT-20261010.md)／[恢复点](tools/pose-v1/evidence/resident-sequence-20261010-r1/next-checkpoint.json)。以下当前为历史。
+常驻减少阶段间重新申请机会，本次首次启动资源条件改善后成功，不能单独归因于常驻或规整。旧诊断824行与107总调用不兼容，以隔离856行实现和第108次拒绝契约解决，旧程序／审查器保留。计数审查初次仍用旧上限失败，新独立审查器修正，无板测重跑或数值阈值放宽。下一只准备真实拥有骨架画面的单因素接入，保留源读取。[结果](tools/pose-v1/RESIDENT-SEQUENCE-RESULTS-20261010.md)／[ADR_28](ADR/ADR_28.md)／[下一](tools/pose-v1/RESIDENT-SEQUENCE-NEXT-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/resident-sequence-20261010-r1/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-10：同程序模型／VPU对照与首次启动阻断归档
 
@@ -798,7 +800,7 @@ Native新read8拒绝／16守护字节，ARM read11拒绝／47040真实规格Host
 
 ### 对后续开发的参考
 
-普通高阶页在raw／capture申请期间9→7→0，即使约104MiB总空闲仍不能满足固件512KiB连续申请。减少上下文重复初始化可降低再次分配机会，但首次启动仍须独立验收；不将CMA空闲、规整或策略16单位当分配保证。无视频103正确、视频三窗正确，视频103未进入Engine，不能推断VPU导致192残留。下一只准备资源生命周期和同上下文跨阶段方案。[结果](tools/pose-v1/MODEL-VPU-RESULTS-20261010.md)／[ADR_27](ADR/ADR_27.md)／[下一方案](tools/pose-v1/MODEL-VPU-NEXT-20261010.md)／[恢复点](tools/pose-v1/evidence/model-vpu-20261010-r2/next-checkpoint.json)。以下当前为历史。
+普通高阶页在raw／capture申请期间9→7→0，即使约104MiB总空闲仍不能满足固件512KiB连续申请。减少上下文重复初始化可降低再次分配机会，但首次启动仍须独立验收；不将CMA空闲、规整或策略16单位当分配保证。无视频103正确、视频三窗正确，视频103未进入Engine，不能推断VPU导致192残留。下一只准备资源生命周期和同上下文跨阶段方案。[结果](tools/pose-v1/MODEL-VPU-RESULTS-20261010.md)／[ADR_27](ADR/ADR_27.md)／[下一方案](tools/pose-v1/MODEL-VPU-NEXT-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/model-vpu-20261010-r2/next-checkpoint.json`）。以下当前为历史。
 
 ## 2026-10-10：真实混合模型无视频三窗及103窗口完成
 
@@ -810,7 +812,7 @@ Native新read8拒绝／16守护字节，ARM read11拒绝／47040真实规格Host
 
 ### 对后续开发的参考
 
-这次是实际NPU生产的无视频完整103通过，旧坏块未复现、根因未修；保存I/O、启动和堆条件不同，不能认定VPU有责或并发／长期通过。原失败和两晚源保持。下一同一新二进制的模型／合成VPU对照仅准备，不带显示／TCP／RTSP，先独立生命周期门检。管理粗估83/100保持。[结果](tools/pose-v1/MODEL-ONLY-RESULTS-20261010.md)／[ADR_26](ADR/ADR_26.md)／[下一方案](tools/pose-v1/MODEL-ONLY-NEXT-20261010.md)／[恢复点](tools/pose-v1/evidence/model-only-20261010-r1/next-checkpoint.json)。以下成果与当时后续方案为历史。
+这次是实际NPU生产的无视频完整103通过，旧坏块未复现、根因未修；保存I/O、启动和堆条件不同，不能认定VPU有责或并发／长期通过。原失败和两晚源保持。下一同一新二进制的模型／合成VPU对照仅准备，不带显示／TCP／RTSP，先独立生命周期门检。管理粗估83/100保持。[结果](tools/pose-v1/MODEL-ONLY-RESULTS-20261010.md)／[ADR_26](ADR/ADR_26.md)／[下一方案](tools/pose-v1/MODEL-ONLY-NEXT-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/model-only-20261010-r1/next-checkpoint.json`）。以下成果与当时后续方案为历史。
 
 ## 2026-10-10：公开分配器核验与较高来源动态／VPU对照完成
 
@@ -822,7 +824,7 @@ Native新read8拒绝／16守护字节，ARM read11拒绝／47040真实规格Host
 
 ### 对后续开发的参考
 
-没有模型Session／NPU前向，旧192坏块未复现、根因未修；约96MiBSDK来源不能替代真实模型104MiB／NPU生产路径验收。本批定位完成不提高全项目粗估83/100。下一原Engine无视频负载的三窗／有界103方案仅准备，保留原数学／协议／失败源读回，不猜复制API、等待、映射或cache修复。[结果](tools/pose-v1/PLDDR-POSITION-RESULTS-20261010.md)／[ADR_25](ADR/ADR_25.md)／[下一方案](tools/pose-v1/PLDDR-POSITION-NEXT-20261010.md)／[恢复点](tools/pose-v1/evidence/plddr-position-20261010-r1/next-checkpoint.json)。以下已完成成果与当时的下一方案按历史读取。
+没有模型Session／NPU前向，旧192坏块未复现、根因未修；约96MiBSDK来源不能替代真实模型104MiB／NPU生产路径验收。本批定位完成不提高全项目粗估83/100。下一原Engine无视频负载的三窗／有界103方案仅准备，保留原数学／协议／失败源读回，不猜复制API、等待、映射或cache修复。[结果](tools/pose-v1/PLDDR-POSITION-RESULTS-20261010.md)／[ADR_25](ADR/ADR_25.md)／[下一方案](tools/pose-v1/PLDDR-POSITION-NEXT-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/plddr-position-20261010-r1/next-checkpoint.json`）。以下已完成成果与当时的下一方案按历史读取。
 
 ## 2026-10-10：真实类型、动态写入与编码并发独立对照全部通过
 
@@ -836,7 +838,7 @@ VPU前按自主资源策略规整一次217.37457ms，普通512KiB单位14→143�
 
 ### 对后续开发的参考
 
-没有模型Session／NPU前向，旧192异常未复现，根因未修。实测说明在本批低位SDK自有源下真实类型和连续更新可正确搬运，不能外推实际约104MiB模型来源、NPU生产或长期；图解析／堆与规整会扰动条件。下一[公开管理器与合法源位置对照](tools/pose-v1/TYPED-SCRATCH-NEXT-20261010.md)仅准备，先核容量／所有权和占位语义，不指定模型地址／私有cursor。[ADR_24](ADR/ADR_24.md)／[结果](tools/pose-v1/TYPED-SCRATCH-RESULTS-20261010.md)／[恢复点](tools/pose-v1/evidence/typed-scratch-20261010-r1/next-checkpoint.json)。管理粗估83/100保持，稳定103／性能／长期／HDMI／零拷贝待。
+没有模型Session／NPU前向，旧192异常未复现，根因未修。实测说明在本批低位SDK自有源下真实类型和连续更新可正确搬运，不能外推实际约104MiB模型来源、NPU生产或长期；图解析／堆与规整会扰动条件。下一[公开管理器与合法源位置对照](tools/pose-v1/TYPED-SCRATCH-NEXT-20261010.md)仅准备，先核容量／所有权和占位语义，不指定模型地址／私有cursor。[ADR_24](ADR/ADR_24.md)／[结果](tools/pose-v1/TYPED-SCRATCH-RESULTS-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/typed-scratch-20261010-r1/next-checkpoint.json`）。管理粗估83/100保持，稳定103／性能／长期／HDMI／零拷贝待。
 
 ## 2026-10-10：真实复制对象／类型对齐取证完成，192残留再次出现
 
@@ -850,7 +852,7 @@ VPU前按自主资源策略规整一次217.37457ms，普通512KiB单位14→143�
 
 ### 对后续开发的参考
 
-本次没有观察到公开对象变化、错误dtype、范围越界或同域两个输入地址重叠，残留仍出现。不能据此证明复制瞬间源可见、SDK内部暂存或DMA/cache契约，也不能以失败延后到72当修复；元数据字符串分配会扰动时序。下一[真实类型／动态模式独立scratch](tools/pose-v1/TENSOR-IDENTITY-NEXT-20261010.md)分阶段控制变量，仅已准备。[ADR_23](ADR/ADR_23.md)／[结果](tools/pose-v1/TENSOR-IDENTITY-RESULTS-20261010.md)／[恢复点](tools/pose-v1/evidence/tensor-identity-20261010-r3/next-checkpoint.json)。管理粗估83/100保持，根因／稳定103／持续5Hz／长期／HDMI及零拷贝待。
+本次没有观察到公开对象变化、错误dtype、范围越界或同域两个输入地址重叠，残留仍出现。不能据此证明复制瞬间源可见、SDK内部暂存或DMA/cache契约，也不能以失败延后到72当修复；元数据字符串分配会扰动时序。下一[真实类型／动态模式独立scratch](tools/pose-v1/TENSOR-IDENTITY-NEXT-20261010.md)分阶段控制变量，仅已准备。[ADR_23](ADR/ADR_23.md)／[结果](tools/pose-v1/TENSOR-IDENTITY-RESULTS-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/tensor-identity-20261010-r3/next-checkpoint.json`）。管理粗估83/100保持，根因／稳定103／持续5Hz／长期／HDMI及零拷贝待。
 
 ## 2026-10-10：SDK双源搬运与编码并发隔离通过，模型故障仍待定位
 
@@ -864,7 +866,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-公开SDK拥有同长度／对齐路径在本批条件下正确，模型坏块未复现，不能宣布根因修复、VPU无责、DMA/cache fence或零拷贝可用。固定1D／低位scratch与模型实际dtype／分布／source chunk／动态生产不同。下一准备真实对象身份观察，保持原wait／copy／数学和异常读回，正常设备读取新增0；新模型ELF须实际重做Host门检。[ADR_22](ADR/ADR_22.md)／[结果](tools/pose-v1/SCRATCH-COPY-RESULTS-20261010.md)／[下一方案](tools/pose-v1/SCRATCH-COPY-NEXT-20261010.md)／[恢复点](tools/pose-v1/evidence/scratch-copy-20261010-r3/next-checkpoint.json)。管理粗估83/100保持，稳定103／长期／HDMI／采集终版继续待。
+公开SDK拥有同长度／对齐路径在本批条件下正确，模型坏块未复现，不能宣布根因修复、VPU无责、DMA/cache fence或零拷贝可用。固定1D／低位scratch与模型实际dtype／分布／source chunk／动态生产不同。下一准备真实对象身份观察，保持原wait／copy／数学和异常读回，正常设备读取新增0；新模型ELF须实际重做Host门检。[ADR_22](ADR/ADR_22.md)／[结果](tools/pose-v1/SCRATCH-COPY-RESULTS-20261010.md)／[下一方案](tools/pose-v1/SCRATCH-COPY-NEXT-20261010.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/scratch-copy-20261010-r3/next-checkpoint.json`）。管理粗估83/100保持，稳定103／长期／HDMI／采集终版继续待。
 
 ## 2026-10-09：192完成计数已取证，失败时234，转向搬运一致性
 
@@ -876,7 +878,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-本次已观测复制开始前计数234，再等234不会产生等待，不作为有依据的修正；仍非DMA/cache fence证明。下一设计公开SDK拥有scratch的30240／16800双源连续搬运，先无NPU／无VPU，再有限VPU并发，区分生产者和搬运／可见性。二进制DMA状态mask5/A意义待匹配硬件定义，不猜寄存器／cache／延时。新[ADR_21](ADR/ADR_21.md)独立记录取舍；[结果](tools/pose-v1/PRODUCER-COUNT-RESULTS-20261009.md)、[下一方案](tools/pose-v1/PRODUCER-COUNT-NEXT-20261009.md)、[恢复点](tools/pose-v1/evidence/producer-count-20261009-r2/next-checkpoint.json)。本批103／性能未过，数值根因未修；以下同日条目为历史。
+本次已观测复制开始前计数234，再等234不会产生等待，不作为有依据的修正；仍非DMA/cache fence证明。下一设计公开SDK拥有scratch的30240／16800双源连续搬运，先无NPU／无VPU，再有限VPU并发，区分生产者和搬运／可见性。二进制DMA状态mask5/A意义待匹配硬件定义，不猜寄存器／cache／延时。新[ADR_21](ADR/ADR_21.md)独立记录取舍；[结果](tools/pose-v1/PRODUCER-COUNT-RESULTS-20261009.md)、[下一方案](tools/pose-v1/PRODUCER-COUNT-NEXT-20261009.md)、恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/producer-count-20261009-r2/next-checkpoint.json`）。本批103／性能未过，数值根因未修；以下同日条目为历史。
 
 ## 2026-10-09：单帧取证和独立保存已接入，192索引残留复发
 
@@ -888,7 +890,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-坏索引18段全部逐位等于紧邻前一次192数据复制的相同偏移；188及192数据输入正确、目标模256为0，两个晚源读回94080字节均正确。原post-copy与异常暂存相同，坏值已在复制返回后存在；早读与UDMA中转／同步责任仍未区分。保存缺口已修补，数值根因未修复，103／性能未通过。[结果](tools/pose-v1/INVOCATION-GUARD-RESULTS-20261009.md)、[ADR_20](ADR/ADR_20.md)、[接续方案](tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md)、[恢复点](tools/pose-v1/evidence/invocation-guard-20261009-r1/next-checkpoint.json)。以下同日条目为历史。
+坏索引18段全部逐位等于紧邻前一次192数据复制的相同偏移；188及192数据输入正确、目标模256为0，两个晚源读回94080字节均正确。原post-copy与异常暂存相同，坏值已在复制返回后存在；早读与UDMA中转／同步责任仍未区分。保存缺口已修补，数值根因未修复，103／性能未通过。[结果](tools/pose-v1/INVOCATION-GUARD-RESULTS-20261009.md)、[ADR_20](ADR/ADR_20.md)、[接续方案](tools/pose-v1/INVOCATION-GUARD-NEXT-20261009.md)、恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/invocation-guard-20261009-r1/next-checkpoint.json`）。以下同日条目为历史。
 
 ## 2026-10-09：独立启动第1轮通过，第2轮有限姿态失配，保存模块验证
 
@@ -900,7 +902,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-保存函数再次比较失败，跳过后续元数据/ARM参考；presaved38套/inference37行/timing38行，不回填638初值。CPU未拒绝，旧两轮源读取未触发，原shadow生命周期不足以覆盖有限输出异常。SDK-free单帧拥有值/独立flush模块Native/ARM各12拒绝及原异常/后续任务保存通过，尚未集成，不称数值修复。匹配SDK审计区分Linux缓存助手、UDMA同步和PL DDR ADDR，六Host生产组223/234/477/481/638/720无当前等待循环；当前只新查582的638，不涵盖649等读取。[结果](tools/pose-v1/STARTUP-GUARD-RESULTS-20261009.md)／[ADR_20](ADR/ADR_20.md)／[接入契约](tools/pose-v1/INVOCATION-EVIDENCE-INTEGRATION-NEXT-20261009.md)／[恢复点](tools/pose-v1/evidence/startup-guard-20261009-r1/next-checkpoint.json)。
+保存函数再次比较失败，跳过后续元数据/ARM参考；presaved38套/inference37行/timing38行，不回填638初值。CPU未拒绝，旧两轮源读取未触发，原shadow生命周期不足以覆盖有限输出异常。SDK-free单帧拥有值/独立flush模块Native/ARM各12拒绝及原异常/后续任务保存通过，尚未集成，不称数值修复。匹配SDK审计区分Linux缓存助手、UDMA同步和PL DDR ADDR，六Host生产组223/234/477/481/638/720无当前等待循环；当前只新查582的638，不涵盖649等读取。[结果](tools/pose-v1/STARTUP-GUARD-RESULTS-20261009.md)／[ADR_20](ADR/ADR_20.md)／[接入契约](tools/pose-v1/INVOCATION-EVIDENCE-INTEGRATION-NEXT-20261009.md)／恢复点（历史附件，当前仓库未附：`tools/pose-v1/evidence/startup-guard-20261009-r1/next-checkpoint.json`）。
 
 ## 2026-10-09：Host快照、元数据与582完成检查实现，新103完整回归通过
 
@@ -914,7 +916,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 107次新增检查均首次638、最终638、polls1，无额外等待，不能把通过归因于过早读取修复。103记录824输入元数据＋103计数，容量及FP32对齐正确；shadow分配复制平均0.07842ms/前向，不包含全部诊断开销。旧NaN/周期坏块/稍后正确源保留；硬件异常新shadow未触发，根因和永久可靠性未证，零拷贝需要实际映射/生命周期/缓存及完成契约。
 
-三预热后100计量画面5.000193338Hz、P95 251.199778ms，本次达到有界门限且余量很小，不外推长期5Hz、PC呈现、HDMI或30分钟。当前冻结取证候选作为回归基线，下一可靠性与SDK搬运/映射调查分开。[完整结果](tools/pose-v1/STAGE-GUARD-RESULTS-20261009.md)／[ADR_19](ADR/ADR_19.md)／[恢复检查点](tools/pose-v1/evidence/stage-guard-20261009-r1/next-checkpoint.json)。以下旧103失败仍为历史事实，不回填成功。
+三预热后100计量画面5.000193338Hz、P95 251.199778ms，本次达到有界门限且余量很小，不外推长期5Hz、PC呈现、HDMI或30分钟。当前冻结取证候选作为回归基线，下一可靠性与SDK搬运/映射调查分开。[完整结果](tools/pose-v1/STAGE-GUARD-RESULTS-20261009.md)／[ADR_19](ADR/ADR_19.md)／恢复检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/stage-guard-20261009-r1/next-checkpoint.json`）。以下旧103失败仍为历史事实，不回填成功。
 
 ## 2026-10-09：103入口实施与设备源异常取证完成，负载未通过
 
@@ -936,7 +938,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-未触发模型异常源读回，旧坏值未修复定因；forward最大190.54528ms，原inv28为185.79363ms，旧221.61ms未复现。等待164.55ms/CPU14.57ms/可见复制0.62ms不是可相加的纯NPU拆分。实际画面间隔4.98636Hz、输入间隔4.97948Hz，纯计时不是低日志/严格5Hz验收。下一协调103低日志预算并保留错误读取；具体DMA/cache、HDMI/长期待。[结果](tools/pose-v1/SOURCE-COVERAGE-RESULTS-20261009.md)／[检查点](tools/pose-v1/evidence/source-coverage-20261009-r4/next-checkpoint.json)。
+未触发模型异常源读回，旧坏值未修复定因；forward最大190.54528ms，原inv28为185.79363ms，旧221.61ms未复现。等待164.55ms/CPU14.57ms/可见复制0.62ms不是可相加的纯NPU拆分。实际画面间隔4.98636Hz、输入间隔4.97948Hz，纯计时不是低日志/严格5Hz验收。下一协调103低日志预算并保留错误读取；具体DMA/cache、HDMI/长期待。[结果](tools/pose-v1/SOURCE-COVERAGE-RESULTS-20261009.md)／检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/source-coverage-20261009-r4/next-checkpoint.json`）。
 
 ## 2026-10-09：错误后源读回实现与有限全链回归完成
 
@@ -978,7 +980,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-5Hz输入33全消费/显示/采用、无覆盖，32次交叠，4.99165Hz较4.22311提升18.20%，画面P95 262.21ms/父拥有画面264.32ms。严格≥5Hz仍未通过，不舍入；inv28/S11_12_329 forward221.61ms尖峰需有界同钟定位。当前子进程仅绘图/NV12，不是HDMI输出。最后CmaFree4256KiB/order7+0，恢复一次授权已消耗，永久资源可靠性/30分钟另验。四窗核验expected固定33只由独立适配器修正，原数据/源码/hash/阈值保持，未硬件重跑。[ADR_15](ADR/ADR_15.md)、[下一方案](tools/pose-v1/DISPLAY-PROCESS-NEXT-20261008.md)、[检查点](tools/pose-v1/evidence/display-process-20261008-r1/next-checkpoint.json)。测试、SSH/SCP和客户端结束，无后台。
+5Hz输入33全消费/显示/采用、无覆盖，32次交叠，4.99165Hz较4.22311提升18.20%，画面P95 262.21ms/父拥有画面264.32ms。严格≥5Hz仍未通过，不舍入；inv28/S11_12_329 forward221.61ms尖峰需有界同钟定位。当前子进程仅绘图/NV12，不是HDMI输出。最后CmaFree4256KiB/order7+0，恢复一次授权已消耗，永久资源可靠性/30分钟另验。四窗核验expected固定33只由独立适配器修正，原数据/源码/hash/阈值保持，未硬件重跑。[ADR_15](ADR/ADR_15.md)、[下一方案](tools/pose-v1/DISPLAY-PROCESS-NEXT-20261008.md)、检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/display-process-20261008-r1/next-checkpoint.json`）。测试、SSH/SCP和客户端结束，无后台。
 
 ## 2026-10-08：整机低日志计量完成，5Hz瓶颈实测定位
 
@@ -988,7 +990,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-整机5Hz未达：实际4.22311Hz，主线程绘图＋NV12平均44.31442ms，画面完成P95 444.50684ms；RTSP交接P95 852.29247ms非PC呈现。下一[SDK无关显示worker方案](tools/pose-v1/SYSTEM-TIMING-NEXT-20261008.md)保持Engine主线程，先源码/Host再有界回归。最终约721MiB可用但order7+为0/CmaFree5004KiB，仅现场而非泄漏证明；下一首启动条件另处理，不自动规整/清缓存/重启或猜改CMA。[ADR_14](ADR/ADR_14.md)记录决策与结果，[检查点](tools/pose-v1/evidence/system-timing-20261008-r2/next-checkpoint.json)为最新入口。测试服务、SSH/SCP均结束，无后台；HDMI/安全连续资源/30分钟仍待。
+整机5Hz未达：实际4.22311Hz，主线程绘图＋NV12平均44.31442ms，画面完成P95 444.50684ms；RTSP交接P95 852.29247ms非PC呈现。下一[SDK无关显示worker方案](tools/pose-v1/SYSTEM-TIMING-NEXT-20261008.md)保持Engine主线程，先源码/Host再有界回归。最终约721MiB可用但order7+为0/CmaFree5004KiB，仅现场而非泄漏证明；下一首启动条件另处理，不自动规整/清缓存/重启或猜改CMA。[ADR_14](ADR/ADR_14.md)记录决策与结果，检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/system-timing-20261008-r2/next-checkpoint.json`）为最新入口。测试服务、SSH/SCP均结束，无后台；HDMI/安全连续资源/30分钟仍待。
 
 ## 2026-10-08：推进前项目进度与后续方案整理
 
@@ -1008,7 +1010,7 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 ### 对后续开发的参考
 
-旧失配未复现，不能断言定点截断或内部原因已解决；保存会改变诊断I/O时序。单次规整支持本轮恢复，未长期/CMA永久方案、整机5Hz、HDMI或30分钟通过。新增[ADR_13](ADR/ADR_13.md)，更新ADR_12/02保留历史。没有清缓存/重启/改CMA或BOOT，测试/SSH/SFTP全关闭。最新[检查点](tools/pose-v1/evidence/tcp-presaved-20261008-r1/next-checkpoint.json)接续独立低日志计量；不能把2Hz输入或重复编码当新姿态吞吐。
+旧失配未复现，不能断言定点截断或内部原因已解决；保存会改变诊断I/O时序。单次规整支持本轮恢复，未长期/CMA永久方案、整机5Hz、HDMI或30分钟通过。新增[ADR_13](ADR/ADR_13.md)，更新ADR_12/02保留历史。没有清缓存/重启/改CMA或BOOT，测试/SSH/SFTP全关闭。最新检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/tcp-presaved-20261008-r1/next-checkpoint.json`）接续独立低日志计量；不能把2Hz输入或重复编码当新姿态吞吐。
 
 ## 2026-10-08：guarded固化、TCP三窗通过与27窗取证准备
 
@@ -1024,27 +1026,27 @@ r1未64对齐B源的无VPU成功证据保留，未编码并发；r2只构建。r
 
 [ADR_11](ADR/ADR_11.md)记录输入/启动协调，[ADR_12](ADR/ADR_12.md)记录输出失配，ADR_02补启动限制。未TCP27/整机/长期/HDMI验收，数值阶段验收不扩展为本次同身份失配通过，管理83/100保持。
 
-板测按故障策略结束，未规整/清缓存/重启/CMA或BOOT变化，服务/端口/SSH/SFTP已关闭。[检查点](tools/pose-v1/evidence/tcp-evidence-20261008-r1/next-checkpoint.json)、[恢复计划](tools/pose-v1/TCP-RECOVERY-NEXT-20261008.md)：恢复首启动条件，新目录三窗回归后取得27失败实际值，再推进整机计量。已准备源码与门检，不重跑未变Host或历史失败目录。
+板测按故障策略结束，未规整/清缓存/重启/CMA或BOOT变化，服务/端口/SSH/SFTP已关闭。检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/tcp-evidence-20261008-r1/next-checkpoint.json`）、[恢复计划](tools/pose-v1/TCP-RECOVERY-NEXT-20261008.md)：恢复首启动条件，新目录三窗回归后取得27失败实际值，再推进整机计量。已准备源码与门检，不重跑未变Host或历史失败目录。
 
 ## 2026-10-08：真实在线串联与guarded网络模块正负验证完成
 
 ### 工程内容总结
 
-继续下一门检，新增独立live目标，输入/结果验证、标记、Host适配和生命周期编排分模块。程序ec07076f…53fc1、403包/34来源/15SDK头/189厂商头库身份通过；Host107/12注册/59,600FP32及AU17拒绝/2000通知保持。主线程Engine持有至VPU/network join后，真实三窗＋重复和协调后的27窗＋重复通过：32完整前向/483,200个输入与输出值逐位旧参考，980实际编码/650网络解码，全部395真实结果画面及255NoInput正确，5530关节检查；实际RTP/capture时间轴与当前像素对应，首帧重复一致，exit0/内核同/资源释放。详见[结果](tools/pose-v1/LIVE-RESULTS-20261008.md)、[汇总](tools/pose-v1/evidence/live-20261008-completion/completion-review.json)。
+继续下一门检，新增独立live目标，输入/结果验证、标记、Host适配和生命周期编排分模块。程序ec07076f…53fc1、403包/34来源/15SDK头/189厂商头库身份通过；Host107/12注册/59,600FP32及AU17拒绝/2000通知保持。主线程Engine持有至VPU/network join后，真实三窗＋重复和协调后的27窗＋重复通过：32完整前向/483,200个输入与输出值逐位旧参考，980实际编码/650网络解码，全部395真实结果画面及255NoInput正确，5530关节检查；实际RTP/capture时间轴与当前像素对应，首帧重复一致，exit0/内核同/资源释放。详见[结果](tools/pose-v1/LIVE-RESULTS-20261008.md)、汇总（历史附件，当前仓库未附：`tools/pose-v1/evidence/live-20261008-completion/completion-review.json`）。
 
 首轮27模型28次/490编码正确但客户端晚加入ID450，40帧不足来源覆盖，保留失败。只改外部runner启动协同，程序/包不变，新目录429帧完整通过；[ADR_09](ADR/ADR_09.md)归档。慢客户端真实库发送错误路径另用SDK-freeguarded候选：每连接64KiB发送缓冲（实际128KiB）、公开回调停止参考链；不读取peer触发预期exit1/水位5/85产生/80消费、无错误后继续NAL、内核同/释放正确。正常30秒300控制/223帧字节/实际PTS/像素通过无误停；16秒91帧预算不足原失败保留，不降低100门禁。[ADR_10](ADR/ADR_10.md)记录模块边界，guarded尚未进入正式r2。
 
 ### 对后续开发的参考
 
-已证明本地固定CSI的真实推理→render→VPU→RTSP串联，输入2Hz/视频目标10fps，重复不计新姿态；不是TCP窗口前端已与此目标合并、整机5Hz/双路/30分钟或未知场景精度。下一新目标固化guarded并做身份/Host/真实来源回归，再接已验TCP完整窗口接口和整机计量；原SDK/数学/模型/BOOT/两缓冲/cookie/reset(1)保持。HDMI配套未明不写。测试/SSH/SFTP全关闭，无后台；[恢复入口](tools/pose-v1/evidence/live-20261008-completion/next-checkpoint.json)，原执行授权继续。
+已证明本地固定CSI的真实推理→render→VPU→RTSP串联，输入2Hz/视频目标10fps，重复不计新姿态；不是TCP窗口前端已与此目标合并、整机5Hz/双路/30分钟或未知场景精度。下一新目标固化guarded并做身份/Host/真实来源回归，再接已验TCP完整窗口接口和整机计量；原SDK/数学/模型/BOOT/两缓冲/cookie/reset(1)保持。HDMI配套未明不写。测试/SSH/SFTP全关闭，无后台；恢复入口（历史附件，当前仓库未附：`tools/pose-v1/evidence/live-20261008-completion/next-checkpoint.json`），原执行授权继续。
 
 ## 2026-10-08：Owned AU桥及有限网络适配门检完成
 
 ### 工程内容总结
 
-先全项目ADR归档再执行下一步，顺序已落实。新增隔离H264 AU解析、容量8字节通道、self-pipe通知及live555网络适配器；189厂商头库保持，Native/ARM各17拒绝＋2000并发通知通过。按已记录的493个resident capture实际PTS发布，两个网络会话各100帧VCL/实际RTP时钟/IDR加入/保活/TEARDOWN/重连通过，全部200解码像素和10bitID逐位原视频。程序eafd397c…86619f5，9载荷，17回传，exit0/内核同/端口及三source归还；两行厂商RTCP stderr保留。详见[结果](tools/pose-v1/OWNED-AU-RESULTS-20261008.md)与[汇总](tools/pose-v1/evidence/owned-rtsp-20261008-r3/completion-review.json)。
+先全项目ADR归档再执行下一步，顺序已落实。新增隔离H264 AU解析、容量8字节通道、self-pipe通知及live555网络适配器；189厂商头库保持，Native/ARM各17拒绝＋2000并发通知通过。按已记录的493个resident capture实际PTS发布，两个网络会话各100帧VCL/实际RTP时钟/IDR加入/保活/TEARDOWN/重连通过，全部200解码像素和10bitID逐位原视频。程序eafd397c…86619f5，9载荷，17回传，exit0/内核同/端口及三source归还；两行厂商RTCP stderr保留。详见[结果](tools/pose-v1/OWNED-AU-RESULTS-20261008.md)与汇总（历史附件，当前仓库未附：`tools/pose-v1/evidence/owned-rtsp-20261008-r3/completion-review.json`）。
 
-首轮网络为启动NoInput段，另新r4-active上下文延后加入108帧，覆盖25NoInput和四实际调用来源（0/1/2各5，重复首帧3共68），全部字节/实际PTS/解码ID与像素通过。总308帧网络解码、34项两上下文回传；第二轮为覆盖缺口补测，非失败重试。[四来源核验](tools/pose-v1/evidence/owned-rtsp-20261008-r4-active/completion-review.json)。
+首轮网络为启动NoInput段，另新r4-active上下文延后加入108帧，覆盖25NoInput和四实际调用来源（0/1/2各5，重复首帧3共68），全部字节/实际PTS/解码ID与像素通过。总308帧网络解码、34项两上下文回传；第二轮为覆盖缺口补测，非失败重试。四来源核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/owned-rtsp-20261008-r4-active/completion-review.json`）。
 
 ### 对后续开发的参考
 
@@ -1076,7 +1078,7 @@ r7快照与实际amvx指令确认六缓冲REQBUFS耗尽普通高阶页，固件5
 
 ### 工程内容总结
 
-新增隔离owned NV12/packet接口与同进程有限检查器，原Engine/数学/桥/模型/SDK/BOOT/VPU文件入口保持。r6构建13693d45…f8f086，350包/21来源/15头文件通过。Host107/12注册/59,600 FP32及六拒绝通过；两次成功各八完整前向逐位旧参考、四新画面→十编码帧（两NoInput＋八真实重复画面），NV12逐位NumPy、两H264逐字节一致。主机十ID/112关节可见性核验，MP4已回传；成功阶段均exit0/stderr空/dmesg同。详见[结果/视频](tools/pose-v1/PIPELINE-RESULTS-20261008.md)、[汇总](tools/pose-v1/evidence/pipeline-20261008-r6/completion-review.json)。
+新增隔离owned NV12/packet接口与同进程有限检查器，原Engine/数学/桥/模型/SDK/BOOT/VPU文件入口保持。r6构建13693d45…f8f086，350包/21来源/15头文件通过。Host107/12注册/59,600 FP32及六拒绝通过；两次成功各八完整前向逐位旧参考、四新画面→十编码帧（两NoInput＋八真实重复画面），NV12逐位NumPy、两H264逐字节一致。主机十ID/112关节可见性核验，MP4已回传；成功阶段均exit0/stderr空/dmesg同。详见[结果/视频](tools/pose-v1/PIPELINE-RESULTS-20261008.md)、汇总（历史附件，当前仓库未附：`tools/pose-v1/evidence/pipeline-20261008-r6/completion-review.json`）。
 
 r2全局Case ODR类型冲突通过匿名namespace隔离；r3原60秒Host预算恢复已用300秒；r5近29秒Engine初始化误入25秒编码期限，通过分别记录有界producer/codec时钟修正。r4与r6新进程重复出现MVX固件order7/512KiB连续页分配失败；一次0.193秒显式内存规整后新目录成功，不能据此宣称启动修复。所有失败及清理记录保留。
 
@@ -1100,7 +1102,7 @@ SPS实际video_signal_type_present_flag=0，显式色彩仍待。当前回放为
 ### 工程内容总结
 
 r2取得VPU MMU异常地址、完整映射/入队/归还/Host复制证据；r3/r4单平面色彩拒绝保留，不放宽规格。r5保留QUERYBUF的opaque MMAP cookie用于QBUF，与厂商客户端约定对应，原格式/容量/复制/controls/所有权保持。新程序01965fa2…23d3无SDK依赖，协商与两次独立上下文各54帧编码均exit0/stderr空/dmesg同/BOOT及SDK保持，无复位或固件替换。
-两次H264179648字节逐位一致，MP4已回传；主机54帧ID/27来源/756关节可见性通过，姿态不同。仅预生成离散窗口，10fps文件节奏不作实时5Hz或连续动作录像。完整[报告与动态视频](tools/pose-v1/VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)、[核验](tools/pose-v1/evidence/video-descriptor-20261007-r5/completion-review.json)。
+两次H264179648字节逐位一致，MP4已回传；主机54帧ID/27来源/756关节可见性通过，姿态不同。仅预生成离散窗口，10fps文件节奏不作实时5Hz或连续动作录像。完整[报告与动态视频](tools/pose-v1/VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)、核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/video-descriptor-20261007-r5/completion-review.json`）。
 
 ### 对后续开发的参考
 
@@ -1112,11 +1114,11 @@ r2取得VPU MMU异常地址、完整映射/入队/归还/Host复制证据；r3/r
 
 下一视频计划后，代理新增SDK无关有限编码API/独立CLI、54帧准备/构建/运行/主机审查工具，原30帧、推理与渲染源码保持。新GCC9.4 AArch64程序`109e24bd32517f49f86a9f4f131ad2a3e1f070da48dd07c88db901429eef7e8c`，27份ARM真实NV12/元数据与原回传逐项哈希通过，54帧输入74649600字节，骨架最大Y539.12不触及底部Y600诊断区。
 实际协商exit0/stderr空/dmesg同；真实编码一次退出1，提交9/归还3、4capture chunk、部分29879字节可解码ID0/1/2。内核明确H264ENC MMU ABORT，根因与故障地址未知，不能归因单个帧或宣布动态视频通过。BOOT/SDK/三库与失败后FPGAoperating保持，无OOM、重试、复位或修改固件。全部失败、固件身份与部分图像已回传独立复核。
-HDMI授权已恢复，完成只读配套核查及主机1080p RGB565离线色条。BOOT/DTB与Lite发布包对应，但时钟/时序映射/scanout归属和停止协议仍未建立，无fbdev/DRM/EDID。没有HDMI写入、实屏或RTSP。详见[首批报告](tools/pose-v1/VIDEO-SEQUENCE-RESULTS-20261007.md)、[失败复核](tools/pose-v1/evidence/video-sequence-20261007-r1/failure-review.json)。
+HDMI授权已恢复，完成只读配套核查及主机1080p RGB565离线色条。BOOT/DTB与Lite发布包对应，但时钟/时序映射/scanout归属和停止协议仍未建立，无fbdev/DRM/EDID。没有HDMI写入、实屏或RTSP。详见[首批报告](tools/pose-v1/VIDEO-SEQUENCE-RESULTS-20261007.md)、失败复核（历史附件，当前仓库未附：`tools/pose-v1/evidence/video-sequence-20261007-r1/failure-review.json`）。
 
 ### 对后续开发的参考
 
-随后明确暂停并等待唤醒。所有测试程序已退出、SSH/SFTP关闭；补查download.bit的连接在认证前取消，未执行该查询。新[暂停检查点](tools/pose-v1/evidence/video-sequence-20261007-r1/next-checkpoint.json)与[恢复说明](tools/pose-v1/RESUME-VIDEO-20261007.md)已保存；暂停期间不连接、构建或新板测。
+随后明确暂停并等待唤醒。所有测试程序已退出、SSH/SFTP关闭；补查download.bit的连接在认证前取消，未执行该查询。新暂停检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/video-sequence-20261007-r1/next-checkpoint.json`）与[恢复说明](tools/pose-v1/RESUME-VIDEO-20261007.md)已保存；暂停期间不连接、构建或新板测。
 恢复先核对冻结来源/包/失败记录，优先准备完整QUERYBUF/QBUF/DQBUF映射/长度/offset/flags/PTS与所有权取证，明确固件MMU异常边界再新修订验证；不盲重跑旧包或修改profile/cache/BOOT。HDMI授权保持，仍按配套证据进入写操作。当前未增加功能验收份额，原合成编码成功不推广为真实视频稳定。
 
 ## 2026-10-07：完成视频审查，下一视频阶段计划与HDMI恢复标记
@@ -1137,11 +1139,11 @@ HDMI授权已恢复，完成只读配套核查及主机1080p RGB565离线色条�
 接入DELL E2421HN后报告不支持输入时序，明确后续HDMI目标为1920×1080@60Hz并暂停HDMI测试。已更新ADR目标，未改板端时序/BOOT/位流。新增SDK无关有限V4L2编码器及构建/运行/审查脚本，原推理、SDK、CPU渲染保持。
 MVX实际720p NV12两plane、stride1280、Y921600/UV460800及H264单plane通过，显式色彩/10fps/2Mbps/Baseline读回一致。30帧独立合成背景＋逐帧ID/移动条成功编码，正常STOP/LAST与输入归还；H26436717字节、MP437649字节已回传主机，完整SHA256一致。
 主机已有OpenCV两端各解码30帧、ID0..29/移动条/不同画面全部正确；原始H264与MP4解码像素逐位相同，MP4为720p10fps/3秒。六帧图片已目视检查，无新依赖。GCC9.4新r4程序`8f713fc8d6c76a03053544634591448f1068ef0a392261023bf73d5b1538e8ce`，协商与编码exit0/stderr空/dmesg保持，BOOT/SDK身份一致。
-保留r1 CRLF清单预检、r2编码2×2顺序问题、r3默认色彩协商及裸流元数据断言历史。细节与证据：[VPU结果](tools/pose-v1/VPU-RESULTS-20261007.md)、[样片](tools/pose-v1/evidence/vpu-20261007-r1/encode-r4/results/review.mp4)、[完成复核](tools/pose-v1/evidence/vpu-20261007-r1/completion-review.json)。
+保留r1 CRLF清单预检、r2编码2×2顺序问题、r3默认色彩协商及裸流元数据断言历史。细节与证据：[VPU结果](tools/pose-v1/VPU-RESULTS-20261007.md)、样片（历史附件，当前仓库未附：`tools/pose-v1/evidence/vpu-20261007-r1/encode-r4/results/review.mp4`）、完成复核（历史附件，当前仓库未附：`tools/pose-v1/evidence/vpu-20261007-r1/completion-review.json`）。
 
 ### 对后续开发的参考
 
-本次独立有限文件编码通过；没有NPU并发、HDMI/RTSP、实时或长期验收。原始码流缺少容器PTS和ffprobe显式色彩标记，MP4仅按10fps重建离线时间轴；RTSP应使用capture时间戳，补色彩信号依据，不沿用固定SPS/PPS切片或裸流默认速率。后续有界编码接口→真实预生成画面→RTSP→与推理合并，HDMI继续暂停。全部会话已关闭，恢复读新[检查点](tools/pose-v1/evidence/vpu-20261007-r1/next-checkpoint.json)。
+本次独立有限文件编码通过；没有NPU并发、HDMI/RTSP、实时或长期验收。原始码流缺少容器PTS和ffprobe显式色彩标记，MP4仅按10fps重建离线时间轴；RTSP应使用capture时间戳，补色彩信号依据，不沿用固定SPS/PPS切片或裸流默认速率。后续有界编码接口→真实预生成画面→RTSP→与推理合并，HDMI继续暂停。全部会话已关闭，恢复读新检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/vpu-20261007-r1/next-checkpoint.json`）。
 
 ## 2026-10-07：E1-C CPU骨架渲染与V0视频查询完成
 
@@ -1153,7 +1155,7 @@ Native四画面/8拒绝及真实27帧独立投影/格式通过；新467包/23来
 新Host107/12注册/22输出59600FP32和Host正负内容通过，52回传；三帧2Hz网络新推理＋绘图通过，70回传，完整输入/输出逐位此前板端，选中42坐标与帧号6/7/8对应。三阶段exit0/stderr空/dmesg前后相同，原引擎/数学/SDK/模型/RAW/BOOT/帧协议保持。
 ARM绘图均值11.93939ms/P95 12.13419ms，同时生成三种诊断格式均值88.84998ms/P95 89.60106ms；不计磁盘，不作整机5Hz或长期验收。
 只读MVX查询发现/dev/video0仅枚举两端MPLANE，NV12/NV21/H264及720p范围存在；参考单平面CAPTURE不可直接套。DT为Linlon-v5，/proc/fb空，未确认HDMI像素时钟/扫描配套；未S_FMT/REQBUFS/STREAMON/编码、未写候选寄存器。
-结果：[RENDER-RESULTS-20261007.md](tools/pose-v1/RENDER-RESULTS-20261007.md)、[视频配套表](tools/pose-v1/V0-VIDEO-PAIRING-20261007.md)、[完整核验](tools/pose-v1/evidence/render-20261007-r1/completion-review.json)。预览是ARM RGB无损导出，不由电脑重推理。验证全部结束，会话关闭，无新依赖或后台服务。
+结果：[RENDER-RESULTS-20261007.md](tools/pose-v1/RENDER-RESULTS-20261007.md)、[视频配套表](tools/pose-v1/V0-VIDEO-PAIRING-20261007.md)、完整核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/render-20261007-r1/completion-review.json`）。预览是ARM RGB无损导出，不由电脑重推理。验证全部结束，会话关闭，无新依赖或后台服务。
 
 ### 对后续开发的参考
 
@@ -1170,7 +1172,7 @@ Native与ARM纯协议自检通过（7非法记录/原始位模式/槽位/碎片/
 Host107/12注册/22输出59600FP32通过；生产/验证交替三帧＋重复共8次，以及3/27次真实网络前向通过，38成功前向全部输入/全输出逐位此前板端一致。四阶段exit0/stderr空/dmesg相同，52/68/55/128完整回传。
 27帧网络在2Hz原始发送下无丢弃/拒绝，到达至结果均值191.95180ms/P95 193.76084ms；不作为5Hz吞吐或整机验收。网络路径不读冻结参考，不由PC预处理或推理。
 首次r1函数名编译失败保留并新r2修正；首次27阶段因20秒就绪检查/120秒整体预算和人工诊断延误退出124，七完整结果仍逐位一致。只在外部新控制脚本/新目录增加300秒总预算及90秒就绪检查，READY后立即发送，一次修正验证通过；原包/程序及失败证据不改。
-完整报告：[APPLICATION-RESULTS-20261007.md](tools/pose-v1/APPLICATION-RESULTS-20261007.md)、[核验](tools/pose-v1/evidence/application-20261007-r2/completion-review.json)。SSH/SFTP已关闭，无后台验证任务，未初始化视频或安装依赖。
+完整报告：[APPLICATION-RESULTS-20261007.md](tools/pose-v1/APPLICATION-RESULTS-20261007.md)、核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/application-20261007-r2/completion-review.json`）。SSH/SFTP已关闭，无后台验证任务，未初始化视频或安装依赖。
 
 ### 对后续开发的参考
 
@@ -1201,7 +1203,7 @@ Host107/12注册/22输出59600FP32通过；生产/验证交替三帧＋重复共
 阶段验收接受现有27样本数据精度阶段，认为微小运算精度变化可导致候选颠倒；本次记录通过，原误差与离群均保留。
 PC/板端模型输入已逐位一致，不能把差异改写为已证实的传输损坏；跨端原query身份未证明，排序交换仍为证据支持的推断。
 未新增数值阈值、GT/MPJPE或物理标定，也不将27样本结论推广至未知数据/模型。
-证据：[user-numerical-acceptance.json](tools/pose-v1/evidence/perf-20261007-r3/user-numerical-acceptance.json)。
+证据：user-numerical-acceptance.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/perf-20261007-r3/user-numerical-acceptance.json`）。
 
 同时批准关闭SDK profiling，优先以单一时钟拆分forward并寻找优化方案。已新增隔离timed_runtime_core/timed_mixed_bridge/timed_runtime_check及forward_clock，r2/r6原源码和CPU内核保持；r3及独立错误消息优化lazy-r4已完成构建/Host107/输出回归/计量。
 计量采用同一个steady_clock和帧内ns基准，批量保存后端调用与桥等待/复制/CPU计算、边界观察等区间；ZG后端跨度含SDK工作，不能视为纯NPU核时间。
@@ -1215,7 +1217,7 @@ lazy-r4再次通过107例（含拒绝）、四原帧回归及3预热＋30计量�
 限定30次处理核心基线达到5Hz，距200ms预算平均约9.4ms；不含网络/绘图/编码，整机5Hz、10Hz与30分钟闭环仍未通过。
 程序4f7fe3597bb2aaaa69884a429062ce0c3977b63a30c328b8ce6c9f9e41ab84ad，352包/16构建来源，模型/RAW/SDK/BOOT、r2/r3/r6保持。
 审查工具遗漏hashlib的NameError通过独立review_perf_stage.py仅补标准库绑定修正，包/数据/规则不改写、不重跑板测；原失败与修正记录保留。
-结果：[P2-RESULTS-20261007.md](tools/pose-v1/P2-RESULTS-20261007.md)、[完整核验](tools/pose-v1/evidence/perf-20261007-lazy-r4/completion-review.json)、[命令](tools/pose-v1/P2-SINGLE-CLOCK-COMMANDS-20261007.md)。SSH/SFTP已关闭，无后台任务。
+结果：[P2-RESULTS-20261007.md](tools/pose-v1/P2-RESULTS-20261007.md)、完整核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/perf-20261007-lazy-r4/completion-review.json`）、[命令](tools/pose-v1/P2-SINGLE-CLOCK-COMMANDS-20261007.md)。SSH/SFTP已关闭，无后台任务。
 
 ### 对后续开发的参考
 
@@ -1246,7 +1248,7 @@ P1三预热与r6完整输出核对后才30次计量，全部33次输出与r6一�
 forward平均201.36566ms占93.72%，另约5.41603ms未分段；CPU近单核等效满负荷不证明NPU闲置。RSS87,316–88,808KiB，available前后均741MiB/Swap0；不是长期稳定性或30分钟闭环验收。
 H0原始源码/配套资料归档完成，720p时钟/当前位流映射、关节连接冲突及VPU/RTSP输入/缓冲区仍待确认；未操作视频硬件。
 
-结果：[RUNTIME-RESULTS-20261007.md](tools/pose-v1/RUNTIME-RESULTS-20261007.md)、[完整核验](tools/pose-v1/evidence/runtime-20261007-r2/completion-review.json)、[复现命令](tools/pose-v1/RUNTIME-COMMANDS-20261007.md)。
+结果：[RUNTIME-RESULTS-20261007.md](tools/pose-v1/RUNTIME-RESULTS-20261007.md)、完整核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/runtime-20261007-r2/completion-review.json`）、[复现命令](tools/pose-v1/RUNTIME-COMMANDS-20261007.md)。
 下一轮[N2候选身份＋P2前向分段](tools/pose-v1/NEXT-GATE-20261007.md)为未批准/未执行候选；E1应用/视频、profiling变化、新依赖和容限另议。SSH/SFTP已关闭，没有后台测试或自动重跑。
 
 ### 对后续开发的参考
@@ -1261,14 +1263,14 @@ H0原始源码/配套资料归档完成，720p时钟/当前位流映射、关节
 
 ### 工程内容总结
 
-本次已完成**全项目进度整理与恢复标记**：[PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)集中展示已验收、已实现待验证及未实施内容，按首版工作包作约50%–60%的工程估算（规划权重58/100，不是统计通过率或工期）。当前阶段为“小样本板端混合推理已跑通→数值/性能验证与正式应用集成”。[恢复入口](tools/pose-v1/RESUME-20261006.md)、当时的待办清单及机器可读状态已补齐；旧失败、构建、模型和参考未移动或覆盖。待办页现已撤下，追溯方式见[文档目录](DOCUMENTATION.md#撤下页面的去向)。
+本次已完成**全项目进度整理与恢复标记**：[PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)集中展示已验收、已实现待验证及未实施内容，按首版工作包作约50%–60%的工程估算（规划权重58/100，不是统计通过率或工期）。当前阶段为“小样本板端混合推理已跑通→数值/性能验证与正式应用集成”。[恢复入口](tools/pose-v1/RESUME-20261006.md)、当时的待办清单及机器可读状态已补齐；旧失败、构建、模型和参考未移动或覆盖。待办页现已撤下，追溯方式见[文档目录](DOCUMENTATION.md#撤下页面的阅读位置)。
 
 P1初版缺少“预热三帧对照r6后才能进入计量”的前置门禁，恢复时先在新修订中补齐，再按E0→N1→P1执行；27份ORT独立核验也仍待完成。HDMI配套、骨架定义冲突、数值容限和整机闭环单独保持未验收。暂停没有解除，本轮未连接Lite、构建或执行模型。
 
 
-**本轮E0/N1/P1实施暂停（2026-10-06，）：** 代理执行NEXT-PHASE-PLAN，随后确认Lite已关机、本人不在现场，要求先中断，唤醒后再继续。已新增隔离runtime_core运行核心、runtime_check、CMake、分阶段runner和离线审查工具，原r6检查器、CPU计算桥/内核及预处理源码保留。FPAI GCC9.4.0/CMake3.24.2交叉编译成功，15份构建来源及ARM SDK头文件/Host和ZG库身份通过；新程序SHA256 `2738b5150db4d63a949470984ec72cec56abea7b044e6f2236ded2ad94362242`，仅沿用r6版本JSON排版警告。构建证据：[build.acceptance.json](tools/pose-v1/evidence/runtime-20261006-r1/build.acceptance.json)。源码和审查工具仍需交付前完整复核；**尚未运行Host107或新核心板端回归，不能称为E0通过。**
+**本轮E0/N1/P1实施暂停（2026-10-06，）：** 代理执行NEXT-PHASE-PLAN，随后确认Lite已关机、本人不在现场，要求先中断，唤醒后再继续。已新增隔离runtime_core运行核心、runtime_check、CMake、分阶段runner和离线审查工具，原r6检查器、CPU计算桥/内核及预处理源码保留。FPAI GCC9.4.0/CMake3.24.2交叉编译成功，15份构建来源及ARM SDK头文件/Host和ZG库身份通过；新程序SHA256 `2738b5150db4d63a949470984ec72cec56abea7b044e6f2236ded2ad94362242`，仅沿用r6版本JSON排版警告。构建证据：build.acceptance.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/runtime-20261006-r1/build.acceptance.json`）。源码和审查工具仍需交付前完整复核；**尚未运行Host107或新核心板端回归，不能称为E0通过。**
 
-既有Conda Python3.10.21/NumPy2.2.5/CPU ORT1.23.2已生成九组27固定输入及首帧重复参考；固定ONNX哈希、CPUExecutionProvider、顺序执行、线程1/1及ORT_ENABLE_ALL保持。27份完整输出116,100个有限FP32，首帧重复逐位一致，86项清单自核验完成；独立复核仍待完成。[参考summary](.local/pose-v1-runtime/onnx-27-20261006-r1/summary.json)。本轮没有安装新依赖、板端传输、Device::Open或推理；SSH超时及本机以太网Disconnected与关机确认一致，不归因于推理代码。N1板端28次、P1低日志3预热＋30计量及H0资料归档未完成。恢复入口：[暂停检查点](tools/pose-v1/evidence/runtime-20261006-r1/pause-checkpoint.json)。
+既有Conda Python3.10.21/NumPy2.2.5/CPU ORT1.23.2已生成九组27固定输入及首帧重复参考；固定ONNX哈希、CPUExecutionProvider、顺序执行、线程1/1及ORT_ENABLE_ALL保持。27份完整输出116,100个有限FP32，首帧重复逐位一致，86项清单自核验完成；独立复核仍待完成。参考summary（历史附件，当前仓库未附：`.local/pose-v1-runtime/onnx-27-20261006-r1/summary.json`）。本轮没有安装新依赖、板端传输、Device::Open或推理；SSH超时及本机以太网Disconnected与关机确认一致，不归因于推理代码。N1板端28次、P1低日志3预热＋30计量及H0资料归档未完成。恢复入口：暂停检查点（历史附件，当前仓库未附：`tools/pose-v1/evidence/runtime-20261006-r1/pause-checkpoint.json`）。
 
 
 本次整理以此前已验收记录为依据，不重复执行或另记同一成果。历史失败、批准修正及阶段快照保留；
@@ -1278,10 +1280,10 @@ P1初版缺少“预热三帧对照r6后才能进入计量”的前置门禁，�
 | 已完成工作 | 验证范围与证据 | 适用限制 |
 | --- | --- | --- |
 | SD启动、根文件系统扩容、SSH通信 | 现场确认启动/登录及扩容；[扩容截图](tools/sd-image-validation/20261003-expansion-success.png)、[环境记录](tools/development-environment/20261003-progress.json)，后续SSH只读审计已执行 | 不包含长期稳定、全容量读写或AI验证 |
-| FPAI交叉编译与Lite加载 | GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0；[原检查器构建核验](tools/pose-v1/evidence/cross-build-review-20261005.json)，后续CPU r2已实板运行 | 编译/加载不证明NPU计算 |
+| FPAI交叉编译与Lite加载 | GCC9.4.0/CMake3.24.2、ARM Icraft/CustomOp3.39.0；原检查器构建核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/cross-build-review-20261005.json`），后续CPU r2已实板运行 | 编译/加载不证明NPU计算 |
 | 原生/MCP流水灯与简单IP交接 | Procise2025.1.1 temp/SVN32494，Vivado2019.1；本文原验收条目、[MCP流水灯结果](tools/mcp-validation/led1324/RESULTS.md)、[xlconcat IP交接](tools/mcp-validation/ip-reuse/RESULTS.md) | 独立PL与IP方法验证，不表示PS/DDR/AI系统工程已完成 |
 | 启动基线与运行身份 | Lite25122301 BOOT哈希、FSBL加载及0x25122301回读；后续SDK Open/version通过，见[300份结果](tools/pose-v1/RESULTS-300.md)和历史probe记录 | 不将uEnv后续文件错误改记为download.bit成功，也不将Open/version当NPU通过 |
-| 300份真实CSI预处理 | Windows/Linux/Lite逐位一致，幅度/相位差0、四类非法记录拒绝；[300份汇总](tools/pose-v1/evidence/replay-300-summary.json) | 人工±π周期误差2.333111/2.693437rad仍失败，仅改为非阻断诊断 |
+| 300份真实CSI预处理 | Windows/Linux/Lite逐位一致，幅度/相位差0、四类非法记录拒绝；300份汇总（历史附件，当前仓库未附：`tools/pose-v1/evidence/replay-300-summary.json`） | 人工±π周期误差2.333111/2.693437rad仍失败，仅改为非阻断诊断 |
 | CPU注册与最小适配 | 107例、12注册、22输出/59,600 FP32逐位一致，Gather保持；[最终结果](tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md) | 独立CPU范围为固定FP32/全有效分布/Host CPTR；NPU交接验收见后续混合行 |
 | PS/NPU混合工程与跨帧状态修正 | 1173原HardOp七组追溯/六计算Host，三帧输出不同、重复首帧全部内容逐位一致；[r6实板结果](tools/pose-v1/MIXED-FRAME-STATE-R6-RESULTS.md) | 当前三份固定CSI工程验收；数值容限/连续性能/HDMI/RTSP仍待，提供输出buffer的writeback未触发 |
 
@@ -1297,7 +1299,7 @@ pip freeze/check和模块来源检查已保存。初次沙箱Conda因CUDA虚拟�
 308/309/310同一输入生成全部100候选的分数与14关节坐标，共12,900个有限FP32输出。
 首样本重复逐位一致，不同输入响应存在；参考12项哈希独立复核。前向约221.808/221.606/212.305ms，
 仅为Windows CPU参考耗时，不计板端性能。详见[ONNX参考结果](tools/pose-v1/ONNX-REFERENCE-RESULTS-20261006.md)
-及[环境/产物身份](tools/pose-v1/evidence/onnx-reference-environment-20261006.json)。
+及环境/产物身份（历史附件，当前仓库未附：`tools/pose-v1/evidence/onnx-reference-environment-20261006.json`）。
 
 <details>
 <summary>混合验证交付及r1至r5历史阶段记录（保留失败与审批过程，不作为当前执行入口）</summary>
@@ -1309,7 +1311,7 @@ pip freeze/check和模块来源检查已保存。初次沙箱Conda因CUDA虚拟�
 新目录/LF清单、明确硬件flag、外部timeout和逐阶段验收文件门禁已交付。
 15份SDK头文件与原ARM包比对通过；原推理源码/CMake、三CPU文件、原模型及固定输入身份保持。
 Python AST、嵌入板端Python3.8语法、PowerShell语法、shell换行与包清单静态核验通过。
-交付记录：[mixed-source-delivery-20261006.json](tools/pose-v1/evidence/mixed-source-delivery-20261006.json)。
+交付记录：mixed-source-delivery-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-source-delivery-20261006.json`）。
 
 **源码交付时新C++未交叉编译；随后r1构建及代理核验已完成，见以下补充。新107例桥回归/SDK内存/Session/mixed仍未在Lite执行，尚无板端输出误差报告。**
 候选交付是开发成果，不能当正式推理通过。FPAI编译、传输、Lite运行仍人工逐阶段执行；代理主动读日志和产物。
@@ -1321,14 +1323,14 @@ mixed-20261006-r1构建反馈及复核：GCC9.4.0/CMake3.24.2、两包ARM3.39.0�
 唯一-Wmisleading-indentation位于版本JSON输出三语句同一行，条件只控制逗号，后两条无条件执行符合预期；
 未发现该警告导致逻辑错误，源码/包保持，不需重编译。代理只读/文件分析核验，未执行程序或访问板端。
 完整[构建警告审查](tools/pose-v1/MIXED-BUILD-REVIEW-20261006.md)及
-[验收文件](tools/pose-v1/evidence/mixed-20261006-r1/build.acceptance.json)。
+验收文件（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/build.acceptance.json`）。
 现在可人工继续命令B传输，再C仅host-check；不能把构建通过记为新桥/完整mixed通过。
 
 随后截图反馈：B传输已达到板端文件列出阶段，host-check runner报告exit=0；尚无新阶段完整回传，
 12注册/107桥用例/实际输出及SDK/程序身份仍待独立核验，不能提前宣布新Host桥通过。
 提前执行offline-check，在读取gates/host-check.acceptance.json时FileNotFoundError；
 已核对runner顺序，该预检在程序调用前，离线程序未启动。原因是前阶段尚未回传核验/生成并传入验收文件。
-证据[evidence/mixed-20261006-r1/host-offline-gate-feedback.json](tools/pose-v1/evidence/mixed-20261006-r1/host-offline-gate-feedback.json)。
+证据evidence/mixed-20261006-r1/host-offline-gate-feedback.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/host-offline-gate-feedback.json`）。
 已补齐失败预检目录回传及在验收后保留改名的具体命令；本轮仅截图/源码审查及命令准备，未操作板端或改变runner。
 
 Host完整回传后的最新验收：代理文件核验及独立数值复查通过，107例=18正常/89拒绝，12注册记录匹配，
@@ -1336,14 +1338,14 @@ Host完整回传后的最新验收：代理文件核验及独立数值复查通�
 包290/回传45哈希、15ARM头文件/Host＋ZG库/两包3.39.0/程序身份匹配，ldd完整，退出0/stderr空。
 完整dmesg前后相同，available686→687MiB/Swap0；mode=host-check、未Device::Open/完整Session/RAW或NPU执行。
 [Host桥结果](tools/pose-v1/MIXED-HOST-RESULTS-20261006.md)、
-[独立核验](tools/pose-v1/evidence/mixed-20261006-r1/host-independent-review.json)、
-[host-check验收文件](tools/pose-v1/evidence/mixed-20261006-r1/host-check.acceptance.json)已生成。
+独立核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/host-independent-review.json`）、
+host-check验收文件（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/host-check.acceptance.json`）已生成。
 此前待回传为历史状态；现在传入验收文件，失败offline预检目录先保留回传审阅，再按补充命令进入离线阶段。
 
 离线失败预检回传核验补充：现场反馈Host验收文件已传板，并回传原失败目录；目录仅package-check.log、
 timeout-path/version三文件，290项校验全部OK、GNU timeout8.30，无results/exit.txt/SDK审计/程序日志。
 与已核对runner及此前缺gate异常位置一致，确认离线程序未启动，失败证据已完整保留。
-[预检审查](tools/pose-v1/evidence/mixed-20261006-r1/offline-preflight-review.json)完成；
+预检审查（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/offline-preflight-review.json`）完成；
 现在按固定工作目录保留改名后执行一次30秒offline-check并完整回传，代理未操作板端或代执行。
 本次不生成offline验收文件，真实RAW/PS输入检查仍待程序实际运行结果。
 
@@ -1352,8 +1354,8 @@ timeout-path/version三文件，290项校验全部OK、GNU timeout8.30，无resu
 四参数已加载、无fixture替换。308/309/310共32,400有限FP32输入与固定及ONNX参考逐位一致，12注册记录符合预期、Gather保持。
 完整dmesg前后相同，available686→687MiB、Swap0；纯PS观测15.35236/5.60302/5.58911ms不作连续性能结论。
 mode=offline-check/device_init_allowed=false，未初始化设备/创建完整Session/执行前向。
-[离线结果](tools/pose-v1/MIXED-OFFLINE-RESULTS-20261006.md)、[独立复核](tools/pose-v1/evidence/mixed-20261006-r1/offline-independent-review.json)、
-[offline验收文件](tools/pose-v1/evidence/mixed-20261006-r1/offline-check.acceptance.json)已生成。
+[离线结果](tools/pose-v1/MIXED-OFFLINE-RESULTS-20261006.md)、独立复核（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/offline-independent-review.json`）、
+offline验收文件（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/offline-check.acceptance.json`）已生成。
 下一步传入验收文件，并在BOOT/JTAG保持、设备无竞争访问的前提下，仅执行30秒SDK两16KiB内存往返并回传。
 本阶段不代表1173HardOp/六Host实际绑定、NPU内存同步、完整mixed或精度通过；先前offline未执行为历史状态。
 
@@ -1361,8 +1363,8 @@ SDK内存阶段最新验收：一次受限memory-check退出0、完整回传，�
 SDK Open成功，device25122301/icore24160628保持；两个16KiB缓冲区为ADDR、AXIZG330AIPLDDRMemRegionNode、chunk/offset正确。
 固定程序核对区域归属及不重叠，三模式/六份输出共24,576有限FP32逐位一致、最大差0，-0/+0符号位保持。
 stderr空、阶段完整、完整dmesg前后相同、available前后687MiB/Swap0；未创建完整Session或执行模型前向。
-[内存结果](tools/pose-v1/MIXED-MEMORY-RESULTS-20261006.md)、[独立复核](tools/pose-v1/evidence/mixed-20261006-r1/memory-independent-review.json)、
-[memory验收文件](tools/pose-v1/evidence/mixed-20261006-r1/memory-check.acceptance.json)已生成。
+[内存结果](tools/pose-v1/MIXED-MEMORY-RESULTS-20261006.md)、独立复核（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/memory-independent-review.json`）、
+memory验收文件（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/memory-check.acceptance.json`）已生成。
 本次CPU↔设备SDK搬运不证明NPU生产者/CPU消费者同步或推理数值；下一步仅300秒apply-check（创建/apply/绑定，无forward），回传再核验。
 代理未接入板端/重跑/复位/改配置；此前memory待执行是历史状态。
 
@@ -1370,7 +1372,7 @@ apply失败/SSH退出审查补充：截图在登录shell单独set -eu，test ! -
 代理按特殊问题权限SSH只读列目录、SCP取回既有完整结果，35项回传/290包、程序/SDK/上一memory身份匹配。
 实际apply退出1，阶段已到session_applied，随后因首个原HardOp8622未在预期绑定表中找到而检查器主动停止；
 绑定文件仅Input0一条，无forward_started/模型输出/桥搬运，dmesg前后相同。Session创建/apply返回不等于完整部署验收。
-[失败审查](tools/pose-v1/MIXED-APPLY-FAILURE-20261006.md)、[证据](tools/pose-v1/evidence/mixed-20261006-r1/apply-failure-review.json)已保存。
+[失败审查](tools/pose-v1/MIXED-APPLY-FAILURE-20261006.md)、证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-r1/apply-failure-review.json`）已保存。
 SDK明确提供autoMerge、HardOpInfo.merge_from和运行视图，但当前没有完整实际映射，融合仅为候选原因。
 已准备[仅加绑定快照的候选](tools/pose-v1/MIXED-BINDING-SNAPSHOT-PLAN.md)，未应用/编译/运行；
 后续方案须讨论批准，不改计数/SDK选项、不重跑或删除旧目录，不进入mixed。代理没有运行检查器/初始化设备，口令未落项目文件。
@@ -1385,8 +1387,8 @@ SDK明确提供autoMerge、HardOpInfo.merge_from和运行视图，但当前没�
 与r1的289项非manifest载荷逐位相同；13份源身份记录只有mixed_check.cpp改变，
 原推理器/CMake、已验收CPU实现、模型/RAW/输入与r1二进制/失败证据保持。
 Python AST、板端嵌入Python3.8、PowerShell语法、LF清单及SDK公共字段静态审查通过。
-[应用记录](tools/pose-v1/evidence/mixed-20261006-binding-r2/source-applied.json)、
-[新包静态核验](tools/pose-v1/evidence/mixed-20261006-binding-r2/package-preparation.json)，
+应用记录（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-binding-r2/source-applied.json`）、
+新包静态核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-binding-r2/package-preparation.json`），
 [人工操作入口](tools/pose-v1/MIXED-BINDING-R2-COMMANDS.md)。
 **新r2未交叉编译/运行Host、离线、内存或apply；不称新增快照运行通过或绑定问题已修复。**
 
@@ -1401,13 +1403,13 @@ r2构建最新验收：完成mixed-20261006-binding-r2配置/五CPP编译/链接
 程序AArch64 ELF64 PIE、518,712字节，SHA25694a03a903a4a97f229b1549dcbd1bade193d60dbb23753c1f030431fbd061248；
 直接Host/ZG依赖、无RPATH/RUNPATH。完整日志只有已审阅的原142行缩进warning，无error；无需重编译。
 [构建结果](tools/pose-v1/MIXED-BINDING-R2-BUILD-RESULTS.md)、
-[验收文件](tools/pose-v1/evidence/mixed-20261006-binding-r2/build.acceptance.json)及build-review.json已保存。
+验收文件（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-binding-r2/build.acceptance.json`）及build-review.json已保存。
 本次只构建身份验收，未新板测/快照运行；下一步新目录传输后先Host107回传，不跳过门禁到apply/mixed。
 前述r2未编译为应用时历史，旧r1始终保留失败状态，代理未代编译/板端接入。
 
 r2运行截图补充：host-check runner报告exit=0，完整结果尚未回传，107例/注册/输出身份待独立复核。
 随后提前执行offline-check，因gates/host-check.acceptance.json缺失退出1；核对runner，此处在SDK审计及程序调用前，离线检查器未运行。
-截图及[反馈记录](tools/pose-v1/evidence/mixed-20261006-binding-r2/host-offline-gate-feedback.json)已保存。
+截图及反馈记录（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-binding-r2/host-offline-gate-feedback.json`）已保存。
 下一步先回传run-host-check及原run-offline-check预检目录；通过Host核验后才生成新r2验收文件。
 保留现有失败目录，不重跑Host/offline或硬件、不复用r1门禁；代理本轮仅本机文件分析，未接入板端。
 
@@ -1455,8 +1457,8 @@ Session创建/apply均返回，两阶段十份快照齐全；创建时1173原Har
 新增从r2证据生成的静态C++/JSON基线；模型/RAW/原infer及CMake、三CPU实现、预处理、桥和forward代码尾部保持。
 本机真实快照＋模拟新格式记录回放通过，18类异常及额外非布尔标记拒绝；不是ARM程序输出。
 新包package-20261006-fusion-r3的291项哈希、11构建文件/17源身份核验通过；r2原289项非manifest载荷保持，LF/AST/板端Python3.8语法通过。
-[交付](tools/pose-v1/MIXED-FUSION-R3-DELIVERY.md)、[源码/包审查](tools/pose-v1/evidence/mixed-20261006-fusion-r3/source-and-package-review.json)、
-[最终回放](tools/pose-v1/evidence/mixed-20261006-fusion-r3/offline-replay-final/review.json)已保存；代理未编译/SSH/运行设备。
+[交付](tools/pose-v1/MIXED-FUSION-R3-DELIVERY.md)、源码/包审查（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-fusion-r3/source-and-package-review.json`）、
+最终回放（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-fusion-r3/offline-replay-final/review.json`）已保存；代理未编译/SSH/运行设备。
 当前仅[MIXED-FUSION-R3-COMMANDS.md A](tools/pose-v1/MIXED-FUSION-R3-COMMANDS.md)新标签交叉编译，日志核验后再逐阶段板测，不复用旧门禁。
 
 对后续开发的参考：分开记录原节点与合并执行组，不能用七组代替1173覆盖数；同步层数与原逻辑节点数不同。
@@ -1526,8 +1528,8 @@ Capture只允许已分配有界Host CPTR FP32，不新增设备读/寄存器访�
 Host在107例后增加两模式纯Host捕获与别名模拟、错期望/未分配/FP16拒绝；真实Session Input0尚未执行。
 新本机核验器的Host/单次/四次模拟正例及11类异常/提前停止检查通过；Python AST/板端Python3.8/LF/捕获名称字面量及来源检查通过。
 最终package-20261006-content-r4-final已准备，291项哈希/12构建文件/20来源，原r3非manifest载荷289份保持、runner捕获参数更新。
-[交付](tools/pose-v1/MIXED-CONTENT-R4-DELIVERY.md)、[最终身份](tools/pose-v1/evidence/mixed-20261006-content-r4/delivery-review.json)、
-[本机模拟检查](tools/pose-v1/evidence/mixed-20261006-content-r4/offline-content-tests-final/review.json)已保存，未编译/SSH/板端运行。
+[交付](tools/pose-v1/MIXED-CONTENT-R4-DELIVERY.md)、最终身份（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-content-r4/delivery-review.json`）、
+本机模拟检查（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-content-r4/offline-content-tests-final/review.json`）已保存，未编译/SSH/板端运行。
 当前仅[MIXED-CONTENT-R4-COMMANDS.md A](tools/pose-v1/MIXED-CONTENT-R4-COMMANDS.md)最终标签交叉编译，核验后按新身份逐阶段，旧r3失败不重跑。
 
 对后续开发的参考：Caller读回、Input0返回及第一Host消费的ZG结果形成内容边界证据；如提前失败也保留实际字节和上下文。
@@ -1591,7 +1593,7 @@ r5计数首次0→745，次帧仍745并累加1222，ARM ZG等待使用固定本�
 r6构建、Host107/59,600值、离线、内存、apply、单和三全部通过；三帧131回传/68内容1,015,040字节/76状态及1173覆盖匹配，四次0→745。
 三帧分数和姿态分别不同，重复308全部捕获及4300输出逐位一致，跨Session单帧也一致；真实CPU28输出/52,000FP32由NumPy逐位一致。
 程序SHA256f826fc31441caf09ef22d94561672023737ab4c330ba22ec0159ecf7f77e144a，ARM Icraft/CustomOp3.39.0及设备25122301/icore24160628保持，所有阶段内核前后相同，available717→718MiB/Swap0。
-[完整结果](tools/pose-v1/MIXED-FRAME-STATE-R6-RESULTS.md)、[完成核验](tools/pose-v1/evidence/mixed-20261006-frame-state-r6/completion-review.json)、新mixed-three.acceptance.json及完整ONNX12900值误差已保存，SSH/SFTP会话已关闭。
+[完整结果](tools/pose-v1/MIXED-FRAME-STATE-R6-RESULTS.md)、完成核验（历史附件，当前仓库未附：`tools/pose-v1/evidence/mixed-20261006-frame-state-r6/completion-review.json`）、新mixed-three.acceptance.json及完整ONNX12900值误差已保存，SSH/SFTP会话已关闭。
 分数最大差0.00304520/0.00355411/0.01011199，同槽坐标1.32329577/2.03372848/1.34546995，各端最佳坐标0.01611638/0.01987362/0.02760744模型单位。
 未宣称同槽候选身份/MPJPE/物理标定或数值容限通过；前向206.6–208.2ms及含取证IO约210–212ms不作持续5Hz/延迟通过。
 后续参考：帧级执行计数和握手生命周期必须明确，固定745仅用于当前模型与融合基线；旧失败、私有字段编译错误和早期部分回传保持，正常数值比较只在新三样本门禁通过后执行。
@@ -1606,7 +1608,7 @@ r6构建、Host107/59,600值、离线、内存、apply、单和三全部通过�
 | Host算子注册和布局缺口 | 五节点缺TopK/GatherElements/ScatterND注册；便携内核拒绝merged_distr，安装CustomOp或仅设目录不能证明支持 | 应用侧最小注册/全有效临时描述适配，原Gather保持；107例/59,600值通过。只支持已验证FP32规格，不泛化到任意布局。见[CPU验收](tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md) |
 | SDK部署后绑定ID变化 | 原1173HardOp仍在原图中，实际部署合并为七ZG组；按原8622直接找绑定产生误报 | 使用真实绑定＋merge_from＋固定同步表追溯完整唯一覆盖，不降低覆盖要求，不把组数或同步层数当原算子数。见[r6来源](tools/pose-v1/MIXED-FRAME-STATE-R6-SOURCE.md) |
 | 三样本输入不同却输出完全相同 | caller/Input0正确，CPU数学正确；r5层计数跨帧累加，旧计数提前满足SDK本帧完成阈值 | r6帧边界SDK reset(1)、计数0→745、输出就绪确认；三帧不同/重复首帧所有内容逐位一致。当前范围已解决；失败时约40ms不作性能结果。见[r6结果](tools/pose-v1/MIXED-FRAME-STATE-R6-RESULTS.md) |
-| ONNX与板端候选数值对照 | 同槽坐标最大差约1.32–2.03，各端最佳坐标最大差约0.016–0.028（原始单位）；本轮追加分析板端同分相邻项29/30/31，ONNX为1/2/0 | 排名/候选身份尚未证明，不能把大差异都归于排序，也不能仅用最佳小误差宣称通过；扩大固定样本后再讨论容限。见[离线分析](tools/pose-v1/evidence/next-phase-20261006/existing-evidence-analysis.json) |
+| ONNX与板端候选数值对照 | 同槽坐标最大差约1.32–2.03，各端最佳坐标最大差约0.016–0.028（原始单位）；本轮追加分析板端同分相邻项29/30/31，ONNX为1/2/0 | 排名/候选身份尚未证明，不能把大差异都归于排序，也不能仅用最佳小误差宣称通过；扩大固定样本后再讨论容限。见离线分析（历史附件，当前仓库未附：`tools/pose-v1/evidence/next-phase-20261006/existing-evidence-analysis.json`） |
 | 有效吞吐与取证开销 | 四次带取证forward中位207.230065ms，另测预处理中位5.781265ms；相加约213.01133ms，超出5Hz的200ms预算约13ms | 这是提示性预算，不是持续基准；先测最小日志而保留SDK profiling/同步，再按拆分决定优化。不得将显示刷新或重复旧输出计入推理更新率 |
 | HDMI720p60与双路配套 | 参考默认1080p，当前25122301工程/寄存器/像素时钟配套不明确；软件改宽高不能证明720p60，VPU驱动存在不代表RTSP可用 | 仍待配套及实屏/编码验证，目标不擅自降低，不写候选显示寄存器或替换BOOT。见[HDMI审查](tools/pose-v1/HDMI-STATIC-AUDIT.md) |
 | 预处理人工相位边界 | 300真实样本逐位一致，但人工±π周期误差2.333111/2.693437rad仍失败，明确降为非阻断诊断 | 保留失败，不能把真实样本通过扩大为普遍数学等价；后续真实CSI相位异常仍需停止分析。见[300样本结果](tools/pose-v1/RESULTS-300.md) |
@@ -1614,7 +1616,7 @@ r6构建、Host107/59,600值、离线、内存、apply、单和三全部通过�
 #### 下一阶段准备实际完成（2026-10-06）
 
 代理仅读本机既有回传和固定样本，新增[prepare_next_phase.py](tools/pose-v1/prepare_next_phase.py)并实际生成已有数值/排序/时间预算分析。
-从预处理已通过的300份记录，按九组各第一/中间/最后确定27候选；[JSON](tools/pose-v1/evidence/next-phase-20261006/proposed-27-cases.json)/[TSV](tools/pose-v1/evidence/next-phase-20261006/proposed-27-cases.tsv)记录case、真实frame_id、路径及SHA256。
+从预处理已通过的300份记录，按九组各第一/中间/最后确定27候选；JSON（历史附件，当前仓库未附：`tools/pose-v1/evidence/next-phase-20261006/proposed-27-cases.json`）/TSV（历史附件，当前仓库未附：`tools/pose-v1/evidence/next-phase-20261006/proposed-27-cases.tsv`）记录case、真实frame_id、路径及SHA256。
 27份CSI、固定输入与Host输出身份一致、参考有限；仅候选选择，不是27样本ONNX或Lite模型验收。
 [下一阶段具体方案](tools/pose-v1/NEXT-PHASE-PLAN-20261006.md)已编写：E0运行核心→N1九组数值扩展→P1低取证基线，H0本机配套资料并行；E1网络/渲染及视频在结果审查后实施。
 本轮未修改r6运行源码、创建新Conda/依赖、交叉编译或接入板端；新28次推理/33次性能运行、容限及视频配置尚未批准执行。
@@ -1644,7 +1646,7 @@ ONNX基线可直接支持部署数值比较，报告全部槽位的最大/平均
 原Gather实现保持并通过；包282项/回传40项哈希、程序/模型/SDK身份一致，ldd解析完整，退出0/stderr空。
 已完成的是固定Host内存/全有效分布的独立候选门检，仍未接入正式模型或验证NPU数据交接。
 完整总结及适用限制：[CPU-ADAPTER-RESULTS-20261006.md](tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md)，
-独立证据：[cpu-adapter-independent-review-20261006.json](tools/pose-v1/evidence/cpu-adapter-independent-review-20261006.json)。
+独立证据：cpu-adapter-independent-review-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-independent-review-20261006.json`）。
 下文保留交付、失败、批准修正及逐阶段记录；其中未编译/待回传均为当时状态。
 
 针对ARM Icraft/CustomOp 3.39.0已查明的TopK、GatherElements、ScatterND注册缺口，
@@ -1658,7 +1660,7 @@ ONNX基线可直接支持部署数值比较，报告全部槽位的最大/平均
 设计覆盖107个用例（18个正常、89个拒绝）和22份正常输出；这些数量为设计，尚未生成或运行。
 已完成SDK签名与真实六节点规格的静态审查、Python AST和PowerShell语法检查；shell为LF。
 **没有交叉编译或算子前向验收，也没有访问板端设备。** 构建和测试人工执行，失败即停止讨论。
-交付身份及静态检查见[evidence/cpu-adapter-source-delivery-20261005.json](tools/pose-v1/evidence/cpu-adapter-source-delivery-20261005.json)，
+交付身份及静态检查见evidence/cpu-adapter-source-delivery-20261005.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-source-delivery-20261005.json`），
 逐条命令见[CPU-ADAPTER-COMMANDS.md](tools/pose-v1/CPU-ADAPTER-COMMANDS.md)。
 
 ### 对后续开发的参考
@@ -1673,7 +1675,7 @@ CPU Matmul浮点参考缺口、完整推理数值门检与HDMI/RTSP仍单独保�
 `.local/pose-v1-cpu-adapter/package/20261005`。代理只读核对282项清单哈希、18正常/89拒绝用例、
 22份正常参考产物及5份构建文件/副本匹配；这仅验收打包身份，不是SDK前向数值通过。
 构建显示GCC9.4.0/CMake3.24.2后，在容器python3执行处退出127，未进入CMake配置/编译。
-具体日志与产物身份见[evidence/cpu-adapter-build-failure-20261006.json](tools/pose-v1/evidence/cpu-adapter-build-failure-20261006.json)。
+具体日志与产物身份见evidence/cpu-adapter-build-failure-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-build-failure-20261006.json`）。
 构建脚本不应把未经核验的容器Python作为既有前提；已准备[修正候选](tools/pose-v1/CPU-ADAPTER-BUILD-FIX-20261006.md)，
 应用/新构建尚待，未安装依赖、改生效脚本或执行Docker/板端测试。原失败目录和测试包保留。
 
@@ -1681,7 +1683,7 @@ CPU Matmul浮点参考缺口、完整推理数值门检与HDMI/RTSP仍单独保�
 SDK版本查询仍在FPAI，六头文件/Host库由Docker cp -L导出、Windows PowerShell/.NET哈希核对；
 原身份门禁保持，无新增依赖或候选C++/CMake变化。原脚本已备份，测试包/manifest及旧失败目录保持，
 新构建记录会包含实际构建脚本哈希。生效脚本语法解析0错误；**尚未执行修正版构建、容器导出或算子测试**。
-应用证据见[evidence/cpu-adapter-build-fix-applied-20261006.json](tools/pose-v1/evidence/cpu-adapter-build-fix-applied-20261006.json)，
+应用证据见evidence/cpu-adapter-build-fix-applied-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-build-fix-applied-20261006.json`），
 从[命令B](tools/pose-v1/CPU-ADAPTER-COMMANDS.md)使用新标签`cpu-adapter-20261006-r1`开始。
 该方法可将审计工具依赖放在已确认的Windows环境，同时核对真实ARM文件；仍需实跑确认Docker导出/编译，
 不能仅凭修正或静态检查宣称算子和mixed通过。上述待批准文字为此前状态。
@@ -1693,7 +1695,7 @@ Host so与版本/源码副本并核对身份匹配。编译检查器时PowerShel
 这是源码API审查发现，不能声称已取得完整编译诊断或排除其他问题。
 已交付[两文件修正候选](tools/pose-v1/CPU-ADAPTER-COMPILE-FIX-20261006.md)，
 尚待批准，生效源码/脚本未改、未重编译。证据
-[evidence/cpu-adapter-compile-failure-r1-20261006.json](tools/pose-v1/evidence/cpu-adapter-compile-failure-r1-20261006.json)。
+evidence/cpu-adapter-compile-failure-r1-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-compile-failure-r1-20261006.json`）。
 后续参考：原生工具stderr不能自动等同于命令失败，日志应完整捕获并最终核对真实退出码；
 容器审计通过也不能替代C++编译和实际Host数值验收。
 
@@ -1701,7 +1703,7 @@ Host so与版本/源码副本并核对身份匹配。编译检查器时PowerShel
 修正检查器三处Array修改及构建日志捕获。两生效文件与候选逐字节一致，原文件已备份；
 SDK身份门禁、原生退出码门禁、注册模块及数学参考逻辑保持，旧测试包/manifest和失败目录未改。
 生效PowerShell语法0错误；尚未生成r2包、交叉编译或测试，不能宣称已排除其他编译问题。
-应用证据：[evidence/cpu-adapter-compile-fix-applied-r2-20261006.json](tools/pose-v1/evidence/cpu-adapter-compile-fix-applied-r2-20261006.json)。
+应用证据：evidence/cpu-adapter-compile-fix-applied-r2-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-compile-fix-applied-r2-20261006.json`）。
 按[更新命令A/B](tools/pose-v1/CPU-ADAPTER-COMMANDS.md)生成新身份包并以新r2目录构建，
 代理核对新旧数据/参考产物及构建证据后再进行既定Lite测试；源码修正不能通过回写旧哈希掩盖来源变化。
 
@@ -1711,7 +1713,7 @@ SDK身份门禁、原生退出码门禁、注册模块及数学参考逻辑保�
 新旧281项非manifest文件完全相同；数学输入、参考、模型及板端脚本未变，身份更新没有改变测试内容。
 程序为AArch64 PIE，SHA256 `8cf2017cedf6a97f98ce485d979239b659291f3c91d3a3d550382c1c94588622`；
 ELF直接依赖含Host/XRT/XIR/Utils及标准库、没有ZG/AIU，无RPATH/RUNPATH。
-证据：[evidence/cpu-adapter-r2-build-review-20261006.json](tools/pose-v1/evidence/cpu-adapter-r2-build-review-20261006.json)
+证据：evidence/cpu-adapter-r2-build-review-20261006.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-r2-build-review-20261006.json`）
 及同目录cpu-adapter-r2-build-20261006-build.log/build-result.json/sdk-audit.json。
 已完成的是交叉编译及产物复核，未运行ARM程序、未验收板端库加载/注册前向/107例数值或NPU。
 下一步按[命令C](tools/pose-v1/CPU-ADAPTER-COMMANDS.md)一次受限Lite Host测试并回传完整证据。
@@ -1727,7 +1729,7 @@ ELF直接依赖含Host/XRT/XIR/Utils及标准库、没有ZG/AIU，无RPATH/RUNPA
 sh测试脚本及exit.txt均0，stdout报告107用例完成、stderr为空；summary标记cpu_candidate_tests_passed，
 device_opened/full_model_executed/mixed_verified均false。记录为**人工操作及程序内部通过报告**，
 尚未完成独立证据验收，本地没有完整回传；注册前后12条记录、22份实际输出和SDK/程序哈希仍待联查。
-证据：[运行截图](tools/pose-v1/evidence/cpu-adapter-board-run-feedback-20261006.png)及同名JSON。
+证据：运行截图（历史附件，当前仓库未附：`tools/pose-v1/evidence/cpu-adapter-board-run-feedback-20261006.png`）及同名JSON。
 接下来执行[命令D](tools/pose-v1/CPU-ADAPTER-COMMANDS.md)，完整回传后再作CPU门检结论。
 不重跑C、不依据摘要直接接入正式推理器；本次仍不是完整模型/NPU/双路闭环验收。
 
@@ -1776,7 +1778,7 @@ FPAI Icraft/CustomOp均arm64 3.39.0、icraftmdzthirdparty arm64 0.1.1，状态�
 二进制是AArch64动态链接PIE，SHA256
 `d1006f9bd78050ffa484c64bf74fb62542d270c7acca5068e9da611a5bdc05e5`；声明Host/ZG330后端等运行库依赖。
 代理读取实际日志和产物，7份源码记录、11份包文件大小/哈希、二进制哈希全部匹配；未代执行构建或软件测试。
-复核证据：[cross-build-review-20261005.json](tools/pose-v1/evidence/cross-build-review-20261005.json)。
+复核证据：cross-build-review-20261005.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/cross-build-review-20261005.json`）。
 上文“未编译”为初次交付时的历史状态；现在仅传板/加载/离线接口及推理仍待执行，不把本次结果扩大为板端ABI或NPU通过。
 
 **D阶段诊断补充**：已传板并核对程序哈希，匹配本次构建；ldd已列出的依赖均解析成功。
@@ -1787,7 +1789,7 @@ FPAI Icraft/CustomOp均arm64 3.39.0、icraftmdzthirdparty arm64 0.1.1，状态�
 
 **D阶段后续实板结果**：用新清单`files.lf.sha256`校验，11项全部OK且退出码0，
 板端样本/模型包完整性通过；随后ZG图inspect退出码0。
-证据：[板端校验及inspect退出截图](tools/pose-v1/evidence/board-checksum-inspect-exit0-20261005.png)。
+证据：板端校验及inspect退出截图（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-checksum-inspect-exit0-20261005.png`）。
 graph-io.json、stages.jsonl、run-config.json及stderr尚未提交，离线接口验收仍待产物复核。
 没有SDK设备初始化或推理结果；生产打包脚本候选补丁尚未应用，不能把板端清单处理当作脚本修复已完成。
 前述校验未通过和inspect未运行为历史状态，已有inspect-zg应保留，不重复运行或覆盖。
@@ -1796,20 +1798,20 @@ graph-io.json、stages.jsonl、run-config.json及stderr尚未提交，离线接�
 姿态[1,100,14,3]顺序，符合本次二进制的float32门禁；阶段started→offline_inspection_complete。
 mode=inspect、device_init_allowed=false，stderr为空，目录仅graph-io/run-config/stages，无failure.json。
 结合包校验和退出码0，D离线接口检查通过，证据：
-[离线产物截图](tools/pose-v1/evidence/board-inspect-artifacts-20261005.png)。
+离线产物截图（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-inspect-artifacts-20261005.png`）。
 此检查未加载RAW参数、执行模型或打开设备；下一阶段先核对timeout/并发占用及BOOT是否保持，不能扩大为NPU功能验收。
 截图中的板端文件时间为Mar 13，不能作为本次操作的准确墙钟时间；按记录日期2026-10-05归档，未调整板端时钟。
 
 **E前置查询复核补充**：查询/usr/bin/timeout，版本GNU coreutils 8.30；probe目录及三份日志均不存在，
 首次未运行的结果符合预期。可见进程列表未见明显AI/HDMI/编码应用，kbase/mvx等为内核线程条目，
 其名称不作为运行推理、编码或已发生故障的依据。证据：
-[timeout和进程列表上半部分](tools/pose-v1/evidence/board-probe-preflight-20261005-1.png)、
-[进程列表及目录查询](tools/pose-v1/evidence/board-probe-preflight-20261005-2.png)。
+timeout和进程列表上半部分（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-probe-preflight-20261005-1.png`）、
+进程列表及目录查询（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-probe-preflight-20261005-2.png`）。
 尚待人工确认BOOT/运行位流保持及无其他演示访问设备；未执行SDK初始化、模型推理或自动停止进程。
 
 **E探测实际执行补充**：随后执行固定30秒、TERM后5秒kill-after的probe，退出码0；
 device-version.json回报device=25122301，与既有运行版本一致，icore文本待进一步回传复核。
-已保存probe.dmesg.log；证据：[probe返回及版本截图](tools/pose-v1/evidence/board-probe-exit0-20261005.png)。
+已保存probe.dmesg.log；证据：probe返回及版本截图（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-probe-exit0-20261005.png`）。
 检查器源码固定写出compatibility_passed=false，含义为兼容性尚待验收，不是SDK报错。
 stdout/stderr、stages/run-config及内核日志内容尚未提交，E完整门检待复核；没有执行混合模型或DMA/NPU计算验收。
 本次设备初始化人工执行，代理仅审阅截图和源码，不重跑probe、修改标记或停止进程。
@@ -1820,9 +1822,9 @@ stdout/stderr、stages/run-config及内核日志内容尚未提交，E完整门�
 目录无failure.json，stderr为空。stdout明确Device initialization successful；协议AXI、设备zg330aiu，
 NPU=0x40000000、DMA=0x80000000、device=25122301、icore=FMSHZGV3TECH-AID - 24160628。
 结合退出码0，Device::Open/version探测通过，证据：
-[产物与初始化日志](tools/pose-v1/evidence/board-probe-review-20261005-1.png)、
-[内核上下文上段](tools/pose-v1/evidence/board-probe-review-20261005-2.png)、
-[内核上下文末段](tools/pose-v1/evidence/board-probe-review-20261005-3.png)。
+产物与初始化日志（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-probe-review-20261005-1.png`）、
+内核上下文上段（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-probe-review-20261005-2.png`）、
+内核上下文末段（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-probe-review-20261005-3.png`）。
 提供的dmesg尾部未见探测相关总线/DMA错误；EXT4恢复与journal异常关闭/更换信息处于启动阶段，
 不归因于probe，不自动执行文件系统修复。板端日志墙钟为2026-03-13，与当前归档日期不同，未调整板端时钟。
 compatibility_passed=false是检查器固定待验收标记，保持原值；本次不能作为模型、Host/NPU计算或性能验收。
@@ -1834,14 +1836,14 @@ VsDevCmd.bat与CMake文件元数据3.31.6-msvc6。路径中第二层目录名开
 这证明工具文件存在，未证明Windows SDK、开发终端初始化、CMake VS实例识别或Host编译通过；
 默认vswhere和常见Windows Kits注册表入口未找到/未返回记录，不自动修复或安装。
 已交付临时环境查询命令：[WINDOWS-HOST-ENV-CHECK.md](tools/pose-v1/WINDOWS-HOST-ENV-CHECK.md)，
-静态证据：[定位记录](tools/pose-v1/evidence/windows-host-tool-discovery-20261005.json)。
+静态证据：定位记录（历史附件，当前仓库未附：`tools/pose-v1/evidence/windows-host-tool-discovery-20261005.json`）。
 代理未运行编译器、CMake或项目软件；ORT缺失及参考数值验收保持待处理。
 
 **Windows终端首次启动排查补充**：命令截图中目录名漏掉开头空格，返回“系统找不到指定的路径”。
 代理只读复核实际名称首字符为32，带空格VsDevCmd路径存在、不带空格路径不存在；
 此失败不作为SDK缺失/编译器损坏的证据。已将同一查询步骤改为从真实目录项自动构造路径，
 避免手写空格；终端初始化仍待执行/复核，代理未启动开发终端或修复安装。
-证据：[路径错误截图](tools/pose-v1/evidence/windows-host-path-error-20261005.png)，
+证据：路径错误截图（历史附件，当前仓库未附：`tools/pose-v1/evidence/windows-host-path-error-20261005.png`），
 命令入口仍为[WINDOWS-HOST-ENV-CHECK.md](tools/pose-v1/WINDOWS-HOST-ENV-CHECK.md)。
 
 **Windows查询窗口待确认补充**：自动定位启动后已见VS开发终端横幅；另一截图where cl未找到、
@@ -1849,8 +1851,8 @@ VsDevCmd.bat与CMake文件元数据3.31.6-msvc6。路径中第二层目录名开
 需先确认是否另开CMD：初始化只在当前子进程生效，另外打开的终端不会继承。
 代理只读确认start/parse/winsdk/vcvars脚本存在，横幅v17.0为vswhere缺失时的默认值，
 不作为安装版本或SDK缺失结论；未修改/修复安装，Host参考仍未编译或执行。
-证据：[启动横幅](tools/pose-v1/evidence/windows-host-banner-20261005.png)、
-[查询结果](tools/pose-v1/evidence/windows-host-unset-query-20261005.png)。
+证据：启动横幅（历史附件，当前仓库未附：`tools/pose-v1/evidence/windows-host-banner-20261005.png`）、
+查询结果（历史附件，当前仓库未附：`tools/pose-v1/evidence/windows-host-unset-query-20261005.png`）。
 
 随后明确第二张查询是在另外打开的CMD中执行，未继承原初始化环境；此前窗口歧义已澄清。
 不能据第二张图判断原窗口初始化失败或SDK缺失，下一步回原窗口查询；未修复安装或开始Host构建。
@@ -1859,7 +1861,7 @@ VsDevCmd.bat与CMake文件元数据3.31.6-msvc6。路径中第二层目录名开
 目标x64、VSINSTALLDIR正确，CMake实际查询3.31.6-msvc6；环境继承问题已解除。
 WindowsSdkDir未设置、WindowsSDKVersion仅`\`，有效Windows SDK尚未识别，Windows Host构建仍未执行。
 代理只读核对4个厂商v10.0登记入口及5个常见Windows Kits目录未找到，不排除未登记自定义SDK目录。
-证据：[原窗口工具及SDK查询](tools/pose-v1/evidence/windows-host-sdk-query-20261005.png)。
+证据：原窗口工具及SDK查询（历史附件，当前仓库未附：`tools/pose-v1/evidence/windows-host-sdk-query-20261005.png`）。
 另静态核对已编译检查器包含无Device::Open的host参考模式，形成
 [参考路线及ORT解析候选](tools/pose-v1/REFERENCE-NEXT-PLAN.md)供讨论，未执行或安装，候选不是完成成果。
 
@@ -1869,15 +1871,15 @@ WindowsSdkDir未设置、WindowsSDKVersion仅`\`，有效Windows SDK尚未识别
 当时仅完成命令/文档交付；后续资源查询已完成，Host执行仍待完成，不记为模型通过；
 ORT预览/安装未批准，正式NPU/双路及误差门检保持，不能凭B批准跳过参考进入mixed。
 
-**Lite Host资源前检复核补充**：截图显示总内存993 MiB、available 744 MiB、Swap 0，/tmp所在根文件系统剩余47G；可见进程未见明显其他推理/视频应用，目标输出前缀未发现旧文件。资源前检已完成，可继续已批准的一次300秒Host参考；峰值内存、算子支持、耗时及输出仍未验证。证据：[内存与磁盘](tools/pose-v1/evidence/lite-host-resource-query-20261005-1.png)、[进程与结果路径](tools/pose-v1/evidence/lite-host-resource-query-20261005-2.png)。代理仅审查及记录，未执行软件或设备操作。
+**Lite Host资源前检复核补充**：截图显示总内存993 MiB、available 744 MiB、Swap 0，/tmp所在根文件系统剩余47G；可见进程未见明显其他推理/视频应用，目标输出前缀未发现旧文件。资源前检已完成，可继续已批准的一次300秒Host参考；峰值内存、算子支持、耗时及输出仍未验证。证据：内存与磁盘（历史附件，当前仓库未附：`tools/pose-v1/evidence/lite-host-resource-query-20261005-1.png`）、进程与结果路径（历史附件，当前仓库未附：`tools/pose-v1/evidence/lite-host-resource-query-20261005-2.png`）。代理仅审查及记录，未执行软件或设备操作。
 
-**Lite Host首次执行反馈（未通过）**：随后执行一次已批准的受限Host参考，截图退出码1；[执行证据](tools/pose-v1/evidence/lite-host-exit1-20261005.png)。具体失败阶段与原因待日志，未取得可验收的参考数值，不将失败试跑写为模型通过。暂停重跑、覆盖目录及mixed，下一步人工读取现有stdout/stderr、阶段/失败记录及内核上下文；代理未执行修复或改变源码/模型/环境。
+**Lite Host首次执行反馈（未通过）**：随后执行一次已批准的受限Host参考，截图退出码1；执行证据（历史附件，当前仓库未附：`tools/pose-v1/evidence/lite-host-exit1-20261005.png`）。具体失败阶段与原因待日志，未取得可验收的参考数值，不将失败试跑写为模型通过。暂停重跑、覆盖目录及mixed，下一步人工读取现有stdout/stderr、阶段/失败记录及内核上下文；代理未执行修复或改变源码/模型/环境。
 
 **Host失败日志审查完成补充**：现场提供产物/日志截图，定位到Session创建时op_id=1 MatmulNode没有后端绑定，阶段输入验证→参数懒加载登记→failed_stop_no_retry；mode=host/device_init_allowed=false，未开始样本前向。内核尾部未见本次OOM、available 687 MiB；根因仍须区分板端库构建范围、依赖/注册及文件身份。已完成[失败审查](tools/pose-v1/HOST-BINDING-REVIEW-20261005.md)，证据为同目录evidence/lite-host-binding-failure-20261005-1.png至-3.png；未执行修复或新的软件/设备操作。正式混合图六个Host计算算子没有Matmul，本次失败不能扩大为NPU路线失败或数值通过。
 
-**特殊问题协助与Host库只读审计完成补充**：一般软件操作仍自行执行，遇特殊问题代理可直接接入工具；已更新AGENTS.md并保留决策/变更审批。同时批准审计，代理SSH读取确认Icraft/CustomOp arm64 3.39.0、icraft包校验未报告差异，实际Host库与原始安装包SHA256一致，导出配置含CudaDefault、readelf存在。完整日志[board-host-library-audit-20261005.stdout.log](tools/pose-v1/evidence/board-host-library-audit-20261005.stdout.log)、同前缀stderr/退出码及[原包静态审查](tools/pose-v1/evidence/original-arm-host-package-review-20261005.json)。最终审计退出码0、stderr空；未执行模型、NPU初始化或修复。深层算子注册原因仍待验证，[注册探针](tools/pose-v1/HOST-REGISTRY-PROBE-PLAN.md)仅为待批准方案，不记为完成成果。
+**特殊问题协助与Host库只读审计完成补充**：一般软件操作仍自行执行，遇特殊问题代理可直接接入工具；已更新AGENTS.md并保留决策/变更审批。同时批准审计，代理SSH读取确认Icraft/CustomOp arm64 3.39.0、icraft包校验未报告差异，实际Host库与原始安装包SHA256一致，导出配置含CudaDefault、readelf存在。完整日志board-host-library-audit-20261005.stdout.log（历史附件，当前仓库未附：`tools/pose-v1/evidence/board-host-library-audit-20261005.stdout.log`）、同前缀stderr/退出码及原包静态审查（历史附件，当前仓库未附：`tools/pose-v1/evidence/original-arm-host-package-review-20261005.json`）。最终审计退出码0、stderr空；未执行模型、NPU初始化或修复。深层算子注册原因仍待验证，[注册探针](tools/pose-v1/HOST-REGISTRY-PROBE-PLAN.md)仅为待批准方案，不记为完成成果。
 
-**独立CPU注册诊断完成补充（更新上述候选状态）**：取得独立执行许可后，代理在FPAI GCC9.4/CMake3.24.2/ARM Icraft3.39.0交叉编译独立探针、传Lite新目录并运行一次30秒受限查询。退出码0、stderr空，5项回传哈希匹配；探针32,744字节、SHA256 4106daf64086e478b7540788eab52d4551680cb11f8b8b104a4f582d86d6d05c。Matmul无init/forward注册，正式ZG图的188/437 TopK、192 GatherElements、582/649 ScatterND同样无注册，442 Gather有注册。定位出全CPU参考及混合图PS部分的注册阻断，mixed保持停止；没有执行模型/算子前向或访问NPU。原源码、推理二进制、模型/SDK身份保持，结果[HOST-REGISTRY-RESULTS-20261005.md](tools/pose-v1/HOST-REGISTRY-RESULTS-20261005.md)，证据[review.json](tools/pose-v1/evidence/host-registry-20261005/review.json)。成功范围为诊断本身，不是模型部署/首版验收。
+**独立CPU注册诊断完成补充（更新上述候选状态）**：取得独立执行许可后，代理在FPAI GCC9.4/CMake3.24.2/ARM Icraft3.39.0交叉编译独立探针、传Lite新目录并运行一次30秒受限查询。退出码0、stderr空，5项回传哈希匹配；探针32,744字节、SHA256 4106daf64086e478b7540788eab52d4551680cb11f8b8b104a4f582d86d6d05c。Matmul无init/forward注册，正式ZG图的188/437 TopK、192 GatherElements、582/649 ScatterND同样无注册，442 Gather有注册。定位出全CPU参考及混合图PS部分的注册阻断，mixed保持停止；没有执行模型/算子前向或访问NPU。原源码、推理二进制、模型/SDK身份保持，结果[HOST-REGISTRY-RESULTS-20261005.md](tools/pose-v1/HOST-REGISTRY-RESULTS-20261005.md)，证据review.json（历史附件，当前仓库未附：`tools/pose-v1/evidence/host-registry-20261005/review.json`）。成功范围为诊断本身，不是模型部署/首版验收。
 
 **Matmul执行目标静态核对补充**：原仓库quantized图130个Matmul含op1均为@zhuget(330)，adapted图132个也为ZG目标；最终ZG图的CPU计算节点无Matmul。此前CPU Matmul失败属于optimized图全CPU数值参考路径，未把正式部署矩阵计算迁到CPU，也未证明NPU不支持。此补充仅核对编译目标，未修改模型或执行NPU；具体见上述注册结果文档的路径澄清。
 
@@ -1907,11 +1909,11 @@ HDMI画面尺寸与视频扫描时序/像素时钟应分别核验；可编程RTL
 
 **目的与结果**：通过独立 PL 流水灯，验证“编写代码 → 行为仿真 → Procise 综合 → 布局布线与时序检查 → 生成位流 → JTAG 下载 → 实板观察”。各阶段已完成，现场确认“四颗 LED 按预期循环”，本次功能验收通过。
 
-**平台与工程**：悟净开发板 Lite，目标器件 `JFMQL30TAI676H`；原生 FPGA 实现使用 `C:\FudanMicro\Procise` 下的 Procise `2025.1.1 temp / SVN 32494`；纯 RTL 行为仿真使用现有 Vivado 2019.1 的 XSim。工程位于 [FPGA/lite_led_chaser](D:/FPGACompetitionProject/FPGA/lite_led_chaser/README.md)，不含厂商 IP。
+**平台与工程**：悟净开发板 Lite，目标器件 `JFMQL30TAI676H`；原生 FPGA 实现使用 `C:\FudanMicro\Procise` 下的 Procise `2025.1.1 temp / SVN 32494`；纯 RTL 行为仿真使用现有 Vivado 2019.1 的 XSim。工程位于 [FPGA/lite_led_chaser](FPGA/lite_led_chaser/README.md)，不含厂商 IP。
 
 **实现功能**：使用板载单端 100 MHz 时钟，每计数 25,000,000 个周期切换一颗 LED，按 PL_LED1→PL_LED2→PL_LED3→PL_LED4 循环，设计步长 0.25 秒、一圈 1 秒。25 位计数器初始为 0，四位灯状态初始为 `0001`；Procise 综合 EDIF 中核对了全部 29 个寄存器的 INIT。
 
-板级连接依据 [JFMQL30TAI_LITE.pdf](D:/FPGACompetitionProject/Docs/开发板手册/JFMQL30TAI_LITE.pdf) 实际 PDF 第 9、10、21、22 页，人工确认该图纸配套当前 30TAI Lite 板。
+板级连接依据 JFMQL30TAI_LITE.pdf（本机留存，仓库未附：`D:/FPGACompetitionProject/Docs/开发板手册/JFMQL30TAI_LITE.pdf`） 实际 PDF 第 9、10、21、22 页，人工确认该图纸配套当前 30TAI Lite 板。
 
 | 信号 | 引脚 | 电平/功能 |
 | --- | --- | --- |
@@ -1925,20 +1927,20 @@ BANK33/34 的 VCCO 为 1.5 V。LED 经 NDS331N 低侧开关驱动，FPGA 输出�
 
 | 验证环节 | 结果与证据 |
 | --- | --- |
-| 自检行为仿真 | XSim 2019.1 通过；分频值 1、7、19 各检查 200 个周期，覆盖初始化、切换边界、单灯顺序和循环回绕；[仿真日志](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/sim_20261001_115631_342b3c/simulate.stdout.log) |
+| 自检行为仿真 | XSim 2019.1 通过；分频值 1、7、19 各检查 200 个周期，覆盖初始化、切换边界、单灯顺序和循环回绕；[仿真日志](FPGA/lite_led_chaser/runs/sim_20261001_115631_342b3c/simulate.stdout.log) |
 | 原生综合与实现 | Procise 综合、布局布线完成；LC 13/19650、GCDU 1/32、IOU18M 4/72、IOU33M 1/48 |
-| 内部时序 | setup 裕量 4.740 ns、hold 裕量 0.170 ns；setup/hold 各 58 个端点，违例端点均为 0；无缺失时钟、未约束内部端点或组合环；[原生报告](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/rundir/lite_led_chaser_route.json) |
-| 位流复核 | 目标器件、placed FDC 引脚/电平、寄存器 INIT、仿真/构建/当前 RTL 哈希均已核对；StartupClk=JtagClk，UnconstrainedPins=Disallow；[复核记录](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/build-review.json) |
-| JTAG 下载 | Alinx 黑金下载器，实测序列号 `210512180081`；链中 `jfmql30` 为 part 0、IDCODE `0x9372c093`，`ps_dap` 为 part 1；2026-10-01 12:06 下载成功，STAT 回读 `0x40007ffc`；[下载记录](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/jtag_20261001_120606/program-result.json) |
+| 内部时序 | setup 裕量 4.740 ns、hold 裕量 0.170 ns；setup/hold 各 58 个端点，违例端点均为 0；无缺失时钟、未约束内部端点或组合环；[原生报告](FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/rundir/lite_led_chaser_route.json) |
+| 位流复核 | 目标器件、placed FDC 引脚/电平、寄存器 INIT、仿真/构建/当前 RTL 哈希均已核对；StartupClk=JtagClk，UnconstrainedPins=Disallow；[复核记录](FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/build-review.json) |
+| JTAG 下载 | Alinx 黑金下载器，实测序列号 `210512180081`；链中 `jfmql30` 为 part 0、IDCODE `0x9372c093`，`ps_dap` 为 part 1；2026-10-01 12:06 下载成功，STAT 回读 `0x40007ffc`；[下载记录](FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/jtag_20261001_120606/program-result.json) |
 | 实板功能 | 人工确认“四颗 LED 按预期循环”；没有使用仪器测量周期精度 |
 
-最终位流：[lite_led_chaser.bit](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/rundir/lite_led_chaser.bit)，5,980,582 字节；SHA-256 为 `a443d8f4bfde85eedc9de0e0328680cbb5d06c364f1113c55b14c4c6f4475eec`。该文件已通过 Procise 下载到 FPGA 易失配置，掉电失效；本次没有写 Flash 或更新 BOOT。
+最终位流：lite_led_chaser.bit（历史附件，当前仓库未附：`D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_120459_3fa8ba/rundir/lite_led_chaser.bit`），5,980,582 字节；SHA-256 为 `a443d8f4bfde85eedc9de0e0328680cbb5d06c364f1113c55b14c4c6f4475eec`。该文件已通过 Procise 下载到 FPGA 易失配置，掉电失效；本次没有写 Flash 或更新 BOOT。
 
 **验收边界**：本次通过的是独立 PL 流水灯和纯 RTL 行为仿真。四个 LED 输出在原生时序报告中保留 `no_output_delay`（High）：它们没有外部同步采样协议，未伪造输出延迟或用时序例外隐藏该项。复旦微网表/布线后仿真、Linux、DDR、PS 应用、DMA、AI 模型及系统接口未由本次测试验证。流水灯全流程使用原生脚本完成，没有通过 MCP 执行。
 
 ### 对后续开发的参考
 
-1. **已有可复现的原生起点。** [工程说明](D:/FPGACompetitionProject/FPGA/lite_led_chaser/README.md) 及 `scripts` 中的 `Simulate.ps1`、`Build.ps1`、`ReviewBuild.py`、`Program.ps1` 可作为小型纯 RTL 工程的流程参考。后续设计仍需自己的功能规格、自检仿真和原生实现报告；含 PS、DDR、AI 或专用 IP 的系统工程需另行核对流程。
+1. **已有可复现的原生起点。** [工程说明](FPGA/lite_led_chaser/README.md) 及 `scripts` 中的 `Simulate.ps1`、`Build.ps1`、`ReviewBuild.py`、`Program.ps1` 可作为小型纯 RTL 工程的流程参考。后续设计仍需自己的功能规格、自检仿真和原生实现报告；含 PS、DDR、AI 或专用 IP 的系统工程需另行核对流程。
 2. **先从当前 Lite 原理图确认板级条件。** 本次实测可参考 AC14 时钟和四颗 LED 的引脚、电平、有效极性；不能仅根据 LED 的 3.3 V 供电推定 FPGA 输出应使用 LVCMOS33，也不能直接套用完整版开发板约束。其他外设须逐项核对封装、BANK 电压、时钟与接口要求。
 3. **注意 Procise 的真实命令和目录行为。** 原生构建使用 `launch_run -stage bitstream`；JTAG 启动显式设置 `bitgen lite_led_chaser.bit -g StartupClk:JtagClk`。本机 `launch_run` 完成后回到工程根目录，追加位流生成前应显式切到 `rundir`；否则会生成另一份同名文件。本次复核发现目录差异后停止下载，修正并重新构建才上板。
 4. **下载器显示名与 Tcl 参数需要实测核对。** 本机显示 `DIGILENT/JTAG-HS1`，`init_chain` 实际接受 `usb-jtag-hs1`；大写显示名返回参数错误。`program_bit ... -part 0` 中的 0 是本次实际 FPGA 链序号，不是器件数量。更换板卡、下载器或连接方式后应重新枚举和扫链。
@@ -1951,11 +1953,11 @@ MCP 初始状态补记（2026-10-01，原生流水灯完成时）：已自行接
 
 ### 工程内容总结
 
-首版范围后，新建 [tools/procise_mcp](D:/FPGACompetitionProject/tools/procise_mcp/README.md)，在 `.local/procise-mcp-venv` 独立安装官方 MCP SDK 2.2.0。七个限定工具实现环境探测、报告读取、流水灯异步构建、状态/日志、产物和复核。真实 stdio 客户端已完成 initialize/list/call 和一次通过复核的新 Procise 构建；内部时序、五引脚/电平、29 INIT、JtagClk、源码/仿真一致性通过，非法调用正确映射为失败。[协议证据](D:/FPGACompetitionProject/tools/mcp-validation/procise-stdio-validation.json)。首次 BGN `Disallow*` 误判已修正并保留失败记录。
+首版范围后，新建 [tools/procise_mcp](tools/procise_mcp/README.md)，在 `.local/procise-mcp-venv` 独立安装官方 MCP SDK 2.2.0。七个限定工具实现环境探测、报告读取、流水灯异步构建、状态/日志、产物和复核。真实 stdio 客户端已完成 initialize/list/call 和一次通过复核的新 Procise 构建；内部时序、五引脚/电平、29 INIT、JtagClk、源码/仿真一致性通过，非法调用正确映射为失败。[协议证据](tools/mcp-validation/procise-stdio-validation.json)。首次 BGN `Disallow*` 误判已修正并保留失败记录。
 
 首阶段新作业为 `build_20261001_164532_c8ce42`；日志 BOM 识别适配和复验，最新 `build_20261001_170101_78f11a` 已用独立 MCP 新仿真完成完整复核。新位流均未下载。原来已上板的位流、复核和观察记录保持原状态；本次没有 Flash/BOOT 操作。首版也不提供任意 Tcl/JTAG、取消或服务重启恢复。
 
-Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未改安装的独立 stdio 客户端已通过 Vivado 2019.1 会话、Tcl 错误后继续调用和经现有脚本执行的 XSim 自检。[独立协议证据](D:/FPGACompetitionProject/tools/mcp-validation/vivado-stdio-validation.json)。当前工具会话原先启动失败，经逐项批准的诊断确定两个架构环境变量为空，厂商启动器误选不存在的 32 位程序；仅给测试子进程补 AMD64 后，当前工具会话会话、版本、错误恢复和 XSim 自检也通过，已关闭测试会话。[当前工具会话证据](D:/FPGACompetitionProject/tools/mcp-validation/vivado-live-validation.json)。长期配置未修正。
+Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未改安装的独立 stdio 客户端已通过 Vivado 2019.1 会话、Tcl 错误后继续调用和经现有脚本执行的 XSim 自检。[独立协议证据](tools/mcp-validation/vivado-stdio-validation.json)。当前工具会话原先启动失败，经逐项批准的诊断确定两个架构环境变量为空，厂商启动器误选不存在的 32 位程序；仅给测试子进程补 AMD64 后，当前工具会话会话、版本、错误恢复和 XSim 自检也通过，已关闭测试会话。[当前工具会话证据](tools/mcp-validation/vivado-live-validation.json)。长期配置未修正。
 
 ### 对后续开发的参考
 
@@ -1964,13 +1966,13 @@ Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未�
 3. 区分独立协议客户端、当前工具会话工具发现、后端完成、产物复核和实板功能。成功状态只能覆盖实际验证的阶段。
 4. PowerShell 5.1 新 XSim 日志为 UTF-16；批准的 BOM 识别适配已验证 PASS/ERROR 文本保留，并用新 MCP 仿真通过完整复核。编码与工具外层状态都应与真实日志交叉检查。
 
-证据和长期修复讨论候选集中在 [RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/RESULTS.md)，根资料索引为 `REFERENCES.md` 第 14 节。Procise 项目配置已批准并写入、CLI 读取正确，但暂不重载，当前工具会话 Procise 调用验收保留待办。Vivado 仅实施已批准的临时子进程修正，不把本次通过扩展为持久配置、GUI/IP 或厂商网表仿真已验收。
+证据和长期修复讨论候选集中在 [RESULTS.md](tools/mcp-validation/RESULTS.md)，根资料索引为 `REFERENCES.md` 第 14 节。Procise 项目配置已批准并写入、CLI 读取正确，但暂不重载，当前工具会话 Procise 调用验收保留待办。Vivado 仅实施已批准的临时子进程修正，不把本次通过扩展为持久配置、GUI/IP 或厂商网表仿真已验收。
 
 ## 2026-10-01：Vivado MCP 长期架构配置
 
 ### 工程内容总结
 
-本轮设计要求实施此前讨论的长期方案，已仅在用户级 Codex 配置的 `[mcp_servers.vivado.env]` 增加 `PROCESSOR_ARCHITECTURE="AMD64"`，避免变量缺失时厂商启动器误选不存在的 32 位 Vivado；其他配置原始字节保留，原文件已备份。读取实际 Codex 配置的新 stdio MCP 进程直接启动 Vivado 2019.1，并回读 AMD64，通过后关闭测试会话，未使用临时启动器。[修改及备份记录](D:/FPGACompetitionProject/tools/mcp-validation/vivado-permanent-config-change.json)、[验证证据](D:/FPGACompetitionProject/tools/mcp-validation/vivado-permanent-config-validation.json)。
+本轮设计要求实施此前讨论的长期方案，已仅在用户级 Codex 配置的 `[mcp_servers.vivado.env]` 增加 `PROCESSOR_ARCHITECTURE="AMD64"`，避免变量缺失时厂商启动器误选不存在的 32 位 Vivado；其他配置原始字节保留，原文件已备份。读取实际 Codex 配置的新 stdio MCP 进程直接启动 Vivado 2019.1，并回读 AMD64，通过后关闭测试会话，未使用临时启动器。[修改及备份记录](tools/mcp-validation/vivado-permanent-config-change.json)、[验证证据](tools/mcp-validation/vivado-permanent-config-validation.json)。
 
 ### 对后续开发的参考
 
@@ -1980,21 +1982,21 @@ Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未�
 
 ### 工程内容总结
 
-现场反馈已重载 Procise/Vivado MCP，并明确批准 [具体方案](D:/FPGACompetitionProject/tools/mcp-validation/led1324/PLAN.md)，随后明确授权新位流下载。已完成 **Vivado MCP 写入源码 → XSim 2019.1 自检 → Procise MCP 原生综合、布局布线 → 生成位流 → 产物复核 → Procise 原生 JTAG 下载 → 实板观察**，各阶段通过。目标为悟净 Lite / `JFMQL30TAI676H`；Vivado 按长期配置直接启动并回读 2019.1/AMD64，无临时启动器；Procise 环境探测为 2025.1.1 temp / SVN 32494，七工具均实际调用。下载环节为原生 Procise，未增加 MCP JTAG 能力。
+现场反馈已重载 Procise/Vivado MCP，并明确批准 [具体方案](tools/mcp-validation/led1324/PLAN.md)，随后明确授权新位流下载。已完成 **Vivado MCP 写入源码 → XSim 2019.1 自检 → Procise MCP 原生综合、布局布线 → 生成位流 → 产物复核 → Procise 原生 JTAG 下载 → 实板观察**，各阶段通过。目标为悟净 Lite / `JFMQL30TAI676H`；Vivado 按长期配置直接启动并回读 2019.1/AMD64，无临时启动器；Procise 环境探测为 2025.1.1 temp / SVN 32494，七工具均实际调用。下载环节为原生 Procise，未增加 MCP JTAG 能力。
 
-复用 [lite_led_chaser 工程](D:/FPGACompetitionProject/FPGA/lite_led_chaser/README.md)，修改前将旧 RTL/testbench 备份至 `revisions/led_1234_before_1324`。当前灯序为 LED1→3→2→4→1，仍使用原 100 MHz、25,000,000 周期/步、0.25 秒单灯步长，既定 FDC 和所有执行脚本未改。testbench 以独立预期表检查分频 1/7/19 各 200 周期，实际状态 `0001→0100→0010→1000→0001`，1996 ns 正常结束并打印 PASS。
+复用 [lite_led_chaser 工程](FPGA/lite_led_chaser/README.md)，修改前将旧 RTL/testbench 备份至 `revisions/led_1234_before_1324`。当前灯序为 LED1→3→2→4→1，仍使用原 100 MHz、25,000,000 周期/步、0.25 秒单灯步长，既定 FDC 和所有执行脚本未改。testbench 以独立预期表检查分频 1/7/19 各 200 周期，实际状态 `0001→0100→0010→1000→0001`，1996 ns 正常结束并打印 PASS。
 
 | 环节 | 结果 |
 | --- | --- |
-| 仿真 | 当前工具会话 Vivado MCP 经 `run_tcl exec` 驱动已有 XSim 脚本；[日志](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/sim_20261001_182621_aa641e/simulate.stdout.log) |
+| 仿真 | 当前工具会话 Vivado MCP 经 `run_tcl exec` 驱动已有 XSim 脚本；[日志](FPGA/lite_led_chaser/runs/sim_20261001_182621_aa641e/simulate.stdout.log) |
 | Procise 实现 | 作业 `5c5f8f383cd74afa87915adc67921a80`，目录 `build_20261001_183334_5f3fc1`，状态 reviewed、退出码 0；LC 11/19650 |
 | 内部时序 | setup/hold 裕量 5.962/0.192 ns，各 58 个端点，违例均 0；无缺失时钟、未约束内部端点或组合环；四 LED 的 `no_output_delay` 保留 |
-| 位流复核 | 五引脚/电平、29 INIT、JFMQL30TAI676H、JtagClk、当前/仿真/构建 RTL 哈希一致；[复核记录](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/build-review.json) |
-| 原始证据 | MCP 时序/时钟/检查计数等于原生报告；产物大小/哈希等于磁盘；[独立核对](D:/FPGACompetitionProject/tools/mcp-validation/led1324/verification.json) |
-| 新位流下载 | 18:50（北京时间）由 Procise 原生 JTAG 下载到 `jfmql30` part 0，退出码 0、SVF 成功，STAT=`0x40007ffc`；[下载与现场确认](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json) |
+| 位流复核 | 五引脚/电平、29 INIT、JFMQL30TAI676H、JtagClk、当前/仿真/构建 RTL 哈希一致；[复核记录](FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/build-review.json) |
+| 原始证据 | MCP 时序/时钟/检查计数等于原生报告；产物大小/哈希等于磁盘；[独立核对](tools/mcp-validation/led1324/verification.json) |
+| 新位流下载 | 18:50（北京时间）由 Procise 原生 JTAG 下载到 `jfmql30` part 0，退出码 0、SVF 成功，STAT=`0x40007ffc`；[下载与现场确认](FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json) |
 | 实板功能 | 现场确认“灯序和速度均符合预期”，LED1→3→2→4→1，约 0.25 秒/步、单灯循环；未用仪器测量周期精度 |
 
-最终 [lite_led_chaser.bit](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/rundir/lite_led_chaser.bit)：5,980,582 字节，SHA-256 `285356540f63f5b1a150827777f8e5e411843718976590db0cb39739b5ef7c18`。**同一份新位流已下载并通过实板观察**，详细下载记录见下节。为 FPGA 易失配置，掉电失效，未写 Flash/BOOT；未进行整份配置读回。原 LED1→2→3→4 上板证据保留。MCP 服务/配置与 EDA 安装未改，本次 Vivado Tcl 会话已关闭。
+最终 lite_led_chaser.bit（历史附件，当前仓库未附：`D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/rundir/lite_led_chaser.bit`）：5,980,582 字节，SHA-256 `285356540f63f5b1a150827777f8e5e411843718976590db0cb39739b5ef7c18`。**同一份新位流已下载并通过实板观察**，详细下载记录见下节。为 FPGA 易失配置，掉电失效，未写 Flash/BOOT；未进行整份配置读回。原 LED1→2→3→4 上板证据保留。MCP 服务/配置与 EDA 安装未改，本次 Vivado Tcl 会话已关闭。
 
 ### 对后续开发的参考
 
@@ -2004,7 +2006,7 @@ Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未�
 4. 首版仍限当前流水灯工程；没有通用工程、任意 Tcl、下载、取消或重启恢复能力。含 IP/原语、PS/DDR/AI 或高速外部接口的设计须继续核对适配，且本次不证明网表/布线后仿真或完整接口时序。
 5. 本次用的是自写纯 RTL，**没有使用 Vivado 现成 IP**。其成功证明前端行为仿真与 Procise 原生实现能够衔接，不能据此认定 Vivado IP、DCP、XCI 或加密源码已经适配复旦微；现成 IP 的复用需另行核对实际综合源码、依赖及厂商迁移流程。
 
-完整步骤与实际返回见 [led1324/RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/led1324/RESULTS.md)，索引见 `REFERENCES.md` 14.2。
+完整步骤与实际返回见 [led1324/RESULTS.md](tools/mcp-validation/led1324/RESULTS.md)，索引见 `REFERENCES.md` 14.2。
 
 ## 2026-10-01：新灯序位流 JTAG 下载与实板验收
 
@@ -2016,7 +2018,7 @@ Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未�
 
 现场确认 **“灯序和速度均符合预期”**，对应 LED1→3→2→4→1、约 0.25 秒/步、同一时刻单灯。新灯序实板功能验收通过，至此“Vivado MCP 写入代码与 XSim 行为仿真 → Procise MCP 综合/布局布线/位流及复核 → Procise 原生 JTAG 下载 → 实板观察”完成。下载属于 FPGA 易失配置、掉电失效，未写 Flash/BOOT；未用仪器测量周期精度，也未整份配置读回比对。
 
-证据：[下载与人工确认](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json)、[原始下载日志](D:/FPGACompetitionProject/FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/download.stdout.log)、[板上验证记录](D:/FPGACompetitionProject/tools/mcp-validation/led1324/board-validation.json)。新构建复核记录补充了本次观察与下载入口；旧灯序上板记录、源码备份和原位流保留。
+证据：[下载与人工确认](FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/program-result.json)、[原始下载日志](FPGA/lite_led_chaser/runs/build_20261001_183334_5f3fc1/jtag_20261001_184939/download.stdout.log)、[板上验证记录](tools/mcp-validation/led1324/board-validation.json)。新构建复核记录补充了本次观察与下载入口；旧灯序上板记录、源码备份和原位流保留。
 
 ### 对后续开发的参考
 
@@ -2024,15 +2026,15 @@ Vivado MCP 当前工具会话的 XPR 离线解析已与原始 XML 核对；未�
 2. 下载工具成功、STAT 回读与观察提供不同阶段的证据。LED 灯序和约定步长通过，不等于仪器精度测量、完整配置读回或其他接口功能验收。
 3. 目前可复用 MCP 前端仿真/后端构建，再用既有 Procise 原生脚本进行明确授权的下载。下载并未通过 MCP，首版 MCP 仍无 JTAG/Flash 工具；增加这些能力或扩展到其他设计须先讨论批准。
 
-资料索引见 `REFERENCES.md` 14.3，完整当前工程结果见 [led1324/RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/led1324/RESULTS.md)。
+资料索引见 `REFERENCES.md` 14.3，完整当前工程结果见 [led1324/RESULTS.md](tools/mcp-validation/led1324/RESULTS.md)。
 
 ## 2026-10-01：Vivado 真实 xlconcat IP → Procise 原生实现 → Lite 实板验证
 
 ### 工程内容总结
 
-**目标与结果**：在此前纯 RTL 流水灯已通过的基础上，验证“使用 Vivado 现成 IP，由 Vivado MCP 生成/编写/仿真，再由 Procise 原生综合和生成位流，最后下载 Lite”。 [xlconcat 最小方案](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/PLAN.md)，全流程已完成；现场确认 **“灯序、速度和单灯状态均符合预期”**。
+**目标与结果**：在此前纯 RTL 流水灯已通过的基础上，验证“使用 Vivado 现成 IP，由 Vivado MCP 生成/编写/仿真，再由 Procise 原生综合和生成位流，最后下载 Lite”。 [xlconcat 最小方案](tools/mcp-validation/ip-reuse/PLAN.md)，全流程已完成；现场确认 **“灯序、速度和单灯状态均符合预期”**。
 
-**平台与实现**：新建独立 [lite_led_ip_bridge 工程](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/README.md)。前端为当前工具会话 Vivado 2019.1 MCP / XSim；物理目标为悟净 Lite / `JFMQL30TAI676H`，综合/布局布线/时序/位流与 JTAG 均由 Procise `2025.1.1 temp / SVN 32494` 原生批处理执行。`xc7z030ffg676-2` 只用于 IP 生成/仿真元数据，未作为实板器件；本次未扩展固定旧工程的 Procise MCP，也未改 MCP 配置、EDA 安装、数据库或加载 JFM hook。
+**平台与实现**：新建独立 [lite_led_ip_bridge 工程](FPGA/lite_led_ip_bridge/README.md)。前端为当前工具会话 Vivado 2019.1 MCP / XSim；物理目标为悟净 Lite / `JFMQL30TAI676H`，综合/布局布线/时序/位流与 JTAG 均由 Procise `2025.1.1 temp / SVN 32494` 原生批处理执行。`xc7z030ffg676-2` 只用于 IP 生成/仿真元数据，未作为实板器件；本次未扩展固定旧工程的 Procise MCP，也未改 MCP 配置、EDA 安装、数据库或加载 JFM hook。
 
 Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bit 输入，生成完整 HDL 和 XCI；源码闭包为顶层 → 生成的 `led_state_concat` 综合包装器 → 厂商 `xlconcat_v2_1_3_xlconcat`。将 state[3]/[2]/[0]/[1] 接到 In0/1/2/3，使 dout 参与灯状态更新，仍是 LED1→3→2→4→1、100 MHz、25,000,000 周期/步、0.25 秒步长。原已验证的 AC14/J1/M6/H7/J8 与 LVCMOS33/LVCMOS15 约束逐字节复用。
 
@@ -2040,15 +2042,15 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 | 环节 | 结果与证据 |
 | --- | --- |
-| 真实 IP 与源码 | 包装器/库无新增原语、加密或包含文件依赖；参数和三模块闭包核对；[来源与哈希清单](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/source-manifest.json) |
-| Vivado MCP / XSim | IP 全部 16 种输入通过独立真值表；流水灯分频 1/7/19 各检查 200 周期，初始化、步进、单灯和回绕通过；1996 ns 正常结束；[仿真日志](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/sim_20261001_193106_688cd5/simulate.stdout.log) |
-| Procise 原生实现 | 构建 `build_20261001_193157_bef06d`；LC 11/19650、GCDU 1/32；setup/hold 裕量 5.962/0.192 ns，各 58 端点、违例 0；[原始实现报告](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/rundir/lite_led_chaser_route.json) |
-| 位流复核 | 五引脚/电平、29 INIT、JFMQL30TAI676H、JtagClk、全部设计源码一致性通过；综合网表无遗留 IP 黑盒、单元引用均有定义；四 LED 的 no_output_delay 保留；[复核记录](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/build-review.json) |
-| 下载与实板 | 19:34（北京时间）重新扫链，经 `usb-jtag-hs1` / `210512180081` 下载到 jfmql30 part 0 / IDCODE 0x9372c093；退出码 0、SVF 成功、STAT=0x40007ffc；现场确认灯序、速度和单灯状态通过；[下载与人工确认](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/jtag_20261001_193337/program-result.json) |
+| 真实 IP 与源码 | 包装器/库无新增原语、加密或包含文件依赖；参数和三模块闭包核对；[来源与哈希清单](FPGA/lite_led_ip_bridge/source-manifest.json) |
+| Vivado MCP / XSim | IP 全部 16 种输入通过独立真值表；流水灯分频 1/7/19 各检查 200 周期，初始化、步进、单灯和回绕通过；1996 ns 正常结束；[仿真日志](FPGA/lite_led_ip_bridge/runs/sim_20261001_193106_688cd5/simulate.stdout.log) |
+| Procise 原生实现 | 构建 `build_20261001_193157_bef06d`；LC 11/19650、GCDU 1/32；setup/hold 裕量 5.962/0.192 ns，各 58 端点、违例 0；[原始实现报告](FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/rundir/lite_led_chaser_route.json) |
+| 位流复核 | 五引脚/电平、29 INIT、JFMQL30TAI676H、JtagClk、全部设计源码一致性通过；综合网表无遗留 IP 黑盒、单元引用均有定义；四 LED 的 no_output_delay 保留；[复核记录](FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/build-review.json) |
+| 下载与实板 | 19:34（北京时间）重新扫链，经 `usb-jtag-hs1` / `210512180081` 下载到 jfmql30 part 0 / IDCODE 0x9372c093；退出码 0、SVF 成功、STAT=0x40007ffc；现场确认灯序、速度和单灯状态通过；[下载与人工确认](FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/jtag_20261001_193337/program-result.json) |
 
-最终 [lite_led_chaser.bit](D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/rundir/lite_led_chaser.bit) 为 5,980,582 字节；SHA-256 `00c833bb65fec1573ecf0a8cf59c45c50cff76ab7f0a3398696c43be4f608c56`，已下载并通过实板观察。原始报告字段/磁盘哈希与复核、源码三处一致性和旧工程保留核对见 [verification.json](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/verification.json)。
+最终 lite_led_chaser.bit（历史附件，当前仓库未附：`D:/FPGACompetitionProject/FPGA/lite_led_ip_bridge/runs/build_20261001_193157_bef06d/rundir/lite_led_chaser.bit`） 为 5,980,582 字节；SHA-256 `00c833bb65fec1573ecf0a8cf59c45c50cff76ab7f0a3398696c43be4f608c56`，已下载并通过实板观察。原始报告字段/磁盘哈希与复核、源码三处一致性和旧工程保留核对见 [verification.json](tools/mcp-validation/ip-reuse/verification.json)。
 
-验收为 FPGA 易失配置、行为仿真、原生内部时序和肉眼观察；没有 Flash/BOOT、布线后仿真、仪器周期测量或整份配置读回。Vivado IPI-only/checkpoint 属性提示及 Procise 未使用端口等日志保留，厂商源码未修剪；说明见 [RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/RESULTS.md)。
+验收为 FPGA 易失配置、行为仿真、原生内部时序和肉眼观察；没有 Flash/BOOT、布线后仿真、仪器周期测量或整份配置读回。Vivado IPI-only/checkpoint 属性提示及 Procise 未使用端口等日志保留，厂商源码未修剪；说明见 [RESULTS.md](tools/mcp-validation/ip-reuse/RESULTS.md)。
 
 ### 对后续开发的参考
 
@@ -2058,7 +2060,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 4. **MCP 收益是入口与证据整合。** 本次新工程使用 Procise 原生批处理，首版 Procise MCP 仍固定旧工程，无 JTAG/Flash 能力；扩大工程范围或增加能力仍须讨论批准。Concat 实现的 LC/时序恰与此前同灯序 RTL 相同，不构成 MCP 或 IP 性能提升证据。
 5. **保留小型独立试验。** 新工程、真实生成产品、来源清单、自检、原生报告、位流及本次人工确认均独立保存，适合后续 IP 适配方法参考；复杂工程仍需自己的功能与接口验收。
 
-完整结果见 [ip-reuse/RESULTS.md](D:/FPGACompetitionProject/tools/mcp-validation/ip-reuse/RESULTS.md)，资料索引为 `REFERENCES.md` 14.4。根目录 AGENTS.md 已明确统一采用“工程内容总结＋对后续开发的参考”记录完成的开发/验证。
+完整结果见 [ip-reuse/RESULTS.md](tools/mcp-validation/ip-reuse/RESULTS.md)，资料索引为 `REFERENCES.md` 14.4。根目录 AGENTS.md 已明确统一采用“工程内容总结＋对后续开发的参考”记录完成的开发/验证。
 
 
 ## 2026-10-01：SD 镜像校验失败的只读核对
@@ -2069,7 +2071,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 已完成：顺序读取全部镜像数据（跳过 512 字节头），312.28 秒完成 MD5/SHA1 计算，得到 `9AFB0B00F198933AFAE1D90657E924A3` / `0A4A3A1A5736EF8783FE6C2AC5D73213EA1A730B`，与镜像头和截图 Image 值均相符。因此本地镜像的数据与自身内置校验值一致，未证明与另行提供的厂商权威摘要一致。当前 Disk 3 / USB 序列号 121220160204 的两个分区起始和大小与镜像 MBR 相符；直接只读打开 PhysicalDrive3 被 Windows 权限拒绝，未完成卡扇区抽样或全盘读回。记录说明标称 64GB、已失败两次、校验期间未打开 E/F，首次尝试格式化后取消（取消阶段尚未明确）；商品图标示 VDISCO，读卡器型号仍未明确。未确诊卡损坏、假容量、读卡器问题或系统修改数据。
 
-证据：[只读核对记录](D:/FPGACompetitionProject/tools/sd-image-validation/20261001-source-check.json)。没有下载/更新工具、重写/格式化 SD 卡、进行容量写入测试或启动开发板；源镜像未修改。
+证据：[只读核对记录](tools/sd-image-validation/20261001-source-check.json)。没有下载/更新工具、重写/格式化 SD 卡、进行容量写入测试或启动开发板；源镜像未修改。
 
 ### 对后续开发的参考
 
@@ -2085,7 +2087,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 按源 FAT16 目录/簇链提取 9 个启动文件的 SHA256，与卡 E: 文件相比仅 FSBL 匹配，8 个不匹配。BOOT.bin 大小均为 7,023,552 字节，3,445,904 字节不同；源首部 fe ff ff ea，卡首部为类似 FAT 目录的 IMAGE 数据。uEnv.txt 1,499 字节中 1,496 字节不同，卡中不是源启动文本。安全弹出并重新插拔 USB 读卡器后，独立重新枚举和复读仍为 8/9 不匹配，BOOT 等 7 文件摘要发生变化。随后补充教程要求参考 BOOT 替换，已将其指定 Lite 目录 BOOT.bin 作为额外比较目标：源 SHA256=ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef，卡 SHA256=6ec99ec782642a5053178fdd2e6f696f69a030724ae866dcd91516ced84d238b，2,254,275字节不同且卡当前首64字节全零。不能仅用 BOOT 与原镜像不同作为异常证据；其与指定参考也不同、启动头无效及其他文件异常为修正后的依据，见 reference-boot-comparison.json。人工确认没有备用读卡器，且在本次插卡启动之前已经执行指定参考 BOOT 替换。此结果确认当前启动介质内容异常、无法作为有效 SD 启动镜像使用，是已定位的启动阻断项；卡、读卡器、写入流程或文件系统异常的底层归因尚未完成，尚未验证修复后启动，未宣称板卡损坏或假容量。
 
-证据：[诊断报告](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/RESULTS.md)、[串口/JTAG 记录](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/diagnostic-status.json)、[源文件摘要](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/source-boot-manifest.json)、[逐字节比较](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/boot-byte-comparison.json)、[拔插后复读](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/card-after-replug.json)。PhysicalDrive3 只读打开仍被权限拒绝，未进行全盘扇区或真实容量验证。本次未主动改写卡文件、格式化、更新工具/永久配置、重置 PS、下载 FPGA 或写 Flash/BOOT；Windows 挂载访问可能更新文件系统元数据，不将跨挂载摘要变化单独等同于随机读错误。
+证据：[诊断报告](tools/boot-diagnostics/20261002/RESULTS.md)、[串口/JTAG 记录](tools/boot-diagnostics/20261002/diagnostic-status.json)、[源文件摘要](tools/boot-diagnostics/20261002/source-boot-manifest.json)、[逐字节比较](tools/boot-diagnostics/20261002/boot-byte-comparison.json)、[拔插后复读](tools/boot-diagnostics/20261002/card-after-replug.json)。PhysicalDrive3 只读打开仍被权限拒绝，未进行全盘扇区或真实容量验证。本次未主动改写卡文件、格式化、更新工具/永久配置、重置 PS、下载 FPGA 或写 Flash/BOOT；Windows 挂载访问可能更新文件系统元数据，不将跨挂载摘要变化单独等同于随机读错误。
 
 ### 对后续开发的参考
 
@@ -2100,19 +2102,19 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 重新制作后仍未进行写后校验，并明确本次尚未替换参考 BOOT；因此以原镜像全部文件为预期。相同读卡器/卡的两分区布局仍匹配，普通文件摘要仍8/9不匹配。不在电脑旁，本次USB拔插未完成；补充 Win32 FILE_FLAG_NO_BUFFERING 只读文件数据复核，使用本地参考uEnv控制文件确认方法摘要正确，再读9个卡文件仍仅FSBL匹配。BOOT.bin全部7,023,552字节和设备树全部15,996字节均为零，uEnv为非正常文本；卡/读卡器/写入链路异常仍成立，底层归因未完成。
 
-证据：[本次复核报告](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/remade_20261002_164505/RESULTS.md)、[无缓存读取](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/remade_20261002_164505/unbuffered-file-comparison.json)。NO_BUFFERING只绕过Windows文件数据缓存，未绕过文件系统元数据/硬件缓存；普通与无缓存内容不同时须分别记录，不直接认定随机硬件错误。未进行全盘、Linux根分区、真实容量或上板验收；没有改写SD/BOOT、格式化或板端操作。本次验证结果为不通过，不将重制写入完成提示当作验收。
+证据：[本次复核报告](tools/boot-diagnostics/20261002/remade_20261002_164505/RESULTS.md)、[无缓存读取](tools/boot-diagnostics/20261002/remade_20261002_164505/unbuffered-file-comparison.json)。NO_BUFFERING只绕过Windows文件数据缓存，未绕过文件系统元数据/硬件缓存；普通与无缓存内容不同时须分别记录，不直接认定随机硬件错误。未进行全盘、Linux根分区、真实容量或上板验收；没有改写SD/BOOT、格式化或板端操作。本次验证结果为不通过，不将重制写入完成提示当作验收。
 
 ### 更换绿联读卡器后的复核补充（2026-10-02 19:17）
 
 更换读卡器并重新制作，确认依然跳过校验且本次尚未替换参考BOOT。实际USB序列号000000000819、Generic STORAGE DEVICE USB Device，与旧设备不同；卡容量报告和两分区布局仍匹配。完成普通及无缓存文件读取、USB安全弹出/重插后的重新枚举和复读；仍仅FSBL匹配、其余8个不匹配。初读无缓存BOOT/DTB等全零；重插后BOOT不再整份全零，但首64字节仍全零、摘要c1969b87c628b890b871f7dcf77dcc746df5e48526d68f79e37398732b314c33且不匹配，DTB/uEnv头也异常。源镜像四个关键文件重新读取均与既有摘要相符。当前读卡器变化没有解决问题，不能仅归因旧读卡器；卡/软件/写入链路具体归因、全容量及实板启动仍待验证。
 
-证据：[新读卡器复核报告](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/new_reader_20261002_191749/RESULTS.md)、[重插后无缓存读取](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/new_reader_20261002_191749/unbuffered-file-comparison.json)、[源关键文件重新核对](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/new_reader_20261002_191749/fresh-source-check.json)。本次未改写SD/BOOT、格式化、全容量写入测试或板端操作。既有MEDIA-TEST-PLAN.md已更新新读卡器身份，仅作为待批准方案，未执行。制作应恢复写后校验；不能用品牌/报告容量或写入成功提示替代数据验证。
+证据：[新读卡器复核报告](tools/boot-diagnostics/20261002/new_reader_20261002_191749/RESULTS.md)、[重插后无缓存读取](tools/boot-diagnostics/20261002/new_reader_20261002_191749/unbuffered-file-comparison.json)、[源关键文件重新核对](tools/boot-diagnostics/20261002/new_reader_20261002_191749/fresh-source-check.json)。本次未改写SD/BOOT、格式化、全容量写入测试或板端操作。既有MEDIA-TEST-PLAN.md已更新新读卡器身份，仅作为待批准方案，未执行。制作应恢复写后校验；不能用品牌/报告容量或写入成功提示替代数据验证。
 
 ### H2testw结果分析补充（2026-10-02）
 
 自行运行H2testw并提交文本/截图：E:当前约1GiB FAT分区，测试可用950MiB，115MiB正确、835MiB丢失/错误（约87.9%），报告12.4MiB覆盖、822.5MiB损坏及2.9MiB地址别名，首错测试数据偏移0x07300000=115MiB。本次是局部分区可用空间测试，不是清卡后全64GB测试，115MiB正确也不证明真实物理容量。结合更换读卡器后系统文件异常，确认当前存储链路写读严重不一致，优先怀疑卡本身质量/控制器/容量异常，未单独确诊假容量或精确故障部件。
 
-证据：[测试及分析](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/RESULTS.md)、[原文与结构化记录](D:/FPGACompetitionProject/tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/interpretation.json)。测试人工执行，代理只读枚举当前新读卡器、保存证据与分析，没有格式化/写测试/重烧/板端操作。局部严重失败已足以拒绝当前介质可靠性；退换卡和其他设备交叉测试是建议，未写为已完成成果。
+证据：[测试及分析](tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/RESULTS.md)、[原文与结构化记录](tools/boot-diagnostics/20261002/user_h2testw_20261002_193901/interpretation.json)。测试人工执行，代理只读枚举当前新读卡器、保存证据与分析，没有格式化/写测试/重烧/板端操作。局部严重失败已足以拒绝当前介质可靠性；退换卡和其他设备交叉测试是建议，未写为已完成成果。
 
 ## 2026-10-02：更换 SD 卡后基本启动通过及项目状态同步
 
@@ -2120,7 +2122,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 目标：同步最新现场进度，更新当前 SD 启动状态并区分旧卡历史故障。平台/工具基线为悟净开发板 Lite、既定 icraft_v3_ubuntu20.04_aarch64_sd_image.bin 镜像；开发工具继续沿用 Procise 2025.1.1 temp 和 Icraft 3.39.0，本次没有调用 EDA/Icraft 或核验板端软件版本。
 
-明确报告：已更换 SD 卡、完成 SD 启动卡制作和上板验证，串口正常输出信息，能够登录进系统。上述基本启动/串口登录由现场确认通过；代理本轮已同步 AGENTS.md、REFERENCES.md 第 15 节、旧卡诊断报告顶部说明及本条记录。证据来源为当前工具会话陈述，已保存为 [新卡现场确认记录](D:/FPGACompetitionProject/tools/sd-image-validation/20261002-new-card-board-confirmation.json)，未伪造串口日志或磁盘测量。
+明确报告：已更换 SD 卡、完成 SD 启动卡制作和上板验证，串口正常输出信息，能够登录进系统。上述基本启动/串口登录由现场确认通过；代理本轮已同步 AGENTS.md、REFERENCES.md 第 15 节、旧卡诊断报告顶部说明及本条记录。证据来源为当前工具会话陈述，已保存为 [新卡现场确认记录](tools/sd-image-validation/20261002-new-card-board-confirmation.json)，未伪造串口日志或磁盘测量。
 
 旧卡异常与 H2testw 失败证据保留，不能套用于新卡；旧卡精确故障仍未确诊。新卡实际分区/文件系统、全容量、启动组件哈希和板端 runtime 未独立核验；AI/模型功能未由本次基本启动覆盖。
 
@@ -2134,11 +2136,11 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 ### 板端查询结果补充（2026-10-03）
 
-通过串口执行既定四条只读查询并提交截图，已确认根设备 /dev/mmcblk0p2，ext4，挂载选项 rw,relatime；mmcblk0=58.3G，p1=1G，p2=26.1G。df 根文件系统26G、已用6.3G、可用18G、使用率26%。现有 /usr/sbin/resize2fs、/usr/sbin/sfdisk，未找到 growpart。上述为既有命令输出证据，更新 REFERENCES.md 15.1 和 [结构化记录](D:/FPGACompetitionProject/tools/sd-image-validation/20261002-new-card-board-confirmation.json)，截图保存为 [板端查询截图](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-board-preflight.png)。
+通过串口执行既定四条只读查询并提交截图，已确认根设备 /dev/mmcblk0p2，ext4，挂载选项 rw,relatime；mmcblk0=58.3G，p1=1G，p2=26.1G。df 根文件系统26G、已用6.3G、可用18G、使用率26%。现有 /usr/sbin/resize2fs、/usr/sbin/sfdisk，未找到 growpart。上述为既有命令输出证据，更新 REFERENCES.md 15.1 和 [结构化记录](tools/sd-image-validation/20261002-new-card-board-confirmation.json)，截图保存为 [板端查询截图](tools/sd-image-validation/20261003-board-preflight.png)。
 
 分区表具体扇区布局和 sfdisk 版本仍待核对；扩容尚未执行/验收。代理本轮只核对输出、查询官方手册并补全文档，没有连接串口、安装软件或改写分区。后续可复用 findmnt 的实际根设备定位与 df 的文件系统容量对照；不能仅凭卡的 lsblk 总容量推定根文件系统已扩容，也不对正在挂载的根分区执行离线 fsck。
 
-随后补充 [实际分区表截图](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-partition-table.png)，更新上述待核对状态：sfdisk 2.34、DOS/MBR、ID 0x370deffb、总122167296个512字节扇区；p1 start/size/type=2048/2097152/e，p2=2101248/54687500/83（末扇区56788747）。已完成布局与长度计算核对，形成 [人工操作命令及逐条说明](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-expand-root-COMMANDS.md)，目标p2 size=120066048、end=122167295、约57.25GiB，REFERENCES.md 15.2及结构化记录已同步。分区表备份、预演、正式写入、重启读取边界及resize2fs均为待人工操作步骤，不写为板端完成。后续复用须重新取得实际磁盘扇区和分区边界；只扩大末尾、保留起始及类型，并区分卡上的分区表与内核已加载边界。
+随后补充 [实际分区表截图](tools/sd-image-validation/20261003-partition-table.png)，更新上述待核对状态：sfdisk 2.34、DOS/MBR、ID 0x370deffb、总122167296个512字节扇区；p1 start/size/type=2048/2097152/e，p2=2101248/54687500/83（末扇区56788747）。已完成布局与长度计算核对，形成 [人工操作命令及逐条说明](tools/sd-image-validation/20261003-expand-root-COMMANDS.md)，目标p2 size=120066048、end=122167295、约57.25GiB，REFERENCES.md 15.2及结构化记录已同步。分区表备份、预演、正式写入、重启读取边界及resize2fs均为待人工操作步骤，不写为板端完成。后续复用须重新取得实际磁盘扇区和分区边界；只扩大末尾、保留起始及类型，并区分卡上的分区表与内核已加载边界。
 
 ### 系统分区扩容验收补充（2026-10-03，更新上述待执行状态）
 
@@ -2146,7 +2148,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 目标：利用新SD卡尾部连续未分配空间，扩大悟净Lite板载Ubuntu的第二分区及ext4根文件系统。平台为既定icraft_v3_ubuntu20.04_aarch64_sd_image.bin启动系统，实际根设备/dev/mmcblk0p2；分区工具sfdisk（util-linux 2.34），文件系统工具resize2fs 1.45.5（07-Jan-2020）。操作人工通过串口以root执行，代理提供逐条命令、核对截图并记录结果；未使用Procise/Icraft执行本次扩容。
 
-人工确认“已经成功完成扩容”，并提交 [扩容成功串口截图](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-expansion-success.png)。截图直接支持的结果如下：
+人工确认“已经成功完成扩容”，并提交 [扩容成功串口截图](tools/sd-image-validation/20261003-expansion-success.png)。截图直接支持的结果如下：
 
 - 登录后的`cat /sys/class/block/mmcblk0p2/size`返回120066048，与本卡目标分区长度一致。
 - `findmnt -no SOURCE,FSTYPE,OPTIONS /`返回`/dev/mmcblk0p2 ext4 rw,relatime`，根分区仍正确挂载且可写。
@@ -2156,7 +2158,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 验收结论：人工操作并以现场截图确认本次SD第二分区和ext4根文件系统扩容通过；本次实际板端内核支持该根文件系统的在线扩容。截图记录了登录后的长度核对、在线resize和最终容量，预演、分区表备份及正式写表退出码未包含在本张截图中，不将其写成代理独立采集验证。没有全容量写读测试、扩容后额外重启或长期稳定性证据；不将此次通过扩大为AI/模型、runtime兼容性或其他板卡/镜像的验收。
 
-证据入口：[扩容前查询截图](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-board-preflight.png)、[原始分区表截图](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-partition-table.png)、[本次具体命令](D:/FPGACompetitionProject/tools/sd-image-validation/20261003-expand-root-COMMANDS.md)、[新卡及扩容结构化记录](D:/FPGACompetitionProject/tools/sd-image-validation/20261002-new-card-board-confirmation.json)。本补充更新同一工作此前的“扩容待执行/验收”状态，保留准备阶段和旧卡历史记录。
+证据入口：[扩容前查询截图](tools/sd-image-validation/20261003-board-preflight.png)、[原始分区表截图](tools/sd-image-validation/20261003-partition-table.png)、[本次具体命令](tools/sd-image-validation/20261003-expand-root-COMMANDS.md)、[新卡及扩容结构化记录](tools/sd-image-validation/20261002-new-card-board-confirmation.json)。本补充更新同一工作此前的“扩容待执行/验收”状态，保留准备阶段和旧卡历史记录。
 
 #### 对后续开发的参考
 
@@ -2172,10 +2174,10 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 **目标与完成内容**：同步最新开发环境，核对资料并更新后续执行上下文。平台为悟净Lite、既定SD启动Ubuntu系统、Windows10主机；主机Procise/Icraft继续采用既有版本。已完成以下操作：
 
 1. 使用SD卡启动悟净开发板，网线连接主机，在MobaXterm中通过SSH进行开发和通信。
-2. 将 [指定30TAI&100TAI目录](<D:/Dowload from Chrome/嵌赛资料/Icraft/Icraft_V3.39.0安装包/30TAI&100TAI/30TAI&100TAI>) 中的板端Icraft开发工具传输到板上并完成安装；随后明确确认CustomOp板端包也已安装。
+2. 将 指定30TAI&100TAI目录（本机路径，仓库未附：`D:/Dowload from Chrome/嵌赛资料/Icraft/Icraft_V3.39.0安装包/30TAI&100TAI/30TAI&100TAI`） 中的板端Icraft开发工具传输到板上并完成安装；随后明确确认CustomOp板端包也已安装。
 3. 在本机搭建Docker交叉编译环境、配置相关工具链；随后明确确认 **FPAI是容器名**。
 
-上述环境准备和SSH使用状态由人工确认，代理没有执行或独立重测。代理本轮先查REFERENCES.md E1及原始自述文件，只读解析本地四份deb的control：Icraft/CustomOp的onchip包均为3.39.0、arm64，amd64包均为3.39.0、amd64。已更新AGENTS.md、REFERENCES.md基线及第16节，保存 [进度与](D:/FPGACompetitionProject/tools/development-environment/20261003-progress.json) 和 [本地安装包元数据](D:/FPGACompetitionProject/tools/development-environment/20261003-package-control.json)。
+上述环境准备和SSH使用状态由人工确认，代理没有执行或独立重测。代理本轮先查REFERENCES.md E1及原始自述文件，只读解析本地四份deb的control：Icraft/CustomOp的onchip包均为3.39.0、arm64，amd64包均为3.39.0、amd64。已更新AGENTS.md、REFERENCES.md基线及第16节，保存 [进度与](tools/development-environment/20261003-progress.json) 和 [本地安装包元数据](tools/development-environment/20261003-package-control.json)。
 
 **验收范围**：环境搭建/安装完成按人工反馈记录；本地包架构/版本来自代理只读核对。尚无板端实际包版本/安装路径、容器镜像与编译器/sysroot版本、“交叉编译→板端运行”或AI模型推理的独立测试输出，不将其写为已通过。代理本轮没有连接SSH、操作Docker、安装软件、编译、部署、下载FPGA或修改板端配置；此前SD扩容结果保持。
 
@@ -2186,7 +2188,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 3. 环境配置完成与编译产物可运行是不同证据。后续具体验证宜关联工具链/依赖、目标架构、传输产物和板端运行输出；具体操作方案仍依项目规范先讨论批准。
 4. 保持环境对象清晰：Windows执行既有Procise/Icraft任务；本机FPAI容器承担配置的交叉编译；Lite运行板端程序；远程Ubuntu服务器仍承担此前说明的算法训练。板端SSH不能推定训练服务器SSH已验证，koala仍与比赛无关。
 
-资料索引见 [REFERENCES.md第16节](D:/FPGACompetitionProject/REFERENCES.md)，本次没有选择新的参考位流、模型、接口或技术路线。
+资料索引见 [REFERENCES.md第16节](REFERENCES.md)，本次没有选择新的参考位流、模型、接口或技术路线。
 
 ## 2026-10-03：2026姿态模型迁移实现、门检与10轮训练启动
 
@@ -2194,9 +2196,9 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 目标：落实26版pose-only迁移方案，解决旧26版分化/细化参数趋近零及精度不佳的问题，并开展首轮10轮对照实验。平台为远程Ubuntu `gpu-server`、`PersonInWIFI` Python环境、PyTorch1.13.1+cu117/MMCV1.5.3/MMDetection2.25.0，四张RTX A5500（GPU1–4）；本次不涉及FPGA/Icraft部署。
 
-已完成独立注册类、配置、迁移/优化器/诊断、门检、启动和最终汇总脚本，项目副本见[实现说明](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/README.md)，服务器新增文件位于`opera/models`、`configs/wifi`和`tools/pose26_transfer`；旧代码、权重、结果均保留。已从24版epoch442迁移169个张量，重新初始化STE、14个独立残差分化分支、三层vanilla refine及优化器；分化Linear权重和偏置N(0,0.001²)，整个refine正常初始化，坐标回归末层为零。只保留14关节姿态，不引入mesh/SMPL。
+已完成独立注册类、配置、迁移/优化器/诊断、门检、启动和最终汇总脚本，项目副本见[实现说明](tools/pose26-transfer/20261003/README.md)，服务器新增文件位于`opera/models`、`configs/wifi`和`tools/pose26_transfer`；旧代码、权重、结果均保留。已从24版epoch442迁移169个张量，重新初始化STE、14个独立残差分化分支、三层vanilla refine及优化器；分化Linear权重和偏置N(0,0.001²)，整个refine正常初始化，坐标回归末层为零。只保留14关节姿态，不引入mesh/SMPL。
 
-已验收：迁移逐元素一致；关闭STE后粗输出误差0；人物/关节和置信度排序索引；细化损失可反传至分化及姿态分支；4卡每卡8的短程3步、恢复到6步及参数范数一致。24版全7824帧同口径复评**123.085352129mm**。首次索引门检测试值导致sigmoid饱和并列，已修正测试数据并保留失败证据，未修改网络排序。证据见[单项门检](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/evidence/gates/unit_gate.json)、[四卡门检](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/evidence/gates/ddp_gate.json)、[基准复评](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/evidence/baseline/evaluations.jsonl)、[启动审计](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/evidence/prelaunch-audit.json)。论文对应及未公开细节见[PAPER_AUDIT.md](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/PAPER_AUDIT.md)。
+已验收：迁移逐元素一致；关闭STE后粗输出误差0；人物/关节和置信度排序索引；细化损失可反传至分化及姿态分支；4卡每卡8的短程3步、恢复到6步及参数范数一致。24版全7824帧同口径复评**123.085352129mm**。首次索引门检测试值导致sigmoid饱和并列，已修正测试数据并保留失败证据，未修改网络排序。证据见[单项门检](tools/pose26-transfer/20261003/evidence/gates/unit_gate.json)、[四卡门检](tools/pose26-transfer/20261003/evidence/gates/ddp_gate.json)、[基准复评](tools/pose26-transfer/20261003/evidence/baseline/evaluations.jsonl)、[启动审计](tools/pose26-transfer/20261003/evidence/prelaunch-audit.json)。论文对应及未公开细节见[PAPER_AUDIT.md](tools/pose26-transfer/20261003/PAPER_AUDIT.md)。
 
 正式10轮于21:59启动，尚未完成/验收精度。配置为AdamW迁移lr2e-6/新增lr2e-5、矩阵wd1e-4并排除指定参数、clip0.1、分类/坐标2/70、FP32、seed0、四卡每卡batch8/worker4、固定学习率10轮。结果目录`Z:\Person-in-WiFi-3D-repo\result\tpami2026_transfer_20261003`，实时查`pipeline-status.json`、`train.stdout.log`、`branch_diagnostics.jsonl`；每轮评估见`evaluations.jsonl`。流水线设置为第10轮后汇总并停止，失败则停止，不自动重试/延长。当前“完成”范围限于实现、门检、基准复评和启动，不能提前宣称优于123.09mm。
 
@@ -2219,7 +2221,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 正式10轮、28,110步已于23:42完成并停止，训练/监督进程均退出。最佳第9轮122.873803893mm，24版基准123.085352129mm，降低0.211548236mm（约0.172%）；最终第10轮124.680599441mm。10轮7824帧评估、10次四卡一致性、563条有限诊断、126份当前源码/快照哈希、配置哈希、指标CSV、最佳/最终权重哈希与元数据均独立核验通过，曲线可视检查通过。
 
-单/双/三人最佳为100.32099/123.27283/150.64941mm，对照99.66472/123.11501/152.52611mm；单/双略退步、三人降低1.87670mm。第9轮同配对粗预测122.79552→最终细化122.87380mm，细化增加约0.0783mm。逐关节完整表、配置与命令、曲线和产物入口见[最终结果](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/RESULTS.md)。最佳权重已复制至[本地保留目录](D:/FPGACompetitionProject/.local/pose26-training/20261003/best_mpjpe_epoch_9.pth)，SHA256 b567aa16e3e46be88cd9187cdc3af7d46085800d0c3df94a8404ae377d8bcca7，与服务器一致；最终epoch10仍保留服务器。
+单/双/三人最佳为100.32099/123.27283/150.64941mm，对照99.66472/123.11501/152.52611mm；单/双略退步、三人降低1.87670mm。第9轮同配对粗预测122.79552→最终细化122.87380mm，细化增加约0.0783mm。逐关节完整表、配置与命令、曲线和产物入口见[最终结果](tools/pose26-transfer/20261003/RESULTS.md)。最佳权重已复制至本地保留目录（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/pose26-training/20261003/best_mpjpe_epoch_9.pth`），SHA256 b567aa16e3e46be88cd9187cdc3af7d46085800d0c3df94a8404ae377d8bcca7，与服务器一致；最终epoch10仍保留服务器。
 
 #### 对后续开发的参考
 
@@ -2229,7 +2231,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 #### 工程内容总结
 
-人工确认每10分钟检查一次当前10轮训练，在正常运行时保持安静，完成/失败/异常或需处理时通知，结果核验及记录完成后停止。已用Codex应用工具创建当前工具会话heartbeat“检查26版姿态迁移训练结果”（ID26、ACTIVE），并读回配置确认间隔、目标聊天和检查范围；不改变训练设置。任务包括检查结果/哈希/曲线、补全项目记录及完成后停用本项。证据说明见[MONITOR.md](D:/FPGACompetitionProject/tools/pose26-transfer/20261003/MONITOR.md)。首次定时检查已于22:27成功读取状态、评估及全部已记录诊断：第3轮进行中，已完成两轮评估，记录均有限、四卡检查通过，未发现需通知的异常；证据见同目录monitor-state.json。该检查不等于最终训练结果验收。
+人工确认每10分钟检查一次当前10轮训练，在正常运行时保持安静，完成/失败/异常或需处理时通知，结果核验及记录完成后停止。已用Codex应用工具创建当前工具会话heartbeat“检查26版姿态迁移训练结果”（ID26、ACTIVE），并读回配置确认间隔、目标聊天和检查范围；不改变训练设置。任务包括检查结果/哈希/曲线、补全项目记录及完成后停用本项。证据说明见[MONITOR.md](tools/pose26-transfer/20261003/MONITOR.md)。首次定时检查已于22:27成功读取状态、评估及全部已记录诊断：第3轮进行中，已完成两轮评估，记录均有限、四卡检查通过，未发现需通知的异常；证据见同目录monitor-state.json。该检查不等于最终训练结果验收。
 
 #### 对后续开发的参考
 
@@ -2245,7 +2247,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 新模型明确绕过迁移加载，模型与优化器全新初始化；保留STE、14独立残差分化分支、三层vanilla refine，分化Linear权重/偏置N(0,0.001²)，整个细化器正常初始化、坐标末层为零。仅14关节pose，不包含mesh/SMPL。Adam统一lr2e-5、betas(0.9,0.999)、eps1e-8、wd1e-4，无迁移分组/衰减排除；总batch32（每卡8/worker4）、FP32 seed0、clip0.1；500轮，MMCV step450/gamma0.1。论文第7页训练细节已可视核对，未公开细节与当前损失整体缩放/辅助监督明确列为实现选择。
 
-已验收：禁止checkpoint读取的全新初始化；三层8头256维普通注意力；人物/关节及置信度索引；细化梯度通路；450轮学习率边界；4卡96样本3步参数一致和checkpoint有限；129份源码/配置/列表当前与source_snapshot及解析配置哈希；监督/torchrun和四个rank身份、GPU1–4实际负载与正式日志超过500步。短程更新未用于正式模型。入口和证据见[README](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/README.md)、同目录evidence/gates及[startup-verification.json](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/evidence/startup-verification.json)。
+已验收：禁止checkpoint读取的全新初始化；三层8头256维普通注意力；人物/关节及置信度索引；细化梯度通路；450轮学习率边界；4卡96样本3步参数一致和checkpoint有限；129份源码/配置/列表当前与source_snapshot及解析配置哈希；监督/torchrun和四个rank身份、GPU1–4实际负载与正式日志超过500步。短程更新未用于正式模型。入口和证据见[README](tools/pose26-scratch/20261004/README.md)、同目录evidence/gates及[startup-verification.json](tools/pose26-scratch/20261004/evidence/startup-verification.json)。
 
 当前结果目录`result/tpami2026_scratch_20261004`，实时查pipeline-status.json、train.stdout.log和诊断/评估JSONL。当前完成的是实现、门检和启动，**500轮训练及精度尚未完成/验收**。配置采用暂不启用定时监测，旧ID26保持PAUSED，未更改自动化。训练内置异常停止门禁保留，不自动重试、改AdamW/参数或延长500轮。
 
@@ -2266,7 +2268,7 @@ Vivado MCP 实际创建 `xilinx.com:ip:xlconcat:2.1` / Rev.3，配置四个 1-bi
 
 5轮MPJPE依次479.294219、453.726498、439.551332、420.189946、438.772184mm；最佳第4轮420.189946mm，较已训练24版基准123.085352mm高297.104594mm。最佳单/双/三人406.525056/385.294528/491.487131mm；同匹配粗预测420.366988→最终细化420.189946mm，改善约0.177042mm。最佳checkpoint epoch4/iter11244、311125343字节、全部权重有限，SHA256 eaec533377d8098dab8fa35e6104c5330840fc7d0be0658ffdc669a794213361；129份源码/配置/列表及快照、解析配置哈希核对通过，最佳文件保留服务器。
 
-退化证据：分化L2从初始化1.357186降至第4轮6.32e-8、第5轮7.30e-21，第6轮16851步抽检7.44e-38。最新分化/细化注意力裁剪前后梯度及分化残差RMS为0；细化注意力参数仍约32.17。338条诊断均有限，连续两轮严重分化趋零触发停止；第6轮末异常发生在参数检查JSONL/评估记录前，因此这些文件仅1–5轮。详细人数、14关节、阶段对照见[结果报告](D:/FPGACompetitionProject/tools/pose26-scratch/20261004/STATUS-20261004-0908.md)，原始状态/日志/评估/诊断与核验见同目录evidence/check-20261004-0906。
+退化证据：分化L2从初始化1.357186降至第4轮6.32e-8、第5轮7.30e-21，第6轮16851步抽检7.44e-38。最新分化/细化注意力裁剪前后梯度及分化残差RMS为0；细化注意力参数仍约32.17。338条诊断均有限，连续两轮严重分化趋零触发停止；第6轮末异常发生在参数检查JSONL/评估记录前，因此这些文件仅1–5轮。详细人数、14关节、阶段对照见[结果报告](tools/pose26-scratch/20261004/STATUS-20261004-0908.md)，原始状态/日志/评估/诊断与核验见同目录evidence/check-20261004-0906。
 
 #### 对后续开发的参考
 

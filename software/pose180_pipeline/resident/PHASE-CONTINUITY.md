@@ -69,9 +69,9 @@ cmake --build .local/phase-build --target phase_branch_tests phase_preprocess -j
 
 完整数据准备与评估入口为 [phase_compare_prepare.py](../../../tools/pose180/phase_compare_prepare.py)、[phase_compare_eval.py](../../../tools/pose180/phase_compare_eval.py) 和[信号诊断](../../../tools/pose180/phase_compare_diagnostics.py)。各脚本通过 `--help` 提供参数，输出目录须为新目录，避免覆盖旧结果。数据准备依赖现有官方 MAT／GT、两个既有展示片段目录和三组已归档 PCAP；模型评估使用现有 CPU ONNX Runtime 环境，不安装依赖。
 
-证据集中于 [本机目录](../../../.local/pose-phase-compare-20261027-r1/)：
+证据集中于 本机目录（本机留存，仓库未附：`../../../.local/pose-phase-compare-20261027-r1/`）：
 
-- [report.json](../../../.local/pose-phase-compare-20261027-r1/report.json)：分来源／分片段完整推理指标；`perframe.json`、`scores.npy`、`poses.npy` 保存逐窗统计与全部实际输出。
+- report.json（本机留存，仓库未附：`../../../.local/pose-phase-compare-20261027-r1/report.json`）：分来源／分片段完整推理指标；`perframe.json`、`scores.npy`、`poses.npy` 保存逐窗统计与全部实际输出。
 - `corpus/manifest.json`：固定样本、分割、GT、连续性假设、输入摘要及修正计数；`raw.piwcsi2`、`identities.bin`、`original.f32`、`continuous.f32` 为实际成对输入。
 - `signal-diagnostics.json`、`implementation-verification.json`、`verify.py`：唯一事件的信号统计、原检查器及早期全展开原型的实际差异。
 - `state.json`：服务器进程已正常完成；远端原始结果位于 `/public/cyd/phase-compare-20261027-r1/eval/`。本批 CPU 推理／传输／容器均已退出，无后台续跑。

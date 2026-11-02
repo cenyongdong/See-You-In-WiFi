@@ -32,6 +32,6 @@ PS沿用[skeleton_render](../core/display/skeleton_render.cpp)完成候选选择
 
 2026-10-17在r5候选下完成实际SDK双帧内存、两图案、三份历史骨架及在途STOP／释放；首次图案fault2保留。同日新模型在Session.apply上传参数时失败，发生在设备hook之前。观测v2也在独立4KiB DMA失败；这些原失败不能由后续通过覆盖。
 
-2026-10-18复用r9，r13经Open前健康门和四档≤1MiB完整DMA门检，完成3次新推理、3帧PL采纳及STOP释放／Engine销毁；现场确认FRAME 1000000→1000001→1000002。每窗数值门和完整输出保存通过，受检最大偏差0.9765625mm。原始证据为[verification.tar](../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar)内`run/shared/inference/frames.jsonl`、`summary.json`及完整输出；回退在[closure.tar](../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/closure.tar)。没有将回放计为新推理。
+2026-10-18复用r9，r13经Open前健康门和四档≤1MiB完整DMA门检，完成3次新推理、3帧PL采纳及STOP释放／Engine销毁；现场确认FRAME 1000000→1000001→1000002。每窗数值门和完整输出保存通过，受检最大偏差0.9765625mm。原始证据为verification.tar（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/verification.tar`）内`run/shared/inference/frames.jsonl`、`summary.json`及完整输出；回退在closure.tar（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-preopen-20261018-r13/closure.tar`）。没有将回放计为新推理。
 
 随后已纠正按键映射：SW6／F8能清零观测器，旧SW7结果不能检验F8复位；r24实际见证PL互联复位，r25同BOOT仍在SDK前异常。不能把CSR清零或一次健康Open当作PS FIFO复位／启动修复。诊断与假设见[D44／D45](../../DIFFICULTIES.md)。启动稳定性、严格实时、连续HDMI长期和PC双路并发尚未通过。旧DATA独立暂停、FAT未修；本页命令与历史包不授权恢复、重启、BOOT替换或重跑失败负载。

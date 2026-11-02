@@ -31,4 +31,4 @@ Host107/59600FP32、ARM206渲染/104拒绝/回收及Host源读取通过。新三
 
 有界入口的预算问题已落实；103目标未通过，保留原失败而非扩大时间或关门禁。下一原复制返回时Host shadow/目标元数据与异常Receiver统计设计准备，未新设备测试；30分钟、HDMI、严格5Hz继续待。[完整结果与证据](../tools/pose-v1/BOUNDED-LOAD-RESULTS-20261009.md)。
 
-入口：[有界设计](../tools/pose-v1/BOUNDED-MEASUREMENT-DESIGN-20261008.md)、[证据](../tools/pose-v1/evidence/bounded-load-20261009-r2/)、[原坏值](ADR_17.md)。
+入口：[有界设计](../tools/pose-v1/BOUNDED-MEASUREMENT-DESIGN-20261008.md)、证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/bounded-load-20261009-r2/`）、[原坏值](ADR_17.md)。

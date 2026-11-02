@@ -8,7 +8,7 @@
 
 ## 统计口径与总量
 
-原生检查约80.2秒、退出0；导出128,250条原语／黑盒记录和1,340个保留层级。物理位置计算与313条原生层级报告的LUT／FF／BRAM／DSP全部一致。原生命令与日志集中在[审计证据目录](../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020)，复算脚本见[summarize_r24_resources.py](scripts/summarize_r24_resources.py)。
+原生检查约80.2秒、退出0；导出128,250条原语／黑盒记录和1,340个保留层级。物理位置计算与313条原生层级报告的LUT／FF／BRAM／DSP全部一致。原生命令与日志集中在审计证据目录（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020`），复算脚本见[summarize_r24_resources.py](scripts/summarize_r24_resources.py)。
 
 | 资源 | 实际使用 | 可用 | 使用率 |
 |---|---:|---:|---:|
@@ -18,9 +18,9 @@
 | BRAM36等效块 | 97.5 | 265 | 36.79% |
 | PL DSP | 8 | 400 | 2.00% |
 
-这是**Routed检查点**的结果；前次引用93.07%、43,218 LUT及64,020 FF是Fully Placed报告，统计阶段不同，本页不混用。控制集为2,052，说明单纯LUT／FF百分比不能等同Slice打包率；准确分布见[控制集报告](../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/control-sets.rpt)。
+这是**Routed检查点**的结果；前次引用93.07%、43,218 LUT及64,020 FF是Fully Placed报告，统计阶段不同，本页不混用。控制集为2,052，说明单纯LUT／FF百分比不能等同Slice打包率；准确分布见控制集报告（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/control-sets.rpt`）。
 
-LUT按物理`Slice位置＋A/B/C/D`去重，O5／O6打包和RAM宏展开不重复计数；BRAM36等效=RAMB36＋RAMB18/2。表中“涉及Slice”允许与其它模块共享，“独占Slice”要求该位置全部已放置单元都在本模块内。**各行LUT／涉及Slice不能直接相加**，不能把模块触及的全部Slice当作可释放量。完整1,340层级及扁平化名字前缀见[模块资源CSV](../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/modules-resources.csv)，原生报告见[全局](../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/utilization-routed.rpt)／[层级](../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/utilization-hierarchical.rpt)。
+LUT按物理`Slice位置＋A/B/C/D`去重，O5／O6打包和RAM宏展开不重复计数；BRAM36等效=RAMB36＋RAMB18/2。表中“涉及Slice”允许与其它模块共享，“独占Slice”要求该位置全部已放置单元都在本模块内。**各行LUT／涉及Slice不能直接相加**，不能把模块触及的全部Slice当作可释放量。完整1,340层级及扁平化名字前缀见模块资源CSV（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/modules-resources.csv`），原生报告见全局（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/utilization-routed.rpt`）／层级（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/utilization-hierarchical.rpt`）。
 
 ## 主要模块实测
 
@@ -73,11 +73,11 @@ LUT按物理`Slice位置＋A/B/C/D`去重，O5／O6打包和RAM宏展开不重�
 
 先做不改变NPU／SDK接口的旧视频、加法器裁剪设计，保留必要控制兼容层；将诊断设置为诊断构建／正式构建可选，待定位结束再减掉大快照。AI_Mate内部PLIN／post变体只在原厂接口资料及功能／数值验证支持时另行讨论。PL DDR/MIG、PS/AXI、NPU必需的搬运缓存以及新HDMI保持。
 
-本轮完成的是资源测量与依赖分析，没有任何模块被删除，没有新bit／BOOT或上板动作，也没有恢复暂停的故障排查。完整机器结果见[summary.json](../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/summary.json)。
+本轮完成的是资源测量与依赖分析，没有任何模块被删除，没有新bit／BOOT或上板动作，也没有恢复暂停的故障排查。完整机器结果见summary.json（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-r24-resource-audit-20261020/summary.json`）。
 
 ## 按“存疑不剪”要求的后续核验
 
-仅删除能够确认不影响必需功能的冗余部分，存疑部分保留。再次只读打开同一r24布线检查点，原生Vivado退出0、约62.7秒；[命令与日志](../../tools/pose-v1/evidence/hdmi-safe-prune-20261020-r27)、[实际负载关系](../../tools/pose-v1/evidence/hdmi-safe-prune-20261020-r27/dependencies.tsv)。该目录的r27只是本次核验编号，**没有r27候选位流**。
+仅删除能够确认不影响必需功能的冗余部分，存疑部分保留。再次只读打开同一r24布线检查点，原生Vivado退出0、约62.7秒；命令与日志（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-safe-prune-20261020-r27`）、实际负载关系（本机留存，仓库未附：`../../tools/pose-v1/evidence/hdmi-safe-prune-20261020-r27/dependencies.tsv`）。该目录的r27只是本次核验编号，**没有r27候选位流**。
 
 - 源码中未接到实际LED／业务消费者的`rx_usrclk_cnt`闪灯计数器，已不在r24原语网表中；其26位寄存器和加法逻辑已被综合优化。删掉这段源码不会回收额外硬件资源，因此不为此修改基线或重编。
 - 旧读FIFO并非物理无负载：`read_buf/wr_data_count[4:14]`进入`frame_fifo_read_m0`状态机，后者的`ch0_rd_burst_len[0]`进入`u_aq_axi_master/rd_fifo_enable1_carry*`逻辑。源码也显示，写侧`rd_fifo_enable`使用`RD_LEN`决定`WR_FIFO_RE`停止条件。虽然候选模式将旧读请求及读使能固定为0，直接删除FIFO／控制器并把相关输出绑常量仍涉及状态与初始化等价性，尚未证明，保留。

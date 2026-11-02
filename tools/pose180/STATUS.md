@@ -36,7 +36,7 @@ CPU两线程、低优先级启动验证native exit0：真实两微批完成一�
 
 从零实验`/public/cyd/Person-in-WiFi-3D-repo/result/piw24_pose180_scratch_20261023_r1`于10月24日22:58正常完成100轮，native exit0；100次评估各7,824帧，epoch100／iter562200，两DDP rank最终query身份一致，原监督器PID325965和torchrun PID325968均已退出。全100轮最佳为epoch89 MPJPE146.6445mm，epoch100为151.9092mm，仍高于原100-query的123.0853mm及迁移最佳120.9958mm。初始化、模型与首100轮训练配方保持原批准范围。[完整首100轮评估](results/scratch-20261023-r1/evaluations.jsonl)、[完成与对照](results/scratch-20261023-r1/comparison_with_transfer.json)、[DDP结束记录](results/scratch-20261023-r1/ddp_completion.json)、[原生退出码](results/scratch-20261023-r1/jobs/formal-r1/state.json)。
 
-一次性条件衔接已触发，首次续训目录`piw24_pose180_scratch_20261024_extra100_r1`成功恢复epoch100权重、两rank各218项AdamW状态与step281100，但在第101轮首个优化更新前因梯度非有限退出，native exit1、无新增完整轮次评估。根因是MMCV梯度累积钩子把剩余迭代边界562200与全局iter562200比较，误用余数0作为损失除数。最初CPU验证只覆盖恢复而漏掉首个更新；原生失败与日志保持，不回写为通过。[首次失败状态](results/scratch-extra100-20261024-r1/state.json)、[完整原始报错](results/scratch-extra100-20261024-r1/training.stderr.log)。
+一次性条件衔接已触发，首次续训目录`piw24_pose180_scratch_20261024_extra100_r1`成功恢复epoch100权重、两rank各218项AdamW状态与step281100，但在第101轮首个优化更新前因梯度非有限退出，native exit1、无新增完整轮次评估。根因是MMCV梯度累积钩子把剩余迭代边界562200与全局iter562200比较，误用余数0作为损失除数。最初CPU验证只覆盖恢复而漏掉首个更新；原生失败与日志保持，不回写为通过。[首次失败状态](results/scratch-extra100-20261024-r1/state.json)、完整原始报错（本机留存，仓库未附：`results/scratch-extra100-20261024-r1/training.stderr.log`）。
 
 修复仅位于独立注册的`Pose180ResumeOptimizerHook`，将累积边界转换为全局1124400，保持除数2及全部有限值硬门；未修改共享MMCV库、模型、损失、学习率或有效batch。CPU验证复现原除数0，覆盖完整／余数边界，并用epoch100与真实样本完成两微批、一次AdamW更新，step281100→281101，query及joint参数更新，loss／梯度／参数／优化器状态均有限；验证模型丢弃，不进入正式训练。[回归原值](results/scratch-extra100-20261024-r2/continuation-optimizer-validation.json)。
 

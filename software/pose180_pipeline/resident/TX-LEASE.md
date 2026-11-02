@@ -34,7 +34,7 @@
 | ARM64与显示 | 静态路由器守护和真实SDK板端程序交叉编译通过；renderer及等待／过期／恢复测试通过。本包包含HDMI透视／大小／配色调整；模型、SDK、数学及RTL不变 |
 | 离线准备时的包 | TX参数除mode2→mode3外与r5逐字节一致；ARM64目标、可执行权限、租约marker与模块加载身份匹配。当时授权inactive、BOOT／重启／SDK均0；随后实际执行范围见下文 |
 
-原始证据集中于[本机r6目录](../../../.local/pose180-resident-continuous-20261025-r6)：`firmware-test/final-down-status/`、`guard-test/{lease,finite}/result.json`、`firmware/{build.log,linker.err,verify.log,module-check-release.json}`、`build/`及`package-check.json`。固件中间修订与旧验证回执保留；最后一次编译和最终模块验证通过，中途一次报告拒绝覆盖未导致重跑已成功的编译。
+原始证据集中于本机r6目录（本机留存，仓库未附：`../../../.local/pose180-resident-continuous-20261025-r6`）：`firmware-test/final-down-status/`、`guard-test/{lease,finite}/result.json`、`firmware/{build.log,linker.err,verify.log,module-check-release.json}`、`build/`及`package-check.json`。固件中间修订与旧验证回执保留；最后一次编译和最终模块验证通过，中途一次报告拒绝覆盖未导致重跑已成功的编译。
 
 新包ID：`pose180-resident-continuous-20261025-r6`。入口为`python software/pose180_pipeline/resident/prepare_long.py --continuous-r6`；路由器守护编译增加`-I tools/nexmon/router`。最终包为`board-package.tar.gz`与`radios/{tx,rx1,rx2,rx3}.tar.gz`；最终身份见`prepared.json`与各包manifest，不在本文重复哈希。RX原固件复用，TX换用租约派生模块；运行时恢复原厂模块，不安装开机服务。
 
@@ -62,4 +62,4 @@
 
 - 原BOOT已实际运行，boot_id=`67357a0d-02fa-492a-9e38-a9ce32fc84a1`；候选boot_id=`f5bd7143-e257-4242-b435-89192b51970f`。最终BOOT身份、启动文件与无占用证据见本机`evidence/boot-control/metadata/{final-audit,closed}.json`。
 - 四台路由器恢复原厂无线运行时，守护／捕获／看门狗PID均已退出；TX／RX3临时LAN SSH恢复关闭。PC临时`.50.102`已移除，原`.126.100`保留，WLAN未改；板端临时`.50.49`随回退消失。只读串口与PC计时订阅均结束，无本批后台工作。
-- 本包实际1候选／1 SDK／1回退，全部余额0，不能复用。原始实测集中在[本机r6目录](../../../.local/pose180-resident-continuous-20261025-r6)：`result-evidence.tar.gz`及`evidence/`、`radios/*-result-evidence.tar.gz`、`result-timeline.json`、`timeline-summary.json`、`stutter-summary.json`、`physical-observation.json`和`run-state.json`。8条重置与最终累计8次一致；有限运行和样本不等于全天、跨启动或人体精度验收。
+- 本包实际1候选／1 SDK／1回退，全部余额0，不能复用。原始实测集中在本机r6目录（本机留存，仓库未附：`../../../.local/pose180-resident-continuous-20261025-r6`）：`result-evidence.tar.gz`及`evidence/`、`radios/*-result-evidence.tar.gz`、`result-timeline.json`、`timeline-summary.json`、`stutter-summary.json`、`physical-observation.json`和`run-state.json`。8条重置与最终累计8次一致；有限运行和样本不等于全天、跨启动或人体精度验收。

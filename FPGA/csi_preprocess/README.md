@@ -9,11 +9,11 @@
 
 2026-10-31 实现以释放 CPU，随后批准先软件优化、再分组流水。当前 r3 已完成物理实现、独立性能对照及 NPU＋HDMI 有限现场实测；不恢复心率或旧 DATA 调查。
 
-**当前结论：完整预处理从同轮 PS 的 5.647ms 降至 4.043ms，减少28.41%；线程CPU时间从5.629ms降至3.973ms，减少29.43%。** 两项均包含输入转换和设备传输。现场确认分组版“画面正常，持续更新”；SDK完整关闭、设备占用为空、PC观察器结束。当前证据见[r3汇总](../../.local/csi-preprocess-20261031-r3/reports/final-summary.json)，恢复见[当前运行与恢复](#当前运行与恢复)。
+**当前结论：完整预处理从同轮 PS 的 5.647ms 降至 4.043ms，减少28.41%；线程CPU时间从5.629ms降至3.973ms，减少29.43%。** 两项均包含输入转换和设备传输。现场确认分组版“画面正常，持续更新”；SDK完整关闭、设备占用为空、PC观察器结束。当前证据见r3汇总（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r3/reports/final-summary.json`），恢复见[当前运行与恢复](#当前运行与恢复)。
 
 ## r3 分组流水与优化证据
 
-先复用r2位流，优化有界相位wrap、复用中间结果、预计算线性拟合常数；不改变浮点运算语义。新收尾与原合格实现对420实际＋48合成窗逐位一致。软件优化将完整延迟从6.467ms降到5.981ms，但仍高于该轮PS的5.675ms，原始记录在[软件优化目录](../../.local/csi-optimization-20261031-r1)。
+先复用r2位流，优化有界相位wrap、复用中间结果、预计算线性拟合常数；不改变浮点运算语义。新收尾与原合格实现对420实际＋48合成窗逐位一致。软件优化将完整延迟从6.467ms降到5.981ms，但仍高于该轮PS的5.675ms，原始记录在软件优化目录（本机留存，仓库未附：`../../.local/csi-optimization-20261031-r1`）。
 
 随后r3按“接收器→时间→天线→载波”输入顺序，将每个窗口分成60组，每组90复数（3天线×30载波）。PL完成一组才原子发布180字结果；PS读取该组并完成相位展开／拟合时，PL继续计算后续组。输出缓存仍为独立SDP BRAM，只读取已发布范围；窗口末尾再核对finished、tag、完成次数和已读总字数，组就绪不代替全窗完成。没有新增DMA／HP通路，原模型、NPU和张量顺序保持。
 
@@ -34,23 +34,23 @@ flowchart LR
 | r2位流＋软件优化 | 3.569ms | 5.981ms |
 | r3 90点分组流水 | **3.973ms** | **4.043ms** |
 
-各轮均为同板、同420窗官方train输入，逐窗交替PS优先／PL优先；原版／软件优化用r2，流水用r3，每轮各有配对PS参考。CPU计时为 `CLOCK_THREAD_CPUTIME_ID`，不是整机CPU利用率。r3 P95为4.254ms，PS为5.672ms；最大值分别9.588／14.219ms，保留而不删异常点。完整原值：[r3 benchmark](../../.local/csi-preprocess-20261031-r3/reports/benchmark.json)、[软件优化原始归档](../../.local/csi-optimization-20261031-r1/reports/board-results.tar.gz)。
+各轮均为同板、同420窗官方train输入，逐窗交替PS优先／PL优先；原版／软件优化用r2，流水用r3，每轮各有配对PS参考。CPU计时为 `CLOCK_THREAD_CPUTIME_ID`，不是整机CPU利用率。r3 P95为4.254ms，PS为5.672ms；最大值分别9.588／14.219ms，保留而不删异常点。完整原值：[r3 benchmark](../../Deliverables/evidence/csi-v3/benchmark.json)、软件优化原始归档（本机留存，仓库未附：`../../.local/csi-optimization-20261031-r1/reports/board-results.tar.gz`）。
 
-![CPU与完整延迟四组实板对比](../../.local/csi-preprocess-20261031-r3/reports/optimization-comparison.png)
+![CPU与完整延迟四组实板对比](../../Deliverables/evidence/csi-v3/optimization-comparison.png)
 
 r3上传0.329ms、显式等待0.124ms、下载1.962ms、PS收尾1.003ms；完整4.043ms还包含转换、重排和其它控制开销。CORDIC仍约237756周期／100MHz，即2.378ms，但与读取／收尾重叠，不能再加到完整延迟上。25200组中19445组读取时PL仍busy，证明实际重叠。相对仅软件优化，分组版CPU时间略增，代价来自重排／分组控制等新增开销（未独立逐项归因），换得完整延迟显著下降。
 
 420窗幅度最大误差0，相位最大误差2.38418579102e-7rad，无非有限、超容差或硬件错误；后端故障／不支持输入降级0。945次边界消歧及1个边界不确定窗口的原PS回退均计入结果和耗时，不能写成“从不回退”。快／慢消费者两批RTL仿真通过，证据在r3 `reports/batch-175241/`。
 
-完整物理资格：97096网络全部布通，WNS +0.030ns、WHS +0.029ns、TNS／THS=0，内部未约束端点0；仍仅沿用两项既定AI最小周期例外及GT适配，无新增豁免、无降频。CSI核1584 LUT、698 FF、6 DSP、24 BRAM36，较r2增加38 LUT／21 FF，BRAM／DSP不增；整机42986 LUT、56026 FF、34 DSP、258/265 BRAM36。[资格与源／约束身份](../../.local/csi-preprocess-20261031-r3/reports/qualification-closure.json)及原生日志、检查点保留。
+完整物理资格：97096网络全部布通，WNS +0.030ns、WHS +0.029ns、TNS／THS=0，内部未约束端点0；仍仅沿用两项既定AI最小周期例外及GT适配，无新增豁免、无降频。CSI核1584 LUT、698 FF、6 DSP、24 BRAM36，较r2增加38 LUT／21 FF，BRAM／DSP不增；整机42986 LUT、56026 FF、34 DSP、258/265 BRAM36。[资格与源／约束身份](../../Deliverables/evidence/csi-v3/qualification-closure.json)及原生日志、检查点保留。
 
-整机运行54.65秒，420输入完成417次新推理、HDMI采纳和PC双路接收，3次最新窗口替换；CSI调用417次无故障，1次边界全窗回退，留存绘图事件underflow=0。板端异步记录丢弃86条，PC原始记录417条、丢弃0，有界环实际保留225条完整输出。与r2整窗后端配对的225组输入和全部180候选输出均逐字节一致；留存样本中预处理均值6.734→4.298ms，process均值18.723→16.140ms，是集成负载下的另一个统计口径，不替代独立基准。[完整NPU对照](../../.local/csi-preprocess-20261031-r3/reports/npu-comparison.json)中历史字段`ps_*`表示明确标注的r2参考，并非本轮原PS。
+整机运行54.65秒，420输入完成417次新推理、HDMI采纳和PC双路接收，3次最新窗口替换；CSI调用417次无故障，1次边界全窗回退，留存绘图事件underflow=0。板端异步记录丢弃86条，PC原始记录417条、丢弃0，有界环实际保留225条完整输出。与r2整窗后端配对的225组输入和全部180候选输出均逐字节一致；留存样本中预处理均值6.734→4.298ms，process均值18.723→16.140ms，是集成负载下的另一个统计口径，不替代独立基准。[完整NPU对照](../../Deliverables/evidence/csi-v3/npu-comparison.json)中历史字段`ps_*`表示明确标注的r2参考，并非本轮原PS。
 
-现场确认[实屏正常持续更新](../../.local/csi-preprocess-20261031-r3/reports/visual-confirmation.json)。[原生板端证据](../../.local/csi-preprocess-20261031-r3/reports/board-evidence.tar.gz)含GP基准、BOOT／SDK／模型身份、运行及安全关闭结果；对比图可直接用于文档。本轮属于官方train片段的新推理，未新增实时CSI、功耗或长期验收；相对原PS的历史候选差异仍保留在下方r2记录，225组与r2一致不抹除这些差异。
+现场确认实屏正常持续更新（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r3/reports/visual-confirmation.json`）。原生板端证据（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r3/reports/board-evidence.tar.gz`）含GP基准、BOOT／SDK／模型身份、运行及安全关闭结果；对比图可直接用于文档。本轮属于官方train片段的新推理，未新增实时CSI、功耗或长期验收；相对原PS的历史候选差异仍保留在下方r2记录，225组与r2一致不抹除这些差异。
 
 ## r2 历史实现与实测
 
-r2首轮远程结果见[r2汇总](../../.local/csi-preprocess-20261031-r2/reports/final-summary.json)，随后独立三遍片段现场确认见[现场验证汇总](../../.local/csi-onsite-20261031-r1/summary.json)。下方r2数据按原轮次保留，不作为r3当前身份。
+r2首轮远程结果见r2汇总（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/reports/final-summary.json`），随后独立三遍片段现场确认见现场验证汇总（本机留存，仓库未附：`../../.local/csi-onsite-20261031-r1/summary.json`）。下方r2数据按原轮次保留，不作为r3当前身份。
 
 r2将原地双写端口RAM改为独立输入／输出简单双端口RAM，增加输入读回和故障位置／操作数寄存器，并增加输入读等待周期；原数学核保持。每个缓冲显式分为8192＋4096字，实际合计24 BRAM36；原10800字数组被工具向上取整导致32 BRAM36、超过整机容量的综合记录保留。两批5400点与输入读回RTL仿真通过，证据在 `.local/csi-preprocess-20261031-r2/reports/batch-164511`。增量实现使用新CSI网表，导入时复用99.47%单元、98.67%网络。
 
@@ -66,7 +66,7 @@ r2将原地双写端口RAM改为独立输入／输出简单双端口RAM，增加
 
 ## r2 历史性能与整机证据
 
-同一开发板、同一420帧官方train数据，逐窗交替PS优先／PL优先顺序；CPU采用 `CLOCK_THREAD_CPUTIME_ID`，计时包含输入转换和设备传输。CPU频率接口未暴露，本轮未修改频率／调度策略。原始结果：[benchmark.json](../../.local/csi-preprocess-20261031-r2/reports/benchmark.json)，可直接插入文档的[性能图](../../.local/csi-preprocess-20261031-r2/reports/cpu-comparison.png)。
+同一开发板、同一420帧官方train数据，逐窗交替PS优先／PL优先顺序；CPU采用 `CLOCK_THREAD_CPUTIME_ID`，计时包含输入转换和设备传输。CPU频率接口未暴露，本轮未修改频率／调度策略。原始结果：benchmark.json（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/reports/benchmark.json`），可直接插入文档的性能图（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/reports/cpu-comparison.png`）。
 
 | 指标，每窗口 | 原PS | PL＋PS混合后端 |
 |---|---:|---:|
@@ -79,23 +79,23 @@ r2将原地双写端口RAM改为独立输入／输出简单双端口RAM，增加
 
 整机输入为官方train三片段420帧，完成417次新NPU推理／HDMI采纳，3次最新窗口替换；运行约53.92秒后SDK完整关闭，设备占用为空，临时网络已恢复。417次CSI硬件调用错误／软件降级均0，留存绘图事件无underflow。PC两通道均收到417帧，原始通道记录417帧、丢弃0；有界环实际保留最后225条完整记录，不能把累计记录数写成全部仍在磁盘。
 
-与上轮PS预处理＋PL绘图的留存记录按原始frame／source时间及幅度字节配对，共223组；212组全部180候选输出逐字节一致，11组有数值变化。Top1／Top3选择均未改变；最佳候选坐标最大差0.0048828125、得分最大差0.0009765625；全部候选坐标最大差0.068359375、得分最大差0.208251953125。变化帧输入相位也有微小差异，未另行证明模型内放大机制；不宣称全候选等价或真值精度通过。完整原值和逐帧身份：[npu-comparison.json](../../.local/csi-preprocess-20261031-r2/reports/npu-comparison.json)。
+与上轮PS预处理＋PL绘图的留存记录按原始frame／source时间及幅度字节配对，共223组；212组全部180候选输出逐字节一致，11组有数值变化。Top1／Top3选择均未改变；最佳候选坐标最大差0.0048828125、得分最大差0.0009765625；全部候选坐标最大差0.068359375、得分最大差0.208251953125。变化帧输入相位也有微小差异，未另行证明模型内放大机制；不宣称全候选等价或真值精度通过。完整原值和逐帧身份：[npu-comparison.json](../../Deliverables/evidence/csi-v2/ps-pl-npu-comparison.json)。
 
-完整物理资格：WNS +0.030ns、WHS +0.029ns、TNS／THS=0；97071网络全部布通、内部未约束端点0。仅沿用两项既定AI最小周期例外和既定GT适配，CSI没有新增时序／DRC豁免。CSI核1546 LUT、677 FF、6 DSP、24 BRAM36；整机42951 LUT、56026 FF、34 DSP、258/265 BRAM36，尚余7块BRAM36。报告与源／约束对应关系：[qualification-closure.json](../../.local/csi-preprocess-20261031-r2/reports/qualification-closure.json)。
+完整物理资格：WNS +0.030ns、WHS +0.029ns、TNS／THS=0；97071网络全部布通、内部未约束端点0。仅沿用两项既定AI最小周期例外和既定GT适配，CSI没有新增时序／DRC豁免。CSI核1546 LUT、677 FF、6 DSP、24 BRAM36；整机42951 LUT、56026 FF、34 DSP、258/265 BRAM36，尚余7块BRAM36。报告与源／约束对应关系：qualification-closure.json（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/reports/qualification-closure.json`）。
 
-原生板端结果保存在[board-evidence.tar.gz](../../.local/csi-preprocess-20261031-r2/reports/board-evidence.tar.gz)，包括SDK／模型／BOOT身份、GP基准、运行和关闭记录；EDA完整日志、报告、检查点均在同一r2工作目录。本轮未做现场实屏、新实时CSI、功耗或长期稳定性验收。
+原生板端结果保存在board-evidence.tar.gz（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/reports/board-evidence.tar.gz`），包括SDK／模型／BOOT身份、GP基准、运行和关闭记录；EDA完整日志、报告、检查点均在同一r2工作目录。本轮未做现场实屏、新实时CSI、功耗或长期稳定性验收。
 
 ## 当前运行与恢复
 
-- 当前包 `/root/pose180-csi-preprocess-20261031-r3`，本机[独立部署包](../../.local/csi-preprocess-20261031-r3/pose180-csi-preprocess-20261031-r3.tar.gz)。当前boot_id `25ce0ea9-6d21-47e0-8aa4-7c0388760b91`，BOOT SHA256 `23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35`，精确身份见[default_boot.json](../hdmi_candidate/default_boot.json)。
+- 当前包 `/root/pose180-csi-preprocess-20261031-r3`，本机独立部署包（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r3/pose180-csi-preprocess-20261031-r3.tar.gz`）。当前boot_id `25ce0ea9-6d21-47e0-8aa4-7c0388760b91`，BOOT SHA256 `23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35`，精确身份见[default_boot.json](../hdmi_candidate/default_boot.json)。
 - 本轮实际1次候选安装／正常重启、1次GP比较、1次有限SDK，无回退。SDK安全关闭、设备空闲、PC观察器结束；本轮关闭、剩余次数0，无自启动或自动续跑。当前启动消费已使用，再次手动演示需在新记录中准备`prepare-boot.sh`、正常重启和`check.sh`。
 - 最近恢复基线是r2 CSI BOOT `08ebfb0cf7c23f063baba4cced36b2832adc6243b1b8cd4c3ea7e218b755184b`，随包保存为`boot/BOOT-baseline-csi-v2.bin`；旧骨架镜像与2026-10-29原r3演示包亦保留。恢复须先证明负载安全结束，记录新的有界操作，不复活旧预算。
 
 ### r2 现场轮次历史
 
-2026-10-31回到板旁后，新建 `csi-onsite-20261031-r1` 现场轮次，独立执行1次正常重启、1次有限SDK，BOOT写入0。官方train三片段重复三遍，1260窗输入完成1257次新推理／HDMI采纳，3次窗口替换；约110.33秒正常结束。CSI调用1257次，fault／软件降级0，2835次边界消歧；留存绘图事件underflow为0。PC原始／展示各接收1257帧，原始记录丢弃0，有界环实际保留233条完整输出。SDK完整关闭、设备占用为空，PC观察器已结束。本轮已关闭、余额0；现场确认[画面正常、持续更新](../../.local/csi-onsite-20261031-r1/visual-confirmation.json)。[原始证据](../../.local/csi-onsite-20261031-r1/evidence.tar.gz)和[汇总](../../.local/csi-onsite-20261031-r1/summary.json)独立保留，不覆盖此前未现场看屏的历史记录。本轮仍是官方数据集新推理，不是路由器实时采集或长期测试。
+2026-10-31回到板旁后，新建 `csi-onsite-20261031-r1` 现场轮次，独立执行1次正常重启、1次有限SDK，BOOT写入0。官方train三片段重复三遍，1260窗输入完成1257次新推理／HDMI采纳，3次窗口替换；约110.33秒正常结束。CSI调用1257次，fault／软件降级0，2835次边界消歧；留存绘图事件underflow为0。PC原始／展示各接收1257帧，原始记录丢弃0，有界环实际保留233条完整输出。SDK完整关闭、设备占用为空，PC观察器已结束。本轮已关闭、余额0；现场确认画面正常、持续更新（本机留存，仓库未附：`../../.local/csi-onsite-20261031-r1/visual-confirmation.json`）。原始证据（本机留存，仓库未附：`../../.local/csi-onsite-20261031-r1/evidence.tar.gz`）和汇总（本机留存，仓库未附：`../../.local/csi-onsite-20261031-r1/summary.json`）独立保留，不覆盖此前未现场看屏的历史记录。本轮仍是官方数据集新推理，不是路由器实时采集或长期测试。
 
-- 历史板端包：`/root/pose180-csi-preprocess-20261031-r2`；本机[独立部署包](../../.local/csi-preprocess-20261031-r2/pose180-csi-preprocess-20261031-r2.tar.gz)。该轮boot_id `3154a9a3-d961-4ab3-b83a-4cb89480cd2e`，BOOT SHA256 `08ebfb0cf7c23f063baba4cced36b2832adc6243b1b8cd4c3ea7e218b755184b`，不代表现在运行身份。
+- 历史板端包：`/root/pose180-csi-preprocess-20261031-r2`；本机独立部署包（本机留存，仓库未附：`../../.local/csi-preprocess-20261031-r2/pose180-csi-preprocess-20261031-r2.tar.gz`）。该轮boot_id `3154a9a3-d961-4ab3-b83a-4cb89480cd2e`，BOOT SHA256 `08ebfb0cf7c23f063baba4cced36b2832adc6243b1b8cd4c3ea7e218b755184b`，不代表现在运行身份。
 - 原r2实际1次候选安装／正常重启、1次GP比较、1次有限SDK，无回退，保持关闭；现场轮次次数独立见上段。当前启动消费已使用，再次运行须在新运行记录中执行 `prepare-boot.sh`、正常重启、`check.sh`，然后手动 `start.sh`。没有自动续跑或SDK自启动。
 - 原合格骨架BOOT `eae27ceb4ee81440caa1ee9a1d294eb8efd5c72463d228e9f1ee4d70a41c4c22` 随包保留，原骨架演示包和r3亦保留。恢复须先核验负载安全关闭，在新操作记录中安装备份并正常重启，不能复活本轮已关闭预算。
 

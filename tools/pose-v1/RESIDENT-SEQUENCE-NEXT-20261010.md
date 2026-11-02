@@ -1,6 +1,6 @@
 # 下一单因素：常驻上下文中的真实拥有画面
 
-当前批准的单次常驻方案已完成并安全结束。先读[结果](RESIDENT-SEQUENCE-RESULTS-20261010.md)、[ADR_28](../../ADR/ADR_28.md)及[恢复点](evidence/resident-sequence-20261010-r1/next-checkpoint.json)。以下仅准备，不自动执行新硬件阶段。
+当前批准的单次常驻方案已完成并安全结束。先读[结果](RESIDENT-SEQUENCE-RESULTS-20261010.md)、[ADR_28](../../ADR/ADR_28.md)及恢复点（历史附件，当前仓库未附：`evidence/resident-sequence-20261010-r1/next-checkpoint.json`）。以下仅准备，不自动执行新硬件阶段。
 
 1. 继续单VPU首次capture→主线程单Engine→三窗完整参考→103，保持正常drain／LAST、两缓冲／cookie／SDK复制／ready/reset(1)／745、原异常Host暂存和两晚源。第一次启动仍独立报告，资源按现场决策，不循环规整／重开／清缓存／重启或改CMA／BOOT。
 2. 将合成NoInput内容替换为当前前向实际最高分姿态生成的拥有NV12画面；原冻结骨架渲染／显示层变换保持，不修改模型候选、坐标、阈值或数学。通过明确public producer接口和容量2拥有值队列连接编码，编码worker不接触Engine／SDK／结果私有状态，不包含其他功能.cpp。尚未决定让渲染与NPU交叠；首轮优先主线程生成以减少并发因素，记录增加的时序与资源差别，不宣称严格单一物理条件。

@@ -30,4 +30,4 @@ r2程序745a6aaee544ccfec72aae4a0366091f4a40af4bcb15704818fb7eac0b0e9e3f。当�
 
 保留高地址这一更小的失配场景；下一新身份先提供仅单次调用有效的公开输出Tensor读证据租约，在首次输出保存、原比较失配后且Session存活时，两轮Tensor::read只读拥有快照，再重抛原错。不等就绪／加延时／改模型／缓存或把晚值填回。输入写入／NPU生产与首次读取责任据晚源实测再分，不在本批失败后重开设备读失效句柄。管理83/100和正式103／严格5Hz／长期／HDMI待保持。
 
-[结果](../tools/pose-v1/PRODUCER-ADDRESS-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-ADDRESS-NEXT-20261011.md)／[恢复](../tools/pose-v1/evidence/producer-address-20261011-r2/next-checkpoint.json)。
+[结果](../tools/pose-v1/PRODUCER-ADDRESS-RESULTS-20261011.md)／[下一](../tools/pose-v1/PRODUCER-ADDRESS-NEXT-20261011.md)／恢复（历史附件，当前仓库未附：`../tools/pose-v1/evidence/producer-address-20261011-r2/next-checkpoint.json`）。

@@ -2,7 +2,7 @@
 
 **适用范围（2026-10-29 核对）：** 本页的版本、参数、工具与执行状态属于文内注明的阶段；历史“最新／当前／下一步”和旧包次数不覆盖[现行恢复入口](RESUME.md)。已发布默认硬件、现存备份与启动流程统一从该入口查询，本页原始结果和限定例外保持。
 
-2026-10-18，状态：**并执行；4KiB SDK失败停止，已完成唯一原BOOT回退，本包关闭。** r9已实际启动；64B通过、4KiB SDK异常71停止；后两档／三窗新推理／HDMI START未执行。已完成唯一原BOOT回退与只读身份复核，全部启动额度用完。D45未解。 本包不接入Vivado MCP。批准时原文独立保留于[approved-plan.md](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/r9-user-authorization/approved-plan.md)。
+2026-10-18，状态：**并执行；4KiB SDK失败停止，已完成唯一原BOOT回退，本包关闭。** r9已实际启动；64B通过、4KiB SDK异常71停止；后两档／三窗新推理／HDMI START未执行。已完成唯一原BOOT回退与只读身份复核，全部启动额度用完。D45未解。 本包不接入Vivado MCP。批准时原文独立保留于approved-plan.md（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/r9-user-authorization/approved-plan.md`）。
 
 ## 实际候选与范围
 
@@ -33,9 +33,9 @@ FAT已知2168个未引用簇问题不修复，不修改uEnv、DTB、内核、SDK
 
 ## 可核查证据
 
-[本轮报告](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/REPORT.md)、[正式55项复核](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/read-v3r9-independent-reports-r1/review.json)、[实际位流](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/read-v3r9-native-bit-r3/bit-identity.json)、[BOOT非PL比较](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/read-v3-boot-r2/review.json)、[原始离线包](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-r2/manifest.json)、[实际执行manifest](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-execution-r9/manifest.json)、[Host实检](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/host-plan-review-r1/)、[板端只读身份](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/onsite-resume-readonly-r2/)。
+本轮报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/REPORT.md`）、正式55项复核（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/read-v3r9-independent-reports-r1/review.json`）、实际位流（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/read-v3r9-native-bit-r3/bit-identity.json`）、BOOT非PL比较（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/read-v3-boot-r2/review.json`）、原始离线包（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-r2/manifest.json`）、实际执行manifest（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/controlled-startup-read-v3-execution-r9/manifest.json`）、Host实检（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/host-plan-review-r1/`）、板端只读身份（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/onsite-resume-readonly-r2/`）。
 
-实际执行manifest SHA256：`3b5887ecece138973ee2ebef20b533211971674c0b33c7cbd9784159065cf085`；本机Host独立计划实检73.547秒exit0，local_review SHA256 `ccfc5ee31dc51f09493c64ce9d82102a279bc51bc312074eb0793404e79bd704`。生成源不构成批准；随后，原始回执见[r9-user-authorization](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/r9-user-authorization/actual-authorization.json)，当前包授权已关闭。
+实际执行manifest SHA256：`3b5887ecece138973ee2ebef20b533211971674c0b33c7cbd9784159065cf085`；本机Host独立计划实检73.547秒exit0，local_review SHA256 `ccfc5ee31dc51f09493c64ce9d82102a279bc51bc312074eb0793404e79bd704`。生成源不构成批准；随后，原始回执见r9-user-authorization（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/r9-user-authorization/actual-authorization.json`），当前包授权已关闭。
 
 ## 实际执行结果
 
@@ -43,4 +43,4 @@ FAT已知2168个未引用簇问题不修复，不修改uEnv、DTB、内核、SDK
 
 104字真实快照已验证：观测窗口约5.064秒，HC2接受9笔AR而R握手0；共享HP2对PS出口接受8笔AR、R握手2后持续背压；HDMI入口AR握手0、RVALID且RREADY=0覆盖整个窗口。ARM后未记录复位异常。疑点收敛到HP2共享返回通道及其初始化／分发状态，但没有逐事务台账或ARM前历史，不能唯一断定错路由、ID丢失或复位原因。实际发布DCP只读检查确认S00接HC2、S01接HDMI、6位PS RID进入返回流水线，未发现直接错线或显然ID截断；这不证明互联运行正确。
 
-完整阶段、失败原文、观测、回退及清理见[r9报告](../../tools/pose-v1/evidence/hdmi-live-20261018-r9/REPORT.md)。本页修订不回写批准时文档SHA。
+完整阶段、失败原文、观测、回退及清理见r9报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-live-20261018-r9/REPORT.md`）。本页修订不回写批准时文档SHA。

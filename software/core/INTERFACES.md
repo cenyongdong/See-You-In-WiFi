@@ -140,4 +140,4 @@ VPU QBUF 后缓冲归驱动，DQBUF 后归应用；压缩包必须在 capture �
 - 增改源码时更新当前锁并独立记录前后身份；迁移清单、旧锁和已完成证据不回写。验证使用新构建、新运行和新证据目录，失败后停止，不以旧程序覆盖新失败。
 - 固定数学、CPU/Gather 注册、Matmul NPU 分配、`reset(1)`、模型/RAW/SDK/BOOT、协议、`-ffp-contract=off` 与字节/时间预算保持；涉及变更先讨论。
 
-本页描述当前实现契约，不构成长期、严格 5Hz、永久首启动、HDMI 或旧 DATA 根因修复验收。检查范围与实际结果见[本轮记录](../../tools/pose-v1/evidence/core-check-20261014-r1/README.md)。
+本页描述当前实现契约，不构成长期、严格 5Hz、永久首启动、HDMI 或旧 DATA 根因修复验收。检查范围与实际结果见本轮记录（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/core-check-20261014-r1/README.md`）。

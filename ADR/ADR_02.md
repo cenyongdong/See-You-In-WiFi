@@ -32,9 +32,9 @@ r8最初Host300秒超时95例全部符合预期，原失败保存；新外部420
 
 本轮启动回归通过，不保证普通高阶页完全不足时必能启动。原六缓冲实现保持。常驻r2入口完成Host107；静态审查后新r5补充popLatest及coalesced计数，源选择后取实际采样时间，避免积压时FIFO额外延迟。队列满覆盖与采样合并分别统计，固定2Hz测试要求两者均0。队列Native测试通过；r1/r3/r4构建原型及r2Host保留，只有最终r5进入后续常驻板测。板端常驻/完整视频映射结果待补充，不能提前记作常驻修复完成。
 
-常驻r5后续实测：Host107通过，resident-three第一次模型输出读取被原有限性检查拒绝。七ZG/七Host回调、0→745及两输出ready齐全，内核前后相同；VPU约292个NoInput提交，未发布任何模型画面，异常两队列停止返回0。未生成resident-three验收、不进入27窗口，不弱化检查或复位。此问题与固件启动分配分开；原因未知，新r6只隔离Engine所有者线程到主线程（此前所有通过程序的调用位置），编码仍后台，数学/同步/硬件并行政策不变。[保留失败](../tools/pose-v1/evidence/resident-20261008-r5/resident-three-failure-review.json)。
+常驻r5后续实测：Host107通过，resident-three第一次模型输出读取被原有限性检查拒绝。七ZG/七Host回调、0→745及两输出ready齐全，内核前后相同；VPU约292个NoInput提交，未发布任何模型画面，异常两队列停止返回0。未生成resident-three验收、不进入27窗口，不弱化检查或复位。此问题与固件启动分配分开；原因未知，新r6只隔离Engine所有者线程到主线程（此前所有通过程序的调用位置），编码仍后台，数学/同步/硬件并行政策不变。保留失败（历史附件，当前仓库未附：`../tools/pose-v1/evidence/resident-20261008-r5/resident-three-failure-review.json`）。
 
-2026-10-08常驻阶段完成：r6主线程创建/前向/保存/销毁Engine、后台编码不变，程序f4f15b7e…e7060、402包/23来源通过构建身份。Host107与三帧＋重复4次、27窗口＋重复28次完整回归均通过；483,200个FP32输入/输出逐位原板端，987视频帧全部源/ID正确，5530关节可见性核验。容量2队列high_water=1、overwritten/coalesced均0，真实PTS递增、原始码流保持；两硬件阶段exit0/stderr空/内核同，正常LAST/归还/STREAMOFF。采用已验证主线程所有者作为首版调用约束，不宣称SDK普遍不支持后台线程，内部原因仍未证明。[完整结果/视频](../tools/pose-v1/RESIDENT-RESULTS-20261008.md)、[核验](../tools/pose-v1/evidence/resident-20261008-r6/completion-review.json)。
+2026-10-08常驻阶段完成：r6主线程创建/前向/保存/销毁Engine、后台编码不变，程序f4f15b7e…e7060、402包/23来源通过构建身份。Host107与三帧＋重复4次、27窗口＋重复28次完整回归均通过；483,200个FP32输入/输出逐位原板端，987视频帧全部源/ID正确，5530关节可见性核验。容量2队列high_water=1、overwritten/coalesced均0，真实PTS递增、原始码流保持；两硬件阶段exit0/stderr空/内核同，正常LAST/归还/STREAMOFF。采用已验证主线程所有者作为首版调用约束，不宣称SDK普遍不支持后台线程，内部原因仍未证明。[完整结果/视频](../tools/pose-v1/RESIDENT-RESULTS-20261008.md)、核验（历史附件，当前仓库未附：`../tools/pose-v1/evidence/resident-20261008-r6/completion-review.json`）。
 
 当前交付是有界20秒工作者测试，不安装永久服务、不声称在线RTSP或整机/30分钟通过。CMA仍256MiB、原六缓冲/后台失败与模型/SDK/BOOT保留，无规整/重启。预览裁去初始化并按名义10fps重编码，仅供审查，实际采样PTS保留。测试/会话关闭，下一在线owned AU桥按新门检推进。
 
@@ -48,7 +48,7 @@ TCP输出失配诊断新目标在首次VPU启动处再次失败，尚未创建En
 
 失败后STREAMOFF均返回0、端口和进程释放。随后只读pagetype快照出现5个Unmovable order7块，这是清理后的不同状态，不回写为故障现场，不当自动重跑门禁。原三次启动通过保持其范围。未规整、清缓存、重启或改CMA；新取证因资源条件停止，恢复方式后用新目录继续。证据`tools/pose-v1/evidence/tcp-evidence-20261008-r1/live-three`及`memory-failure-snapshot`，详见[TCP结果](../tools/pose-v1/TCP-INTEGRATION-RESULTS-20261008.md)。
 
-- [r6完成及失败核验](../tools/pose-v1/evidence/pipeline-20261008-r6/completion-review.json)
+- r6完成及失败核验（历史附件，当前仓库未附：`../tools/pose-v1/evidence/pipeline-20261008-r6/completion-review.json`）
 - [Linux5.4 GFP定义](https://raw.githubusercontent.com/torvalds/linux/v5.4/include/linux/gfp.h)：mobility与NORETRY行为；上游机制不代替板端定制驱动证明。
 - [Linux5.4启动参数](https://www.kernel.org/doc/html/v5.4/admin-guide/kernel-parameters.html)：CMA大小/地址属于启动配置；本轮不调整。
 

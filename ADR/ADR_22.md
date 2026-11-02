@@ -41,4 +41,4 @@ Native／ARM各10拒绝与47760字节拥有值／前次复制块／部分异常�
 
 下一新隔离候选先记录真实模型源／Host目标的合法区域对象、chunk、dtype／布局／分布、地址／偏移与生命周期，使用已拥有字节，不增加正常数据源读取或修改等待／copy／数学。之后根据实测选择能保持公开分配契约的更贴近模型对照。不把私有状态偏移、直接映射、零拷贝、cache helper或扩大CMA作为猜测修正；完整候选及原异常读回继续保留。
 
-[结果](../tools/pose-v1/SCRATCH-COPY-RESULTS-20261010.md)／[后续准备](../tools/pose-v1/SCRATCH-COPY-NEXT-20261010.md)／[完整审查](../tools/pose-v1/evidence/scratch-copy-20261010-r3/completion-review.json)／[恢复入口](../tools/pose-v1/evidence/scratch-copy-20261010-r3/next-checkpoint.json)。本批已安全结束，无代理后台或连接；新模型门检、103稳定回归、长期、HDMI与零拷贝未执行。
+[结果](../tools/pose-v1/SCRATCH-COPY-RESULTS-20261010.md)／[后续准备](../tools/pose-v1/SCRATCH-COPY-NEXT-20261010.md)／完整审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/scratch-copy-20261010-r3/completion-review.json`）／恢复入口（历史附件，当前仓库未附：`../tools/pose-v1/evidence/scratch-copy-20261010-r3/next-checkpoint.json`）。本批已安全结束，无代理后台或连接；新模型门检、103稳定回归、长期、HDMI与零拷贝未执行。

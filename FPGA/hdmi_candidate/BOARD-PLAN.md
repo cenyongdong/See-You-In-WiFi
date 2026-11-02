@@ -33,4 +33,4 @@ Windows工作目录D:/FPGACompetitionProject，固定SSH主机密钥与内存认
 - 首先读候选ABI/PLL锁定/频率计数和safe_idle，再独立静态1080p RGB565图案。显示器OSD/画面由现场确认；芯片寄存器或软件exit0不能代替实屏。
 - 静态稳定后验证帧ID/地址采用、翻帧、欠载故障、带在途读的STOP及stopped ID；只有安全完成证据后才释放实际帧块。最后才接骨架画面。每项新目录、明确数量/预算，错误/超时/身份变化保存停止，不自动重跑。
 
-本文件是具体执行包与待明确项，不是已完成系统构建、候选下载或HDMI实屏验收。执行证据见[本轮报告](../../tools/pose-v1/evidence/hdmi-bringup-20261015-r1/REPORT.md)。
+本文件是具体执行包与待明确项，不是已完成系统构建、候选下载或HDMI实屏验收。执行证据见本轮报告（历史附件，当前仓库未附：`../../tools/pose-v1/evidence/hdmi-bringup-20261015-r1/REPORT.md`）。

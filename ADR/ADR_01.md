@@ -100,8 +100,8 @@ lazy-r4平均forward约183.26ms。下列跨度有嵌套关系，不能重复累�
 
 ## 证据与复现
 
-- [P2完整报告](../tools/pose-v1/P2-RESULTS-20261007.md)、[lazy-r4完成核验](../tools/pose-v1/evidence/perf-20261007-lazy-r4/completion-review.json)、[命令与构建位置](../tools/pose-v1/P2-SINGLE-CLOCK-COMMANDS-20261007.md)。
+- [P2完整报告](../tools/pose-v1/P2-RESULTS-20261007.md)、lazy-r4完成核验（历史附件，当前仓库未附：`../tools/pose-v1/evidence/perf-20261007-lazy-r4/completion-review.json`）、[命令与构建位置](../tools/pose-v1/P2-SINGLE-CLOCK-COMMANDS-20261007.md)。
 - [r6帧状态修复](../tools/pose-v1/MIXED-FRAME-STATE-R6-RESULTS.md)、[融合绑定](../tools/pose-v1/MIXED-FUSION-R3-APPLY-RESULTS.md)、[CPU受限适配](../tools/pose-v1/CPU-ADAPTER-RESULTS-20261006.md)。
-- [27样本误差](../tools/pose-v1/evidence/runtime-20261007-r2/ONNX27-comparison.json)、[验收决定](../tools/pose-v1/evidence/perf-20261007-r3/user-numerical-acceptance.json)、[H0视频与骨架资料](../tools/pose-v1/H0-INTEGRATION-AUDIT-20261007.md)。
+- 27样本误差（历史附件，当前仓库未附：`../tools/pose-v1/evidence/runtime-20261007-r2/ONNX27-comparison.json`）、验收决定（历史附件，当前仓库未附：`../tools/pose-v1/evidence/perf-20261007-r3/user-numerical-acceptance.json`）、[H0视频与骨架资料](../tools/pose-v1/H0-INTEGRATION-AUDIT-20261007.md)。
 
 原始回传张量、程序及日志保留本机，部分生成物已被.gitignore排除；仓库内JSON/哈希与报告不能替代完整原始证据包。

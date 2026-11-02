@@ -1,6 +1,6 @@
 # V0视频配套核对：已确认部分与待确认接口
 
-最新授权：已完成编码样片审查，允许HDMI测试，解除下述暂停；[下一视频计划](NEXT-VIDEO-PLAN-20261007.md)与[来源哈希/检查点](evidence/video-next-plan-20261007.json)更新。参考默认1080p仅控制帧缓存大小/提交地址，仍需当前BOOT的clock/scanout/换帧配套核验；没有新硬件时序切换。
+最新授权：已完成编码样片审查，允许HDMI测试，解除下述暂停；[下一视频计划](NEXT-VIDEO-PLAN-20261007.md)与来源哈希/检查点（历史附件，当前仓库未附：`evidence/video-next-plan-20261007.json`）更新。参考默认1080p仅控制帧缓存大小/提交地址，仍需当前BOOT的clock/scanout/换帧配套核验；没有新硬件时序切换。
 
 最新补充：下文是此前查询阶段记录。现已实测720p NV12两plane、H264单plane、明确stride/容量及30帧独立文件编码/主机解码，[结果](VPU-RESULTS-20261007.md)。HDMI已连接DELL E2421HN但现场反馈时序不支持，目标更新1080p60并暂停测试，尚未切换硬件时序；旧无显示器/720p目标按历史理解。
 
@@ -21,7 +21,7 @@
 | PS时钟 | clk_summary可读 | 未建立PL HDMI实际像素时钟映射，不用PS clock树替代74.25MHz证明 |
 | 内核状态 | 查询前后dmesg完全相同，FPGAoperating | 仅查询通过，不是视频配置/流测试 |
 
-完整[查询](evidence/render-20261007-r1/video-query/capabilities.json)、[sysfs/DT](evidence/render-20261007-r1/video-query/sysfs.json)及[独立复核](evidence/render-20261007-r1/video-query.review.json)已保存。
+完整查询（历史附件，当前仓库未附：`evidence/render-20261007-r1/video-query/capabilities.json`）、sysfs/DT（历史附件，当前仓库未附：`evidence/render-20261007-r1/video-query/sysfs.json`）及独立复核（历史附件，当前仓库未附：`evidence/render-20261007-r1/video-query.review.json`）已保存。
 
 ## 当前参考代码不能直接采用的内容
 

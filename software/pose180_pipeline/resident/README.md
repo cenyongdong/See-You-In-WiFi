@@ -10,7 +10,7 @@
 
 以下 Top1／无阈值、仅本地验证、断网、旧包和旧启动身份均按记录日期理解，不再作为当前状态。
 
-2026-10-28 提交准备：已整理[现行核心源码](../../core/README.md)，构建原 epoch99 图的 **TopK=1／无置信度阈值 r4 生命周期加固[启动包](../../../Deliverables/history/software/pose180-top1-no-threshold-20261028-r4.tar.gz)**。保留单人连续性滤波与父死亡清理，进一步补齐初始化停止、清理全程独占、跨包状态与临时地址写前记录，故障注入、完整启停和 ARM64 构建通过。真正强杀 SDK 或缺少 STOP／drain 时仍不宣称硬件已释放，也不自动重试。未恢复实采或部署；验证与边界见[使用说明](STARTUP-PACKAGE.md)，实际设备和遗留收尾仍见恢复入口。
+2026-10-28 提交准备：已整理[现行核心源码](../../core/README.md)，构建原 epoch99 图的 **TopK=1／无置信度阈值 r4 生命周期加固启动包（历史附件，当前仓库未附：`../../../Deliverables/history/software/pose180-top1-no-threshold-20261028-r4.tar.gz`）**。保留单人连续性滤波与父死亡清理，进一步补齐初始化停止、清理全程独占、跨包状态与临时地址写前记录，故障注入、完整启停和 ARM64 构建通过。真正强杀 SDK 或缺少 STOP／drain 时仍不宣称硬件已释放，也不自动重试。未恢复实采或部署；验证与边界见[使用说明](STARTUP-PACKAGE.md)，实际设备和遗留收尾仍见恢复入口。
 
 2026-10-28 源码后续：已修订底层 HDMI 分配回滚、重复释放保护、NPU 释放守卫及非标准异常收尾，本地故障注入和常驻／严格 ARM64 构建通过；**暂不更新启动包**，以上 r4 归档不含这些新修订，也未上板。边界和证据见[源码验证](STARTUP-PACKAGE.md#板端异常资源保护源码修订未打包)。
 
@@ -78,7 +78,7 @@ TX无线广播 → 三个RX → 各自有序PCAP/TCP → 板端CSI整理
 
 本轮修正了两个接入问题：路由器缺`mkfifo`，发送脚本改为有界shell管道并独立保存采集／网络退出码；CSI的10秒无有效窗预算原从进程启动计时，SDK初始化后首连会误清空，现从三连接齐备开始。原故障结果保留：第一次真实SDK联调仅初始化、0推理，未发TX，正常退出且无设备占用；修正后的新任务才取得上述214次结果，不属于失败SDK重试。
 
-证据仅集中保留在[本机验证目录](../../../.local/pose180-resident-20261025)：`test-02/`、`csi-test-02/`、`board-evidence/`及`direct/`。真实CSI唯一汇总见[direct/summary.json](../../../.local/pose180-resident-20261025/direct/summary.json)，完整输出核验见[records-analysis.json](../../../.local/pose180-resident-20261025/direct/records-analysis.json)，全部设备原值在`direct/sdk-evidence.tar.gz`与`cpu2.tar.gz`。实际通过真实CSI的程序SHA256为`61fae95dfc0c34149983f768922e52fc91e6c198d718557a44936fea66ea0814`；较早606次回放试验的二进制另存于`package/identity.json`，不混用版本结论。
+证据仅集中保留在本机验证目录（本机留存，仓库未附：`../../../.local/pose180-resident-20261025`）：`test-02/`、`csi-test-02/`、`board-evidence/`及`direct/`。真实CSI唯一汇总见direct/summary.json（本机留存，仓库未附：`../../../.local/pose180-resident-20261025/direct/summary.json`），完整输出核验见records-analysis.json（本机留存，仓库未附：`../../../.local/pose180-resident-20261025/direct/records-analysis.json`），全部设备原值在`direct/sdk-evidence.tar.gz`与`cpu2.tar.gz`。实际通过真实CSI的程序SHA256为`61fae95dfc0c34149983f768922e52fc91e6c198d718557a44936fea66ea0814`；较早606次回放试验的二进制另存于`package/identity.json`，不混用版本结论。
 
 ## 真实CSI→推理→HDMI：r3实际结果
 
@@ -93,13 +93,13 @@ TX无线广播 → 三个RX → 各自有序PCAP/TCP → 板端CSI整理
 | 诊断有界丢弃 | `record_dropped=112`，包含文本与完整记录的IPC提交失败计数，不等于112次推理失败；推理和采纳未被阻断。最终正常记录约18.44MiB，四段内保留249条完整结果 |
 | 完整输出核验 | 板端保留249条、PC环保留227条，均通过有限性、帧身份、合法索引、最大分数选择及选中／完整姿态一致性检查；不是全程868条归档，也不是精度对照 |
 | 资源与停止 | 204次资源采样，主进程峰值RSS79,196KiB，系统最低MemAvailable719,796KiB；运行前后dmesg相同。tagged STOP已证明，之后释放设备帧，device owners为空 |
-| 实屏 | 答复“能看到多轮骨架更新”。原机器回执的`physical_screen_verified=false`保留；另存[人工观察](../../../.local/pose180-resident-hdmi-20261025-r3/physical-screen.json)作为独立证据 |
+| 实屏 | 答复“能看到多轮骨架更新”。原机器回执的`physical_screen_verified=false`保留；另存人工观察（本机留存，仓库未附：`../../../.local/pose180-resident-hdmi-20261025-r3/physical-screen.json`）作为独立证据 |
 
 源端任务约132秒后结束，剩余时间等待输入，最终结果年龄约47.4秒；不能写成180秒持续无线输入。三RX的前11代因板端重同步关闭TCP，旧捕获程序以SIGPIPE／141退出，未留下原生drop回执，因此这些代次的内核丢包数未知；各自第12代正常结束、drop=0。后续源码已让流式捕获在EPIPE时保留错误与drop回执，Linux断管故障注入及ARM编译通过，未在本已关闭包追加板测。
 
 本包首次包装器因Windows打包未保留执行权限而在`Popen`阶段失败，原生程序未启动。保留原错误、空stdout／stderr及没有原生PID的证据后，修复权限并执行唯一一次实际SDK初始化；旧`long-test.json`不回写，实际结果单列`native-test.json`。打包入口已显式写入755并验证，SDK守护在登记尝试前检查可执行权限。归档首包仅缺一个误拼目录，保留原tar退出码及有效成员，随后补取实际`startup/`与回退记录，没有重跑原生步骤。TX脚本的`busybox od`缺失导致在线状态检查未生效，12份原始48字节状态现已独立解码核验；持续守护实现需修正此兼容问题。
 
-唯一汇总：[r3 summary.json](../../../.local/pose180-resident-hdmi-20261025-r3/summary.json)。原生证据与软件包在[本机r3目录](../../../.local/pose180-resident-hdmi-20261025-r3)：`candidate-evidence.tar.gz`、`startup-recovery-evidence.tar.gz`、路由器原值、串口接收和PC环；[完整记录核验](../../../.local/pose180-resident-hdmi-20261025-r3/records-analysis.json)。实际程序仍为上述`61fae95d…ea0814`，模型与SDK身份在实际包`software/identity.json`及原生preflight中。后续打包、捕获和SSH小修不能反称已经在r3实板验证。
+唯一汇总：r3 summary.json（本机留存，仓库未附：`../../../.local/pose180-resident-hdmi-20261025-r3/summary.json`）。原生证据与软件包在本机r3目录（本机留存，仓库未附：`../../../.local/pose180-resident-hdmi-20261025-r3`）：`candidate-evidence.tar.gz`、`startup-recovery-evidence.tar.gz`、路由器原值、串口接收和PC环；完整记录核验（本机留存，仓库未附：`../../../.local/pose180-resident-hdmi-20261025-r3/records-analysis.json`）。实际程序仍为上述`61fae95d…ea0814`，模型与SDK身份在实际包`software/identity.json`及原生preflight中。后续打包、捕获和SSH小修不能反称已经在r3实板验证。
 
 ## r3历史恢复状态
 

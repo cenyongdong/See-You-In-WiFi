@@ -38,6 +38,6 @@ VPU228 capture含1参数集／226图像／1空LAST；主机226解码ID、实际�
 
 本批没有模型Session／NPU前向，所有代理程序和连接关闭，原主ELF／SDK／模型／BOOT保持。SDK源动态写入不等同NPU生产；低位独立SDK分配不等同模型高位来源。无法将本批通过写成SDK／VPU无责、DMA/cache fence或模型修复。下一准备公开SDK内存管理信息与合法自有较高位置分配对照，先核容量／所有权，不指定模型绝对地址或调整私有cursor。DMA／UDMA语义仍缺匹配定义，稳定103／长期／HDMI／零拷贝继续待。
 
-[结果](../tools/pose-v1/TYPED-SCRATCH-RESULTS-20261010.md)／[下一源位置方案](../tools/pose-v1/TYPED-SCRATCH-NEXT-20261010.md)／[完成审查](../tools/pose-v1/evidence/typed-scratch-20261010-r1/completion-review.json)／[恢复点](../tools/pose-v1/evidence/typed-scratch-20261010-r1/next-checkpoint.json)。
+[结果](../tools/pose-v1/TYPED-SCRATCH-RESULTS-20261010.md)／[下一源位置方案](../tools/pose-v1/TYPED-SCRATCH-NEXT-20261010.md)／完成审查（历史附件，当前仓库未附：`../tools/pose-v1/evidence/typed-scratch-20261010-r1/completion-review.json`）／恢复点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/typed-scratch-20261010-r1/next-checkpoint.json`）。
 
-[已批准方案](../tools/pose-v1/TENSOR-IDENTITY-NEXT-20261010.md)／[本批证据](../tools/pose-v1/evidence/typed-scratch-20261010-r1/)。
+[已批准方案](../tools/pose-v1/TENSOR-IDENTITY-NEXT-20261010.md)／本批证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/typed-scratch-20261010-r1/`）。

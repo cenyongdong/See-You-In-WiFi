@@ -2,8 +2,8 @@
 
 最新执行反馈：已在Lite生成`files.lf.sha256`并用它校验11项，全部OK、退出码0。
 板端包完整性通过；ZG图inspect退出码0，后续产物内容已复核，D离线检查通过。
-产物证据[evidence/board-inspect-artifacts-20261005.png](evidence/board-inspect-artifacts-20261005.png)。
-证据[evidence/board-checksum-inspect-exit0-20261005.png](evidence/board-checksum-inspect-exit0-20261005.png)。
+产物证据`evidence/board-inspect-artifacts-20261005.png`（历史附件，当前仓库未附）。
+证据`evidence/board-checksum-inspect-exit0-20261005.png`（历史附件，当前仓库未附）。
 生产脚本候选修正仍待明确批准、尚未应用。下面“尚未执行”为方案交付时的历史状态；
 当前不要重生成新清单或重跑已有inspect。
 

@@ -36,7 +36,7 @@ Native拥有值/线程/上限/逐帧清除/部分失败7拒绝通过。接下来
 
 r3/r4四窗准备各规整一次148.45488／225.37927ms并保存现场；高负载前普通512KiB单位68，无规整。没有清缓存、重启或改CMA／BOOT。新模块等待／read／句柄／摘要与保存改变时序，本轮不作严格5Hz、长期或根因修复结论，管理83/100保持。
 
-[完整结果](../tools/pose-v1/UPSTREAM-BOUNDARY-RESULTS-20261011.md)／[绑定证据](../tools/pose-v1/evidence/upstream-boundary-20261011-r4/completion-review.json)／[下一首次read／Host边界方案](../tools/pose-v1/UPSTREAM-BOUNDARY-NEXT-20261011.md)。
+[完整结果](../tools/pose-v1/UPSTREAM-BOUNDARY-RESULTS-20261011.md)／绑定证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/upstream-boundary-20261011-r4/completion-review.json`）／[下一首次read／Host边界方案](../tools/pose-v1/UPSTREAM-BOUNDARY-NEXT-20261011.md)。
 
 
 ### r1 Host构造失败与r2修正

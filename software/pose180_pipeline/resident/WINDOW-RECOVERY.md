@@ -28,7 +28,7 @@
 | 日志与容错 | 独立诊断环实际轮换，保留378整行且不超过512KiB；`/dev/full`诊断写失败不阻断完整结果写入。慢SDK、记录进程暂停、慢／断开PC、磁盘满恢复、部分输入重连、SDK异常隔离及端口回收回归通过 |
 | 编译与封装 | PCAP解析214项通过；Linux原生模拟程序及真实SDK ARM64程序编译完成。复用r6 TX固件／守护／HDMI及合格r45 BOOT，不重建FPGA或TX固件 |
 
-原始日志与产物统一在[本机r7目录](../../../.local/pose180-resident-window-20261025-r7)：`build/{ingress-final,native,arm64-final,journal-final,recovery-final}.log`、`window-recovery-final/`、`csi-recovery-final/`、`resident-final/`、`journal-test/`及`package-check.json`。工具环境中的一次Python路径缺失及新CMake目标首次重载未命中仅影响包装步骤，已保留原日志并使用现有Python镜像／重新读取目标继续，没有重跑硬件负载。
+原始日志与产物统一在本机r7目录（本机留存，仓库未附：`../../../.local/pose180-resident-window-20261025-r7`）：`build/{ingress-final,native,arm64-final,journal-final,recovery-final}.log`、`window-recovery-final/`、`csi-recovery-final/`、`resident-final/`、`journal-test/`及`package-check.json`。工具环境中的一次Python路径缺失及新CMake目标首次重载未命中仅影响包装步骤，已保留原日志并使用现有Python镜像／重新读取目标继续，没有重跑硬件负载。
 
 ## 包与执行范围
 

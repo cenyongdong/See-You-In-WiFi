@@ -2,33 +2,33 @@
 
 **历史状态记录：** 本页的“当前”和“下一步”属于早期开发阶段。最终交付与设备状态分别见[项目进度](../../PROJECT-PROGRESS.md)和[恢复入口](../../FPGA/hdmi_candidate/RESUME.md)；不从本页启动旧负载。
 
-> 2026-10-08当前：两缓冲启动三次回归及有限主线程Engine＋后台VPU三/27窗口通过，987原始编码帧全解码核验。[启动](VPU-STARTUP-RESULTS-20261008.md)、[常驻/预览](RESIDENT-RESULTS-20261008.md)、[恢复点](evidence/resident-20261008-r6/next-checkpoint.json)。下一在线owned AU/live555，保留原模型/数学/SDK/BOOT、主线程模式/两缓冲候选；旧后台Engine/六缓冲失败勿重跑。任务未被暂停，测试与SSH/SFTP已关闭，无后台。不是daemon/RTSP/整机5Hz/长期验收，预览名义10fps不当真实PTS；旧入口为历史。
+> 2026-10-08当前：两缓冲启动三次回归及有限主线程Engine＋后台VPU三/27窗口通过，987原始编码帧全解码核验。[启动](VPU-STARTUP-RESULTS-20261008.md)、[常驻/预览](RESIDENT-RESULTS-20261008.md)、恢复点（历史附件，当前仓库未附：`evidence/resident-20261008-r6/next-checkpoint.json`）。下一在线owned AU/live555，保留原模型/数学/SDK/BOOT、主线程模式/两缓冲候选；旧后台Engine/六缓冲失败勿重跑。任务未被暂停，测试与SSH/SFTP已关闭，无后台。不是daemon/RTSP/整机5Hz/长期验收，预览名义10fps不当真实PTS；旧入口为历史。
 
-> 2026-10-08当前：真实推理→渲染→VPU的有限内容链路已核验，两成功码流一致；无规整的新进程重复仍在固件连续页分配失败，**启动稳定性未过**。[结果/视频](PIPELINE-RESULTS-20261008.md)、[下一门检](PIPELINE-NEXT-20261008.md)、[检查点](evidence/pipeline-20261008-r6/next-checkpoint.json)。下一先取证REQBUFS/STREAMON页状态再依据证据修正，随后常驻上下文/有界实时/在线RTSP。属于失败停止，不自动规整/重试；旧阶段“当前/暂停”均为历史，整机/HDMI仍待。
+> 2026-10-08当前：真实推理→渲染→VPU的有限内容链路已核验，两成功码流一致；无规整的新进程重复仍在固件连续页分配失败，**启动稳定性未过**。[结果/视频](PIPELINE-RESULTS-20261008.md)、[下一门检](PIPELINE-NEXT-20261008.md)、检查点（历史附件，当前仓库未附：`evidence/pipeline-20261008-r6/next-checkpoint.json`）。下一先取证REQBUFS/STREAMON页状态再依据证据修正，随后常驻上下文/有界实时/在线RTSP。属于失败停止，不自动规整/重试；旧阶段“当前/暂停”均为历史，整机/HDMI仍待。
 
 > 当前RTSP首批已验证：200帧传输/重连与标准播放器100帧逐位原视频，有限上下文清理通过，无新依赖。[结果/录制视频](RTSP-RESULTS-20261007.md)、[F0接入准备](F0-INTEGRATION-PREP-20261007.md)。当前是预生成码流回放，在线VPU/实际推理合并、显式色彩、HDMI/整机长期仍待；旧未RTSP/暂停条目为历史。
 
 > 当前最新：视频任务已恢复，真实27骨架/54帧有限编码及两独立上下文重复通过，主机完整核验，MMAP描述兼容修正已采用。[结果/视频](VIDEO-DESCRIPTOR-R5-RESULTS-20261007.md)、[恢复入口](RESUME-VIDEO-20261007.md)。原推理/SDK/BOOT保持，HDMI1080p60未改时序，RTSP/实时合并/整机长期未通过。旧暂停和失败条目按历史保留。
 
-当前最新：暂停并等待唤醒。[真实骨架首批失败报告](VIDEO-SEQUENCE-RESULTS-20261007.md)、[恢复说明](RESUME-VIDEO-20261007.md)、[暂停检查点](evidence/video-sequence-20261007-r1/next-checkpoint.json)。新API/真实27来源与54输入/协商通过，编码exit1且固件MMU ABORT，仅3部分图像，不作动态视频验收；HDMI配套不足未写，离线1080p图完成。会话关闭，补查认证前取消，不连接/构建/板测/后台；旧“接续执行”按历史理解。
+当前最新：暂停并等待唤醒。[真实骨架首批失败报告](VIDEO-SEQUENCE-RESULTS-20261007.md)、[恢复说明](RESUME-VIDEO-20261007.md)、暂停检查点（历史附件，当前仓库未附：`evidence/video-sequence-20261007-r1/next-checkpoint.json`）。新API/真实27来源与54输入/协商通过，编码exit1且固件MMU ABORT，仅3部分图像，不作动态视频验收；HDMI配套不足未写，离线1080p图完成。会话关闭，补查认证前取消，不连接/构建/板测/后台；旧“接续执行”按历史理解。
 
-当前最新授权：已审查样片并允许HDMI测试，解除下文暂停；[NEXT-VIDEO-PLAN](NEXT-VIDEO-PLAN-20261007.md)为后续执行顺序，[新恢复点](evidence/video-next-plan-20261007.json)。先真实骨架54帧动态文件与HDMI当前BOOT配套，后1080p60实屏/RTSP/实际推理合并。本轮只计划和资料核对，未新板测/时序切换，旧暂停记录为历史。
+当前最新授权：已审查样片并允许HDMI测试，解除下文暂停；[NEXT-VIDEO-PLAN](NEXT-VIDEO-PLAN-20261007.md)为后续执行顺序，新恢复点（历史附件，当前仓库未附：`evidence/video-next-plan-20261007.json`）。先真实骨架54帧动态文件与HDMI当前BOOT配套，后1080p60实屏/RTSP/实际推理合并。本轮只计划和资料核对，未新板测/时序切换，旧暂停记录为历史。
 
-当前最新V2文件：独立H264720p10fps/30帧编码、回传MP4及主机逐帧ID/移动图审查通过，[结果/视频](VPU-RESULTS-20261007.md)、[核验](evidence/vpu-20261007-r1/completion-review.json)、[恢复点](evidence/vpu-20261007-r1/next-checkpoint.json)。无新依赖，原推理/SDK/BOOT保持，未RTSP/实时合并/长期。HDMI已接DELL E2421HN，目标1080p60、测试暂停，尚未硬件时序切换；此前未接屏/未编码属历史。下一步有界接口、真实预生成骨架帧与timestamp/VUI/RTSP。
+当前最新V2文件：独立H264720p10fps/30帧编码、回传MP4及主机逐帧ID/移动图审查通过，[结果/视频](VPU-RESULTS-20261007.md)、核验（历史附件，当前仓库未附：`evidence/vpu-20261007-r1/completion-review.json`）、恢复点（历史附件，当前仓库未附：`evidence/vpu-20261007-r1/next-checkpoint.json`）。无新依赖，原推理/SDK/BOOT保持，未RTSP/实时合并/长期。HDMI已接DELL E2421HN，目标1080p60、测试暂停，尚未硬件时序切换；此前未接屏/未编码属历史。下一步有界接口、真实预生成骨架帧与timestamp/VUI/RTSP。
 
-当前最新E1-C：CPU骨架画面、27帧ARM/Native逐位画面及RGB565/NV12/NV21、三帧真实网络结果绘图已核验，[结果/预览](RENDER-RESULTS-20261007.md)。[V0配套表](V0-VIDEO-PAIRING-20261007.md)确认当前MVX两端MPLANE及NV12/NV21/H264枚举，尚未协商/编码；HDMI未接屏、720p时钟/扫描未确认。新的[恢复点](evidence/render-20261007-r1/next-checkpoint.json)指向独立编码与HDMI配套，旧“下一渲染”按此前阶段理解。
+当前最新E1-C：CPU骨架画面、27帧ARM/Native逐位画面及RGB565/NV12/NV21、三帧真实网络结果绘图已核验，[结果/预览](RENDER-RESULTS-20261007.md)。[V0配套表](V0-VIDEO-PAIRING-20261007.md)确认当前MVX两端MPLANE及NV12/NV21/H264枚举，尚未协商/编码；HDMI未接屏、720p时钟/扫描未确认。新的恢复点（历史附件，当前仓库未附：`evidence/render-20261007-r1/next-checkpoint.json`）指向独立编码与HDMI配套，旧“下一渲染”按此前阶段理解。
 
-最新E1-A/B首批已执行完成：[结果](APPLICATION-RESULTS-20261007.md)、[完成证据](evidence/application-20261007-r2/completion-review.json)。生产入口无冻结Tokens依赖，TCP完整记录/单槽与3/27帧网络结果通过，38成功前向全输出逐位此前板端。2Hz验证无丢弃，27帧到达至结果P95 193.76084ms不作为整机5Hz。有限CLI与有界诊断不是长期服务；下一步渲染及视频配套，旧“本次未新应用”文字属此前规划历史。
+最新E1-A/B首批已执行完成：[结果](APPLICATION-RESULTS-20261007.md)、完成证据（历史附件，当前仓库未附：`evidence/application-20261007-r2/completion-review.json`）。生产入口无冻结Tokens依赖，TCP完整记录/单槽与3/27帧网络结果通过，38成功前向全输出逐位此前板端。2Hz验证无丢弃，27帧到达至结果P95 193.76084ms不作为整机5Hz。有限CLI与有界诊断不是长期服务；下一步渲染及视频配套，旧“本次未新应用”文字属此前规划历史。
 
 首版采用当前lazy-r4异构方案的决策已确认，见[ADR_01](../../ADR/ADR_01.md)。[全流程计划](FULL-FLOW-PLAN-20261007.md)已归档，下一批建议生产接口与TCP接收，随后渲染/独立视频/双路长期验证。零拷贝/图/新算子性能优化后置；本次未执行新应用或板测。
 
 明确验收现有27样本部署数值阶段；原误差不改写，query身份未证明，N2作为非阻断诊断保留。
-[验收决定](evidence/perf-20261007-r3/user-numerical-acceptance.json)、[P2完整结果](P2-RESULTS-20261007.md)。
+验收决定（历史附件，当前仓库未附：`evidence/perf-20261007-r3/user-numerical-acceptance.json`）、[P2完整结果](P2-RESULTS-20261007.md)。
 
 SDK profiling已关闭；单一steady_clock定位CPU桥等待/计算等开销。独立lazy-r4仅减少成功检查的错误字符串构造，保留全部检查/算法/同步。
 Host107/四帧回归/3预热＋30计量通过，全部37输出与r6逐位一致。平均190.60146ms/P95 190.75409ms/5.24655Hz，处理核心短期基线达5Hz。
 当前未包括网络/绘图/编码，200ms预算余量约9.4ms；整机5Hz/10Hz、HDMI/RTSP与30分钟闭环未通过。
-原模型/RAW/SDK/BOOT、r2/r3/r6保持；新核验[evidence](evidence/perf-20261007-lazy-r4/completion-review.json)，新[命令](P2-SINGLE-CLOCK-COMMANDS-20261007.md)。
+原模型/RAW/SDK/BOOT、r2/r3/r6保持；新核验evidence（历史附件，当前仓库未附：`evidence/perf-20261007-lazy-r4/completion-review.json`），新[命令](P2-SINGLE-CLOCK-COMMANDS-20261007.md)。
 性能任务完成，会话关闭，没有自动继续部署视频。下一阶段生产接口与应用/输出具体方案另议。
 
 <details>
@@ -151,7 +151,7 @@ offline-check.acceptance.json已生成；当前传入验收文件，确认BOOT/J
 
 最新离线预检审阅：现场反馈Host验收已传板，失败目录三文件/290项校验OK已核对，未调用离线程序。
 现在按[MIXED-VALIDATION-COMMANDS.md](MIXED-VALIDATION-COMMANDS.md)保留改名原失败目录，再一次30秒offline-check并回传。
-只有Host桥阶段已验收；真实RAW/PS离线结果及硬件阶段均未通过。[预检证据](evidence/mixed-20261006-r1/offline-preflight-review.json)。
+只有Host桥阶段已验收；真实RAW/PS离线结果及硬件阶段均未通过。预检证据（历史附件，当前仓库未附：`evidence/mixed-20261006-r1/offline-preflight-review.json`）。
 
 最新2026-10-06：mixed-r1 Host桥回归独立验收通过，107例/12注册/22输出59,600FP32逐位一致、全有限。
 45项完整回传/290包及程序/SDK身份匹配，stderr空、内核前后相同；[结果](MIXED-HOST-RESULTS-20261006.md)。
@@ -163,7 +163,7 @@ host-check.acceptance.json已生成，传板后继续离线；上次失败预检
 工程/数值分阶段、ONNX直接对照Lite；Icraft全CPU Matmul缺口不阻断本轮。
 新Conda Python3.10.21/NumPy2.2.5/CPU ORT1.23.2已安装并锁定依赖/哈希。
 308/309/310全部候选12,900个FP32输出有限，首样本重复逐位一致，不同输入响应存在，12项产物哈希核验通过。
-见[ONNX结果](ONNX-REFERENCE-RESULTS-20261006.md)及[evidence](evidence/onnx-reference-environment-20261006.json)。
+见[ONNX结果](ONNX-REFERENCE-RESULTS-20261006.md)及evidence（历史附件，当前仓库未附：`evidence/onnx-reference-environment-20261006.json`）。
 已交付独立pose_mixed_check/SDK Host桥/新包及六阶段脚本；原推理器/已验收CPU实现/模型保持。
 最新构建已通过：mixed-20261006-r1配置/编译/链接完成，代理核对290包项/10源码/15头文件/Host＋ZG库及程序哈希匹配。
 一条缩进warning经控制流审查不影响预期JSON行为，源码及程序保持，无需重编译；[审查结果](MIXED-BUILD-REVIEW-20261006.md)。
@@ -177,13 +177,13 @@ host-check.acceptance.json已生成，传板后继续离线；上次失败预检
 
 ## 2026-10-05：下一阶段交付状态
 
-**2026-10-06 CPU候选正式验收通过**：完整回传及文件复核已取得，代理独立核验107例（18正常/89拒绝）、12注册记录、22输出/59,600个FP32值逐位一致及全有限；包282/回传40哈希和SDK/程序身份匹配，ldd完整，退出0/stderr空。五个缺失Host节点补注册及前向通过、原Gather保持并通过。见[最终结果](CPU-ADAPTER-RESULTS-20261006.md)、[独立证据](evidence/cpu-adapter-independent-review-20261006.json)。仅Host CPTR/全有效分布的独立候选通过，未接入正式推理器或验证NPU交接/完整模型，CPU Matmul参考仍待解决。不要重跑C/D或自动mixed；下文待回传为历史状态。
+**2026-10-06 CPU候选正式验收通过**：完整回传及文件复核已取得，代理独立核验107例（18正常/89拒绝）、12注册记录、22输出/59,600个FP32值逐位一致及全有限；包282/回传40哈希和SDK/程序身份匹配，ldd完整，退出0/stderr空。五个缺失Host节点补注册及前向通过、原Gather保持并通过。见[最终结果](CPU-ADAPTER-RESULTS-20261006.md)、独立证据（历史附件，当前仓库未附：`evidence/cpu-adapter-independent-review-20261006.json`）。仅Host CPTR/全有效分布的独立候选通过，未接入正式推理器或验证NPU交接/完整模型，CPU Matmul参考仍待解决。不要重跑C/D或自动mixed；下文待回传为历史状态。
 
 **Lite运行反馈（2026-10-06，待完整回传）**：截图显示sh脚本及exit.txt退出0、stdout报告107例完成、stderr为空；summary标记CPU候选通过且device_opened/full_model_executed/mixed_verified均false。程序内部检查报告完成，本地尚无回传目录；实际注册记录/22输出及哈希联查待[命令D](CPU-ADAPTER-COMMANDS.md)，不重跑C、不进入mixed。用户目录创建/传输已达到实际运行阶段，较早mkdir缺父目录反馈不能当作当前未执行。
 
 **目录前置反馈**：创建Lite子目录时报No such file or directory，推测父路径缺失，尚未实际ls确认。[命令C](CPU-ADAPTER-COMMANDS.md)已补父路径检查及仅对父目录mkdir -p，子目录普通mkdir保持禁止复用；不改测试路径/二进制/包，不认为这是算子失败。目录创建/传输/板端运行均未通过，代理未执行板端操作。
 
-**2026-10-06 r2构建复核通过**：完成配置/编译/链接，5份源码及ARM二进制哈希匹配；282项包文件校验通过，新旧281项非manifest文件相同，SDK六头文件/Host库/两包3.39.0匹配。AArch64 PIE程序SHA256为8cf2017cedf6a97f98ce485d979239b659291f3c91d3a3d550382c1c94588622，直接依赖无ZG/AIU、无RPATH/RUNPATH。仅交叉编译验收，Lite加载/注册/数值尚未测试；用户可执行[命令C](CPU-ADAPTER-COMMANDS.md)，一次300秒Host测试，失败停止保存，不进入mixed。见[evidence复核](evidence/cpu-adapter-r2-build-review-20261006.json)；下文未编译为执行前状态。
+**2026-10-06 r2构建复核通过**：完成配置/编译/链接，5份源码及ARM二进制哈希匹配；282项包文件校验通过，新旧281项非manifest文件相同，SDK六头文件/Host库/两包3.39.0匹配。AArch64 PIE程序SHA256为8cf2017cedf6a97f98ce485d979239b659291f3c91d3a3d550382c1c94588622，直接依赖无ZG/AIU、无RPATH/RUNPATH。仅交叉编译验收，Lite加载/注册/数值尚未测试；用户可执行[命令C](CPU-ADAPTER-COMMANDS.md)，一次300秒Host测试，失败停止保存，不进入mixed。见evidence复核（历史附件，当前仓库未附：`evidence/cpu-adapter-r2-build-review-20261006.json`）；下文未编译为执行前状态。
 
 **2026-10-06 r2批准后应用**：三处Array::set及日志捕获修正，两生效文件与审阅候选一致，原文件备份/旧包/r1目录保留；语法0错误。仅静态检查，未生成新包/重编译/算子测试，其他编译问题仍不能排除。现在人工操作[更新命令A/B](CPU-ADAPTER-COMMANDS.md)，新包`package/20261006-r2`记录源码身份、新构建标签`cpu-adapter-20261006-r2`；不改旧manifest，不直接进入C或mixed。下文“候选未批准/未应用”是审批前状态。
 
@@ -212,7 +212,7 @@ Host尚未执行，ARM支持、内存/耗时及输出数值未知；不是部署
 Windows原开发终端查询已确认：cl在Hostx64/x64、目标x64、VSINSTALLDIR正确，CMake实际3.31.6-msvc6。
 WindowsSdkDir未设置、WindowsSDKVersion仅`\`，有效SDK未识别；常见文件/4个厂商登记入口未找到。
 不把“编译工具可查到”当成Host可编译，不自动安装或手配SDK，保留未登记自定义路径可能性。
-证据[evidence/windows-host-sdk-query-20261005.png](evidence/windows-host-sdk-query-20261005.png)。
+证据`evidence/windows-host-sdk-query-20261005.png`（历史附件，当前仓库未附）。
 已准备[参考路线与ORT解析候选](REFERENCE-NEXT-PLAN.md)：B复用现有Lite host模式对照，A保留Windows SDK补齐路线；
 另建议独立Conda只做CPU ORT1.23.2依赖dry-run预览，两项均待配置采用/批准，未执行或安装。
 完整模型与参考尚未运行，mixed仍未推进。
@@ -221,21 +221,21 @@ Windows查询最新反馈：自动路径已显示开发终端横幅，另一个�
 已明确查询是在另开的CMD中执行，未继承原开发环境；不能据此认定原窗口初始化失败或SDK未安装。
 现在回原初始化窗口查询；原窗口环境、SDK及后续编译仍待验证。
 只读已确认start/parse/winsdk/vcvars等子脚本存在；v17.0横幅是vswhere缺失时的默认显示，不作版本/通过门禁。
-证据：[横幅](evidence/windows-host-banner-20261005.png)、[未设置变量](evidence/windows-host-unset-query-20261005.png)。
+证据：横幅（历史附件，当前仓库未附：`evidence/windows-host-banner-20261005.png`）、未设置变量（历史附件，当前仓库未附：`evidence/windows-host-unset-query-20261005.png`）。
 未安装/修复/编译或运行参考，软件执行仍人工完成；原窗口环境未核验前暂停F2及依赖它的mixed。
 
 Windows开发终端首次启动失败：截图中的`Visual Studio 2022`目录名漏掉开头空格。
 只读复核实际目录首字符32，带空格脚本路径存在、无空格路径不存在，不能据此认定SDK缺失。
 已将[查询说明](WINDOWS-HOST-ENV-CHECK.md)改为真实目录项构造路径，同一临时x64开发终端/查询范围不变，
 未代执行终端、编译或修复。下一步先exit回PowerShell再执行自动定位命令。
-证据[evidence/windows-host-path-error-20261005.png](evidence/windows-host-path-error-20261005.png)。
+证据`evidence/windows-host-path-error-20261005.png`（历史附件，当前仓库未附）。
 
 Windows Host工具只读定位更新：找到`D:\Visual Studio\ Visual Studio 2022\Community`，
 目录名开头空格必须保留；MSVC14.44.35207 cl/link/nmake与C++头文件/库、VsDevCmd.bat、CMake文件存在。
 CMake文件元数据3.31.6-msvc6，不是命令运行结果。SDK完整、开发终端初始化和VS生成器发现仍待查询/验证。
 默认vswhere及常见Windows Kits注册表入口未找到/未返回记录，不自动安装或修复。
 命令：[WINDOWS-HOST-ENV-CHECK.md](WINDOWS-HOST-ENV-CHECK.md)，
-证据：[文件定位记录](evidence/windows-host-tool-discovery-20261005.json)。
+证据：文件定位记录（历史附件，当前仓库未附：`evidence/windows-host-tool-discovery-20261005.json`）。
 仅查文件不代表Host编译/模型执行通过，ORT缺失仍待讨论；前述“Windows工具待确认”按本段细化。
 
 E完整产物已人工交付并复核：stage以probe_complete_requires_review结束，配置mode=probe、
@@ -243,8 +243,8 @@ device_init_allowed=true，目录无failure.json，stderr为空。stdout明确De
 AXI zg330aiu、NPU=0x40000000/DMA=0x80000000、device=25122301、icore=FMSHZGV3TECH-AID - 24160628。
 结合退出码0，E仅Open/version初始化探测通过。提供的dmesg尾部未见探测相关总线/DMA错误；
 EXT4恢复、journal异常关闭/更换及其他提示发生于启动阶段，不归因于probe，不自动修复。
-证据：[产物和stdout](evidence/board-probe-review-20261005-1.png)、
-[内核上下文上段](evidence/board-probe-review-20261005-2.png)、[内核上下文末段](evidence/board-probe-review-20261005-3.png)。
+证据：产物和stdout（历史附件，当前仓库未附：`evidence/board-probe-review-20261005-1.png`）、
+内核上下文上段（历史附件，当前仓库未附：`evidence/board-probe-review-20261005-2.png`）、内核上下文末段（历史附件，当前仓库未附：`evidence/board-probe-review-20261005-3.png`）。
 未执行模型或验收NPU/DMA计算；compatibility_passed=false固定待验收标记保持。
 下一步F1/F2数值参考，当前ORT缺失及Windows Host编译工具待确认；参考有效前不进入mixed。
 下面“E日志待复核/未运行”为历史状态，不覆盖本次限定范围的通过结果。
@@ -252,28 +252,28 @@ EXT4恢复、journal异常关闭/更换及其他提示发生于启动阶段，�
 最新E执行反馈：运行固定30秒timeout的probe，退出码0，SDK device版本25122301与基线一致。
 icore版本已显示，待文本复核；probe.dmesg.log已保存，但stdout/stderr、阶段/配置和内核日志未提交。
 compatibility_passed=false为检查器固定的待验收标记，不是SDK报错。E日志复核未完成，mixed未执行。
-见[evidence/board-probe-exit0-20261005.png](evidence/board-probe-exit0-20261005.png)。
+见`evidence/board-probe-exit0-20261005.png`（历史附件，当前仓库未附）。
 现在只读已有产物，不重跑/覆盖probe，不依据退出码认定DMA/NPU计算或完整混合模型通过。
 下面“probe未运行”为此前准备阶段的历史状态。
 
 E前置查询已反馈：/usr/bin/timeout为GNU coreutils 8.30，probe及三份日志不存在，
 可见进程列表未见明显AI/HDMI/编码应用。kbase/mvx等内核线程不等于演示程序或故障证据。
-见[evidence/board-probe-preflight-20261005-1.png](evidence/board-probe-preflight-20261005-1.png)、
-[进程及目录查询](evidence/board-probe-preflight-20261005-2.png)。
+见`evidence/board-probe-preflight-20261005-1.png`（历史附件，当前仓库未附）、
+进程及目录查询（历史附件，当前仓库未附：`evidence/board-probe-preflight-20261005-2.png`）。
 仍待人工确认上次0x25122301核验后未替换BOOT/JTAG加载其他位流且无其他演示访问设备；
 不从进程截图推定这些事实，未运行probe或推理，不自动停止进程或复位设备。
 
 最新D产物已复核通过：输入[1,180,60]、分数[1,100]、姿态[1,100,14,3]及顺序符合float32门禁；
 阶段started→offline_inspection_complete、mode=inspect/device_init_allowed=false，stderr为空且无failure.json。
 结合前述11项包校验和inspect退出码0，D离线检查通过；尚无RAW参数加载或Device::Open/推理结果。
-证据[evidence/board-inspect-artifacts-20261005.png](evidence/board-inspect-artifacts-20261005.png)。
+证据`evidence/board-inspect-artifacts-20261005.png`（历史附件，当前仓库未附）。
 下一步先人工只读查询GNU timeout、进程列表，确认BOOT未再次更换；并发状态不明时不运行probe。
 不自动终止进程或初始化设备。下面“产物待复核”为前一次截图的历史状态。
 
 最新D后续截图：校验`files.lf.sha256`，11项全部OK、退出码0，板端包完整性已通过。
 随后ZG图inspect退出码0；graph-io.json、stages.jsonl、run-config.json及stderr尚未提交，
 离线接口验收待产物复核，不重跑或覆盖inspect-zg。设备probe和推理仍未执行。
-证据[evidence/board-checksum-inspect-exit0-20261005.png](evidence/board-checksum-inspect-exit0-20261005.png)。
+证据`evidence/board-checksum-inspect-exit0-20261005.png`（历史附件，当前仓库未附）。
 生产打包脚本候选修正仍未应用；下面校验失败与待执行文字为历史状态。
 
 最新D截图：程序哈希匹配、ldd已列出的库全部解析，但包校验清单因Windows CRLF导致11个文件名尾随CR，
@@ -285,7 +285,7 @@ sha256sum报No such file，板端包完整性仍未通过。已只读确认本�
 `inference-20261005-165059-043b0c40`；实际AArch64 PIE二进制SHA256为
 `d1006f9bd78050ffa484c64bf74fb62542d270c7acca5068e9da611a5bdc05e5`。
 代理只读核对7份源码记录、11份包文件大小/哈希及二进制哈希，全匹配。
-见[evidence/cross-build-review-20261005.json](evidence/cross-build-review-20261005.json)。
+见`evidence/cross-build-review-20261005.json`（历史附件，当前仓库未附）。
 板端传输、ldd、inspect均待人工操作，设备probe/推理未执行。当前进入D后停交结果，不能因链接通过认定板端兼容。
 以下“未编译/待查询”为此前交付过程快照，最新状态以本段为准。
 

@@ -28,7 +28,7 @@ Native拥有内存/边界/异常契约→ARM公开Host read真实192两规格470
 
 下一独立组合显示子进程／TCP／owned AU，再有界整机5Hz；当前不是RTSP、HDMI、30分钟、任意碎片首次启动或零拷贝通过。原失败证据、Host坏值及两晚源采集保持，不以成功覆盖失败。
 
-[结果报告](../tools/pose-v1/INPUT-READ-RESULTS-20261010.md)、[后续方案](../tools/pose-v1/INPUT-READ-NEXT-20261010.md)、[完整证据](../tools/pose-v1/evidence/input-read-20261010-r1/completion-review.json)、[恢复点](../tools/pose-v1/evidence/input-read-20261010-r1/next-checkpoint.json)。
+[结果报告](../tools/pose-v1/INPUT-READ-RESULTS-20261010.md)、[后续方案](../tools/pose-v1/INPUT-READ-NEXT-20261010.md)、完整证据（历史附件，当前仓库未附：`../tools/pose-v1/evidence/input-read-20261010-r1/completion-review.json`）、恢复点（历史附件，当前仓库未附：`../tools/pose-v1/evidence/input-read-20261010-r1/next-checkpoint.json`）。
 
 ## 后续限制更新
 

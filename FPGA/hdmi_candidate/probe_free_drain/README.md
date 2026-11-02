@@ -4,9 +4,9 @@
 
 2026-10-26 检查此前完成稳定性测试的位流，移除检查探针及协议检查 IP，保留异常消费缓解手段，执行多轮、每轮 5 分钟的完整链路稳定性测试。
 
-后续现场补测：到达板卡旁后，r2 复用同一 BOOT／程序完成 300 秒运行，2981 次推理、2980 次 HDMI 采纳和 PC 接收，1 个过期结果丢弃；现场确认“画面正常，内容持续更新”。正常停止、STOP 与帧缓冲释放确认通过，无新增内核日志；[精确结果及现场确认](../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r2/board-summary.json)。
+后续现场补测：到达板卡旁后，r2 复用同一 BOOT／程序完成 300 秒运行，2981 次推理、2980 次 HDMI 采纳和 PC 接收，1 个过期结果丢弃；现场确认“画面正常，内容持续更新”。正常停止、STOP 与帧缓冲释放确认通过，无新增内核日志；精确结果及现场确认（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r2/board-summary.json`）。
 
-最新追加 r3 三轮已经结束：**1 轮运行中按键后中断，2 轮各 300 秒通过，不能写成三轮全部稳定通过。** 同一位流与程序分别独立启动；未修改硬件或软件。精确状态、原值与归档入口见[r3 板测汇总](../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r3/board-summary.json)，资产在 `.local/hdmi-probe-free-drain-20261026-r3`。
+最新追加 r3 三轮已经结束：**1 轮运行中按键后中断，2 轮各 300 秒通过，不能写成三轮全部稳定通过。** 同一位流与程序分别独立启动；未修改硬件或软件。精确状态、原值与归档入口见r3 板测汇总（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r3/board-summary.json`），资产在 `.local/hdmi-probe-free-drain-20261026-r3`。
 
 | r3 轮次 | 结果 | SDK 前状态 | 新推理／HDMI 采纳 | PC 接收 | 现场观察 |
 | --- | --- | --- | ---: | ---: | --- |
@@ -42,12 +42,12 @@ r3 后两轮原生退出码均为 0，取得 STOP／帧缓冲释放证明，无�
 
 三次 SDK 前均为 `healthy`，未实际触发异常消费，也未复现 HP2 异常返回。保留消费缓解手段的证据为 r45 消费器源码逐字节一致、实际网表仍存在、功能控制时序有效及 7＋9 组仿真通过；本轮不能增加一个“实板故障消费成功”样本或关闭 D45 根因。不在板卡旁，未作现场实屏确认；本轮也不包含断电冷启动、人体精度或全天稳定性验收。
 
-精确状态和原始资料入口见[板测汇总](../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/board-summary.json)。三份原始归档为工作目录下 `round-1/2/3-result-evidence.tar.gz`，PC 记录位于 `pc-round-1/2/3`。最终原 BOOT 启动身份为 `bd976184-889e-4e04-aae2-4418c0d96e39`，BOOT SHA-256 `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`；三包全部关闭、剩余额度为 0，无本批后台负载。原路由器开机服务保持启用。
+精确状态和原始资料入口见板测汇总（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/board-summary.json`）。三份原始归档为工作目录下 `round-1/2/3-result-evidence.tar.gz`，PC 记录位于 `pc-round-1/2/3`。最终原 BOOT 启动身份为 `bd976184-889e-4e04-aae2-4418c0d96e39`，BOOT SHA-256 `ff350477e624c50d2f8180fb4b9130ec7688fbc7ca553412ed7c3dd2a68b31ef`；三包全部关闭、剩余额度为 0，无本批后台负载。原路由器开机服务保持启用。
 
 产物入口：
 
-- [适配后的位流](../../../.local/hdmi-probe-free-drain-20261026-r1/boot-package/ai7030_top_disable_icap.bit)及[BOOT](../../../.local/hdmi-probe-free-drain-20261026-r1/boot-package/BOOT-probe-free-drain-r1.bin)。
-- [配套 ARM64 程序](../../../.local/hdmi-probe-free-drain-20261026-r1/software/pose180_demo)，使用 `probe-free-drain-v1` 配置。原 r45 的诊断准入程序会访问已经移除的 CSR，不能与此位流混用；本轮实际部署文件及保护身份在 `board-bundle/round-*/software-package.tar.gz` 内。
-- [实际整机综合输入清单与 top](../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/synthesis.tcl)、本目录 `sources` 覆盖层、[物理资格](../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/qualification.json)及[BOOT 分区核验](../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/package-review.json)。沿用原工程的 `ai7030_edif_top`、原厂 PS／BD 导出和有效 OOC IP，不把旧完整 r26 工程包改写成此新位流的来源。
+- 适配后的位流（本机留存，仓库未附：`../../../.local/hdmi-probe-free-drain-20261026-r1/boot-package/ai7030_top_disable_icap.bit`）及BOOT（本机留存，仓库未附：`../../../.local/hdmi-probe-free-drain-20261026-r1/boot-package/BOOT-probe-free-drain-r1.bin`）。
+- 配套 ARM64 程序（本机留存，仓库未附：`../../../.local/hdmi-probe-free-drain-20261026-r1/software/pose180_demo`），使用 `probe-free-drain-v1` 配置。原 r45 的诊断准入程序会访问已经移除的 CSR，不能与此位流混用；本轮实际部署文件及保护身份在 `board-bundle/round-*/software-package.tar.gz` 内。
+- 实际整机综合输入清单与 top（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/synthesis.tcl`）、本目录 `sources` 覆盖层、物理资格（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/qualification.json`）及BOOT 分区核验（本机留存，仓库未附：`../../../tools/pose-v1/evidence/hdmi-probe-free-drain-20261026-r1/package-review.json`）。沿用原工程的 `ai7030_edif_top`、原厂 PS／BD 导出和有效 OOC IP，不把旧完整 r26 工程包改写成此新位流的来源。
 
 已完成阶段的日志和检查点不可被准备脚本覆盖重跑；实际阶段入口及执行返回值保存在唯一证据目录。后续只在相关设计或约束变化时重新构建。

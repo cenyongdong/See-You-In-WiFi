@@ -29,8 +29,8 @@ report << quote(p.first) << ':' << quote(p.second);
 ```
 
 日志中的ELF“shared object”与FLAGS_1的PIE对应，产物是动态链接的位置无关可执行程序，不影响本次架构核验。
-证据：[build.acceptance.json](evidence/mixed-20261006-r1/build.acceptance.json)、
-[完整警告审查](evidence/mixed-20261006-r1/build-warning-review.json)，原构建目录
+证据：build.acceptance.json（历史附件，当前仓库未附：`evidence/mixed-20261006-r1/build.acceptance.json`）、
+完整警告审查（历史附件，当前仓库未附：`evidence/mixed-20261006-r1/build-warning-review.json`），原构建目录
 `.local/pose-v1-build/mixed-20261006-r1`保持。
 代理未重编译、运行程序、操作Docker/SSH或访问板端设备；本次仅构建证据验收。
 

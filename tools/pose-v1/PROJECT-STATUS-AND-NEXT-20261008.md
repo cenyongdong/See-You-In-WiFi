@@ -45,4 +45,4 @@
 
 优先只推进上述1–3：独立低日志目标、单时钟分段、2Hz回归及有限5Hz负载报告。内存方案与HDMI先整理匹配接口依据；不在这批盲改启动配置。先取得整机实测，再决定输出调度或资源预分配的具体改动。
 
-当前恢复入口：[检查点](evidence/tcp-presaved-20261008-r1/next-checkpoint.json)。主要证据：[本轮完成](evidence/tcp-presaved-20261008-r1/completion-review.json)、[保存/规整结果](PRESAVED-RESULTS-20261008.md)、[核心性能](P2-RESULTS-20261007.md)、[ADR主题索引](../../ADR/README.md)。本方案是后续整理，不是新阶段已执行或通过。
+当前恢复入口：检查点（历史附件，当前仓库未附：`evidence/tcp-presaved-20261008-r1/next-checkpoint.json`）。主要证据：本轮完成（历史附件，当前仓库未附：`evidence/tcp-presaved-20261008-r1/completion-review.json`）、[保存/规整结果](PRESAVED-RESULTS-20261008.md)、[核心性能](P2-RESULTS-20261007.md)、[ADR主题索引](../../ADR/README.md)。本方案是后续整理，不是新阶段已执行或通过。

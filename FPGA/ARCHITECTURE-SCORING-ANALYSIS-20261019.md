@@ -304,8 +304,8 @@ M3对M2比较同位流下计算卸载；M2对M1观察新增硬件和实现变化
 1. 既有[比赛评分原图](report-assets/competition-scoring-20261019.png)。报告按截图分析；截图没有分值权重，不据此估算得分。
 2. [原技术方案](CSI-PREPROCESS-VITALS-PROPOSAL-20261018.md)，用于接口、搬运量与规划资源预算；其状态和数值不能作为新增实现结果。
 3. [300份PS预处理实测](../tools/pose-v1/RESULTS-300.md)、[部署数值契约ADR_48](../ADR/ADR_48.md)、[架构ADR_49](../ADR/ADR_49.md)、[难点D41](../DIFFICULTIES.md)，分别支持数值、职责及长尾限制。
-4. [本板r9实际资源报告](D:/FPGACompetitionProject/.local/hdmi-live-20261018-r9/reference/fpai_demo_vivado.runs/impl_read_v3r9/ai7030_edif_top_utilization_placed.rpt)、[实际功耗估计原报告](D:/FPGACompetitionProject/.local/hdmi-live-20261018-r9/reference/fpai_demo_vivado.runs/impl_read_v3r9/ai7030_edif_top_power_routed.rpt)。物理板规格及100MHz通路见原技术方案引用的Lite手册和实际工程。
-5. [并行HDMI工作区最新总览](D:/FPGACompetitionProject/PROJECT-PROGRESS.md)、[r21暂停状态及按键映射修正](D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-reset-meter-20261019-r21/state.json)、[采集设备到货状态](D:/FPGACompetitionProject/tools/nexmon/README.md)。本轮仅读取本机记录，未重新连接板卡或采集设备。
+4. 本板r9实际资源报告（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-live-20261018-r9/reference/fpai_demo_vivado.runs/impl_read_v3r9/ai7030_edif_top_utilization_placed.rpt`）、实际功耗估计原报告（本机留存，仓库未附：`D:/FPGACompetitionProject/.local/hdmi-live-20261018-r9/reference/fpai_demo_vivado.runs/impl_read_v3r9/ai7030_edif_top_power_routed.rpt`）。物理板规格及100MHz通路见原技术方案引用的Lite手册和实际工程。
+5. [并行HDMI工作区最新总览](../PROJECT-PROGRESS.md)、r21暂停状态及按键映射修正（本机留存，仓库未附：`D:/FPGACompetitionProject/tools/pose-v1/evidence/hdmi-reset-meter-20261019-r21/state.json`）、[采集设备到货状态](../tools/nexmon/README.md)。本轮仅读取本机记录，未重新连接板卡或采集设备。
 6. [PhaseBeat原论文](https://www.eng.auburn.edu/~szm0001/papers/PhaseBeat_ACMHealth20.pdf)，仅支持CSI相位差生命体征研究方向，不转用其精度结论。
 7. [AMD UG907无向量功耗分析说明](https://docs.amd.com/r/en-US/ug907-vivado-power-analysis-optimization/Vectorless-Power-Analysis)，仅说明该工具的活动估计机制；不作为复旦微器件电气参数或功耗的依据。
 
