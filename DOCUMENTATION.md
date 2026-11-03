@@ -2,7 +2,7 @@
 
 更新日期：2026-11-02。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
 
-当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前 Release 提供 r4 部署包和 r5 源码包。
+当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前 Release 提供 r4 部署包和 r6 源码包。
 
 ## 当前阅读入口
 
@@ -14,7 +14,7 @@
 | CSI幅相与PL骨架自研内容 | [CSI专项](FPGA/csi_preprocess/README.md)、[骨架专项](FPGA/hdmi_candidate/skeleton_overlay/README.md) |
 | PC滤波前后及共享计时 | [PC说明](software/pose180_pipeline/host/README.md) |
 | 数据来源、30分钟实测及关键性能 | [长测](FPGA/csi_preprocess/LONGRUN.md)、[性能汇总](Deliverables/PERFORMANCE.md) |
-| 源码RAR、厂商依赖及完整硬件复现 | [r5 源码说明](Deliverables/SOURCE-20261103.md)、[r4 历史重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
+| 源码RAR、厂商依赖及完整硬件复现 | [r6 源码说明](Deliverables/SOURCE-20261103.md)、[r4 历史重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
 | 模型与第三方许可 | [模型索引](model/README.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[安全维护](SECURITY.md) |
 | 当前参赛技术报告 | [技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf) |
 | 当前项目海报 | [架构对齐版（A1 PDF）](Docs/commit_docs/项目海报_架构对齐版.pdf) |
@@ -22,10 +22,10 @@
 
 ## Git 克隆后的文件可用范围
 
-- 普通 Git 克隆提供已提交的源码、部署模型、精选证据及参赛材料。两份正式 RAR 通过 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 下载。[r4 部署包](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) · [下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar)
+- 普通 Git 克隆提供已提交的源码、部署模型、精选证据及参赛材料。两份正式 RAR 通过 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 下载。[r4 部署包](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) · [下载 r6 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r6.rar)
 - `.local/`恢复记录、原始训练checkpoint、未公开的历史附件及其它本机资料不随Git克隆提供；SDK／EDA安装、许可和匹配的器件环境外置。不能根据说明中的本机路径推断文件已公开。
-- 下载后使用各自的 SHA256 校验文件。[部署包 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256) · [源码包 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar.sha256)
-- r5 的内容和验证边界见[源码说明](Deliverables/SOURCE-20261103.md)。r4 预编译部署包的验证记录见[部署核验](Deliverables/release-20261031-r4-validation.json)。
+- 下载后使用各自的 SHA256 校验文件。[部署包 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256) · [源码包 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r6.rar.sha256)
+- r6 的内容和验证边界见[源码说明](Deliverables/SOURCE-20261103.md)。r4 预编译部署包的验证记录见[部署核验](Deliverables/release-20261031-r4-validation.json)。
 - 旧交付包、旧采集及副本已清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见记录（本机留存，仓库未附：`.local/project-cleanup-20261029-r1/summary.json`），10月31日交付清理见记录（本机留存，仓库未附：`.local/delivery-cleanup-20261031-r1/summary.json`）。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
 
 ## 引用与归档

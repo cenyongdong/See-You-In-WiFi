@@ -18,7 +18,7 @@
 
 两种输入互斥，共用同一套预处理和推理链。官方数据模式在板端读取转换后的原始 CSI 并逐帧推理；当前演示包采用 **30段连续官方训练片段、8700个不同窗口，1／2／3人各10段**，默认有限运行30分钟。模型采用原 epoch99 的 180-query 部署图，输出最多三人、每人 14 个关节，使用 TopK=3 和严格 `score > 0.2` 筛选。
 
-本仓库保存当前软件核心、FPGA 工程、模型适配工具、交付说明和精选证据。阅读源码从 `software/pose180_pipeline/` 开始；部署方法从 `Deliverables/` 的说明开始，r4 部署包与 r5 源码包均通过 GitHub Release 下载。项目已完成有限实板演示、30分钟官方输入长测、交付整理及源码RAR独立完整FPGA重建，具体实测范围见 [PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)。
+本仓库保存当前软件核心、FPGA 工程、模型适配工具、交付说明和精选证据。阅读源码从 `software/pose180_pipeline/` 开始；部署方法从 `Deliverables/` 的说明开始，r4 部署包与 r6 源码包均通过 GitHub Release 下载。项目已完成有限实板演示、30分钟官方输入长测、交付整理及源码RAR独立完整FPGA重建，具体实测范围见 [PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)。
 
 ## 二、目录与文件职责
 
@@ -28,7 +28,7 @@
 |---|---|
 | [software/pose180_pipeline/](software/pose180_pipeline/) | **当前主工程**：板端核心、输入控制、PC 页面、测试及构建打包入口 |
 | [FPGA/hdmi_candidate/](FPGA/hdmi_candidate/) | HDMI 硬件工程；`rtl/`、`constraints/`、`scripts/`、`sim/` 分别保存逻辑、约束、构建脚本与仿真，发布配置按恢复说明及对应记录核对 |
-| [Deliverables/](Deliverables/) | 公开部署／源码范围说明、校验与精选证据；r4 部署和 r5 源码 RAR 见 Release |
+| [Deliverables/](Deliverables/) | 公开部署／源码范围说明、校验与精选证据；r4 部署和 r6 源码 RAR 见 Release |
 | [model/](model/README.md) | 当前部署 JSON／RAW、源 ONNX、转换配置与模型说明已放行；训练 checkpoint 和中间产物留在本机，获取与使用方式见模型索引 |
 | [tools/](tools/) | 模型训练、转换、采集、验证与故障分析工具；带日期的取证目录按所属历史阶段阅读 |
 | [Docs/commit_docs/](Docs/commit_docs/) | 技术文档、海报等提交材料；`Docs/` 其余部分主要为厂商资料与开发参考 |
@@ -43,7 +43,7 @@
 |---|---|
 | [下载部署RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) | `pose180-csi-release-20261031-r4.rar`；含CSI分组流水、骨架绘图、30段官方CSI、PC双页、路由器安装文件及最新版BOOT |
 | [部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md) | 默认位流、手动启动／停止、PC与恢复 |
-| [下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar) | 当前 C++、RTL、必要 IP 和检查点、JSON／RAW／ONNX 及转换配置 |
+| [下载 r6 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r6.rar) | 当前 C++、RTL、必要 IP 和检查点、JSON／RAW／ONNX、转换配置及 AI 辅助开发说明 |
 | [源码说明](Deliverables/SOURCE-20261103.md) | 源码范围、构建入口及验证结果 |
 | [完整FPGA重建](Deliverables/FPGA-REBUILD-20261101-r1.md) | 2026-11-01从r4 RAR新解压完成实际综合／布局布线／BIT与Procise；包含完整日志与既定例外 |
 | [交付核验](Deliverables/release-20261031-r4-validation.json) | RAR完整性、文件一致性及独立解压构建检查；引用既有BOOT核验，无新增SDK运行 |

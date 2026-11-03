@@ -6,7 +6,7 @@
 
 - [下载部署RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar)（111749109字节，约106.6 MiB）。
 - [下载SHA256文件](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256)，或查看[Release页面](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)。在Windows可用`Get-FileHash -Algorithm SHA256`核对；预期为`a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48`。
-- 预编译部署和精简源码 RAR 均通过 GitHub Release 提供。[下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar) · [源码说明](SOURCE-20261103.md)
+- 预编译部署和精简源码 RAR 均通过 GitHub Release 提供。[下载 r6 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r6.rar) · [源码说明](SOURCE-20261103.md)
 
 2026-11-02公开下载沿用原已验证包，文件身份保持不变，未重新打包、构建或新增板测。
 
@@ -30,7 +30,7 @@
 | `boot/BOOT.BIN` | 最新版替换位流 |
 | `router-service/` | 四台既有RT-AC86U的已验证开机服务安装文件、角色／校验清单与首次安装脚本 |
 | `pc/`、`start-pc.ps1` | 最新PC服务、网页及Three.js必要资源 |
-| `build-config/`、`SOURCE.md` | 部署包制作时的 r4 构建配置和源码记录。当前构建步骤见 r5 源码包根 README |
+| `build-config/`、`SOURCE.md` | 部署包制作时的 r4 构建配置和源码记录。当前构建步骤见 r6 源码包根 README |
 | `evidence/` | 数值／性能、NPU对照、物理资格、长测与默认BOOT核验 |
 
 板端要求现有 ARM64 Icraft/customop 3.39.0 与 Python 3；PC要求已有 Node.js 20+，无需 npm install。SDK和工具安装包不重复分发。模型、官方数据及厂商IP适用各自许可，见第三方声明。
@@ -229,6 +229,6 @@ Ctrl+C结束启动器管理的两个PC观察进程，板端推理／HDMI独立�
 
 ## 源码与恢复
 
-当前重建使用 r5 精简源码包，解压后的根 README 给出软件和 FPGA 构建步骤。[下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar) · [源码说明](SOURCE-20261103.md)
+当前重建使用 r6 精简源码包，解压后的根 README 给出软件和 FPGA 构建步骤。[下载 r6 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r6.rar) · [源码说明](SOURCE-20261103.md)
 
 本部署 RAR 中的 `SOURCE.md` 对应打包时的 r4 源码记录。既有部署程序、模型和 BOOT 身份以本页校验信息为准。[历史 FPGA 重建报告](FPGA-REBUILD-20261101-r1.md) · [性能及证据汇总](PERFORMANCE.md)

@@ -4,7 +4,7 @@
 
 ## 最终交付
 
-当前 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 提供 r4 部署包、r5 精简源码包及同名 SHA256 文件。r5 已完成独立解压编译、RTL 仿真和完整 FPGA 重建。[r5 源码说明](Deliverables/SOURCE-20261103.md)
+当前 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 提供 r4 部署包、r6 精简源码包及同名 SHA256 文件。r6 附 AI 辅助开发说明，构建输入沿用已完成编译、RTL 仿真和完整 FPGA 重建的 r5。[r6 源码说明](Deliverables/SOURCE-20261103.md)
 
 2026-11-01部署补充：r4部署说明补齐实时四机接线／首次安装／启停与定位，配套RAR加入已验证路由器安装文件，只附最新版BOOT；升级前保留设备实际BOOT读回保护。主程序、模型、数据与最新版BOOT不变，没有新板测；当时的 r4 源码包身份见历史重建报告。
 
