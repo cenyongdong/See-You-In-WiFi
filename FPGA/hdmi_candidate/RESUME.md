@@ -2,7 +2,7 @@
 
 **2026-11-01仅本地完整重建完成：** 最新r4源码RAR新解压完成综合、链接、放置、物理优化、布线、BIT及Procise；新BIT配置载荷与包内合格BIT相同。新生成文件只作重建证据，未连接开发板、未改默认BOOT；[重建报告](../../Deliverables/FPGA-REBUILD-20261101-r1.md)不替代下方10月31日最后板端观察。当前部署和安全启停仍使用[最新r4部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)，不能将r4本机目录写成已上传。
 
-**r4最新交付（RAR）：** 最新本机[部署包与源码说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)包含更新后的CMake默认值与预设，源码精简并附JSON／RAW／ONNX；旧本机交付包已清理，关键历史记录在 `.local/delivery-cleanup-20261031-r1/`，工作区恢复镜像和检查点仍在。程序与已验证r1一致。本轮未连接设备，最近已部署目录仍为`/root/pose180-csi-release-20261031-r1`，下方BOOT核验是上轮快照。
+当前交付为 r4 部署包和 r5 精简源码包。最近已部署目录仍为 `/root/pose180-csi-release-20261031-r1`，下方 BOOT 核验记录的是当时的设备状态。[部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md) · [源码说明](../../Deliverables/SOURCE-20261103.md)
 
 **2026-10-31发布核验：** 默认启动分区BOOT已为合格CSI v3，读回SHA与发布包一致，设备无占用。本次读取boot_id为`9866784b-bf11-419a-ab5f-7797fe3706d3`，已不同于长测时启动；不沿用旧启动消费判断，新包仍须prepare／正常重启／check后手动运行。本次BOOT写入0、代理重启0、SDK启动0；最新包与部署入口见[发布说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。下方长测boot_id与“已消费”仅是该历史轮次状态。
 **2026-10-31 当前30分钟长测已完成关闭：** `/root/pose180-csi-longrun-20261031-r1` 使用同一CSI r3 BOOT，boot_id `737e40ad-de06-4139-b9d0-6fc1ae5ae03d`；一次SDK完成1800.004秒有效运行并安全退出，设备空闲、PC观察器结束。当前启动消费已使用，再次运行须新记录、正常重启与预检。本轮次数用尽，不自动续跑；双路结果、PC计时修复与恢复见[长测专项](../csi_preprocess/LONGRUN.md)。

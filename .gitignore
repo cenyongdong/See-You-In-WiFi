@@ -575,7 +575,8 @@ node_modules/
 !/Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md
 !/Deliverables/release-20261031-r4-validation.json
 !/Deliverables/pose180-csi-release-20261031-r4.rar.sha256
-!/Deliverables/pose180-complete-sources-20261031-r4.rar.sha256
+!/Deliverables/pose180-current-sources-20261103-r5.rar.sha256
+!/Deliverables/SOURCE-20261103.md
 !/Deliverables/evidence/
 !/Deliverables/evidence/**
 !/Deliverables/FPGA-REBUILD-20261101-r1.md

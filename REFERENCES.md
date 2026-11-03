@@ -1,6 +1,6 @@
 # 比赛开发资料索引与理解记录
 
-**当前依据（2026-11-01）：** 当前硬件分工、源与接口见[架构说明](ADR/TechDetails.md)；厂商IP／网表／增量基线和外部工具范围见[源码说明](Deliverables/SOURCE-20261031.md)；r4 RAR独立完整实现、原生时序／DRC及配置载荷比对见[重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)。最后设备观察见[RESUME](FPGA/hdmi_candidate/RESUME.md)，历史附件可用范围见[导航](DOCUMENTATION.md#引用与归档)。
+**当前依据（2026-11-01）：** 当前硬件分工、源与接口见[架构说明](ADR/TechDetails.md)；厂商IP／网表／增量基线和外部工具范围见[源码说明](Deliverables/SOURCE-20261103.md)；r4 RAR独立完整实现、原生时序／DRC及配置载荷比对见[重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)。最后设备观察见[RESUME](FPGA/hdmi_candidate/RESUME.md)，历史附件可用范围见[导航](DOCUMENTATION.md#引用与归档)。
 
 ## 历史资料阅读与阶段记录
 

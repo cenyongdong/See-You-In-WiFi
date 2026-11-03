@@ -1,6 +1,6 @@
 # 启停、输入准备与运行管理
 
-**验证入口（2026-11-01）：** 当前工程默认PL CSI／PL骨架绘制开启、人物滤波CPU；[源码与依赖说明](../../../Deliverables/SOURCE-20261031.md)及[独立完整重建](../../../Deliverables/FPGA-REBUILD-20261101-r1.md)记录软件／核心RTL和完整实现的不同验证范围。现场状态以项目恢复入口的最后观察为准。
+**验证入口（2026-11-01）：** 当前工程默认PL CSI／PL骨架绘制开启、人物滤波CPU；[源码与依赖说明](../../../Deliverables/SOURCE-20261103.md)及[独立完整重建](../../../Deliverables/FPGA-REBUILD-20261101-r1.md)记录软件／核心RTL和完整实现的不同验证范围。现场状态以项目恢复入口的最后观察为准。
 
 本目录收拢原 `resident/` 下的 Python、Shell 和路由器管理源码；原生 C++ 已归到 [../src/](../src/README.md)。部署包内仍采用 `board/startup.py` 等原扁平布局，设备上的启停命令不变。
 

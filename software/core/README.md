@@ -1,6 +1,6 @@
 # 核心源码入口
 
-2026-10-31当前发布与完整源码包见[源码说明](../../Deliverables/SOURCE-20261031.md)；本目录历史模块不替代当前`pose180_pipeline/src`维护入口。
+2026-10-31当前发布与完整源码包见[源码说明](../../Deliverables/SOURCE-20261103.md)；本目录历史模块不替代当前`pose180_pipeline/src`维护入口。
 **目录定位（2026-10-29）：** 本目录保留早期共享核心与独立实验，当前 180-query 主链已经收拢到 [pose180_pipeline/src](../pose180_pipeline/src/README.md)。下文四空格与旧构建锁适用于历史核心；当前主链采用 Tab，按新模块索引维护。
 
 当前 180-query 演示核心已按模块集中到 [software/pose180_pipeline/src/](../pose180_pipeline/src/README.md)。实时 CSI／官方预采输入、预处理、SDK、姿态后处理、HDMI、网络与诊断均在该目录；启停脚本在 [control/](../pose180_pipeline/control/README.md)，PC 在 [host/](../pose180_pipeline/host/README.md)。统一由 `software/pose180_pipeline/CMakeLists.txt` 构建。

@@ -2,7 +2,7 @@
 
 更新日期：2026-11-02。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
 
-当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前部署RAR通过Release提供，完整源码RAR本机交付；11月1日从该RAR新解压完成完整本地实现与位流生成，未上板。
+当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前 Release 提供 r4 部署包和 r5 源码包。
 
 ## 当前阅读入口
 
@@ -14,17 +14,17 @@
 | CSI幅相与PL骨架自研内容 | [CSI专项](FPGA/csi_preprocess/README.md)、[骨架专项](FPGA/hdmi_candidate/skeleton_overlay/README.md) |
 | PC滤波前后及共享计时 | [PC说明](software/pose180_pipeline/host/README.md) |
 | 数据来源、30分钟实测及关键性能 | [长测](FPGA/csi_preprocess/LONGRUN.md)、[性能汇总](Deliverables/PERFORMANCE.md) |
-| 源码RAR、厂商依赖及完整硬件复现 | [源码说明](Deliverables/SOURCE-20261031.md)、[完整重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
+| 源码RAR、厂商依赖及完整硬件复现 | [r5 源码说明](Deliverables/SOURCE-20261103.md)、[r4 历史重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
 | 模型与第三方许可 | [模型索引](model/README.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[安全维护](SECURITY.md) |
 | 当前参赛技术报告 | [技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf) |
 | AI辅助开发流程、人工审核与贡献边界 | [AI辅助开发说明](Docs/llm_usage.md) |
 
 ## Git 克隆后的文件可用范围
 
-- GitHub网页与普通Git克隆提供已提交的源码、部署模型文件、精选证据和明确发布的提交材料。r4部署RAR通过[Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)和[部署包直链](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar)下载，Git文件树中不包含RAR本体；完整源码RAR仍为本机交付，未公开下载；包内范围见[源码说明](Deliverables/SOURCE-20261031.md)及[部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。
+- 普通 Git 克隆提供已提交的源码、部署模型、精选证据及参赛材料。两份正式 RAR 通过 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 下载。[r4 部署包](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) · [下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar)
 - `.local/`恢复记录、原始训练checkpoint、未公开的历史附件及其它本机资料不随Git克隆提供；SDK／EDA安装、许可和匹配的器件环境外置。不能根据说明中的本机路径推断文件已公开。
-- 两份RAR的公开校验入口为[部署包SHA256](Deliverables/pose180-csi-release-20261031-r4.rar.sha256)、[源码包SHA256](Deliverables/pose180-complete-sources-20261031-r4.rar.sha256)和[交付核验](Deliverables/release-20261031-r4-validation.json)。部署RAR及同名校验文件已在Release提供；源码包仅公开校验和范围说明，不能据此认定源码RAR已上传。
-- r4源码RAR为198429558字节，交付身份见[核验](Deliverables/release-20261031-r4-validation.json)。源码RAR保持被独立重建验证的冻结身份；部署RAR在11月1日后续同步了实时采集完整说明与四机安装文件，移除旧版BOOT，仅附最新版替换镜像。未上传设备，最新部署校验以同名.sha256和交付核验为准。
+- 下载后使用各自的 SHA256 校验文件。[部署包 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256) · [源码包 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar.sha256)
+- r5 的内容和验证边界见[源码说明](Deliverables/SOURCE-20261103.md)。r4 预编译部署包的验证记录见[部署核验](Deliverables/release-20261031-r4-validation.json)。
 - 旧交付包、旧采集及副本已清理；工作源码、原始训练checkpoint和必要证据保留。10月29日清理见记录（本机留存，仓库未附：`.local/project-cleanup-20261029-r1/summary.json`），10月31日交付清理见记录（本机留存，仓库未附：`.local/delivery-cleanup-20261031-r1/summary.json`）。旧r3被r4替代的说明／校验保存在 `.local/delivery-cleanup-20261031-r1/prior-records/r3-superseded-by-r4/`。
 
 ## 引用与归档
@@ -245,7 +245,7 @@ python tools/docs/check_links.py --ref HEAD --output-dir .local/doc-link-check
 | [Deliverables/FPGA-REBUILD-20261101-r1.md](Deliverables/FPGA-REBUILD-20261101-r1.md) | 现行入口／含历史章节；r4源码RAR独立完整FPGA重建实测（2026-11-01） |
 | [Deliverables/PERFORMANCE.md](Deliverables/PERFORMANCE.md) | 现行入口／含历史章节；当前实测性能、资源与证据（2026-11-01） |
 | [Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md) | 现行入口／含历史章节；CSI 分组流水与骨架绘图：当前发布包 |
-| [Deliverables/SOURCE-20261031.md](Deliverables/SOURCE-20261031.md) | 现行入口／含历史章节；当前完整源码与FPGA依赖包（r4，RAR） |
+| [Deliverables/SOURCE-20261031.md](Deliverables/SOURCE-20261031.md) | 历史；r4 源码与 FPGA 依赖说明 |
 
 </details>
 

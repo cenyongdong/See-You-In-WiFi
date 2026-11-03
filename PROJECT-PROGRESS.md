@@ -1,16 +1,16 @@
 # 项目最新进度
 
-**2026-11-01，本地完整复现完成：** 从最新r4源码RAR新解压，完成原生综合／链接／放置／物理优化／布线／报告／BIT及Procise适配，退出码均为0；新适配BIT配置载荷与包内合格BIT一致。setup／hold满足，既定AI周期例外和GT适配原值保留，未上板。关键数值、完整日志、位流及恢复检查点统一见[独立完整重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)。
+**2026-11-01，r4 本地完整复现：** 从当时的 r4 源码 RAR新解压，完成原生综合／链接／放置／物理优化／布线／报告／BIT及Procise适配，退出码均为0；新适配BIT配置载荷与包内合格BIT一致。setup／hold满足，既定AI周期例外和GT适配原值保留，未上板。关键数值、完整日志、位流及恢复检查点统一见[独立完整重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)。
 
 ## 最终交付
 
-2026-11-02公开下载：[r4部署Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)提供原RAR和SHA256校验文件，文件身份保持；完整源码RAR仍本机交付。此次仅更新分发与文档，没有重新打包、构建或新增板测。
+当前 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 提供 r4 部署包、r5 精简源码包及同名 SHA256 文件。r5 已完成独立解压编译、RTL 仿真和完整 FPGA 重建。[r5 源码说明](Deliverables/SOURCE-20261103.md)
 
-2026-11-01部署补充：r4部署说明补齐实时四机接线／首次安装／启停与定位，配套RAR加入已验证路由器安装文件，只附最新版BOOT；升级前保留设备实际BOOT读回保护。主程序、模型、数据与最新版BOOT不变，没有新板测；源码RAR维持完整硬件复现时的身份。
+2026-11-01部署补充：r4部署说明补齐实时四机接线／首次安装／启停与定位，配套RAR加入已验证路由器安装文件，只附最新版BOOT；升级前保留设备实际BOOT读回保护。主程序、模型、数据与最新版BOOT不变，没有新板测；当时的 r4 源码包身份见历史重建报告。
 
 **2026-10-31，r4交付补齐：** 当前实现为 PL CSI 分组预处理＋PL 二维骨架／关节点／动态信息合成，PS 保留双精度相位收尾、后处理、人物滤波及坐标投影，NPU 使用原 epoch99／180-query 模型。TopK=3、严格 score >0.2；PC 保留滤波前／后双页和共享板端计时。
 
-[唯一最新部署包说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[精简源码与模型说明](Deliverables/SOURCE-20261031.md)、[性能及证据汇总](Deliverables/PERFORMANCE.md)为当前交付入口。两份最终压缩包均为RAR；源码包控制在200 MB以内，包含原始代码、JSON／RAW／ONNX及当前合格BIT，补齐当前FPGA重建必需IP／网表和增量基线，排除无关器件、重复缓存及训练优化器检查点。旧本机交付包及副本已清理，旧关键说明／校验／报告与清理记录保存在 `.local/delivery-cleanup-20261031-r1/`；工作区源码、原始权重及故障证据保留。
+[部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)和[性能及证据汇总](Deliverables/PERFORMANCE.md)记录当前演示范围。
 
 CMake默认启用PL CSI／骨架绘图及依赖，预设和打包配置已同步；实际ARM64编译程序与已验证版本一致。r3已从RAR独立解压后完成ARM64／离线编译和核心RTL仿真，ARM64程序与已部署版本逐字节相同；10月31日r4追加厂商IP、网表和增量基线，完成局部依赖验证（首次属性断言失败保留）；11月1日新增完整布局布线复现，见上方独立报告，两轮均未连接板端或启动SDK测试。最近板端核验目录仍是 `/root/pose180-csi-release-20261031-r1`；默认BOOT此前读回与CSI v3一致，当前恢复与安全启停见 [RESUME](FPGA/hdmi_candidate/RESUME.md)，该状态是历史观察快照。
 

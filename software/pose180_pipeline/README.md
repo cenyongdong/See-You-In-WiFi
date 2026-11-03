@@ -2,7 +2,7 @@
 
 当前默认硬件配置已更新为CSI v3：PL CSI预处理与骨架绘制开启，CPU人物滤波保持。ARM64使用 `cmake --preset csi-v3-arm64`，离线检查使用 `native-offline`；旧缓存需重新配置，完整命令与直接执行参数见[构建说明](resident/DEMO-INPUTS.md)。
 
-2026-10-31最新发布采用CSI分组流水＋PL骨架绘图，默认30段／8700窗官方输入；[部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[完整源码](../../Deliverables/SOURCE-20261031.md)。下文三片段包属于10月29日历史基线。
+2026-10-31最新发布采用CSI分组流水＋PL骨架绘图，默认30段／8700窗官方输入；[部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[完整源码](../../Deliverables/SOURCE-20261103.md)。下文三片段包属于10月29日历史基线。
 当前源码统一在本工程内按模块维护。先看 [核心源码索引](src/README.md)，再看 [双输入演示说明](resident/DEMO-INPUTS.md)。正式目标 `pose180_demo` 保留实时采集与官方预采 CSI 两个入口，共用原 epoch99 和 HDMI／PC 输出。当前30段包采用 TopK=3、严格 score >0.2、CPU 多人跟踪／滤波，在同一次SDK生命周期中顺序播放1／2／3人共30段、8700个不同窗口并循环至有限时长；[三片段](resident/DATASET-PLAYLIST.md)与Top1模式留作历史。
 
 ```text

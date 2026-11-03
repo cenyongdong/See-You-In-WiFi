@@ -41,7 +41,7 @@ flowchart LR
 
 正式接线为TX四LAN分别连接开发板和三RX，PC可接RX空闲LAN，不承担主链中继。RX1／TX／RX2／RX3管理地址为192.168.50.1／.2／.3／.4。板端管理地址192.168.126.49，192.168.50.49是受控演示临时别名；地址、在线与负载必须按实际预检认定。路由器[开机服务](../software/pose180_pipeline/control/autostart/README.md)不等于板端SDK自启动。
 
-平台为悟净Lite／JFMQL30TAI676H、ARM64 Linux、Icraft/customop 3.39.0。GP／绘制／CSI为100MHz，HDMI像素为148.5MHz；AI四路、HP分配、主动启动消费、STOP／排空保护保持。原r45及filter-v1是历史基础，当前完整源码／工具与目标的对应关系见[重建说明](../Deliverables/SOURCE-20261031.md)。
+平台为悟净Lite／JFMQL30TAI676H、ARM64 Linux、Icraft/customop 3.39.0。GP／绘制／CSI为100MHz，HDMI像素为148.5MHz；AI四路、HP分配、主动启动消费、STOP／排空保护保持。原r45及filter-v1是历史基础，当前完整源码／工具与目标的对应关系见[重建说明](../Deliverables/SOURCE-20261103.md)。
 
 ## 现行实现：模块与接口
 

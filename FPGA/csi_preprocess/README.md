@@ -4,7 +4,7 @@
 
 2026-10-31现行交付为r4 RAR；源码含模型权重、最新BIT及目标器件必需IP／网表／实现基线，旧交付包清理，原始实测证据保留。关键数据统一见 [性能与资源汇总](../../Deliverables/PERFORMANCE.md)，当前入口见 [部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)。以下专项记录保留当时原值。
 
-2026-10-31已归档当前源码与完整部署包，当前默认BOOT经板端读回确认；[发布说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[完整源码说明](../../Deliverables/SOURCE-20261031.md)。下方r3短测boot_id与次数属于该次历史运行，当前设备状态以[恢复入口](../hdmi_candidate/RESUME.md)为准。
+2026-10-31已归档当前源码与完整部署包，当前默认BOOT经板端读回确认；[发布说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[完整源码说明](../../Deliverables/SOURCE-20261103.md)。下方r3短测boot_id与次数属于该次历史运行，当前设备状态以[恢复入口](../hdmi_candidate/RESUME.md)为准。
 **10月31日最后板端观察：** 已复用r3位流完成[30分钟官方长输入双路实测](LONGRUN.md)，并修复PC骨架页的共享耗时显示；长测结束时SDK安全关闭、设备空闲，实际软件及恢复以上述长测记录为准。下方r3性能和短测结果按原轮次保留。
 
 2026-10-31 实现以释放 CPU，随后批准先软件优化、再分组流水。当前 r3 已完成物理实现、独立性能对照及 NPU＋HDMI 有限现场实测；不恢复心率或旧 DATA 调查。

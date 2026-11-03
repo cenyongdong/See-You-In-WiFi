@@ -6,7 +6,7 @@
 
 - [下载部署RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar)（111749109字节，约106.6 MiB）。
 - [下载SHA256文件](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256)，或查看[Release页面](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)。在Windows可用`Get-FileHash -Algorithm SHA256`核对；预期为`a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48`。
-- 此RAR通过GitHub Releases分发，不包含在普通Git克隆中；自动生成的Source code ZIP／tar.gz不能替代部署RAR。完整源码RAR继续本机交付，范围见[源码说明](SOURCE-20261031.md)。
+- 预编译部署和精简源码 RAR 均通过 GitHub Release 提供。[下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar) · [源码说明](SOURCE-20261103.md)
 
 2026-11-02公开下载沿用原已验证包，文件身份保持不变，未重新打包、构建或新增板测。
 
@@ -30,7 +30,7 @@
 | `boot/BOOT.BIN` | 最新版替换位流 |
 | `router-service/` | 四台既有RT-AC86U的已验证开机服务安装文件、角色／校验清单与首次安装脚本 |
 | `pc/`、`start-pc.ps1` | 最新PC服务、网页及Three.js必要资源 |
-| `build-config/`、`SOURCE.md` | 最新CMake／预设／构建打包脚本快照与完整源码说明；实际编译使用完整源码包的原目录结构 |
+| `build-config/`、`SOURCE.md` | 部署包制作时的 r4 构建配置和源码记录。当前构建步骤见 r5 源码包根 README |
 | `evidence/` | 数值／性能、NPU对照、物理资格、长测与默认BOOT核验 |
 
 板端要求现有 ARM64 Icraft/customop 3.39.0 与 Python 3；PC要求已有 Node.js 20+，无需 npm install。SDK和工具安装包不重复分发。模型、官方数据及厂商IP适用各自许可，见第三方声明。
@@ -225,12 +225,10 @@ PC解压同一个包，在包根目录执行：
 
 Ctrl+C结束启动器管理的两个PC观察进程，板端推理／HDMI独立继续。日志在包根`pc-logs/`；已占用端口导致启动失败时不会结束其它进程。可用`-Seconds 120`有限观察。不要另外启动第三个raw消费者；已有观察器请先正常关闭再使用本入口。
 
-如果`/api/state`显示`connected: true`且`received`持续增加，但网页仍停在等待，检查浏览器控制台。`/vendor/three.module.js`或`/vendor/OrbitControls.js`的`ERR_EMPTY_RESPONSE`表示原部署包可能缺少Three.js离线资源。2026-11-01已补齐当前部署RAR并修正打包规则；旧目录可将`pose180-pc-assets-fix-20261101-r1.rar`解压到含`start-pc.ps1`的部署包根目录，合并`pc/`后按Ctrl+F5刷新。无需重新安装Node.js、执行npm或重启板端。
+如果 `/api/state` 显示已连接且接收计数持续增加，但网页仍在等待，请检查浏览器控制台。若 Three.js 或 OrbitControls 资源缺失，请重新下载并解压本页的 r4 部署包，使用新目录启动 PC 观察端并刷新页面。
 
 ## 源码与恢复
 
-完整源码包：`pose180-complete-sources-20261031-r4.rar`，包含当前PS／PC／PL及上游模型原始代码、IP配置、约束、实际构建脚本、关键报告，以及JSON／RAW／ONNX模型和当前合格BIT；补齐目标器件所需厂商网表、IP综合结果和增量实现基线，排除无关器件和重复构建缓存。重建外部依赖见 `SOURCE.md`。旧本机部署包与源码包清理；工作区原始证据保留，部署包仅附最新版BOOT。关键数据统一见 `PERFORMANCE.md`。
+当前重建使用 r5 精简源码包，解压后的根 README 给出软件和 FPGA 构建步骤。[下载 r5 源码 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261103-r5.rar) · [源码说明](SOURCE-20261103.md)
 
-源码RAR已独立解压完成ARM64、离线构建和核心RTL仿真，ARM64程序与本包逐字节相同；详见 `SOURCE.md` 和 `evidence/current/rebuild/result.json`。10月31日交付整理未重跑完整FPGA布局布线；11月1日随后完成r4源码RAR新解压的完整本地实现与位流生成，详见[重建报告](FPGA-REBUILD-20261101-r1.md)。新位流未上板，默认BOOT和运行程序未更换。
-
-本次部署说明更新已同步到部署RAR；独立FPGA重建验证所用源码RAR身份保持，未更改模型、ARM64程序或最新版BOOT。
+本部署 RAR 中的 `SOURCE.md` 对应打包时的 r4 源码记录。既有部署程序、模型和 BOOT 身份以本页校验信息为准。[历史 FPGA 重建报告](FPGA-REBUILD-20261101-r1.md) · [性能及证据汇总](PERFORMANCE.md)
