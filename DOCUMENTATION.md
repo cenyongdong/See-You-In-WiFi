@@ -17,6 +17,7 @@
 | 源码RAR、厂商依赖及完整硬件复现 | [r5 源码说明](Deliverables/SOURCE-20261103.md)、[r4 历史重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
 | 模型与第三方许可 | [模型索引](model/README.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[安全维护](SECURITY.md) |
 | 当前参赛技术报告 | [技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf) |
+| 当前项目海报 | [架构对齐版（A1 PDF）](Docs/commit_docs/项目海报_架构对齐版.pdf) |
 | AI辅助开发流程、人工审核与贡献边界 | [AI辅助开发说明](Docs/llm_usage.md) |
 
 ## Git 克隆后的文件可用范围
@@ -32,7 +33,7 @@
 - 原始报告和冻结快照保留原文，其中可能包含已清理附件、旧相对目录和本机SDK的原始引用。这些历史附件缺口不作为现行下载／部署入口，也不因链接缺失而改写原测试结果。当前可公开复核的数据以[性能与证据汇总](Deliverables/PERFORMANCE.md)及其链接为入口。
 - 普通说明中的“本机留存，仓库未附”表示本机文件未发布；“历史附件，当前仓库未附”表示当前未提供可供网页读取的对应附件。两类条目保留原路径供追溯，不提供无效网页跳转。
 - 当前参赛技术报告为[技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf)。
-- 历史稿包括已发布的[v1排版修订Word](Docs/commit_docs/技术文档_v1_排版修订.docx)和[v1 Word](Docs/commit_docs/技术文档_v1.docx)。原始模板`Docs/commit_docs/技术文档.docx`和旧版PDF`Docs/commit_docs/技术文档_v1.pdf`本机留存，仓库未附。各版本及[海报](Docs/commit_docs/项目海报.pdf)保留原内容，部分反映较早分工与三片段阶段。
+- 历史稿包括已发布的[v1排版修订Word](Docs/commit_docs/技术文档_v1_排版修订.docx)和[v1 Word](Docs/commit_docs/技术文档_v1.docx)。原始模板`Docs/commit_docs/技术文档.docx`和旧版PDF`Docs/commit_docs/技术文档_v1.pdf`本机留存，仓库未附。[原版海报](Docs/commit_docs/项目海报.pdf)记录较早的系统分工。
 
 ## 链接检查
 

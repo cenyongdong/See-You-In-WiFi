@@ -50,7 +50,7 @@
 | [当前技术报告（v13 PDF）](Docs/commit_docs/技术文档_v13.pdf) | 当前参赛技术文档 |
 | 历史技术报告 | [v1排版修订Word](Docs/commit_docs/技术文档_v1_排版修订.docx)、[v1 Word](Docs/commit_docs/技术文档_v1.docx)，按各自版本阅读 |
 | [AI辅助开发说明](Docs/llm_usage.md) | 可复用流程、人机分工、人工审核与贡献边界 |
-| [项目海报](Docs/commit_docs/项目海报.pdf) | A1 竖版作品海报 |
+| [当前项目海报](Docs/commit_docs/项目海报_架构对齐版.pdf) | A1 竖版，展示 PS／PL／NPU 分工与 HDMI／PC 双路输出 |
 
 两份 RAR 及同名 SHA256 文件统一在 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 分发。GitHub 自动生成的 ZIP／tar.gz 为仓库快照。发布范围见[文档导航](DOCUMENTATION.md#git-克隆后的文件可用范围)。
 

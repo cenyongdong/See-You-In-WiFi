@@ -373,6 +373,7 @@ node_modules/
 !/Docs/commit_docs/技术文档_v13.pdf
 !/Docs/llm_usage.md
 !/Docs/commit_docs/项目海报.pdf
+!/Docs/commit_docs/项目海报_架构对齐版.pdf
 
 # Word / WPS / Office 锁文件不随提交稿上传。
 ~$*
