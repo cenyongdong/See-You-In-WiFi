@@ -1,0 +1,9 @@
+# The disk-full case uses a Linux symlink; keep it off the Windows bind mount.
+set(tmp "$ENV{TMPDIR}")
+if(tmp STREQUAL "")
+    set(tmp /tmp)
+endif()
+string(RANDOM LENGTH 16 suffix)
+set(output "${tmp}/pose180-journal-${suffix}")
+message(STATUS "Journal test output: ${output}")
+execute_process(COMMAND "${TEST}" "${output}" COMMAND_ERROR_IS_FATAL ANY)

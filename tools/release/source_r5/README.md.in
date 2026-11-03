@@ -1,0 +1,149 @@
+# 基于WiFi CSI信息的FPGA与嵌入式多人三维姿态感知系统：当前构建源码
+
+本包 `pose180-current-sources-20261103-r5` 提供当前正式演示的 C++、RTL、控制程序、PC观察端、模型部署权重及必要构建输入。按当前构建依赖整理，不包含旧候选工程、历史报告、训练记录或构建缓存。此 README 是包内唯一技术说明；文件来源、身份和实际环境另外记录为 `metadata/` 中的机器可读 JSON。
+
+## 1. 获取已部署演示
+
+- [GitHub 部署 Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031)
+- [部署 RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar)
+- [部署 RAR 的 SHA256](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar.sha256)
+- [在线部署说明](https://github.com/cenyongdong/See-You-In-WiFi/blob/master/Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)
+
+部署 RAR 为 111749109 字节，SHA256 为 `a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48`。本次只整理源码并更新在线说明，部署 RAR 的程序、模型和 BOOT 均保持原身份。
+
+**按说明完成部署并启动官方数据演示后，无需配置路由器、进行实时CSI采集或连接PC观察端。使用官方开发板和一台支持HDMI输入、1080p@60Hz模式的显示器，即可本地展示多人三维姿态效果。** 首次部署、BOOT身份核对及手动启动仍须完成；显示器的60Hz兼容模式不代表模型推理达到60帧/秒。
+
+演示采用官方数据重新推理，实时 CSI 模式另外需要一台 TX、三台 RX 路由器及对应无线驱动。源码包不自带官方数据集、SDK安装包、Docker镜像、原始PyTorch checkpoint或已生成BOOT；直接展示使用上述部署 RAR。
+
+## 2. 目录与模块职责
+
+| 目录／文件 | 内容与职责 |
+|---|---|
+| `CMakeLists.txt`、`CMakePresets.json`、`cmake/` | 根目录软件构建、ARM64工具链与离线检查预设 |
+| `software/pose180_pipeline/src/app` | 正式入口、参数与运行生命周期 |
+| `src/common`、`src/input` | 数据结构、有界缓存、官方数据／实时CSI接入与组窗 |
+| `src/preprocess` | PS预处理、PL分组幅相接口、相位收尾和边界回退 |
+| `src/inference` | Icraft模型加载、NPU推理与资源管理 |
+| `src/pose` | 最多三人候选筛选、关联与CPU One Euro滤波 |
+| `src/display` | 三维坐标投影、骨架图元提交和HDMI控制 |
+| `src/io`、`src/diagnostics`、`src/compat` | 网络独立消费者、异步日志及当前SDK兼容声明 |
+| `software/pose180_pipeline/control` | 当前输入选择、启动／停止与路由器服务源码；设备身份由实际部署环境提供 |
+| `software/pose180_pipeline/host` | Node.js PC驻留观察服务、双页展示与浏览器代码 |
+| `FPGA/rtl/system` | 当前顶层、PS接口、有界启动消费和跨时钟控制 |
+| `FPGA/rtl/csi` | 31步共享CORDIC、分块输入／输出缓存与90点完整组发布 |
+| `FPGA/rtl/skeleton_overlay` | 图元解析、二维光栅化、调色板双缓冲与HDMI图层合成 |
+| `FPGA/rtl/pose_filter` | 当前合格位流仍保留的滤波硬件，当前演示的人物滤波运行于CPU |
+| `FPGA/constraints`、`FPGA/scripts` | 当前约束、路径模板与分阶段综合／实现／报告／BIT／Procise流程 |
+| `FPGA/vendor` | 必需厂商RTL、IP配置／生成文件、网表及030ai／JFM适配资源 |
+| `FPGA/reference` | PS导出检查点、CSI v2增量放置参考；两者仍是当前构建输入 |
+| `FPGA/boot` | FSBL、BL31、U-Boot与可重定位BIF；不含已生成BOOT |
+| `FPGA/sim` | 当前CSI分组协议及骨架绘图测试平台 |
+| `model/pose180` | 配套JSON／RAW权重、ONNX与Icraft转换TOML |
+| `model/adaptation` | 180候选、共享关节细化模型及必要基础模块，未附训练器 |
+| `tests/native`、`tests/fixtures` | 必要离线检查与小型合成测试输入 |
+| `third_party/three` | PC页面所需离线Three.js资源及原许可 |
+| `tools` | 独立FPGA构建、仿真、模型导出／转换及包完整性检查入口 |
+| `LICENSES`、`metadata` | 许可原文、逐文件来源／SHA256、实际构建环境与验证范围 |
+
+包内软件CMake只建立当前正式 `pose180_demo` 和必要离线检查，不再建立历史严格链、实验性PL几何／批量滤波和历史压测目标。保留当前程序所需兼容接口及位流中已有硬件，不借整理目录改变算法或硬件约束。
+
+## 3. Docker交叉编译环境
+
+厂商交叉编译资料通过比赛／开发板配套官方资料渠道提供，文件名为 `ubuntu20.04_container.tar`；请从同一官方渠道获取。本机核对其内容为 **Ubuntu 20.04.6 LTS根文件系统导出**，不是含Docker manifest的镜像保存文件，因此使用 [docker import](https://docs.docker.com/reference/cli/docker/image/import/)，不虚构公共镜像仓库地址。
+
+在Windows PowerShell中，厂商基础环境可按以下方式导入并挂载解压后的源码根目录：
+
+```powershell
+docker import .\ubuntu20.04_container.tar ubuntu20.04:vendor-base
+docker run -it --name pose180-build -v "${PWD}:/workspace" ubuntu20.04:vendor-base /bin/bash
+```
+
+上述导入命令仅恢复所提供的基础根文件系统，**不等同于已经补齐SDK的现有构建环境**。SDK、customop及其运行库应按厂商配套资料安装，许可与安装包另行获取。
+
+本项目实际构建使用的历史镜像标签是 `ubuntu20.04:custom`，`FPAI` 是容器名。2026-11-03实际读取的镜像ID为 `sha256:397a49458ae85e065c484eaa3a83d4b5cc248f78bdf6a534e2414ce275e591db`；容器内 CMake 3.24.2、AArch64 GCC 9.4.0、原生 GCC 9.4.0，Icraft/customop 3.39 环境通过 `/usr/cmake` 查找。标签只是本地名称，不是公开下载地址。
+
+已有该容器时使用 `docker start FPAI`、`docker exec -it FPAI /bin/bash`；新容器须挂载本包，且安装相同工具。软件构建不启动SDK会话，不需要开发板。
+
+## 4. CMake软件构建与离线验证
+
+进入容器内的**源码包根目录**，使用统一入口：
+
+```sh
+cmake --preset csi-v3-arm64
+cmake --build --preset csi-v3-arm64
+
+cmake --preset native-offline
+cmake --build --preset native-offline
+ctest --preset native-offline
+```
+
+ARM64正式程序输出为 `build/arm64/bin/pose180_demo`；原生检查输出到 `build/native/bin/`。`csi-v3-arm64` 查找 `icraft-hostbackend` 和 `icraft-zg330backend` **3.39.0.0 EXACT**，沿用当前SDK库链接顺序、`-ffp-contract=off`、`--no-as-needed` 和 CSI／overlay／有界启动消费／保留PL滤波接口编译宏；实验性PL后处理不启用。
+
+`native-offline` 不加载ARM SDK，构建mock及缓存、后处理、绘图、资源释放和日志检查。它不证明NPU推理或实物HDMI通过。CSI软件数值参考可对独立PIWCSI2输入运行：
+
+```sh
+build/native/bin/csi_numeric_test /path/to/input.piwcsi2 build/native/vectors.hex build/native/csi-numeric.json
+```
+
+PC可选观察端要求 Node.js 20+；Three.js所需资源已附，不必 `npm install`。PC脚本在 `software/pose180_pipeline/host/start-pc.ps1`，正式部署的启动、网络与停止步骤使用前述部署包说明。
+
+## 5. FPGA独立构建
+
+FPGA是与C++编译分开的完整工具流程。必须使用配套**原厂适配 Vivado 2018.3 与 Procise**，实际目标 **JFMQL30TAI676H**；Vivado内部逻辑part为 `xc7z030ffg676-2`，不能直接换成普通Xilinx工具流程。模板保留原厂GT适配和原有约束，未新增时序例外。
+
+在Windows中，从本包根目录执行；Python 3.9+，工具路径可显式指定：
+
+```powershell
+python tools/build_fpga.py prepare --build-dir build/fpga --procise C:/FudanMicro/Procise
+python tools/build_fpga.py run --build-dir build/fpga --stage all --vivado D:/vivado18.3/Vivado/2018.3/bin/vivado.bat
+```
+
+也可将 `--stage all` 替换为 `synthesis-banked`、`opt-banked`、`place-csi-incremental`、`route-csi-incremental`、`report-closure`、`bit-closure`、`procise`，按顺序逐阶段执行。输出、日志、checkpoint和厂商兼容目录全部位于 `build/fpga/`。工具不修改源码包内的IP原件、不访问旧工作区 `.local`，且不会下载位流、连接设备或改写启动分区。
+
+`prepare` 使用 `metadata/fpga-inputs.json` 在构建目录生成厂商原有相对布局，并只在生成副本中替换路径；加密脚本与厂商算法不重写。字节完全相同的厂商文件在包内保存一份，构建时恢复各IP所需的位置。`FPGA/reference/ps-export.dcp` 和 `csi-v2-placement-reference.dcp` 是必要输入，后者用于当前增量放置路线，不能删掉或换成其它历史位流。重新构建选择新输出目录；脚本拒绝覆盖已有阶段结果。建议解压到短路径，以减少旧版EDA工具的路径长度限制。
+
+最终原生BIT为 `build/fpga/fpai_demo_vivado.runs/impl_pose_filter/ai7030_edif_top.bit`，Procise结果为同目录的 `ai7030_edif_top_disable_icap.bit`。完整报告位于 `build/fpga/reports/physical-final-closure/`。如需生成BOOT，在配套Procise的Tcl中对prepare生成的BIF执行 `create_boot_image {<构建目录>/candidate.bif} {<构建目录>/BOOT.BIN} -fmql`。生成文件与写入设备是不同步骤，本包不自动安装BOOT。
+
+判定时分别检查setup、hold、路由完整性、未约束路径和现有例外。原设计含已限定范围的AI最小周期例外及原厂GT DRC适配，不能只凭生成BIT就称“全项时序／DRC零告警”。实板观察和长期验收须另外进行。
+
+RTL仿真使用同一配套Vivado的 `xvlog`、`xelab`、`xsim`，命令入口：
+
+```powershell
+python tools/simulate.py --vivado-bin D:/vivado18.3/Vivado/2018.3/bin --output build/sim
+```
+
+附带测试采用小型合成数据，不是实物CSI精度或显示器观察。厂商加密IP仿真／实现可能要求原有许可与工具环境。
+
+## 6. 模型与转换
+
+`model/pose180/piw24_pose180_ZG.json` 与 `.raw` 为配套计算图／部署权重，必须一起使用；模型来源为原epoch99／180-query共享细化分支。输入是已预处理FP32特征 `[1,180,60]`，输出为 `[1,180]` 分数和 `[1,180,14,3]` 关节坐标。180是候选数，PS最终最多选择三人，严格使用 `score > 0.2`。
+
+部署图将候选选择移出NPU，并共享同帧关节细化公共特征；并非删除所有Gather。数值等价性与FP16转换误差须分别讨论，目录整理不改变该模型。
+
+直接使用附带ONNX转换，不需要PyTorch checkpoint。已安装Icraft 3.39 CLI及配套DLL／CUDA依赖时，在新的输出目录执行：
+
+```powershell
+python tools/convert_model.py --icraft "C:/Icraft/CLI v3.39.0/bin/icraft.exe" --output build/model-conversion
+```
+
+它按 `parse → optimize → quantize → adapt → generate` 运行附带TOML，工作副本写入 `build/model-conversion`，不覆盖交付JSON／RAW。TOML是当前明确的转换配置，原始历史TOML未留存；重新转换结果应另行核对，不直接替换已验证权重。
+
+如确需从PyTorch重新导出，须显式提供兼容的epoch99 checkpoint；本包**不附PTH，也没有指向旧训练目录的默认checkpoint**：
+
+```sh
+python tools/export_model.py --checkpoint /path/to/best_mpjpe_epoch_99.pth --output build/export/pose180_shared.onnx
+```
+
+此可选路线需要原模型的PyTorch／MMCV-full／MMDetection／NumPy／SciPy等环境，单独提供了必要架构源码和完整模型配置，不包含训练数据、优化器、训练器或续训状态。只需重建C++或使用附带ONNX时无需安装训练框架。
+
+## 7. 完整性、验证范围与许可
+
+```sh
+python tools/check_package.py
+```
+
+该命令只核验包内清单与SHA256，不连接设备；RAR本身另附独立SHA256。机器可读的实际验证结果保存在 `metadata/build-environment.json` 的 `validation` 字段。未完成的项目不得写成已通过；离线编译、RTL仿真、完整FPGA实现与实板运行分别认定。
+
+本次整理不修改项目业务源码和既定硬件适配。根CMake、路径模板、离线检查入口及PC资源引用为交付所需调整，均列在来源清单；未携带账号密码、设备私钥、SDK安装包或Docker镜像。
+
+基础模型来自 [Person-in-WiFi 3D](https://github.com/aiotgroup/Person-in-WiFi-3D-repo)，实际使用源码的Apache-2.0原文在 `LICENSES/`。项目许可为MIT，Three.js保留自身MIT许可；厂商IP、引导组件和工具适用各自许可。CORDIC、Bresenham等为已有算法，项目自主实现体现在分组流水、接口协议、图元模块和PS／NPU／PL协同设计。
