@@ -8,9 +8,8 @@ import subprocess
 import time
 
 STAGES = ('synthesis-banked', 'opt-banked', 'place-csi-incremental',
-          'route-csi-incremental', 'report-closure', 'bit-closure', 'procise')
+    'route-csi-incremental', 'report-closure', 'bit-closure', 'procise')
 TEXT = {'.tcl', '.xpr', '.xci', '.xml', '.bif', '.bat', '.cfg', '.json'}
-
 
 def relocate(data, suffix, mappings):
     if suffix.lower() not in TEXT:
@@ -23,6 +22,18 @@ def relocate(data, suffix, mappings):
     for old, new in sorted(mappings.items(), key=lambda x: -len(x[0])):
         text = re.sub(re.escape(old), lambda _m, value=new: value, text, flags=re.I)
     return text.encode('utf-8')
+
+
+def write_procise_launcher(output, procise):
+    # 只生成原厂适配启动器；prepare 阶段不启动 Procise。
+    launcher = output / 'call_procise_disable_icap.bat'
+    launcher.write_text('@echo off\n' +
+        'set "PROCISE_DIR=' + procise.as_posix() + '"\n' +
+        'set "TCL_LIBRARY=%PROCISE_DIR%/tcl8.4"\n' +
+        'set "PATH=%PROCISE_DIR%/dll;%PROCISE_DIR%/bin;%PATH%"\n' +
+        'set "ICTIME_HOME=%PROCISE_DIR%"\nset "APP_DIR=%PROCISE_DIR%"\n' +
+        'set "FMSH_DB=%PROCISE_DIR%/db"\n' +
+        '"%PROCISE_DIR%/bin/procise.exe" "' + (output / 'procise.tcl').as_posix() + '"\n', encoding='utf-8')
 
 
 def prepare(package, output, procise):
@@ -49,7 +60,7 @@ def prepare(package, output, procise):
     logs = output / 'logs'
     logs.mkdir()
     for rel in ('reports/physical', 'reports/pipeline-physical', 'reports/physical-final-closure',
-                'reports/physical-final-closure/frames', 'ip_patch', 'ip-cache', 'fpai_demo_vivado.runs/impl_pose_filter'):
+        'reports/physical-final-closure/frames', 'ip_patch', 'ip-cache', 'fpai_demo_vivado.runs/impl_pose_filter'):
         (output / rel).mkdir(parents=True, exist_ok=True)
     for stage in STAGES:
         src = package / 'FPGA/scripts' / (stage + '.tcl.in')
@@ -59,20 +70,12 @@ def prepare(package, output, procise):
         (package / 'FPGA/boot/candidate.bif.in').read_bytes(), '.bif', mapping))
     # The factory post-bit hook is deliberately deferred to the explicit
     # Procise stage, retaining the existing routed-context guard.
-    launcher = output / 'call_procise_disable_icap.bat'
-    launcher.write_text('@echo off\n' +
-        'set "PROCISE_DIR=' + procise.as_posix() + '"\n' +
-        'set "TCL_LIBRARY=%PROCISE_DIR%/tcl8.4"\n' +
-        'set "PATH=%PROCISE_DIR%/dll;%PROCISE_DIR%/bin;%PATH%"\n' +
-        'set "ICTIME_HOME=%PROCISE_DIR%"\nset "APP_DIR=%PROCISE_DIR%"\n' +
-        'set "FMSH_DB=%PROCISE_DIR%/db"\n' +
-        '"%PROCISE_DIR%/bin/procise.exe" "' + (output / 'procise.tcl').as_posix() + '"\n', encoding='utf-8')
+    write_procise_launcher(output, procise)
     plan = {'package_root': str(package), 'build_root': str(output), 'procise': str(procise),
-            'stages': list(STAGES), 'project_files': len(metadata['project_files']),
-            'vendor_files': len(metadata['factory_files']), 'device_operations': 0}
+        'stages': list(STAGES), 'project_files': len(metadata['project_files']),
+        'vendor_files': len(metadata['factory_files']), 'device_operations': 0}
     (output / 'build-plan.json').write_text(json.dumps(plan, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(plan), flush=True)
-
 
 def run_stage(output, stage, vivado):
     plan = json.loads((output / 'build-plan.json').read_text(encoding='utf-8'))
@@ -83,7 +86,7 @@ def run_stage(output, stage, vivado):
         command = ['cmd.exe', '/d', '/c', str(output / 'call_procise_disable_icap.bat')]
     else:
         command = [str(vivado), '-mode', 'batch', '-nojournal', '-log',
-                   str(output / 'logs' / (stage + '.vivado.log')), '-source', str(output / (stage + '.tcl'))]
+            str(output / 'logs' / (stage + '.vivado.log')), '-source', str(output / (stage + '.tcl'))]
     started = time.time()
     with (output / 'logs' / (stage + '.stdout.log')).open('xb') as stream:
         process = subprocess.Popen(command, cwd=output, stdout=stream, stderr=subprocess.STDOUT)
@@ -97,7 +100,6 @@ def run_stage(output, stage, vivado):
     if rc:
         raise SystemExit(rc)
 
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('prepare', 'run'))
@@ -110,10 +112,9 @@ def main():
     if args.action == 'prepare':
         prepare(package, output, args.procise.resolve())
     else:
-        stages = STAGES if args.stage == 'all' else (args.stage,)
+        stages = STAGES if args.stage == 'all' else(args.stage,)
         for stage in stages:
             run_stage(output, stage, args.vivado)
-
 
 if __name__ == '__main__':
     main()

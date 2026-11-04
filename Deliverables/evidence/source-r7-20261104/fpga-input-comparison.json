@@ -1,0 +1,18 @@
+{
+  "compared_input_pairs": 687,
+  "differences": [],
+  "identity_scope": "All project/vendor inputs and seven stage scripts; only relocated build root and text encoding/newlines normalized",
+  "previous_physical_result": "Deliverables/evidence/fpga-refactor-20261104-r1/qualification-closure.json",
+  "new_full_implementation_required": false,
+  "external_route_hooks": [
+    {
+      "input": "FPGA/constraints/implementation_route_post.tcl",
+      "previous_source": "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\baselines\\ps_release_r26\\sources\\implementation_route_post.tcl"
+    },
+    {
+      "input": "FPGA/constraints/strip_probe_attributes.tcl",
+      "previous_source": "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\strip_probe_attributes.tcl"
+    }
+  ],
+  "board_tested": false
+}

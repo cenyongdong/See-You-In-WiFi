@@ -1,0 +1,21 @@
+{
+  "compared_input_pairs": 687,
+  "differences": [
+    {
+      "path": "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\prepared-fpga\\inputs\\FPGA\\constraints\\implementation_route_post.tcl",
+      "reason": "missing"
+    },
+    {
+      "path": "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\prepared-fpga\\inputs\\FPGA\\constraints\\strip_probe_attributes.tcl",
+      "reason": "missing"
+    },
+    {
+      "path": "route-csi-incremental.tcl",
+      "reason": "content differs"
+    }
+  ],
+  "identity_scope": "All project/vendor inputs and seven stage scripts; only relocated build root and text encoding/newlines normalized",
+  "previous_physical_result": "Deliverables/evidence/fpga-refactor-20261104-r1/qualification-closure.json",
+  "new_full_implementation_required": true,
+  "board_tested": false
+}

@@ -1,0 +1,16 @@
+
+****** xsim v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/tb_batch_sim/xsim_script.tcl
+# xsim {tb_batch_sim} -autoloadwcfg -tclbatch {run.tcl}
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+source run.tcl
+## run all
+CSI_BATCH_PASS two streaming batches, fast/slow consumers, numeric outputs, overlap=81
+$finish called at time : 9309610 ns : File "D:/FPGACompetitionProject/.local/python-source-r7-20261104/checked/pose180-current-sources-20261104-r7/FPGA/sim/tb_batch.sv" Line 48
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Nov  4 16:00:42 2026...

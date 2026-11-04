@@ -587,3 +587,7 @@ node_modules/
 !/Deliverables/evidence/pc/
 !/Deliverables/evidence/pc/pc-performance-preview-20261028.jpg
 !/tools/pose-v1/evidence/hp2-bounded-drain-20261024-r38/r38-startup-discard.svg
+
+# Refactored source delivery; binary RAR remains a Release asset.
+!/Deliverables/SOURCE-20261104.md
+!/Deliverables/pose180-current-sources-20261104-r7.rar.sha256

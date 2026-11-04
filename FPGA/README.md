@@ -4,7 +4,7 @@
 
 | 用途 | 入口 |
 |---|---|
-| RTL／C++ 书写、重构与验证规范 | [编码规范](CODING-STANDARDS.md)、[本轮重构与验证](REFACTOR-20261104.md) |
+| RTL／C++ 书写、重构与验证规范 | [编码规范](CODING-STANDARDS.md)、[RTL／C++ 重构](REFACTOR-20261104.md)、[Python 维护](PYTHON-REFACTOR-20261104.md) |
 | 当前自研硬件源码与隔离构建 | [源码映射](current_sources.json)、[构建入口](../tools/release/prepare_refactored_fpga.py) |
 | 当前选择、最后观察与本机恢复备份 | [恢复入口](hdmi_candidate/RESUME.md)、[默认 BOOT 身份](hdmi_candidate/default_boot.json) |
 | HDL、接口、帧采纳与停止契约 | [HDMI 工程说明](hdmi_candidate/INTEGRATION.md) |

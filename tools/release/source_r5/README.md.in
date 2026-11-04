@@ -1,6 +1,6 @@
 # 基于WiFi CSI信息的FPGA与嵌入式多人三维姿态感知系统：当前构建源码
 
-本包 `pose180-current-sources-20261103-r5` 提供当前正式演示的 C++、RTL、控制程序、PC观察端、模型部署权重及必要构建输入。按当前构建依赖整理，不包含旧候选工程、历史报告、训练记录或构建缓存。此 README 是包内唯一技术说明；文件来源、身份和实际环境另外记录为 `metadata/` 中的机器可读 JSON。
+本包 `pose180-current-sources-20261104-r7` 提供当前正式演示的 C++、RTL、控制程序、PC观察端、模型部署权重及必要构建输入。按当前构建依赖整理，不包含旧候选工程、历史报告、训练记录或构建缓存。本 README 说明构建与部署，根目录的 [llm_usage.md](llm_usage.md) 附项目 AI 辅助开发说明；文件来源、身份和实际环境另外记录为 `metadata/` 中的机器可读 JSON。
 
 ## 1. 获取已部署演示
 
@@ -14,6 +14,10 @@
 **按说明完成部署并启动官方数据演示后，无需配置路由器、进行实时CSI采集或连接PC观察端。使用官方开发板和一台支持HDMI输入、1080p@60Hz模式的显示器，即可本地展示多人三维姿态效果。** 首次部署、BOOT身份核对及手动启动仍须完成；显示器的60Hz兼容模式不代表模型推理达到60帧/秒。
 
 演示采用官方数据重新推理，实时 CSI 模式另外需要一台 TX、三台 RX 路由器及对应无线驱动。源码包不自带官方数据集、SDK安装包、Docker镜像、原始PyTorch checkpoint或已生成BOOT；直接展示使用上述部署 RAR。
+
+本版收录经过可读性重构的 RTL、28 个 C++ 开发文件及构建／仿真 Python 工具。设备探针仅供离线编译和维护，不属于默认运行入口。编码规范见 [FPGA/CODING-STANDARDS.md](FPGA/CODING-STANDARDS.md)，开发文件清单见 [metadata/development-sources.json](metadata/development-sources.json)。
+
+2026-11-04 的 RTL 已完成完整本地综合、布局布线、BIT 和 Procise 验证；包内物理摘要见 [metadata/fpga-qualification.json](metadata/fpga-qualification.json)。新硬件未上板，原 r4 部署包不变。最终压缩包的独立解压检查另在 Release 源码说明中记录，不沿用 r6 的软件构建结论冒充本包验证。
 
 ## 2. 目录与模块职责
 
@@ -37,6 +41,7 @@
 | `FPGA/vendor` | 必需厂商RTL、IP配置／生成文件、网表及030ai／JFM适配资源 |
 | `FPGA/reference` | PS导出检查点、CSI v2增量放置参考；两者仍是当前构建输入 |
 | `FPGA/boot` | FSBL、BL31、U-Boot与可重定位BIF；不含已生成BOOT |
+| `FPGA/csi_preprocess`、`FPGA/hdmi_candidate/software`、`FPGA/hdmi_validation` | 本轮 28 个 C++ 实现、头文件、离线测试与设备探针；探针不默认执行 |
 | `FPGA/sim` | 当前CSI分组协议及骨架绘图测试平台 |
 | `model/pose180` | 配套JSON／RAW权重、ONNX与Icraft转换TOML |
 | `model/adaptation` | 180候选、共享关节细化模型及必要基础模块，未附训练器 |
@@ -142,8 +147,8 @@ python tools/export_model.py --checkpoint /path/to/best_mpjpe_epoch_99.pth --out
 python tools/check_package.py
 ```
 
-该命令只核验包内清单与SHA256，不连接设备；RAR本身另附独立SHA256。机器可读的实际验证结果保存在 `metadata/build-environment.json` 的 `validation` 字段。未完成的项目不得写成已通过；离线编译、RTL仿真、完整FPGA实现与实板运行分别认定。
+该命令只核验包内清单与SHA256，不连接设备；RAR本身另附独立SHA256。`metadata/build-environment.json` 标明验证范围；最终压缩包的解压构建结果在上述 GitHub Release 中发布。未完成的项目不得写成已通过；离线编译、RTL仿真、完整FPGA实现与实板运行分别认定。
 
-本次整理不修改项目业务源码和既定硬件适配。根CMake、路径模板、离线检查入口及PC资源引用为交付所需调整，均列在来源清单；未携带账号密码、设备私钥、SDK安装包或Docker镜像。
+本次整理收录已重构源码，保留功能、接口及既定硬件适配。根CMake、路径模板、离线检查入口及PC资源引用为交付所需调整，均列在来源清单；未携带账号密码、设备私钥、SDK安装包或Docker镜像。
 
 基础模型来自 [Person-in-WiFi 3D](https://github.com/aiotgroup/Person-in-WiFi-3D-repo)，实际使用源码的Apache-2.0原文在 `LICENSES/`。项目许可为MIT，Three.js保留自身MIT许可；厂商IP、引导组件和工具适用各自许可。CORDIC、Bresenham等为已有算法，项目自主实现体现在分组流水、接口协议、图元模块和PS／NPU／PL协同设计。

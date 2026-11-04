@@ -3,7 +3,6 @@ import argparse
 from pathlib import Path
 import sys
 
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--checkpoint', required=True, type=Path)
@@ -42,8 +41,8 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with torch.no_grad():
         torch.onnx.export(FullGraph(model).eval(), (torch.zeros(1, 180, 60),), str(args.output),
-                          opset_version=11, input_names=['csi_tokens'], output_names=['scores', 'poses'],
-                          do_constant_folding=True)
+            opset_version=11, input_names=['csi_tokens'], output_names=['scores', 'poses'],
+            do_constant_folding=True)
     graph = onnx.load(str(args.output))
     onnx.checker.check_model(graph)
     shapes = [[d.dim_value for d in v.type.tensor_type.shape.dim] for v in graph.graph.output]
@@ -52,7 +51,6 @@ def main():
     if any(node.op_type in ('TopK', 'ScatterND', 'GatherElements') for node in graph.graph.node):
         raise ValueError('Candidate selection or slice-write remains in export')
     print('Exported all 180 candidates:', args.output)
-
 
 if __name__ == '__main__':
     main()

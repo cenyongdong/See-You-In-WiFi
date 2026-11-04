@@ -3,7 +3,6 @@ from pathlib import Path
 import hashlib
 import json
 
-
 def main():
     root = Path(__file__).resolve().parents[1]
     manifest = json.loads((root / 'metadata/source-manifest.json').read_text(encoding='utf-8'))
@@ -16,7 +15,6 @@ def main():
             raise ValueError('Package input changed: ' + record['path'])
         count += 1
     print('Verified', count, 'manifest files; no device operations')
-
 
 if __name__ == '__main__':
     main()

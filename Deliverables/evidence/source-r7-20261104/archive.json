@@ -1,0 +1,54 @@
+{
+  "name": "pose180-current-sources-20261104-r7.rar",
+  "bytes": 190554743,
+  "sha256": "4481f7503f4093ce4fe5cd16738b4580465d00e0cf221b9134eab27e8c0cee08",
+  "source_directory": "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\checked\\pose180-current-sources-20261104-r7",
+  "publication": {
+    "release_url": "https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031",
+    "tag": "deploy-r4-20261031",
+    "source_assets": [
+      {
+        "id": 708746041,
+        "name": "pose180-current-sources-20261104-r7.rar",
+        "size": 190554743,
+        "digest": "sha256:4481f7503f4093ce4fe5cd16738b4580465d00e0cf221b9134eab27e8c0cee08"
+      },
+      {
+        "id": 708753123,
+        "name": "pose180-current-sources-20261104-r7.rar.sha256",
+        "size": 106,
+        "digest": "sha256:a4f91a5ab681e8e2c313876b582af9dbee45b455fbebd897afdd148699f9ba13"
+      }
+    ],
+    "protected_assets": {
+      "pose180-csi-release-20261031-r4.rar": {
+        "id": 702138153,
+        "name": "pose180-csi-release-20261031-r4.rar",
+        "size": 111749109,
+        "digest": "sha256:a70ec59774bf11e73e2b22c8e899a75a66890f28eb4410e2a335894241faca48"
+      },
+      "pose180-csi-release-20261031-r4.rar.sha256": {
+        "id": 702145248,
+        "name": "pose180-csi-release-20261031-r4.rar.sha256",
+        "size": 103,
+        "digest": "sha256:fe588da7c74120c34f8b80ec4398a0c0eca5eb46088f9b465b699aaafd303746"
+      },
+      "pose180-current-sources-20261103-r6.rar": {
+        "id": 704503600,
+        "name": "pose180-current-sources-20261103-r6.rar",
+        "size": 190517573,
+        "digest": "sha256:a5bb3907f1a6babdd958a759aeb4d2b69c41108a8e149895528453eb88c1f810"
+      },
+      "pose180-current-sources-20261103-r6.rar.sha256": {
+        "id": 704508125,
+        "name": "pose180-current-sources-20261103-r6.rar.sha256",
+        "size": 106,
+        "digest": "sha256:9f03739ac324cf1a9803c506bc6b65993aeb5a772bc615681ef035c011e992da"
+      }
+    },
+    "deployment_unchanged": true,
+    "r6_retained": true,
+    "complete_download_verified": true,
+    "device_operations": 0
+  }
+}

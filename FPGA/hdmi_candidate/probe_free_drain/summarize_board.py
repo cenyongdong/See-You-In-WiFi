@@ -6,7 +6,6 @@ import re
 import tarfile
 from prepare import ROOT, WORK, EVIDENCE
 
-
 def summarize(index):
     archive = WORK / f'round-{index}-result-evidence.tar.gz'
     with tarfile.open(archive) as source:
@@ -46,9 +45,9 @@ def summarize(index):
         state = pc['last_state']
         # Only execution, identity and resource safety are hard requirements.
         if not (result['passed'] and native_seconds == 300 and closed['closed']
-                and not final['mock'] and final['hdmi'] and final['inferred'] > 0
-                and result['native_shutdown_complete'] and not result['device_owners']
-                and events['stop_proved'] and events['frames_released_after_stop']):
+            and not final['mock'] and final['hdmi'] and final['inferred'] > 0
+            and result['native_shutdown_complete'] and not result['device_owners']
+            and events['stop_proved'] and events['frames_released_after_stop']):
             raise RuntimeError(f'Round {index}: incomplete execution or safe shutdown')
         return dict(round=index, passed=result['passed'], boot_id=startup['boot_id'],
             runtime_seconds=native_seconds, process_seconds=result['seconds'],
@@ -64,10 +63,9 @@ def summarize(index):
             minimum_MemAvailable_KiB=result['minimum_MemAvailable_KiB'],
             new_kernel_lines=delta.splitlines(),
             PC=dict(native_exit=pc['native_exit'], received=state['received'],
-                invalid=state['invalid'], duplicates=state['duplicates'],
-                record_drops=state['recordDrops']), closed=closed,
+            invalid=state['invalid'], duplicates=state['duplicates'],
+            record_drops=state['recordDrops']), closed=closed,
             physical_screen_verified=False, raw_archive=str(archive))
-
 
 rows = [summarize(index) for index in range(1, 4)]
 if len({row['boot_id'] for row in rows}) != 3 or len({row['candidate_BOOT_sha256'] for row in rows}) != 1:
@@ -78,8 +76,8 @@ summary = dict(status='three_rounds_completed_original_BOOT_fallback_verified',
     final_boot_id=rows[-1]['closed']['boot_id'],
     physical_screen_verified=False,
     limits=['Software reboots; no power-cycle test', 'Three finite 300-second runtime samples',
-            'CSI gaps and bounded alignment recoveries are recorded, not zero-stutter acceptance',
-            'D45 root cause remains open; no protocol checker diagnostic coverage claimed'])
+    'CSI gaps and bounded alignment recoveries are recorded, not zero-stutter acceptance',
+    'D45 root cause remains open; no protocol checker diagnostic coverage claimed'])
 target = EVIDENCE / 'board-summary.json'
 with target.open('x', encoding='utf-8') as stream:
     json.dump(summary, stream, ensure_ascii=False, indent=2)

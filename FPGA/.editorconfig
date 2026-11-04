@@ -1,5 +1,5 @@
 # Applies to maintained FPGA source; archived/vendor inputs are not reformatted.
-[*.{v,sv,vh,cpp,hpp,h,cc,cxx}]
+[*.{v,sv,vh,cpp,hpp,h,cc,cxx,py}]
 charset = utf-8
 indent_style = space
 indent_size = 4

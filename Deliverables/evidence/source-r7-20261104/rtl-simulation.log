@@ -1,0 +1,7 @@
+simulation step 0 native exit 0
+simulation step 1 native exit 0
+simulation step 2 native exit 0
+simulation step 3 native exit 0
+simulation step 4 native exit 0
+simulation step 5 native exit 0
+CSI and overlay testbenches passed; synthetic/offline scope only

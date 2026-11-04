@@ -1,0 +1,61 @@
+[
+  {
+    "stage": "check-staging",
+    "command": [
+      "python",
+      "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\staging\\pose180-current-sources-20261104-r7\\tools\\check_package.py"
+    ],
+    "native_exit": 0,
+    "seconds": 3.8866641521453857
+  },
+  {
+    "stage": "rar-create",
+    "command": [
+      "D:\\FPGACompetitionProject\\.local\\release-20261031-r3\\rar-tool\\Rar.exe",
+      "a",
+      "-ma5",
+      "-m5",
+      "-md64m",
+      "-mt2",
+      "-s",
+      "-r",
+      "-idq",
+      "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\pose180-current-sources-20261104-r7.rar",
+      "pose180-current-sources-20261104-r7"
+    ],
+    "native_exit": 0,
+    "seconds": 24.72425389289856
+  },
+  {
+    "stage": "rar-test",
+    "command": [
+      "D:\\FPGACompetitionProject\\.local\\release-20261031-r3\\rar-tool\\Rar.exe",
+      "t",
+      "-idq",
+      "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\pose180-current-sources-20261104-r7.rar"
+    ],
+    "native_exit": 0,
+    "seconds": 4.806593179702759
+  },
+  {
+    "stage": "rar-extract",
+    "command": [
+      "D:\\FPGACompetitionProject\\.local\\release-20261031-r3\\rar-tool\\Rar.exe",
+      "x",
+      "-idq",
+      "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\pose180-current-sources-20261104-r7.rar",
+      "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\checked\\"
+    ],
+    "native_exit": 0,
+    "seconds": 8.002581119537354
+  },
+  {
+    "stage": "check-extracted",
+    "command": [
+      "python",
+      "D:\\FPGACompetitionProject\\.local\\python-source-r7-20261104\\checked\\pose180-current-sources-20261104-r7\\tools\\check_package.py"
+    ],
+    "native_exit": 0,
+    "seconds": 0.6080315113067627
+  }
+]
