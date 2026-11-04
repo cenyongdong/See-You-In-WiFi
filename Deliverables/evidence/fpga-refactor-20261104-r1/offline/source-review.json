@@ -1,0 +1,39 @@
+{
+  "format_only_cpp": [
+    "FPGA/csi_preprocess/numeric_test.cpp",
+    "FPGA/csi_preprocess/polar_model.hpp",
+    "FPGA/hdmi_candidate/software/ai_dma_probe.cpp",
+    "FPGA/hdmi_candidate/software/ai_monitor_sdk.hpp",
+    "FPGA/hdmi_candidate/software/ai_path_probe.cpp",
+    "FPGA/hdmi_candidate/software/ai_preopen_monitor.cpp",
+    "FPGA/hdmi_candidate/software/ai_read_dma_probe.cpp",
+    "FPGA/hdmi_candidate/software/ai_read_monitor_sdk.hpp",
+    "FPGA/hdmi_candidate/software/ai_read_segmented_probe.cpp",
+    "FPGA/hdmi_candidate/software/ai_startup_probe.cpp",
+    "FPGA/hdmi_candidate/software/capture_boot_witness.cpp",
+    "FPGA/hdmi_candidate/software/dma_probe_evidence.hpp",
+    "FPGA/hdmi_candidate/software/frame_probe.cpp",
+    "FPGA/hdmi_candidate/software/hdmi_handoff.hpp",
+    "FPGA/hdmi_candidate/software/r9_observer_mapping.hpp",
+    "FPGA/hdmi_candidate/software/r9_startup_observer.hpp",
+    "FPGA/hdmi_candidate/software/r9_startup_observer_test.cpp",
+    "FPGA/hdmi_candidate/software/render_preview.cpp",
+    "FPGA/hdmi_candidate/software/saved_skeleton.cpp",
+    "FPGA/hdmi_candidate/software/startup_init_supervisor.cpp",
+    "FPGA/hdmi_candidate/software/startup_sdk_child.cpp",
+    "FPGA/hdmi_candidate/software/static_probe.cpp",
+    "FPGA/hdmi_candidate/software/tests/hdmi_handoff_test.cpp",
+    "FPGA/hdmi_candidate/software/tests/mock/application_core.hpp",
+    "FPGA/hdmi_validation/readonly_probe.cpp"
+  ],
+  "structural_cpp": [
+    "FPGA/csi_preprocess/board_benchmark.cpp",
+    "FPGA/csi_preprocess/diagnostic.cpp",
+    "FPGA/csi_preprocess/polar_model.cpp"
+  ],
+  "final_format_only_changes": [
+    "FPGA/csi_preprocess/board_benchmark.cpp"
+  ],
+  "numeric_reports_equal": true,
+  "rtl_vectors_equal": true
+}

@@ -1,0 +1,29 @@
+{
+  "staged_source_match": true,
+  "checked_sources": [
+    "FPGA/csi_preprocess/polar.sv",
+    "FPGA/csi_preprocess/batch.sv",
+    "FPGA/csi_preprocess/atan_table.vh",
+    "FPGA/hdmi_candidate/skeleton_overlay/overlay.sv",
+    "FPGA/hdmi_candidate/skeleton_overlay/palette_fifo.sv",
+    "FPGA/hdmi_candidate/skeleton_overlay/font_rom.vh",
+    "FPGA/hdmi_candidate/rtl/current/hdmi_board.sv",
+    "FPGA/hdmi_candidate/rtl/current/ps_ai_peripheral.sv",
+    "FPGA/hdmi_candidate/probe_free_drain/sources/hp2_startup_drain.sv",
+    "FPGA/hdmi_candidate/probe_free_drain/sources/hp2_deferred_control.sv",
+    "FPGA/hdmi_candidate/rtl/hdmi_axi_read.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_candidate_core.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_candidate_register_core.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_command_mailbox.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_pixel_scan.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_register_bank.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_scan_control.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_scanout.v",
+    "FPGA/hdmi_candidate/rtl/hdmi_stream_fifo.v",
+    "FPGA/hdmi_candidate/rtl/integration/hdmi_clock_jfm.v",
+    "FPGA/hdmi_candidate/rtl/integration/hdmi_cam_router.sv",
+    ".local/hdmi-boot-witness-20261019-r23/reference/rtl/display/video_define.v"
+  ],
+  "cpp_format_files": 28,
+  "protected_scope_changed": false
+}

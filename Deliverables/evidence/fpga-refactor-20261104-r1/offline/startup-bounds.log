@@ -1,0 +1,25 @@
+
+****** xsim v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/test/xsim_script.tcl
+# xsim {test} -autoloadwcfg -tclbatch {run.tcl}
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+source run.tcl
+## run all
+DRAIN_CASE_PASS case=0 status=00040002 accepted=0
+DRAIN_CASE_PASS case=1 status=0204d062 accepted=12
+DRAIN_CASE_PASS case=2 status=00100803 accepted=256
+DRAIN_CASE_PASS case=3 status=01000404 accepted=128
+DRAIN_CASE_PASS case=4 status=00006035 accepted=6
+DRAIN_CASE_PASS case=5 status=08000005 accepted=0
+DRAIN_CASE_PASS case=6 status=00006035 accepted=6
+DRAIN_CASE_PASS case=7 status=80040002 accepted=0
+DRAIN_CASE_PASS case=8 status=00006035 accepted=6
+BOUNDED_DRAIN_UNIT_PASS
+$finish called at time : 25150 ns : File "D:/FPGACompetitionProject/FPGA/hdmi_candidate/diagnostics/deferred_consume_r45/tb_bounds.sv" Line 55
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Nov  4 14:44:34 2026...

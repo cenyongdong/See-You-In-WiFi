@@ -2,6 +2,8 @@
 
 **现行范围（2026-11-01）：** 当前为 `probe-free-drain-overlay-csi-v3`，CSI／overlay分别使用 `0x400b3000 / 0x43534903`、`0x400b2000 / 0x534b4c01`。现行接口与分工见[架构说明](../../ADR/TechDetails.md)、[CSI](../csi_preprocess/README.md)、[overlay](skeleton_overlay/README.md)；部署与BOOT见[RESUME](RESUME.md)。本页后续r53及更早诊断链保留历史范围，严格归档／数值门不套作现行演示阻塞条件。
 
+**2026-11-04 源码维护入口：** 当前 CSI v3 集成模块见 [current](rtl/current/README.md)，显式构建映射见 [current_sources.json](../current_sources.json)。维护版 reader 已同步合格构建的 4KiB 边界谓词，router 保留该构建的译码参数；历史源码和旧默认 BOOT 不覆盖。重构及本地验证范围见 [重构记录](../REFACTOR-20261104.md)。下表与后续 r53 叙述保留原阶段范围。
+
 历史更新：2026-10-24。r45合格硬件已复用于有限启动消费、r47直接RGB565及r53单SDK线程流水调度。r53健康启动短样本29.521Hz、187次采纳后因首次索引内容混合停止；原BOOT已恢复，联合长期和持续实屏未通过。[r53 当时实测/恢复](../../tools/pose-v1/evidence/hdmi-pipeline-20261024-r53/RESULTS.md)。
 
 本页区分当时诊断候选与早期三窗应用。历史原值不回写，当前授权/次数只见[RESUME](RESUME.md)，源码合并不表示候选已替换正式默认链路。

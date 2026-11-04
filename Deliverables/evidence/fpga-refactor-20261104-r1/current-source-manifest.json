@@ -1,0 +1,139 @@
+{
+  "sources": [
+    {
+      "source": "FPGA/csi_preprocess/polar.sv",
+      "input": "inputs/FPGA/rtl/csi/polar.sv",
+      "baseline_sha256": "8c02be24c0476e6fabfb53a26a10b6b3c34b416163ea3be9eccf6b2822c54a1d",
+      "sha256": "5e86caa48501bebaaecbf2796f2cc3ed7dd608f3b8b6f9ab3617ebeac849d5a9"
+    },
+    {
+      "source": "FPGA/csi_preprocess/batch.sv",
+      "input": "inputs/FPGA/rtl/csi/batch_banked.sv",
+      "baseline_sha256": "0606dbaefc302a39a1c2a909cf71ebb1c9de4e65402198d8c0e163ef2e7ffbbf",
+      "sha256": "862a684f3dc79bb40d36dd8bd3de5c14de1889fd5e4af8eb857630dc98bc1ccb"
+    },
+    {
+      "source": "FPGA/csi_preprocess/atan_table.vh",
+      "input": "inputs/FPGA/rtl/csi/atan_table.vh",
+      "baseline_sha256": "dd9cb9441a491c18e849ea934d2777f8aa852f3363f21703264756ae60c131b7",
+      "sha256": "dd9cb9441a491c18e849ea934d2777f8aa852f3363f21703264756ae60c131b7"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/skeleton_overlay/overlay.sv",
+      "input": "inputs/FPGA/rtl/skeleton_overlay/overlay.sv",
+      "baseline_sha256": "bbfb7fe0a6783740ff085bea99c6997fe8209916c31a834803dad823e53ba398",
+      "sha256": "9626d1285370b7b4be06c9e9fec8900c4a4734ab4b6dab0fda29c0ec5592bddf"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/skeleton_overlay/palette_fifo.sv",
+      "input": "inputs/FPGA/rtl/skeleton_overlay/palette_fifo.sv",
+      "baseline_sha256": "49166672e92e7f20f103f5ca3259db767eafce46204a10893d31a1d9a30b4b51",
+      "sha256": "237451cafaa351739cf82f86dfed688cdaba4a1224c280298979813b054239eb"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/skeleton_overlay/font_rom.vh",
+      "input": "inputs/FPGA/rtl/skeleton_overlay/font_rom.vh",
+      "baseline_sha256": "a179799de62cf7e771e83fbabbfc7eddc543c650dd11666115bdd5be273425a8",
+      "sha256": "a179799de62cf7e771e83fbabbfc7eddc543c650dd11666115bdd5be273425a8"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/current/hdmi_board.sv",
+      "input": "inputs/FPGA/rtl/system/hdmi_board.sv",
+      "baseline_sha256": "9b8ac4b18a31e2be873685b40cd19ad0119b6d5c0bb97da4d4f79f34e933d7c7",
+      "sha256": "5960ac0c5a5a9168afe08350355c22aa8b66a32eefb928cdab88a64d36fc3754"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/current/ps_ai_peripheral.sv",
+      "input": "inputs/FPGA/rtl/system/ps_ai_peripheral.sv",
+      "baseline_sha256": "0e3963d6afec7308248155fd456c83655c82c3685b3eb7d456558b8dd1d61bae",
+      "sha256": "8b555ab7e80dba196e59fc4de47a3396cd4357093c44d017cf2c326c9daad916"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/probe_free_drain/sources/hp2_startup_drain.sv",
+      "input": "inputs/FPGA/rtl/system/hp2_startup_drain.sv",
+      "baseline_sha256": "cd431a1060b37f53d41653b4e6d1480e6f2c430845f4fc6cdb4207a952542fea",
+      "sha256": "de0c0bc793c3457e187585c634fca6ddfc2ad1d4ca8aadd3a381c0c253c40eda"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/probe_free_drain/sources/hp2_deferred_control.sv",
+      "input": "inputs/FPGA/rtl/system/hp2_deferred_control.sv",
+      "baseline_sha256": "e2a3ec018d65ad902b6fb278a54a16481792426186b72998aa31fcf6f6677f36",
+      "sha256": "67f1a3b4139a89bc05e90e3a775d30dee1113daa0bc514d18bf0fa990d0cb646"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_axi_read.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_axi_read.v",
+      "baseline_sha256": "7d6779adff9062ab625597534ba18c450b4c830bb7d8808f22fe3952e260650a",
+      "sha256": "f4f8ca122c20a8b0fa5507463accfe6f98c19e021058c2393c92c241c7c14589"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_candidate_core.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_candidate_core.v",
+      "baseline_sha256": "07744a1779fa6629b666d52473f4a93c0b9976b73949ff954cca35b770ef82fb",
+      "sha256": "646209c67afc7936de7a7c27d02169dcc86b6c2b4e4a402d34f236be7062cc6d"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_candidate_register_core.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_candidate_register_core.v",
+      "baseline_sha256": "72a8f075799f7f7a72e0af050b1012824b3a6ab1ee4fb807fb6aee763f9fa662",
+      "sha256": "140f035a0777fa580ffe8cc1d6c3e165827b9141ccd665bdfaa6f9352c822da8"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_command_mailbox.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_command_mailbox.v",
+      "baseline_sha256": "50df98daa299c385a0bd28c3bb0b31ac9294a432cfca66815dfb7eaeb7793c7c",
+      "sha256": "8ca36c392bd867bf2f39aa4ed6651f4cff82bb044556f5e94b96733bcd6d6575"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_pixel_scan.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_pixel_scan.v",
+      "baseline_sha256": "2b0683b95a953a304ed7c88d2edecea7d5e5449d0d959440f5495c71a0aedbf5",
+      "sha256": "7e7134d5d39751575ee3bf9efe0d13498dd9a17856e2ead63a3a28a7883250ad"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_register_bank.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_register_bank.v",
+      "baseline_sha256": "b60c82421102e1abeb57f8648e050fa8ff064e0dfdec54d1be8bacc484ce8aa9",
+      "sha256": "f632e8ff54682bccba84ae66fad2ba611afc7e3862cf9918d334f0cbc97df485"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_scan_control.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_scan_control.v",
+      "baseline_sha256": "953e8b9c9c4233a9154e299f1507cedd53089d19987d099a0e12c631aed37f94",
+      "sha256": "78e69fdd662b20533fbfe0f60d2d3a6e805606fdbbeb86f7367632dc0382face"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_scanout.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_scanout.v",
+      "baseline_sha256": "f730135b5ed7f77fdbd824da402954e7121e5afba8acc3c0bedc33343662c846",
+      "sha256": "85dfa618df0757c9f28b32a07fd16109753b1a046e256bf864f2c2b79846a148"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/hdmi_stream_fifo.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_stream_fifo.v",
+      "baseline_sha256": "9c071e5c7c2ce50133c4412f8b23d09a037d54642ae611a407ccb8695fd1ec04",
+      "sha256": "27d7d8f32aada8502ada126c5b3c867d661fcc643edf0e2a6c1d19d00db5e648"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/integration/hdmi_clock_jfm.v",
+      "input": "factory/rtl/hdmi_candidate/hdmi_clock_jfm.v",
+      "baseline_sha256": "057c410349bdb085d9c790f0686b60dc5b7585c025a2318a538207236b49031e",
+      "sha256": "a569d1c490849d2ad0c3c4fb3b7921d803e5f17199c708506eb362a44a5456b7"
+    },
+    {
+      "source": "FPGA/hdmi_candidate/rtl/integration/hdmi_cam_router.sv",
+      "input": "factory/rtl/hdmi_candidate/hdmi_cam_router.sv",
+      "baseline_sha256": "7ea50f64c30828dd630617c850ab12f2f44b58bc60ee26484b92d8c2df42c44f",
+      "sha256": "72dd5a5c335725c72fce35219585da72e855e93b2850293b1cd1ab79617278ae"
+    },
+    {
+      "source": ".local/hdmi-boot-witness-20261019-r23/reference/rtl/display/video_define.v",
+      "input": "factory/rtl/display/video_define.v",
+      "sha256": "5fc6d5ff3c5740d13d2e77324a29e6e1c8657e3c8d5d06a4610fd28c06f045a7"
+    }
+  ],
+  "hardware_profile": "probe-free-drain-overlay-csi-v3",
+  "board_tested": false,
+  "deployment_qualified": false,
+  "reference_package": "D:\\FPGACompetitionProject\\.local\\source-r5-20261103\\pose180-current-sources-20261103-r5"
+}

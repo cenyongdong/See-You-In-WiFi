@@ -1,0 +1,2 @@
+STARTUP_ACTION_ORIGINAL_EXCEPTION original SDK error
+STARTUP_OBSERVER_TEST_PASS 9 cases: healthy, wrong ABI, SDK error, generation reset, stalled command, HDMI/HP2 RVALID, fixed sequences 2/10

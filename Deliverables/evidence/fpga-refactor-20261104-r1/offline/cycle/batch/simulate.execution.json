@@ -1,0 +1,12 @@
+{
+  "pid": 30384,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+    "comparison",
+    "-tclbatch",
+    "run.tcl"
+  ],
+  "seconds": 7.078692197799683,
+  "native_exit": 0,
+  "state": "completed"
+}

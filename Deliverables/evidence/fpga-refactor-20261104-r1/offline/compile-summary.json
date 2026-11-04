@@ -1,0 +1,9 @@
+{
+  "translation_units": 20,
+  "architectures": [
+    "native",
+    "arm64"
+  ],
+  "final_successes": 40,
+  "initial_sdk_dialect_failures": 20
+}

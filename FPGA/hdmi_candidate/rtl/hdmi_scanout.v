@@ -1,34 +1,99 @@
 // Complete logic boundary, excluding reference clock primitive, physical TMDS
 // serialization, PS interconnect and package constraints. No board address here.
-module hdmi_scanout #(
-    parameter [31:0] DMA_BASE=32'h30100000,parameter [31:0] DMA_LIMIT=32'h38100000,
-    parameter integer FIFO_AW=9
-)(
-    input wire csr_clk,input wire csr_resetn,input wire write_valid,output wire write_ready,
-    input wire [7:0] write_offset,input wire [31:0] write_data,input wire [3:0] write_strobe,
-    input wire [7:0] read_offset,output wire [31:0] read_data,
-    input wire mem_clk,input wire mem_resetn,input wire pixel_clk,input wire pixel_resetn,input wire clock_locked,
-    output wire [31:0] araddr,output wire [7:0] arlen,output wire [2:0] arsize,
-    output wire [1:0] arburst,output wire arvalid,input wire arready,
-    input wire [63:0] rdata,input wire [1:0] rresp,input wire rlast,input wire rvalid,output wire rready,
-    output wire safe_idle,output wire hs,output wire vs,output wire de,output wire [23:0] rgb
-);
-    wire running,frame_toggle,underflow,push,ready,pop,empty;
-    wire [63:0] data;wire [15:0] pixel;
+module hdmi_scanout
+    #(parameter [31 : 0] DMA_BASE = 32'h30100000,
+        parameter [31 : 0] DMA_LIMIT = 32'h38100000,
+        parameter integer FIFO_AW = 9)
+    (input wire csr_clk,
+        input wire csr_resetn,
+        input wire write_valid,
+        output wire write_ready,
+        input wire [7 : 0] write_offset,
+        input wire [31 : 0] write_data,
+        input wire [3 : 0] write_strobe,
+        input wire [7 : 0] read_offset,
+        output wire [31 : 0] read_data,
+        input wire mem_clk,
+        input wire mem_resetn,
+        input wire pixel_clk,
+        input wire pixel_resetn,
+        input wire clock_locked,
+        output wire [31 : 0] araddr,
+        output wire [7 : 0] arlen,
+        output wire [2 : 0] arsize,
+        output wire [1 : 0] arburst,
+        output wire arvalid,
+        input wire arready,
+        input wire [63 : 0] rdata,
+        input wire [1 : 0] rresp,
+        input wire rlast,
+        input wire rvalid,
+        output wire rready,
+        output wire safe_idle,
+        output wire hs,
+        output wire vs,
+        output wire de,
+        output wire [23 : 0] rgb);
+    wire running, frame_toggle, underflow, push, ready, pop, empty;
+    wire [63 : 0] data;
+    wire [15 : 0] pixel;
     // Flush only after the AXI owner proves all reads drained. Assertion is
     // asynchronous; each FIFO domain synchronizes release locally. Pixel timing
     // never uses this reset and therefore continues emitting valid black raster.
-    wire fifo_resetn=mem_resetn && pixel_resetn && !safe_idle;
-    hdmi_candidate_register_core #(.DMA_BASE(DMA_BASE),.DMA_LIMIT(DMA_LIMIT)) core(
-        .csr_clk(csr_clk),.csr_resetn(csr_resetn),.write_valid(write_valid),.write_ready(write_ready),
-        .write_offset(write_offset),.write_data(write_data),.write_strobe(write_strobe),
-        .read_offset(read_offset),.read_data(read_data),.mem_clk(mem_clk),.mem_resetn(mem_resetn),
-        .clock_locked(clock_locked),.pixel_frame_toggle(frame_toggle),.sink_fault(underflow),
-        .fifo_ready(ready),.fifo_push(push),.fifo_data(data),.araddr(araddr),.arlen(arlen),
-        .arsize(arsize),.arburst(arburst),.arvalid(arvalid),.arready(arready),
-        .rdata(rdata),.rresp(rresp),.rlast(rlast),.rvalid(rvalid),.rready(rready),
-        .safe_idle(safe_idle),.display_running(running));
-    hdmi_stream_fifo #(.AW(FIFO_AW)) fifo(fifo_resetn,mem_clk,push,data,ready,pixel_clk,pop,pixel,empty);
-    hdmi_pixel_scan pixels(pixel_clk,pixel_resetn,running,safe_idle,pixel,empty,pop,
-        frame_toggle,underflow,hs,vs,de,rgb);
+    wire fifo_resetn = mem_resetn && pixel_resetn && !safe_idle;
+    hdmi_candidate_register_core #(.DMA_BASE(DMA_BASE),
+        .DMA_LIMIT(DMA_LIMIT))
+        core(.csr_clk(csr_clk),
+            .csr_resetn(csr_resetn),
+            .write_valid(write_valid),
+            .write_ready(write_ready),
+            .write_offset(write_offset),
+            .write_data(write_data),
+            .write_strobe(write_strobe),
+            .read_offset(read_offset),
+            .read_data(read_data),
+            .mem_clk(mem_clk),
+            .mem_resetn(mem_resetn),
+            .clock_locked(clock_locked),
+            .pixel_frame_toggle(frame_toggle),
+            .sink_fault(underflow),
+            .fifo_ready(ready),
+            .fifo_push(push),
+            .fifo_data(data),
+            .araddr(araddr),
+            .arlen(arlen),
+            .arsize(arsize),
+            .arburst(arburst),
+            .arvalid(arvalid),
+            .arready(arready),
+            .rdata(rdata),
+            .rresp(rresp),
+            .rlast(rlast),
+            .rvalid(rvalid),
+            .rready(rready),
+            .safe_idle(safe_idle),
+            .display_running(running));
+    hdmi_stream_fifo #(.AW(FIFO_AW))
+        fifo(.resetn(fifo_resetn),
+            .wr_clk(mem_clk),
+            .push(push),
+            .data(data),
+            .ready(ready),
+            .rd_clk(pixel_clk),
+            .pop(pop),
+            .pixel(pixel),
+            .empty(empty));
+    hdmi_pixel_scan pixels(.clk(pixel_clk),
+                        .resetn(pixel_resetn),
+                        .run(running),
+                        .idle(safe_idle),
+                        .pixel(pixel),
+                        .empty(empty),
+                        .pop(pop),
+                        .frame_toggle(frame_toggle),
+                        .underflow(underflow),
+                        .hs(hs),
+                        .vs(vs),
+                        .de(de),
+                        .rgb(rgb));
 endmodule

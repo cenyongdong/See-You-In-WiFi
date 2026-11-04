@@ -1,0 +1,19 @@
+
+****** xsim v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/test_sim/xsim_script.tcl
+# xsim {test_sim} -autoloadwcfg -tclbatch {run.tcl}
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+source run.tcl
+## run all
+CANDIDATE_FIFO_PASS two_async_clocks=1 words_per_epoch=2048 wraparound=1 partial_flush=1
+CANDIDATE_SCANOUT_PASS pixels=2073600 bytes=4147200 base_offset=4032 raster=2200x1125 hs=44 vs=5 underflow_drain=1 stop_pixel_clock_halted=1
+HDMI_CANDIDATE_TEST_PASS group=pixel
+$finish called at time : 50015838873 ps : File "D:/FPGACompetitionProject/FPGA/hdmi_candidate/sim/tb_candidate.sv" Line 30
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:22 . Memory (MB): peak = 217.770 ; gain = 0.000
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Nov  4 14:29:08 2026...

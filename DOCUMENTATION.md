@@ -1,6 +1,6 @@
 # 项目文档导航
 
-更新日期：2026-11-02。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
+更新日期：2026-11-04。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
 
 当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前 Release 提供 r4 部署包和 r6 源码包。
 
@@ -11,6 +11,7 @@
 | 项目现状、未验收和冻结边界 | [PROJECT-PROGRESS](PROJECT-PROGRESS.md)、[DIFFICULTIES](DIFFICULTIES.md#后续验证与冻结范围)、[Agents](AGENTS.md) |
 | 架构、硬件分工、模块与接口 | [TechDetails](ADR/TechDetails.md)、[ADR索引](ADR/README.md)、[核心目录](software/pose180_pipeline/src/README.md) |
 | 部署、BOOT、最后观察与安全恢复 | [r4部署说明](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[RESUME](FPGA/hdmi_candidate/RESUME.md) |
+| FPGA RTL／C++ 代码书写与重构规范 | [FPGA 编码规范](FPGA/CODING-STANDARDS.md)、[重构与验证记录](FPGA/REFACTOR-20261104.md) |
 | CSI幅相与PL骨架自研内容 | [CSI专项](FPGA/csi_preprocess/README.md)、[骨架专项](FPGA/hdmi_candidate/skeleton_overlay/README.md) |
 | PC滤波前后及共享计时 | [PC说明](software/pose180_pipeline/host/README.md) |
 | 数据来源、30分钟实测及关键性能 | [长测](FPGA/csi_preprocess/LONGRUN.md)、[性能汇总](Deliverables/PERFORMANCE.md) |

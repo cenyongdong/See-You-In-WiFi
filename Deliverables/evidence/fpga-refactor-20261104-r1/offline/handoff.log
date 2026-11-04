@@ -1,0 +1,4 @@
+PASS owned multi-frame order
+PASS gate failure wakes main; first error retained
+PASS main failure wakes publisher
+PASS invalid completion identity

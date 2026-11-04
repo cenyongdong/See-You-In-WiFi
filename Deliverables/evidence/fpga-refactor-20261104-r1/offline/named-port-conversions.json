@@ -1,0 +1,32 @@
+[
+  [
+    "FPGA/csi_preprocess/batch.sv",
+    "csi_polar",
+    "polar"
+  ],
+  [
+    "FPGA/hdmi_candidate/rtl/hdmi_candidate_register_core.v",
+    "hdmi_candidate_core",
+    "core"
+  ],
+  [
+    "FPGA/hdmi_candidate/rtl/hdmi_candidate_register_core.v",
+    "hdmi_register_bank",
+    "registers"
+  ],
+  [
+    "FPGA/hdmi_candidate/rtl/hdmi_scanout.v",
+    "hdmi_pixel_scan",
+    "pixels"
+  ],
+  [
+    "FPGA/hdmi_candidate/rtl/hdmi_scanout.v",
+    "hdmi_stream_fifo",
+    "fifo"
+  ],
+  [
+    "FPGA/hdmi_candidate/rtl/current/hdmi_board.sv",
+    "hdmi_clock_jfm",
+    "clock_generator"
+  ]
+]

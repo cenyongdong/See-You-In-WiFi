@@ -1,0 +1,66 @@
+[
+  {
+    "name": "arm64-build",
+    "command": [
+      "cmake",
+      "--build",
+      "/tmp/fpga-refactor-20261104-arm64",
+      "--parallel",
+      "2",
+      "--target",
+      "pose180_demo"
+    ],
+    "native_exit": 0,
+    "seconds": 26.57381248474121
+  },
+  {
+    "name": "native-build",
+    "command": [
+      "cmake",
+      "--build",
+      "/tmp/fpga-refactor-20261104-native",
+      "--parallel",
+      "2",
+      "--target",
+      "overlay_tests",
+      "renderer_tests",
+      "hdmi_resource_tests",
+      "release_guard_tests"
+    ],
+    "native_exit": 0,
+    "seconds": 15.18697714805603
+  },
+  {
+    "name": "overlay_tests",
+    "command": [
+      "/tmp/fpga-refactor-20261104-native/overlay_tests",
+      "/workspace/.local/fpga-refactor-20261104-r1/system-build"
+    ],
+    "native_exit": 0,
+    "seconds": 0.2548370361328125
+  },
+  {
+    "name": "renderer_tests",
+    "command": [
+      "/tmp/fpga-refactor-20261104-native/renderer_tests"
+    ],
+    "native_exit": 0,
+    "seconds": 0.12749028205871582
+  },
+  {
+    "name": "hdmi_resource_tests",
+    "command": [
+      "/tmp/fpga-refactor-20261104-native/hdmi_resource_tests"
+    ],
+    "native_exit": 0,
+    "seconds": 0.16310858726501465
+  },
+  {
+    "name": "release_guard_tests",
+    "command": [
+      "/tmp/fpga-refactor-20261104-native/release_guard_tests"
+    ],
+    "native_exit": 0,
+    "seconds": 0.2531125545501709
+  }
+]

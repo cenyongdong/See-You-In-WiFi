@@ -1,0 +1,9 @@
+{
+  "command": [
+    "/workspace/.local/fpga-refactor-20261104-r1/numeric-equivalence/compare",
+    "/workspace/.local/skeleton-overlay-20261031-r2/pose180-skeleton-overlay-20261031-r2/board/dataset.piwcsi2",
+    "/workspace/.local/fpga-refactor-20261104-r1/numeric-equivalence"
+  ],
+  "seconds": 25.111798763275146,
+  "native_exit": 0
+}

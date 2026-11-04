@@ -1,26 +1,84 @@
 // Offline candidate CSR+memory boundary. The verified udmabuf span is a profile
 // parameter, not a claim that the entire span is owned by a future application.
 // The application must separately allocate and retain its specific frame chunks.
-module hdmi_candidate_register_core #(
-    parameter [31:0] DMA_BASE=32'h30100000,parameter [31:0] DMA_LIMIT=32'h38100000
-)(
-    input wire csr_clk,input wire csr_resetn,
-    input wire write_valid,output wire write_ready,input wire [7:0] write_offset,
-    input wire [31:0] write_data,input wire [3:0] write_strobe,
-    input wire [7:0] read_offset,output wire [31:0] read_data,
-    input wire mem_clk,input wire mem_resetn,input wire clock_locked,input wire pixel_frame_toggle,input wire sink_fault,
-    input wire fifo_ready,output wire fifo_push,output wire [63:0] fifo_data,
-    output wire [31:0] araddr,output wire [7:0] arlen,output wire [2:0] arsize,
-    output wire [1:0] arburst,output wire arvalid,input wire arready,
-    input wire [63:0] rdata,input wire [1:0] rresp,input wire rlast,input wire rvalid,
-    output wire rready,output wire safe_idle,output wire display_running
-);
-    wire command_valid,command_ready,response_valid;
-    wire [71:0] command;wire [159:0] response;
-    hdmi_register_bank registers(csr_clk,csr_resetn,write_valid,write_ready,write_offset,write_data,
-        write_strobe,read_offset,read_data,command_valid,command_ready,command,response_valid,response);
-    hdmi_candidate_core #(.DMA_BASE(DMA_BASE),.DMA_LIMIT(DMA_LIMIT)) core(
-        csr_clk,csr_resetn,command_valid,command_ready,command,response_valid,response,
-        mem_clk,mem_resetn,clock_locked,pixel_frame_toggle,sink_fault,fifo_ready,fifo_push,fifo_data,
-        araddr,arlen,arsize,arburst,arvalid,arready,rdata,rresp,rlast,rvalid,rready,safe_idle,display_running);
+module hdmi_candidate_register_core
+    #(parameter [31 : 0] DMA_BASE = 32'h30100000,
+        parameter [31 : 0] DMA_LIMIT = 32'h38100000)
+    (input wire csr_clk,
+        input wire csr_resetn,
+        input wire write_valid,
+        output wire write_ready,
+        input wire [7 : 0] write_offset,
+        input wire [31 : 0] write_data,
+        input wire [3 : 0] write_strobe,
+        input wire [7 : 0] read_offset,
+        output wire [31 : 0] read_data,
+        input wire mem_clk,
+        input wire mem_resetn,
+        input wire clock_locked,
+        input wire pixel_frame_toggle,
+        input wire sink_fault,
+        input wire fifo_ready,
+        output wire fifo_push,
+        output wire [63 : 0] fifo_data,
+        output wire [31 : 0] araddr,
+        output wire [7 : 0] arlen,
+        output wire [2 : 0] arsize,
+        output wire [1 : 0] arburst,
+        output wire arvalid,
+        input wire arready,
+        input wire [63 : 0] rdata,
+        input wire [1 : 0] rresp,
+        input wire rlast,
+        input wire rvalid,
+        output wire rready,
+        output wire safe_idle,
+        output wire display_running);
+    wire command_valid, command_ready, response_valid;
+    wire [71 : 0] command;
+    wire [159 : 0] response;
+    hdmi_register_bank registers(.clk(csr_clk),
+                           .resetn(csr_resetn),
+                           .write_valid(write_valid),
+                           .write_ready(write_ready),
+                           .write_offset(write_offset),
+                           .write_data(write_data),
+                           .write_strobe(write_strobe),
+                           .read_offset(read_offset),
+                           .read_data(read_data),
+                           .command_valid(command_valid),
+                           .command_ready(command_ready),
+                           .command(command),
+                           .response_valid(response_valid),
+                           .response(response));
+    hdmi_candidate_core #(.DMA_BASE(DMA_BASE),
+        .DMA_LIMIT(DMA_LIMIT))
+        core(.csr_clk(csr_clk),
+            .csr_resetn(csr_resetn),
+            .command_valid(command_valid),
+            .command_ready(command_ready),
+            .command(command),
+            .response_valid(response_valid),
+            .response(response),
+            .mem_clk(mem_clk),
+            .mem_resetn(mem_resetn),
+            .clock_locked(clock_locked),
+            .pixel_frame_toggle(pixel_frame_toggle),
+            .sink_fault(sink_fault),
+            .fifo_ready(fifo_ready),
+            .fifo_push(fifo_push),
+            .fifo_data(fifo_data),
+            .araddr(araddr),
+            .arlen(arlen),
+            .arsize(arsize),
+            .arburst(arburst),
+            .arvalid(arvalid),
+            .arready(arready),
+            .rdata(rdata),
+            .rresp(rresp),
+            .rlast(rlast),
+            .rvalid(rvalid),
+            .rready(rready),
+            .safe_idle(safe_idle),
+            .display_running(display_running));
 endmodule

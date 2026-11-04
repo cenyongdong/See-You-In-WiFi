@@ -1,0 +1,23 @@
+
+****** xsim v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/test/xsim_script.tcl
+# xsim {test} -autoloadwcfg -tclbatch {run.tcl}
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+source run.tcl
+## run all
+DEFERRED_CASE_PASS N=4 accepted=0 arm=0 control_error=1
+DEFERRED_CASE_PASS N=2 accepted=0 arm=0 control_error=0
+DEFERRED_CASE_PASS N=1 accepted=0 arm=0 control_error=0
+DEFERRED_CASE_PASS N=3 accepted=0 arm=0 control_error=0
+DEFERRED_CASE_PASS N=6 accepted=0 arm=0 control_error=0
+DEFERRED_CASE_PASS N=5 accepted=16 arm=1 control_error=0
+DEFERRED_CASE_PASS N=0 accepted=16 arm=1 control_error=1
+DEFERRED_CONTROL_PASS
+$finish called at time : 4330 ns : File "D:/FPGACompetitionProject/FPGA/hdmi_candidate/probe_free_drain/tb_control.sv" Line 69
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Nov  4 14:44:10 2026...

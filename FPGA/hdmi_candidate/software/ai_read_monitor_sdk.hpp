@@ -21,9 +21,15 @@ public:
 };
 
 // Fixed package stages, never inferred from the hardware's current sequence.
-enum class Epoch { FreshBoot, AfterSuccessfulProbe, AfterTwoSnapshots };
+enum class Epoch {
+    FreshBoot,
+    AfterSuccessfulProbe,
+    AfterTwoSnapshots
+};
 // Selected by a bounded execution plan, never adopted from a register read.
-struct ExpectedSequence { std::uint32_t value; };
+struct ExpectedSequence {
+    std::uint32_t value;
+};
 
 struct Snapshot {
     std::array<std::uint32_t, kWords> words{};
@@ -46,33 +52,33 @@ struct Snapshot {
 // normal-path synchronization, retry, or destructor SDK access.
 class Capture final {
 public:
-    Capture(const icraft::xrt::Device& device, std::ostream& log, Epoch epoch = Epoch::FreshBoot)
-        : device_(device), log_(log), initial_sequence_(epoch_sequence(epoch)) {}
-    Capture(const icraft::xrt::Device& device, std::ostream& log, ExpectedSequence sequence)
+    Capture(const icraft::xrt::Device &device, std::ostream &log, Epoch epoch = Epoch::FreshBoot)
+        : device_(device), log_(log), initial_sequence_(epoch_sequence(epoch)) {
+    }
+    Capture(const icraft::xrt::Device &device, std::ostream &log, ExpectedSequence sequence)
         : device_(device), log_(log), initial_sequence_(sequence.value) {
         need(sequence.value <= 64 && sequence.value % 2 == 0, "Unsupported bounded read-monitor sequence");
     }
-    Capture(const Capture&) = delete;
-    Capture& operator=(const Capture&) = delete;
-    Capture(Capture&&) = delete;
-    Capture& operator=(Capture&&) = delete;
+    Capture(const Capture &) = delete;
+    Capture &operator=(const Capture &) = delete;
+    Capture(Capture &&) = delete;
+    Capture &operator=(Capture &&) = delete;
 
     void arm() {
         need(state_ == State::Fresh, "Read monitor ARM lifecycle already consumed");
         state_ = State::ArmAttempted;
         try {
-            const auto& regs = device_.defaultRegRegion();
+            const auto &regs = device_.defaultRegRegion();
             const auto abi = static_cast<std::uint32_t>(regs.read(kBase + 4));
             const auto count = static_cast<std::uint32_t>(regs.read(kBase + 0x10));
             const auto initial = observe("initial");
-            log_ << "{\"event\":\"ai_read_monitor_identity\",\"abi\":" << abi
-                 << ",\"word_count\":" << count
+            log_ << "{\"event\":\"ai_read_monitor_identity\",\"abi\":" << abi << ",\"word_count\":" << count
                  << ",\"expected_initial_sequence\":" << initial_sequence_ << "}\n";
             checked_flush();
             need(abi == kAbi && count == kWords, "Read monitor ABI/count mismatch; no DMA");
-            need(initial.status == 0 && initial.request == initial_sequence_
-                 && initial.response == initial_sequence_,
-                 "Read monitor initial sequence/status differs from the selected fixed epoch; no DMA");
+            need(initial.status == 0 && initial.request == initial_sequence_ &&
+                    initial.response == initial_sequence_,
+                "Read monitor initial sequence/status differs from the selected fixed epoch; no DMA");
             const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(100);
             regs.write(kBase, 1);
             wait_command("arm", initial_sequence_, initial_sequence_ + 1, deadline);
@@ -89,10 +95,10 @@ public:
         state_ = State::FreezeAttempted;
         try {
             const auto before = observe("before_freeze");
-            need(before.status == 0 && before.request == initial_sequence_ + 1
-                 && before.response == initial_sequence_ + 1,
-                 "Read monitor FREEZE requires the selected epoch's completed ARM generation");
-            const auto& regs = device_.defaultRegRegion();
+            need(before.status == 0 && before.request == initial_sequence_ + 1 &&
+                    before.response == initial_sequence_ + 1,
+                "Read monitor FREEZE requires the selected epoch's completed ARM generation");
+            const auto &regs = device_.defaultRegRegion();
             const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(100);
             regs.write(kBase, 2);
             wait_command("freeze", initial_sequence_ + 1, initial_sequence_ + 2, deadline);
@@ -101,9 +107,9 @@ public:
             snapshot_.request_before = generation.request;
             snapshot_.response_before = generation.response;
             snapshot_.generation_before_valid = true;
-            need(generation.status == 0 && generation.request == initial_sequence_ + 2
-                 && generation.response == initial_sequence_ + 2,
-                 "Read monitor snapshot generation/status invalid before words");
+            need(generation.status == 0 && generation.request == initial_sequence_ + 2 &&
+                    generation.response == initial_sequence_ + 2,
+                "Read monitor snapshot generation/status invalid before words");
             for (std::size_t i = 0; i < kWords; ++i) {
                 snapshot_.words[i] = static_cast<std::uint32_t>(regs.read(kBase + 0x40 + 4 * i));
                 snapshot_.words_read = i + 1;
@@ -115,14 +121,14 @@ public:
             snapshot_.generation_after_valid = true;
             // Preserve complete raw values before validating the held payload.
             save_cached();
-            need(after.status == 0 && after.request == initial_sequence_ + 2
-                 && after.response == initial_sequence_ + 2,
-                 "Read monitor generation/status changed during word reads");
+            need(after.status == 0 && after.request == initial_sequence_ + 2 &&
+                    after.response == initial_sequence_ + 2,
+                "Read monitor generation/status changed during word reads");
             need(snapshot_.words[0] == kAbi, "Read monitor snapshot word0 ABI mismatch");
             snapshot_.verified = true;
             state_ = State::Frozen;
-            log_ << "{\"event\":\"ai_read_monitor_snapshot_verified\",\"request\":"
-                 << initial_sequence_ + 2 << ",\"response\":" << initial_sequence_ + 2 << "}\n";
+            log_ << "{\"event\":\"ai_read_monitor_snapshot_verified\",\"request\":" << initial_sequence_ + 2
+                 << ",\"response\":" << initial_sequence_ + 2 << "}\n";
             checked_flush();
             return snapshot_;
         } catch (...) {
@@ -131,9 +137,15 @@ public:
         }
     }
 
-    bool can_freeze() const noexcept { return state_ == State::Armed; }
-    bool was_armed() const noexcept { return armed_once_; }
-    bool verified() const noexcept { return snapshot_.verified; }
+    bool can_freeze() const noexcept {
+        return state_ == State::Armed;
+    }
+    bool was_armed() const noexcept {
+        return armed_once_;
+    }
+    bool verified() const noexcept {
+        return snapshot_.verified;
+    }
 
     // Reads owned cached bytes only, including a partial capture after a CSR
     // exception. Unread entries are omitted; zeros are never fabricated data.
@@ -153,7 +165,8 @@ public:
              << ",\"response_after\":" << snapshot_.response_after
              << ",\"verified\":" << (snapshot_.verified ? "true" : "false") << ",\"words\":[";
         for (std::size_t i = 0; i < snapshot_.words_read; ++i) {
-            if (i != 0) log_ << ',';
+            if (i != 0)
+                log_ << ',';
             log_ << snapshot_.words[i];
         }
         log_ << "]}\n";
@@ -161,27 +174,38 @@ public:
     }
 
 private:
-    enum class State { Fresh, ArmAttempted, Armed, FreezeAttempted, Frozen, Failed };
+    enum class State {
+        Fresh,
+        ArmAttempted,
+        Armed,
+        FreezeAttempted,
+        Frozen,
+        Failed
+    };
     struct Observation {
         std::uint32_t status;
         std::uint32_t request;
         std::uint32_t response;
     };
-    const icraft::xrt::Device& device_;
-    std::ostream& log_;
+    const icraft::xrt::Device &device_;
+    std::ostream &log_;
     const std::uint32_t initial_sequence_;
     State state_ = State::Fresh;
     bool armed_once_ = false;
     Snapshot snapshot_{};
 
-    static void need(bool okay, const char* message) {
-        if (!okay) throw MonitorError(message);
+    static void need(bool okay, const char *message) {
+        if (!okay)
+            throw MonitorError(message);
     }
     static std::uint32_t epoch_sequence(Epoch epoch) {
         switch (epoch) {
-            case Epoch::FreshBoot: return 0;
-            case Epoch::AfterSuccessfulProbe: return 2;
-            case Epoch::AfterTwoSnapshots: return 4;
+            case Epoch::FreshBoot:
+                return 0;
+            case Epoch::AfterSuccessfulProbe:
+                return 2;
+            case Epoch::AfterTwoSnapshots:
+                return 4;
         }
         throw MonitorError("Unsupported fixed read-monitor epoch");
     }
@@ -189,20 +213,19 @@ private:
         log_.flush();
         need(static_cast<bool>(log_), "Read monitor evidence log write failed");
     }
-    Observation observe(const char* phase) const {
-        const auto& regs = device_.defaultRegRegion();
+    Observation observe(const char *phase) const {
+        const auto &regs = device_.defaultRegRegion();
         const Observation value{static_cast<std::uint32_t>(regs.read(kBase)),
-                                static_cast<std::uint32_t>(regs.read(kBase + 8)),
-                                static_cast<std::uint32_t>(regs.read(kBase + 12))};
+            static_cast<std::uint32_t>(regs.read(kBase + 8)),
+            static_cast<std::uint32_t>(regs.read(kBase + 12))};
         log_ << "{\"event\":\"ai_read_monitor_csr\",\"phase\":\"" << phase
-             << "\",\"expected_initial_sequence\":" << initial_sequence_
-             << ",\"status\":" << value.status << ",\"request\":" << value.request
-             << ",\"response\":" << value.response << "}\n";
+             << "\",\"expected_initial_sequence\":" << initial_sequence_ << ",\"status\":" << value.status
+             << ",\"request\":" << value.request << ",\"response\":" << value.response << "}\n";
         checked_flush();
         return value;
     }
-    void wait_command(const char* phase, std::uint32_t previous, std::uint32_t next,
-                      std::chrono::steady_clock::time_point deadline) const {
+    void wait_command(const char *phase, std::uint32_t previous, std::uint32_t next,
+        std::chrono::steady_clock::time_point deadline) const {
         for (;;) {
             need(std::chrono::steady_clock::now() < deadline, "Read monitor 100ms command deadline");
             const auto value = observe(phase);
@@ -212,10 +235,11 @@ private:
             // reads may expose a previous request and a next response; wait
             // for the complete next/next/status0 tuple instead of rejecting
             // that harmless intermediate sampling skew.
-            need((value.request == previous || value.request == next)
-                 && (value.response == previous || value.response == next),
-                 "Read monitor unexpected command generation");
-            if (value.request == next && value.response == next && value.status == 0) return;
+            need((value.request == previous || value.request == next) &&
+                    (value.response == previous || value.response == next),
+                "Read monitor unexpected command generation");
+            if (value.request == next && value.response == next && value.status == 0)
+                return;
             std::this_thread::sleep_for(std::chrono::microseconds(100));
         }
     }

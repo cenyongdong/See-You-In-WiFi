@@ -1,0 +1,629 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Wed Nov  4 15:14:10 2026
+| Host         : DESKTOP-RDG8FOI running 64-bit major release  (build 9200)
+| Command      : report_pulse_width -file D:/FPGACompetitionProject/.local/fpga-refactor-20261104-r1/hardware-r2/reports/physical-final-closure/pulse-width.rpt
+| Design       : ai7030_edif_top
+| Device       : 7z030-ffg676
+| Speed File   : -2  PRODUCTION 1.11 2025-11-03
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pulse Width Report
+
+Clock Name:         FMC_HPC_GBTCLK0_M2C_C_P
+Waveform(ns):       { 0.000 3.367 }
+Period(ns):         6.734
+Sources:            { FMC_HPC_GBTCLK0_M2C_C_P }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     BUFG/I   n/a            1.409         6.734       5.326      BUFGCTRL_X0Y7  rx_sdi_inst/BUFG125M/I
+
+Clock Name:         clk_fpga_0
+Waveform(ns):       { 0.000 10.000 }
+Period(ns):         20.000
+Sources:            { U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/processing_system7_0/inst/PS7_i/PS7_inst/FCLKCLK[0] }
+
+Check Type        Corner  Lib Pin           Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     BUFG/I            n/a            1.409         20.000      18.592     BUFGCTRL_X0Y21  U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/I
+Max Period        n/a     PLLE2_ADV/CLKIN1  n/a            52.633        20.000      32.633     PLLE2_ADV_X0Y1  U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKIN1
+Low Pulse Width   Slow    PLLE2_ADV/CLKIN1  n/a            3.000         10.000      7.000      PLLE2_ADV_X0Y1  U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKIN1
+High Pulse Width  Slow    PLLE2_ADV/CLKIN1  n/a            3.000         10.000      7.000      PLLE2_ADV_X0Y1  U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKIN1
+
+Clock Name:         clk_out1_AI_CORE_CLK_ST
+Waveform(ns):       { 0.000 0.500 }
+Period(ns):         1.000
+Sources:            { U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKOUT0 }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     BUFG/I             n/a            1.409         1.000       -0.409     BUFGCTRL_X0Y20  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/clkout1_buf/I
+Max Period        n/a     PLLE2_ADV/CLKOUT0  n/a            160.000       1.000       159.000    PLLE2_ADV_X1Y3  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKOUT0
+Low Pulse Width   Slow    FDRE/C             n/a            0.350         0.500       0.150      SLICE_X35Y2     U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/ai_core_clk_locked_reg/C
+High Pulse Width  Slow    FDRE/C             n/a            0.350         0.500       0.150      SLICE_X35Y2     U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/ai_core_clk_locked_reg/C
+
+Clock Name:         clk_out1_clk_wiz_0
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKOUT0 }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     DSP48E1/CLK        n/a            2.772         10.000      7.228      DSP48_X2Y3      U0_ps_ai_peripheral/csi_preprocessor/polar/product_reg__2/CLK
+Max Period        n/a     PLLE2_ADV/CLKOUT0  n/a            160.000       10.000      150.000    PLLE2_ADV_X0Y1  U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKOUT0
+Low Pulse Width   Slow    RAMD32/CLK         n/a            0.768         5.000       4.232      SLICE_X22Y25    U0_ps_ai_peripheral/presentation_filter/core/lane[3].unit/inputs_reg_0_31_0_5/RAMA/CLK
+High Pulse Width  Slow    RAMD32/CLK         n/a            0.768         5.000       4.232      SLICE_X16Y36    U0_ps_ai_peripheral/presentation_filter/core/lane[2].unit/inputs_reg_0_31_12_17/RAMA/CLK
+
+Clock Name:         clk_out1_mgtclk
+Waveform(ns):       { 0.000 3.367 }
+Period(ns):         6.734
+Sources:            { rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKOUT0 }
+
+Check Type        Corner  Lib Pin                  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
+Min Period        n/a     GTXE2_CHANNEL/GTREFCLK1  n/a            1.538         6.734       5.196      GTXE2_CHANNEL_X0Y0  rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/GTREFCLK1
+Max Period        n/a     MMCME2_ADV/CLKOUT0       n/a            213.360       6.734       206.626    MMCME2_ADV_X0Y1     rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKOUT0
+Low Pulse Width   Slow    SRLC32E/CLK              n/a            0.642         3.367       2.725      SLICE_X108Y4        rx_sdi_inst/gtxe2_common_0/qpllreset_wait_reg[126]_srl31/CLK
+High Pulse Width  Fast    SRLC32E/CLK              n/a            0.642         3.367       2.725      SLICE_X108Y4        rx_sdi_inst/gtxe2_common_0/qpllreset_wait_reg[126]_srl31/CLK
+
+Clock Name:         clk_out1_sys_clk
+Waveform(ns):       { 0.000 18.519 }
+Period(ns):         37.037
+Sources:            { rx_sdi_inst/sys_clk_inst0/inst/mmcm_adv_inst/CLKOUT0 }
+
+Check Type        Corner  Lib Pin               Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
+Min Period        n/a     GTXE2_CHANNEL/DRPCLK  n/a            5.714         37.037      31.323     GTXE2_CHANNEL_X0Y0  rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/DRPCLK
+Max Period        n/a     MMCME2_ADV/CLKOUT0    n/a            213.360       37.037      176.323    MMCME2_ADV_X1Y3     rx_sdi_inst/sys_clk_inst0/inst/mmcm_adv_inst/CLKOUT0
+Low Pulse Width   Slow    FDRE/C                n/a            0.400         18.519      18.119     SLICE_X107Y10       rx_sdi_inst/SDI0/SDI/GTX_CTRL/TXCTRL/REFCLK_STABLE_SYNC/data_sync_reg/C
+High Pulse Width  Slow    FDRE/C                n/a            0.350         18.519      18.169     SLICE_X102Y3        rx_sdi_inst/_2s_cnt_reg[0]/C
+
+Clock Name:         clk_pll_i
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location          Pin
+Min Period        n/a     PHY_CONTROL/PHYCLK  n/a            2.500         5.000       2.500      PHY_CONTROL_X1Y3  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/phy_control_i/PHYCLK
+Max Period        n/a     PLLE2_ADV/CLKIN1    n/a            52.633        5.000       47.633     PLLE2_ADV_X1Y3    U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKIN1
+Low Pulse Width   Fast    PLLE2_ADV/CLKIN1    n/a            1.400         2.500       1.100      PLLE2_ADV_X1Y3    U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKIN1
+High Pulse Width  Slow    MMCME2_ADV/CLKIN1   n/a            1.400         2.500       1.100      MMCME2_ADV_X1Y3   rx_sdi_inst/sys_clk_inst0/inst/mmcm_adv_inst/CLKIN1
+
+Clock Name:         clk_ref_mmcm_400
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/clk_ref_mmcm_gen.mmcm_i/CLKOUT1 }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     IDELAYCTRL/REFCLK  n/a            2.438         2.500       0.062      IDELAYCTRL_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/idelayctrl_gen_1.u_idelayctrl_300_400_REPLICATED_0/REFCLK
+Max Period        n/a     IDELAYCTRL/REFCLK  n/a            5.264         2.500       2.764      IDELAYCTRL_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/idelayctrl_gen_1.u_idelayctrl_300_400_REPLICATED_0/REFCLK
+Low Pulse Width   Slow    FDPE/C             n/a            0.350         1.250       0.900      SLICE_X84Y12     U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/rst_ref_gen_1.rst_ref_sync_r_reg[1][0]/C
+High Pulse Width  Slow    FDPE/C             n/a            0.350         1.250       0.900      SLICE_X94Y14     U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/rst_ref_gen_1.rst_ref_sync_r_reg[1][10]/C
+
+Clock Name:         clkfbout_AI_CORE_CLK_ST
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period  n/a     PLLE2_ADV/CLKFBOUT  n/a            1.071         5.000       3.929      PLLE2_ADV_X1Y3  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKFBOUT
+Max Period  n/a     PLLE2_ADV/CLKFBIN   n/a            52.633        5.000       47.633     PLLE2_ADV_X1Y3  U0_ps_ai_peripheral/ZGolo/u_AI_Mate_top/clkrst_wrapper_u0/AI_CORE_CLK/inst/plle2_adv_inst/CLKFBIN
+
+Clock Name:         clkfbout_clk_wiz_0
+Waveform(ns):       { 0.000 10.000 }
+Period(ns):         20.000
+Sources:            { U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKFBOUT }
+
+Check Type  Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period  n/a     BUFG/I             n/a            1.409         20.000      18.592     BUFGCTRL_X0Y6   U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/clkf_buf/I
+Max Period  n/a     PLLE2_ADV/CLKFBIN  n/a            52.633        20.000      32.633     PLLE2_ADV_X0Y1  U0_ps_ai_peripheral/ps_ai_wrapper_u0/clk_wiz_0_inst/inst/plle2_adv_inst/CLKFBIN
+
+Clock Name:         clkfbout_mgtclk
+Waveform(ns):       { 0.000 3.367 }
+Period(ns):         6.734
+Sources:            { rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     BUFG/I              n/a            1.409         6.734       5.326      BUFGCTRL_X0Y8    rx_sdi_inst/mgtclk_inst0/inst/clkf_buf/I
+Max Period  n/a     MMCME2_ADV/CLKFBIN  n/a            100.000       6.734       93.266     MMCME2_ADV_X0Y1  rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKFBIN
+
+Clock Name:         clkfbout_sys_clk
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { rx_sdi_inst/sys_clk_inst0/inst/mmcm_adv_inst/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     BUFG/I              n/a            1.409         10.000      8.592      BUFGCTRL_X0Y22   rx_sdi_inst/sys_clk_inst0/inst/clkf_buf/I
+Max Period  n/a     MMCME2_ADV/CLKFBIN  n/a            100.000       10.000      90.000     MMCME2_ADV_X1Y3  rx_sdi_inst/sys_clk_inst0/inst/mmcm_adv_inst/CLKFBIN
+
+Clock Name:         feedback_raw
+Waveform(ns):       { 0.000 25.000 }
+Period(ns):         50.000
+Sources:            { U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     BUFG/I              n/a            1.409         50.000      48.592     BUFGCTRL_X0Y5    U0_ps_ai_peripheral/hdmi_display/clock_generator/feedback_buffer/I
+Max Period  n/a     MMCME2_ADV/CLKFBIN  n/a            100.000       50.000      50.000     MMCME2_ADV_X0Y0  U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKFBIN
+
+Clock Name:         freq_refclk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT0 }
+
+Check Type        Corner  Lib Pin                    Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location              Pin
+Min Period        n/a     PHASER_OUT_PHY/FREQREFCLK  n/a            1.072         1.250       0.178      PHASER_OUT_PHY_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/FREQREFCLK
+Max Period        n/a     PHASER_OUT_PHY/FREQREFCLK  n/a            2.500         1.250       1.250      PHASER_OUT_PHY_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/FREQREFCLK
+Low Pulse Width   Slow    PHASER_REF/CLKIN           n/a            0.482         0.625       0.143      PHASER_REF_X1Y2       U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/phaser_ref_i/CLKIN
+High Pulse Width  Slow    PHASER_OUT_PHY/FREQREFCLK  n/a            0.482         0.625       0.143      PHASER_OUT_PHY_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/FREQREFCLK
+
+Clock Name:         hdmi_ref_100m
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { hdmi_ref_100m }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     MMCME2_ADV/CLKIN1  n/a            1.071         10.000      8.929      MMCME2_ADV_X0Y0  U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKIN1
+Max Period        n/a     MMCME2_ADV/CLKIN1  n/a            100.000       10.000      90.000     MMCME2_ADV_X0Y0  U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKIN1
+Low Pulse Width   Slow    MMCME2_ADV/CLKIN1  n/a            2.000         5.000       3.000      MMCME2_ADV_X0Y0  U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKIN1
+High Pulse Width  Fast    MMCME2_ADV/CLKIN1  n/a            2.000         5.000       3.000      MMCME2_ADV_X0Y0  U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKIN1
+
+Clock Name:         iserdes_clkdiv
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_1
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y13  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y13  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y13  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_2
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_3
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y8  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Fast    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y8  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y8  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_4
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y4  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y4  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Fast    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y4  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_5
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y5  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y5  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Fast    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y5  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_6
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y6  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y6  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Fast    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y6  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         iserdes_clkdiv_7
+Waveform(ns):       { 1.094 2.344 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/phaser_in_gen.phaser_in/ICLKDIV }
+
+Check Type        Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     IN_FIFO/WRCLK  n/a            2.126         2.500       0.374      IN_FIFO_X1Y7  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/in_fifo_gen.in_fifo/WRCLK
+Low Pulse Width   Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y7  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/in_fifo_gen.in_fifo/WRCLK
+High Pulse Width  Slow    IN_FIFO/WRCLK  n/a            0.914         1.250       0.336      IN_FIFO_X1Y7  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/in_fifo_gen.in_fifo/WRCLK
+
+Clock Name:         mem_refclk
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT1 }
+
+Check Type        Corner  Lib Pin                Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location          Pin
+Min Period        n/a     PLLE2_ADV/CLKOUT1      n/a            1.071         1.250       0.179      PLLE2_ADV_X1Y2    U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT1
+Max Period        n/a     PLLE2_ADV/CLKOUT1      n/a            160.000       1.250       158.750    PLLE2_ADV_X1Y2    U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT1
+Low Pulse Width   Slow    PHY_CONTROL/MEMREFCLK  n/a            0.535         0.625       0.090      PHY_CONTROL_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/phy_control_i/MEMREFCLK
+High Pulse Width  Slow    PHY_CONTROL/MEMREFCLK  n/a            0.535         0.625       0.090      PHY_CONTROL_X1Y3  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/phy_control_i/MEMREFCLK
+
+Clock Name:         mmcm_clkfbout
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/clk_ref_mmcm_gen.mmcm_i/CLKFBOUT }
+
+Check Type  Corner  Lib Pin              Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     MMCME2_ADV/CLKFBOUT  n/a            1.071         5.000       3.929      MMCME2_ADV_X1Y1  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/clk_ref_mmcm_gen.mmcm_i/CLKFBOUT
+Max Period  n/a     MMCME2_ADV/CLKFBIN   n/a            100.000       5.000       95.000     MMCME2_ADV_X1Y1  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_iodelay_ctrl/clk_ref_mmcm_gen.mmcm_i/CLKFBIN
+
+Clock Name:         mmcm_ps_clk_bufg_in
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKOUT0 }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     BUFG/I              n/a            1.409         10.000      8.592      BUFGCTRL_X0Y19   U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.u_bufg_mmcm_ps_clk/I
+Max Period        n/a     MMCME2_ADV/CLKOUT0  n/a            213.360       10.000      203.360    MMCME2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKOUT0
+Low Pulse Width   Slow    FDPE/C              n/a            0.350         5.000       4.650      SLICE_X118Y102   U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/rst_sync_r1_reg/C
+High Pulse Width  Slow    FDRE/C              n/a            0.350         5.000       4.650      SLICE_X81Y36     U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/first_rising_ps_clk_r_reg/C
+
+Clock Name:         oserdes_clk
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y158  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_1
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y170  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_2
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y182  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_3
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y108  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_4
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     OSERDESE2/CLK  n/a            1.070         1.250       0.180      OLOGIC_X1Y113  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/output_[0].oserdes_dq_.sdr.oserdes_dq_i/CLK
+
+Clock Name:         oserdes_clk_5
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     OSERDESE2/CLK  n/a            1.070         1.250       0.180      OLOGIC_X1Y131  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/output_[10].oserdes_dq_.sdr.oserdes_dq_i/CLK
+
+Clock Name:         oserdes_clk_6
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     OSERDESE2/CLK  n/a            1.070         1.250       0.180      OLOGIC_X1Y143  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/output_[10].oserdes_dq_.sdr.oserdes_dq_i/CLK
+
+Clock Name:         oserdes_clk_7
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y58  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_8
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y70  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_9
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y82  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clk_10
+Waveform(ns):       { 0.000 0.625 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/phaser_out/OCLK }
+
+Check Type  Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ODDR/C   n/a            1.070         1.250       0.180      OLOGIC_X1Y94  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/dqs_gen.oddr_dqs/C
+
+Clock Name:         oserdes_clkdiv
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_1
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y13  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y13  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y13  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_2
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y14  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_3
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y8  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y8  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y8  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_4
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         5.000       2.874      OUT_FIFO_X1Y9  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+Low Pulse Width   Fast    OUT_FIFO/RDCLK  n/a            0.914         2.500       1.586      OUT_FIFO_X1Y9  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         2.500       1.586      OUT_FIFO_X1Y9  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_5
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         5.000       2.874      OUT_FIFO_X1Y10  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+Low Pulse Width   Fast    OUT_FIFO/RDCLK  n/a            0.914         2.500       1.586      OUT_FIFO_X1Y10  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         2.500       1.586      OUT_FIFO_X1Y10  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_6
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         5.000       2.874      OUT_FIFO_X1Y11  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/out_fifo/RDCLK
+Low Pulse Width   Fast    OUT_FIFO/RDCLK  n/a            0.914         2.500       1.586      OUT_FIFO_X1Y11  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/out_fifo/RDCLK
+High Pulse Width  Slow    OUT_FIFO/RDCLK  n/a            0.914         2.500       1.586      OUT_FIFO_X1Y11  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_7
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y4  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y4  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+High Pulse Width  Fast    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y4  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_8
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y5  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y5  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+High Pulse Width  Fast    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y5  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_9
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y6  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y6  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+High Pulse Width  Fast    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y6  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/out_fifo/RDCLK
+
+Clock Name:         oserdes_clkdiv_10
+Waveform(ns):       { 0.000 1.250 }
+Period(ns):         2.500
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/phaser_out/OCLKDIV }
+
+Check Type        Corner  Lib Pin         Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     OUT_FIFO/RDCLK  n/a            2.126         2.500       0.374      OUT_FIFO_X1Y7  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/out_fifo/RDCLK
+Low Pulse Width   Slow    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y7  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/out_fifo/RDCLK
+High Pulse Width  Fast    OUT_FIFO/RDCLK  n/a            0.914         1.250       0.336      OUT_FIFO_X1Y7  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/out_fifo/RDCLK
+
+Clock Name:         pixel_clk
+Waveform(ns):       { 0.000 2.694 }
+Period(ns):         6.734
+Sources:            { U0_ps_ai_peripheral/hdmi_display/clock_generator/pixel_buffer/O }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location     Pin
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            1.839         6.734       4.895      RAMB36_X1Y8  U0_ps_ai_peripheral/hdmi_display/scanout/fifo/storage_reg/CLKARDCLK
+Low Pulse Width   Fast    FDCE/C              n/a            0.400         4.040       3.640      SLICE_X9Y14  U0_ps_ai_peripheral/hdmi_display/overlay/req_sync_reg[1]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.350         2.694       2.344      SLICE_X2Y21  U0_ps_ai_peripheral/hdmi_display/overlay/ink_stage_reg[1]/C
+
+Clock Name:         pll_clk3_out
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3 }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     BUFH/I             n/a            1.409         5.000       3.592      BUFHCE_X1Y24     U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/I
+Max Period        n/a     MMCME2_ADV/CLKIN1  n/a            100.000       5.000       95.000     MMCME2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKIN1
+Low Pulse Width   Slow    MMCME2_ADV/CLKIN1  n/a            1.400         2.500       1.100      MMCME2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKIN1
+High Pulse Width  Slow    MMCME2_ADV/CLKIN1  n/a            1.400         2.500       1.100      MMCME2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKIN1
+
+Clock Name:         pll_clkfbout
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period  n/a     PLLE2_ADV/CLKFBOUT  n/a            1.071         5.000       3.929      PLLE2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKFBOUT
+Max Period  n/a     PLLE2_ADV/CLKFBIN   n/a            52.633        5.000       47.633     PLLE2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKFBIN
+
+Clock Name:         rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/RXOUTCLK
+Waveform(ns):       { 0.000 3.367 }
+Period(ns):         6.734
+Sources:            { rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/RXOUTCLK }
+
+Check Type        Corner  Lib Pin                 Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
+Min Period        n/a     GTXE2_CHANNEL/RXUSRCLK  n/a            3.030         6.734       3.704      GTXE2_CHANNEL_X0Y0  rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/RXUSRCLK
+Low Pulse Width   Fast    RAMD32/CLK              n/a            0.768         3.367       2.599      SLICE_X54Y16        U0_ps_ai_peripheral/frame_to_ps_inst0/cmos_write_req_gen_m0/rindex_buf_2b_16w_u0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_15_0_0/DP/CLK
+High Pulse Width  Slow    RAMD32/CLK              n/a            0.768         3.367       2.599      SLICE_X58Y17        U0_ps_ai_peripheral/frame_to_ps_inst0/cmos_write_req_gen_m0/windex_buf_2b_16w_u0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_15_0_0/DP/CLK
+
+Clock Name:         rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/TXOUTCLK
+Waveform(ns):       { 0.000 3.367 }
+Period(ns):         6.734
+Sources:            { rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/TXOUTCLK }
+
+Check Type        Corner  Lib Pin                 Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
+Min Period        n/a     GTXE2_CHANNEL/TXUSRCLK  n/a            3.030         6.734       3.704      GTXE2_CHANNEL_X0Y0  rx_sdi_inst/SDI0/SDI/GTX_i/gtxe2_i/TXUSRCLK
+Low Pulse Width   Slow    SRL16E/CLK              n/a            0.642         3.367       2.725      SLICE_X90Y9         rx_sdi_inst/SDI0/SDI/SDIRXTX/inst/VPIDINS/VPIDINS1/eav_timing_reg[3]_srl4/CLK
+High Pulse Width  Fast    SRL16E/CLK              n/a            0.642         3.367       2.725      SLICE_X90Y5         rx_sdi_inst/SDI0/SDI/SDIRXTX/inst/VPIDINS/VPIDINS1/cdly4_reg[0]_srl5/CLK
+
+Clock Name:         rx_sdi_inst/mgtclk_inst0/inst/clk_in1
+Waveform(ns):       { 0.000 3.367 }
+Period(ns):         6.734
+Sources:            { rx_sdi_inst/mgtclk_inst0/inst/clk_in1 }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     MMCME2_ADV/CLKIN1  n/a            1.071         6.734       5.663      MMCME2_ADV_X0Y1  rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKIN1
+Max Period        n/a     MMCME2_ADV/CLKIN1  n/a            100.000       6.734       93.266     MMCME2_ADV_X0Y1  rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKIN1
+Low Pulse Width   Slow    MMCME2_ADV/CLKIN1  n/a            2.000         3.367       1.367      MMCME2_ADV_X0Y1  rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKIN1
+High Pulse Width  Fast    MMCME2_ADV/CLKIN1  n/a            2.000         3.367       1.367      MMCME2_ADV_X0Y1  rx_sdi_inst/mgtclk_inst0/inst/mmcm_adv_inst/CLKIN1
+
+Clock Name:         serial_raw
+Waveform(ns):       { 0.000 0.673 }
+Period(ns):         1.347
+Sources:            { U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKOUT0 }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     BUFR/I              n/a            1.249         1.347       0.098      BUFR_X0Y1        U0_ps_ai_peripheral/hdmi_display/clock_generator/pixel_buffer/I
+Max Period  n/a     MMCME2_ADV/CLKOUT0  n/a            213.360       1.347       212.013    MMCME2_ADV_X0Y0  U0_ps_ai_peripheral/hdmi_display/clock_generator/mmcm/CLKOUT0
+
+Clock Name:         sync_pulse
+Waveform(ns):       { 0.547 1.797 }
+Period(ns):         20.000
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT2 }
+
+Check Type        Corner  Lib Pin               Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location             Pin
+Min Period        n/a     PLLE2_ADV/CLKOUT2     n/a            1.071         20.000      18.929     PLLE2_ADV_X1Y2       U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT2
+Max Period        n/a     PLLE2_ADV/CLKOUT2     n/a            160.000       20.000      140.000    PLLE2_ADV_X1Y2       U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT2
+High Pulse Width  Slow    PHASER_IN_PHY/SYNCIN  n/a            1.072         1.250       0.178      PHASER_IN_PHY_X1Y12  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/SYNCIN
+
+Clock Name:         sys_clk_p
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { sys_clk_p }
+
+Check Type        Corner  Lib Pin           Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     PLLE2_ADV/DCLK    n/a            4.999         5.000       0.001      PLLE2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/DCLK
+Max Period        n/a     PLLE2_ADV/CLKIN1  n/a            52.633        5.000       47.633     PLLE2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKIN1
+Low Pulse Width   Fast    PLLE2_ADV/DCLK    n/a            2.500         2.500       0.000      PLLE2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/DCLK
+High Pulse Width  Slow    PLLE2_ADV/DCLK    n/a            2.500         2.500       0.000      PLLE2_ADV_X1Y2  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/DCLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y151  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[0].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y164  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[1].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y175  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[0].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y101  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[0].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y52  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/ddr_byte_group_io/input_[1].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y63  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/ddr_byte_group_io/input_[0].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y75  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[0].iserdes_dq_.iserdesdq/CLK
+
+Clock Name:         u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/iserdes_clk
+Waveform(ns):       { 1.094 1.719 }
+Period(ns):         1.250
+Sources:            { U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/phaser_in_gen.phaser_in/ICLK }
+
+Check Type  Corner  Lib Pin        Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period  n/a     ISERDESE2/CLK  n/a            1.070         1.250       0.180      ILOGIC_X1Y88  U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_2.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[1].iserdes_dq_.iserdesdq/CLK
+

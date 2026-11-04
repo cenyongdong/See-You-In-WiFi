@@ -1,0 +1,157 @@
+{
+  "stages": [
+    {
+      "stage": "synthesis-banked",
+      "pid": 30880,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\logs\\synthesis-banked.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\synthesis-banked.tcl"
+      ],
+      "started": 1793774211.6599295,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 497.1595096588135
+    },
+    {
+      "stage": "opt-banked",
+      "pid": 32656,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\logs\\opt-banked.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\opt-banked.tcl"
+      ],
+      "started": 1793774708.8203487,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 392.1844913959503
+    },
+    {
+      "stage": "place-csi-incremental",
+      "pid": 22148,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\logs\\place-csi-incremental.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\place-csi-incremental.tcl"
+      ],
+      "started": 1793775101.0096476,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 793.929673910141
+    },
+    {
+      "stage": "route-csi-incremental",
+      "pid": 28476,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\logs\\route-csi-incremental.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\route-csi-incremental.tcl"
+      ],
+      "started": 1793775894.9402566,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 464.01578879356384
+    },
+    {
+      "stage": "report-closure",
+      "pid": 25704,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\logs\\report-closure.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\report-closure.tcl"
+      ],
+      "started": 1793776358.9571025,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 202.36082196235657
+    },
+    {
+      "stage": "bit-closure",
+      "pid": 26212,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\logs\\bit-closure.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\bit-closure.tcl"
+      ],
+      "started": 1793776561.3188906,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 141.79622721672058
+    },
+    {
+      "stage": "procise",
+      "pid": 16404,
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\call_procise_disable_icap.bat"
+      ],
+      "started": 1793776703.1158843,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 5.004135847091675
+    }
+  ],
+  "seconds": 2496.4506487846375,
+  "bits": [
+    {
+      "path": "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top.bit",
+      "bytes": 5980025,
+      "sha256": "464494ebe640af62515fee0623951a50c42be3b0bc9fa21e241f59e1f045e76c"
+    },
+    {
+      "path": "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\hardware-r2\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top_disable_icap.bit",
+      "bytes": 5980609,
+      "sha256": "bb465e90d1c565c926900ecd245dcfa5a4aeb58c5f7f7fcba56ec4c83143190b"
+    }
+  ],
+  "board_tested": false,
+  "device_operations": 0,
+  "boot_writes": 0,
+  "remote_release_updates": 0,
+  "source_manifest": "current-source-manifest.json",
+  "physical_qualification": "qualification-closure.json",
+  "work_directory": "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1",
+  "container_restored_to_initial_stopped_state": true,
+  "final_checks": {
+    "document_links": {
+      "maintainable_errors": 0,
+      "protected_history_gaps": 1956,
+      "explicit_new_files": 89
+    },
+    "cpp_format_files": 28,
+    "diff_whitespace_pass": true,
+    "staged_source_consistency": "source-consistency.json"
+  }
+}

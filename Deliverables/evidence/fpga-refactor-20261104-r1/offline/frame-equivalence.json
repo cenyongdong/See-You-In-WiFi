@@ -1,0 +1,8 @@
+{
+  "files": [
+    "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\extended-sim\\frame-baseline\\overlay.hex",
+    "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\extended-sim\\frame-refactored\\overlay.hex"
+  ],
+  "pixels": 518400,
+  "byte_equal": true
+}

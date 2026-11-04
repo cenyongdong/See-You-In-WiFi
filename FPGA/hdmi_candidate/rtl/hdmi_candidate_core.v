@@ -1,45 +1,106 @@
 // Candidate memory/control block. Data FIFO and physical video adapter attach
 // through explicit ports; this is not a replacement for the entire PS/AI top.
-module hdmi_candidate_core #(
-    parameter integer FRAME_WORDS=518400,
-    parameter [31:0] DMA_BASE=0,parameter [31:0] DMA_LIMIT=0
-)(
-    input wire csr_clk,input wire csr_resetn,input wire command_valid,
-    output wire command_ready,input wire [71:0] command,
-    output wire response_valid,output wire [159:0] response,
-    input wire mem_clk,input wire mem_resetn,
-    input wire clock_locked,input wire pixel_frame_toggle,input wire sink_fault,
-    input wire fifo_ready,output wire fifo_push,output wire [63:0] fifo_data,
-    output wire [31:0] araddr,output wire [7:0] arlen,
-    output wire [2:0] arsize,output wire [1:0] arburst,
-    output wire arvalid,input wire arready,
-    input wire [63:0] rdata,input wire [1:0] rresp,
-    input wire rlast,input wire rvalid,output wire rready,
-    output wire safe_idle,output wire display_running
-);
-    wire target_valid,target_ready,request_valid,request_ready;
-    wire [71:0] target_command;
-    wire [159:0] target_response;
-    wire [31:0] request_addr,accepted_id,accepted_addr,stopped_id,faults;
-    wire [7:0] request_beats;
-    wire reader_busy,reader_done,reader_error,reader_stop,reader_clear;
-    hdmi_command_mailbox mailbox(
-        .source_clk(csr_clk),.source_resetn(csr_resetn),.source_valid(command_valid),
-        .source_ready(command_ready),.source_command(command),
-        .source_response_valid(response_valid),.source_response(response),
-        .target_clk(mem_clk),.target_resetn(mem_resetn),.target_valid(target_valid),
-        .target_ready(target_ready),.target_command(target_command),.target_response(target_response));
-    hdmi_scan_control #(.FRAME_WORDS(FRAME_WORDS),.DMA_BASE(DMA_BASE),.DMA_LIMIT(DMA_LIMIT)) control(
-        .clk(mem_clk),.resetn(mem_resetn),.clock_locked(clock_locked),.pixel_frame_toggle(pixel_frame_toggle),.sink_fault(sink_fault),
-        .cmd_valid(target_valid),.cmd_ready(target_ready),.command(target_command),.response(target_response),
-        .request_valid(request_valid),.request_ready(request_ready),.request_addr(request_addr),.request_beats(request_beats),
-        .reader_busy(reader_busy),.reader_done(reader_done),.reader_error(reader_error),
-        .reader_stop(reader_stop),.reader_clear_error(reader_clear),.safe_idle(safe_idle),.display_running(display_running),
-        .accepted_id(accepted_id),.accepted_addr(accepted_addr),.stopped_id(stopped_id),.faults(faults));
-    hdmi_axi_read reader(
-        .clk(mem_clk),.resetn(mem_resetn),.request_valid(request_valid),.request_ready(request_ready),
-        .request_addr(request_addr),.request_beats(request_beats),.stop(reader_stop),.clear_error(reader_clear),
-        .busy(reader_busy),.done(reader_done),.error(reader_error),.fifo_push(fifo_push),.fifo_data(fifo_data),.fifo_ready(fifo_ready),
-        .araddr(araddr),.arlen(arlen),.arsize(arsize),.arburst(arburst),.arvalid(arvalid),.arready(arready),
-        .rdata(rdata),.rresp(rresp),.rlast(rlast),.rvalid(rvalid),.rready(rready));
+module hdmi_candidate_core
+    #(parameter integer FRAME_WORDS = 518400,
+        parameter [31 : 0] DMA_BASE = 0,
+        parameter [31 : 0] DMA_LIMIT = 0)
+    (input wire csr_clk,
+        input wire csr_resetn,
+        input wire command_valid,
+        output wire command_ready,
+        input wire [71 : 0] command,
+        output wire response_valid,
+        output wire [159 : 0] response,
+        input wire mem_clk,
+        input wire mem_resetn,
+        input wire clock_locked,
+        input wire pixel_frame_toggle,
+        input wire sink_fault,
+        input wire fifo_ready,
+        output wire fifo_push,
+        output wire [63 : 0] fifo_data,
+        output wire [31 : 0] araddr,
+        output wire [7 : 0] arlen,
+        output wire [2 : 0] arsize,
+        output wire [1 : 0] arburst,
+        output wire arvalid,
+        input wire arready,
+        input wire [63 : 0] rdata,
+        input wire [1 : 0] rresp,
+        input wire rlast,
+        input wire rvalid,
+        output wire rready,
+        output wire safe_idle,
+        output wire display_running);
+    wire target_valid, target_ready, request_valid, request_ready;
+    wire [71 : 0] target_command;
+    wire [159 : 0] target_response;
+    wire [31 : 0] request_addr, accepted_id, accepted_addr, stopped_id, faults;
+    wire [7 : 0] request_beats;
+    wire reader_busy, reader_done, reader_error, reader_stop, reader_clear;
+    hdmi_command_mailbox mailbox(.source_clk(csr_clk),
+                             .source_resetn(csr_resetn),
+                             .source_valid(command_valid),
+                             .source_ready(command_ready),
+                             .source_command(command),
+                             .source_response_valid(response_valid),
+                             .source_response(response),
+                             .target_clk(mem_clk),
+                             .target_resetn(mem_resetn),
+                             .target_valid(target_valid),
+                             .target_ready(target_ready),
+                             .target_command(target_command),
+                             .target_response(target_response));
+    hdmi_scan_control #(.FRAME_WORDS(FRAME_WORDS),
+        .DMA_BASE(DMA_BASE),
+        .DMA_LIMIT(DMA_LIMIT))
+        control(.clk(mem_clk),
+            .resetn(mem_resetn),
+            .clock_locked(clock_locked),
+            .pixel_frame_toggle(pixel_frame_toggle),
+            .sink_fault(sink_fault),
+            .cmd_valid(target_valid),
+            .cmd_ready(target_ready),
+            .command(target_command),
+            .response(target_response),
+            .request_valid(request_valid),
+            .request_ready(request_ready),
+            .request_addr(request_addr),
+            .request_beats(request_beats),
+            .reader_busy(reader_busy),
+            .reader_done(reader_done),
+            .reader_error(reader_error),
+            .reader_stop(reader_stop),
+            .reader_clear_error(reader_clear),
+            .safe_idle(safe_idle),
+            .display_running(display_running),
+            .accepted_id(accepted_id),
+            .accepted_addr(accepted_addr),
+            .stopped_id(stopped_id),
+            .faults(faults));
+    hdmi_axi_read reader(.clk(mem_clk),
+                      .resetn(mem_resetn),
+                      .request_valid(request_valid),
+                      .request_ready(request_ready),
+                      .request_addr(request_addr),
+                      .request_beats(request_beats),
+                      .stop(reader_stop),
+                      .clear_error(reader_clear),
+                      .busy(reader_busy),
+                      .done(reader_done),
+                      .error(reader_error),
+                      .fifo_push(fifo_push),
+                      .fifo_data(fifo_data),
+                      .fifo_ready(fifo_ready),
+                      .araddr(araddr),
+                      .arlen(arlen),
+                      .arsize(arsize),
+                      .arburst(arburst),
+                      .arvalid(arvalid),
+                      .arready(arready),
+                      .rdata(rdata),
+                      .rresp(rresp),
+                      .rlast(rlast),
+                      .rvalid(rvalid),
+                      .rready(rready));
 endmodule

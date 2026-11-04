@@ -1,0 +1,180 @@
+[
+  {
+    "test": "frame-baseline",
+    "stage": "compile",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xvlog.bat",
+      "-sv",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\extended-sim\\frame-baseline",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\before\\FPGA\\hdmi_candidate\\skeleton_overlay",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\before\\FPGA\\hdmi_candidate\\skeleton_overlay\\palette_fifo.sv",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\before\\FPGA\\hdmi_candidate\\skeleton_overlay\\overlay.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\skeleton_overlay\\tb_frame.sv"
+    ],
+    "native_exit": 0,
+    "seconds": 5.927828311920166
+  },
+  {
+    "test": "frame-baseline",
+    "stage": "elaborate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xelab.bat",
+      "tb_frame",
+      "-s",
+      "test",
+      "-timescale",
+      "1ns/1ps",
+      "-mt",
+      "2"
+    ],
+    "native_exit": 0,
+    "seconds": 36.1129629611969
+  },
+  {
+    "test": "frame-baseline",
+    "stage": "simulate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+      "test",
+      "-tclbatch",
+      "run.tcl"
+    ],
+    "native_exit": 0,
+    "seconds": 21.4553062915802
+  },
+  {
+    "test": "frame-refactored",
+    "stage": "compile",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xvlog.bat",
+      "-sv",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\extended-sim\\frame-refactored",
+      "-i",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\skeleton_overlay",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\skeleton_overlay\\palette_fifo.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\skeleton_overlay\\overlay.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\skeleton_overlay\\tb_frame.sv"
+    ],
+    "native_exit": 0,
+    "seconds": 2.6743297576904297
+  },
+  {
+    "test": "frame-refactored",
+    "stage": "elaborate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xelab.bat",
+      "tb_frame",
+      "-s",
+      "test",
+      "-timescale",
+      "1ns/1ps",
+      "-mt",
+      "2"
+    ],
+    "native_exit": 0,
+    "seconds": 7.7903618812561035
+  },
+  {
+    "test": "frame-refactored",
+    "stage": "simulate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+      "test",
+      "-tclbatch",
+      "run.tcl"
+    ],
+    "native_exit": 0,
+    "seconds": 23.119104862213135
+  },
+  {
+    "test": "startup-control",
+    "stage": "compile",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xvlog.bat",
+      "-sv",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\extended-sim\\startup-control",
+      "D:\\FPGACompetitionProject\\.local\\hdmi-boot-witness-20261019-r23\\reference\\rtl\\utils\\mna_itf.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\hp2_startup_drain.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\hp2_deferred_control.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\tb_control.sv"
+    ],
+    "native_exit": 0,
+    "seconds": 2.3235418796539307
+  },
+  {
+    "test": "startup-control",
+    "stage": "elaborate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xelab.bat",
+      "tb_deferred_control",
+      "-s",
+      "test",
+      "-timescale",
+      "1ns/1ps",
+      "-mt",
+      "2"
+    ],
+    "native_exit": 0,
+    "seconds": 8.056183815002441
+  },
+  {
+    "test": "startup-control",
+    "stage": "simulate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+      "test",
+      "-tclbatch",
+      "run.tcl"
+    ],
+    "native_exit": 0,
+    "seconds": 21.733407735824585
+  },
+  {
+    "test": "startup-bounds",
+    "stage": "compile",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xvlog.bat",
+      "-sv",
+      "-i",
+      "D:\\FPGACompetitionProject\\.local\\fpga-refactor-20261104-r1\\extended-sim\\startup-bounds",
+      "D:\\FPGACompetitionProject\\.local\\hdmi-boot-witness-20261019-r23\\reference\\rtl\\utils\\mna_itf.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\hp2_startup_drain.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\probe_free_drain\\sources\\hp2_deferred_control.sv",
+      "D:\\FPGACompetitionProject\\FPGA\\hdmi_candidate\\diagnostics\\deferred_consume_r45\\tb_bounds.sv"
+    ],
+    "native_exit": 0,
+    "seconds": 2.5976037979125977
+  },
+  {
+    "test": "startup-bounds",
+    "stage": "elaborate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xelab.bat",
+      "tb_startup_drain",
+      "-s",
+      "test",
+      "-timescale",
+      "1ns/1ps",
+      "-mt",
+      "2"
+    ],
+    "native_exit": 0,
+    "seconds": 6.615212678909302
+  },
+  {
+    "test": "startup-bounds",
+    "stage": "simulate",
+    "command": [
+      "D:\\vivado18.3\\Vivado\\2018.3\\bin\\xsim.bat",
+      "test",
+      "-tclbatch",
+      "run.tcl"
+    ],
+    "native_exit": 0,
+    "seconds": 5.737168312072754
+  }
+]
