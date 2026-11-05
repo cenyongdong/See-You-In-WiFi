@@ -54,6 +54,32 @@ BOOT 使用本次新适配 BIT 和包内 FSBL／BL31／U-Boot，保留已部署�
 
 大体积 BIT、BOOT、应用及各阶段 DCP 仅在本机留存，仓库未附：工作目录中的 `hardware/fpai_demo_vivado.runs/impl_pose_filter/`、`boot/BOOT.BIN`、`application/pose180_demo`、`hardware/*.dcp`。精确绝对路径、尺寸及最终产物哈希见[产物身份](evidence/r7-rebuild-board-20261104-r1/local-result.json)，工程日志／报告／检查点清单见[保留文件](evidence/r7-rebuild-board-20261104-r1/retained-files.json)。
 
+## 日志与报告入库
+
+2026-11-05 核对：[GitHub 仓库的本轮证据目录](https://github.com/cenyongdong/See-You-In-WiFi/tree/master/Deliverables/evidence/r7-rebuild-board-20261104-r1)已随提交 [`3ec776cc`](https://github.com/cenyongdong/See-You-In-WiFi/commit/3ec776ccacbe4e95a1bb2e8b2a8c298594a2e974)进入 `master`。以下按该提交的 Git 文件对象统计，MiB = 1,048,576 字节；工作区文件大小一致。
+
+| 范围 | 文件数 | 字节数 | MiB |
+|---|---:|---:|---:|
+| 全部 `.log`，含构建、软件、BOOT 和板测日志 | 53 | 3,081,209 | 2.938 |
+| 全部 `.rpt`，含最终与中间阶段报告 | 16 | 33,487,850 | 31.937 |
+| 完整证据目录，含上述文件及命令、退出码、身份和结果记录 | 155 | 37,726,795 | 35.979 |
+
+最大单文件为[物理优化阶段时序报告](evidence/r7-rebuild-board-20261104-r1/reports/physical/physopt-csi-incremental-timing.rpt)，16,169,998 字节（15.421 MiB）。所有文件均低于 GitHub 普通 Git 的 50 MiB 警告阈值和 100 MiB 文件上限，整套证据也低于单次 push 的 2 GiB 上限，可直接作为仓库文件保留，无需 LFS 或额外压缩包。[GitHub 文件限制](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github) · [单次 push 限制](https://docs.github.com/en/get-started/using-git/troubleshooting-the-2-gb-push-limit)
+
+硬件构建七个阶段的完整日志入口如下。同目录的同名 `.json` 保存实际命令、原生退出码和耗时；stdout 与 Vivado log 分别保留，不用摘要替代原始输出。
+
+| 阶段 | stdout | Vivado log |
+|---|---|---|
+| 综合 | [synthesis-banked](evidence/r7-rebuild-board-20261104-r1/native/synthesis-banked.stdout.log) | [原生日志](evidence/r7-rebuild-board-20261104-r1/native/synthesis-banked.vivado.log) |
+| 实现前优化 | [opt-banked](evidence/r7-rebuild-board-20261104-r1/native/opt-banked.stdout.log) | [原生日志](evidence/r7-rebuild-board-20261104-r1/native/opt-banked.vivado.log) |
+| 布局／物理优化 | [place-csi-incremental](evidence/r7-rebuild-board-20261104-r1/native/place-csi-incremental.stdout.log) | [原生日志](evidence/r7-rebuild-board-20261104-r1/native/place-csi-incremental.vivado.log) |
+| 布线 | [route-csi-incremental](evidence/r7-rebuild-board-20261104-r1/native/route-csi-incremental.stdout.log) | [原生日志](evidence/r7-rebuild-board-20261104-r1/native/route-csi-incremental.vivado.log) |
+| 完整物理报告 | [report-closure](evidence/r7-rebuild-board-20261104-r1/native/report-closure.stdout.log) | [原生日志](evidence/r7-rebuild-board-20261104-r1/native/report-closure.vivado.log) |
+| BIT 生成 | [bit-closure](evidence/r7-rebuild-board-20261104-r1/native/bit-closure.stdout.log) | [原生日志](evidence/r7-rebuild-board-20261104-r1/native/bit-closure.vivado.log) |
+| Procise 适配 | [procise](evidence/r7-rebuild-board-20261104-r1/native/procise.stdout.log) | 不适用 |
+
+本机工程中的 60 个硬件日志／报告、软件构建记录和 BOOT 封装记录与仓库副本逐字节一致。首次 BOOT 包装器失败及修复日志均保留。GitHub 大文本预览可能截断；完整审阅应使用 Raw、下载文件或克隆仓库。最终物理结论及原有 AI／GT 例外见本页“完整实现与物理检查”，不能因日志已入库而解释为原始时序／DRC 零违例。
+
 ## 上板结果与恢复
 
 使用本次新 BOOT 和 r7 新编译应用，外部测试夹具为已发布官方数据集；实际经过 S51_10、S22_01、S23_43 三个单／双／三人片段。原模型、SDK、TopK=3、严格 score >0.2、CPU 人物滤波、PL CSI 和 PL 骨架绘图保持原配置。现场确认 HDMI 画面正常、骨架持续更新。
