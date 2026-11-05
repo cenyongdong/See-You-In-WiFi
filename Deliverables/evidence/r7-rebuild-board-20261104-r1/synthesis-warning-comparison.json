@@ -1,0 +1,17 @@
+{
+  "current_critical_warnings": {
+    "Common 17-741": 1,
+    "Vivado 12-4430": 4,
+    "Common 17-161": 1,
+    "Synth 8-4442": 10,
+    "Designutils 20-1275": 8
+  },
+  "prior_critical_warnings": {
+    "Common 17-741": 1,
+    "Vivado 12-4430": 4,
+    "Common 17-161": 1,
+    "Synth 8-4442": 10,
+    "Designutils 20-1275": 8
+  },
+  "qualification": "Final physical reports remain authoritative"
+}

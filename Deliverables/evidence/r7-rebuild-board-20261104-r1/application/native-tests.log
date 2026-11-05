@@ -1,0 +1,22 @@
+Internal ctest changing into directory: /tmp/r7-board-20261104-r1-native
+Test project /tmp/r7-board-20261104-r1-native
+    Start 1: postprocess
+1/8 Test #1: postprocess ......................   Passed    0.00 sec
+    Start 2: single_person
+2/8 Test #2: single_person ....................   Passed    0.01 sec
+    Start 3: buffer
+3/8 Test #3: buffer ...........................   Passed    0.10 sec
+    Start 4: renderer
+4/8 Test #4: renderer .........................   Passed    0.04 sec
+    Start 5: overlay
+5/8 Test #5: overlay ..........................   Passed    0.09 sec
+    Start 6: release_guard
+6/8 Test #6: release_guard ....................   Passed    0.14 sec
+    Start 7: hdmi_resource
+7/8 Test #7: hdmi_resource ....................   Passed    0.00 sec
+    Start 8: journal
+8/8 Test #8: journal ..........................   Passed    2.16 sec
+
+100% tests passed, 0 tests failed out of 8
+
+Total Test time (real) =   2.55 sec

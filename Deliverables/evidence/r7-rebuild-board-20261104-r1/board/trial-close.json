@@ -1,0 +1,24 @@
+{
+  "safe_to_restore": true,
+  "boot_id": "92a13649-0769-407a-852e-2f5c16482827",
+  "native_exit": 0,
+  "active_seconds": 57.45598152,
+  "inferred": 853,
+  "adopted": 853,
+  "csi": {
+    "event": "csi_pl",
+    "calls": 853,
+    "fallbacks": 0,
+    "faults": 0,
+    "boundary_fallbacks": 4287,
+    "upload_ns": 284310140,
+    "wait_ns": 104265610,
+    "download_ns": 1693581590,
+    "finish_ns": 948710690,
+    "cycles": 202176348,
+    "streamed_groups": 51180,
+    "groups_read_while_busy": 37444,
+    "boundary_window_fallbacks": 1
+  },
+  "device_owners": []
+}

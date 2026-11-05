@@ -1,0 +1,14 @@
+{
+  "stage": "procise",
+  "pid": 33784,
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\call_procise_disable_icap.bat"
+  ],
+  "started": 1793783525.6940954,
+  "state": "completed",
+  "exit_code": 0,
+  "seconds": 6.325807809829712
+}

@@ -1,0 +1,11 @@
+{
+  "stage": "fallback",
+  "attempt_reserved_before_action": true,
+  "boot_id": "92a13649-0769-407a-852e-2f5c16482827",
+  "pid": 345,
+  "time_unix": 1793689541.091374,
+  "automatic_retry": false,
+  "package_id": "pose180-r7-rebuild-20261104-r1",
+  "BOOT_before": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd",
+  "BOOT_after": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35"
+}

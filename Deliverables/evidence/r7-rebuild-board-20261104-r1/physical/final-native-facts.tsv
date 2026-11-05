@@ -1,0 +1,143 @@
+PART	xc7z030ffg676-2
+max	0.030	U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_1.u_ddr_phy_4lanes/phy_control_i/MEMREFCLK	U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/phy_control_i/PHYCTLMSTREMPTY
+min	0.029	U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/phaser_out/OCLK	U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/out_fifo/RDEN
+REMOVED	ai_path_monitor	0
+REMOVED	ai_read_path_monitor	0
+REMOVED	hp2_cycle_recorder	0
+REMOVED	hp2_protocol_recorder	0
+REMOVED	hp2_protocol_observer	0
+DEBUG_CORES	0
+MARK_DEBUG	0
+CLOCK	clk_fpga_0	20.000
+CLOCK	clk_out1_clk_wiz_0	10.000
+CLOCK	clk_pll_i	5.000
+READY	U0_ps_ai_peripheral/mig_ddr3_u0/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r1_reg/C	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/proc_sys_reset_1/U0/EXT_LPF/lpf_int_reg/D	5.000	1.025
+S01_CONNECTED	ARVALID	FDCE
+S01_CONNECTED	ARADDR	FDCE
+S01_CONNECTED	RREADY	LUT5
+RETAINED	deferred_control	272
+RETAINED	startup_drain	78
+FORBIDDEN_MODULES	0
+CONSUMER_GP_ENDPOINTS	0
+CONSUMER_PS_RVALID	5.000	1.643
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_valid_i_reg/D	5.000	1.932
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/s_ready_i_reg/D	5.000	1.703
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[9]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[8]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[7]/CE	5.000	1.405
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[71]/CE	5.000	1.503
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[70]/CE	5.000	1.503
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[6]/CE	5.000	1.405
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[69]/CE	5.000	1.348
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[68]/CE	5.000	1.348
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[67]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[66]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[65]/CE	5.000	1.503
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[64]/CE	5.000	1.503
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[63]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[62]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[61]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[60]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[5]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[59]/CE	5.000	1.234
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[58]/CE	5.000	1.234
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[57]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[56]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[55]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[54]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[53]/CE	5.000	1.405
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[52]/CE	5.000	1.405
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[51]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[50]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[4]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[49]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[48]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[47]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[46]/CE	5.000	1.292
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[45]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[44]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[43]/CE	5.000	1.266
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[42]/CE	5.000	1.266
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[41]/CE	5.000	1.405
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[40]/CE	5.000	1.405
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[3]/CE	5.000	1.229
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[39]/CE	5.000	1.266
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[38]/CE	5.000	1.266
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[37]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[36]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[35]/CE	5.000	1.229
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[34]/CE	5.000	1.229
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[33]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[32]/CE	5.000	1.337
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[31]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[30]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[2]/CE	5.000	1.229
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[29]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[28]/CE	5.000	1.364
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[27]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[26]/CE	5.000	1.236
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[25]/CE	5.000	1.229
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[24]/CE	5.000	1.229
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[23]/CE	5.000	1.408
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[22]/CE	5.000	1.408
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[21]/CE	5.000	1.295
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[20]/CE	5.000	1.295
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[1]/CE	5.000	1.295
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[19]/CE	5.000	1.234
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[18]/CE	5.000	1.234
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[17]/CE	5.000	1.503
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[16]/CE	5.000	1.503
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[15]/CE	5.000	1.408
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[14]/CE	5.000	1.408
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[13]/CE	5.000	1.408
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[12]/CE	5.000	1.408
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[11]/CE	5.000	1.295
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[10]/CE	5.000	1.295
+CONSUMER_RESET	U0_ps_ai_peripheral/ps_ai_wrapper_u0/ps_ai_i/axi_interconnect_4/s01_couplers/s01_regslice/inst/r.r_pipe/m_payload_i_reg[0]/CE	5.000	1.295
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/state_reg[2]/D	5.000	2.454
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/state_reg[0]/D	5.000	2.608
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/saw_last_reg/D	5.000	2.530
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/saw_error_reg/D	5.000	2.202
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[6]/CE	5.000	2.103
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[5]/CE	5.000	2.016
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[4]/CE	5.000	2.103
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[3]/CE	5.000	2.016
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[2]/CE	5.000	2.016
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[1]/CE	5.000	2.016
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/quiet_reg[0]/CE	5.000	2.016
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[9]/CE	5.000	1.980
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[8]/CE	5.000	1.980
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[7]/CE	5.000	1.990
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[6]/CE	5.000	1.990
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[5]/CE	5.000	1.990
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[4]/CE	5.000	1.990
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[3]/CE	5.000	1.982
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[2]/CE	5.000	1.982
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[1]/CE	5.000	1.982
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[12]/CE	5.000	1.884
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[11]/CE	5.000	1.980
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[10]/CE	5.000	1.980
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/cycles_reg[0]/CE	5.000	1.982
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[8]/CE	5.000	2.164
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[7]/CE	5.000	2.164
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[6]/CE	5.000	2.164
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[5]/CE	5.000	1.987
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[4]/CE	5.000	1.987
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[3]/CE	5.000	1.987
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[2]/CE	5.000	1.987
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[1]/CE	5.000	1.987
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/beats_reg[0]/CE	5.000	2.164
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/state_reg[2]/CE	5.000	2.023
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/state_reg[1]/CE	5.000	1.833
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/state_reg[0]/CE	5.000	1.833
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/FSM_onehot_state_reg[5]/CE	5.000	1.833
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/FSM_onehot_state_reg[1]/CE	5.000	1.999
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/FSM_onehot_state_reg[0]/CE	5.000	1.864
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/state_reg[1]/D	5.000	2.562
+CONSUMER_RESET	U0_ps_ai_peripheral/startup_drain/FSM_onehot_state_reg[5]/D	5.000	2.561
+CONSUMER_RESET	U0_ps_ai_peripheral/deferred_control/source_error_reg/D	5.000	2.152
+CONSUMER_RESET	U0_ps_ai_peripheral/deferred_control/held_flags_reg[2]/D	5.000	3.228
+FILTER_TIMING	max	0.951
+FILTER_TIMING	min	0.103
+CSI_TIMING	max	0.485
+CSI_TIMING	min	0.109

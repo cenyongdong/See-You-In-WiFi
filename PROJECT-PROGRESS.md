@@ -1,12 +1,14 @@
 # 项目最新进度
 
-**2026-11-04，工作源码重构：** 当前自研 RTL 与 FPGA 目录 28 个 C++ 文件完成可读性维护，编码规范及显式构建映射已落地；离线数值／周期对照、双架构编译和完整 FPGA 实现／BIT／Procise 已完成。新产物未上板，已发布包与默认 BOOT 不变；结果与原始例外见[重构记录](FPGA/REFACTOR-20261104.md)。
+**2026-11-04，r7 独立完整重建：** 从 GitHub 发布包重新下载并解压，完整综合至 BIT／Procise、BOOT 封装及应用重编译完成，工程 log、时序报告和恢复检查点已保留；追加有限上板验证完成，853 次新推理／HDMI 采纳，实屏确认正常，人工停止后安全回退原 BOOT。[验证记录与产物](Deliverables/R7-REBUILD-BOARD-20261104.md)
+
+**2026-11-04，工作源码重构：** 当前自研 RTL 与 FPGA 目录 28 个 C++ 文件完成可读性维护，编码规范及显式构建映射已落地；离线数值／周期对照、双架构编译和完整 FPGA 实现／BIT／Procise 已完成。该重构阶段未上板，随后 r7 独立重建的板测结果见上方；已发布包与默认 BOOT 不变；结果与原始例外见[重构记录](FPGA/REFACTOR-20261104.md)。
 
 **2026-11-01，r4 本地完整复现：** 从当时的 r4 源码 RAR新解压，完成原生综合／链接／放置／物理优化／布线／报告／BIT及Procise适配，退出码均为0；新适配BIT配置载荷与包内合格BIT一致。setup／hold满足，既定AI周期例外和GT适配原值保留，未上板。关键数值、完整日志、位流及恢复检查点统一见[独立完整重建报告](Deliverables/FPGA-REBUILD-20261101-r1.md)。
 
 ## 最终交付
 
-当前 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 推荐 r4 部署包与 r7 重构源码包，保留 r6 源码附件。r7 已完成独立解压软件／RTL 验证，并核对与本轮完整 FPGA 实现的输入一致；部署包未更新。[r7 源码说明](Deliverables/SOURCE-20261104.md)
+当前 [GitHub Release](https://github.com/cenyongdong/See-You-In-WiFi/releases/tag/deploy-r4-20261031) 推荐 r4 部署包与 r7 重构源码包，保留 r6 源码附件。r7 已完成独立解压软件／RTL 验证，并进一步完成独立完整 FPGA 重建；部署包未更新。[r7 源码说明](Deliverables/SOURCE-20261104.md)
 
 2026-11-01部署补充：r4部署说明补齐实时四机接线／首次安装／启停与定位，配套RAR加入已验证路由器安装文件，只附最新版BOOT；升级前保留设备实际BOOT读回保护。主程序、模型、数据与最新版BOOT不变，没有新板测；当时的 r4 源码包身份见历史重建报告。
 

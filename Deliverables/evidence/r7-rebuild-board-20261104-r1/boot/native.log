@@ -1,0 +1,24 @@
+Procise 2025.1.1 temp
+SVN Version : 32494
+Build  time : 2026/03/20 13:26:17
+Start  time : 2026-11-04 17:12:27
+Can not get UUID of your computer!
+>>set_device JFMQL30TAI676H
+  set_device elapsed_time 2.89 seconds, cpu_time 2.89 seconds
+  set_device used memory 659MB, procise used peak memory 695MB, current used memory 520MB
+>>increment_bit_cfg_v3 D:/FPGACompetitionProject/.local/r7-board-20261104-r1/hardware/fpai_demo_vivado.runs/impl_pose_filter/ai7030_edif_top.bit D:/FPGACompetitionProject/.local/r7-board-20261104-r1/hardware/fpai_demo_vivado.runs/impl_pose_filter/ai7030_edif_top_disable_icap.bit -disable_icap
+  /*****************************************/
+  Stage 1: Checking the source bitstream!
+  /*****************************************/
+  FPGA Part : 7z030aiffg676-2
+  IP Patch version: 53180205
+  Missing Bit Patch Info
+  Missing Patch Version Info
+  VCCM Absent, Bitstream Patch Inactive
+  /*****************************************/
+  Stage 2: Targeted Bitstream Patch Integration!
+  /*****************************************/
+  increment_bit_cfg_v3 elapsed_time 0.54 seconds, cpu_time 0.55 seconds
+  increment_bit_cfg_v3 used memory 340MB, procise used peak memory 860MB, current used memory 631MB
+
+Thank you for using procise!

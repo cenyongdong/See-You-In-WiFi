@@ -1,0 +1,1 @@
+cmd /c D:/FPGACompetitionProject/.local/r7-board-20261104-r1/hardware/call_procise_disable_icap.bat

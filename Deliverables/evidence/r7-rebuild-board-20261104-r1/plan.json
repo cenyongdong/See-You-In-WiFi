@@ -1,0 +1,19 @@
+{
+  "source": "published r7 RAR, fresh download and extraction",
+  "hardware": "new native synthesis through Procise, packaged CSI v2 reference only",
+  "application": "fresh ARM64 build from extracted sources",
+  "board_test": {
+    "input": "existing qualified official dataset",
+    "seconds": 120,
+    "SDK_attempts": 1,
+    "candidate_installations": 1,
+    "candidate_reboots": 1,
+    "fallback_installations": 1,
+    "fallback_reboots": 1
+  },
+  "default_end_state": "restore pre-test BOOT and idle; no SDK after fallback",
+  "no_router_changes": true,
+  "no_remote_release_updates": true,
+  "retain_engineering_logs_and_timing_reports": true,
+  "retain_recovery_checkpoints": true
+}

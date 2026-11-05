@@ -1,0 +1,11 @@
+{
+  "stage": "install",
+  "attempt_reserved_before_action": true,
+  "boot_id": "871a1021-493b-454a-9edc-1d71d603b3fc",
+  "pid": 432,
+  "time_unix": 1793692675.5696812,
+  "automatic_retry": false,
+  "package_id": "pose180-r7-rebuild-20261104-r1",
+  "BOOT_before": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35",
+  "BOOT_after": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd"
+}

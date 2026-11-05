@@ -1,0 +1,12 @@
+{
+  "actual_scripts_scanned": true,
+  "external_workspace_references": [],
+  "packaged_reference_checkpoints": [
+    "FPGA/reference/ps-export.dcp",
+    "FPGA/reference/csi-v2-placement-reference.dcp"
+  ],
+  "prior_final_synthesis_or_route_reused": false,
+  "source_package": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7",
+  "build": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware",
+  "external_toolchain": "Vendor Vivado 2018.3 and Procise; ARM64 Icraft 3.39.0 headers/libraries"
+}

@@ -1,0 +1,8 @@
+{
+  "archive": "pose180-r7-rebuild-20261104-r1.tar.gz",
+  "sha256": "aa2961fceb914c759f8fb2cdbaff20686de374a89f01a361f0ee8c997d1c7f4b",
+  "bytes": 30636064,
+  "baseline_BOOT_sha256": "23922f488d9d4842f217f1b318624c82607e35c6dc0c0b2ea3c803ca4023aa35",
+  "candidate_BOOT_sha256": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd",
+  "dataset_external_sha256": "f1a2cdea346e3360fc39430f5a4735a7af70c416d3955a3ed4483fbb93a9133e"
+}

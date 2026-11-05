@@ -1,0 +1,68 @@
+{
+  "boot_audit.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\boot_audit.py",
+    "sha256": "219ffe54dddc6003885315b3e55097b09fa8e512a85c82a9c384e1f814295b18"
+  },
+  "bounded_log.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\bounded_log.py",
+    "sha256": "4565820d325503ba872f39e7aa5e4ae1333171790deb26d8fc84ebe42376a184"
+  },
+  "csi.conf": {
+    "source": "Deliverables\\pose180-csi-release-20261031-r4\\board\\csi.conf",
+    "sha256": "c0510057eb22c9c146f9bd9471b6da12af70a7754fd55e27e2bc814341b857ff"
+  },
+  "csi_mat.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\csi_mat.py",
+    "sha256": "551c6ad2bd2ba95b46f2c83e2bbb2cacef1800dd11c5dc0d00e360ba2e1e52a8"
+  },
+  "dataset.json": {
+    "source": "Deliverables\\pose180-csi-release-20261031-r4\\board\\dataset.json",
+    "sha256": "59ba8666c1e6e15797244b5ddae8488c2d9ad242245d77980b872d911cbc2660"
+  },
+  "dataset_input.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\dataset_input.py",
+    "sha256": "f28fb6cad9f4a0d91277fe41e003a70041cdca029f7439bebc60c7b44ed1ce6c"
+  },
+  "input_config.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\input_config.py",
+    "sha256": "dbeb3a21aca0dd9f48fc6a727c34dfa628527c7f5303669c6589c8bddaa256fa"
+  },
+  "pose180_demo": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\application\\pose180_demo",
+    "sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3"
+  },
+  "process_guard.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\process_guard.py",
+    "sha256": "cfe6789e33170358ba80c42f5b7b78dd20ac2d9fe99fab06265b1b0adc75e38a"
+  },
+  "run_hdmi_trial.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\run_hdmi_trial.py",
+    "sha256": "ba18126673a0daf830b26010f0a0570fcf357105c473b08d1b5225019f3a2e90"
+  },
+  "service.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\service.py",
+    "sha256": "8ad5cab99059e944a3c737eadba22d5440176dca0c338552734321012701418e"
+  },
+  "startup.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\startup.py",
+    "sha256": "a9f445776794749df75cf9e225d9ecbab27c4884c3fceb6bf1c58b8bbe58ba27"
+  },
+  "startup_network.py": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\software\\pose180_pipeline\\control\\startup_network.py",
+    "sha256": "d057e99ccd8d3da71d503e4cf0cadfd75d32d22eab4f81b620bbaef8d633da71"
+  },
+  "models/piw24_pose180_ZG.json": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\model\\pose180\\piw24_pose180_ZG.json",
+    "sha256": "79f633ffc0caeb413c56cee532abbdbf6f0591d94a275ee392f77a42ed14841a"
+  },
+  "models/piw24_pose180_ZG.raw": {
+    "source": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\model\\pose180\\piw24_pose180_ZG.raw",
+    "sha256": "38b5b04416079663153c562cc954bf64e3ede5c9c38ca7f375e5b0e2350b1f3c"
+  },
+  "dataset.piwcsi2": {
+    "source": "D:\\FPGACompetitionProject\\Deliverables\\pose180-csi-release-20261031-r4\\board\\dataset.piwcsi2",
+    "sha256": "f1a2cdea346e3360fc39430f5a4735a7af70c416d3955a3ed4483fbb93a9133e",
+    "bytes": 751958400,
+    "external_test_fixture": true
+  }
+}

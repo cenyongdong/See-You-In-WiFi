@@ -1,0 +1,29 @@
+{
+  "boot_id": "871a1021-493b-454a-9edc-1d71d603b3fc",
+  "uname": {
+    "system": "Linux",
+    "node": "U.FMSH",
+    "release": "5.4.52",
+    "version": "#3 SMP Fri Mar 13 13:44:29 CST 2026",
+    "machine": "aarch64",
+    "processor": "aarch64"
+  },
+  "device_owners": [],
+  "packages": [
+    "pose180-skeleton-overlay-20261031-r2",
+    "pose180-csi-release-20261031-r4",
+    "pose180-overlay-ps-reference-20261031",
+    "pose180-csi-release-20261031-r1",
+    "pose180-three-clips-20261029-r3"
+  ],
+  "mounts": "/dev/root / ext4 rw,relatime 0 0\ndevtmpfs /dev devtmpfs rw,relatime,size=377460k,nr_inodes=94365,mode=755 0 0\nsysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0\nproc /proc proc rw,nosuid,nodev,noexec,relatime 0 0\ntmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0\ndevpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0\ntmpfs /run tmpfs rw,nosuid,nodev,size=101772k,mode=755 0 0\ntmpfs /run/lock tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0\ntmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,mode=755 0 0\ncgroup2 /sys/fs/cgroup/unified cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate 0 0\ncgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,name=systemd 0 0\nmqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0\ndebugfs /sys/kernel/debug debugfs rw,nosuid,nodev,noexec,relatime 0 0\nhugetlbfs /dev/hugepages hugetlbfs rw,relatime,pagesize=2M 0 0\nconfigfs /sys/kernel/config configfs rw,nosuid,nodev,noexec,relatime 0 0\ntmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=101768k,mode=700 0 0\n",
+  "memory": "MemTotal:        1017708 kB\nMemFree:          713864 kB\nMemAvailable:     768460 kB\nBuffers:           10768 kB\nCached:           102364 kB\nSwapCached:            0 kB\nActive:            54060 kB\nInactive:          86328 kB\nActive(anon):      27392 kB\nInactive(anon):       48 kB\nActive(file):      26668 kB\nInactive(file):    86280 kB\nUnevictable:           0 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               912 kB\nWriteback:             0 kB\nAnonPages:         27388 kB\nMapped:            30928 kB\nShmem:                68 kB\nKReclaimable:       7196 kB\nSlab:              17804 kB\nSReclaimable:       7196 kB\nSUnreclaim:        10608 kB\nKernelStack:        1492 kB\nPageTables:          872 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:      508852 kB\nCommitted_AS:     119432 kB\nVmallocTotal:   262930368 kB\nVmallocUsed:        4960 kB\nVmallocChunk:          0 kB\nPercpu:              688 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nCmaTotal:         262144 kB\nCmaFree:          130784 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\n",
+  "mmc": {
+    "cid": "9f5449534436344761aba006b5019919",
+    "type": "SD",
+    "name": "SD64G"
+  },
+  "/proc/device-tree/model": "FMQLMP FMQL100TAI",
+  "/proc/device-tree/compatible": "fmsh,fmsh-fmqlmp",
+  "/sys/class/net/eth0/address": "ae:59:f4:2d:3a:99"
+}

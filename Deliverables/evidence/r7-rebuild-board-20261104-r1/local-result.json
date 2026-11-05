@@ -1,0 +1,161 @@
+{
+  "source": {
+    "url": "https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-current-sources-20261104-r7.rar",
+    "bytes": 190554743,
+    "sha256": "4481f7503f4093ce4fe5cd16738b4580465d00e0cf221b9134eab27e8c0cee08",
+    "downloaded_from_release": true
+  },
+  "stages": [
+    {
+      "stage": "synthesis-banked",
+      "pid": 27316,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\synthesis-banked.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\synthesis-banked.tcl"
+      ],
+      "started": 1793781071.4375424,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 385.9784128665924
+    },
+    {
+      "stage": "opt-banked",
+      "pid": 31048,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\opt-banked.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\opt-banked.tcl"
+      ],
+      "started": 1793781457.4169881,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 458.25195240974426
+    },
+    {
+      "stage": "place-csi-incremental",
+      "pid": 34880,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\place-csi-incremental.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\place-csi-incremental.tcl"
+      ],
+      "started": 1793781915.6699624,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 843.9827859401703
+    },
+    {
+      "stage": "route-csi-incremental",
+      "pid": 17708,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\route-csi-incremental.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\route-csi-incremental.tcl"
+      ],
+      "started": 1793782759.6775348,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 437.0744140148163
+    },
+    {
+      "stage": "report-closure",
+      "pid": 28336,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\report-closure.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\report-closure.tcl"
+      ],
+      "started": 1793783196.7793024,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 177.5990731716156
+    },
+    {
+      "stage": "bit-closure",
+      "pid": 4728,
+      "command": [
+        "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+        "-mode",
+        "batch",
+        "-nojournal",
+        "-log",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\bit-closure.vivado.log",
+        "-source",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\bit-closure.tcl"
+      ],
+      "started": 1793783374.3935897,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 151.28333592414856
+    },
+    {
+      "stage": "procise",
+      "pid": 33784,
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\call_procise_disable_icap.bat"
+      ],
+      "started": 1793783525.6940954,
+      "state": "completed",
+      "exit_code": 0,
+      "seconds": 6.325807809829712
+    }
+  ],
+  "target": "JFMQL30TAI676H",
+  "board_tested": false,
+  "artifacts": {
+    "raw_bit": {
+      "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top.bit",
+      "bytes": 5980025,
+      "sha256": "821b02e3946e5eb935c520def49443f6ef9cab64f7e2a4130b1c794b803e1b1a"
+    },
+    "procise_bit": {
+      "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\fpai_demo_vivado.runs\\impl_pose_filter\\ai7030_edif_top_disable_icap.bit",
+      "bytes": 5980609,
+      "sha256": "116cd23b2011136e6492b4da0095c937cdd034ccc316976c6a3852a074f2760f"
+    },
+    "BOOT": {
+      "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\boot\\BOOT.BIN",
+      "bytes": 7023552,
+      "sha256": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd"
+    },
+    "application": {
+      "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\application\\pose180_demo",
+      "bytes": 695208,
+      "sha256": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3"
+    },
+    "routed_checkpoint": {
+      "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-routed-csi-incremental.dcp",
+      "bytes": 61741333,
+      "sha256": "b8df18a7c05ccdf6c7a21d65a10c532125270a4d0765b8b042f3c40483de6661"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "stage": "archive-test",
+    "command": [
+      "D:\\FPGACompetitionProject\\.local\\release-20261031-r3\\rar-tool\\Rar.exe",
+      "t",
+      "-idq",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\pose180-current-sources-20261104-r7.rar"
+    ],
+    "native_exit": 0,
+    "seconds": 4.7589874267578125
+  },
+  {
+    "stage": "extract",
+    "command": [
+      "D:\\FPGACompetitionProject\\.local\\release-20261031-r3\\rar-tool\\Rar.exe",
+      "x",
+      "-idq",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\pose180-current-sources-20261104-r7.rar",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\"
+    ],
+    "native_exit": 0,
+    "seconds": 10.155596256256104
+  },
+  {
+    "stage": "source-manifest",
+    "command": [
+      "python",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\tools\\check_package.py"
+    ],
+    "native_exit": 0,
+    "seconds": 0.6563313007354736
+  },
+  {
+    "stage": "prepare-fpga",
+    "command": [
+      "python",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\source\\pose180-current-sources-20261104-r7\\tools\\build_fpga.py",
+      "prepare",
+      "--build-dir",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware",
+      "--procise",
+      "C:/FudanMicro/Procise"
+    ],
+    "native_exit": 0,
+    "seconds": 16.260993242263794
+  }
+]

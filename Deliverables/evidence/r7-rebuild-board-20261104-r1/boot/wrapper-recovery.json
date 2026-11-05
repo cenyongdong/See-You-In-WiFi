@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "original_failure_preserved": true,
+  "adapted_bit_identical_to_copy_before_wrapper_attempt": true,
+  "adapted_bit_sha256": "116cd23b2011136e6492b4da0095c937cdd034ccc316976c6a3852a074f2760f",
+  "native_BOOT_exit": 0,
+  "BOOT_sha256": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd",
+  "synthesis_or_implementation_restarted": false
+}

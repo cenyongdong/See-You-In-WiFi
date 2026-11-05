@@ -1,0 +1,3 @@
+{"startup_consumer":"before","control":0,"request":1,"response":1,"status":0,"flags":55820}
+{"startup_consumer":"before_SDK","control":0,"request":2,"response":2,"status":0,"flags":55820}
+startup_mode=healthy; protocol_checker_present=0

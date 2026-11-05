@@ -1,0 +1,104 @@
+[
+  {
+    "stage": "arm64-configure",
+    "command": [
+      "docker",
+      "exec",
+      "-w",
+      "/workspace/.local/r7-board-20261104-r1/source/pose180-current-sources-20261104-r7",
+      "FPAI",
+      "cmake",
+      "--preset",
+      "csi-v3-arm64",
+      "-B",
+      "/tmp/r7-board-20261104-r1-arm64"
+    ],
+    "native_exit": 0,
+    "seconds": 1.1261682510375977
+  },
+  {
+    "stage": "arm64-build",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "cmake",
+      "--build",
+      "/tmp/r7-board-20261104-r1-arm64",
+      "--parallel",
+      "2"
+    ],
+    "native_exit": 0,
+    "seconds": 36.2385892868042
+  },
+  {
+    "stage": "native-configure",
+    "command": [
+      "docker",
+      "exec",
+      "-w",
+      "/workspace/.local/r7-board-20261104-r1/source/pose180-current-sources-20261104-r7",
+      "FPAI",
+      "cmake",
+      "--preset",
+      "native-offline",
+      "-B",
+      "/tmp/r7-board-20261104-r1-native"
+    ],
+    "native_exit": 0,
+    "seconds": 0.4816718101501465
+  },
+  {
+    "stage": "native-build",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "cmake",
+      "--build",
+      "/tmp/r7-board-20261104-r1-native",
+      "--parallel",
+      "2"
+    ],
+    "native_exit": 0,
+    "seconds": 35.59258008003235
+  },
+  {
+    "stage": "native-tests",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "ctest",
+      "--test-dir",
+      "/tmp/r7-board-20261104-r1-native",
+      "--output-on-failure"
+    ],
+    "native_exit": 0,
+    "seconds": 2.692446708679199
+  },
+  {
+    "stage": "copy-application",
+    "command": [
+      "docker",
+      "cp",
+      "FPAI:/tmp/r7-board-20261104-r1-arm64/bin/pose180_demo",
+      "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\application\\pose180_demo"
+    ],
+    "native_exit": 0,
+    "seconds": 0.08231854438781738
+  },
+  {
+    "stage": "elf-identity",
+    "command": [
+      "docker",
+      "exec",
+      "FPAI",
+      "aarch64-linux-gnu-readelf",
+      "-h",
+      "/tmp/r7-board-20261104-r1-arm64/bin/pose180_demo"
+    ],
+    "native_exit": 0,
+    "seconds": 0.0852048397064209
+  }
+]

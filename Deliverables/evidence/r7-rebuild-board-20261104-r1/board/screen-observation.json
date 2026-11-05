@@ -1,0 +1,9 @@
+{
+  "observed": true,
+  "reported_by": "operator",
+  "screen_normal": true,
+  "skeleton_continuously_updated": true,
+  "boot_id": "92a13649-0769-407a-852e-2f5c16482827",
+  "recorded_at": "2026-11-04T17:40:54.977779+08:00",
+  "scope": "HDMI observation during this 120-second official-dataset trial"
+}

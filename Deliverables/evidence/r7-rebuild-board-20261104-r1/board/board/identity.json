@@ -1,0 +1,63 @@
+{
+  "package": "pose180-r7-rebuild-20261104-r1",
+  "selection": {
+    "top_k": 3,
+    "strict_score_threshold": 0.2,
+    "single_person_stability": false
+  },
+  "model": "piw24_pose180_shared epoch99",
+  "input_source": "official_dataset",
+  "csi_alignment": "adaptive",
+  "input_sources": [
+    "live_csi",
+    "official_dataset"
+  ],
+  "dataset_repetitions": 4,
+  "phase_preprocessing": "original",
+  "hardware_profile": "probe-free-drain-overlay-csi-v3",
+  "BOOT_sha256": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd",
+  "boot_files": {
+    "BOOT.BIN": "20ba0696f7d121289af65b31819b67b2dd411874a6842d4329e2c8bdd2ec39bd",
+    "FMQLMP~1.DTB": "4e690cf065424e28ad7e39e0dc87a72f4c593f5bd4d99c11f7c4e892feee3038",
+    "IMAGE": "ee88eae627df17fdf615b44cb9fc5a7a7a37d2baaa3f21e90d613f48bedf0929",
+    "UENV.TXT": "a13c985eb5031d75ec7069333897cae38944ba5fbadd509828b63e6a48408560"
+  },
+  "verified_boot_ids": [],
+  "libraries": {
+    "libicraft_hostbackend.so": "d0fbf6c81e5b57b4a908f11aad27571b8f2e68a3ede7ba33c9a4f783ba266130",
+    "libicraft_zg330backend.so": "592ad913737a6d661ab9d913ff16617c8fb6bf65cc0dc8929c6886303c498a57",
+    "libicraft_xrt.so": "a29e4eee6106afae0b6aada4a07e85416ac6dfc3e74083033ae5d1411749dc96",
+    "libicraft_xir.so": "377a2cac1a8834836503d9805451449d42d99a888b8f96b38d4c2ba8c585af3e",
+    "libicraft_utils.so": "99679371aa20e7955e14c39938225df24cdc763d75f26301970fba114f650109",
+    "libaxizg330aiu.so": "d55e48873da61314da712c584e62f8257f63794ecca481e64868361ee5fc7178"
+  },
+  "SDK_autostart": false,
+  "automatic_retry": false,
+  "runtime_safety": "release-blocked-v1",
+  "presentation_filter": "tracked-one-euro-v5: CPU 0.5/0.3/1",
+  "files": {
+    "boot_audit.py": "219ffe54dddc6003885315b3e55097b09fa8e512a85c82a9c384e1f814295b18",
+    "bounded_log.py": "4565820d325503ba872f39e7aa5e4ae1333171790deb26d8fc84ebe42376a184",
+    "csi.conf": "c0510057eb22c9c146f9bd9471b6da12af70a7754fd55e27e2bc814341b857ff",
+    "csi_mat.py": "551c6ad2bd2ba95b46f2c83e2bbb2cacef1800dd11c5dc0d00e360ba2e1e52a8",
+    "dataset.json": "59ba8666c1e6e15797244b5ddae8488c2d9ad242245d77980b872d911cbc2660",
+    "dataset_input.py": "f28fb6cad9f4a0d91277fe41e003a70041cdca029f7439bebc60c7b44ed1ce6c",
+    "input_config.py": "dbeb3a21aca0dd9f48fc6a727c34dfa628527c7f5303669c6589c8bddaa256fa",
+    "pose180_demo": "e85fac442dadb22e263698242c8dbcb63ee5841b1b52c2ba8436bb8d5a1a1bb3",
+    "process_guard.py": "cfe6789e33170358ba80c42f5b7b78dd20ac2d9fe99fab06265b1b0adc75e38a",
+    "run_hdmi_trial.py": "ba18126673a0daf830b26010f0a0570fcf357105c473b08d1b5225019f3a2e90",
+    "service.py": "8ad5cab99059e944a3c737eadba22d5440176dca0c338552734321012701418e",
+    "startup.py": "a9f445776794749df75cf9e225d9ecbab27c4884c3fceb6bf1c58b8bbe58ba27",
+    "startup_network.py": "d057e99ccd8d3da71d503e4cf0cadfd75d32d22eab4f81b620bbaef8d633da71",
+    "models/piw24_pose180_ZG.json": "79f633ffc0caeb413c56cee532abbdbf6f0591d94a275ee392f77a42ed14841a",
+    "models/piw24_pose180_ZG.raw": "38b5b04416079663153c562cc954bf64e3ede5c9c38ca7f375e5b0e2350b1f3c",
+    "dataset.piwcsi2": "f1a2cdea346e3360fc39430f5a4735a7af70c416d3955a3ed4483fbb93a9133e"
+  },
+  "renderer_backend": "pl",
+  "board_tested": false,
+  "overlay_ABI": "0x534b4c01",
+  "preprocess_backend": "pl",
+  "csi_ABI": "0x43534903",
+  "validation_reference": "r7-rebuild-board-20261104-r1",
+  "validation_scope": "Fresh r7 full FPGA and application rebuild; pending 120-second board verification"
+}

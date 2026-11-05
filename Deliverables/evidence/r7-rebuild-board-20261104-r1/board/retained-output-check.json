@@ -1,0 +1,19 @@
+{
+  "retained_full_records": 213,
+  "all_retained_inputs_scores_poses_and_timings_finite": true,
+  "all_retained_best_indices_valid": true,
+  "unique_sequences": true,
+  "first_sequence": 641,
+  "last_sequence": 853,
+  "memory_roundtrips": [
+    {
+      "index": 0,
+      "equal": true
+    },
+    {
+      "index": 1,
+      "equal": true
+    }
+  ],
+  "scope": "Retained rotating archive only; not a strict baseline numerical comparison or all 853 results"
+}

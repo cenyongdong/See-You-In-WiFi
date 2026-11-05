@@ -1,0 +1,190 @@
+[
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-linked-banked-unclocked.dcp",
+    "bytes": 27922204
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-linked-banked.dcp",
+    "bytes": 34173542
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-opt-banked.dcp",
+    "bytes": 30661443
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-physopt-csi-incremental.dcp",
+    "bytes": 60824054
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-placed-csi-incremental.dcp",
+    "bytes": 56282502
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-routed-csi-incremental.dcp",
+    "bytes": 61741333
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\pipeline-synth-banked.dcp",
+    "bytes": 17872414
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\bit-closure.json",
+    "bytes": 510
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\bit-closure.stdout.log",
+    "bytes": 180923
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\bit-closure.vivado.log",
+    "bytes": 180442
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\opt-banked.json",
+    "bytes": 508
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\opt-banked.stdout.log",
+    "bytes": 266136
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\opt-banked.vivado.log",
+    "bytes": 265211
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\place-csi-incremental.json",
+    "bytes": 540
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\place-csi-incremental.stdout.log",
+    "bytes": 125968
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\place-csi-incremental.vivado.log",
+    "bytes": 124849
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\procise.json",
+    "bytes": 321
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\procise.stdout.log",
+    "bytes": 1273
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\report-closure.json",
+    "bytes": 519
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\report-closure.stdout.log",
+    "bytes": 22949
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\report-closure.vivado.log",
+    "bytes": 22794
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\route-csi-incremental.json",
+    "bytes": 540
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\route-csi-incremental.stdout.log",
+    "bytes": 169043
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\route-csi-incremental.vivado.log",
+    "bytes": 167202
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\synthesis-banked.json",
+    "bytes": 525
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\synthesis-banked.stdout.log",
+    "bytes": 537395
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\synthesis-banked.vivado.log",
+    "bytes": 532598
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\factory-ICAP-deferred.txt",
+    "bytes": 101
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\qualification-closure.json",
+    "bytes": 10347
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical\\physopt-csi-incremental-timing.rpt",
+    "bytes": 16169998
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\bus-skew-final.rpt",
+    "bytes": 303367
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\clocks.rpt",
+    "bytes": 56440
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\control-cdc.tsv",
+    "bytes": 4886
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\csi-utilization.rpt",
+    "bytes": 10589
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\drc-final.rpt",
+    "bytes": 142136
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\filter-cdc.rpt",
+    "bytes": 1098
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\filter-utilization.rpt",
+    "bytes": 11204
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\final-native-facts.tsv",
+    "bytes": 16487
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\hdmi-cdc.rpt",
+    "bytes": 97230
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\overlay-cdc.rpt",
+    "bytes": 6638
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\overlay-utilization.rpt",
+    "bytes": 11303
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\pulse-width.rpt",
+    "bytes": 70377
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\route-status-final.rpt",
+    "bytes": 651
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\timing-final.rpt",
+    "bytes": 16117711
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\total-utilization.rpt",
+    "bytes": 14707
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\physical-final-closure\\utilization.rpt",
+    "bytes": 416725
+  },
+  {
+    "path": "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\reports\\pipeline-physical\\linked-clocks.rpt",
+    "bytes": 57676
+  }
+]

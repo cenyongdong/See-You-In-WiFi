@@ -1,0 +1,18 @@
+{
+  "stage": "opt-banked",
+  "pid": 31048,
+  "command": [
+    "D:\\vivado18.3\\Vivado\\2018.3\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\logs\\opt-banked.vivado.log",
+    "-source",
+    "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\hardware\\opt-banked.tcl"
+  ],
+  "started": 1793781457.4169881,
+  "state": "completed",
+  "exit_code": 0,
+  "seconds": 458.25195240974426
+}

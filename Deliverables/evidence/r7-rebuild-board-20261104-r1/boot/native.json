@@ -1,0 +1,10 @@
+{
+  "command": [
+    "cmd.exe",
+    "/d",
+    "/c",
+    "D:\\FPGACompetitionProject\\.local\\r7-board-20261104-r1\\boot\\generate.bat"
+  ],
+  "native_exit": 0,
+  "seconds": 3.6649205684661865
+}

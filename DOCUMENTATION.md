@@ -15,7 +15,7 @@
 | CSI幅相与PL骨架自研内容 | [CSI专项](FPGA/csi_preprocess/README.md)、[骨架专项](FPGA/hdmi_candidate/skeleton_overlay/README.md) |
 | PC滤波前后及共享计时 | [PC说明](software/pose180_pipeline/host/README.md) |
 | 数据来源、30分钟实测及关键性能 | [长测](FPGA/csi_preprocess/LONGRUN.md)、[性能汇总](Deliverables/PERFORMANCE.md) |
-| 源码RAR、厂商依赖及完整硬件复现 | [r7 源码说明](Deliverables/SOURCE-20261104.md)、[r4 历史重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
+| 源码RAR、厂商依赖及完整硬件复现 | [r7 源码说明](Deliverables/SOURCE-20261104.md)、[r7 独立重建与板测状态](Deliverables/R7-REBUILD-BOARD-20261104.md)、[r4 历史重建](Deliverables/FPGA-REBUILD-20261101-r1.md) |
 | 模型与第三方许可 | [模型索引](model/README.md)、[第三方声明](THIRD_PARTY_NOTICES.md)、[安全维护](SECURITY.md) |
 | 当前参赛技术报告 | [技术文档v13（PDF）](Docs/commit_docs/技术文档_v13.pdf) |
 | 当前项目海报 | [架构对齐版（A1 PDF）](Docs/commit_docs/项目海报_架构对齐版.pdf) |

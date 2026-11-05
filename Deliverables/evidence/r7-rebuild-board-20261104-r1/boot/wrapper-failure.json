@@ -1,0 +1,9 @@
+{
+  "wrapper_exit": 1,
+  "native_exit": 0,
+  "missing_artifact": "BOOT.BIN",
+  "cause": "Factory post-bit hook rewrote the launcher to procise_run_disable_icap.tcl; subsequent literal replacement of procise.tcl did not match.",
+  "actual_command_effect": "One additional Procise disable_icap adaptation, no BOOT creation or board operation",
+  "original_native_log": "native.log",
+  "repair": "Use an explicit BOOT launcher and retain original logs; reuse successful EDA and qualification"
+}

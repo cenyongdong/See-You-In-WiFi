@@ -1,0 +1,9 @@
+[
+  {
+    "event": "stop_proved",
+    "tag": 1879048227
+  },
+  {
+    "event": "frames_released_after_stop"
+  }
+]

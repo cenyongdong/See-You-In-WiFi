@@ -8,6 +8,8 @@ DifficultyRecord.txt
 日志
 Logs
 
+Studying_plan
+
 视频
 video
 
@@ -591,3 +593,4 @@ node_modules/
 # Refactored source delivery; binary RAR remains a Release asset.
 !/Deliverables/SOURCE-20261104.md
 !/Deliverables/pose180-current-sources-20261104-r7.rar.sha256
+!/Deliverables/R7-REBUILD-BOARD-20261104.md

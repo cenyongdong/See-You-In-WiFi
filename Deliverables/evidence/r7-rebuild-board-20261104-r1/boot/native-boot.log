@@ -1,0 +1,13 @@
+Procise 2025.1.1 temp
+SVN Version : 32494
+Build  time : 2026/03/20 13:26:17
+Start  time : 2026-11-04 17:13:55
+Can not get UUID of your computer!
+>>set_device JFMQL30TAI676H
+  set_device elapsed_time 2.90 seconds, cpu_time 2.89 seconds
+  set_device used memory 659MB, procise used peak memory 693MB, current used memory 693MB
+>>create_boot_image D:/FPGACompetitionProject/.local/r7-board-20261104-r1/boot/candidate.bif D:/FPGACompetitionProject/.local/r7-board-20261104-r1/boot/BOOT.BIN -fmql
+  create_boot_image elapsed_time 0.43 seconds, cpu_time 0.39 seconds
+  create_boot_image used memory 0MB, procise used peak memory 693MB, current used memory 535MB
+
+Thank you for using procise!
