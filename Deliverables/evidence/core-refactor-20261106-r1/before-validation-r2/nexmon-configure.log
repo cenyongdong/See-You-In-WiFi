@@ -1,0 +1,18 @@
+-- The CXX compiler identification is GNU 9.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+CMake Error at CMakeLists.txt:25 (add_executable):
+  Cannot find source file:
+
+    /workspace/.local/core-refactor-20261106-r1/before/demo_v1/shared_fp16/preprocess.cpp
+
+
+CMake Error at CMakeLists.txt:25 (add_executable):
+  No SOURCES given to target: csi_direct_receiver
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

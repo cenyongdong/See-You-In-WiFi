@@ -69,6 +69,244 @@ struct ActivityOwner {
 		retain();
 	}
 };
+
+std::vector<std::uint64_t> parse_dataset_segments(
+	const std::string& segment_sizes, const std::string& dataset_file) {
+	std::vector<std::uint64_t> dataset_segments;
+	if (!segment_sizes.empty()) {
+		need(!dataset_file.empty() && segment_sizes.back() != ',',
+			"Dataset segments require complete sizes and a file");
+		std::istringstream entries(segment_sizes);
+		std::string count;
+		while (std::getline(entries, count, ',')) {
+			const auto value = pd::unsigned_option(count, "--dataset-segment-frames", 9000);
+			need(value > 0 && dataset_segments.size() < 9000, "Invalid dataset segments");
+			dataset_segments.push_back(value);
+		}
+	}
+	return dataset_segments;
+}
+
+struct ApplicationOptions {
+	fs::path package;
+	fs::path output;
+	std::string bind;
+	std::string csi_config;
+	std::string dataset_file;
+	std::uint64_t dataset_repetitions;
+	std::vector<std::uint64_t> dataset_segments;
+	std::uint64_t session;
+	std::uint64_t seconds;
+	std::uint64_t input_port;
+	std::uint64_t result_port;
+	std::uint64_t status_port;
+	std::uint64_t max_age;
+	bool hdmi;
+	bool pl_renderer;
+	bool mock;
+	std::string preprocess_backend;
+	std::string hardware_profile;
+	std::string filter_backend;
+	std::string single_stability;
+	std::uint64_t view_port;
+	pose::post::Config presentation_config;
+	bool compare_ps;
+#ifndef POSE180_DEMO_SDK
+	std::uint64_t delay;
+	std::uint64_t slow_at;
+	std::uint64_t fail_at;
+	std::uint64_t nonstandard_at;
+	std::uint64_t unproved_at;
+#endif
+};
+
+// 解析顺序与失败信息保持原样；这里只绑定监督信号，不创建 SDK 或显示资源。
+ApplicationOptions parse_options(int argc, char** argv) {
+	std::map<std::string, std::string> options;
+	for (int i = 1; i < argc; i += 2) {
+		need(i + 1 < argc, "Expected --option value");
+		need(options.emplace(argv[i], argv[i + 1]).second, "Repeated option");
+	}
+	auto take = [&](const char* key, const std::string& fallback) {
+		auto it = options.find(key);
+		if (it == options.end())
+			return fallback;
+		auto v = it->second;
+		options.erase(it);
+		return v;
+	};
+	auto integer = [&](const char* key, const char* fallback, std::uint64_t maximum = UINT64_MAX) {
+		return pd::unsigned_option(take(key, fallback), key, maximum);
+	};
+	auto real = [&](const char* key, const char* fallback) {
+		return pd::real_option(take(key, fallback), key);
+	};
+	const auto supervisor = integer("--supervisor-pid", "0", std::numeric_limits<int>::max());
+	if (supervisor) {
+		// A lost supervisor requests the same graceful stop as a user.
+		// Never send a fatal signal to an SDK owner with work in flight.
+		need(::prctl(PR_SET_PDEATHSIG, SIGTERM) == 0, "Cannot bind supervisor lifetime");
+		need(!stopping && unsigned(::getppid()) == supervisor, "Supervisor ended before initialization");
+	}
+	const fs::path package = take("--package", ".");
+	const fs::path output = take("--output", "");
+	const auto bind = take("--bind", "127.0.0.1");
+	const auto csi_config = take("--csi", "");
+	const auto dataset_file = take("--dataset", "");
+	const auto dataset_repetitions = integer("--dataset-repetitions", "1", 30);
+	const auto segment_sizes = take("--dataset-segment-frames", "");
+	const auto dataset_segments = parse_dataset_segments(segment_sizes, dataset_file);
+	const auto session = integer("--session", "0");
+	const auto seconds = integer("--seconds", "60", UINT64_MAX / 1000000000ull);
+	const auto input_port =
+		integer("--input-port", csi_config.empty() && dataset_file.empty() ? "39382" : "0", 65535);
+	const auto result_port = integer("--result-port", "39383", 65535);
+	const auto status_port = integer("--status-port", "39384", 65535);
+	const auto max_age = integer("--max-input-age-ms", "500", 60000) * 1000000ull;
+	const auto hdmi_arg = take("--hdmi", "0");
+	const bool hdmi = hdmi_arg == "1";
+	const auto renderer_backend = take("--renderer-backend", "ps");
+	need(renderer_backend == "ps" || renderer_backend == "pl", "Unknown renderer backend");
+	const bool pl_renderer = renderer_backend == "pl";
+	const auto preprocess_backend = take("--preprocess-backend", "ps");
+	need(preprocess_backend == "ps" || preprocess_backend == "pl", "Unknown CSI preprocessing backend");
+#ifndef POSE180_DEMO_PL_CSI
+	need(preprocess_backend == "ps", "PL CSI requires matching hardware build");
+#endif
+#ifndef POSE180_DEMO_PL_OVERLAY
+	need(!pl_renderer, "PL renderer requires the overlay hardware build");
+#endif
+#ifdef POSE180_DEMO_SDK
+	constexpr bool mock = false;
+#else
+	constexpr bool mock = true;
+	const auto delay = integer("--mock-delay-ms", "10", 60000);
+	const auto slow_at = integer("--mock-slow-at", "0");
+	const auto fail_at = integer("--mock-fail-at", "0");
+	const auto nonstandard_at = integer("--mock-nonstandard-at", "0");
+	const auto unproved_at = integer("--mock-unproved-at", "0");
+	need(!hdmi, "Mock cannot access HDMI");
+#endif
+	const auto view_port = integer("--view-port", mock ? "0" : "39385", 65535);
+#ifdef POSE180_DEMO_PROBE_FREE
+#ifdef POSE180_DEMO_PROBE_FREE_DRAIN
+#ifdef POSE180_DEMO_PL_FILTER
+#ifdef POSE180_DEMO_PL_CSI
+	const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-csi-v3");
+	need(hardware_profile == "probe-free-drain-overlay-csi-v2" ||
+			hardware_profile == "probe-free-drain-overlay-csi-v3",
+		"Build/profile mismatch");
+#elif defined(POSE180_DEMO_PL_OVERLAY)
+	const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-v1");
+	need(hardware_profile == "probe-free-drain-overlay-v1", "Build/profile mismatch");
+#elif defined(POSE180_DEMO_PL_POST)
+	const auto hardware_profile = take("--hardware-profile", "probe-free-drain-post-v2");
+	need(hardware_profile == "probe-free-drain-post-v2", "Build/profile mismatch");
+#else
+	const auto hardware_profile = take("--hardware-profile", "probe-free-drain-filter-v1");
+	need(hardware_profile == "probe-free-drain-filter-v1", "Build/profile mismatch");
+#endif
+#else
+	const auto hardware_profile = take("--hardware-profile", "probe-free-drain-v1");
+	need(hardware_profile == "probe-free-drain-v1", "Build/profile mismatch");
+#endif
+#else
+	const auto hardware_profile = take("--hardware-profile", "legacy-probe-free");
+	need(hardware_profile == "legacy-probe-free", "Build/profile mismatch");
+#endif
+#else
+	const auto hardware_profile = take("--hardware-profile", "r45");
+	if (hardware_profile == "pose-stabilizer-offline-v1")
+		pose::post::require_lean_deployment_qualification(false);
+	need(hardware_profile == "r45", "Unknown hardware profile");
+#endif
+	const auto filter_backend = take("--filter-backend", "cpu");
+	pose::post::Config presentation_config;
+	const auto top_k = integer("--top-k", "3", 3);
+	need(top_k >= 1 && top_k <= 3, "Invalid TopK");
+	presentation_config.top_k = unsigned(top_k);
+	const auto single_stability = take("--single-person-stability", "0");
+	need(single_stability == "0" || single_stability == "1", "Invalid single-person stability option");
+	presentation_config.single_person_stability = single_stability == "1";
+	need(!presentation_config.single_person_stability || (top_k == 1 && filter_backend == "cpu"),
+		"Single-person stability requires CPU Top1");
+	const auto score_threshold = take("--score-threshold", "0.2");
+	if (score_threshold == "none")
+		presentation_config.score_threshold.reset();
+	else {
+		std::size_t consumed = 0;
+		const float cutoff = std::stof(score_threshold, &consumed);
+		need(consumed == score_threshold.size() && std::isfinite(cutoff) && cutoff >= 0 && cutoff <= 1,
+			"Invalid score threshold");
+		presentation_config.score_threshold = cutoff;
+	}
+	presentation_config.min_cutoff = real("--min-cutoff", "0.5");
+	presentation_config.beta = real("--beta", "0.3");
+	presentation_config.d_cutoff = real("--d-cutoff", "1");
+	need(std::isfinite(presentation_config.min_cutoff) && presentation_config.min_cutoff > 0 &&
+			std::isfinite(presentation_config.beta) && presentation_config.beta >= 0 &&
+			std::isfinite(presentation_config.d_cutoff) && presentation_config.d_cutoff > 0,
+		"Invalid One Euro parameters");
+	// Existing PL images retain their original fixed coefficients. Do not
+	// silently run a different filter when the PS demonstration is tuned.
+	need(filter_backend != "pl" ||
+			(presentation_config.min_cutoff == 1 && presentation_config.beta == .5 &&
+				presentation_config.d_cutoff == 1),
+		"Existing PL backend requires the original 1/0.5/1 coefficients; use CPU for tuned filtering");
+	const auto compare_arg = take("--compare-ps", "0");
+	const bool compare_ps = compare_arg == "1";
+	need((compare_arg == "0" || compare_arg == "1") && (!compare_ps || filter_backend == "pl"),
+		"PS comparison requires PL backend");
+#ifdef POSE180_DEMO_PL_FILTER
+	need(filter_backend == "cpu" || filter_backend == "pl", "Unknown filter backend");
+	need(hdmi || filter_backend == "cpu", "PL filter uses the single HDMI/SDK device owner");
+#else
+	need(filter_backend == "cpu", "PL backend requires the matching new hardware build");
+#endif
+	need(options.empty(), "Unknown option");
+	need(session && session < 0xffffffffffff0000ull, "Explicit session required");
+	need(view_port <= 65535 &&
+			(!view_port || (view_port != input_port && view_port != result_port && view_port != status_port)),
+		"Invalid presentation port");
+	need(input_port <= 65535 && result_port > 0 && result_port <= 65535 && status_port > 0 &&
+			status_port <= 65535,
+		"Port out of range");
+	need(result_port != status_port &&
+			(!input_port || (input_port != result_port && input_port != status_port)),
+		"Listeners require distinct ports");
+	need(max_age > 0 && max_age <= 60000000000ull && (hdmi_arg == "0" || hdmi_arg == "1"),
+		"Invalid age or HDMI option");
+	need(csi_config.empty() || !input_port, "Use exactly one input adapter");
+	need(dataset_file.empty() || (csi_config.empty() && !input_port),
+		"Dataset excludes live CSI and TCP input");
+	need(dataset_repetitions >= 1 && dataset_repetitions <= 30 &&
+			(!dataset_file.empty() || dataset_repetitions == 1),
+		"Dataset repetitions require an explicit bounded dataset");
+	return {package, output, bind, csi_config, dataset_file, dataset_repetitions, dataset_segments, session,
+		seconds, input_port, result_port, status_port, max_age, hdmi, pl_renderer, mock, preprocess_backend,
+		hardware_profile, filter_backend, single_stability, view_port, presentation_config, compare_ps
+#ifndef POSE180_DEMO_SDK
+		,
+		delay, slow_at, fail_at, nonstandard_at, unproved_at
+#endif
+	};
+}
+
+#ifdef POSE180_DEMO_PL_CSI
+void record_csi_metrics(pd::Journal& journal, const pose_v1::CsiPlMetrics& m) {
+
+	journal.status("{\"event\":\"csi_pl\",\"calls\":" + std::to_string(m.calls) + ",\"fallbacks\":" +
+		std::to_string(m.software_fallbacks) + ",\"faults\":" + std::to_string(m.hardware_faults) +
+		",\"boundary_fallbacks\":" + std::to_string(m.boundary_fallbacks) +
+		",\"upload_ns\":" + std::to_string(m.upload_ns) + ",\"wait_ns\":" + std::to_string(m.wait_ns) +
+		",\"download_ns\":" + std::to_string(m.download_ns) +
+		",\"finish_ns\":" + std::to_string(m.finish_ns) + ",\"cycles\":" + std::to_string(m.compute_cycles) +
+		",\"streamed_groups\":" + std::to_string(m.streamed_groups) +
+		",\"groups_read_while_busy\":" + std::to_string(m.groups_read_while_busy) +
+		",\"boundary_window_fallbacks\":" + std::to_string(m.boundary_window_fallbacks) + "}\n");
+}
+#endif
+
 }
 
 int main(int argc, char** argv) {
@@ -80,174 +318,37 @@ int main(int argc, char** argv) {
 	fs::path cleanup_output;
 	bool hardware_attempted = false;
 	try {
-		std::map<std::string, std::string> options;
-		for (int i = 1; i < argc; i += 2) {
-			need(i + 1 < argc, "Expected --option value");
-			need(options.emplace(argv[i], argv[i + 1]).second, "Repeated option");
-		}
-		auto take = [&](const char* key, const std::string& fallback) {
-			auto it = options.find(key);
-			if (it == options.end())
-				return fallback;
-			auto v = it->second;
-			options.erase(it);
-			return v;
-		};
-		auto integer = [&](const char* key, const char* fallback, std::uint64_t maximum = UINT64_MAX) {
-			return pd::unsigned_option(take(key, fallback), key, maximum);
-		};
-		auto real = [&](const char* key, const char* fallback) {
-			return pd::real_option(take(key, fallback), key);
-		};
-		const auto supervisor = integer("--supervisor-pid", "0", std::numeric_limits<int>::max());
-		if (supervisor) {
-			// A lost supervisor requests the same graceful stop as a user.
-			// Never send a fatal signal to an SDK owner with work in flight.
-			need(::prctl(PR_SET_PDEATHSIG, SIGTERM) == 0, "Cannot bind supervisor lifetime");
-			need(!stopping && unsigned(::getppid()) == supervisor, "Supervisor ended before initialization");
-		}
-		const fs::path package = take("--package", "."), output = take("--output", "");
-		const auto bind = take("--bind", "127.0.0.1"), csi_config = take("--csi", "");
-		const auto dataset_file = take("--dataset", "");
-		const auto dataset_repetitions = integer("--dataset-repetitions", "1", 30);
-		const auto segment_sizes = take("--dataset-segment-frames", "");
-		std::vector<std::uint64_t> dataset_segments;
-		if (!segment_sizes.empty()) {
-			need(!dataset_file.empty() && segment_sizes.back() != ',',
-				"Dataset segments require complete sizes and a file");
-			std::istringstream entries(segment_sizes);
-			std::string count;
-			while (std::getline(entries, count, ',')) {
-				const auto value = pd::unsigned_option(count, "--dataset-segment-frames", 9000);
-				need(value > 0 && dataset_segments.size() < 9000, "Invalid dataset segments");
-				dataset_segments.push_back(value);
-			}
-		}
-		const auto session = integer("--session", "0");
-		const auto seconds = integer("--seconds", "60", UINT64_MAX / 1000000000ull);
-		const auto input_port =
-			integer("--input-port", csi_config.empty() && dataset_file.empty() ? "39382" : "0", 65535);
-		const auto result_port = integer("--result-port", "39383", 65535);
-		const auto status_port = integer("--status-port", "39384", 65535);
-		const auto max_age = integer("--max-input-age-ms", "500", 60000) * 1000000ull;
-		const auto hdmi_arg = take("--hdmi", "0");
-		const bool hdmi = hdmi_arg == "1";
-		const auto renderer_backend = take("--renderer-backend", "ps");
-		need(renderer_backend=="ps" || renderer_backend=="pl", "Unknown renderer backend");
-		const bool pl_renderer = renderer_backend=="pl";
-		const auto preprocess_backend = take("--preprocess-backend", "ps");
-		need(preprocess_backend=="ps" || preprocess_backend=="pl", "Unknown CSI preprocessing backend");
-#ifndef POSE180_DEMO_PL_CSI
-		need(preprocess_backend=="ps", "PL CSI requires matching hardware build");
+		const auto options = parse_options(argc, argv);
+		const auto& package = options.package;
+		const auto& output = options.output;
+		const auto& bind = options.bind;
+		const auto& csi_config = options.csi_config;
+		const auto& dataset_file = options.dataset_file;
+		const auto& dataset_repetitions = options.dataset_repetitions;
+		const auto& dataset_segments = options.dataset_segments;
+		const auto& session = options.session;
+		const auto& seconds = options.seconds;
+		const auto& input_port = options.input_port;
+		const auto& result_port = options.result_port;
+		const auto& status_port = options.status_port;
+		const auto& max_age = options.max_age;
+		const auto& hdmi = options.hdmi;
+		const auto& pl_renderer = options.pl_renderer;
+		const auto& mock = options.mock;
+		const auto& preprocess_backend = options.preprocess_backend;
+		const auto& hardware_profile = options.hardware_profile;
+		const auto& filter_backend = options.filter_backend;
+		const auto& single_stability = options.single_stability;
+		const auto& view_port = options.view_port;
+		const auto& presentation_config = options.presentation_config;
+		const auto& compare_ps = options.compare_ps;
+#ifndef POSE180_DEMO_SDK
+		const auto& delay = options.delay;
+		const auto& slow_at = options.slow_at;
+		const auto& fail_at = options.fail_at;
+		const auto& nonstandard_at = options.nonstandard_at;
+		const auto& unproved_at = options.unproved_at;
 #endif
-#ifndef POSE180_DEMO_PL_OVERLAY
-		need(!pl_renderer, "PL renderer requires the overlay hardware build");
-#endif
-#ifdef POSE180_DEMO_SDK
-		constexpr bool mock = false;
-#else
-		constexpr bool mock = true;
-		const auto delay = integer("--mock-delay-ms", "10", 60000);
-		const auto slow_at = integer("--mock-slow-at", "0");
-		const auto fail_at = integer("--mock-fail-at", "0");
-		const auto nonstandard_at = integer("--mock-nonstandard-at", "0");
-		const auto unproved_at = integer("--mock-unproved-at", "0");
-		need(!hdmi, "Mock cannot access HDMI");
-#endif
-		const auto view_port = integer("--view-port", mock ? "0" : "39385", 65535);
-#ifdef POSE180_DEMO_PROBE_FREE
-#ifdef POSE180_DEMO_PROBE_FREE_DRAIN
-#ifdef POSE180_DEMO_PL_FILTER
-#ifdef POSE180_DEMO_PL_CSI
-		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-csi-v3");
-		need(hardware_profile == "probe-free-drain-overlay-csi-v2" || hardware_profile == "probe-free-drain-overlay-csi-v3", "Build/profile mismatch");
-#elif defined(POSE180_DEMO_PL_OVERLAY)
-		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-overlay-v1");
-		need(hardware_profile == "probe-free-drain-overlay-v1", "Build/profile mismatch");
-#elif defined(POSE180_DEMO_PL_POST)
-		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-post-v2");
-		need(hardware_profile == "probe-free-drain-post-v2", "Build/profile mismatch");
-#else
-		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-filter-v1");
-		need(hardware_profile == "probe-free-drain-filter-v1", "Build/profile mismatch");
-#endif
-#else
-		const auto hardware_profile = take("--hardware-profile", "probe-free-drain-v1");
-		need(hardware_profile == "probe-free-drain-v1", "Build/profile mismatch");
-#endif
-#else
-		const auto hardware_profile = take("--hardware-profile", "legacy-probe-free");
-		need(hardware_profile == "legacy-probe-free", "Build/profile mismatch");
-#endif
-#else
-		const auto hardware_profile = take("--hardware-profile", "r45");
-		if (hardware_profile == "pose-stabilizer-offline-v1")
-			pose::post::require_lean_deployment_qualification(false);
-		need(hardware_profile == "r45", "Unknown hardware profile");
-#endif
-		const auto filter_backend = take("--filter-backend", "cpu");
-		pose::post::Config presentation_config;
-		const auto top_k = integer("--top-k", "3", 3);
-		need(top_k >= 1 && top_k <= 3, "Invalid TopK");
-		presentation_config.top_k = unsigned(top_k);
-		const auto single_stability = take("--single-person-stability", "0");
-		need(single_stability == "0" || single_stability == "1", "Invalid single-person stability option");
-		presentation_config.single_person_stability = single_stability == "1";
-		need(!presentation_config.single_person_stability || (top_k == 1 && filter_backend == "cpu"),
-			"Single-person stability requires CPU Top1");
-		const auto score_threshold = take("--score-threshold", "0.2");
-		if (score_threshold == "none")
-			presentation_config.score_threshold.reset();
-		else {
-			std::size_t consumed = 0;
-			const float cutoff = std::stof(score_threshold, &consumed);
-			need(consumed == score_threshold.size() && std::isfinite(cutoff) && cutoff >= 0 && cutoff <= 1,
-				"Invalid score threshold");
-			presentation_config.score_threshold = cutoff;
-		}
-		presentation_config.min_cutoff = real("--min-cutoff", "0.5");
-		presentation_config.beta = real("--beta", "0.3");
-		presentation_config.d_cutoff = real("--d-cutoff", "1");
-		need(std::isfinite(presentation_config.min_cutoff) && presentation_config.min_cutoff > 0 &&
-				std::isfinite(presentation_config.beta) && presentation_config.beta >= 0 &&
-				std::isfinite(presentation_config.d_cutoff) && presentation_config.d_cutoff > 0,
-			"Invalid One Euro parameters");
-		// Existing PL images retain their original fixed coefficients. Do not
-		// silently run a different filter when the PS demonstration is tuned.
-		need(filter_backend != "pl" ||
-				(presentation_config.min_cutoff == 1 && presentation_config.beta == .5 &&
-					presentation_config.d_cutoff == 1),
-			"Existing PL backend requires the original 1/0.5/1 coefficients; use CPU for tuned filtering");
-		const auto compare_arg = take("--compare-ps", "0");
-		const bool compare_ps = compare_arg == "1";
-		need((compare_arg == "0" || compare_arg == "1") && (!compare_ps || filter_backend == "pl"),
-			"PS comparison requires PL backend");
-#ifdef POSE180_DEMO_PL_FILTER
-		need(filter_backend == "cpu" || filter_backend == "pl", "Unknown filter backend");
-		need(hdmi || filter_backend == "cpu", "PL filter uses the single HDMI/SDK device owner");
-#else
-		need(filter_backend == "cpu", "PL backend requires the matching new hardware build");
-#endif
-		need(options.empty(), "Unknown option");
-		need(session && session < 0xffffffffffff0000ull, "Explicit session required");
-		need(view_port <= 65535 &&
-				(!view_port ||
-					(view_port != input_port && view_port != result_port && view_port != status_port)),
-			"Invalid presentation port");
-		need(input_port <= 65535 && result_port > 0 && result_port <= 65535 && status_port > 0 &&
-				status_port <= 65535,
-			"Port out of range");
-		need(result_port != status_port &&
-				(!input_port || (input_port != result_port && input_port != status_port)),
-			"Listeners require distinct ports");
-		need(max_age > 0 && max_age <= 60000000000ull && (hdmi_arg == "0" || hdmi_arg == "1"),
-			"Invalid age or HDMI option");
-		need(csi_config.empty() || !input_port, "Use exactly one input adapter");
-		need(dataset_file.empty() || (csi_config.empty() && !input_port),
-			"Dataset excludes live CSI and TCP input");
-		need(dataset_repetitions >= 1 && dataset_repetitions <= 30 &&
-				(!dataset_file.empty() || dataset_repetitions == 1),
-			"Dataset repetitions require an explicit bounded dataset");
 		need(!output.empty() && !fs::exists(output) && fs::create_directory(output),
 			"Fresh output directory required");
 		cleanup_output = output;
@@ -317,21 +418,14 @@ int main(int argc, char** argv) {
 			config.raw = package / "models/piw24_pose180_ZG.raw";
 			config.evidence = output / "engine";
 #ifdef POSE180_DEMO_PL_CSI
-			if(preprocess_backend=="pl") config.preprocess = [&](const pose_v1::RawCsi& raw) {
-				if(!pl_preprocess)pl_preprocess=std::make_unique<pose_v1::PlPreprocess>(hardware_profile);
-				auto tokens=pl_preprocess->process(raw);
-				const auto& m=pl_preprocess->metrics();
-				journal.status("{\"event\":\"csi_pl\",\"calls\":"+std::to_string(m.calls)+
-					",\"fallbacks\":"+std::to_string(m.software_fallbacks)+",\"faults\":"+std::to_string(m.hardware_faults)+
-					",\"boundary_fallbacks\":"+std::to_string(m.boundary_fallbacks)+
-					",\"upload_ns\":"+std::to_string(m.upload_ns)+",\"wait_ns\":"+std::to_string(m.wait_ns)+
-					",\"download_ns\":"+std::to_string(m.download_ns)+",\"finish_ns\":"+std::to_string(m.finish_ns)+
-					",\"cycles\":"+std::to_string(m.compute_cycles)+
-					",\"streamed_groups\":"+std::to_string(m.streamed_groups)+
-					",\"groups_read_while_busy\":"+std::to_string(m.groups_read_while_busy)+
-					",\"boundary_window_fallbacks\":"+std::to_string(m.boundary_window_fallbacks)+"}\n");
-				return tokens;
-			};
+			if (preprocess_backend == "pl")
+				config.preprocess = [&](const pose_v1::RawCsi& raw) {
+					if (!pl_preprocess)
+						pl_preprocess = std::make_unique<pose_v1::PlPreprocess>(hardware_profile);
+					auto tokens = pl_preprocess->process(raw);
+					record_csi_metrics(journal, pl_preprocess->metrics());
+					return tokens;
+				};
 #endif
 			config.on_release_blocked = [&](const char*) {
 				shared.stats.release_blocked = true;
@@ -453,14 +547,14 @@ int main(int argc, char** argv) {
 		if (hdmi)
 			canvas.rgb565.resize(pose::hdmi::frameBytes);
 		auto show = [&](pose::hdmi::Rendered& rendered) {
-			if(rendered.hardware_overlay && !overlay_background_ready) {
-				auto static_background=pose::hdmi::prepare_background();
-				display->show(static_background.rgb565,presentation.next_tag());
-				overlay_background_ready=true;
+			if (rendered.hardware_overlay && !overlay_background_ready) {
+				auto static_background = pose::hdmi::prepare_background();
+				display->show(static_background.rgb565, presentation.next_tag());
+				overlay_background_ready = true;
 			}
 			const auto tag = presentation.next_tag();
-			if(rendered.hardware_overlay) {
-				display->show_overlay(rendered.commands,tag,rendered.render_ms);
+			if (rendered.hardware_overlay) {
+				display->show_overlay(rendered.commands, tag, rendered.render_ms);
 				return tag;
 			}
 			display->begin_show(rendered.rgb565, tag);
@@ -490,9 +584,10 @@ int main(int argc, char** argv) {
 					pose::hdmi::NoticeKind::WaitingInput, true, shared.stats.resynchronizing, 0};
 			if (!notice)
 				return;
-			if(!pl_renderer) pose::hdmi::prepare_background(canvas);
-			auto rendered = pose::hdmi::render_notice(
-				std::move(canvas), notice->has_result ? &last_picture : nullptr, last_picture_id, *notice,pl_renderer);
+			if (!pl_renderer)
+				pose::hdmi::prepare_background(canvas);
+			auto rendered = pose::hdmi::render_notice(std::move(canvas),
+				notice->has_result ? &last_picture : nullptr, last_picture_id, *notice, pl_renderer);
 			const auto tag = show(rendered);
 			presentation.adopted_hint(*notice, pd::now_ns());
 			shared.stats.display_updates = presentation.updates();
@@ -541,44 +636,8 @@ int main(int argc, char** argv) {
 		}
 #endif
 
-		// 初始化结束后才放行输入；推理始终由当前线程串行执行。
-		shared.stats.initialized = true;
-		while (!stopping && (!seconds || pd::now_ns() - started < seconds * 1000000000ull)) {
-			if (pd::now_ns() - last_status > 1000000000ull) {
-				for (const auto& event : shared.stats.take_input_events())
-					journal.diagnostic(event);
-				journal.status(shared.stats.json(mock, hdmi));
-				last_status = pd::now_ns();
-			}
-			if (shared.stats.isolated) {
-				std::this_thread::sleep_for(std::chrono::milliseconds(5));
-				continue;
-			}
-
-			// 只消费最新完整窗口。过期或旧轮次输入丢弃，不积压追赶。
-			bool ready = shared.input.take(input);
-			if (!ready && dataset && shared.stats.dataset_done) {
-				ready = shared.input.take(input); // Pair EOF with a final pending-slot check.
-				if (!ready)
-					break;
-			}
-			if (ready &&
-				(pd::now_ns() - input.arrived > max_age || input.epoch != shared.stats.input_epoch)) {
-				++shared.stats.stale;
-				ready = false;
-			}
-			if (!ready) {
-#ifdef POSE180_DEMO_SDK
-				try {
-					show_wait();
-				} catch (...) {
-					isolate(pp::current_exception_message());
-				}
-#endif
-				std::this_thread::sleep_for(std::chrono::milliseconds(5));
-				continue;
-			}
-
+		// 借用当前线程的资源处理一个完整窗口；过期结果只结束本次处理。
+		const auto process_input = [&] {
 			const auto began = pd::now_ns();
 			shared.stats.forward_start = began;
 			try {
@@ -623,7 +682,7 @@ int main(int argc, char** argv) {
 #ifdef POSE180_DEMO_SDK
 					show_wait();
 #endif
-					continue;
+					return;
 				}
 
 				// PC 消费者独立取走副本；其发送速度不阻塞后处理与本地 HDMI。
@@ -724,8 +783,9 @@ int main(int argc, char** argv) {
 					++shared.stats.view_dropped;
 #ifdef POSE180_DEMO_SDK
 				if (hdmi) {
-					if(!pl_renderer) pose::hdmi::prepare_background(canvas);
-					auto rendered = pose::hdmi::render_presentation(std::move(canvas), view,pl_renderer);
+					if (!pl_renderer)
+						pose::hdmi::prepare_background(canvas);
+					auto rendered = pose::hdmi::render_presentation(std::move(canvas), view, pl_renderer);
 					show(rendered); // Prove adoption before another forward call.
 					shared.stats.selected_count = rendered.detection_count;
 					++shared.stats.selection_counts[rendered.detection_count];
@@ -742,6 +802,47 @@ int main(int argc, char** argv) {
 			} catch (...) {
 				isolate(pp::current_exception_message());
 			}
+		};
+
+		// 初始化结束后才放行输入；推理始终由当前线程串行执行。
+		shared.stats.initialized = true;
+		while (!stopping && (!seconds || pd::now_ns() - started < seconds * 1000000000ull)) {
+			if (pd::now_ns() - last_status > 1000000000ull) {
+				for (const auto& event : shared.stats.take_input_events())
+					journal.diagnostic(event);
+				journal.status(shared.stats.json(mock, hdmi));
+				last_status = pd::now_ns();
+			}
+			if (shared.stats.isolated) {
+				std::this_thread::sleep_for(std::chrono::milliseconds(5));
+				continue;
+			}
+
+			// 只消费最新完整窗口。过期或旧轮次输入丢弃，不积压追赶。
+			bool ready = shared.input.take(input);
+			if (!ready && dataset && shared.stats.dataset_done) {
+				ready = shared.input.take(input); // Pair EOF with a final pending-slot check.
+				if (!ready)
+					break;
+			}
+			if (ready &&
+				(pd::now_ns() - input.arrived > max_age || input.epoch != shared.stats.input_epoch)) {
+				++shared.stats.stale;
+				ready = false;
+			}
+			if (!ready) {
+#ifdef POSE180_DEMO_SDK
+				try {
+					show_wait();
+				} catch (...) {
+					isolate(pp::current_exception_message());
+				}
+#endif
+				std::this_thread::sleep_for(std::chrono::milliseconds(5));
+				continue;
+			}
+
+			process_input();
 		}
 		const auto active_elapsed_ns = pd::now_ns() - started;
 		// Preserve status listeners/lease as well as SDK handles if hardware

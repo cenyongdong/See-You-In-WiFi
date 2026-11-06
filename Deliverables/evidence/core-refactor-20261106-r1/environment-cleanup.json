@@ -1,0 +1,30 @@
+[
+  {
+    "command": [
+      "docker",
+      "stop",
+      "FPAI"
+    ],
+    "native_exit": 0,
+    "output": "FPAI\n"
+  },
+  {
+    "command": [
+      "docker",
+      "ps",
+      "--format",
+      "{{.Names}}"
+    ],
+    "native_exit": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "docker",
+      "desktop",
+      "stop"
+    ],
+    "native_exit": 0,
+    "output": "\u2713 Stopping Docker Desktop\r\n"
+  }
+]

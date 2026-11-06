@@ -1,0 +1,3 @@
+SDK_RELEASE_BLOCKED: retain owner; no automatic reset/retry
+SDK_RELEASE_BLOCKED: retain owner; no automatic reset/retry
+{"SDK":false,"board_access":false,"complete_releases":true,"initialization_and_wait_fault_retained":true,"lease_retained":true,"no_false_completion":true}

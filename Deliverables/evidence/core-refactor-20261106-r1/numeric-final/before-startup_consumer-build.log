@@ -1,0 +1,4 @@
+/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/tests/native/startup_consumer_tests.cpp:1:10: fatal error: startup_consumer.hpp: No such file or directory
+    1 | #include "startup_consumer.hpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.

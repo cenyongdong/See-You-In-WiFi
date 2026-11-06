@@ -1,5 +1,7 @@
 # 180-query 演示工程与核心源码
 
+源码维护遵循[软件编码规范](CODING-STANDARDS.md)，本轮范围与验证见[核心重构记录](REFACTOR-20261106.md)。
+
 当前默认硬件配置已更新为CSI v3：PL CSI预处理与骨架绘制开启，CPU人物滤波保持。ARM64使用 `cmake --preset csi-v3-arm64`，离线检查使用 `native-offline`；旧缓存需重新配置，完整命令与直接执行参数见[构建说明](resident/DEMO-INPUTS.md)。
 
 2026-10-31最新发布采用CSI分组流水＋PL骨架绘图，默认30段／8700窗官方输入；[部署说明](../../Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md)、[完整源码](../../Deliverables/SOURCE-20261103.md)。下文三片段包属于10月29日历史基线。

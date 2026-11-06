@@ -1,0 +1,19 @@
+{
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--entrypoint",
+    "python3",
+    "--mount",
+    "type=bind,source=D:\\FPGACompetitionProject,target=/workspace",
+    "fpga-nexmon-rtac86u:20261017-r3",
+    "/workspace/software/pose180_pipeline/control/test_exit_cleanup.py",
+    "/workspace/.local/core-refactor-20261106-r1/after-final-validation-r2/native/pose180_demo_mock",
+    "/workspace/.local/core-refactor-20261106-r1/after-final-validation-r2/test_exit_cleanup"
+  ],
+  "native_exit": 0,
+  "seconds": 9.174787800002377
+}

@@ -364,7 +364,8 @@ struct Runtime::Impl {
 		result.selected_pose.fill(0);
 		result.input.fill(0);
 		try {
-			result.input = config.preprocess ? config.preprocess(window.csi) : pose_v1::preprocess(window.csi);
+			result.input =
+				config.preprocess ? config.preprocess(window.csi) : pose_v1::preprocess(window.csi);
 			result.preprocess_ms = elapsed(start);
 
 			stage = "input_write";

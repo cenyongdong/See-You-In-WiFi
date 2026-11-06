@@ -202,38 +202,42 @@ void Output::show_overlay(const std::vector<uint32_t>& words, uint32_t frameId, 
 	auto& p = *impl_;
 	p.checkThread();
 	need(!p.closed && p.mayRead && !p.adoption.pending(), "Overlay requires an adopted background");
-	need(words.size() <= 512 && words.size()%2 == 0, "Invalid overlay command count");
+	need(words.size() <= 512 && words.size() % 2 == 0, "Invalid overlay command count");
 	constexpr uint64_t base = 0x400b2000;
-	auto rd = [&](unsigned offset) { return uint32_t(p.device.defaultRegRegion().read(base+offset)); };
-	auto wr = [&](unsigned offset,uint32_t value) { p.device.defaultRegRegion().write(base+offset,value); };
-	need(rd(0)==0x534b4c01, "Skeleton overlay ABI absent");
-	need((rd(4)&3)==0, "Overlay busy or faulted; do not overwrite commands");
-	const uint32_t generation=rd(36);
-	if(generation==0) {
-		std::ofstream sample(p.evidence_dir/"overlay-first-commands.u32",std::ios::binary);
-		sample.write(reinterpret_cast<const char*>(words.data()),words.size()*sizeof(uint32_t));
+	auto rd = [&](unsigned offset) {
+		return uint32_t(p.device.defaultRegRegion().read(base + offset));
+	};
+	auto wr = [&](unsigned offset, uint32_t value) {
+		p.device.defaultRegRegion().write(base + offset, value);
+	};
+	need(rd(0) == 0x534b4c01, "Skeleton overlay ABI absent");
+	need((rd(4) & 3) == 0, "Overlay busy or faulted; do not overwrite commands");
+	const uint32_t generation = rd(36);
+	if (generation == 0) {
+		std::ofstream sample(p.evidence_dir / "overlay-first-commands.u32", std::ios::binary);
+		sample.write(reinterpret_cast<const char*>(words.data()), words.size() * sizeof(uint32_t));
 	}
-	const auto begin=mono_ns();
-	wr(16,4);
-	for(auto word:words) wr(32,word);
-	wr(12,frameId);
-	wr(16,1);
-	const auto submitted=mono_ns();
-	const auto deadline=Clock::now()+std::chrono::milliseconds(500);
-	while(rd(4)&1) {
-		need(Clock::now()<deadline,"Overlay adoption timeout");
+	const auto begin = mono_ns();
+	wr(16, 4);
+	for (auto word : words)
+		wr(32, word);
+	wr(12, frameId);
+	wr(16, 1);
+	const auto submitted = mono_ns();
+	const auto deadline = Clock::now() + std::chrono::milliseconds(500);
+	while (rd(4) & 1) {
+		need(Clock::now() < deadline, "Overlay adoption timeout");
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
-	const auto adopted=mono_ns();
-	const uint32_t status=rd(4), done_tag=rd(20), completed=rd(36);
-	need(!(status&2) && done_tag==frameId && completed==generation+1, "Overlay frame rejected or completion mismatch");
-	p.log << "{\"event\":\"overlay_adopted\",\"tag\":" << frameId
-		<< ",\"hardware_done_tag\":" << done_tag << ",\"hardware_completed\":" << completed
-		<< ",\"command_bytes\":" << words.size()*4 << ",\"prepare_ms\":" << prepare_ms
-		<< ",\"submit_ms\":" << double(submitted-begin)/1e6
-		<< ",\"submit_and_adopt_ms\":" << double(adopted-begin)/1e6
-		<< ",\"draw_cycles\":" << rd(24)
-		<< ",\"overlay_underflow_seen\":" << ((status>>3)&1) << "}\n";
+	const auto adopted = mono_ns();
+	const uint32_t status = rd(4), done_tag = rd(20), completed = rd(36);
+	need(!(status & 2) && done_tag == frameId && completed == generation + 1,
+		"Overlay frame rejected or completion mismatch");
+	p.log << "{\"event\":\"overlay_adopted\",\"tag\":" << frameId << ",\"hardware_done_tag\":" << done_tag
+		  << ",\"hardware_completed\":" << completed << ",\"command_bytes\":" << words.size() * 4
+		  << ",\"prepare_ms\":" << prepare_ms << ",\"submit_ms\":" << double(submitted - begin) / 1e6
+		  << ",\"submit_and_adopt_ms\":" << double(adopted - begin) / 1e6 << ",\"draw_cycles\":" << rd(24)
+		  << ",\"overlay_underflow_seen\":" << ((status >> 3) & 1) << "}\n";
 	p.log.flush();
 }
 

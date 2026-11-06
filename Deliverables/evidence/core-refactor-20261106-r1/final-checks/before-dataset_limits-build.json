@@ -1,0 +1,22 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "g++",
+    "-std=c++17",
+    "-O2",
+    "-pthread",
+    "-I/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/app",
+    "-I/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common",
+    "-I/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/input",
+    "-I/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/display",
+    "-I/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/diagnostics",
+    "/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/tests/native/dataset_limits_tests.cpp",
+    "/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/input/dataset.cpp",
+    "-o",
+    "/workspace/.local/core-refactor-20261106-r1/final-checks/before-dataset_limits"
+  ],
+  "native_exit": 1,
+  "seconds": 0.29988289999892004
+}

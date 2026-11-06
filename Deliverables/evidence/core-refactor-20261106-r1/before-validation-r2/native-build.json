@@ -1,0 +1,25 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "cmake",
+    "--build",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/native",
+    "--parallel",
+    "2",
+    "--target",
+    "postprocess_tests",
+    "single_person_tests",
+    "buffer_tests",
+    "renderer_tests",
+    "overlay_tests",
+    "display_state_tests",
+    "journal_tests",
+    "release_guard_tests",
+    "hdmi_resource_tests",
+    "pose180_demo_mock"
+  ],
+  "native_exit": 0,
+  "seconds": 53.14570339999045
+}

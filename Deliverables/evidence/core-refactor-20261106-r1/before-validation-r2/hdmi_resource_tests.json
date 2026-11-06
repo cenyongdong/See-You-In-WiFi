@@ -1,0 +1,10 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/native/hdmi_resource_tests"
+  ],
+  "native_exit": 0,
+  "seconds": 0.09737270000914577
+}

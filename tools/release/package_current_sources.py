@@ -80,6 +80,8 @@ def quoted_closure(seeds, search):
     return seen
 
 def software(package):
+    for name in ('CODING-STANDARDS.md', '.clang-format', '.editorconfig'):
+        package.copy(ROOT / PIPE / name, PIPE + name, 'software coding rules and local configuration')
     src = ROOT / PIPE / 'src'
     dirs = [src / x for x in ('app', 'common', 'input', 'input/nexmon', 'inference',
         'pose', 'display', 'io', 'diagnostics', 'compat', 'preprocess')]
@@ -119,7 +121,6 @@ def software(package):
         'testPresets': [dict(name='native-offline', configurePreset='native-offline', output={'outputOnFailure': True})]}
     package.json('CMakePresets.json', presets)
 
-
 def development_cpp(package):
     """Keep offline probes reviewable; copying does not authorize their execution."""
     seeds = [ROOT / relative for relative in DEVELOPMENT['cpp']]
@@ -128,10 +129,9 @@ def development_cpp(package):
         'FPGA/csi_preprocess', 'software/pose180_pipeline/src/preprocess',
         'software/core/display', 'software/core/inference', 'software/core/contracts',
         'software/pose_v1/include',
-    )] + [ROOT]
+        )] + [ROOT]
     for path in sorted(quoted_closure(seeds, search)):
         package.copy(path, path.relative_to(ROOT).as_posix(), 'FPGA offline development source/header dependency')
-
 
 def python_closure(seeds, directory):
     pending, seen = list(seeds), set()
@@ -169,7 +169,8 @@ def runtime(package):
     if 'device_credentials' in texts:
         package.copy(credential, 'tools/device_credentials.py', 'credential loader only; no private credential files')
     host = ROOT / PIPE / 'host'
-    for name in ('resident.mjs', 'resident_archive.mjs', 'full_record.mjs', 'presentation.mjs', 'web/scene.js',
+    for name in ('viewer_page.mjs', 'resident.mjs', 'resident_archive.mjs', 'full_record.mjs', 'presentation.mjs',
+        'web/scene.js',
         'start-pc.ps1'):
         data = (host / name).read_text(encoding='utf-8-sig')
         if name == 'resident.mjs':
@@ -371,7 +372,6 @@ def model(package):
         if (TEMPLATES / name).exists():
             package.copy(TEMPLATES / name, 'tools/' + name, 'optional explicit model export/conversion helper')
 
-
 def synthetic_fixtures(package):
     import math
     import struct
@@ -390,7 +390,6 @@ def synthetic_fixtures(package):
     # additional synthetic vectors rather than the official window samples.
     package.write('tests/fixtures/vectors.hex', '\n'.join(synthetic_vectors + synthetic_vectors[: 300]) + '\n',
         vectors.relative_to(ROOT).as_posix(), 'synthetic portion of qualified CORDIC vectors, repeated to match testbench length')
-
 
 def package_documents(package):
     package.copy(ROOT / 'LICENSE', 'LICENSES/project-MIT.txt', 'project license original')
@@ -411,7 +410,7 @@ def package_documents(package):
         '(../AGENTS.md)': '(https://github.com/cenyongdong/See-You-In-WiFi/blob/master/AGENTS.md)',
         '(../REFERENCES.md)': '(https://github.com/cenyongdong/See-You-In-WiFi/blob/master/REFERENCES.md)',
         '(../tools/release/prepare_refactored_fpga.py)': '(../tools/build_fpga.py)',
-    }.items():
+        }.items():
         standards = standards.replace(old, new)
     standards += '\n本包独立构建入口为 `tools/build_fpga.py`，命令以根 README 为准；仓库开发入口的参数不直接套用。\n'
     package.write('FPGA/CODING-STANDARDS.md', standards, 'FPGA/CODING-STANDARDS.md', 'same rules with package-local navigation')
@@ -419,10 +418,9 @@ def package_documents(package):
     mapped = {row['source']: row['path'] for row in package.records.values()}
     package.json('metadata/refactored-inputs.json', {
         source: mapped[source] for source in CURRENT_INPUTS.values()
-    })
+        })
     package.copy(ROOT / 'Deliverables/evidence/fpga-refactor-20261104-r1/qualification-closure.json',
-                 'metadata/fpga-qualification.json', 'existing complete implementation; not a new board test')
-
+        'metadata/fpga-qualification.json', 'existing complete implementation; not a new board test')
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)

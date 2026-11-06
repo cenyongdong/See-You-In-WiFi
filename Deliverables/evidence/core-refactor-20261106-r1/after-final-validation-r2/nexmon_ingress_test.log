@@ -1,0 +1,4 @@
+drift_180s policies=none,10s,2s windows=616/2185/2499 max_gap_ms=137856/11140/3140 resets=0/3/4
+tracked_drift seconds=600 dirty=0 windows=8983 max_gap_ms=66 correction_scaled=-3592397/2155425/-1257309
+tracked_drift seconds=120 dirty=1 windows=1718 max_gap_ms=200 correction_scaled=-712455/427500/-249306
+ingress directed checks passed=29

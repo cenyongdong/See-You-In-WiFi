@@ -1,0 +1,15 @@
+node:internal/child_process:487
+    throw new ErrnoException(err, 'spawn');
+          ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:487:11)
+    at spawn (node:child_process:813:9)
+    at file:///D:/FPGACompetitionProject/.local/core-refactor-20261106-r1/candidate_http.mjs:8:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v24.22.1

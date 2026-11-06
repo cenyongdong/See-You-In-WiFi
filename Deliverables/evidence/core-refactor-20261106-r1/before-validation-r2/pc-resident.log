@@ -1,0 +1,10 @@
+✔ PC top3 selection uses strict float32 threshold and preserves raw records (2.6178ms)
+✔ optional PC consumes split results without ACK, marks stale, reconnects and serves the existing 3D modules (20125.436ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20214.9179

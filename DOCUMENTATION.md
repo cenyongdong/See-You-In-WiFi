@@ -1,6 +1,8 @@
 # 项目文档导航
 
-更新日期：2026-11-04。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
+最新源码维护：[核心重构范围与验证](software/pose180_pipeline/REFACTOR-20261106.md) · [软件编码规范](software/pose180_pipeline/CODING-STANDARDS.md) · [FPGA 编码规范](FPGA/CODING-STANDARDS.md)。
+
+更新日期：2026-11-06。本文汇总项目说明、架构决策、模块接口、部署入口与历史验证记录；现行入口和历史资料按下方分类阅读。
 
 当前实现和验收先读[项目进度](PROJECT-PROGRESS.md)，启动／最后设备观察先读[恢复入口](FPGA/hdmi_candidate/RESUME.md)。当前分工为PL CSI幅相／90点组流水及骨架合成、PS相位收尾／人物后处理／投影、NPU推理和PC滤波前后独立观察。当前 Release 提供 r4 部署包和 r7 源码包。
 

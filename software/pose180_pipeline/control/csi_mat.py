@@ -2,7 +2,6 @@
 import h5py
 import numpy as np
 
-
 def aligned_payload(path):
 	with h5py.File(path, 'r') as handle:
 		raw = handle['csi_out'][()]

@@ -13,12 +13,10 @@ from bounded_log import RingLog
 from run_hdmi_trial import preflight, owners
 from process_guard import process_identity, live, StopRequest
 
-
 def atomic(path, value):
 	temporary = path.with_suffix(path.suffix + '.tmp')
 	temporary.write_text(json.dumps(value, ensure_ascii=False))
 	os.replace(temporary, path)
-
 
 def read_status(port):
 	try:
@@ -34,20 +32,18 @@ def read_status(port):
 				if not chunk:
 					break
 				data += chunk
-		value=json.loads(data)
-		return value if isinstance(value,dict) else None
+		value = json.loads(data)
+		return value if isinstance(value, dict) else None
 	except (OSError, ValueError):
 		return None
 
-
 def supervise(root, command, budget, status_port=39384, bind_native_parent=False, lease_fd=None,
-			  stop_request=None):
+	stop_request=None):
 	"""Also exercised with an explicit mock binary; no hidden process retries."""
 	if stop_request is None:
 		with StopRequest() as request:
 			return _supervise(root, command, budget, status_port, bind_native_parent, lease_fd, request)
 	return _supervise(root, command, budget, status_port, bind_native_parent, lease_fd, stop_request)
-
 
 def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd, stopping):
 	metadata = root / 'metadata'
@@ -92,7 +88,7 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 			device_owners=owners(), SDK_attempts=1, automatic_retry=False,
 			samples=count, peak_RSS_KiB=peak_rss, peak_fds=peak_fds,
 			peak_threads=peak_threads, minimum_MemAvailable_KiB=minimum_available
-		)
+			)
 		if monitor_error is not None:
 			outcome['monitor_error'] = str(monitor_error)
 		diagnostic(root / 'outcome.json', outcome)
@@ -102,7 +98,7 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 	try:
 		if stopping.requested or (root / 'stop.request').exists():
 			result = dict(native_started=False, native_shutdown_complete=False,
-						  stop_reason='Stopped before native launch', automatic_retry=False)
+				stop_reason='Stopped before native launch', automatic_retry=False)
 			diagnostic(root / 'outcome.json', result)
 			return result
 
@@ -111,24 +107,24 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 		os.set_blocking(write_fd, False)
 		pump = subprocess.Popen(
 			[sys.executable, str(Path(__file__).with_name('bounded_log.py')),
-			 str(read_fd), str(metadata), '--parent-pid', str(os.getpid())],
+			str(read_fd), str(metadata), '--parent-pid', str(os.getpid())],
 			pass_fds=(read_fd,), stdin=subprocess.DEVNULL,
 			stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
-		)
+			)
 		os.close(read_fd)
 		read_fd = -1
 		diagnostic(metadata / 'logger-process.json', process_identity(pump.pid))
 		if stopping.requested or (root / 'stop.request').exists():
 			result = dict(native_started=False, native_shutdown_complete=False,
-						  stop_reason='Stopped before native launch', automatic_retry=False)
+				stop_reason='Stopped before native launch', automatic_retry=False)
 			diagnostic(root / 'outcome.json', result)
 			return result
 
 		argv = command + (['--supervisor-pid', str(os.getpid())] if bind_native_parent else [])
 		child = subprocess.Popen(
 			argv, stdin=subprocess.DEVNULL, stdout=write_fd, stderr=write_fd,
-			pass_fds=() if lease_fd is None else (lease_fd,)
-		)
+			pass_fds=() if lease_fd is None else(lease_fd,)
+			)
 		os.close(write_fd)
 		write_fd = -1
 		native_identity = process_identity(child.pid)
@@ -145,7 +141,8 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 			except (OSError, ValueError, StopIteration):
 				available = None  # An unavailable sample is not zero free memory.
 			if available is not None:
-				minimum_available = available if minimum_available is None else min(minimum_available, available)
+				minimum_available = available if minimum_available is None else min(minimum_available,
+					available)
 			try:
 				status = Path('/proc/%d/status' % child.pid).read_text()
 				fields = dict(line.split(':', 1) for line in status.splitlines() if ':' in line)
@@ -154,7 +151,8 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 				fds = len(list(Path('/proc/%d/fd' % child.pid).iterdir()))
 			except (OSError, ValueError):
 				rss = threads = fds = 0
-			peak_rss, peak_fds, peak_threads = max(peak_rss, rss), max(peak_fds, fds), max(peak_threads, threads)
+			peak_rss, peak_fds, peak_threads = max(peak_rss, rss), max(peak_fds, fds), max(peak_threads,
+				threads)
 			if available is not None and available < 131072:
 				reason = reason or 'MemAvailable below 128 MiB'
 			if state and state.get('state') in ('isolated', 'release_blocked'):
@@ -166,12 +164,12 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 			if reason and not sent:
 				child.send_signal(signal.SIGTERM)
 				sent = True
-			row = dict(elapsed=now-started, status=final, RSS_KiB=rss, fds=fds, threads=threads,
-					   MemAvailable_KiB=available, stop_reason=reason, stop_sent=sent)
+			row = dict(elapsed=now - started, status=final, RSS_KiB=rss, fds=fds, threads=threads,
+				MemAvailable_KiB=available, stop_reason=reason, stop_sent=sent)
 			samples.write((json.dumps(row) + '\n').encode())
 			try:
 				atomic(root / 'service-status.json', dict(supervisor=process_identity(os.getpid()),
-					   native=native_identity, running=True, **row))
+					native=native_identity, running=True, **row))
 			except OSError:
 				pass  # A diagnostic write failure must not terminate the SDK.
 			count += 1
@@ -180,7 +178,7 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 	except BaseException as error:
 		if child is None:
 			diagnostic(root / 'outcome.json', dict(native_started=False, native_shutdown_complete=False,
-					   error=str(error), automatic_retry=False))
+				error=str(error), automatic_retry=False))
 		else:
 			stop_child()
 			finish(error)  # Preserve real cleanup evidence even if monitoring failed.
@@ -206,8 +204,8 @@ def _supervise(root, command, budget, status_port, bind_native_parent, lease_fd,
 				try:
 					pump.wait(timeout=1)
 				except subprocess.TimeoutExpired:
-					diagnostic(metadata / 'logger-cleanup-pending.json', dict(identity=process_identity(pump.pid), SDK_handles=False))
-
+					diagnostic(metadata / 'logger-cleanup-pending.json', dict(identity=process_identity(pump.pid),
+						SDK_handles=False))
 
 def authorize(root):
 	auth = json.loads((root.parent / 'authorization.json').read_text())
@@ -217,7 +215,6 @@ def authorize(root):
 		(root.parent / 'boot-control/metadata/closed.json').exists()):
 		raise ValueError('This new package lacks active authorization or is closed')
 	return auth['caps']
-
 
 def main():
 	parser = argparse.ArgumentParser()
@@ -246,8 +243,8 @@ def main():
 		with (root / 'service-start.attempt.json').open('x') as file:
 			json.dump(dict(caps=caps, automatic_retry=False), file)
 		child = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), 'serve'],
-								 stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
-								 stderr=subprocess.DEVNULL, start_new_session=True)
+			stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+			stderr=subprocess.DEVNULL, start_new_session=True)
 		result = dict(supervisor=process_identity(child.pid), detached=True)
 		atomic(root / 'service-process.json', result)
 		print(json.dumps(result))
@@ -259,15 +256,14 @@ def main():
 			with (root / 'sdk-attempt.json').open('x') as file:
 				json.dump(dict(boot_id=boot, SDK_attempts=1, caps=caps), file)
 			(metadata / 'before.dmesg').write_bytes(subprocess.check_output(['dmesg']))
-			command = [str(root/'pose180_demo'), '--package', str(root), '--output', str(root/'run'),
-					   '--bind', '0.0.0.0', '--session', str(identity['session']),
-					   '--seconds', str(caps['runtime_seconds']), '--hdmi', '1', '--csi', str(root/'csi.conf')]
+			command = [str(root / 'pose180_demo'), '--package', str(root), '--output', str(root / 'run'),
+				'--bind', '0.0.0.0', '--session', str(identity['session']),
+				'--seconds', str(caps['runtime_seconds']), '--hdmi', '1', '--csi', str(root / 'csi.conf')]
 			supervise(root, command, caps['stop_request_seconds'], bind_native_parent=True, lease_fd=lock.fileno())
 			(metadata / 'after.dmesg').write_bytes(subprocess.check_output(['dmesg']))
 		except Exception as error:
 			atomic(root / 'service-error.json', dict(error=str(error), automatic_retry=False))
 			raise
-
 
 if __name__ == '__main__':
 	main()

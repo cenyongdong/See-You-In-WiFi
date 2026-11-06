@@ -1,0 +1,1 @@
+{"passed": true, "mock": true, "CSI_live": false, "generated_capture_seconds": 11.0, "new_inferences": 109, "continuity_recovered_without_reconnect": true, "single_rx_reconnect_preserved_healthy_tcp": true, "connection_accepts": 4, "transport_resets": 1, "alignment_resets": 1, "recovery_ms": [1073, 1636], "diagnostic_raw_fields_verified": true, "native_shutdown_complete": true}

@@ -1,0 +1,14 @@
+✔ telemetry reader bounds partial bytes, splits/coalesces and owns decoded values (17.0598ms)
+✔ telemetry reader rejects original invalid records without callback (1.0031ms)
+✔ processing window joins either arrival order and reports median/nearest-rank P95 (0.6061ms)
+✔ wrong full identity, duplicate result/view and late expired samples do not contaminate (0.2209ms)
+✔ view session is authoritative, retains early new-session telemetry and retires old views (0.2155ms)
+✔ all record and session bookkeeping stays bounded and evicted duplicate views stay old (9.3531ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.2466

@@ -1,0 +1,1 @@
+{"mock": true, "boot_binding": true, "previous_failure_guard": true, "graceful_stop": true, "top_k": 1, "score_threshold": null, "native_exit": 0, "SDK_used": false, "board_access": false}

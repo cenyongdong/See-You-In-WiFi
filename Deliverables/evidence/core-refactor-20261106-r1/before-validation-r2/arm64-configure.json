@@ -1,0 +1,20 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "cmake",
+    "-S",
+    "/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline",
+    "-B",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/arm64",
+    "-DPOSE180_BUILD_SDK=ON",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_SYSTEM_NAME=Linux",
+    "-DCMAKE_SYSTEM_PROCESSOR=aarch64",
+    "-DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++",
+    "-DCMAKE_PREFIX_PATH=/usr/cmake"
+  ],
+  "native_exit": 0,
+  "seconds": 3.935591799992835
+}

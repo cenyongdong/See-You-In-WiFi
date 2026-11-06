@@ -1,0 +1,17 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "g++",
+    "-O2",
+    "-std=c++17",
+    "-ffp-contract=off",
+    "-I/workspace/software/pose180_pipeline/src/preprocess",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after-pack.cpp",
+    "-o",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after-pack"
+  ],
+  "native_exit": 0,
+  "seconds": 0.8216103000013391
+}

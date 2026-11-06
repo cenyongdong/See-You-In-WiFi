@@ -1,0 +1,13 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "python3",
+    "/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/control/test_startup.py",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/native/pose180_demo_mock",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/test_startup"
+  ],
+  "native_exit": 127,
+  "seconds": 0.08264409999537747
+}

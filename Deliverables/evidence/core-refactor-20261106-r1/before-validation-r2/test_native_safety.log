@@ -1,0 +1,1 @@
+{"mock": true, "SDK": false, "board_access": false, "nonstandard": {"nonstandard_caught": true, "control_plane_alive": true, "graceful_exit": 3, "resources_released": true}, "unproved": {"retained_after_TERM": true, "retained_after_supervisor_death": true, "lease_retained": true, "status_responsive": true, "no_false_completion": true, "recovery_refused": true}}

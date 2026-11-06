@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:/Users/cenyongdong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "--test",
+    "D:\\FPGACompetitionProject\\.local\\core-refactor-20261106-r1\\before\\software\\pose180_pipeline\\host\\test\\resident.test.mjs"
+  ],
+  "native_exit": 0,
+  "seconds": 20.26338950000354
+}

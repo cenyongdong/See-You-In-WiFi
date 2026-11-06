@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/workspace/.local/core-refactor-20261106-r1/numeric/before",
+    "/workspace/.local/skeleton-overlay-20261031-r2/pose180-skeleton-overlay-20261031-r2/board/dataset.piwcsi2",
+    "/workspace/.local/core-refactor-20261106-r1/numeric/before.hex",
+    "/workspace/.local/core-refactor-20261106-r1/numeric/before-report.json"
+  ],
+  "native_exit": 0,
+  "seconds": 2.761062399993534
+}

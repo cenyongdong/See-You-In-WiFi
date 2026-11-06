@@ -1,0 +1,11 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after-pack",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after-pack.full"
+  ],
+  "native_exit": 0,
+  "seconds": 0.12297789999865927
+}

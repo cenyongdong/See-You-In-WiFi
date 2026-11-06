@@ -1,0 +1,19 @@
+[ 20%] Building CXX object CMakeFiles/nexmon_ingress.dir/workspace/software/pose180_pipeline/src/input/nexmon/ingress.cpp.o
+[ 40%] Building CXX object CMakeFiles/nexmon_ingress.dir/workspace/software/pose180_pipeline/src/input/nexmon/pcap_stream.cpp.o
+[ 60%] Linking CXX static library libnexmon_ingress.a
+[ 60%] Built target nexmon_ingress
+[ 80%] Building CXX object CMakeFiles/nexmon_ingress_test.dir/workspace/software/pose180_pipeline/tests/native/nexmon/test_ingress.cpp.o
+[100%] Linking CXX executable nexmon_ingress_test
+[100%] Built target nexmon_ingress_test
+Consolidate compiler generated dependencies of target nexmon_ingress
+[ 60%] Built target nexmon_ingress
+[ 80%] Building CXX object CMakeFiles/nexmon_pcap_stream_test.dir/workspace/software/pose180_pipeline/tests/native/nexmon/test_pcap_stream.cpp.o
+[100%] Linking CXX executable nexmon_pcap_stream_test
+[100%] Built target nexmon_pcap_stream_test
+[ 42%] Built target nexmon_ingress
+[ 57%] Building CXX object CMakeFiles/nexmon_adaptive.dir/workspace/software/pose180_pipeline/src/input/nexmon/adaptive_ingress.cpp.o
+[ 71%] Linking CXX static library libnexmon_adaptive.a
+[ 71%] Built target nexmon_adaptive
+[ 85%] Building CXX object CMakeFiles/nexmon_adaptive_test.dir/workspace/software/pose180_pipeline/tests/native/nexmon/test_adaptive_ingress.cpp.o
+[100%] Linking CXX executable nexmon_adaptive_test
+[100%] Built target nexmon_adaptive_test

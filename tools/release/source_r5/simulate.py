@@ -5,9 +5,8 @@ from pathlib import Path
 import shutil
 import subprocess
 
-
 def simulation_commands(root, vivado_bin):
-    # 顺序保持为每组编译、展开、运行；记录索引继续对应既有日志编号。
+# 顺序保持为每组编译、展开、运行；记录索引继续对应既有日志编号。
     commands = []
     for top, rels in (
         ('tb_batch', ['FPGA/rtl/csi/polar.sv', 'FPGA/rtl/csi/batch_banked.sv', 'FPGA/sim/tb_batch.sv']),
@@ -19,7 +18,6 @@ def simulation_commands(root, vivado_bin):
             [str(vivado_bin / 'xelab.bat'), top, '-s', top + '_sim'],
             [str(vivado_bin / 'xsim.bat'), top + '_sim', '-tclbatch', 'run.tcl']]
     return commands
-
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)

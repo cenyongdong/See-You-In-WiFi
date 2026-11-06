@@ -1,0 +1,25 @@
+{
+  "files": [
+    "software/pose180_pipeline/src/display/hdmi_output.cpp",
+    "software/pose180_pipeline/src/display/hdmi_renderer.cpp",
+    "software/pose180_pipeline/src/display/hdmi_renderer.hpp",
+    "software/pose180_pipeline/src/inference/runtime.cpp",
+    "software/pose180_pipeline/src/preprocess/pl_preprocess.hpp",
+    "software/pose180_pipeline/src/preprocess/polar_finish.hpp",
+    "software/pose180_pipeline/tests/native/buffer_tests.cpp",
+    "software/pose180_pipeline/tests/native/dataset_limits_tests.cpp",
+    "software/pose180_pipeline/tests/native/display_state_tests.cpp",
+    "software/pose180_pipeline/tests/native/hdmi_resource_tests.cpp",
+    "software/pose180_pipeline/tests/native/journal_tests.cpp",
+    "software/pose180_pipeline/tests/native/nexmon/test_adaptive_ingress.cpp",
+    "software/pose180_pipeline/tests/native/nexmon/test_ingress.cpp",
+    "software/pose180_pipeline/tests/native/nexmon/test_pcap_stream.cpp",
+    "software/pose180_pipeline/tests/native/overlay_tests.cpp",
+    "software/pose180_pipeline/tests/native/postprocess_tests.cpp",
+    "software/pose180_pipeline/tests/native/release_guard_tests.cpp",
+    "software/pose180_pipeline/tests/native/renderer_tests.cpp",
+    "software/pose180_pipeline/tests/native/single_person_tests.cpp",
+    "software/pose180_pipeline/tests/native/startup_consumer_tests.cpp"
+  ],
+  "tokens_equal": true
+}

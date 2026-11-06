@@ -8,17 +8,15 @@ INCREMENTAL = '.local/csi-preprocess-20261031-r2/pipeline-routed-csi-incremental
 EXCLUDED_SUFFIXES = {'.log', '.jou', '.bak', '.wdb', '.rpt', '.pb', '.html', '.pdf'}
 SIMULATION_MARKERS = ('_sim_netlist', '_funcsim', '_timesim')
 
-
 def is_build_input(path):
-    # 保留必要网表；排除工具缓存、报告和可再生仿真副本，不改变厂商文件内容。
+# 保留必要网表；排除工具缓存、报告和可再生仿真副本，不改变厂商文件内容。
     return (
         path.is_file()
         and path.name != 'AI_Mate_no_detpost.edif'
         and not any(marker in path.name for marker in SIMULATION_MARKERS)
         and path.suffix.lower() not in EXCLUDED_SUFFIXES
         and '__pycache__' not in path.parts
-    )
-
+        )
 
 def collect(root):
     root = Path(root)
@@ -49,13 +47,13 @@ def collect(root):
         'paspd/fmsh/xc7z030.paspd', 'paspd/xilinx/xc7z030.paspd',
         'tools/bitfile_replace.tcl', 'tools/mig_auto_winCheck.tcl',
         'tools/iostandard_check.tcl', 'tools/netdelay_check.tcl',
-    ):
+        ):
         add(root / REF / 'ip_patch' / suffix)
     for relative in (
         REF + '/fpai_demo_vivado.xpr',
         REF + '/fpai_demo_vivado.runs/synth_hp2ready_r24/dont_touch.xdc',
         '.local/hdmi-ps-release-20261020-r26/ps-export.dcp', INCREMENTAL,
-    ):
+        ):
         add(root / relative)
     for name in ('candidate.bif', 'FSBL251210_ddr400_demo.out', 'bl31.elf', 'u-boot'):
         add(root / HW / 'boot-package' / name)

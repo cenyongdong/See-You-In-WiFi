@@ -6,7 +6,6 @@ from pathlib import Path
 import time
 from process_guard import bind_parent
 
-
 class RingLog:
 	def __init__(self, root, name, limit=524288, segments=4):
 		self.root, self.name = Path(root), name
@@ -28,7 +27,7 @@ class RingLog:
 					self.index = (self.index + 1) % self.segments
 					self.file = (self.root / ('%s-%d.log' % (self.name, self.index))).open('wb', buffering=0)
 					self.size = 0
-				part = data[offset:offset + self.limit - self.size]
+				part = data[offset: offset + self.limit - self.size]
 				count = self.file.write(part)
 				if not count:
 					raise OSError('Short log write')
@@ -47,7 +46,6 @@ class RingLog:
 				stream.close()
 			except OSError:
 				pass  # Diagnostic close errors cannot skip process cleanup.
-
 
 def pump(fd, folder):
 	log = RingLog(folder, 'native')
@@ -68,7 +66,6 @@ def pump(fd, folder):
 				maximum_log_bytes=log.limit * log.segments)))
 		except OSError:
 			pass
-
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()

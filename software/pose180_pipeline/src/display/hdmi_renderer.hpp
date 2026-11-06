@@ -58,12 +58,12 @@ struct Notice {
 
 // last_result contains only owning render metadata; its pixel vector may be
 // empty. A null pointer draws seven standby bars, never model values.
-Rendered render_notice(
-	PreparedBackground&& prepared, const Rendered* last_result, uint64_t last_frame_id, const Notice& notice,
-	bool hardware_overlay = false);
+Rendered render_notice(PreparedBackground&& prepared, const Rendered* last_result, uint64_t last_frame_id,
+	const Notice& notice, bool hardware_overlay = false);
 PreparedBackground prepare_background();
 void prepare_background(PreparedBackground& reusable);
-Rendered render_presentation(PreparedBackground&&, const pose::post::PresentationFrame&, bool hardware_overlay = false);
+Rendered render_presentation(
+	PreparedBackground&&, const pose::post::PresentationFrame&, bool hardware_overlay = false);
 Rendered render(PreparedBackground&& prepared, const float* scores, const float* poses,
 	std::size_t candidates, uint64_t id, pose_v1::render::Status status = pose_v1::render::Status::Result,
 	SelectionPolicy selection = {});

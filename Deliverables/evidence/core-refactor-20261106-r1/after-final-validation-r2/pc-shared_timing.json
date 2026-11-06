@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:/Users/cenyongdong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "--test",
+    "D:\\FPGACompetitionProject\\software\\pose180_pipeline\\host\\test\\shared_timing.test.mjs"
+  ],
+  "native_exit": 0,
+  "seconds": 6.298769200002425
+}

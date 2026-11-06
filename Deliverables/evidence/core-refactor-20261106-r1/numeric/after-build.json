@@ -1,0 +1,18 @@
+{
+  "command": [
+    "g++",
+    "-O2",
+    "-std=c++17",
+    "-ffp-contract=off",
+    "-I/workspace/software/pose180_pipeline/src/preprocess",
+    "-I/workspace/FPGA/csi_preprocess",
+    "/workspace/.local/core-refactor-20261106-r1/numeric/numeric_full.cpp",
+    "/workspace/FPGA/csi_preprocess/polar_model.cpp",
+    "/workspace/software/pose180_pipeline/src/preprocess/preprocess.cpp",
+    "/workspace/software/pose180_pipeline/src/preprocess/polar_finish.cpp",
+    "-o",
+    "/workspace/.local/core-refactor-20261106-r1/numeric/after"
+  ],
+  "native_exit": 0,
+  "seconds": 3.4098451000027126
+}

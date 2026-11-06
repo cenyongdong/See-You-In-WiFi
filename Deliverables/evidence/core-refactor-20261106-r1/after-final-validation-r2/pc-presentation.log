@@ -1,0 +1,14 @@
+✔ PC binds the selected interface and promptly joins a board service started later (5132.6948ms)
+✔ filtered SSE pairs timing by identity and remains independent when telemetry disconnects (4096.3409ms)
+✔ explicit Top1 without confidence cutoff retains low, zero and negative finite scores (0.9163ms)
+✔ bounded NDJSON splits/coalescing, finite checks, immutable age and expiry (0.6434ms)
+✔ derived TCP has no ACK, expires, rejects malformed records and reconnects (5101.9934ms)
+✔ historical replay uses local timestamps and makes no board connection (2100.8676ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16517.3272

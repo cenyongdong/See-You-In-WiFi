@@ -17,7 +17,6 @@ from input_config import select_input
 from startup import command
 from test_dataset import free_port
 
-
 def main():
 	parser = argparse.ArgumentParser(description=__doc__)
 	parser.add_argument('binary', type=Path)
@@ -33,7 +32,7 @@ def main():
 		# Explicit synthetic protocol fixture; never packaged as official input.
 		data.write_bytes(b''.join(
 			struct.pack('<8sIIQQ', b'PIWCSI2\0', 2, 86400, j + 1, 1000000000 + j * 20000000)
-			+ struct.pack('<dd', float(i), .25) * 5400 for j in range(count)))
+			+struct.pack('<dd', float(i), .25) * 5400 for j in range(count)))
 		manifest = dict(schema='PIWDATASET1', input_source='official_dataset',
 			split='train', sequence='mock-' + str(i), first_sample=1, count=count,
 			playback_hz=50, file=data.name, sha256=sha(data),
@@ -52,9 +51,8 @@ def main():
 	# 预检回显必须与真正传入原生进程的展示策略一致。
 	(playlist / 'identity.json').write_text(json.dumps(identity))
 	text = io.StringIO()
-	with patch.object(startup, '__file__', str(playlist / 'startup.py')), \
-		patch.object(startup, 'preflight', return_value='mock-boot'), \
-		patch.object(sys, 'argv', ['startup.py', 'check']), contextlib.redirect_stdout(text):
+	with patch.object(startup, '__file__', str(playlist / 'startup.py')), patch.object(startup, 'preflight',
+		return_value='mock-boot'), patch.object(sys, 'argv', ['startup.py', 'check']), contextlib.redirect_stdout(text):
 		startup.main(None)
 	check = json.loads(text.getvalue())
 	assert check['top_k'] == 3 and check['score_threshold'] == .2
@@ -63,7 +61,7 @@ def main():
 	def launch(name, passes=1, extra=None):
 		choice = select_input(playlist, identity, repetitions=passes)
 		argv = command(playlist, root / name, 12000, 0, choice)
-		options = dict(zip(argv[1::2], argv[2::2]))
+		options = dict(zip(argv[1:: 2], argv[2:: 2]))
 		assert options['--top-k'] == '3' and options['--score-threshold'] == '0.2'
 		assert options['--single-person-stability'] == '0'
 		options.update({'--hdmi': '0', '--hardware-profile': 'r45', '--mock-delay-ms': '1',
@@ -113,7 +111,6 @@ def main():
 		top_k=3, strict_score_threshold=.2, single_person_stability=False)
 	(root / 'result.json').write_text(json.dumps(result, indent=2))
 	print(json.dumps(result))
-
 
 if __name__ == '__main__':
 	main()

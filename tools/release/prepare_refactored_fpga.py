@@ -12,9 +12,8 @@ SPEC = importlib.util.spec_from_file_location('qualified_fpga_flow', Path(__file
 FLOW = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(FLOW)
 
-
 def restore_vendor_headers(output):
-    # 仅补齐可证明来源一致的原厂头文件；不改写厂商逻辑或运行工具。
+# 仅补齐可证明来源一致的原厂头文件；不改写厂商逻辑或运行工具。
     from fpga_dependencies import REF
     vendor_root = ROOT / REF / 'rtl'
     restored = []
@@ -44,7 +43,6 @@ def restore_vendor_headers(output):
             1)
         script.write_text(text, encoding='utf-8')
     return restored
-
 
 def prepare(reference, output, procise):
     mapping = json.loads((ROOT / 'FPGA/current_sources.json').read_text(encoding='utf-8'))['files']

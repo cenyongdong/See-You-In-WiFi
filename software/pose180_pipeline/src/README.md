@@ -1,5 +1,7 @@
 # 当前核心源码
 
+代码书写遵循[软件编码规范](../CODING-STANDARDS.md)，本轮维护范围与离线验证见[核心重构记录](../REFACTOR-20261106.md)。
+
 **验证入口（2026-11-01）：** 当前工程默认PL CSI／PL骨架绘制开启、人物滤波CPU；[源码与依赖说明](../../../Deliverables/SOURCE-20261103.md)及[独立完整重建](../../../Deliverables/FPGA-REBUILD-20261101-r1.md)记录软件／核心RTL和完整实现的不同验证范围。现场状态以项目恢复入口的最后观察为准。
 
 2026-10-31发布：保留当前模块划分，新增CSI后端与PL绘图已接入正式目标；[完整源码说明](../../../Deliverables/SOURCE-20261103.md)列出实际硬件源、厂商复用与重建边界。
@@ -24,7 +26,5 @@
 输入路径：`control/input_config.py` 显式选择 → `input/csi.cpp` 或 `input/dataset.cpp` → `common/core.hpp` 最新完整窗口 → `preprocess/` → `inference/` → `pose/` → `display/` 与独立 PC。官方入口读取原始 CSI 并执行推理，有限播放在 EOF 正常收尾。
 
 多片段输入由 `control/dataset_input.py` 生成 `PIWPLAYLIST1` 清单，启动器将分段帧数传入原生程序；`Dataset` 在同一 SDK 生命周期中逐段递增 epoch，保留各段帧号／时间线并隔离跟踪历史。展示 TopK、阈值与单人增强开关来自部署包 `selection`，多人配置关闭单人增强。
-
-排版约定：C++、Python 和 PC 核心 JavaScript 使用真实 Tab 缩进，编辑器按 4 列显示；逻辑阶段之间留空行，注释重点说明数据所有权、输入轮次和资源释放条件。C++／JavaScript 使用上级目录的 `.clang-format`（本轮使用 clang-format 23.1），编辑器设置见 `.editorconfig`。Python 缩进调整须保持语法树和控制流不变。
 
 本目录是当前 180-query 主链的维护位置。预处理、HDMI 底层和兼容声明从已验证历史实现原样收拢；原 `demo_v1/`、旧 `software/core/display/` 及 r47／r53 副本继续供历史工程使用。不要用新文件覆盖历史包。`pose/` 中的实验性 PL 扩展仅保留，不因此恢复开发；可选相位分支仍在 `software/core/input/`，未接入正式运行目标。

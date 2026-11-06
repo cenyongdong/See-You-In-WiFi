@@ -1,0 +1,1 @@
+{"passed": true, "mock": true, "SDK_used": false, "board_access": false, "input_sources": ["live_csi", "official_dataset"], "official_samples": 12, "release_command_EOF": true, "same_boot_restart_rejected": true, "missing_input_no_fallback": true, "invalid_native_options": 10}

@@ -1,0 +1,414 @@
+{
+  "base_commit": "fdb00fe9514ba63f7b549bd982b4a5e3c17e10e6",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "status": "modified",
+      "bytes": 8353
+    },
+    {
+      "path": "DOCUMENTATION.md",
+      "status": "modified",
+      "bytes": 104746
+    },
+    {
+      "path": "FPGA/CODING-STANDARDS.md",
+      "status": "modified",
+      "bytes": 9051
+    },
+    {
+      "path": "PROJECT-PROGRESS.md",
+      "status": "modified",
+      "bytes": 6624
+    },
+    {
+      "path": "software/pose180_pipeline/.editorconfig",
+      "status": "modified",
+      "bytes": 199,
+      "sha256": "db97d4527a0be586376d89fefcf7378e4d07c401adf01990682a5abb1e244e84"
+    },
+    {
+      "path": "software/pose180_pipeline/CODING-STANDARDS.md",
+      "status": "added",
+      "bytes": 4216
+    },
+    {
+      "path": "software/pose180_pipeline/README.md",
+      "status": "modified",
+      "bytes": 9134
+    },
+    {
+      "path": "software/pose180_pipeline/REFACTOR-20261106.md",
+      "status": "added",
+      "bytes": 6157
+    },
+    {
+      "path": "software/pose180_pipeline/control/boot_audit.py",
+      "status": "modified",
+      "bytes": 1925,
+      "sha256": "fcbb154dfefb63a4391d8b79ba90e44ce386c73d7fa6d078acf7f49410f9ee4a"
+    },
+    {
+      "path": "software/pose180_pipeline/control/bounded_log.py",
+      "status": "modified",
+      "bytes": 2272,
+      "sha256": "08caed1dd97fde9c682e5e1a7b921e97a59744570f6d08a12f98b0134bb596c8"
+    },
+    {
+      "path": "software/pose180_pipeline/control/csi_mat.py",
+      "status": "modified",
+      "bytes": 626,
+      "sha256": "2a6ce5a2bb93251fd2e339440c8d0931db01fa07d301e2854022cf19e8ce5641"
+    },
+    {
+      "path": "software/pose180_pipeline/control/dataset_input.py",
+      "status": "modified",
+      "bytes": 7801,
+      "sha256": "56fef77b7bde4d42bdf62d33301d4ed8ec1542da6770bc0850440a19026ea0e2"
+    },
+    {
+      "path": "software/pose180_pipeline/control/input_config.py",
+      "status": "modified",
+      "bytes": 3327,
+      "sha256": "7e8396f708afa9c822c51ae46979fc75cb5faa65e79b83b508d039bef6834864"
+    },
+    {
+      "path": "software/pose180_pipeline/control/process_guard.py",
+      "status": "modified",
+      "bytes": 2245,
+      "sha256": "7a8e31935b17b7f694babc23c202d0b05e93943bea21f4e9db62b7c38f06720a"
+    },
+    {
+      "path": "software/pose180_pipeline/control/run_hdmi_trial.py",
+      "status": "modified",
+      "bytes": 6157,
+      "sha256": "b0348dc16f266359a29669c1199cf4f24bdc6bee82a0ff56b5608abacb742083"
+    },
+    {
+      "path": "software/pose180_pipeline/control/service.py",
+      "status": "modified",
+      "bytes": 10861,
+      "sha256": "062d1a71608d0e4dd4b038df3f0a635209f17a51939b0402cc24d27240ac0058"
+    },
+    {
+      "path": "software/pose180_pipeline/control/startup.py",
+      "status": "modified",
+      "bytes": 19282,
+      "sha256": "03534325e132c5e1da4d722f025ce09e4d5d9d9180939bacff204b7b92e29b0a"
+    },
+    {
+      "path": "software/pose180_pipeline/control/startup_network.py",
+      "status": "modified",
+      "bytes": 2714,
+      "sha256": "1b07c2e09b5e5649b9dddd811fd7bab9ac45bb0877ad94da03b052634131b5ed"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_adaptive_csi.py",
+      "status": "modified",
+      "bytes": 5435,
+      "sha256": "00767849743608742794b54d26034053d00d060a951c25c976e6e9d46bb7f836"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_csi.py",
+      "status": "modified",
+      "bytes": 3291,
+      "sha256": "facf7c9b9d0ab6f3f8a7ba8a30fb086dca34e5ee4d05f0cdc6eeccf7d0bbeea9"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_csi_recovery.py",
+      "status": "modified",
+      "bytes": 9419,
+      "sha256": "ea212bd33d0b899de18a0014ad71b1436e040f0f9a584fa8891c545c9415bffc"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_dataset.py",
+      "status": "modified",
+      "bytes": 4797,
+      "sha256": "3efa3a1c649319f30069d87d3f239391d4435cd0d2aaeeb45a9301d8d0d0c62f"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_dataset_input.py",
+      "status": "modified",
+      "bytes": 2402,
+      "sha256": "f9de9a1bd698b7543134f9772c49c98c34a6514664013800ac3bef0310add571"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_demo_inputs.py",
+      "status": "modified",
+      "bytes": 5305,
+      "sha256": "04e5ebcc61e46446f9c37871a873b08917032539a3d0dc35594d40dfafa879b7"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_exit_cleanup.py",
+      "status": "modified",
+      "bytes": 12646,
+      "sha256": "5a8c54cd182262943eb03c0a966a743ea645c480fc9840145176b4a49bc49002"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_lifecycle.py",
+      "status": "modified",
+      "bytes": 7566,
+      "sha256": "929355d0a1258b65cf0bcbc19f45db439bbd1d6e0a88789099de24b91aa2f96b"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_native_safety.py",
+      "status": "modified",
+      "bytes": 5176,
+      "sha256": "10460a461ba20b00536ff2fc628a4ca9bc7a1679d1498580716b2d64825ce4a0"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_playlist.py",
+      "status": "modified",
+      "bytes": 5276,
+      "sha256": "3f5091d9d5f9cf6e38818de3946e94df16db1629ff4f92a0a94c2ab01af90f2a"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_startup.py",
+      "status": "modified",
+      "bytes": 4055,
+      "sha256": "007f5be5fc2eea6f90fb289e50f67dc1e9163d2dd2fc4b46dc15babf5a00560d"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_startup_robustness.py",
+      "status": "modified",
+      "bytes": 14848,
+      "sha256": "05fbad6c6adac8fca53134605837201db0c36552a1d8c54b901a6128c207c580"
+    },
+    {
+      "path": "software/pose180_pipeline/control/test_window_recovery.py",
+      "status": "modified",
+      "bytes": 5310,
+      "sha256": "323a52bac7337bb8a952ab3d83b70e5055a4c96d4d40c4b5180668f46ae0bd84"
+    },
+    {
+      "path": "software/pose180_pipeline/host/resident.mjs",
+      "status": "modified",
+      "bytes": 15083,
+      "sha256": "52e10e745d164e528b836056fb78474adb910fbedba64cace94225bcd577dc09"
+    },
+    {
+      "path": "software/pose180_pipeline/host/test/fixtures.mjs",
+      "status": "modified",
+      "bytes": 2087,
+      "sha256": "a23f0daf8a7012f6b869889bf10c7d6ac65b561dc151d3f4ca6f4acdf548e1bd"
+    },
+    {
+      "path": "software/pose180_pipeline/host/test/performance.test.mjs",
+      "status": "modified",
+      "bytes": 5063,
+      "sha256": "3ddc1f59ea63a5bb5be9f2c1753a2429ecd72b56a17b2d14999c4b33f5c1dbb0"
+    },
+    {
+      "path": "software/pose180_pipeline/host/test/presentation.test.mjs",
+      "status": "modified",
+      "bytes": 11474,
+      "sha256": "16fc6eb536aa38cbccc1bc7b8ce89af909bc6bd4c451183c0dbebbbf7770ae2f"
+    },
+    {
+      "path": "software/pose180_pipeline/host/test/resident.test.mjs",
+      "status": "modified",
+      "bytes": 9952,
+      "sha256": "a1836d68fa872c58457c2c31687ba44005e20fce82a5f9f6e8c28f81b81d7f3e"
+    },
+    {
+      "path": "software/pose180_pipeline/host/test/shared_timing.test.mjs",
+      "status": "modified",
+      "bytes": 2945,
+      "sha256": "67b6f3523208129253be703d8934d625d48948e486d6438b6700a40d005c2680"
+    },
+    {
+      "path": "software/pose180_pipeline/host/viewer_page.mjs",
+      "status": "added",
+      "bytes": 6839,
+      "sha256": "ca4ede83aa575666531e29548ffbc9ad311ee71bd00b8cbc3b723fdb73e1db5d"
+    },
+    {
+      "path": "software/pose180_pipeline/src/README.md",
+      "status": "modified",
+      "bytes": 4456
+    },
+    {
+      "path": "software/pose180_pipeline/src/app/main.cpp",
+      "status": "modified",
+      "bytes": 37988,
+      "sha256": "0f9622f189a75376fb1e1f717d0ef71fa7fdd95eaead68535aad7460b678813f"
+    },
+    {
+      "path": "software/pose180_pipeline/src/display/hdmi_output.cpp",
+      "status": "modified",
+      "bytes": 15356,
+      "sha256": "59636c6203193450eb3a5ff32e3114708f5a71904902a8b38339718cde5f9ebf"
+    },
+    {
+      "path": "software/pose180_pipeline/src/display/hdmi_renderer.cpp",
+      "status": "modified",
+      "bytes": 14672,
+      "sha256": "56b4c01405c1dbc3d97886cd94510d66c65d89ac315b480ab3eca8cb18e65f11"
+    },
+    {
+      "path": "software/pose180_pipeline/src/display/hdmi_renderer.hpp",
+      "status": "modified",
+      "bytes": 2574,
+      "sha256": "d83e5e735e060428f6c3c52f1ec7333abd575f168985fd9d8bbe4dd319c6d427"
+    },
+    {
+      "path": "software/pose180_pipeline/src/inference/runtime.cpp",
+      "status": "modified",
+      "bytes": 18456,
+      "sha256": "432a173f57f5256f089df337d19a9899a738e24a5a2f2505a072ee3236ecd361"
+    },
+    {
+      "path": "software/pose180_pipeline/src/preprocess/pl_preprocess.cpp",
+      "status": "modified",
+      "bytes": 10200,
+      "sha256": "a46981e1a669a957b5cc6215e1709125bc2aeb61d378fbaf4bfde6abd08d8000"
+    },
+    {
+      "path": "software/pose180_pipeline/src/preprocess/pl_preprocess.hpp",
+      "status": "modified",
+      "bytes": 1194,
+      "sha256": "b52c6f47c658d91f63eb71eba3a9834a811d6484bed72fb22ff2f6d5c41a782b"
+    },
+    {
+      "path": "software/pose180_pipeline/src/preprocess/polar_finish.cpp",
+      "status": "modified",
+      "bytes": 5414,
+      "sha256": "92c284e3cab703523e15493d57609707bb6ce32aef808d938dc2320c1f14ab7d"
+    },
+    {
+      "path": "software/pose180_pipeline/src/preprocess/polar_finish.hpp",
+      "status": "modified",
+      "bytes": 764,
+      "sha256": "110f8546d0f2afa2c8d90b63657480135a970982a63ea2b4f4b5f757464b9218"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/buffer_tests.cpp",
+      "status": "modified",
+      "bytes": 14440,
+      "sha256": "0adfd1b88e8979e97c3aaaca5886f388868063972ed1c3be009b8c20ee3ba02a"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/dataset_limits_tests.cpp",
+      "status": "modified",
+      "bytes": 1207,
+      "sha256": "3612ab647d2031a7310f02cf4b2b0bcb82ea89b8ab7ceea31b643eba152f50c1"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/display_state_tests.cpp",
+      "status": "modified",
+      "bytes": 7042,
+      "sha256": "77b3d261adcecf51add18615b010659920ab505d3410a7e971d7cb51ef9b448c"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/hdmi_resource_tests.cpp",
+      "status": "modified",
+      "bytes": 2169,
+      "sha256": "70526850874b1053f1a6683f1f3ce234fe1f70b3cb9a3cd6e249777466c7f005"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/journal_tests.cpp",
+      "status": "modified",
+      "bytes": 3770,
+      "sha256": "f4f482690154f85322ec109990018974918acd6dcb72cbbfa72fe1c5b2dc8390"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/nexmon/test_adaptive_ingress.cpp",
+      "status": "modified",
+      "bytes": 8824,
+      "sha256": "de32d7782c39696af112c86fcacb7ae0f204c08275ca1c6182b1845e968dbcb3"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/nexmon/test_ingress.cpp",
+      "status": "modified",
+      "bytes": 21847,
+      "sha256": "f68044dbb32964a1fc91f8b2ca8718f3ad5eb4df4c601f397b6e802096639f5f"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/nexmon/test_pcap_stream.cpp",
+      "status": "modified",
+      "bytes": 5414,
+      "sha256": "83e18ea3b175a5984a54a6986f5afb7c0b1661103d0060b23caab9ae912e5942"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/overlay_tests.cpp",
+      "status": "modified",
+      "bytes": 2882,
+      "sha256": "0f5429db81e725d45c635f14be7106b91827c33dbe79718285ea69b7e61f1f5e"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/postprocess_tests.cpp",
+      "status": "modified",
+      "bytes": 19372,
+      "sha256": "0eceb15d063220a149cece7bc1be4ec43bf5c1667366bf96a7f66f6f1d7fa128"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/release_guard_tests.cpp",
+      "status": "modified",
+      "bytes": 3028,
+      "sha256": "72309d60aee07916084c7e29b4f60411ca80e6c2f86c17331c2afda43f74c0b2"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/renderer_tests.cpp",
+      "status": "modified",
+      "bytes": 9651,
+      "sha256": "be27ec2d47f10fe591d67bc3af31dfad071d4c4285745f87f3b49f89f95f6c80"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/single_person_tests.cpp",
+      "status": "modified",
+      "bytes": 4985,
+      "sha256": "a8856ea8c2f8cad8bd056667c40f9328caeb80bc33d554041b74e0c7f774f544"
+    },
+    {
+      "path": "software/pose180_pipeline/tests/native/startup_consumer_tests.cpp",
+      "status": "modified",
+      "bytes": 1679,
+      "sha256": "86443e0e1579793bff06b2ef3fb96a757deb06705f8dc0de1764fb92ff89d7fc"
+    },
+    {
+      "path": "software/pose180_pipeline/tools/build_startup.py",
+      "status": "modified",
+      "bytes": 2902,
+      "sha256": "9b61fb1ba2c51624824b4cea8fcf104e1e6056fae58539e1cb639e126bfe80d9"
+    },
+    {
+      "path": "software/pose180_pipeline/tools/package_startup.py",
+      "status": "modified",
+      "bytes": 25065,
+      "sha256": "6502cf95eb0ce8119cc64799eda2ea654a428e3e501a42cde544b20882446a9e"
+    },
+    {
+      "path": "tools/release/fpga_dependencies.py",
+      "status": "modified",
+      "bytes": 2461,
+      "sha256": "c62f7dd54a61dc05e274887cc5021b21ee7906171a6cdab425a9b687cd7bea6a"
+    },
+    {
+      "path": "tools/release/package_current_sources.py",
+      "status": "modified",
+      "bytes": 28474,
+      "sha256": "e3199e9b4cbe747581ea3d350636146395a989bbcd0354487d6383b3f338073e"
+    },
+    {
+      "path": "tools/release/prepare_refactored_fpga.py",
+      "status": "modified",
+      "bytes": 5449,
+      "sha256": "df81cd3b40d910021d96de5e4c53b84f6e743062624e413b8ce631b7838aeb1a"
+    },
+    {
+      "path": "tools/release/source_r5/build_fpga.py",
+      "status": "modified",
+      "bytes": 6247,
+      "sha256": "ca04a4dfa10ce614985c8798e3aefa2ac99a6b4e8d077cdf85921aa0c29259ca"
+    },
+    {
+      "path": "tools/release/source_r5/simulate.py",
+      "status": "modified",
+      "bytes": 2641,
+      "sha256": "83280fe54a9b392c1d5a0166a6f7f2cd9723cae8719ed2396170d78a0391a070"
+    }
+  ],
+  "device_operations": 0,
+  "release_updates": 0,
+  "physical_implementation": "reused; hardware inputs unchanged"
+}

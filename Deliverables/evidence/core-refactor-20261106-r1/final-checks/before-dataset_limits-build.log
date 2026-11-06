@@ -1,0 +1,16 @@
+In file included from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common/wire.hpp:2,
+                 from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common/core.hpp:2,
+                 from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/input/dataset.hpp:2,
+                 from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/tests/native/dataset_limits_tests.cpp:2:
+/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common/types.hpp:2:10: fatal error: preprocess.hpp: No such file or directory
+    2 | #include "preprocess.hpp"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common/wire.hpp:2,
+                 from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common/core.hpp:2,
+                 from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/input/dataset.hpp:2,
+                 from /workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/input/dataset.cpp:1:
+/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline/src/common/types.hpp:2:10: fatal error: preprocess.hpp: No such file or directory
+    2 | #include "preprocess.hpp"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.

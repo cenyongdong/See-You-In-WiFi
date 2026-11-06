@@ -1,0 +1,10 @@
+{
+  "command": [
+    "git",
+    "-c",
+    "core.whitespace=cr-at-eol",
+    "diff",
+    "--check"
+  ],
+  "native_exit": 0
+}

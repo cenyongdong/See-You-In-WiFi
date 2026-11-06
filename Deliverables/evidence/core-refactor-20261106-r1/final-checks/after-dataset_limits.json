@@ -1,0 +1,11 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "/workspace/.local/core-refactor-20261106-r1/final-checks/after-dataset_limits",
+    "/workspace/.local/core-refactor-20261106-r1/final-checks/after-dataset-sparse.piwcsi2"
+  ],
+  "native_exit": 0,
+  "seconds": 0.13160839999909513
+}

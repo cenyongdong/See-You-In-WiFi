@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "cmake",
+    "-S",
+    "/workspace/.local/core-refactor-20261106-r1/before/software/pose180_pipeline",
+    "-B",
+    "/workspace/.local/core-refactor-20261106-r1/before/native",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "native_exit": 1,
+  "seconds": 17.01780369998596
+}

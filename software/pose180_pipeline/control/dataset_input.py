@@ -6,9 +6,7 @@ import math
 from pathlib import Path
 import struct
 
-
 RECORD_BYTES = 86432
-
 
 def sha(path):
 	h = hashlib.sha256()
@@ -16,7 +14,6 @@ def sha(path):
 		for block in iter(lambda: stream.read(1048576), b''):
 			h.update(block)
 	return h.hexdigest()
-
 
 def validate_dataset(directory):
 	directory = Path(directory)
@@ -33,7 +30,7 @@ def validate_dataset(directory):
 		or type(manifest.get('count')) is not int
 		or not 1 <= manifest.get('count', 0) <= 9000
 		or (manifest['schema'] == 'PIWDATASET1' and len(manifest.get('samples', [])) != manifest['count'])
-	):
+		):
 		raise ValueError('Invalid dataset manifest')
 	if manifest['schema'] == 'PIWPLAYLIST1':
 		clips = manifest.get('clips')
@@ -56,7 +53,6 @@ def validate_dataset(directory):
 	if data.stat().st_size != manifest['count'] * RECORD_BYTES or sha(data) != manifest['sha256']:
 		raise ValueError('Dataset bytes differ from prepared source')
 	return manifest
-
 
 def prepare_playlist(directories, people, output):
 	# 各片段保留自身帧号／时间线；边界由清单显式交给板端，不拼接跟踪历史。
@@ -87,9 +83,8 @@ def prepare_playlist(directories, people, output):
 		playback_hz=manifests[0]['playback_hz'], file=data.name, bytes=data.stat().st_size,
 		sha256=sha(data), clips=clips, ground_truth_used_as_input=False,
 		source_time='Independent synthetic clip timelines; tracking resets at every boundary')
-	(output / 'dataset.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
+	(output / 'dataset.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
 	return validate_dataset(output)
-
 
 def prepare_dataset(dataset_root, split, sequence, start, count, hz, output):
 	# 按官方索引选择同一段连续采样，不跨录制拼接，也不使用标签作为输入。
@@ -98,7 +93,7 @@ def prepare_dataset(dataset_root, split, sequence, start, count, hz, output):
 		or (count is not None and not 1 <= count <= 9000)
 		or not math.isfinite(hz)
 		or not 1 <= hz <= 60
-	):
+		):
 		raise ValueError('Finite clip (1..9000) and playback rate (1..60 Hz) required')
 
 	folder = Path(dataset_root) / (split + '_data')
@@ -110,7 +105,7 @@ def prepare_dataset(dataset_root, split, sequence, start, count, hz, output):
 			continue
 		if Path(name).name != name or '/' in name or '\\' in name:
 			raise ValueError('Unexpected dataset list entry')
-		stem = name[:-4] if name.endswith('.mat') else name
+		stem = name[: -4] if name.endswith('.mat') else name
 		prefix, number = stem.rsplit('_', 1)
 		if prefix == sequence:
 			index = int(number)
@@ -153,26 +148,25 @@ def prepare_dataset(dataset_root, split, sequence, start, count, hz, output):
 		layout='RX,antenna,time,carrier,real-imag / float64 little-endian',
 		file=data.name, bytes=data.stat().st_size, sha256=sha(data), ground_truth_used_as_input=False,
 		samples=[dict(frame=i + 1, name=selected[index]) for i, index in enumerate(indices)]
-	)
+		)
 	(output / 'dataset.json').write_text(
 		json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8'
-	)
+		)
 	return manifest
-
 
 def main():
 	parser = argparse.ArgumentParser(description=__doc__)
 	parser.add_argument('--dataset-root', type=Path, required=True, help='Official data/wifipose directory')
-	parser.add_argument('--split', choices=('test','train'), default='test')
+	parser.add_argument('--split', choices=('test', 'train'), default='test')
 	parser.add_argument('--sequence', required=True, help='One recording prefix, e.g. S11_01')
 	parser.add_argument('--start', type=int)
 	parser.add_argument('--count', type=int, help='Default: continuous run from --start, capped at 9000')
 	parser.add_argument('--hz', type=float, default=15)
 	parser.add_argument('--output', type=Path, required=True)
 	args = parser.parse_args()
-	result = prepare_dataset(args.dataset_root,args.split,args.sequence,args.start,args.count,args.hz,args.output)
-	print(json.dumps({k:v for k,v in result.items() if k!='samples'}, ensure_ascii=False))
-
+	result = prepare_dataset(args.dataset_root, args.split, args.sequence, args.start, args.count, args.hz,
+		args.output)
+	print(json.dumps({k: v for k, v in result.items() if k != 'samples'}, ensure_ascii=False))
 
 if __name__ == '__main__':
 	main()

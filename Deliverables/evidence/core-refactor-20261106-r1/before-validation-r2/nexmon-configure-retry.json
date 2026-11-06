@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "cmake",
+    "-S",
+    "/workspace/.local/core-refactor-20261106-r1/before/tools/nexmon/board",
+    "-B",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/nexmon",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "native_exit": 0,
+  "seconds": 2.904332999998587
+}

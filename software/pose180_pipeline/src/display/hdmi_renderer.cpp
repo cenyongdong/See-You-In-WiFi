@@ -112,7 +112,8 @@ static void command(Rendered& r, unsigned type, unsigned ink, int x, int y, int 
 
 static void overlay_text(Rendered& r, int x, int y, const std::string& value, unsigned ink) {
 	for (unsigned char ch : value) {
-		if (x + 5 <= 960) command(r, 4, ink, x, y, ch);
+		if (x + 5 <= 960)
+			command(r, 4, ink, x, y, ch);
 		x += 7;
 	}
 }
@@ -127,9 +128,11 @@ static void draw_pose(Rendered& result, const std::array<std::array<double, 2>, 
 		// Match the reference screenshot's lit/fogged appearance, rather
 		// than the much brighter unlit WebGL material RGB values.
 		if (result.hardware_overlay) {
-			double x0=a[0], y0=a[1], x1=b[0], y1=b[1];
-			if (clip(x0,y0,x1,y1)) command(result,1,1,int(x0/2),int(y0/2),int(x1/2),int(y1/2));
-		} else line(image, a[0], a[1], b[0], b[1], ink, 3);
+			double x0 = a[0], y0 = a[1], x1 = b[0], y1 = b[1];
+			if (clip(x0, y0, x1, y1))
+				command(result, 1, 1, int(x0 / 2), int(y0 / 2), int(x1 / 2), int(y1 / 2));
+		} else
+			line(image, a[0], a[1], b[0], b[1], ink, 3);
 	}
 	for (size_t i = 0; i < projected.size(); ++i) {
 		const auto p = projected[i];
@@ -137,7 +140,7 @@ static void draw_pose(Rendered& result, const std::array<std::array<double, 2>, 
 			continue;
 		const int x = int(std::lround(p[0])), y = int(std::lround(p[1]));
 		if (result.hardware_overlay) {
-			command(result,2,1,std::min(959,x/2),std::min(539,y/2));
+			command(result, 2, 1, std::min(959, x / 2), std::min(539, y / 2));
 			continue;
 		}
 		for (int dy = -4; dy <= 4; ++dy)
@@ -153,15 +156,18 @@ static void draw_detections(Rendered& result) {
 }
 
 static void draw_result_fields(Rendered& result, uint64_t id) {
-	if (result.hardware_overlay) { overlay_text(result,250,42,std::to_string(id),2);return; }
+	if (result.hardware_overlay) {
+		overlay_text(result, 250, 42, std::to_string(id), 2);
+		return;
+	}
 	const auto white = color(236, 241, 247);
 	text(result.rgb565, 500, 84, std::to_string(id), 2.5, white);
 }
 
 static void draw_status(Rendered& result, const char* label, bool live) {
 	if (result.hardware_overlay) {
-		command(result,3,live ? 3:5,16,36,174,57);
-		overlay_text(result,23,42,label,live ? 4:6);
+		command(result, 3, live ? 3 : 5, 16, 36, 174, 57);
+		overlay_text(result, 23, 42, label, live ? 4 : 6);
 		return;
 	}
 	rect(result.rgb565, 32, 72, 350, 116, live ? color(23, 61, 54) : color(73, 61, 35));
@@ -238,7 +244,8 @@ PreparedBackground prepare_background() {
 	return PreparedBackground{background()};
 }
 
-Rendered render_presentation(PreparedBackground&& prepared, const pose::post::PresentationFrame& frame, bool hardware_overlay) {
+Rendered render_presentation(
+	PreparedBackground&& prepared, const pose::post::PresentationFrame& frame, bool hardware_overlay) {
 	const auto begin = std::chrono::steady_clock::now();
 	if ((!hardware_overlay && prepared.rgb565.size() != frameBytes) || frame.poses.size() > 3)
 		throw std::runtime_error("Invalid presentation raster");
@@ -273,7 +280,7 @@ Rendered render_presentation(PreparedBackground&& prepared, const pose::post::Pr
 	draw_result_fields(r, frame.id.frame);
 	draw_status(r, r.detection_count ? "FILTERED" : "NO DETECTION", true);
 	draw_detections(r);
-	r.render_ms = std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-begin).count();
+	r.render_ms = std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - begin).count();
 	return r;
 }
 
@@ -284,8 +291,8 @@ void prepare_background(PreparedBackground& reusable) {
 Rendered render_notice(PreparedBackground&& prepared, const Rendered* last_result, uint64_t last_frame_id,
 	const Notice& notice, bool hardware_overlay) {
 	const auto begin = std::chrono::steady_clock::now();
-	if ((!hardware_overlay && prepared.rgb565.size() != frameBytes) || bool(last_result) != notice.has_result ||
-		notice.kind == NoticeKind::Result)
+	if ((!hardware_overlay && prepared.rgb565.size() != frameBytes) ||
+		bool(last_result) != notice.has_result || notice.kind == NoticeKind::Result)
 		throw std::runtime_error("Invalid HDMI notice context");
 	Rendered result;
 	result.hardware_overlay = hardware_overlay && last_result;
@@ -302,7 +309,8 @@ Rendered render_notice(PreparedBackground&& prepared, const Rendered* last_resul
 		draw_result_fields(result, last_frame_id);
 		draw_detections(result);
 	} else {
-		if (result.rgb565.size() != frameBytes) result.rgb565.resize(frameBytes);
+		if (result.rgb565.size() != frameBytes)
+			result.rgb565.resize(frameBytes);
 		// Full-height RGB565 bars before the first actual result. This is
 		// a display hint, with no manufactured pose or inference identity.
 		constexpr std::array<std::uint16_t, 7> bars{0xffff, 0xffe0, 0x07ff, 0x07e0, 0xf81f, 0xf800, 0x001f};

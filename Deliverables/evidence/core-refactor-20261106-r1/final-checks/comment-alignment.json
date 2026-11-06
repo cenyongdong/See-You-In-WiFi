@@ -1,0 +1,12 @@
+{
+  "files": [
+    "software/pose180_pipeline/control/startup.py",
+    "software/pose180_pipeline/control/service.py",
+    "software/pose180_pipeline/control/process_guard.py",
+    "software/pose180_pipeline/control/input_config.py",
+    "software/pose180_pipeline/control/dataset_input.py",
+    "software/pose180_pipeline/control/csi_mat.py"
+  ],
+  "ast_equal": true,
+  "literals_comments_equal": true
+}

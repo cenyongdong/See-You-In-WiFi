@@ -23,7 +23,6 @@ def relocate(data, suffix, mappings):
         text = re.sub(re.escape(old), lambda _m, value=new: value, text, flags=re.I)
     return text.encode('utf-8')
 
-
 def write_procise_launcher(output, procise):
     # 只生成原厂适配启动器；prepare 阶段不启动 Procise。
     launcher = output / 'call_procise_disable_icap.bat'
@@ -34,7 +33,6 @@ def write_procise_launcher(output, procise):
         'set "ICTIME_HOME=%PROCISE_DIR%"\nset "APP_DIR=%PROCISE_DIR%"\n' +
         'set "FMSH_DB=%PROCISE_DIR%/db"\n' +
         '"%PROCISE_DIR%/bin/procise.exe" "' + (output / 'procise.tcl').as_posix() + '"\n', encoding='utf-8')
-
 
 def prepare(package, output, procise):
     if output.exists():

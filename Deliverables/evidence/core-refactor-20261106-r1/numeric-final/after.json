@@ -1,0 +1,13 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after",
+    "/workspace/.local/skeleton-overlay-20261031-r2/pose180-skeleton-overlay-20261031-r2/board/dataset.piwcsi2",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after.hex",
+    "/workspace/.local/core-refactor-20261106-r1/numeric-final/after-report.json"
+  ],
+  "native_exit": 0,
+  "seconds": 1.4628580999997212
+}

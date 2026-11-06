@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "-w",
+    "/workspace/.local/core-refactor-20261106-r1/candidate",
+    "FPAI",
+    "cmake",
+    "--build",
+    "--preset",
+    "csi-v3-arm64"
+  ],
+  "native_exit": 0,
+  "seconds": 26.122087999989162
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "-w",
+    "/workspace/.local/core-refactor-20261106-r1/candidate",
+    "FPAI",
+    "ctest",
+    "--preset",
+    "native-offline"
+  ],
+  "native_exit": 0,
+  "seconds": 2.923276599991368
+}

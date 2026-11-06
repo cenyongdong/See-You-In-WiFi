@@ -1,0 +1,15 @@
+{
+  "equal": true,
+  "cases": 76,
+  "coverage": [
+    "v2/v3 ordering",
+    "isolated fallback",
+    "signed zero",
+    "positive/negative",
+    "float rounding ties",
+    "subnormal and underflow",
+    "high exponent/overflow",
+    "NaN and infinities"
+  ],
+  "device_access": false
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/native/journal_tests",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/journal-fixture"
+  ],
+  "native_exit": 0,
+  "seconds": 2.298199900003965
+}

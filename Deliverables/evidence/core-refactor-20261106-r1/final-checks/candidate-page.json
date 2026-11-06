@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:/Users/cenyongdong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "--input-type=module",
+    "-e",
+    "import {renderPage} from \"file:///D:/FPGACompetitionProject/.local/core-refactor-20261106-r1/candidate/software/pose180_pipeline/host/viewer_page.mjs\";for (const mode of [\"raw\",\"view\"]) { const page=renderPage(mode);if(!page.includes(\"id=\\\"viewport\\\"\") || !page.includes(\"const filtered = \"+(mode === \"view\"))) throw Error(mode);}console.log(\"raw/view page module loaded from candidate\");"
+  ],
+  "native_exit": 0,
+  "seconds": 0.04842150000331458
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "FPAI",
+    "cmake",
+    "--build",
+    "/workspace/.local/core-refactor-20261106-r1/before-validation-r2/arm64",
+    "--target",
+    "pose180_demo",
+    "pose180_pipeline",
+    "--parallel",
+    "2"
+  ],
+  "native_exit": 0,
+  "seconds": 46.487415199997486
+}
