@@ -39,6 +39,8 @@
 
 ### 2.2 部署包与提交文件
 
+**实时采集效果说明：** 当前设备与模型的适配限制及实时姿态效果，见[部署包的实时采集效果与适用范围](Deliverables/pose180-csi-release-20261031-r4-DEPLOY.md#实时采集效果与适用范围)。下载和使用实时模式前请先阅读。
+
 | 文件或目录 | 用途 |
 |---|---|
 | [下载部署RAR](https://github.com/cenyongdong/See-You-In-WiFi/releases/download/deploy-r4-20261031/pose180-csi-release-20261031-r4.rar) | `pose180-csi-release-20261031-r4.rar`；含CSI分组流水、骨架绘图、30段官方CSI、PC双页、路由器安装文件及最新版BOOT |
