@@ -20,6 +20,14 @@
 
 本仓库保存当前软件核心、FPGA 工程、模型适配工具、交付说明和精选证据。阅读源码从 `software/pose180_pipeline/` 开始；部署方法从 `Deliverables/` 的说明开始，r4 部署包与 r7 源码包均通过 GitHub Release 下载。项目已完成有限实板演示、30分钟官方输入长测、交付整理及源码RAR独立完整FPGA重建，具体实测范围见 [PROJECT-PROGRESS.md](PROJECT-PROGRESS.md)。
 
+### 实机演示
+
+下面的约 36 秒片段展示板端姿态推理结果在 PC 三维观察端与 HDMI 显示器上的呈现，包含单人到多人的骨架变化。点击封面观看视频（1080p，约 12.7 MB）。
+
+[![PC 与 HDMI 双端姿态演示](video/pose180-pc-hdmi-demo.jpg)](https://github.com/cenyongdong/See-You-In-WiFi/raw/refs/heads/master/video/pose180-pc-hdmi-demo.mp4)
+
+[查看视频文件](video/pose180-pc-hdmi-demo.mp4)
+
 ## 二、目录与文件职责
 
 ### 2.1 仓库目录
