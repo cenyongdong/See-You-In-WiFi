@@ -5,9 +5,10 @@ Deliverables/*
 #开发困难记录
 DifficultyRecord.txt
 
-日志
+#日志
 Logs
 
+<<<<<<< HEAD
 Studying_plan
 RESEARCH-HANDOVER.md
 
@@ -17,6 +18,11 @@ video
 /video/*
 !/video/pose180-pc-hdmi-demo.mp4
 !/video/pose180-pc-hdmi-demo.jpg
+=======
+#视频
+video
+Studying_plan
+>>>>>>> hardops
 
 #相关资料
 /Docs/*
