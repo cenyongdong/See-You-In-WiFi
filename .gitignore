@@ -9,6 +9,7 @@ DifficultyRecord.txt
 Logs
 
 Studying_plan
+RESEARCH-HANDOVER.md
 
 视频
 video
@@ -598,3 +599,5 @@ node_modules/
 !/Deliverables/SOURCE-20261104.md
 !/Deliverables/pose180-current-sources-20261104-r7.rar.sha256
 !/Deliverables/R7-REBUILD-BOARD-20261104.md
+
+
