@@ -10,6 +10,7 @@
 namespace topk::board {
 using Json = nlohmann::json;
 using Allocations = std::map<std::string, icraft::xrt::MemChunk>;
+enum class UploadCheck { HardwareReadback, MockMetadata };
 
 // Own this object before initialize(). The enclosing device owner must retain it
 // on any hardware exception; release() requires proven completion of all work.
@@ -23,11 +24,13 @@ class SharedNpuSession {
     std::string name_;
     std::vector<char> readback_; // Retained if a synchronous transfer throws.
     bool operation_completed_ = true;
+    bool mock_metadata_ = false;
     Json verify_upload(const icraft::xrt::Device& device, const std::filesystem::path& directory);
 public:
     Json initialize(const icraft::xir::Network& graph, const Json& specification,
                     Allocations& allocations, const icraft::xrt::Device& device,
-                    const std::filesystem::path& evidence_directory);
+                    const std::filesystem::path& evidence_directory,
+                    UploadCheck upload_check = UploadCheck::HardwareReadback);
     double forward(icraft::xrt::Device& device);
     bool operation_completed() const noexcept { return operation_completed_; }
     void release();

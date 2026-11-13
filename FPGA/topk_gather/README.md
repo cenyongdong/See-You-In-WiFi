@@ -245,6 +245,28 @@ O(N²) 比较和中间张量使其未必快。当前图逐个 HardOp 累加输�
 
 C++ 单次 `forward＋wait` 的观察范围为 0.333～1.014 ms，读回并保存约 0.548～0.580 ms；没有严格的预热／重复分布和原整图对照，不能用于宣称加速比。D2a 二进制、PL 排序核、任意 FP32／负零位复制、原模型全链及长期运行仍未获本批实板资格。
 
+## 整图共享会话与参数校验进展
+
+整图测试使用 `host/board/shared_npu_session.*` 管理三段原 NPU 图和两次排名候选的会话、端口及在途读回缓冲。计划中的候选路径把融合边界留在公共 PL DDR 分配中；CPU 对照路径显式执行 TopK／Gather 及边界搬运。代码与 mock 绑定检查不能代替实板整图正确性或性能比较。
+
+`board/model-r3` 在正常重启后的 boot_id `fa7bc048-d0ad-45af-87f6-2aa61c90b023` 上进行一次真实 SDK 初始化。原生 `precheck()` 在旧模型 op 7612 LayerNorm 的权重比较处失败，发生在首次 forward 之前，实际 **0 次 forward、0 帧**。原失败退出码 1 保留，没有数值通过结论。核对已安装 DMA 插件的真实状态寄存器、三次空闲采样和线程状态后，使用与运行程序代码段一致的调试符号调用原有正常关闭流程；backend 关闭、分配归零、设备关闭、设备占用为空及全局锁可取得均已记录。没有释放未证明完成的 DMA 对象。
+
+主机布局探针 `parameter_layout_probe.cpp` 通过公共 `Params::data<char>()` 复核：该操作的两个 512 字节参数各自有效，但内存并不连续。SDK `precheck()` 的反汇编显示，它把参数总长度与首个参数指针直接交给 `memcmp`。这证明了该预检的连续内存假设不成立；由于原失败未保存首次完整 DDR 读回，尚不能据此判断当次 DDR 内容，也不能把历史搬运损坏认定为已经修复。
+
+新增 `parameter_image.hpp` 按每个参数的实际长度构造预期映像，拒绝空洞、重叠、越界和超出容量。共享会话对实际上传的权重及 apply 后指令进行同步完整读回，先保存首次实际字节，再逐位比较；异常时保留读回缓冲和设备所有权。这个实现使用公共 SDK 接口，没有修改 SDK 或跳过硬件校验。`UploadCheck::MockMetadata` 只允许已确认类型的软件 mock，检查映像布局和绑定元数据，报告 `readback_performed=false`、`all_bitwise_equal=null`，且不能执行 forward。
+
+`board/model-r4` 的当前检查点完成 ARM64 RelWithDebInfo 四个目标的编译、9 项参数映像测试及布局探针，原生退出码均为 0。随后 mock 检查因 `npu_0: unloaded parameter data` 退出 1；尚需查明 apply 后参数数据的保留契约，不能将这个检查点标记为共享会话资格通过。本轮只运行主机编译和软件 mock，实际硬件初始化为 0，构建进程已经结束。完整原生日志、源码与二进制身份保存在 `board/model-r4/host-checkpoint-r1.tar.gz`，SHA256 为 `1c2f16771094e80ac38ecab48b2194e75e6194fbde936b2e602adcd4dc182745`；最初 mock 不支持硬件状态寄存器的失败也保留在远端 `before-host-fix-r1/`。
+
+累计真实板端使用为 **2 次 SDK 初始化、7 次 forward、1 次正常重启、0 次 BOOT 写入**，原有七组候选结果保持有效。当前启动已消费，下一次真实 SDK 初始化需要新的记录、正常重启和身份／空闲预检。r3 失败及安全关闭证据归档为 `.local/topk-fusion-20261113/board/model-r3/failure-evidence.tar.gz`，SHA256 为 `322e0b1fe53e60293204919ebc094c337f459f24d4d2fcb14cb1168a70266b9f`；`recovery-closed.json` 明确保留 `numerical_pass=false`。
+
+## 原生 MIG 搬运候选
+
+`rtl/mig_line_port.sv` 为 PL 路线增加原生 MIG 行传输适配候选。实际合格 SoC 中 NPU 使用独立的 PL DDR3，不能把 PS HP 内存地址直接作为同一块存储。适配器按本地生成 IP 的单 rank、8 bank、64 位 DQ、BL8、4:1 UI 和 ROW_BANK_COLUMN 配置处理 64 字节行；字节地址右移 3 位形成 app 地址，bank 来自字节地址位 `[15:13]`。所有权仲裁、寄存器跨时钟和 SoC 接线尚未集成。
+
+写数据先进入 MIG 写 FIFO，再提交写命令；`app_rdy`／`app_wdf_rdy` 只表示接收。完成栅栏为每个发生过写入的 bank 记录末次地址，依次发出读请求并等待真实读响应，全部响应返回后才报告完成。这依赖匹配配置下同 rank／bank 内的顺序规则，避免把跨 bank 请求顺序或 FIFO 接收误当作写入完成。依据为已核对的本地 MIG v4.2 生成代码及官方 [Reordering](https://docs.amd.com/r/en-US/ug586_7Series_MIS/Reordering)、[Command Path](https://docs.amd.com/r/en-US/ug586_7Series_MIS/Command-Path) 文档；仍需适配后的整机验证。
+
+`sim/tb_mig.sv` 故意延迟其它 bank 的写入可见性，覆盖 8 bank、32 次带掩码写入、两种故障变体、命令／响应背压、非法地址、空栅栏及零字节使能。校准／所有权丢失、非预期读响应会进入粘滞故障；没有返回的读响应不会被超时伪造成成功。最终 `rtl/mig-port-r2` 仿真通过；独立综合 `rtl/synth-mig-port-r1` 为 533 LUT、1432 FF、0 BRAM、0 DSP，10 ns 寄存器路径估算 WNS=7.330 ns、WHS=0.216 ns。接口仍有未约束路径，没有整机时序、BIT 或实板资格。
+
 ## 验证与资源
 
 证据根目录 `.local/topk-fusion-20261113/`。各尝试独立保存命令、原生退出码、完整日志、实际输出和报告。不同验证层级不能相互替代。
@@ -270,6 +292,7 @@ C++ 单次 `forward＋wait` 的观察范围为 0.333～1.014 ms，读回并保�
 | 通用任务外设完整计划 | 5 组形状、31 条命令全部通过，含读失败后排空重做；真实中间结果经同一仿真 DDR 消费，完整内存保护区比较 | `rtl/command-device-r1` |
 | 实际排序索引→Gather RTL | 96 组通过；文件连接的阶段测试，非整机总线测试 | `rtl/plan-physical-gather-r1`；写缓冲旧对照 `rtl/plan-gather-buffer-final` |
 | AXI 适配器 | 97 组通过，含独立 AW/W 背压、延迟 B、错误 ID 和异常读突发 | `rtl/axi-r1` |
+| 原生 MIG 行传输候选 | 8 bank、32 次掩码写入、两种故障变体通过，含同拍故障与完成响应竞争 | `rtl/mig-port-r2` |
 | NPU 运行时形状复用 | 35 组索引逐位／输出数值通过，负零位差保留 | `native/dynamic-n180-k100-r3` |
 | 排名二进制＋D2a 对象链路 | 35 组逐位通过，非融合二进制通过 | `native/d2a-chain-r1` |
 | D2a 二进制 | 未通过，异常及实际输出保留 | `native/d2a-instruction-*`、`native/d2a-xir-r1` |
@@ -286,6 +309,9 @@ C++ 单次 `forward＋wait` 的观察范围为 0.333～1.014 ms，读回并保�
 | 兼容 RTL／默认回归 | 两策略分别穷尽 65,536 FP16 分数模式；16 个完整兼容任务、31 条通用兼容命令、默认 13／31 用例通过 | `rtl/scores-r3`、`rtl/scores-ftz-r1`、`rtl/native-payload-r1`、`rtl/command-device-ftz-r1`、`rtl/device-r7`、`rtl/command-device-r2` |
 | 原模型＋排名候选整图串接 | 一份合成输入，三段原指令与两次同一排名二进制；两个最终输出逐位一致 | `native/npu-model-flow-r1` |
 | NPU 候选有限实板／独立 CPU 复核 | 7 用例、21 份首次完整输出逐位通过；3 组 DDR 及保护区通过，7 路直接绑定，分配归零 | `board/r1/independent-verification.json` |
+| 整图实板初始化 r3 | 原生权重预检失败，0 次 forward；已正常关闭，原失败保留 | `board/model-r3/failure-evidence.tar.gz` |
+| 参数映像／主机布局 | Windows 与 ARM 的 9 项映像测试通过；公共参数指针证明 op 7612 的两个参数不连续 | `board/model-r4` |
+| 共享会话 ARM64 构建／mock r4 | 四目标编译通过；mock 因参数数据未加载退出 1，未获资格通过 | `board/model-r4/host-checkpoint-r1.tar.gz` |
 | PL 整机／整图实板／端到端性能 | 未执行 | 见上方有限实板范围 |
 
 独立综合使用项目既定 Vivado 2018.3／030 代理器件流程，真实目标仍为 JFMQL30TAI676H。下表为 **OOC 综合**；未完成整机布局布线，10 ns 仅为估算约束，不是改板端频率或整机时序资格。
@@ -301,6 +327,7 @@ C++ 单次 `forward＋wait` 的观察范围为 0.333～1.014 ms，读回并保�
 | topk_gather_kernel（再含三路输出完成／写回） | 6687 | 4062 | 0 | 4 | `rtl/synth-kernel-r1` |
 | topk_gather_device（再含 AXI-Lite 控制／AXI 适配，检查分拍后） | 7351 | 6371 | 0 | 4 | `rtl/synth-device-r2` |
 | axi_line_port | 38 | 1228 | 0 | 0 | `rtl/synth-axi-r1` |
+| mig_line_port（原生 MIG 候选） | 533 | 1432 | 0 | 0 | `rtl/synth-mig-port-r1` |
 | 可选 write_coalescer | 1693 | 457 | 0 | 0 | `rtl/synth-write-buffer-r2` |
 | memory_merge | 1765 | 2094 | 0 | 0 | `rtl/synth-memory-merge-r1` |
 | memory_stage（含分块／归并引擎） | 4321 | 3659 | 0 | 0 | `rtl/synth-memory-stage-r1` |
@@ -321,6 +348,8 @@ ABI 2.1 兼容变体同约束 OOC 为 WNS=3.175 ns、WHS=0.116 ns，216 LUT RAM�
 ```powershell
 python -B tools/topk_fusion/run_host_tests.py .local/topk-check/host
 python -B tools/topk_fusion/run_rtl.py .local/topk-check/sort --suite sort
+python -B tools/topk_fusion/run_rtl.py .local/topk-check/mig --suite mig
+python -B tools/topk_fusion/synthesize_rtl.py .local/topk-check/synth-mig --top mig_line_port
 python -B tools/topk_fusion/run_rtl.py .local/topk-check/gather --suite gather
 python -B tools/topk_fusion/run_rtl.py .local/topk-check/gather-buffer --suite gather --write-buffer
 python -B tools/topk_fusion/run_rtl.py .local/topk-check/axi --suite axi
@@ -373,6 +402,6 @@ python -B tools/topk_fusion/validate_npu_model_flow.py .local/topk-check/native 
 2. 将已通过联合仿真与原 NPU 图／CPU 数学参考对照的两种边界适配接到受控板端会话；保存完整实板输出，与原受控推理路径比较。按整段测量选择原生布局、写合并和私有写回策略，不能由离线周期推断推理提速。
 3. 完成受影响整机设计的适配、完整布局布线和原约束检查，不增加时序例外或扩大原例外范围。
 4. D2a 二进制仍需支持该指令的有效执行验证路径；当前默认模拟器跳过相关读取，另一套对象模拟器有 DMA 单位不一致。不能将恢复逻辑对象后的通过写成二进制通过。
-5. 首轮 NPU 有限板测已安全关闭，继续以本节实板记录为恢复入口。此前未接板时的一次 3 秒 TCP 超时保留于 `board/connectivity.json`，该历史记录不覆盖本轮成功连接与实际 SDK 次数。
+5. 首轮候选板测及 r3 失败后的正常关闭均已完成，继续以本文“整图共享会话与参数校验进展”为恢复入口。完成 r4 主机／mock 资格检查后，再以新启动验证逐参数映像读回及整图数值；不得跳过校验进入性能比较。连接超时只作为管理连接记录，不替代原生进程状态或硬件完成证据。
 
 本实验没有证明旧 D47 首次 Host 读取损坏的根因已解决。显式所有权、真实完成响应和错误隔离约束了新通路，仍需整机和实板证据。

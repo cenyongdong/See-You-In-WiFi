@@ -67,6 +67,11 @@ Json SharedNpuSession::verify_upload(const Device& device, const std::filesystem
             cursor += extent;
         }
         const auto expected = parameter_image(bytes, parts);
+        if (mock_metadata_) {
+            report.push_back({{"op_id", id}, {"kind", kind}, {"bytes", bytes}, {"parts", layout},
+                              {"image_layout_valid", true}, {"readback_performed", false}});
+            return;
+        }
         readback_.resize(bytes);
         operation_completed_ = false;
         chunk.read(readback_.data(), physical - base, bytes);
@@ -97,13 +102,20 @@ Json SharedNpuSession::verify_upload(const Device& device, const std::filesystem
     for (const auto& item : backend_->params_chunk_ids) verify(item.second, true);
     for (const auto& item : session_.backendBindings())
         verify(backend_->forward_info->hardop_map.at(item.first), false);
-    return {{"checked_images", report.size()}, {"all_bitwise_equal", true}};
+    return {{"checked_images", report.size()}, {"readback_performed", !mock_metadata_},
+            {"all_bitwise_equal", mock_metadata_ ? Json(nullptr) : Json(true)}};
 }
 
 Json SharedNpuSession::initialize(const icraft::xir::Network& graph, const Json& specification,
                                  Allocations& allocations, const Device& device,
-                                 const std::filesystem::path& evidence_directory) {
+                                 const std::filesystem::path& evidence_directory, UploadCheck upload_check) {
     graph_ = graph;
+    mock_metadata_ = upload_check == UploadCheck::MockMetadata;
+    if (mock_metadata_) {
+        const auto key = device->typeKey();
+        require(key == "MockZG330DeviceNode" || key == "icraft::xrt::MockZG330DeviceNode",
+                "Metadata-only validation requires the literal software mock device");
+    }
     name_ = specification.at("name").get<std::string>();
     const auto op_ids = specification.at("op_ids").get<std::vector<int64_t>>();
     view_ = graph_.view(op_ids);
@@ -122,7 +134,7 @@ Json SharedNpuSession::initialize(const icraft::xir::Network& graph, const Json&
     }
     session_ = Session::CreateWithBackends(view_, {backend_});
     session_.apply();
-    check_ddr_idle(device);
+    if (!mock_metadata_) check_ddr_idle(device);
     operation_completed_ = true;
     const auto upload = verify_upload(device, evidence_directory / name_);
     Json bindings = Json::array(), groups = Json::array();
@@ -161,6 +173,7 @@ Json SharedNpuSession::initialize(const icraft::xir::Network& graph, const Json&
 }
 
 double SharedNpuSession::forward(Device& device) {
+    require(!mock_metadata_, "Metadata-only mock session cannot execute inference");
     check_ddr_idle(device);
     operation_completed_ = false;
     device.reset(1); // Previous work is complete; this only clears FPGA status.

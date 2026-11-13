@@ -32,7 +32,8 @@ int main(int argc, char** argv) {
         for (const auto& specification : plan.at("stages")) {
             sessions.push_back(std::make_unique<topk::board::SharedNpuSession>());
             report.push_back(sessions.back()->initialize(graphs.at(specification.at("graph").get<std::string>()),
-                             specification, allocations, device, root / "mock-uploads"));
+                             specification, allocations, device, root / "mock-uploads",
+                             topk::board::UploadCheck::MockMetadata));
         }
         std::ofstream(root / "mock-bindings.json") << report.dump(2) << '\n';
         std::cout << "SHARED_BINDING_PASS stages=" << report.size() << " hardware_opens=0\n";
