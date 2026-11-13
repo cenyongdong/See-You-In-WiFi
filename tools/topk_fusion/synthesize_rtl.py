@@ -15,7 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("directory", type=Path)
     parser.add_argument("--top", choices=("topk_tile", "topk_merge", "gather_engine",
-                                        "axi_line_port", "write_coalescer", "score_reader", "score_topk",
+                                        "axi_line_port", "mig_line_port", "write_coalescer", "score_reader", "score_topk",
                                         "topk_gather_tile", "record_writer", "topk_gather_kernel",
                                         "topk_gather_device", "memory_merge", "memory_tile", "memory_stage"), required=True)
     parser.add_argument("--sorted-run", action="store_true", help="Synthesize final packed-run Gather mode")

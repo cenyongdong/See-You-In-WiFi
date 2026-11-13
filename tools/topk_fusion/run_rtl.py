@@ -12,7 +12,7 @@ from runtime import ROOT, VIVADO_BIN, run_native, save_json
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("directory", type=Path)
-    parser.add_argument("--suite", choices=("sort", "gather", "fusion", "kernel", "run_gather", "device", "command_device", "records", "memory_tile", "memory_merge", "plan", "axi", "scores", "pipeline"), default="sort")
+    parser.add_argument("--suite", choices=("sort", "gather", "fusion", "kernel", "run_gather", "device", "command_device", "records", "memory_tile", "memory_merge", "plan", "axi", "mig", "scores", "pipeline"), default="sort")
     parser.add_argument("--vectors", type=Path)
     parser.add_argument("--write-buffer", action="store_true")
     parser.add_argument("--memory-merge", action="store_true", help="Execute both plan tile and merge commands through DDR")
@@ -36,6 +36,8 @@ def main():
         counts["memory_merge"] = args.memory_merge
     elif args.suite == "axi":
         counts = dict(axi_cases=97)
+    elif args.suite == "mig":
+        counts = dict(bank_fences=8, fault_variants=2)
     elif args.suite == "records":
         counts = dict(record_dma_cases=20)
     elif args.suite == "memory_merge":
@@ -65,6 +67,8 @@ def main():
              else [source / ("rtl/axi_line_port.sv" if args.suite == "axi" else "rtl/gather_engine.sv"),
                    source / ("sim/tb_" + args.suite + ".sv")])
     top = "tb_" + args.suite
+    if args.suite == "mig":
+        files = [source / "rtl/mig_line_port.sv", source / "sim/tb_mig.sv"]
     if args.suite == "scores":
         files = [source / "rtl/score_reader.sv", source / "sim/tb_scores.sv"]
         if args.flush_half_zero:
