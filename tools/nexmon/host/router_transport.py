@@ -45,7 +45,7 @@ def askpass():
     return 0
 
 
-def ssh_run(directory, user, password, script, data, timeout, host=HOST, port=22):
+def ssh_run(directory, user, password, script, data, timeout, host=HOST, port=22, connect_timeout=5):
     address = r'\\.\pipe\nexmon-password-' + uuid.uuid4().hex
     listener = Listener(address, family='AF_PIPE')
 
@@ -65,7 +65,7 @@ def ssh_run(directory, user, password, script, data, timeout, host=HOST, port=22
     arguments = [str(SSH), '-F', '/dev/null', '-T', '-p', str(port),
                  '-o', 'StrictHostKeyChecking=yes',
                  '-o', 'UserKnownHostsFile=' + (directory / 'known_hosts').as_posix(),
-                 '-o', 'ConnectTimeout=5', '-o', 'ConnectionAttempts=1',
+                 '-o', 'ConnectTimeout=' + str(int(connect_timeout)), '-o', 'ConnectionAttempts=1',
                  '-o', 'ServerAliveInterval=10', '-o', 'ServerAliveCountMax=2',
                  '-o', 'NumberOfPasswordPrompts=1', '-o', 'PubkeyAuthentication=no',
                  '-o', 'PreferredAuthentications=password', user + '@' + host, script]
